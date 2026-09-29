@@ -1057,7 +1057,9 @@ class Scheduler {
       // Stratégie 2 (Windows) : PowerShell Expand-Archive vers un dossier
       // temporaire, puis lecture du FEATURES.md.
       try {
-        const tmpDir = require('os').tmpdir() + '\\iao-zip-' + Date.now();
+        // path.join (et non « + '\\' ») : chemin correct quel que soit l'OS
+        // qui exécute ce code (tests simulant win32 sur Linux compris, PR #120).
+        const tmpDir = path.join(require('os').tmpdir(), 'iao-zip-' + Date.now());
         execSync('powershell -NoProfile -Command "Expand-Archive -LiteralPath \'' + target + '\' -DestinationPath \'' + tmpDir + '\' -Force"', {
           timeout: 10000, stdio: ['pipe', 'pipe', 'pipe']
         });
