@@ -2,6 +2,9 @@
 
 const test = require('node:test');
 const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const vm = require('node:vm');
 
 const {
   compareAccountNames,
@@ -160,4 +163,116 @@ test('getAssignableAccounts renvoie un tableau vide si aucun compte vert', () =>
 
 test('getAssignableAccounts gère un tableau vide', () => {
   assert.deepEqual(getAssignableAccounts([], new Set(), 5, Date.now()), []);
+});
+
+// --- Couverture complète : valeurs par défaut et cas limites (issue #75) ---
+
+const H = 60 * 60 * 1000;
+
+test('compareAccountNames : un nom plus court passe avant son extension, et inversement', () => {
+  // Tous les segments communs sont égaux : seule la longueur départage.
+  assert.equal(compareAccountNames('a1', 'a1b'), -1);
+  assert.equal(compareAccountNames('a1b', 'a1'), 1);
+});
+
+test('compareAccountNames : segments numériques égaux -> on passe au segment suivant', () => {
+  assert.equal(compareAccountNames('a01', 'a1'), 0);
+  assert.ok(compareAccountNames('a1 b', 'a01 c') < 0);
+});
+
+test('compareAccountNames : segment numérique face à un segment texte', () => {
+  assert.notEqual(compareAccountNames('1', 'a'), 0);
+  assert.notEqual(compareAccountNames('a', '1'), 0);
+});
+
+test('getAccountActivityStatus sans argument : compte jamais utilisé -> idle', () => {
+  assert.equal(getAccountActivityStatus(), 'idle');
+  assert.equal(getAccountActivityStatus(null), 'idle');
+});
+
+test('getAccountActivityStatus utilise Date.now() et le seuil de 5h par défaut', () => {
+  assert.equal(getAccountActivityStatus({ lastUsedAt: Date.now() - 4 * H }), 'recent');
+  assert.equal(getAccountActivityStatus({ lastUsedAt: Date.now() - 6 * H }), 'idle');
+});
+
+test('isTabIdle utilise Date.now() par défaut pour now', () => {
+  assert.equal(isTabIdle(Date.now() - 10 * 60 * 1000), true);
+  assert.equal(isTabIdle(Date.now() - 1000), false);
+});
+
+test('isAccountAssignable utilise Date.now() et le seuil de 5h par défaut', () => {
+  assert.equal(isAccountAssignable({ lastUsedAt: Date.now() - 6 * H }), true);
+  assert.equal(isAccountAssignable({ lastUsedAt: Date.now() - 4 * H }), false);
+});
+
+test('getAssignableAccounts renvoie [] si accounts n\'est pas un tableau', () => {
+  assert.deepEqual(getAssignableAccounts(null, new Set(), 5, Date.now()), []);
+  assert.deepEqual(getAssignableAccounts(undefined), []);
+  assert.deepEqual(getAssignableAccounts({ id: 'a1' }), []);
+});
+
+test('getAssignableAccounts accepte openAccountIds sous forme de tableau', () => {
+  const accounts = [{ id: 'a1', automation: { lastUsedAt: 0 } }, { id: 'a2', automation: { lastUsedAt: 0 } }];
+  assert.deepEqual(getAssignableAccounts(accounts, ['a1'], 5, Date.now()).map(a => a.id), ['a2']);
+});
+
+test('getAssignableAccounts accepte openAccountIds absent (aucun onglet ouvert)', () => {
+  const accounts = [{ id: 'a1', automation: { lastUsedAt: 0 } }];
+  assert.deepEqual(getAssignableAccounts(accounts).map(a => a.id), ['a1']);
+});
+
+test('getAssignableAccounts applique now et thresholdHours par défaut (Date.now(), 5h)', () => {
+  const accounts = [
+    { id: 'vieux', automation: { lastUsedAt: Date.now() - 6 * H } },
+    { id: 'recent', automation: { lastUsedAt: Date.now() - 4 * H } }
+  ];
+  assert.deepEqual(getAssignableAccounts(accounts, new Set()).map(a => a.id), ['vieux']);
+});
+
+test('getAssignableAccounts ignore les entrées nulles et les comptes dont l\'automatisation est désactivée', () => {
+  const accounts = [
+    null,
+    undefined,
+    { id: 'off', automation: { enabled: false, lastUsedAt: 0 } },
+    { id: 'on', automation: { enabled: true, lastUsedAt: 0 } }
+  ];
+  assert.deepEqual(getAssignableAccounts(accounts, new Set(), 5, Date.now()).map(a => a.id), ['on']);
+});
+
+test('getAssignableAccounts traite un compte sans champ automation comme jamais utilisé', () => {
+  const accounts = [{ id: 'sans-automation' }];
+  assert.deepEqual(getAssignableAccounts(accounts, new Set(), 5, Date.now()).map(a => a.id), ['sans-automation']);
+});
+
+// --- Export : contexte navigateur (window) vs Node (module) ----------------
+
+const MODULE_PATH = require.resolve('../lib/activity-status.js');
+const EXPORTED = ['compareAccountNames', 'getAccountActivityStatus', 'isTabIdle', 'isAccountAssignable', 'getAssignableAccounts'];
+
+test('en contexte navigateur, les fonctions sont exposées sur window', () => {
+  const hadWindow = Object.prototype.hasOwnProperty.call(globalThis, 'window');
+  const previous = globalThis.window;
+  const fakeWindow = {};
+  globalThis.window = fakeWindow;
+  delete require.cache[MODULE_PATH];
+  try {
+    const exported = require(MODULE_PATH);
+    for (const name of EXPORTED) {
+      assert.equal(typeof fakeWindow[name], 'function', name + ' doit être sur window');
+    }
+    // Branche window : pas d'export CommonJS.
+    assert.deepEqual(Object.keys(exported), []);
+  } finally {
+    if (hadWindow) globalThis.window = previous; else delete globalThis.window;
+    delete require.cache[MODULE_PATH];
+    require(MODULE_PATH);
+  }
+});
+
+test('sans window ni module, le chargement ne plante pas et ne crée ni window ni module', () => {
+  const source = fs.readFileSync(path.join(__dirname, '..', 'lib', 'activity-status.js'), 'utf8');
+  const sandbox = {};
+  assert.doesNotThrow(() => vm.runInNewContext(source, sandbox, { filename: MODULE_PATH }));
+  assert.equal('window' in sandbox, false);
+  assert.equal('module' in sandbox, false);
 });
