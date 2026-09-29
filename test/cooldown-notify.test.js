@@ -2,6 +2,9 @@
 
 const test = require('node:test');
 const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const vm = require('node:vm');
 
 const {
   cooldownKey,
@@ -95,4 +98,122 @@ test('getNewlyExpiredCooldowns gère plusieurs expirations simultanées', () => 
   assert.equal(expired.length, 2);
   assert.ok(expired.some(e => e.svcId === 'claude'));
   assert.ok(expired.some(e => e.svcId === 'gemini'));
+});
+
+// --- Cas limites (couverture 100 %) ----------------------------------------
+
+test('getNewlyExpiredCooldowns retombe sur Date.now() quand now est invalide', () => {
+  const previouslyActive = [{ accId: 'acc_1', svcId: 'claude', endsAt: Date.now() - 1000 }];
+  const accounts = [{ id: 'acc_1', cooldowns: { claude: 0 } }];
+  for (const now of [undefined, null, 0, NaN, 'pas-un-nombre']) {
+    const expired = getNewlyExpiredCooldowns(accounts, previouslyActive, now);
+    assert.equal(expired.length, 1);
+    assert.equal(expired[0].key, 'acc_1::claude');
+  }
+});
+
+test('getNewlyExpiredCooldowns tolère des comptes absents ou non tableau', () => {
+  const now = Date.now();
+  const previouslyActive = [{ accId: 'acc_1', svcId: 'claude', endsAt: now - 1000 }];
+  // Sans liste de comptes exploitable, plus rien n'est actif : expiration notifiée.
+  for (const accounts of [null, undefined, {}, 'x']) {
+    assert.equal(getNewlyExpiredCooldowns(accounts, previouslyActive, now).length, 1);
+  }
+});
+
+test('getNewlyExpiredCooldowns ignore les comptes invalides ou sans cooldowns', () => {
+  const now = Date.now();
+  const previouslyActive = [{ accId: 'acc_1', svcId: 'claude', endsAt: now - 1000 }];
+  const accounts = [
+    null,
+    undefined,
+    { id: 'acc_0' },
+    { id: 'acc_9', cooldowns: null },
+    { id: 'acc_1', cooldowns: { claude: 0, gemini: 'abc', grok: null } }
+  ];
+  const expired = getNewlyExpiredCooldowns(accounts, previouslyActive, now);
+  assert.equal(expired.length, 1);
+  assert.equal(expired[0].svcId, 'claude');
+});
+
+test('getNewlyExpiredCooldowns ignore les entrées du snapshot invalides ou inactives', () => {
+  const now = Date.now();
+  const previouslyActive = [
+    null,
+    undefined,
+    {},
+    { accId: 'acc_1' },
+    { svcId: 'claude' },
+    { accId: 'acc_1', svcId: 'claude', endsAt: 0 },
+    { accId: 'acc_1', svcId: 'gemini', endsAt: 'abc' },
+    { accId: 'acc_1', svcId: 'grok' },
+    { accId: 'acc_1', svcId: 'suno', endsAt: now - 1 }
+  ];
+  const accounts = [{ id: 'acc_1', cooldowns: {} }];
+  const expired = getNewlyExpiredCooldowns(accounts, previouslyActive, now);
+  assert.deepEqual(expired, [{ accId: 'acc_1', svcId: 'suno', key: 'acc_1::suno' }]);
+});
+
+test('getNewlyExpiredCooldowns traite endsAt === now comme expiré', () => {
+  const now = 1700000000000;
+  const previouslyActive = [{ accId: 'acc_1', svcId: 'claude', endsAt: now }];
+  const accounts = [{ id: 'acc_1', cooldowns: { claude: 0 } }];
+  assert.equal(getNewlyExpiredCooldowns(accounts, previouslyActive, now).length, 1);
+});
+
+test('snapshotActiveCooldowns ignore les comptes invalides et les valeurs non numériques', () => {
+  const accounts = [
+    null,
+    undefined,
+    { id: 'acc_0' },
+    { id: 'acc_9', cooldowns: null },
+    { id: 'acc_1', cooldowns: { claude: 'abc', gemini: -5, grok: null, suno: 1234 } }
+  ];
+  assert.deepEqual(snapshotActiveCooldowns(accounts), [
+    { accId: 'acc_1', svcId: 'suno', endsAt: 1234 }
+  ]);
+  assert.deepEqual(snapshotActiveCooldowns(undefined), []);
+  assert.deepEqual(snapshotActiveCooldowns({}), []);
+});
+
+// --- Chargement du module selon l'environnement ----------------------------
+// Le fichier est chargé via <script> dans index.html (window) et via require()
+// (module.exports). On l'évalue dans un bac à sable `vm` pour couvrir chaque
+// branche de l'export.
+
+const SOURCE_PATH = path.join(__dirname, '..', 'lib', 'cooldown-notify.js');
+const SOURCE = fs.readFileSync(SOURCE_PATH, 'utf8');
+
+function loadInSandbox(sandbox) {
+  vm.createContext(sandbox);
+  new vm.Script(SOURCE, { filename: SOURCE_PATH }).runInContext(sandbox);
+  return sandbox;
+}
+
+test('chargé dans un renderer (window), il expose ses fonctions globalement', () => {
+  const sandbox = loadInSandbox({ window: {} });
+  assert.equal(typeof sandbox.window.cooldownKey, 'function');
+  assert.equal(typeof sandbox.window.getNewlyExpiredCooldowns, 'function');
+  assert.equal(typeof sandbox.window.snapshotActiveCooldowns, 'function');
+  assert.equal(sandbox.window.cooldownKey('a', 'b'), 'a::b');
+  assert.equal(sandbox.module, undefined);
+});
+
+test('chargé avec module.exports (sans window), il exporte ses fonctions', () => {
+  const sandbox = loadInSandbox({ module: { exports: {} } });
+  assert.deepEqual(Object.keys(sandbox.module.exports).sort(), [
+    'cooldownKey',
+    'getNewlyExpiredCooldowns',
+    'snapshotActiveCooldowns'
+  ]);
+  assert.equal(sandbox.module.exports.cooldownKey('a', 'b'), 'a::b');
+});
+
+test('chargé sans window ni module exploitable, il ne plante pas et n exporte rien', () => {
+  // Ni window, ni module : aucune exportation, aucune exception.
+  assert.doesNotThrow(() => loadInSandbox({}));
+  // module présent mais sans exports : même comportement.
+  const sandbox = { module: {} };
+  assert.doesNotThrow(() => loadInSandbox(sandbox));
+  assert.deepEqual(sandbox.module, {});
 });
