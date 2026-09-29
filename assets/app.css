@@ -549,3 +549,16 @@
   .sched-job__dot--mt3 { margin-top: 3px; }
   .sched-job__dot--mt5 { margin-top: 5px; }
   .sched-subtitle--inline { color: var(--fg-muted); font-weight: 400; font-size: 11px; }
+
+  /* Issue #52 : bandeau d'erreur de démarrage (assets/boot-guard.js). */
+  .boot-error { position: fixed; top: 12px; left: 50%; transform: translateX(-50%); z-index: 1000; width: min(720px, calc(100vw - 32px)); max-height: 60vh; overflow: auto; padding: 14px 16px; background: var(--bg-elevated); color: var(--fg); border: 1px solid var(--danger); border-left: 4px solid var(--danger); border-radius: var(--radius-sm); box-shadow: 0 12px 40px rgba(0,0,0,0.5); font-size: 13px; }
+  .boot-error--hidden { display: none; }
+  .boot-error__head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .boot-error__icon { color: var(--danger); width: 18px; height: 18px; flex: 0 0 auto; }
+  .boot-error__icon svg { width: 100%; height: 100%; fill: currentColor; }
+  .boot-error__title { flex: 1; font-size: 14px; }
+  .boot-error__close { background: none; border: none; color: var(--fg-muted); font-size: 20px; line-height: 1; cursor: pointer; padding: 0 4px; }
+  .boot-error__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .boot-error__item-title { font-weight: 600; margin-bottom: 4px; }
+  .boot-error__detail { display: block; white-space: pre-wrap; word-break: break-word; padding: 6px 8px; margin-bottom: 4px; background: var(--danger-dim); border-radius: 4px; font-size: 12px; }
+  .boot-error__hint { opacity: 0.85; }
