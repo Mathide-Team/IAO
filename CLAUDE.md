@@ -175,3 +175,21 @@ Test réel avec Electron v43.7.2 + xvfb (test-electron-tabs.js) :
 - 12 tests scheduler-automation
 - 15 tests quiet-hours
 - 195 tests autres (scheduler-core, rate-limiter, projects, settings, etc.)
+
+## 11. Couverture de `assets/app.js` — décision (issue #100, parent #55)
+
+`assets/app.js` (~2300 lignes de DOM, exécuté dans le renderer) est **exclu de l'objectif « 100 % »
+et du seuil bloquant** de `npm run test:coverage` (qui ne mesure que `node --test`). Il n'est couvert
+que fonctionnellement, par les harnais Electron (`test-electron/`), qui restent bloquants.
+
+- **Pourquoi l'exclusion** : la couverture V8 mesurée (`Profiler.startPreciseCoverage`) donne
+  **≈ 40 % des lignes et ≈ 34 % des fonctions** avec les 18 tests de `ui-flows.js` (29/09/2026).
+  Atteindre 100 % impose de piloter chaque écran (ordonnanceur, éditeur Monaco, glisser-déposer,
+  services IA sans réseau) : des dizaines de scénarios fragiles pour peu de valeur, alors que la
+  logique testable a l'obligation d'être extraite dans `lib/` (invariant 11), où le 100 % s'applique.
+- **Mesure conservée, informative** : `IAO_COVERAGE=1 npm run test:electron:ui` affiche la couverture
+  V8 de `assets/app.js` (`IAO_COVERAGE_OUT=<fichier.json>` pour le détail, dont les lignes non
+  exécutées). Ne change jamais le code de sortie du harnais. Calcul : `test-electron/v8-coverage.js`,
+  testé par `test/v8-coverage.test.js`.
+- **Règle** : ne pas faire baisser le pourcentage mesuré sans raison ; toute logique pure nouvelle
+  va dans `lib/` avec son test, pas dans `assets/app.js`.
