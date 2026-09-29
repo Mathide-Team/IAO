@@ -165,3 +165,83 @@ test('serviceFromHost renvoie null pour un hôte inconnu', () => {
   assert.equal(core.serviceFromHost('example.com'), null);
   assert.equal(core.serviceFromHost(null), null);
 });
+
+// --- Branches manquantes (issue #80) ----------------------------------------
+
+test('canTransition refuse un état source invalide', () => {
+  assert.equal(core.canTransition('INVALID', 'COMPLETED'), false);
+});
+
+test('canTransition refuse un état cible invalide', () => {
+  assert.equal(core.canTransition('DOWNLOADING', 'INVALID'), false);
+});
+
+test('isValidState valide tous les états déclarés', () => {
+  core.JOB_STATES.forEach(function(s) { assert.ok(core.isValidState(s), s); });
+});
+
+test('isValidState refuse un état inconnu', () => {
+  assert.equal(core.isValidState('UNKNOWN'), false);
+  assert.equal(core.isValidState(null), false);
+});
+
+test('isTimestampedZipName refuse un nom qui n\'est pas un ZIP', () => {
+  assert.equal(core.isTimestampedZipName('projet.txt', '20260915-193145'), false);
+});
+
+test('isTimestampedZipName refuse un timestamp non-string', () => {
+  assert.equal(core.isTimestampedZipName('projet.zip', 123), false);
+  assert.equal(core.isTimestampedZipName('projet.zip', null), false);
+});
+
+test('formatTimestamp accepte une chaîne de date en plus d\'un objet Date', () => {
+  const fromStr = core.formatTimestamp('2026-09-15T09:03:07');
+  const fromDate = core.formatTimestamp(new Date('2026-09-15T09:03:07'));
+  assert.equal(fromStr, fromDate);
+});
+
+// --- Branches supplémentaires (issue #80) -----------------------------------
+
+test('selectOldestEligibleProfile couvre || 0 quand le premier compte a lastAutomationAt=0', () => {
+  const now = Date.now();
+  const accounts = [acc('profil_1', 0), acc('profil_2', now - 6 * 3600000)];
+  const chosen = core.selectOldestEligibleProfile(accounts, 5, now);
+  assert.equal(chosen.profile, 'profil_1');
+});
+
+test('csvEscape gère null et undefined (branche value == null)', () => {
+  assert.equal(core.jobsToCSV([core.buildJobRecord({ id: 'job_001', file_path: null })]).trim().split('\n')[1].includes('null'), false);
+  // csvEscape(null) doit renvoyer ''
+  const jobs = [core.buildJobRecord({ id: 'job_001', profile: null, service: undefined })];
+  const csv = core.jobsToCSV(jobs);
+  // Les valeurs null/undefined deviennent '' dans le CSV
+  assert.match(csv, /job_001,,/);
+});
+
+test('jobsToCSV gère un paramètre non-tableau (branche : [])', () => {
+  const csv = core.jobsToCSV(null);
+  assert.equal(csv, core.CSV_COLUMNS.join(',') + '\n');
+  const csv2 = core.jobsToCSV('not an array');
+  assert.equal(csv2, core.CSV_COLUMNS.join(',') + '\n');
+});
+
+test('parseFeaturesMd gère un contenu non-string (branche : \'\')', () => {
+  const r = core.parseFeaturesMd(null);
+  assert.equal(r.total, 0);
+  const r2 = core.parseFeaturesMd(undefined);
+  assert.equal(r2.total, 0);
+  const r3 = core.parseFeaturesMd(123);
+  assert.equal(r3.total, 0);
+});
+
+test('parseFeaturesMd ignore les cases à cocher dans les blocs de code', () => {
+  const content = '# FEATURES\n\n- [x] Fait\n\n```\n- [ ] Dans le code\n- [x] Aussi\n```\n\n- [ ] À faire\n';
+  const r = core.parseFeaturesMd(content);
+  assert.equal(r.done, 1);
+  assert.equal(r.pending, 1);
+  assert.equal(r.total, 2);
+});
+
+test('isProjectComplete renvoie false sans aucune case à cocher', () => {
+  assert.equal(core.isProjectComplete('# Pas de cases\n\nDu texte.'), false);
+});

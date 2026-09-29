@@ -32,6 +32,25 @@ test('escapeHtml laisse intact un texte sans caractère spécial', () => {
   assert.equal(escapeHtml('Compte perso'), 'Compte perso');
 });
 
+// --- Chargement navigateur (branche window) — issue #71 ----------------------
+// La ligne `window.escapeHtml = escapeHtml` (ligne 27) n'est pas couverte par les
+// tests require() ci-dessus. On force le rechargement du module avec
+// `global.window` défini pour exécuter la branche `window`.
+
+test('escapeHtml s\'attache à window quand window existe (branche navigateur)', () => {
+  const modulePath = require.resolve('../lib/escape-html.js');
+  const origWindow = global.window;
+  global.window = {};
+  delete require.cache[modulePath];
+  require('../lib/escape-html.js');
+  assert.equal(typeof global.window.escapeHtml, 'function');
+  assert.equal(global.window.escapeHtml('<b>'), '&lt;b&gt;');
+  // Restaurer : recharger sans window
+  global.window = origWindow;
+  delete require.cache[modulePath];
+  require('../lib/escape-html.js');
+});
+
 // --- isAllowedPopup (chantier B) --------------------------------------------
 
 test('isAllowedPopup accepte un domaine exact de la liste', () => {
