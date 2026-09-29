@@ -7,6 +7,7 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
+const vm = require('node:vm');
 const d = require('../lib/startup-diagnostics');
 
 const ROOT = path.join(__dirname, '..');
@@ -122,4 +123,31 @@ test('main.js : instance unique + journalisation preload/renderer', () => {
     assert.ok(main.includes("wc.on('" + ev + "'"), 'événement non journalisé : ' + ev);
   }
   assert.ok(!/console-message', \(event, /.test(main), 'handler console-message positionnel (déprécié)');
+});
+
+// Double chargement de lib/startup-diagnostics.js : on exécute le vrai fichier
+// dans un contexte `vm` isolé pour couvrir chaque branche de l'export.
+const LIB_FILE = path.join(ROOT, 'lib', 'startup-diagnostics.js');
+const LIB_SOURCE = read('lib/startup-diagnostics.js');
+// `filename` : sans lui, V8 ne rattache pas la couverture au fichier réel.
+const runLib = (sandbox) => vm.runInNewContext(LIB_SOURCE, sandbox, { filename: LIB_FILE });
+
+test('chargé comme <script> (window défini), expose window.IAOStartupDiagnostics', () => {
+  const sandbox = { window: {} };
+  runLib(sandbox);
+  assert.equal(typeof sandbox.window.IAOStartupDiagnostics, 'object');
+  assert.deepEqual(Object.keys(sandbox.window.IAOStartupDiagnostics).sort(), Object.keys(d).sort());
+  assert.equal(typeof sandbox.window.IAOStartupDiagnostics.errorText, 'function');
+});
+
+test('chargé sans window mais avec module, exporte via module.exports', () => {
+  const sandbox = { module: { exports: {} } };
+  runLib(sandbox);
+  assert.deepEqual(Object.keys(sandbox.module.exports).sort(), Object.keys(d).sort());
+});
+
+test('chargé sans window ni module, ne lève pas et n exporte rien', () => {
+  const sandbox = {};
+  assert.doesNotThrow(() => runLib(sandbox));
+  assert.equal(sandbox.window, undefined);
 });
