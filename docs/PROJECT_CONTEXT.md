@@ -22,7 +22,7 @@ C'est un outil **personnel / partagé**, au thème visuel **violet / rose**.
 - **Monaco Editor** `^0.45.0` (l'éditeur de VS Code), chargé en local depuis `node_modules`.
 - **Polices & icônes 100% LOCALES** (plus aucun CDN externe) : polices Google Fonts en `.woff2` sous `assets/fonts/`, icônes ex-Font Awesome converties en **SVG inline** dans `assets/icons.js`. L'app s'affiche donc identiquement hors-ligne.
 - **Packaging** : `@electron/packager` (génère un dossier + `.exe`) et `electron-builder` **26.15.3** (`.deb`, AppImage — mis à jour le 18/09/2026/lot 5 : `npm audit` à 0 vulnérabilité). `electron-builder` ne fonctionne pas sur la machine Windows de dev sans droits admin/Mode développeur (liens symboliques) ; sous Linux, il fonctionne sans souci.
-- Pas de TypeScript, pas de bundler (Webpack/Vite). Tests : `node --test` (332 tests unitaires + intégration scheduler) et harnais réel `test-electron/` (voir §4).
+- Pas de TypeScript, pas de bundler (Webpack/Vite). Tests : `node --test` (680 tests unitaires + intégration scheduler) et harnais réel `test-electron/` bloquant en CI (14 + 18 + 4 tests, voir §4).
 
 ## 3. Structure des fichiers
 
@@ -97,10 +97,15 @@ iao/
   `lib/activity-status.js`, `lib/tab-actions.js`, `lib/file-search.js`, `lib/cooldown-notify.js`,
   `scheduler/core.js` (dont `parseFeaturesMd`/`isProjectComplete`) et les tests d'intégration scheduler
   (mocks Electron, heures calmes injectables) et la validité structurelle d'`assets/icons.js` (chargé dans un bac à
-  sable `vm`, voir §13) — **332 tests** au total, déterministes quelle que soit l'heure d'exécution.
+  sable `vm`, voir §13) — **680 tests** au total, déterministes quelle que soit l'heure d'exécution.
 - **Lancer les tests d'intégration Electron réels** : `npm run test:electron` (sous xvfb, fixtures locales
-  uniquement — voir `test-electron/README.md`) — 11 tests (popups, bouton « Continuer », webview).
-  Test de fumée du binaire packagé : `xvfb-run -a node test-electron/smoke-packaged.js` (après `npm run dist:linux`).
+  uniquement — voir `test-electron/README.md`) — **14 tests** (popups, bouton « Continuer », webview, CSP).
+  Tests de flux UI : `npm run test:electron:ui` — **18 tests** (démarrage sain, comptes, escapeHtml, réglages,
+  explorateur, persistance des onglets).
+  Test de fumée du binaire packagé : `npm run test:electron:smoke` — **4 tests** (démarrage, scheduler, preload,
+  interface) (après `npm run dist:linux`).
+  Ces harnais sont **bloquants en CI** depuis l'issue #54 (le workflow `test-electron.yml` fait échouer
+  la PR en cas d'échec — voir `test-electron/README.md`).
 - **Construire le .exe** : `npm run dist`
   → produit `dist/IAO-win32-x64/` contenant `IAO.exe` (dossier complet requis, l'exe seul ne suffit pas).
   → pour partager : zipper ce dossier. Un zip prêt à distribuer existe déjà : `dist/IAO.zip` (~129 Mo, contient le dossier complet à la racine).
@@ -364,7 +369,7 @@ de `scheduler/index.js` pour ne pas repartir de zéro.
   (Fichiers extraits à ce jour : `assets/icons.js`, `lib/escape-html.js`, `lib/popup-guard.js`,
   `lib/activity-status.js`, `lib/tab-actions.js`, `lib/file-search.js`, `lib/cooldown-notify.js`,
   `scheduler/`.)
-- **Tests automatisés partiels** : `npm test` (`node --test`, **332 tests**) couvre les fonctions **pures**
+- **Tests automatisés partiels** : `npm test` (`node --test`, **680 tests**) couvre les fonctions **pures**
   (`escapeHtml`, `isAllowedPopup`, `scheduler/core.js` dont `parseFeaturesMd`/`isProjectComplete`,
   `activity-status`, `tab-actions`, `file-search`, `cooldown-notify`, `claude-adapter`,
   `settings`, validité structurelle d'`assets/icons.js`) et l'intégration du scheduler avec mocks
@@ -988,5 +993,5 @@ Deux items du backlog livrés :
    `editor.main.nls.js` de base conservé, Monaco fonctionne (tests Electron
    14/14 + fumée 3/3).
 
-Vérifié : 332 tests unitaires + 14 tests Electron + 3 fumée, 0 échec. Détails :
+Vérifié : 680 tests unitaires + 14 + 18 + 4 tests Electron, 0 échec. Détails :
 `CHANGES.md` (lot 8).
