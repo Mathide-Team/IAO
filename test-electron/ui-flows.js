@@ -106,6 +106,14 @@ async function run() {
     shell.openExternal = function () { return Promise.resolve(); };
   } catch (e) { /* best-effort */ }
 
+  // Aucun accès réseau (issue #54) : ouvrir un service crée une <webview> vers
+  // https://claude.ai… — on annule toute requête http(s) dans TOUTES les
+  // sessions (défaut + partitions persist:profil_N), la webview reste vide.
+  const blockNetwork = (ses) => {
+    ses.webRequest.onBeforeRequest({ urls: ['http://*/*', 'https://*/*'] }, (_d, cb) => cb({ cancel: true }));
+  };
+  app.on('session-created', blockNetwork);
+
   // Chargement de l'application RÉELLE
   require('../main.js');
 
@@ -118,38 +126,56 @@ async function run() {
     if (!win) await sleep(100);
   }
   assert(win, 'fenêtre principale jamais créée');
-  for (let i = 0; i < 100; i++) {
-    if (!win.webContents.isLoading()) break;
-    await sleep(100);
-  }
 
-  // Injecter les comptes et onglets dans localStorage AVANT initApp
-  // (initApp est appelée au DOMContentLoaded, donc on doit injecter avant)
-  // En pratique, on les injecte après le chargement et on déclenche un re-render.
-  const injectAndRender = async () => {
-    await win.webContents.executeJavaScript(`
-      localStorage.setItem('ai_accounts', ${JSON.stringify(JSON.stringify(seedAccounts))});
-      localStorage.setItem('ai_open_tabs', ${JSON.stringify(JSON.stringify(seedTabs))});
-      'injected'
-    `);
-    // Déclencher le re-render via la fonction globale
-    await win.webContents.executeJavaScript(`
-      if (typeof window.renderAccounts === 'function') { window.renderAccounts(); }
-      'rendered'
-    `);
-    await sleep(500);
+  const waitLoaded = async () => {
+    for (let i = 0; i < 100; i++) {
+      if (!win.webContents.isLoading()) break;
+      await sleep(100);
+    }
+    await sleep(800); // initApp + loadSettings (IPC asynchrone)
   };
-
-  await injectAndRender();
+  await waitLoaded();
 
   // Utilitaire : exécuter du JS dans le renderer
   const exec = (script) => win.webContents.executeJavaScript(script);
 
-  // Utilitaire : IPC via module.require (Monaco écrase require)
-  const ipc = (channel, ...args) => win.webContents.executeJavaScript(
-    'module.require(\'electron\').ipcRenderer.invoke(' + JSON.stringify(channel) +
+  // Utilitaire : IPC via le pont du preload (issue #4 : plus de module.require
+  // dans le renderer, contextIsolation: true).
+  const ipc = (channel, ...args) => exec(
+    'window.iaoAPI.ipcInvoke(' + JSON.stringify(channel) +
     (args.length ? ', ' + args.map(a => JSON.stringify(a)).join(', ') : '') + ')'
   );
+
+  // Seed : initApp lit localStorage AU DÉMARRAGE -> on écrit puis on RECHARGE
+  // la page (renderAccounts n'est pas exposée globalement, à dessein).
+  // startWithLastSession est activé pour tester la restauration des onglets.
+  const saved = await ipc('settings:save', { startWithLastSession: true });
+  assert(saved && saved.ok, 'settings:save a échoué : ' + JSON.stringify(saved));
+  await exec(`
+    localStorage.setItem('ai_accounts', ${JSON.stringify(JSON.stringify(seedAccounts))});
+    localStorage.setItem('ai_open_tabs', ${JSON.stringify(JSON.stringify(seedTabs))});
+    'injected'
+  `);
+  win.webContents.reload();
+  await sleep(300);
+  await waitLoaded();
+
+  // =========================================================================
+  // C0 — Démarrage sain (issue #52)
+  // =========================================================================
+  console.log('\n--- C0 : Démarrage ---');
+
+  await test('C0.1 le preload est chargé (window.iaoAPI) et aucun bandeau d\'erreur', async () => {
+    assert(await exec('typeof window.iaoAPI === "object"'), 'window.iaoAPI absent : preload non exécuté');
+    assert(await exec('document.getElementById("bootError") === null'), 'bandeau d\'erreur de démarrage affiché');
+  });
+
+  await test('C0.2 toutes les icônes statiques sont hydratées (SVG)', async () => {
+    const r = await exec(`({ total: document.querySelectorAll('span.ic[data-icon]').length,
+      done: document.querySelectorAll('span.ic[data-icon] svg').length })`);
+    assert(r.total > 0, 'aucune icône dans la page');
+    assert(r.done === r.total, 'icônes non hydratées : ' + r.done + '/' + r.total);
+  });
 
   // =========================================================================
   // C1 — Rendu du panneau comptes
@@ -162,51 +188,63 @@ async function run() {
   });
 
   await test('C1.2 Le nom du compte est échappé (escapeHtml — pas de <script>)', async () => {
-    // Le second compte a un nom avec <script> — il doit être échappé
-    const hasScript = await exec(`
-      document.querySelectorAll('#accountsList .account-card')[1]
-        ? document.querySelectorAll('#accountsList .account-card')[1].innerHTML.indexOf('<script>') !== -1
-        : 'no-card'
-    `);
-    assert(hasScript === false, 'le <script> n\'a pas été échappé dans le nom du compte');
+    const r = await exec(`(() => {
+      const list = document.getElementById('accountsList');
+      return { scripts: list.querySelectorAll('script').length,
+               escaped: list.textContent.indexOf('<script>alert(1)</script>') !== -1 };
+    })()`);
+    assert(r.scripts === 0, 'un élément <script> a été injecté dans la liste des comptes');
+    assert(r.escaped, 'le nom « <script>… » n\'est pas affiché tel quel (texte échappé)');
   });
 
   await test('C1.3 Chaque carte a des boutons de service (data-action)', async () => {
     const cards = await exec('document.querySelectorAll(\'#accountsList .account-card\').length');
+    assert(cards > 0, 'aucune carte');
     for (let i = 0; i < cards; i++) {
-      const btns = await exec(`document.querySelectorAll('#accountsList .account-card')[${i}].querySelectorAll('[data-action]').length`);
-      assert(btns > 0, 'carte ' + i + ' : aucun bouton avec data-action');
+      const btns = await exec(`document.querySelectorAll('#accountsList .account-card')[${i}].querySelectorAll('[data-action="open-service"]').length`);
+      assert(btns > 0, 'carte ' + i + ' : aucun bouton open-service');
     }
   });
 
-  await test('C1.4 Le bouton « Ajouter un compte » est présent (data-action="add")', async () => {
-    const addBtn = await exec('document.querySelector(\'[data-action="add"]\') !== null');
-    assert(addBtn, 'bouton « Ajouter un compte » (data-action="add") absent');
+  await test('C1.4 Le bouton « Ajouter un compte » ouvre la modale', async () => {
+    const opened = await exec(`(() => {
+      const btn = document.querySelector('[data-action="ui-openModal"]');
+      if (!btn) return 'absent';
+      btn.click();
+      const open = document.getElementById('accountModal').classList.contains('open');
+      window.closeModal && window.closeModal();
+      return open;
+    })()`);
+    assert(opened === true, 'modale d\'ajout non ouverte (' + opened + ')');
+  });
+
+  await test('C1.5 Les statistiques reflètent les comptes seedés', async () => {
+    const txt = await exec('document.querySelector(".dashboard").innerText');
+    assert(/COMPTES ACTIFS\s*2/i.test(txt), 'compteur « comptes actifs » ≠ 2 : ' + txt.slice(0, 120));
   });
 
   // =========================================================================
-  // C2 — Bascule de thème (settings)
+  // C2 — Réglages et thème
   // =========================================================================
-  console.log('\n--- C2 : Bascule de thème ---');
+  console.log('\n--- C2 : Réglages et thème ---');
 
   await test('C2.1 Le thème par défaut est posé sur <html> (data-theme)', async () => {
     const theme = await exec('document.documentElement.getAttribute(\'data-theme\')');
     assert(theme !== null && theme !== '', 'aucun data-theme sur <html>');
   });
 
-  await test('C2.2 Le panneau de réglages peut être ouvert (data-action)', async () => {
-    // Chercher le bouton de réglages
-    const settingsBtn = await exec(`
-      document.querySelector('[data-action="ui-openSettings"]') ||
-      document.querySelector('[data-action="openSettings"]') ||
-      document.querySelector('.btn--settings') ||
-      document.querySelector('[data-icon="gear"]')?.closest('button') ||
-      null
-    ` !== 'null' ? 'found' : 'not-found');
-    // Le bouton peut avoir un data-action différent selon la version
-    // On vérifie juste que la modale existe dans le DOM
-    const modalExists = await exec('document.querySelector(\'#settingsModal\') !== null || document.querySelector(\'.modal--settings\') !== null');
-    assert(modalExists, 'modale de réglages absente du DOM');
+  await test('C2.2 Le bouton Réglages ouvre la modale (délégation data-action)', async () => {
+    const r = await exec(`(() => {
+      const btn = document.querySelector('[data-action="ui-openSettingsModal"]');
+      if (!btn) return 'bouton absent';
+      btn.click();
+      return document.getElementById('settingsModal').classList.contains('open');
+    })()`);
+    assert(r === true, 'modale de réglages non ouverte (' + r + ')');
+    await sleep(300);
+    const checked = await exec('document.getElementById("settingsStartWithLastSession").checked');
+    assert(checked === true, 'réglage startWithLastSession non reflété dans la modale');
+    await exec('window.closeSettingsModal(); "ok"');
   });
 
   // =========================================================================
@@ -219,91 +257,67 @@ async function run() {
     assert(explorer, 'panneau #fileExplorer absent du DOM');
   });
 
-  await test('C3.2 L\'explorateur peut être ouvert via data-action', async () => {
-    // L'explorateur démarre replié — on le déplie
-    await exec(`
-      const btn = document.querySelector('[data-action="ui-toggleExplorer"]') ||
-                  document.querySelector('[data-action="toggleExplorer"]');
-      if (btn) btn.click();
-      'clicked'
-    `);
-    await sleep(300);
-    // Vérifier que le panneau n'est plus replié
-    const isCollapsed = await exec(`
-      const el = document.querySelector('#fileExplorer');
-      el ? el.classList.contains('collapsed') : 'no-element'
-    `);
-    // Selon l'état initial, il peut être replié ou non — on vérifie juste qu'il réagit
-    assert(isCollapsed !== 'no-element', '#fileExplorer n\'existe pas après clic');
+  await test('C3.2 Le bouton Explorateur bascule le panneau', async () => {
+    const before = await exec('document.getElementById("fileExplorer").classList.contains("collapsed")');
+    await exec('document.querySelector(\'[data-action="ui-toggleExplorer"]\').click(); "ok"');
+    await sleep(200);
+    const after = await exec('document.getElementById("fileExplorer").classList.contains("collapsed")');
+    assert(before !== after, 'le panneau n\'a pas changé d\'état (collapsed=' + before + ')');
+  });
+
+  await test('C3.3 read-directory-recursive liste les fichiers et sous-dossiers', async () => {
+    const files = await ipc('read-directory-recursive', testDir);
+    const rels = files.map(f => f.relativePath).sort();
+    assert(rels.includes('test-file.txt'), 'test-file.txt absent : ' + rels.join(', '));
+    assert(rels.includes('subfolder/nested.js'), 'subfolder/nested.js absent : ' + rels.join(', '));
   });
 
   // =========================================================================
-  // C4 — Restauration d'onglets au démarrage
+  // C4 — Restauration et persistance des onglets
   // =========================================================================
-  console.log('\n--- C4 : Restauration d\'onglets ---');
+  console.log('\n--- C4 : Onglets ---');
 
   await test('C4.1 serializeOpenTabs/deserializeOpenTabs sont exposés (lib/settings.js)', async () => {
-    const hasSerialize = await exec('typeof window.serializeOpenTabs === \'function\'');
-    const hasDeserialize = await exec('typeof window.deserializeOpenTabs === \'function\'');
-    assert(hasSerialize, 'serializeOpenTabs non exposé sur window');
-    assert(hasDeserialize, 'deserializeOpenTabs non exposé sur window');
+    assert(await exec('typeof window.serializeOpenTabs === \'function\''), 'serializeOpenTabs non exposé sur window');
+    assert(await exec('typeof window.deserializeOpenTabs === \'function\''), 'deserializeOpenTabs non exposé sur window');
   });
 
-  await test('C4.2 serializeOpenTabs sérialise les onglets ouverts', async () => {
-    // Ouvrir un onglet via l'UI
-    await exec(`
-      const btn = document.querySelector('[data-action="openService"]');
-      if (btn) btn.click();
-      'clicked'
-    `);
-    await sleep(500);
-    const serialized = await exec('JSON.stringify(window.serializeOpenTabs())');
-    assert(serialized && serialized !== '[]', 'serializeOpenTabs retourne un tableau vide');
-    const tabs = JSON.parse(serialized);
-    assert(Array.isArray(tabs), 'serializeOpenTabs ne retourne pas un tableau');
-    assert(tabs.length > 0, 'aucun onglet sérialisé');
-    assert(tabs[0].accId, 'onglet sérialisé sans accId');
-    assert(tabs[0].svcId, 'onglet sérialisé sans svcId');
+  await test('C4.2 Les 2 onglets persistés sont restaurés au démarrage (startWithLastSession)', async () => {
+    const n = await exec('document.querySelectorAll("#tabsBar .tab").length');
+    assert(n === 2, 'attendu 2 onglets restaurés, trouvé ' + n);
   });
 
-  await test('C4.3 deserializeOpenTabs restaure les onglets depuis localStorage', async () => {
-    // On a injecté ai_open_tabs avec 2 onglets avant initApp
-    const restored = await exec(`
-      const stored = localStorage.getItem('ai_open_tabs');
-      stored ? JSON.parse(stored) : []
-    `);
-    assert(Array.isArray(restored), 'ai_open_tabs n\'est pas un tableau');
-    assert(restored.length === 2, 'attendu 2 onglets stockés, reçu ' + restored.length);
-    assert(restored[0].accId === 'acc_test_1', 'premier onglet : accId attendu acc_test_1');
-    assert(restored[0].svcId === 'claude', 'premier onglet : svcId attendu claude');
+  await test('C4.3 Ouvrir un service ajoute un onglet et le persiste', async () => {
+    await exec(`document.querySelector('#accountsList [data-action="open-service"][data-acc="acc_test_2"][data-svc="perplexity"]').click(); 'ok'`);
+    await sleep(400);
+    const n = await exec('document.querySelectorAll("#tabsBar .tab").length');
+    assert(n === 3, 'attendu 3 onglets, trouvé ' + n);
+    const stored = JSON.parse(await exec('localStorage.getItem("ai_open_tabs")'));
+    assert(stored.some(t => t.accId === 'acc_test_2' && t.svcId === 'perplexity'),
+      'onglet non persisté : ' + JSON.stringify(stored));
+  });
+
+  await test('C4.4 Rouvrir le même couple (compte, service) réutilise l\'onglet', async () => {
+    await exec(`document.querySelector('#accountsList [data-action="open-service"][data-acc="acc_test_1"][data-svc="claude"]').click(); 'ok'`);
+    await sleep(300);
+    const n = await exec('document.querySelectorAll("#tabsBar .tab").length');
+    assert(n === 3, 'un doublon d\'onglet a été créé (' + n + ' onglets)');
   });
 
   // =========================================================================
-  // C5 — Déconnexion de profil (data-action)
+  // C5 — Barre d'onglets
   // =========================================================================
-  console.log('\n--- C5 : Actions sur onglet ---');
+  console.log('\n--- C5 : Barre d\'onglets ---');
 
-  await test('C5.1 La barre d\'actions d\'onglet existe (tab-toolbar)', async () => {
-    // Ouvrir un onglet d'abord
-    await exec(`
-      const svcBtn = document.querySelector('[data-action="openService"]') ||
-                     document.querySelector('[data-svc="claude"]');
-      if (svcBtn) svcBtn.click();
-      'clicked'
-    `);
-    await sleep(500);
-    const toolbar = await exec('document.querySelector(\'.tab-toolbar\') !== null');
-    // tab-toolbar peut ne pas exister si aucun onglet n'est ouvert
-    // On vérifie juste que la structure existe
-    const tabsBar = await exec('document.querySelector(\'#tabsBar\') !== null');
-    assert(tabsBar, '#tabsBar absent du DOM');
+  await test('C5.1 Les onglets utilisent la délégation d\'événements (data-action)', async () => {
+    const r = await exec(`({ activate: document.querySelectorAll('#tabsBar [data-action="activate-tab"]').length,
+      close: document.querySelectorAll('#tabsBar [data-action="close-tab"]').length })`);
+    assert(r.activate === 3 && r.close === 3, 'data-action attendus sur 3 onglets : ' + JSON.stringify(r));
   });
 
-  await test('C5.2 Les onglets utilisent la délégation d\'événements (data-action)', async () => {
-    const hasDataAction = await exec(`
-      document.querySelector('#tabsBar')?.querySelectorAll('[data-action]').length > 0
-    `);
-    assert(hasDataAction === true || hasDataAction === 'true', 'aucun data-action dans #tabsBar');
+  await test('C5.2 Aucun onclick généré dans la barre d\'onglets ni les cartes (invariant 2)', async () => {
+    const n = await exec('document.querySelectorAll("#tabsBar [onclick], #accountsList [onclick]").length');
+    assert(n === 0, n + ' attribut(s) onclick généré(s)');
   });
 
   // =========================================================================
@@ -322,4 +336,7 @@ async function run() {
   app.exit(failed > 0 ? 1 : 0);
 }
 
-app.whenReady().then(run);
+app.whenReady().then(run).catch((e) => {
+  console.error('Erreur fatale du harnais UI :', e);
+  app.exit(1);
+});

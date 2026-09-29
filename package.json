@@ -12,6 +12,8 @@
     "test": "node --test",
     "test:coverage": "node --test --experimental-test-coverage",
     "test:electron": "xvfb-run -a electron --no-sandbox test-electron/popups-continue.js",
+    "test:electron:ui": "xvfb-run -a electron --no-sandbox test-electron/ui-flows.js",
+    "test:electron:smoke": "xvfb-run -a node test-electron/smoke-packaged.js",
     "dist:win": "electron-packager . \"IAO\" --platform=win32 --arch=x64 --out=dist --overwrite --prune=true --app-version=1.0.0 --asar.unpack=**/monaco-editor/** --ignore=\"monaco-editor/(dev|esm|min-maps)\" --ignore=\"monaco-editor/(CHANGELOG|ThirdPartyNotices|README)\" --ignore=\"editor\\.main\\.nls\\.[a-z-]+\\.js\" --ignore=\"^/(README\\.md|CLAUDE\\.md|FEATURES\\.md|\\.gitignore)$\" --ignore=\"^/docs$\" --ignore=\"^/installer$\" --ignore=\"^/test$\" --ignore=\"^/test-electron$\" --ignore=\"^/install\\.(sh|bat)$\" && node scripts/prune-locales.js",
     "dist:linux": "electron-packager . \"IAO\" --platform=linux --arch=x64 --out=dist --overwrite --prune=true --app-version=1.0.0 --asar.unpack=**/monaco-editor/** --ignore=\"monaco-editor/(dev|esm|min-maps)\" --ignore=\"monaco-editor/(CHANGELOG|ThirdPartyNotices|README)\" --ignore=\"editor\\.main\\.nls\\.[a-z-]+\\.js\" --ignore=\"^/(README\\.md|CLAUDE\\.md|FEATURES\\.md|\\.gitignore)$\" --ignore=\"^/docs$\" --ignore=\"^/installer$\" --ignore=\"^/test$\" --ignore=\"^/test-electron$\" --ignore=\"^/install\\.(sh|bat)$\" && node scripts/prune-locales.js",
     "dist:linux:appimage": "electron-builder --linux AppImage",
