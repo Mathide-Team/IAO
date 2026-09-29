@@ -35,6 +35,14 @@ pas `test/`) : ils doivent être lancés explicitement. Ils ne sont PAS embarqu�
 dans les builds packagés (`--ignore="^/test-electron$"` côté electron-packager,
 `!test-electron/**` côté electron-builder).
 
+## Mesure de couverture de `assets/app.js` (informative)
+
+`IAO_COVERAGE=1 npm run test:electron:ui` démarre la couverture V8 du renderer (CDP
+`Profiler.startPreciseCoverage`, via `v8-coverage.js`) avant le rechargement de la page, puis affiche
+une ligne `COV assets/app.js : lignes … fonctions …` en fin de run. `IAO_COVERAGE_OUT=<fichier.json>`
+écrit le détail (lignes non exécutées comprises). Sans `IAO_COVERAGE`, rien ne change. Cette mesure
+n'est **jamais bloquante** : `assets/app.js` est exclu de l'objectif 100 % (voir CLAUDE.md §11).
+
 ## Contenu de `popups-continue.js`
 
 **Phase A — adaptateur sur fixture locale** (BrowserWindow + Chromium réel) :
