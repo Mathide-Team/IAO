@@ -21,10 +21,10 @@ const path = require('node:path');
 // existant ne puisse le détecter (voir docs/PROJECT_CONTEXT.md). D'où ce
 // filet, volontairement simple : valider que le fichier s'exécute et que
 // chaque icône a la forme attendue, pas son rendu visuel.
-function loadIcons() {
+function loadIcons(extra) {
   const filePath = path.join(__dirname, '..', 'assets', 'icons.js');
   const code = fs.readFileSync(filePath, 'utf8');
-  const sandbox = { window: {} };
+  const sandbox = Object.assign({ window: {} }, extra);
   vm.createContext(sandbox);
   new vm.Script(code, { filename: filePath }).runInContext(sandbox);
   return sandbox.window;
@@ -55,4 +55,77 @@ test('les icônes des actions d\'onglet (17/09/2026) sont présentes', () => {
   for (const name of ['arrow-rotate-right', 'house', 'right-from-bracket']) {
     assert.ok(IAO_ICONS[name], `icône manquante : ${name}`);
   }
+});
+
+// --- hydrateIcons (issue #79) : DOM simulé minimal ------------------------
+// Seuls querySelectorAll (sur la racine) et getAttribute/setAttribute/innerHTML
+// (sur les éléments) sont utilisés par hydrateIcons : pas besoin de plus.
+function fakeSpan(iconName) {
+  const attrs = { 'data-icon': iconName };
+  return {
+    innerHTML: '',
+    getAttribute(name) { return attrs[name]; },
+    setAttribute(name, value) { attrs[name] = value; },
+    attrs,
+  };
+}
+
+function fakeRoot(spans) {
+  const root = {
+    selectors: [],
+    querySelectorAll(selector) { root.selectors.push(selector); return spans; },
+  };
+  return root;
+}
+
+test('hydrateIcons remplit chaque span connu par son SVG et le marque comme traité', () => {
+  const win = loadIcons();
+  const gear = fakeSpan('gear');
+  const plus = fakeSpan('plus');
+  const root = fakeRoot([gear, plus]);
+
+  win.hydrateIcons(root);
+
+  assert.deepEqual(root.selectors, ['span.ic[data-icon]:not([data-ic-done])']);
+  for (const [el, name] of [[gear, 'gear'], [plus, 'plus']]) {
+    const d = win.IAO_ICONS[name];
+    assert.equal(
+      el.innerHTML,
+      '<svg viewBox="' + d.vb + '" aria-hidden="true" focusable="false"><path d="' + d.p + '"/></svg>'
+    );
+    assert.equal(el.attrs['data-ic-done'], '1');
+  }
+});
+
+test('hydrateIcons laisse vide (et non marqué) un span dont l\'icône est inconnue', () => {
+  const win = loadIcons();
+  const unknown = fakeSpan('icone-inexistante');
+  const known = fakeSpan('house');
+
+  win.hydrateIcons(fakeRoot([unknown, known]));
+
+  assert.equal(unknown.innerHTML, '');
+  assert.equal('data-ic-done' in unknown.attrs, false);
+  // l'icône inconnue n'interrompt pas le traitement des suivantes
+  assert.match(known.innerHTML, /^<svg viewBox="0 0 576 512"/);
+  assert.equal(known.attrs['data-ic-done'], '1');
+});
+
+test('hydrateIcons sans racine parcourt document', () => {
+  const span = fakeSpan('trash');
+  const doc = fakeRoot([span]);
+  const win = loadIcons({ document: doc });
+
+  win.hydrateIcons();
+
+  assert.equal(doc.selectors.length, 1);
+  assert.match(span.innerHTML, /^<svg /);
+  assert.equal(span.attrs['data-ic-done'], '1');
+});
+
+test('hydrateIcons ne fait rien quand aucun span n\'est à traiter', () => {
+  const win = loadIcons();
+  const root = fakeRoot([]);
+  win.hydrateIcons(root);
+  assert.equal(root.selectors.length, 1);
 });
