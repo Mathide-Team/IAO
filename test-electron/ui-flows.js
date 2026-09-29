@@ -21,6 +21,11 @@ const { app, BrowserWindow } = require('electron');
 const path = require('path');
 const fs = require('fs');
 const os = require('os');
+const v8cov = require('./v8-coverage');
+
+// Mesure optionnelle (issue #100) : IAO_COVERAGE=1 affiche la couverture V8 de
+// assets/app.js. Purement informatif : n'affecte JAMAIS le code de sortie.
+const MEASURE_COVERAGE = process.env.IAO_COVERAGE === '1';
 
 // --- Mini framework de test (identique à popups-continue.js) ---------------
 let passed = 0;
@@ -156,6 +161,10 @@ async function run() {
     localStorage.setItem('ai_open_tabs', ${JSON.stringify(JSON.stringify(seedTabs))});
     'injected'
   `);
+  if (MEASURE_COVERAGE) {
+    try { await v8cov.startCoverage(win.webContents); }
+    catch (e) { console.log('COV démarrage impossible : ' + e.message); }
+  }
   win.webContents.reload();
   await sleep(300);
   await waitLoaded();
@@ -330,6 +339,23 @@ async function run() {
     for (const f of failures) {
       console.log('  ' + f.name + ' : ' + (f.error && f.error.message ? f.error.message : f.error));
     }
+  }
+
+  if (MEASURE_COVERAGE) {
+    try {
+      const text = fs.readFileSync(path.join(__dirname, '..', 'assets', 'app.js'), 'utf-8');
+      const r = await v8cov.takeCoverage(win.webContents, 'assets/app.js', text);
+      if (!r) {
+        console.log('COV assets/app.js : script non chargé, aucune mesure');
+      } else {
+        console.log('COV assets/app.js : lignes ' + r.lines.covered + '/' + r.lines.total +
+          ' (' + r.lines.pct.toFixed(1) + ' %), fonctions ' + r.functions.called + '/' + r.functions.total +
+          ' (' + r.functions.pct.toFixed(1) + ' %) — informatif, non bloquant');
+        if (process.env.IAO_COVERAGE_OUT) {
+          fs.writeFileSync(process.env.IAO_COVERAGE_OUT, JSON.stringify(r, null, 2), 'utf-8');
+        }
+      }
+    } catch (e) { console.log('COV mesure impossible : ' + e.message); }
   }
 
   try { win.destroy(); } catch (e) { /* ignore */ }
