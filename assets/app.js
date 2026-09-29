@@ -79,6 +79,16 @@
   function initApp() {
     // Issue #4 : ipcRenderer n'est plus accessible directement (contextIsolation).
     // window.iaoAPI.ipcInvoke est exposé par preload.js.
+    // Issue #52 : si le preload n'a pas pu s'exécuter, on le dit clairement
+    // (bandeau + journal) au lieu de planter sur « Cannot read properties of
+    // undefined (reading 'ipcInvoke') » avec une interface vide.
+    if (!window.iaoAPI || typeof window.iaoAPI.ipcInvoke !== 'function') {
+      if (typeof window.__iaoReportStartupProblem === 'function') {
+        window.__iaoReportStartupProblem('preload', 'window.iaoAPI indisponible : preload.js ne s\'est pas exécuté');
+      }
+      hydrateIcons(document);
+      return;
+    }
     const ipcRenderer = { invoke: window.iaoAPI.ipcInvoke };
 
     const SERVICES = [

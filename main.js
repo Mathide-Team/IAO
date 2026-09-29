@@ -1,6 +1,7 @@
 const { app, BrowserWindow, ipcMain, dialog, shell, session } = require('electron');
 const path = require('path');
-const fsPromises = require('fs').promises;
+const fs = require('fs');
+const fsPromises = fs.promises;
 
 const { isAllowedPopup } = require('./lib/popup-guard');
 const { Scheduler, registerSchedulerIPC } = require('./scheduler');
@@ -16,6 +17,65 @@ app.setPath('userData', path.join(app.getPath('appData'), 'ai-manager'));
 // lieu d'afficher une entrée « inconnue » séparée. (Sans effet sur Windows, et
 // sans effet sur le dossier de données : userData est fixé juste au-dessus.)
 app.setName('IAO');
+
+// ===== Journal de démarrage et de diagnostic (issue #52) =====
+// Avant : une erreur du preload ou du renderer ne laissait AUCUNE trace dans le
+// terminal (seuls les messages de Chromium y défilaient) et rien du tout quand
+// IAO était lancé depuis l'icône du Dock. Désormais chaque événement utile est
+// écrit dans le terminal ET dans <userData>/logs/iao.log (tourné à 1 Mo).
+// `--debug` (ou IAO_DEBUG=1) recopie en plus TOUS les messages console de la
+// fenêtre principale, pas seulement warnings et erreurs.
+const diag = require('./lib/startup-diagnostics');
+const DEBUG = diag.isDebugEnabled(process.argv, process.env);
+const LOG_DIR = path.join(app.getPath('userData'), 'logs');
+const LOG_FILE = path.join(LOG_DIR, 'iao.log');
+const LOG_MAX_BYTES = 1024 * 1024;
+let logFileReady = false;
+
+function prepareLogFile() {
+  try {
+    fs.mkdirSync(LOG_DIR, { recursive: true });
+    try {
+      if (fs.statSync(LOG_FILE).size > LOG_MAX_BYTES) fs.renameSync(LOG_FILE, LOG_FILE + '.1');
+    } catch (_) { /* pas encore de journal */ }
+    logFileReady = true;
+  } catch (e) {
+    console.error('[demarrage] journal indisponible (' + LOG_FILE + ') :', e.message);
+  }
+}
+
+function log(scope, level, message, sourceId, line) {
+  const text = diag.formatLogLine(new Date(), scope, level, message, sourceId, line);
+  const name = diag.consoleLevelName(level);
+  if (name === 'error') console.error(text);
+  else if (name === 'warning') console.warn(text);
+  else console.log(text);
+  if (logFileReady) {
+    try { fs.appendFileSync(LOG_FILE, text + '\n', 'utf-8'); } catch (_) { /* disque plein : terminal seul */ }
+  }
+}
+
+// ===== Instance unique (issue #52) =====
+// Deux IAO lancés en même temps se disputent le même dossier de données
+// (localStorage, cookies des ~70 partitions, service workers). Chromium
+// n'obtient alors pas les verrous de ses bases et inonde le terminal de
+// « Failed to delete the database: Database IO error », avec une interface
+// qui peut sembler vide. La 2e instance passe donc la main à la 1re (mise au
+// premier plan) et s'arrête immédiatement.
+const gotSingleInstanceLock = app.requestSingleInstanceLock();
+if (!gotSingleInstanceLock) {
+  console.warn('[demarrage] IAO est déjà lancé : la fenêtre existante est mise au premier plan, cette instance s\'arrête.');
+  app.quit();
+} else {
+  prepareLogFile();
+  app.on('second-instance', () => {
+    log('demarrage', 'info', 'Seconde instance demandée : mise au premier plan de la fenêtre existante.');
+    if (mainWindow) {
+      if (mainWindow.isMinimized()) mainWindow.restore();
+      mainWindow.focus();
+    }
+  });
+}
 
 // ===== Durcissement navigation / popups (chantier B) =====
 // La liste blanche ALLOWED_POPUP_HOSTS et isAllowedPopup() vivent désormais
@@ -84,6 +144,9 @@ function createWindow() {
   // s'ouvre avec les webPreferences de l'invité (donc SANS privilèges Node),
   // jamais avec ceux de l'hôte.
   win.webContents.on('did-attach-webview', (event, guestContents) => {
+    guestContents.on('render-process-gone', (_e, details) => {
+      log('webview', 'warning', 'onglet ' + hostOf(guestContents.getURL()) + ' arrêté : ' + details.reason);
+    });
     guestContents.setWindowOpenHandler(({ url }) => {
       if (isAllowedPopup(url)) return { action: 'allow' };
       // Origine hors liste : jamais de fenêtre Electron. Si c'est un lien web
@@ -119,6 +182,30 @@ function createWindow() {
       // Session non identifiable (webview sans partition connue) -> non enregistrée.
     }
   });
+
+  // --- 4. Diagnostic (issue #52) : tout échec du preload, du chargement ou
+  // du renderer de la fenêtre principale est journalisé (terminal + fichier).
+  const wc = win.webContents;
+  wc.on('preload-error', (_event, preloadPath, error) => {
+    log('preload', 'error', 'échec de ' + path.basename(preloadPath) + ' : ' + diag.errorText(error) +
+      ' — window.iaoAPI sera absent, l\'interface ne peut pas afficher les comptes.');
+  });
+  wc.on('did-fail-load', (_event, code, description, url, isMainFrame) => {
+    if (isMainFrame) log('renderer', 'error', 'chargement impossible de ' + url + ' : ' + description + ' (' + code + ')');
+  });
+  wc.on('render-process-gone', (_event, details) => {
+    log('renderer', 'error', 'processus de rendu arrêté : ' + details.reason + ' (code ' + details.exitCode + ')');
+  });
+  wc.on('unresponsive', () => log('renderer', 'warning', 'la fenêtre ne répond plus'));
+  wc.on('console-message', (event) => {
+    // Electron >= 35 : un seul objet `event` (level, message, lineNumber,
+    // sourceId). Déclarer des arguments positionnels déclenche un avertissement
+    // de dépréciation : on ne lit que l'objet.
+    if (diag.shouldForwardConsole(event.level, DEBUG)) {
+      log('renderer', event.level, event.message, event.sourceId, event.lineNumber);
+    }
+  });
+  wc.on('did-finish-load', () => log('demarrage', 'info', 'interface chargée (' + path.basename(wc.getURL()) + ').'));
 
   win.loadFile('index.html');
   mainWindow = win;
@@ -290,6 +377,11 @@ ipcMain.handle('settings:save', async (event, rawSettings) => {
 registerSchedulerIPC(ipcMain, scheduler, () => mainWindow);
 
 app.whenReady().then(() => {
+  // 2e instance (voir « Instance unique ») : ne rien ouvrir, app.quit() est en cours.
+  if (!gotSingleInstanceLock) return;
+  log('demarrage', 'info', 'IAO ' + app.getVersion() + ' — Electron ' + process.versions.electron +
+    ', ' + process.platform + '/' + process.arch + (app.isPackaged ? ', packagé' : ', sources') +
+    (DEBUG ? ', mode debug' : '') + '. Données : ' + app.getPath('userData') + ' — journal : ' + LOG_FILE);
   createWindow();
   scheduler.init();
   app.on('activate', () => {

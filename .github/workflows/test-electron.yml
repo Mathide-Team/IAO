@@ -1,8 +1,10 @@
 # Tests d'intégration Electron (harnais réel sous xvfb).
 #
-# Non bloquant : le harnais Electron/xvfb est plus fragile en CI que les
-# tests unitaires purs. Il s'exécute sur dev et main mais n'est pas requis
-# pour le merge — il signale les régressions sans bloquer la livraison.
+# BLOQUANT depuis l'issue #54 : la régression #52 (preload sandboxé qui ne
+# s'exécutait plus, interface vide) était signalée ici dès le 22/09 mais le
+# job était en continue-on-error et n'empêchait aucun merge. Chaque étape
+# échoue désormais le job, et « Harnais Electron (xvfb) » est un check requis
+# sur dev et main (protection de branche).
 name: Tests Electron (intégration)
 
 "on":
@@ -16,7 +18,7 @@ jobs:
   tests-electron:
     name: Harnais Electron (xvfb)
     runs-on: ubuntu-latest
-    continue-on-error: true
+    timeout-minutes: 20
 
     steps:
       - name: Checkout du dépôt
@@ -36,14 +38,12 @@ jobs:
 
       - name: Tests d'intégration Electron (popups + Continuer)
         run: npm run test:electron
-        continue-on-error: true
 
       - name: Tests UI Electron (comptes, onglets, réglages, explorateur)
-        run: xvfb-run -a npx electron --no-sandbox test-electron/ui-flows.js
-        continue-on-error: true
+        run: npm run test:electron:ui
+
+      - name: Construction du binaire Linux (electron-packager)
+        run: npm run dist:linux
 
       - name: Fumée du binaire packagé (Linux)
-        run: |
-          npm run dist:linux || true
-          xvfb-run -a node test-electron/smoke-packaged.js || true
-        continue-on-error: true
+        run: npm run test:electron:smoke

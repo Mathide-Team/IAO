@@ -21,8 +21,14 @@ locaux dans `fixtures/` :
 | Script | Ce qu'il teste | Commande |
 |--------|----------------|----------|
 | `popups-continue.js` | Intégration popups + bouton « Continuer » + CSP (14 tests) | `npm run test:electron` |
-| `ui-flows.js` | Flux UI : rendu comptes, escapeHtml, thème, explorateur, onglets (11 tests) | `xvfb-run -a npx electron --no-sandbox test-electron/ui-flows.js` |
-| `smoke-packaged.js` | Fumée du binaire packagé par `npm run dist:linux` (3 tests) | `xvfb-run -a node test-electron/smoke-packaged.js` (après `npm run dist:linux`) |
+| `ui-flows.js` | Flux UI : démarrage sain (preload, icônes), comptes, escapeHtml, réglages, explorateur, restauration et persistance des onglets (18 tests) | `npm run test:electron:ui` |
+| `smoke-packaged.js` | Fumée du binaire packagé : démarrage, scheduler, preload et interface chargés d'après `logs/iao.log`, arrêt propre (4 tests) | `npm run test:electron:smoke` (après `npm run dist:linux`) |
+
+**Bloquant en CI depuis l'issue #54** : le workflow `test-electron.yml` exécute les
+trois scripts, et chacun sort avec le code 1 au moindre échec. « Harnais Electron
+(xvfb) » est un check requis sur `dev` et `main`. `ui-flows.js` coupe tout accès
+réseau (`webRequest` annule le http/https dans toutes les sessions) : les webviews
+des services restent vides.
 
 Ces scripts ne sont PAS découverts par `node --test` (dossier `test-electron/`,
 pas `test/`) : ils doivent être lancés explicitement. Ils ne sont PAS embarqués
