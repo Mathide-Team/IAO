@@ -21,6 +21,11 @@
      Objectif : l'app s'affiche identiquement hors-ligne / réseau filtré, et on
      supprime tout prérequis de whitelist CDN pour une future CSP stricte. -->
 <script src="assets/icons.js"></script>
+<!-- Issue #52 : garde de démarrage. Chargée AVANT tout le reste pour qu'une
+     erreur au lancement (preload absent, script en échec…) affiche un bandeau
+     visible avec icône d'alerte au lieu d'une interface vide et muette. -->
+<script src="lib/startup-diagnostics.js"></script>
+<script src="assets/boot-guard.js"></script>
 <!-- escapeHtml() : extrait vers lib/ (chantier F) pour être testable via
      `node --test` sans navigateur. Chargé ici (nodeIntegration:true : `window`
      et `module` existent tous les deux) pour rester disponible globalement

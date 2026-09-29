@@ -1,5 +1,36 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Correctif #52 — Démarrage : interface vide, sans icône ni diagnostic (29/09/2026)
+
+### Cause
+Depuis la migration `contextIsolation: true` (#4, PR #44), `preload.js` est **sandboxé**
+(défaut Electron ≥ 20 avec `nodeIntegration: false`). Son `require('path')` levait
+« module not found: path » : le preload ne s'exécutait pas, `window.iaoAPI` restait
+`undefined` et `assets/app.js` plantait dès la ligne 82 (`Cannot read properties of
+undefined (reading 'ipcInvoke')`). Résultat : 0 compte, 0 IA, boutons sans icône, et
+aucune ligne utile dans le terminal. Reproduit en réel sous Xvfb (Electron 43.7.2).
+Le harnais Electron le signalait (`NOT OK - B1`) mais il est non bloquant en CI.
+
+### Correctifs
+- `preload.js` : n'utilise plus que `electron` ; `resolveMonacoBase()` calcule l'URL
+  `file://` de Monaco avec l'API `URL` standard (valable Linux, Windows et `app.asar`).
+- `assets/boot-guard.js` + `lib/startup-diagnostics.js` (pur, testé) : toute erreur ou
+  promesse rejetée au démarrage affiche un **bandeau visible avec icône d'alerte**, le
+  détail et une piste ; `app.js` signale explicitement un preload absent.
+- `main.js` : journal horodaté terminal + `<userData>/logs/iao.log` (tourné à 1 Mo) :
+  version, plateforme, dossier de données, `preload-error`, `did-fail-load`,
+  `render-process-gone`, fenêtre figée, warnings/erreurs de la console du renderer
+  (tout en `--debug` / `IAO_DEBUG=1`), arrêt d'un onglet webview.
+- `main.js` : **instance unique** (`requestSingleInstanceLock`) — une 2e instance ramène
+  la fenêtre existante au premier plan au lieu de se disputer le dossier de données
+  (probable origine des rafales `Failed to delete the database: Database IO error`).
+
+### Tests
+- `test/preload-sandbox.test.js` : exécute `preload.js` avec un `require` limité aux
+  modules du sandbox (échoue sur l'ancien preload : 4 tests KO).
+- `test/startup-diagnostics.test.js` : fonctions pures + branchements statiques.
+- `npm test` : 348/348. Harnais `npm run test:electron` : 14/14 (échouait avant).
+
 ## Lot 10 — Validation Windows install.bat + corrections (18/09/2026, 20:38)
 
 Corrections suite à validation statique de `install.bat` et revue des

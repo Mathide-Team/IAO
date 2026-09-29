@@ -41,6 +41,7 @@ scripts/          prune-locales.js (post-build)  build/            Icônes PNG 1
 | But | Commande |
 | --- | --- |
 | Lancer en dev | `npm start` (Linux : `npm run start:linux-dev`) |
+| Lancer avec journal détaillé | `npm start -- --debug` (ou `IAO_DEBUG=1 npm start`) — journal : `<userData>/logs/iao.log` |
 | Lancer les tests | `npm test` (= `node --test`) + `npm run test:electron` (harnais réel, fixtures locales) |
 | Build Windows | `npm run dist` |
 | Build Linux (packager) | `npm run dist:linux` |
@@ -77,6 +78,10 @@ Il n'existe **pas** de `npm build` : la commande est `npm run dist` (ou `dist:li
    `scheduler/core.js`**, jamais inline dans `index.html`/`main.js` — c'est ce qui la rend testable
    par `node --test` sans lancer Electron. Ajouter le fichier de test correspondant dans `test/` dans
    le même lot.
+12. **`preload.js` est sandboxé** (Electron ≥ 20 avec `nodeIntegration: false`) : il ne peut
+   `require()` que `electron`, `events`, `timers` et `url`. Un `require('path')` (ou tout autre
+   module Node) empêche le preload de s'exécuter, `window.iaoAPI` n'existe pas et **toute
+   l'interface reste vide** (issue #52). Vérifié par `test/preload-sandbox.test.js`.
 
 ## 5. Ajouter un service IA (pattern data-driven)
 

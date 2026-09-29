@@ -151,6 +151,21 @@ L'exe a besoin du dossier complet — pour distribuer, zippez tout le dossier. L
 
 Ce dossier n'est **pas** supprimé par la désinstallation — effacez-le manuellement pour repartir de zéro.
 
+## Dépannage au démarrage
+
+- Si un problème empêche l'interface de fonctionner, un **bandeau rouge avec une icône
+  d'alerte** s'affiche en haut de la fenêtre, avec le détail de l'erreur et une piste.
+- Chaque lancement écrit un **journal** dans `<dossier de données>/logs/iao.log`
+  (Linux : `~/.config/ai-manager/logs/iao.log`, Windows : `%APPDATA%\ai-manager\logs\iao.log`),
+  y compris quand IAO est lancé depuis l'icône du Dock ou du menu Démarrer.
+- Pour un journal détaillé (tous les messages de l'interface) : `npm start -- --debug`
+  ou `IAO_DEBUG=1 npm start`.
+- IAO ne s'ouvre qu'**une fois** : relancer l'application ramène la fenêtre existante au
+  premier plan. Deux instances sur le même dossier de données provoquaient des erreurs
+  Chromium en rafale (`Failed to delete the database: Database IO error`).
+- Les messages Chromium du type `vaInitialize failed` (accélération vidéo matérielle) sont
+  sans incidence sur IAO.
+
 ## Structure du projet
 
 ```
