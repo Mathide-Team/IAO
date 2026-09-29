@@ -42,7 +42,7 @@ scripts/          prune-locales.js (post-build)  build/            Icônes PNG 1
 | --- | --- |
 | Lancer en dev | `npm start` (Linux : `npm run start:linux-dev`) |
 | Lancer avec journal détaillé | `npm start -- --debug` (ou `IAO_DEBUG=1 npm start`) — journal : `<userData>/logs/iao.log` |
-| Lancer les tests | `npm test` (= `node --test`) + `npm run test:electron` (harnais réel, fixtures locales) |
+| Lancer les tests | `npm test` (= `node --test`) + `npm run test:electron` et `npm run test:electron:ui` (harnais réels, bloquants en CI) ; `npm run dist:linux && npm run test:electron:smoke` (binaire packagé) |
 | Build Windows | `npm run dist` |
 | Build Linux (packager) | `npm run dist:linux` |
 | Paquet `.deb` | `npm run dist:linux:deb` |
@@ -109,7 +109,7 @@ Il n'existe **pas** de `npm build` : la commande est `npm run dist` (ou `dist:li
 - [ ] `hydrateIcons()` rappelé après chaque `innerHTML` contenant des icônes.
 - [ ] Aucun `<script>` inline ni attribut `on*=` inline dans `index.html` (CSP `script-src 'self'` : tout nouveau JS va dans `assets/app.js`, tout nouveau handler passe par `data-action` + `UI_ACTIONS` ; cohérence vérifiée par `test/csp-static.test.js`).
 - [ ] `npm test` passe (toute fonction pure nouvelle/modifiée a son test dans `test/`).
-- [ ] `npm run test:electron` passe si le lot touche `main.js`, la politique popups/navigation, le câblage webview/scheduler ou l'UI du panneau Ordonnanceur (harnais réel sous xvfb, fixtures locales — voir `test-electron/README.md`).
+- [ ] `npm run test:electron` et `npm run test:electron:ui` passent (bloquants en CI, issue #54) — en particulier si le lot touche `main.js`, la politique popups/navigation, le câblage webview/scheduler ou l'UI du panneau Ordonnanceur (harnais réel sous xvfb, fixtures locales — voir `test-electron/README.md`).
 - [ ] Testé en dev (`npm start`) **et** raisonné pour le cas packagé (chemins).
 - [ ] `docs/PROJECT_CONTEXT.md` et `FEATURES.md` mis à jour.
 

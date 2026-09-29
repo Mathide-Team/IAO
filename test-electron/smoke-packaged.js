@@ -14,7 +14,8 @@
 //   2. main.js s'exécute : le scheduler démarre et journalise
 //      « Ordonnanceur démarré » (console + activity.json dans un userData
 //      ISOLÉ via XDG_CONFIG_HOME temporaire),
-//   3. le process se termine proprement sur SIGTERM.
+//   3. le preload et l'interface se chargent (logs/iao.log, issue #52) ;
+//   4. le process se termine proprement sur SIGTERM.
 //
 // Sortie : code 0 si tout passe, 1 sinon.
 // ---------------------------------------------------------------------------
@@ -89,6 +90,25 @@ async function main() {
   } else {
     console.log('ok - main.js exécuté : « Ordonnanceur démarré » journalisé (' +
       (loggedInConsole ? 'console' : 'activity.json') + ')');
+  }
+
+  // 2bis. Issue #52/#54 : le preload et l'interface se chargent DANS LE BINAIRE
+  // PACKAGÉ. Le journal <userData>/logs/iao.log (issue #52) doit contenir
+  // « interface chargée » et AUCUNE ligne [preload] error ni d'erreur de
+  // démarrage du renderer (bandeau boot-guard). Un preload cassé (require
+  // interdit en sandbox) laissait sinon passer ce test de fumée.
+  const iaoLogPath = path.join(tmpConfig, 'ai-manager', 'logs', 'iao.log');
+  let iaoLog = '';
+  try { iaoLog = fs.readFileSync(iaoLogPath, 'utf-8'); } catch (e) { /* absent */ }
+  const uiLoaded = iaoLog.indexOf('interface chargée') !== -1;
+  const startupErrors = iaoLog.split('\n').filter(l =>
+    /\[preload\] error|\[renderer\] error .*\[demarrage\]|chargement impossible|processus de rendu arrêté/.test(l));
+  if (!uiLoaded || startupErrors.length > 0) {
+    ok = false;
+    console.error('ECHEC : interface non chargée proprement (journal ' + iaoLogPath + ', interface chargée=' + uiLoaded + ')');
+    console.error((startupErrors.length ? startupErrors : iaoLog.split('\n').slice(-20)).join('\n'));
+  } else {
+    console.log('ok - preload et interface chargés dans le binaire packagé (logs/iao.log, aucune erreur de démarrage)');
   }
 
   // 3. Terminaison propre sur SIGTERM.
