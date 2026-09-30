@@ -283,8 +283,6 @@
   .svc-pika { background: var(--pika-dim); color: var(--pika); border-color: rgba(162,89,255,0.2); }
   .svc-qwen { background: var(--qwen-dim); color: var(--qwen); border-color: rgba(97,92,237,0.2); }
   .svc-btn.cooldown-active { opacity: 0.4; filter: grayscale(50%); }
-  .cooldown-btn { width: 100%; padding: 5px 4px; font-size: 10.5px; font-weight: 500; text-align: center; cursor: pointer; transition: all 0.2s; border-radius: 6px; border: 1px solid var(--border); background: transparent; color: var(--fg-muted); font-family: 'JetBrains Mono', monospace; }
-  .cooldown-btn.active { background: var(--danger-dim); border-color: rgba(255, 77, 106, 0.3); color: var(--danger); }
 
   /* --- Vue compacte : repli/dépli de la grille de services par carte --- */
   /* Animation de hauteur sans max-height arbitraire : la rangée de grille passe

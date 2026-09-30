@@ -23,7 +23,7 @@ Publié ici pour quiconque en a l'usage.
 - **Onglets** : chaque couple (compte + service) ouvert vit dans son propre onglet, avec sa webview et sa session. On bascule d'un onglet à l'autre sans rien recharger ; rouvrir un service déjà ouvert réactive simplement son onglet. Le `×` de l'onglet détruit la webview et **libère la mémoire** du process Chromium correspondant.
 - **Actions rapides sur un onglet ouvert** : recharger la page, revenir à l'accueil du service, ou se
   déconnecter du profil (purge des cookies/session du compte, avec confirmation — action destructive).
-- **Suivi de quota (« cooldown ») 24 h** par service et par compte : un clic sur « Épuiser (24h) » marque le service comme vidé, avec compte à rebours visible et réactivation automatique.
+- **Suivi de quota (« cooldown »)** par service et par compte : un service en cooldown apparaît estompé et se réactive automatiquement à l'expiration (le bouton manuel « Épuiser (24h) » a été retiré, issue #136).
 - **Palette rapide (Ctrl+K)** : ouvrir n'importe quel service avec n'importe quel compte au clavier.
 - **Raccourcis d'onglets** : `Ctrl+Tab` / `Ctrl+Maj+Tab` pour circuler entre les onglets, `Alt+1` à `Alt+9` pour aller directement au Nᵉ. (Quand le focus est à l'intérieur d'une page IA, cliquez d'abord hors de celle-ci — Electron ne fait pas remonter les touches depuis une webview.)
 - **Page d'aide intégrée** (bouton `?`) : description et cas d'usage de chaque IA, pour les utilisateurs qui ne les connaissent pas toutes.
