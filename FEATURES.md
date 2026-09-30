@@ -73,6 +73,14 @@ Objectif : détecter automatiquement les ZIP livrés par les services IA dans le
 
 ## Fait
 
+- **Puce de statut déplacée sur chaque bouton d'IA (issue #137, 30/09/2026)**
+  La puce bleu/rouge/vert quitte l'avatar du compte et se place dans le coin de chaque
+  bouton d'IA : 9 puces par compte, une par couple (compte, service). Règles inchangées
+  (bleu = onglet ouvert, rouge = ouvert il y a moins de 5h, vert sinon), calculées par
+  `getServiceActivityStatus()` (`lib/activity-status.js`). `openService()` trace
+  `acc.automation.lastUsedBySvc[svcId]` en plus de `lastUsedAt` : l'ordonnanceur garde
+  l'horodatage par compte. Tests : `test/activity-status.test.js` (+5).
+
 - **Validation Windows install.bat + corrections (18/09/2026, 20:38)**
   Lot 10. Corrections suite à validation statique :
   1. **install.bat corrigé** : auto-build si `dist\IAO-win32-x64` absent (`npm install` + `npm run dist:win`), parenthèses échappées `^(` `^)` dans echo, logique `/desktop` cohérente (Bureau optionnel, pas par défaut), `/no-desktop` ajouté, `DESKTOP_SHORTCUT` désormais utilisé.

@@ -515,7 +515,7 @@ l'environnement où ce lot a été écrit) ; à vérifier via `npm start` avant 
 Détail complet dans `FEATURES.md` (entrée « Fait » du même jour). En bref, dans `index.html` :
 titre/sous-titre de l'onglet inversés (compte en gras, service en dessous, `title=` assorti),
 onglets réordonnables par glisser-déposer HTML5 natif, liste de comptes triée alphanumériquement à
-l'affichage, badge de statut bleu/rouge/vert sur l'avatar (`acc.automation.lastUsedAt` vs 5h) et
+l'affichage, badge de statut bleu/rouge/vert (issue #137 : une puce par bouton d'IA, `acc.automation.lastUsedBySvc[svcId]` vs 5h, `getServiceActivityStatus()` ; `lastUsedAt` par compte reste la référence de l'ordonnanceur) et
 teinte « onglet inactif » après 5 min sans focus (`lastFocusAt`). Nouveau `lib/activity-status.js`
 (3 fonctions pures) + `test/activity-status.test.js` (14 tests) → **49 tests** au total.
 
