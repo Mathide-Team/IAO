@@ -461,7 +461,10 @@ class Scheduler {
 
     // Si pas de prompt, utiliser le prompt de livraison par défaut
     if (!prompt) {
-      prompt = core.buildDeliveryPrompt({ id: job.id, profile: job.profile });
+      // core.buildDeliveryPrompt attend un horodatage YYYYMMDD-HHMMSS (et lève
+      // sinon) : l'appel avec le job lui-même levait, laissant le job RUNNING
+      // sans échec ni reprise (trouvé par les tests de couverture, #55).
+      prompt = core.buildDeliveryPrompt(core.formatTimestamp(new Date()));
     }
 
     // Vérifier que la webview est enregistrée

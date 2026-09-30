@@ -30,7 +30,7 @@ test('#101 : test:coverage impose les seuils et exclut test/', () => {
   const pkg = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf-8'));
   const cmd = pkg.scripts['test:coverage'];
   assert.match(cmd, /--test-coverage-lines=100\b/);
-  assert.match(cmd, /--test-coverage-branches=97\b/);
-  assert.match(cmd, /--test-coverage-functions=98\b/);
+  assert.match(cmd, /--test-coverage-branches=100\b/);
+  assert.match(cmd, /--test-coverage-functions=100\b/);
   assert.match(cmd, /--test-coverage-exclude='test\/\*\*'/);
 });

@@ -261,7 +261,9 @@ ipcMain.handle('read-directory-recursive', async (event, folderPath) => {
   const result = [];
   async function walk(dir, prefix, depth) {
     if (depth > MAX_RECURSION_DEPTH) return;
-    if (result.length >= MAX_RECURSIVE_FILES) return;
+    // Pas de garde « result.length >= MAX » ici : la boucle ci-dessous la
+    // teste avant chaque entrée, donc avant chaque appel récursif (branche
+    // impossible à provoquer, retirée pour la couverture, #55).
     let entries;
     try { entries = await fsPromises.readdir(dir, { withFileTypes: true }); }
     catch (_) { return; }
