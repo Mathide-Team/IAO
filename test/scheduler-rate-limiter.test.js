@@ -65,6 +65,72 @@ test('canLaunchJob renvoie true avec 0 jobs en cours', function() {
   assert.ok(core.canLaunchJob(jobs, config, Date.now()));
 });
 
+test('canLaunchJob renvoie false si config est null (issue #80)', function() {
+  assert.ok(!core.canLaunchJob([], null, Date.now()));
+  assert.ok(!core.canLaunchJob([], undefined, Date.now()));
+});
+
+// --- Alias du plan initial (issue #80) -------------------------------------
+
+test('isMaxConcurrentReached est l\'inverse de canLaunchJob', function() {
+  var jobs = [{ status: 'RUNNING' }, { status: 'RUNNING' }];
+  var config = { enabled: true, maxConcurrentJobs: 2 };
+  assert.ok(core.isMaxConcurrentReached(jobs, config, Date.now()));
+  var jobs2 = [{ status: 'COMPLETED' }];
+  assert.ok(!core.isMaxConcurrentReached(jobs2, config, Date.now()));
+});
+
+test('getRunningJobsCount est un alias de countRunningJobs', function() {
+  var jobs = [{ status: 'RUNNING' }, { status: 'COMPLETED' }];
+  assert.strictEqual(core.getRunningJobsCount(jobs), core.countRunningJobs(jobs));
+});
+
+test('selectEligibleJobForLaunch est un alias de selectNextJobToLaunch', function() {
+  var jobs = [{ status: 'RESUME_REQUIRED', createdAt: '2026-09-18T08:00:00Z' }];
+  var config = { enabled: true, maxConcurrentJobs: 2, minDelayBetweenAutomationsMinutes: 30 };
+  assert.strictEqual(core.selectEligibleJobForLaunch(jobs, config, 0, Date.now()),
+                     core.selectNextJobToLaunch(jobs, config, 0, Date.now()));
+});
+
+// --- Branches supplémentaires (issue #80) -----------------------------------
+
+test('isMinDelayRespected utilise Date.now() si now est absent (branche || Date.now())', function() {
+  // Sans now, Number(undefined) = NaN -> Date.now()
+  var last = Date.now() - (31 * 60 * 1000); // 31 min ago
+  assert.ok(core.isMinDelayRespected(last, 30));
+});
+
+test('checkJobLaunchEligibility couvre || 1 quand maxConcurrentJobs est 0 avec jobs RUNNING', function() {
+  var job = { status: 'RESUME_REQUIRED' };
+  var jobs = [{ status: 'RUNNING' }];
+  var config = { enabled: true, maxConcurrentJobs: 0, minDelayBetweenAutomationsMinutes: 30 };
+  // maxConcurrentJobs=0 -> canLaunchJob met max=1, 1 RUNNING >= 1 -> false
+  var result = core.checkJobLaunchEligibility(job, jobs, config, 0, Date.now());
+  assert.ok(!result.canLaunch);
+  assert.match(result.reason, /concurrent/);
+});
+
+test('checkJobLaunchEligibility couvre || 0 quand minDelay est 0', function() {
+  var now = Date.now();
+  var job = { status: 'RESUME_REQUIRED', createdAt: '2026-09-18T00:00:00Z' };
+  // minDelay=0 -> || 0 -> le message affiche 0 min
+  var config = { enabled: true, maxConcurrentJobs: 2, minDelayBetweenAutomationsMinutes: 0 };
+  // Avec minDelay=0, isMinDelayRespected renvoie true (pas de restriction)
+  var result = core.checkJobLaunchEligibility(job, [], config, now - 1000, now);
+  assert.ok(result.canLaunch);
+});
+
+test('selectNextJobToLaunch trie plusieurs jobs RESUME_REQUIRED par ancienneté (branche sort)', function() {
+  var jobs = [
+    { status: 'RESUME_REQUIRED', createdAt: '2026-09-18T10:00:00Z' },
+    { status: 'RESUME_REQUIRED', createdAt: '2026-09-18T06:00:00Z' },
+    { status: 'RESUME_REQUIRED', createdAt: '2026-09-18T08:00:00Z' }
+  ];
+  var config = { enabled: true, maxConcurrentJobs: 2, minDelayBetweenAutomationsMinutes: 30 };
+  var result = core.selectNextJobToLaunch(jobs, config, 0, Date.now());
+  assert.strictEqual(result.createdAt, '2026-09-18T06:00:00Z');
+});
+
 // --- isMinDelayRespected ------------------------------------------------
 
 test('isMinDelayRespected renvoie true si jamais execute (lastAutomationAt=0)', function() {

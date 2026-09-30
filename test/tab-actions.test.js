@@ -61,3 +61,24 @@ test('buildDisconnectWarning gère des champs manquants sans planter', () => {
   assert.doesNotThrow(() => buildDisconnectWarning({}));
   assert.doesNotThrow(() => buildDisconnectWarning());
 });
+
+// --- Chargement navigateur (branche window) — issue #72 ----------------------
+// Les lignes `window.tabsForAccount` et `window.buildDisconnectWarning` (46-47)
+// ne sont pas couvertes par les tests require(). On force le rechargement du
+// module avec `global.window` défini pour exécuter la branche `window`.
+
+test('tabsForAccount et buildDisconnectWarning s\'attachent à window (branche navigateur)', () => {
+  const modulePath = require.resolve('../lib/tab-actions.js');
+  const origWindow = global.window;
+  global.window = {};
+  delete require.cache[modulePath];
+  require('../lib/tab-actions.js');
+  assert.equal(typeof global.window.tabsForAccount, 'function');
+  assert.equal(typeof global.window.buildDisconnectWarning, 'function');
+  const tabs = global.window.tabsForAccount([{ accId: 'a1' }, { accId: 'a2' }], 'a1');
+  assert.equal(tabs.length, 1);
+  // Restaurer : recharger sans window
+  global.window = origWindow;
+  delete require.cache[modulePath];
+  require('../lib/tab-actions.js');
+});
