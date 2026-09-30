@@ -98,6 +98,9 @@ iao/
   `scheduler/core.js` (dont `parseFeaturesMd`/`isProjectComplete`) et les tests d'intégration scheduler
   (mocks Electron, heures calmes injectables) et la validité structurelle d'`assets/icons.js` (chargé dans un bac à
   sable `vm`, voir §13) — **680 tests** au total, déterministes quelle que soit l'heure d'exécution.
+- **Couverture avec seuil bloquant** (issue #101) : `npm run test:coverage` (Node ≥ 22.8). Seuils :
+  lignes 100 %, branches 97 %, fonctions 98 %, avec `test/` exclu. Le job « Qualité » échoue sous le
+  seuil. `test/coverage-inventory.test.js` charge chaque module pur. Détails : CLAUDE.md § 10 bis.
 - **Lancer les tests d'intégration Electron réels** : `npm run test:electron` (sous xvfb, fixtures locales
   uniquement — voir `test-electron/README.md`) — **14 tests** (popups, bouton « Continuer », webview, CSP).
   Tests de flux UI : `npm run test:electron:ui` — **18 tests** (démarrage sain, comptes, escapeHtml, réglages,
