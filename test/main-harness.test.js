@@ -46,6 +46,7 @@ function createElectronMock(appDataDir) {
       windows.push(this);
     }
     loadFile(file) { this.loaded = file; }
+    setMenuBarVisibility(v) { this.menuBarVisible = v; }
     isMinimized() { return false; }
     restore() {}
     focus() {}
@@ -100,7 +101,7 @@ function loadMain() {
 }
 
 const MAIN_CHANNELS = [
-  'accounts:disconnect-profile', 'accounts:export', 'accounts:import',
+  'accounts:disconnect-profile', 'accounts:export', 'accounts:import', 'app:toggle-devtools',
   'read-directory', 'read-directory-recursive', 'read-file', 'save-file',
   'select-folder', 'settings:load', 'settings:save'
 ];

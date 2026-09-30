@@ -49,6 +49,7 @@ function createElectronMock(appDataDir) {
       windows.push(this);
     }
     loadFile(file) { this.loaded = file; }
+    setMenuBarVisibility(v) { this.menuBarVisible = v; }
     isMinimized() { return false; }
     restore() {}
     focus() {}
@@ -411,6 +412,42 @@ test('did-attach-webview : une erreur au désenregistrement (destroyed) est abso
     assert.equal(thrown, null);
   } finally {
     Scheduler.prototype.unregisterWebview = original;
+    h.cleanup();
+  }
+});
+
+// ---------------------------------------------------------------------------
+// Issue #149 : barre de menu masquée, outils de développement par bouton
+// ---------------------------------------------------------------------------
+
+test('#149 : la barre de menu native est masquée, sans masquage automatique (Alt ne la rouvre pas)', () => {
+  const h = boot();
+  try {
+    assert.equal(h.win.menuBarVisible, false);
+    assert.notEqual(h.win.options.autoHideMenuBar, true, 'Alt+1..9 ne doit pas faire réapparaître le menu');
+  } finally {
+    h.cleanup();
+  }
+});
+
+test('#149 : app:toggle-devtools bascule les outils de la fenêtre principale uniquement', async () => {
+  const h = boot();
+  try {
+    const handler = h.electron.ipcHandlers.get('app:toggle-devtools');
+    let toggles = 0;
+    h.wc.toggleDevTools = () => { toggles++; };
+    assert.equal(await handler({ sender: h.wc }), true);
+    assert.equal(toggles, 1);
+
+    // Un autre émetteur (ex. une webview invitée) est refusé.
+    const autre = { toggleDevTools() { throw new Error('ne doit pas être appelé'); } };
+    assert.equal(await handler({ sender: autre }), false);
+
+    // Fenêtre fermée : plus de fenêtre principale, refus.
+    h.win.emit('closed');
+    assert.equal(await handler({ sender: h.wc }), false);
+    assert.equal(toggles, 1);
+  } finally {
     h.cleanup();
   }
 });

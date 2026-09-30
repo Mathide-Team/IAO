@@ -635,8 +635,26 @@
     window.toggleDashboard = function() {
       const dash = document.getElementById('dashboard');
       const btnShow = document.getElementById('btnShowDashboard');
+      const btnHide = document.getElementById('btnHideDashboard');
       dash.classList.toggle('collapsed');
-      btnShow.style.display = dash.classList.contains('collapsed') ? 'flex' : 'none';
+      const collapsed = dash.classList.contains('collapsed');
+      btnShow.style.display = collapsed ? 'flex' : 'none';
+      btnHide.style.display = collapsed ? 'none' : 'flex';
+    }
+
+    // Issue #149 : palette ouverte au clavier (Ctrl+K) ou par le bouton à côté
+    // des compteurs.
+    window.openPalette = function() {
+      document.getElementById('paletteOverlay').classList.add('open');
+      document.getElementById('paletteInput').focus();
+      filterPalette();
+    }
+
+    // Issue #149 : les outils de développement quittent le menu natif (masqué)
+    // pour un bouton de la barre du workspace. Le main process ne les ouvre que
+    // pour la fenêtre principale (canal app:toggle-devtools).
+    window.toggleDevTools = function() {
+      return window.iaoAPI.ipcInvoke('app:toggle-devtools').catch(() => false);
     }
 
     window.toggleExplorer = function() { document.getElementById('fileExplorer').classList.toggle('collapsed'); }
@@ -1007,9 +1025,7 @@
     document.addEventListener('keydown', (e) => {
       if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
         e.preventDefault();
-        document.getElementById('paletteOverlay').classList.add('open');
-        document.getElementById('paletteInput').focus();
-        filterPalette();
+        openPalette();
       }
       if (e.key === 'Escape') {
         document.getElementById('paletteOverlay').classList.remove('open');
@@ -2257,6 +2273,8 @@ const UI_ACTIONS = {
   'ui-toggleAllCards': 'toggleAllCards',
   'ui-toggleExplorer': 'toggleExplorer',
   'ui-toggleIdePanel': 'toggleIdePanel',
+  'ui-toggleDevTools': 'toggleDevTools',
+  'ui-openPalette': 'openPalette',
   'ui-openModal': 'openModal',
   'ui-openHelpModal': 'openHelpModal',
   'ui-openServicesModal': 'openServicesModal',
