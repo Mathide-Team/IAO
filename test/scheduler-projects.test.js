@@ -114,3 +114,46 @@ test('canAssignTaskToAccount accepte un tableau au lieu d\'un Set pour openAccou
   assert.ok(core.canAssignTaskToAccount(project, account, ['a2'], 5, now));
   assert.ok(!core.canAssignTaskToAccount(project, account, ['a1'], 5, now));
 });
+
+// --- Branches supplémentaires (issue #80) -----------------------------------
+
+test('canAssignTaskToAccount gère openAccountIds null (branche || [])', () => {
+  const now = Date.now();
+  const project = { id: 'p1', allowedAccountIds: [] };
+  const account = { id: 'a1', automation: { lastUsedAt: now - (6 * 60 * 60 * 1000) } };
+  assert.ok(core.canAssignTaskToAccount(project, account, null, 5, now));
+});
+
+test('canAssignTaskToAccount utilise Date.now() si now est absent (branche || Date.now())', () => {
+  const project = { id: 'p1', allowedAccountIds: [] };
+  const account = { id: 'a1', automation: { lastUsedAt: 0 } };
+  assert.ok(core.canAssignTaskToAccount(project, account, new Set(), 5));
+});
+
+test('canAssignTaskToAccount utilise 5 si thresholdHours est 0 (branche || 5)', () => {
+  const now = Date.now();
+  const project = { id: 'p1', allowedAccountIds: [] };
+  // thresholdHours=0 -> Number(0)||5 = 5, donc 5h de seuil
+  const account = { id: 'a1', automation: { lastUsedAt: now - (6 * 60 * 60 * 1000) } };
+  assert.ok(core.canAssignTaskToAccount(project, account, new Set(), 0, now));
+  // 3h < 5h -> pas assignable
+  const account2 = { id: 'a2', automation: { lastUsedAt: now - (3 * 60 * 60 * 1000) } };
+  assert.ok(!core.canAssignTaskToAccount(project, account2, new Set(), 0, now));
+});
+
+test('buildProjectRecord gère fields.tasks non-tableau (branche : [])', () => {
+  const p = core.buildProjectRecord({ id: 'p1', tasks: 'not an array' });
+  assert.deepStrictEqual(p.tasks, []);
+});
+
+test('buildProjectRecord accepte un vrai tableau pour tasks (branche ?)', () => {
+  const tasks = [{ id: 't1', status: 'pending' }];
+  const p = core.buildProjectRecord({ id: 'p1', tasks });
+  assert.deepStrictEqual(p.tasks, tasks);
+});
+
+test('buildTaskRecord couvre || null pour projectId et sourceZip', () => {
+  const t = core.buildTaskRecord({ id: 't1' });
+  assert.strictEqual(t.projectId, null);
+  assert.strictEqual(t.sourceZip, null);
+});

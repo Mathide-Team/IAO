@@ -104,3 +104,58 @@ test('core exporte isFrenchQuietHours et quietHoursRemainingMs', function() {
   assert.strictEqual(typeof core.isFrenchQuietHours, 'function');
   assert.strictEqual(typeof core.quietHoursRemainingMs, 'function');
 });
+
+// --- Branches manquantes (issue #80) ----------------------------------------
+
+test('isFrenchQuietHours gère minuit (heure 24 normalisée en 0)', function() {
+  // Certains environnements Intl renvoient "24" pour minuit avec hour12: false.
+  // La branche `if (hours === 24) hours = 0;` doit normaliser en 0.
+  // 00:00 Paris = 22:00 UTC (été) ou 23:00 UTC (hiver) -> hors pause.
+  var date = new Date('2026-07-15T22:00:00Z'); // 00:00 CEST (minuit)
+  assert.strictEqual(core.isFrenchQuietHours(date), false);
+});
+
+test('quietHoursRemainingMs gère le cas où waitSec <= 0', function() {
+  // Ce cas ne devrait pas se produire normalement (isFrenchQuietHours filtre
+  // avant), mais la branche défensive `if (waitSec <= 0) return 0;` doit être
+  // couverte. On mocke isFrenchQuietHours pour forcer l'exécution.
+  var orig = core.isFrenchQuietHours;
+  core.isFrenchQuietHours = function() { return true; };
+  try {
+    // 21:00 Paris = hors pause, mais isFrenchQuietHours est mockée à true.
+    // currentSec (21*3600=75600) > targetSec (20*3600+30*60=73800) -> waitSec < 0.
+    var date = new Date('2026-07-15T19:00:00Z'); // 21:00 CEST
+    assert.strictEqual(core.quietHoursRemainingMs(date), 0);
+  } finally {
+    core.isFrenchQuietHours = orig;
+  }
+});
+
+// --- Branches supplémentaires (issue #80) -----------------------------------
+
+test('isFrenchQuietHours accepte un timestamp non-Date (branche : new Date)', function() {
+  // Passer un nombre (timestamp ms) au lieu d\'un objet Date
+  var ts = new Date('2026-07-15T13:00:00Z').getTime(); // 15:00 CEST
+  assert.strictEqual(core.isFrenchQuietHours(ts), true);
+  var ts2 = new Date('2026-07-15T08:00:00Z').getTime(); // 10:00 CEST
+  assert.strictEqual(core.isFrenchQuietHours(ts2), false);
+});
+
+test('isFrenchQuietHours utilise Date.now() si now est absent', function() {
+  // Sans paramètre, utilise Date.now() — juste vérifier que ça ne plante pas
+  var result = core.isFrenchQuietHours();
+  assert.strictEqual(typeof result, 'boolean');
+});
+
+test('quietHoursRemainingMs accepte un timestamp non-Date (branche : new Date)', function() {
+  var ts = new Date('2026-07-15T13:00:00Z').getTime(); // 15:00 CEST
+  var remaining = core.quietHoursRemainingMs(ts);
+  assert.ok(remaining > 0, 'doit être > 0 pendant la pause');
+});
+
+test('quietHoursRemainingMs utilise Date.now() si now est falsy (branche || Date.now())', function() {
+  // now = 0 -> falsy -> Date.now() utilisé. On ne peut pas prédire le résultat
+  // mais on vérifie juste que ça ne plante pas et renvoie un nombre.
+  var result = core.quietHoursRemainingMs(0);
+  assert.strictEqual(typeof result, 'number');
+});
