@@ -73,6 +73,12 @@ Objectif : détecter automatiquement les ZIP livrés par les services IA dans le
 
 ## Fait
 
+- **CI : les tests en échec ne passent plus en vert (30/09/2026)**
+  `ci.yml` exécutait `npm run test:coverage | tee` sans `pipefail` : le code de sortie
+  était celui de `tee`, et un test en échec (`csvEscape gère null et undefined`,
+  introduit par #130) est passé inaperçu. Ajout de `set -o pipefail` et correction
+  de l'assertion (`started_at` est toujours renseigné par `buildJobRecord`).
+
 - **Validation Windows install.bat + corrections (18/09/2026, 20:38)**
   Lot 10. Corrections suite à validation statique :
   1. **install.bat corrigé** : auto-build si `dist\IAO-win32-x64` absent (`npm install` + `npm run dist:win`), parenthèses échappées `^(` `^)` dans echo, logique `/desktop` cohérente (Bureau optionnel, pas par défaut), `/no-desktop` ajouté, `DESKTOP_SHORTCUT` désormais utilisé.
