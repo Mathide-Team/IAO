@@ -131,3 +131,74 @@ test('main.js : userData fixé sur ai-manager, nom applicatif IAO, instance uniq
     assert.equal(h.electron.calls.quit, 0);
   } finally { h.cleanup(); }
 });
+
+// --- Cycle de vie de l'application : activate / window-all-closed -----------
+// Lignes 388 (recréation de la fenêtre sur « activate ») et 393 (app.quit()
+// hors macOS sur « window-all-closed ») — dernières lignes non couvertes de
+// main.js après les issues #94, #95, #97 et #98.
+
+function withPlatform(value, fn) {
+  const real = Object.getOwnPropertyDescriptor(process, 'platform');
+  Object.defineProperty(process, 'platform', { value });
+  try { return fn(); } finally { Object.defineProperty(process, 'platform', real); }
+}
+
+test('main.js : « activate » recrée la fenêtre seulement si aucune n\'est ouverte', () => {
+  const h = loadMain();
+  const warn = console.warn; const log = console.log;
+  console.warn = console.log = () => {};
+  try {
+    h.electron.calls.readyCallbacks[0]();
+    assert.equal(h.electron.windows.length, 1, 'fenêtre créée au démarrage');
+    const activate = h.electron.appListeners.get('activate');
+    assert.equal(typeof activate, 'function');
+
+    activate(); // une fenêtre existe déjà -> rien
+    assert.equal(h.electron.windows.length, 1);
+
+    h.electron.windows.length = 0; // toutes les fenêtres fermées (macOS)
+    activate();
+    assert.equal(h.electron.windows.length, 1, 'fenêtre recréée');
+    assert.equal(h.electron.windows[0].loaded, 'index.html');
+  } finally {
+    console.warn = warn; console.log = log;
+    h.cleanup();
+  }
+});
+
+test('main.js : « window-all-closed » quitte hors macOS, reste ouvert sous macOS', () => {
+  const h = loadMain();
+  try {
+    const onAllClosed = h.electron.appListeners.get('window-all-closed');
+    withPlatform('darwin', () => onAllClosed());
+    assert.equal(h.electron.calls.quit, 0, 'macOS : l\'app reste active');
+    withPlatform('linux', () => onAllClosed());
+    assert.equal(h.electron.calls.quit, 1);
+    withPlatform('win32', () => onAllClosed());
+    assert.equal(h.electron.calls.quit, 2);
+  } finally { h.cleanup(); }
+});
+
+test('main.js : journal de démarrage mentionne « packagé » et « mode debug » (ligne 383-384)', () => {
+  const prev = process.env.IAO_DEBUG;
+  process.env.IAO_DEBUG = '1';
+  let h;
+  try { h = loadMain(); } finally {
+    if (prev === undefined) delete process.env.IAO_DEBUG; else process.env.IAO_DEBUG = prev;
+  }
+  const warn = console.warn; const log = console.log; const info = console.info;
+  const lines = [];
+  console.warn = console.log = console.info = (...a) => { lines.push(a.join(' ')); };
+  try {
+    h.electron.app.isPackaged = true;
+    h.electron.calls.readyCallbacks[0]();
+  } finally {
+    console.warn = warn; console.log = log; console.info = info;
+  }
+  try {
+    const logFile = path.join(h.electron.app._paths.userData, 'logs', 'iao.log');
+    const text = (fs.existsSync(logFile) ? fs.readFileSync(logFile, 'utf-8') : '') + lines.join('\n');
+    assert.match(text, /packagé/);
+    assert.match(text, /mode debug/);
+  } finally { h.cleanup(); }
+});
