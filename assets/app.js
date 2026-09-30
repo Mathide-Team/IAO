@@ -248,7 +248,29 @@
     const STORE_KEY = 'ai_accounts';
     const BACKUP_KEY = 'ai_accounts_backup';
     const TABS_KEY = 'ai_open_tabs'; // lot 18/09/2026 : restauration des onglets au démarrage
+    const STARRED_KEY = 'ai_starred_tabs'; // issue #154 : onglets étoilés (persistants)
     const ORDER_KEY = 'ai_account_order'; // issue #6 : ordre personnalisé des comptes (drag-and-drop)
+
+    // Issue #154 : Gestion des onglets étoilés (star). Un onglet étoilé est
+    // identifié par la paire (accId, svcId) — stable même si l'onglet est fermé
+    // puis rouvert. La liste persiste dans localStorage et survit aux redémarrages.
+    // Les fonctions pures (tabStarKey, isTabStarred, toggleTabStar, serialize,
+    // deserialize) viennent de lib/starred-tabs.js — testables par `node --test`.
+    let starredTabs = new Set();
+    function loadStarredTabs() {
+      try {
+        var raw = localStorage.getItem(STARRED_KEY);
+        starredTabs = deserializeStarredTabs(raw);
+      } catch (e) { /* non bloquant */ }
+    }
+    function saveStarredTabs() {
+      try { localStorage.setItem(STARRED_KEY, serializeStarredTabs(starredTabs)); } catch (e) { /* non bloquant */ }
+    }
+    function isTabStarredById(accId, svcId) { return isTabStarred(starredTabs, accId, svcId); }
+    function toggleTabStarById(accId, svcId) {
+      starredTabs = toggleTabStar(starredTabs, accId, svcId);
+      saveStarredTabs();
+    }
 
     // Lecture JSON sûre : ne throw JAMAIS. Renvoie un statut pour distinguer
     // « vide » (première utilisation) de « corrompu » (backup à proposer).
@@ -327,6 +349,9 @@
       else if (r.status === 'corrupt') dataCorrupt = true;
       // 'empty' ou JSON valide non-tableau -> accounts reste []
     })();
+
+    // Issue #154 : charger les onglets étoilés au démarrage.
+    loadStarredTabs();
 
     // Vue compacte : ids des comptes dont la grille de services est repliée.
     // Persisté dans localStorage (clé dédiée, même modèle défensif que ide_w :
@@ -575,7 +600,7 @@
           // plus aucune donnée n'est injectée dans un attribut onclick.
           return `
             <div class="service-column">
-              <button class="svc-btn ${btnClass}" data-action="open-service" data-acc="${id}" data-svc="${svc.id}">${escapeHtml(svc.name)}${svcStatusDot(acc, svc.id, lastUsedBySvc)}</button>
+              <button class="svc-btn ${btnClass}" data-action="open-service" data-acc="${id}" data-svc="${svc.id}">${escapeHtml(svc.name)}${svcStatusDot(acc, svc.id, lastUsedBySvc)}${isTabStarredById(acc.id, svc.id) ? '<span class="svc-btn__star"><span class="ic" data-icon="star"></span></span>' : ''}</button>
             </div>
           `;
         }).join('');
@@ -767,10 +792,13 @@
         if (!acc || !svc) return '';
         const isActive = t.id === activeTabId;
         const isIdle = isTabIdle(t.lastFocusAt, now, 5);
-        const cls = ['tab', isActive ? 'active' : '', isIdle ? 'tab--idle' : ''].filter(Boolean).join(' ');
+        const starred = isTabStarredById(t.accId, t.svcId);
+        const cls = ['tab', isActive ? 'active' : '', isIdle ? 'tab--idle' : '', starred ? 'tab--starred' : ''].filter(Boolean).join(' ');
+        const starHtml = starred ? '<span class="tab__star"><span class="ic" data-icon="star"></span></span>' : '';
         return `
-          <div class="${cls}" draggable="true" data-action="activate-tab" data-tab="${t.id}" title="${escapeHtml(acc.name)} — ${escapeHtml(svc.name)}">
+          <div class="${cls}" draggable="true" data-action="activate-tab" data-tab="${t.id}" data-acc="${t.accId}" data-svc="${t.svcId}" title="${escapeHtml(acc.name)} — ${escapeHtml(svc.name)}">
             <span class="tab__dot svc-bg-${svc.id}"></span>
+            ${starHtml}
             <span class="tab__text">
               <span class="tab__label">${escapeHtml(acc.name)}</span>
               <span class="tab__acc">${escapeHtml(svc.name)}</span>
@@ -845,6 +873,71 @@
       const tabId = el.getAttribute('data-tab');
       if (el.getAttribute('data-action') === 'close-tab') closeTab(tabId);
       else activateTab(tabId);
+    });
+
+    // Issue #154 : Menu contextuel (clic droit) sur les onglets.
+    // Permet d'étoiler / désétoiler un onglet pour le mettre en valeur.
+    let ctxMenuEl = null;
+    function closeContextMenu() {
+      if (ctxMenuEl) { ctxMenuEl.remove(); ctxMenuEl = null; }
+    }
+    document.addEventListener('click', closeContextMenu);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeContextMenu(); });
+
+    document.getElementById('tabsBar').addEventListener('contextmenu', (e) => {
+      const tabEl = e.target.closest('.tab');
+      if (!tabEl) return;
+      e.preventDefault();
+      closeContextMenu();
+
+      const tabId = tabEl.getAttribute('data-tab');
+      const accId = tabEl.getAttribute('data-acc');
+      const svcId = tabEl.getAttribute('data-svc');
+      const tab = tabs.find(t => t.id === tabId);
+      if (!tab) return;
+      const acc = accounts.find(a => a.id === accId);
+      const svc = SERVICES.find(s => s.id === svcId);
+      if (!acc || !svc) return;
+      const starred = isTabStarredById(accId, svcId);
+
+      ctxMenuEl = document.createElement('div');
+      ctxMenuEl.className = 'ctx-menu';
+      ctxMenuEl.innerHTML = `
+        <div class="ctx-menu__item" data-ctx-action="toggle-star">
+          <span class="ic" data-icon="star"></span>
+          <span>${starred ? 'Retirer l\'étoile' : 'Étoiler cet onglet'}</span>
+        </div>
+        <div class="ctx-menu__sep"></div>
+        <div class="ctx-menu__item" data-ctx-action="close-tab">
+          <span class="ic" data-icon="times-circle"></span>
+          <span>Fermer l'onglet</span>
+        </div>
+      `;
+      document.body.appendChild(ctxMenuEl);
+      hydrateIcons(ctxMenuEl);
+
+      // Positionner le menu près du curseur, sans déborder de la fenêtre.
+      const rect = ctxMenuEl.getBoundingClientRect();
+      let x = e.clientX, y = e.clientY;
+      if (x + rect.width > window.innerWidth) x = window.innerWidth - rect.width - 4;
+      if (y + rect.height > window.innerHeight) y = window.innerHeight - rect.height - 4;
+      ctxMenuEl.style.left = x + 'px';
+      ctxMenuEl.style.top = y + 'px';
+
+      ctxMenuEl.addEventListener('click', (ev) => {
+        const item = ev.target.closest('[data-ctx-action]');
+        if (!item) return;
+        const action = item.getAttribute('data-ctx-action');
+        closeContextMenu();
+        if (action === 'toggle-star') {
+          toggleTabStarById(accId, svcId);
+          renderTabsBar();
+          renderAccounts();
+          showToast(isTabStarredById(accId, svcId) ? 'Onglet étoilé' : 'Étoile retirée');
+        } else if (action === 'close-tab') {
+          closeTab(tabId);
+        }
+      });
     });
 
     // Réorganisation des onglets par glisser-déposer (lot 16/09/2026). HTML5

@@ -203,3 +203,32 @@ test('main.js : journal de démarrage mentionne « packagé » et « mode debug 
     assert.match(text, /mode debug/);
   } finally { h.cleanup(); }
 });
+
+// --- Ordonnanceur : fenêtre principale transmise aux dialogues (#55) ----------
+// `registerSchedulerIPC(ipcMain, scheduler, () => mainWindow)` : l'accesseur
+// n'était jamais appelé depuis main.js (les tests de l'ordonnanceur passent
+// leur propre accesseur). On vérifie qu'il renvoie bien la fenêtre créée par
+// whenReady(), celle qui sert de parent au sélecteur de dossier.
+test('main.js : scheduler:pick-downloads-dir ouvre le dialogue sur la fenêtre principale', async () => {
+  const h = loadMain();
+  const originalLoad = Module._load;
+  const silence = { warn: console.warn, log: console.log, info: console.info, error: console.error };
+  console.warn = console.log = console.info = console.error = () => {};
+  const parents = [];
+  h.electron.dialog.showOpenDialog = async (win) => { parents.push(win); return { canceled: true, filePaths: [] }; };
+  Module._load = function patchedLoad(request) {
+    if (request === 'electron') return h.electron;
+    return originalLoad.apply(this, arguments);
+  };
+  try {
+    await h.electron.calls.readyCallbacks[0]();
+    const res = await h.electron.ipcHandlers.get('scheduler:pick-downloads-dir')({});
+    assert.equal(res && res.error, undefined, 'pas d\'erreur renvoyée');
+    assert.equal(parents.length, 1);
+    assert.equal(parents[0], h.electron.windows[0], 'parent = fenêtre principale');
+  } finally {
+    Module._load = originalLoad;
+    Object.assign(console, silence);
+    h.cleanup();
+  }
+});

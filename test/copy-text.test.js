@@ -100,3 +100,7 @@ test('#138 : e-mail cliquable câblé (index.html, app.js, app.css)', () => {
   assert.match(app, /copyText\(acc\.email, \{ clipboard: navigator\.clipboard, document \}\)/);
   assert.ok(css.includes('.account-email-copy'));
 });
+
+test('copyText : sans environnement (env absent) -> false, sans lever', async () => {
+  assert.equal(await copyText('x'), false);
+});

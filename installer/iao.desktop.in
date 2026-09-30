@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=IAO
+Comment=Gestionnaire de comptes et sessions IA
+Comment[fr]=Gestionnaire de comptes et sessions IA
+Exec=@EXEC@
+Icon=@ICON@
+Terminal=false
+Categories=Network;Utility;Office;
+StartupWMClass=IAO
+StartupNotify=true
