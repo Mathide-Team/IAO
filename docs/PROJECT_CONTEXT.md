@@ -327,7 +327,7 @@ sursolliciter toujours le même compte.
   (33 tests). Persistance via IPC `settings:load`/`settings:save` dans `main.js`
   (`<userData>/settings.json`).
   UI : modal « Réglages » dans `index.html`. **Application effective** : thème
-  (`data-theme` sur `<html>`, 3 thèmes : iao/light/dark), taille de police +
+  (`data-theme` sur `<html>`, thèmes : system (défaut, issue #139)/iao/light/dark), taille de police +
   retour à la ligne Monaco, confirmation avant fermeture d'onglet (modale
   dédiée), affichage des fenêtres d'automatisation (poussé vers config
   scheduler), restauration des onglets au démarrage (persistance localStorage).
@@ -410,6 +410,12 @@ Deux features livrées (toutes deux `[~]` — application partielle) :
   **Application partielle** : contraintes vérifiées mais transition vers RUNNING
   + automatisation Claude pas encore câblée.
 
+- **Thème du bureau** (issue #139, `[x]`) : thème `system`, défaut des nouveaux
+  réglages. `resolveTheme(theme, prefersDark)` (pur, `lib/settings.js`) donne `dark` ou
+  `light` selon `prefers-color-scheme`, et `iao` si la préférence est inconnue.
+  `assets/app.js` écoute `change` sur `matchMedia` pour basculer en direct. Les choix
+  explicites (`iao`, `light`, `dark`) ne suivent pas le bureau.
+
 - **Copie de l'e-mail d'un compte** (issue #138, `[x]`) : un clic sur l'e-mail
   d'une carte de compte (menu latéral) le copie dans le presse-papiers, avec un toast
   de confirmation. `lib/copy-text.js` (`copyText(text, { clipboard, document })`,
@@ -420,7 +426,7 @@ Deux features livrées (toutes deux `[~]` — application partielle) :
 - **Panneau de réglages** (P2, `[x]`) : `lib/settings.js` (6 fonctions pures
   testées, 20 tests). Persistance via IPC `settings:load`/`settings:save` dans
   `main.js`. UI : modal « Réglages » dans `index.html`. **Application effective** :
-  thème (`data-theme` sur `<html>`, 3 thèmes : iao/light/dark), taille de
+  thème (`data-theme` sur `<html>`, thèmes : system (défaut, issue #139)/iao/light/dark), taille de
   police + retour à la ligne Monaco, confirmation avant fermeture d'onglet
   (modale dédiée), affichage des fenêtres d'automatisation (poussé vers config
   scheduler), restauration des onglets au démarrage (persistance localStorage).

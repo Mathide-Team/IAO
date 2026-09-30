@@ -73,6 +73,12 @@ Objectif : détecter automatiquement les ZIP livrés par les services IA dans le
 
 ## Fait
 
+- **Thème du bureau (issue #139, 30/09/2026)**
+  Nouveau thème `system` (défaut des nouveaux réglages) : l'app suit le thème clair ou sombre
+  du bureau (`prefers-color-scheme`, relayé par Electron `nativeTheme`) et bascule en direct
+  quand le bureau change. `resolveTheme()` pure dans `lib/settings.js`. Les réglages déjà
+  enregistrés (`iao`, `light`, `dark`) sont conservés. Tests : `test/theme-system.test.js`.
+
 - **Clic sur l'e-mail d'un compte : copie dans le presse-papiers (issue #138, 30/09/2026)**
   `lib/copy-text.js` (clipboard API, repli `execCommand('copy')`), action `copy-email`
   sur l'e-mail de chaque carte (curseur « copie », soulignement au survol), toast de
