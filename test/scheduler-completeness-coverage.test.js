@@ -291,3 +291,56 @@ test('analyzeCompleteness (Windows) : PowerShell échoue', function () {
   assert.deepStrictEqual(res, { error: 'Aucun FEATURES.md trouvé dans le ZIP.' });
   cleanup(s);
 });
+
+// --- Dossier temporaire unique (test intermittent du 30/09/2026) -----------
+// 'iao-zip-' + Date.now() : deux analyses dans la même milliseconde
+// partageaient le dossier ; un FEATURES.md resté d'un nettoyage raté était
+// relu par l'analyse suivante. mkdtempSync garantit un dossier unique.
+
+test('analyzeCompleteness (Windows) : dossier unique même à Date.now() constant', function () {
+  const s = makeScheduler();
+  const job = addJob(s, { file_path: 'C:\\projet.zip' });
+  const realNow = Date.now;
+  const realRm = fs.rmSync;
+  const dests = [];
+  Date.now = function () { return 1700000000000; };
+  try {
+    fs.rmSync = function () { throw new Error('EBUSY'); }; // 1re analyse : nettoyage raté
+    const first = withWindowsPlatform(
+      fakePowerShell({ 'FEATURES.md': COMPLETE }, dests),
+      function () { return s.analyzeCompleteness(job.id); }
+    );
+    fs.rmSync = realRm;
+    assert.strictEqual(first.analysis.complete, true);
+    const second = withWindowsPlatform(
+      fakePowerShell({ 'src/index.js': '// x' }, dests),
+      function () { return s.analyzeCompleteness(job.id); }
+    );
+    assert.deepStrictEqual(second, { error: 'Aucun FEATURES.md trouvé dans le ZIP.' });
+  } finally {
+    Date.now = realNow;
+    fs.rmSync = realRm;
+  }
+  const dirs = dests.map(c => /-DestinationPath '([^']+)'/.exec(c)[1]);
+  assert.notStrictEqual(dirs[0], dirs[1], 'deux dossiers distincts');
+  fs.rmSync(dirs[0], { recursive: true, force: true }); // reste du nettoyage simulé raté
+  assert.strictEqual(fs.existsSync(dirs[1]), false, '2e dossier nettoyé');
+  cleanup(s);
+});
+
+test('analyzeCompleteness (Windows) : dossier temporaire supprimé si PowerShell échoue', function () {
+  const s = makeScheduler();
+  const job = addJob(s, { file_path: 'C:\\projet.zip' });
+  let dest = null;
+  const res = withWindowsPlatform(
+    function (command) {
+      dest = /-DestinationPath '([^']+)'/.exec(command)[1];
+      assert.strictEqual(fs.existsSync(dest), true, 'dossier créé avant PowerShell');
+      throw new Error('powershell introuvable');
+    },
+    function () { return s.analyzeCompleteness(job.id); }
+  );
+  assert.deepStrictEqual(res, { error: 'Aucun FEATURES.md trouvé dans le ZIP.' });
+  assert.strictEqual(fs.existsSync(dest), false, 'dossier temporaire nettoyé');
+  cleanup(s);
+});

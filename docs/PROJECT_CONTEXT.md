@@ -442,6 +442,8 @@ Trois lots livrés dans la même session :
   `parseFeaturesMd(content)` et `isProjectComplete(content)` dans `scheduler/core.js`
   (testées, 11 tests). `Scheduler.analyzeCompleteness(jobId)` dans `scheduler/index.js`
   extrait le FEATURES.md du ZIP via `unzip`/PowerShell, l'analyse, et renvoie le décompte.
+  Sous Windows, l'extraction se fait dans un dossier unique (`fs.mkdtempSync`, `iao-zip-XXXXXX`),
+  supprimé même si PowerShell échoue (30/09/2026 : l'ancien `Date.now()` pouvait être partagé).
   IPC `scheduler:analyze-completeness` + bouton dans le panneau Ordonnanceur.
   **Pas une décision automatique** : l'utilisateur garde la main.
 

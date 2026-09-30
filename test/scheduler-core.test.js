@@ -214,8 +214,10 @@ test('csvEscape gère null et undefined (branche value == null)', () => {
   // csvEscape(null) doit renvoyer ''
   const jobs = [core.buildJobRecord({ id: 'job_001', profile: null, service: undefined })];
   const csv = core.jobsToCSV(jobs);
-  // Les valeurs null/undefined deviennent '' dans le CSV
-  assert.match(csv, /job_001,,/);
+  // Les valeurs null/undefined deviennent '' dans le CSV. started_at est
+  // toujours renseigné par buildJobRecord (défaut : maintenant) ; profile et
+  // service (null/undefined) sont les colonnes vides après status.
+  assert.match(csv, /^job_001,[^,]+,,DOWNLOADING,,,/m);
 });
 
 test('jobsToCSV gère un paramètre non-tableau (branche : [])', () => {
