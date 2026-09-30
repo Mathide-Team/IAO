@@ -166,3 +166,21 @@ test('Round-trip : serialize puis deserialize préserve les données', function(
     assert.strictEqual(restored.has(key), true);
   });
 });
+
+// --- Chargement navigateur (branche window) -----------------------------
+// Même technique que test/tab-actions.test.js : recharger le module avec
+// `global.window` défini pour exécuter la branche d'export navigateur.
+
+test('les fonctions s\'attachent à window (branche navigateur)', function() {
+  var modulePath = require.resolve('../lib/starred-tabs.js');
+  var origWindow = global.window;
+  global.window = {};
+  delete require.cache[modulePath];
+  require('../lib/starred-tabs.js');
+  ['tabStarKey', 'isTabStarred', 'toggleTabStar', 'serializeStarredTabs', 'deserializeStarredTabs']
+    .forEach(function(name) { assert.strictEqual(typeof global.window[name], 'function', name); });
+  assert.strictEqual(global.window.tabStarKey('a', 'b'), 'a|b');
+  global.window = origWindow;
+  delete require.cache[modulePath];
+  require('../lib/starred-tabs.js');
+});
