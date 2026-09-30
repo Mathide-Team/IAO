@@ -73,6 +73,12 @@ Objectif : détecter automatiquement les ZIP livrés par les services IA dans le
 
 ## Fait
 
+- **CI : seuil de couverture bloquant (issue #101, 30/09/2026)**
+  `test:coverage` : lignes 100 %, branches 97 %, fonctions 98 % (planchers sous la mesure
+  98,00 % / 98,46 %, 100 % inatteignable, voir CLAUDE.md § 10 bis). `test/coverage-inventory.test.js`
+  charge chaque module pur pour qu'un test supprimé fasse échouer le seuil. Vérifié : sans
+  `test/file-search.test.js` ou `test/main-harness.test.js`, le seuil échoue.
+
 - **Validation Windows install.bat + corrections (18/09/2026, 20:38)**
   Lot 10. Corrections suite à validation statique :
   1. **install.bat corrigé** : auto-build si `dist\IAO-win32-x64` absent (`npm install` + `npm run dist:win`), parenthèses échappées `^(` `^)` dans echo, logique `/desktop` cohérente (Bureau optionnel, pas par défaut), `/no-desktop` ajouté, `DESKTOP_SHORTCUT` désormais utilisé.
