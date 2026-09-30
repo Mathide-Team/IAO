@@ -37,6 +37,7 @@ function loadMain() {
       this.webContents.getURL = () => 'file:///index.html';
     }
     loadFile() {}
+    setMenuBarVisibility() {}
     isMinimized() { return false; }
     restore() {}
     focus() {}

@@ -21,7 +21,7 @@ locaux dans `fixtures/` :
 | Script | Ce qu'il teste | Commande |
 |--------|----------------|----------|
 | `popups-continue.js` | Intégration popups + bouton « Continuer » + CSP (14 tests) | `npm run test:electron` |
-| `ui-flows.js` | Flux UI : démarrage sain (preload, icônes), comptes, escapeHtml, réglages, explorateur, restauration et persistance des onglets (18 tests) | `npm run test:electron:ui` |
+| `ui-flows.js` | Flux UI : démarrage sain (preload, icônes), comptes, escapeHtml, réglages, explorateur, restauration et persistance des onglets, barre du workspace et menu masqué (#149) (22 tests) | `npm run test:electron:ui` |
 | `smoke-packaged.js` | Fumée du binaire packagé : démarrage, scheduler, preload et interface chargés d'après `logs/iao.log`, arrêt propre (4 tests) | `npm run test:electron:smoke` (après `npm run dist:linux`) |
 
 **Bloquant en CI depuis l'issue #54** : le workflow `test-electron.yml` exécute les

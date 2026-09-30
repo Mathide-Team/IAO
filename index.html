@@ -85,20 +85,12 @@
 
 <!-- Dashboard -->
 <aside class="dashboard" id="dashboard">
-  <header class="header">
-    <div class="header__brand">
-      <div class="header__icon"><span class="ic" data-icon="bolt"></span></div>
-      <div>
-        <div class="header__title">IAO</div>
-        <div class="header__subtitle">Ctrl+K</div>
-      </div>
-    </div>
-    <div class="collapse-arrow" data-action="ui-toggleDashboard" title="Réduire"><span class="ic" data-icon="chevron-left"></span></div>
-  </header>
-
+  <!-- Issue #149 : le nom de l'app est passé dans la barre du workspace ; le
+       bouton Ctrl+K (palette) est à côté des deux compteurs, réduits. -->
   <div class="stats">
     <div class="stat-card"><div class="stat-card__label">Comptes actifs</div><div class="stat-card__value text-accent" id="statActive">0</div></div>
     <div class="stat-card"><div class="stat-card__label">IA Disponibles</div><div class="stat-card__value text-rose" id="statAvailable">0</div></div>
+    <button class="palette-btn" id="btnOpenPalette" data-action="ui-openPalette" title="Rechercher un compte ou une IA (Ctrl+K)"><span class="ic" data-icon="magnifying-glass"></span><span class="palette-btn__kbd">Ctrl+K</span></button>
   </div>
 
   <div class="section-title section-title--accounts">
@@ -116,9 +108,17 @@
 <!-- Workspace -->
 <main class="workspace-container">
   <div class="workspace-header">
+    <!-- Issue #149 : nom de l'app, repli des comptes, Explorateur, Éditeur et
+         outils de développement (ex-menu natif View, désormais masqué). -->
+    <div class="app-brand" title="IAO">
+      <div class="app-brand__icon"><span class="ic" data-icon="bolt"></span></div>
+      <div class="app-brand__title">IAO</div>
+    </div>
+    <button class="btn btn--icon" id="btnHideDashboard" data-action="ui-toggleDashboard" title="Masquer les comptes"><span class="ic" data-icon="chevron-left"></span></button>
     <button class="btn btn--icon hidden" id="btnShowDashboard" data-action="ui-toggleDashboard" title="Afficher les comptes"><span class="ic" data-icon="chevron-right"></span></button>
     <button class="btn btn--icon" data-action="ui-toggleExplorer" title="Explorateur"><span class="ic" data-icon="folder-tree"></span></button>
     <button class="btn btn--icon" data-action="ui-toggleIdePanel" title="Éditeur"><span class="ic" data-icon="code"></span></button>
+    <button class="btn btn--icon" data-action="ui-toggleDevTools" title="Outils de développement (Ctrl+Maj+I)"><span class="ic" data-icon="bug"></span></button>
     <div class="flex-1"></div>
     <div class="flex-row-gap-8">
       <!-- Aide « Comprendre les IA disponibles » : dans la barre du workspace

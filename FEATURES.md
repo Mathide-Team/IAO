@@ -73,6 +73,14 @@ Objectif : détecter automatiquement les ZIP livrés par les services IA dans le
 
 ## Fait
 
+- **Menu natif masqué, barre du workspace réorganisée (issue #149, 30/09/2026)**
+  La barre de menu File/Edit/View/Window disparaît (`setMenuBarVisibility(false)`), mais ses
+  raccourcis restent. Les outils de développement passent sur un bouton à côté de l'Explorateur
+  et de l'Éditeur (IPC `app:toggle-devtools`, réservé à la fenêtre principale). Le nom de l'app
+  passe dans la même barre. Le bouton Ctrl+K (palette) est à côté des compteurs « Comptes actifs »
+  et « IA disponibles », réduits. Icônes `bug` et `magnifying-glass` ajoutées (Font Awesome 6.5.0).
+  +2 tests main.js, +4 tests Electron (C6).
+
 - **Thème clair : barre latérale, en-tête et onglets lisibles (suite #139, 30/09/2026)**
   Ces trois panneaux gardaient un fond sombre codé en dur (`rgba(11, 8, 23, …)`). En thème
   clair, devenu le rendu par défaut pour un bureau clair depuis #139, le nom du compte actif

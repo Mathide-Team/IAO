@@ -104,7 +104,7 @@ iao/
   seuil. `test/coverage-inventory.test.js` charge chaque module pur. Détails : CLAUDE.md § 10 bis.
 - **Lancer les tests d'intégration Electron réels** : `npm run test:electron` (sous xvfb, fixtures locales
   uniquement — voir `test-electron/README.md`) — **14 tests** (popups, bouton « Continuer », webview, CSP).
-  Tests de flux UI : `npm run test:electron:ui` — **18 tests** (démarrage sain, comptes, escapeHtml, réglages,
+  Tests de flux UI : `npm run test:electron:ui` — **22 tests** (démarrage sain, comptes, escapeHtml, réglages,
   explorateur, persistance des onglets).
   Test de fumée du binaire packagé : `npm run test:electron:smoke` — **4 tests** (démarrage, scheduler, preload,
   interface) (après `npm run dist:linux`).
@@ -349,7 +349,14 @@ de `scheduler/index.js` pour ne pas repartir de zéro.
   `--bg-panel` / `--bg-panel-soft`, définies dans chaque thème (IAO, sombre, clair). Avant le
   30/09/2026, elles étaient codées en dur en sombre : en thème clair, le nom du compte actif
   devenait illisible. Garde-fou : `test/theme-panels.test.js`.
-- Logo (`.header__icon`) : dégradé **rose → violet** (`var(--rose)` → `var(--accent)`).
+- **Barre du workspace** (issue #149) : nom de l'app (`.app-brand`, logo + « IAO »), boutons
+  masquer/afficher les comptes, Explorateur, Éditeur et **outils de développement** (`ui-toggleDevTools`,
+  canal IPC `app:toggle-devtools`, accepté uniquement pour la fenêtre principale). La **barre de menu
+  native** (File, Edit, View, Window) est masquée par `win.setMenuBarVisibility(false)` ; le menu
+  applicatif reste en place, donc ses raccourcis (Ctrl+Maj+I, Ctrl+R, zoom, copier/coller) marchent
+  toujours, et Alt ne le rouvre pas (Alt+1..9 change d'onglet). Dans la barre latérale, un bouton
+  **Ctrl+K** (`#btnOpenPalette`, `openPalette()`) ouvre la palette, à côté des deux compteurs réduits.
+- Logo (`.app-brand__icon`) : dégradé **rose → violet** (`var(--rose)` → `var(--accent)`).
 - Stats : « Comptes actifs » en violet, « IA disponibles » en rose.
 - Les couleurs de marque des IA (Claude/ChatGPT/Gemini/Perplexity/Grok) sont **conservées** pour la reconnaissance ; Z.ai est violet et s'intègre au thème ; Leonardo AI est magenta (`--leonardo: #d946ef`), distinct du violet Z.ai et du rose du thème. Suno est **orange-rouge** (`--suno: #f8441b` — sa marque officielle est noir/blanc, on reprend le pôle orange du dégradé signature rose→orange de son app, le rose étant trop proche de Leonardo) ; Meshy AI est **vert lime** (`--meshy: #c5f955`, couleur dominante relevée sur meshy.ai).
 - Polices et icônes **désormais 100% locales** (`assets/fonts/` + `assets/icons.js`) — plus aucune dépendance Internet pour l'ossature visuelle. Monaco est local. Les `@font-face` sont dans le `<style>` d'`index.html` avec des chemins **relatifs** (valables en dev ET en `.exe`).
