@@ -73,6 +73,12 @@ Objectif : détecter automatiquement les ZIP livrés par les services IA dans le
 
 ## Fait
 
+- **Thème clair : barre latérale, en-tête et onglets lisibles (suite #139, 30/09/2026)**
+  Ces trois panneaux gardaient un fond sombre codé en dur (`rgba(11, 8, 23, …)`). En thème
+  clair, devenu le rendu par défaut pour un bureau clair depuis #139, le nom du compte actif
+  s'affichait en sombre sur fond sombre. Ajout de `--bg-panel` et `--bg-panel-soft` dans
+  chaque thème ; le rendu IAO ne change pas. +3 tests (`test/theme-panels.test.js`).
+
 - **Puce de statut déplacée sur chaque bouton d'IA (issue #137, 30/09/2026)**
   La puce bleu/rouge/vert quitte l'avatar du compte et se place dans le coin de chaque
   bouton d'IA : 9 puces par compte, une par couple (compte, service). Règles inchangées

@@ -45,6 +45,8 @@
     /* ===== Palette par défaut (violet / rose) ===== */
     --bg: #0b0817;                              /* theme-color officielle du site */
     --bg-elevated: #120e24;                     /* panneaux (relevé sur le site) */
+    --bg-panel: rgba(11, 8, 23, 0.72);          /* barre latérale, en-tête (fond translucide) */
+    --bg-panel-soft: rgba(11, 8, 23, 0.55);     /* barre d'onglets */
     --bg-card: rgba(24, 18, 49, 0.6);           /* cartes #181231 */
     --bg-card-hover: rgba(34, 26, 66, 0.8);
     --border: rgba(44, 34, 85, 0.75);           /* #2c2255 */
@@ -112,6 +114,8 @@
   [data-theme="dark"] {
     --bg: #0d1117;
     --bg-elevated: #161b22;
+    --bg-panel: rgba(13, 17, 23, 0.72);
+    --bg-panel-soft: rgba(13, 17, 23, 0.55);
     --bg-card: rgba(22, 27, 34, 0.8);
     --bg-card-hover: rgba(30, 37, 46, 0.9);
     --border: rgba(48, 54, 61, 0.75);
@@ -131,6 +135,8 @@
   [data-theme="light"] {
     --bg: #f6f8fa;
     --bg-elevated: #ffffff;
+    --bg-panel: rgba(255, 255, 255, 0.72);
+    --bg-panel-soft: rgba(246, 248, 250, 0.7);
     --bg-card: rgba(255, 255, 255, 0.9);
     --bg-card-hover: rgba(243, 244, 246, 0.95);
     --border: rgba(208, 215, 222, 0.75);
@@ -181,7 +187,7 @@
     width: 380px; min-width: 380px; height: 100vh;
     border-right: 1px solid var(--border);
     display: flex; flex-direction: column;
-    background: rgba(11, 8, 23, 0.72);
+    background: var(--bg-panel);
     backdrop-filter: blur(16px); z-index: 2;
     transition: width 0.3s ease, min-width 0.3s ease;
   }
@@ -305,7 +311,7 @@
   #btnToggleAllCards.all-collapsed .ic { transform: rotate(-90deg); }
 
   /* Workspace */
-  .workspace-header { height: 56px; border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 16px; gap: 16px; background: rgba(11, 8, 23, 0.72); backdrop-filter: blur(16px); z-index: 10; flex-shrink: 0; }
+  .workspace-header { height: 56px; border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 16px; gap: 16px; background: var(--bg-panel); backdrop-filter: blur(16px); z-index: 10; flex-shrink: 0; }
   .workspace-body { flex: 1; display: flex; overflow: hidden; }
   
   /* Éditeur & Explorateur */
@@ -327,7 +333,7 @@
   /* Zone IA : onglets + contenu (remplace l'ancienne vue scindée à 2 panneaux) */
   .ai-area { flex: 1; display: flex; flex-direction: column; min-width: 0; overflow: hidden; }
 
-  .tabs-bar { display: flex; align-items: flex-end; gap: 4px; padding: 8px 10px 0; overflow-x: auto; overflow-y: hidden; border-bottom: 1px solid var(--border); background: rgba(11, 8, 23, 0.55); flex-shrink: 0; }
+  .tabs-bar { display: flex; align-items: flex-end; gap: 4px; padding: 8px 10px 0; overflow-x: auto; overflow-y: hidden; border-bottom: 1px solid var(--border); background: var(--bg-panel-soft); flex-shrink: 0; }
   .tabs-bar::-webkit-scrollbar { height: 4px; }
   .tab { display: flex; align-items: center; gap: 8px; padding: 8px 8px 8px 12px; border-radius: 10px 10px 0 0; background: var(--bg-card); border: 1px solid var(--border); border-bottom: none; cursor: grab; font-size: 12px; color: var(--fg-muted); white-space: nowrap; max-width: 220px; flex-shrink: 0; transition: background 0.15s, color 0.15s; }
   .tab:hover { background: var(--bg-card-hover); color: var(--fg); }

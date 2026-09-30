@@ -345,6 +345,10 @@ de `scheduler/index.js` pour ne pas repartir de zéro.
 - Défini par des variables CSS dans `:root` (fichier `index.html`).
 - Accent principal : **`--accent: #8b5cf6`** (violet d'accent). Rose : `--rose: #f230aa`. Halo : `--accent-glow: rgba(139,92,246,.35)`.
 - Fonds sombres légèrement violacés (`--bg: #0b0817`), bordures teintées violet, fond « aurora » en dégradés radiaux CSS purs.
+- Fonds des panneaux (barre latérale `.dashboard`, `.workspace-header`, `.tabs-bar`) : variables
+  `--bg-panel` / `--bg-panel-soft`, définies dans chaque thème (IAO, sombre, clair). Avant le
+  30/09/2026, elles étaient codées en dur en sombre : en thème clair, le nom du compte actif
+  devenait illisible. Garde-fou : `test/theme-panels.test.js`.
 - Logo (`.header__icon`) : dégradé **rose → violet** (`var(--rose)` → `var(--accent)`).
 - Stats : « Comptes actifs » en violet, « IA disponibles » en rose.
 - Les couleurs de marque des IA (Claude/ChatGPT/Gemini/Perplexity/Grok) sont **conservées** pour la reconnaissance ; Z.ai est violet et s'intègre au thème ; Leonardo AI est magenta (`--leonardo: #d946ef`), distinct du violet Z.ai et du rose du thème. Suno est **orange-rouge** (`--suno: #f8441b` — sa marque officielle est noir/blanc, on reprend le pôle orange du dégradé signature rose→orange de son app, le rose étant trop proche de Leonardo) ; Meshy AI est **vert lime** (`--meshy: #c5f955`, couleur dominante relevée sur meshy.ai).
