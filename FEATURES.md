@@ -73,6 +73,12 @@ Objectif : détecter automatiquement les ZIP livrés par les services IA dans le
 
 ## Fait
 
+- **Dossier temporaire unique pour l'analyse de ZIP sous Windows (30/09/2026)**
+  `analyzeCompleteness` (stratégie PowerShell) utilisait `'iao-zip-' + Date.now()` : deux
+  analyses dans la même milliseconde partageaient le dossier, et un `FEATURES.md` resté
+  d'un nettoyage raté était relu à tort (test intermittent « archive sans FEATURES.md »).
+  Passage à `fs.mkdtempSync`, et nettoyage même quand PowerShell échoue. +2 tests.
+
 - **Validation Windows install.bat + corrections (18/09/2026, 20:38)**
   Lot 10. Corrections suite à validation statique :
   1. **install.bat corrigé** : auto-build si `dist\IAO-win32-x64` absent (`npm install` + `npm run dist:win`), parenthèses échappées `^(` `^)` dans echo, logique `/desktop` cohérente (Bureau optionnel, pas par défaut), `/no-desktop` ajouté, `DESKTOP_SHORTCUT` désormais utilisé.
