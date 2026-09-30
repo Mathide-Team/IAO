@@ -73,6 +73,12 @@ Objectif : détecter automatiquement les ZIP livrés par les services IA dans le
 
 ## Fait
 
+- **Dossier temporaire unique pour l'analyse de ZIP sous Windows (30/09/2026)**
+  `analyzeCompleteness` (stratégie PowerShell) utilisait `'iao-zip-' + Date.now()` : deux
+  analyses dans la même milliseconde partageaient le dossier, et un `FEATURES.md` resté
+  d'un nettoyage raté était relu à tort (test intermittent « archive sans FEATURES.md »).
+  Passage à `fs.mkdtempSync`, et nettoyage même quand PowerShell échoue. +2 tests.
+
 - **CI : les tests en échec ne passent plus en vert (30/09/2026)**
   `ci.yml` exécutait `npm run test:coverage | tee` sans `pipefail` : le code de sortie
   était celui de `tee`, et un test en échec (`csvEscape gère null et undefined`,
