@@ -248,6 +248,8 @@
   .account-name { font-size: 15px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: flex; align-items: center; gap: 8px; }
   .active-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px var(--accent); animation: pulse 1.5s infinite; }
   @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+  .account-email-copy { cursor: copy; border-radius: 3px; }
+  .account-email-copy:hover { color: var(--fg); text-decoration: underline dotted; }
   .account-email { font-size: 11px; color: var(--fg-muted); font-family: 'JetBrains Mono', monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px; }
   .account-actions { display: flex; gap: 6px; }
 
@@ -281,8 +283,6 @@
   .svc-pika { background: var(--pika-dim); color: var(--pika); border-color: rgba(162,89,255,0.2); }
   .svc-qwen { background: var(--qwen-dim); color: var(--qwen); border-color: rgba(97,92,237,0.2); }
   .svc-btn.cooldown-active { opacity: 0.4; filter: grayscale(50%); }
-  .cooldown-btn { width: 100%; padding: 5px 4px; font-size: 10.5px; font-weight: 500; text-align: center; cursor: pointer; transition: all 0.2s; border-radius: 6px; border: 1px solid var(--border); background: transparent; color: var(--fg-muted); font-family: 'JetBrains Mono', monospace; }
-  .cooldown-btn.active { background: var(--danger-dim); border-color: rgba(255, 77, 106, 0.3); color: var(--danger); }
 
   /* --- Vue compacte : repli/dépli de la grille de services par carte --- */
   /* Animation de hauteur sans max-height arbitraire : la rangée de grille passe

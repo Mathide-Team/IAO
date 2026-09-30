@@ -8,7 +8,7 @@
 
 - Gérer plusieurs **comptes** (ex. plusieurs adresses Gmail), chacun avec une **session de connexion isolée** (cookies séparés) grâce aux `partition` d'Electron.
 - Ouvrir chaque service IA dans un **onglet** contenant sa `<webview>`, en restant connecté au bon compte.
-- Suivre un **cooldown / quota 24h** par service et par compte (bouton « Épuiser (24h) »).
+- Suivre un **cooldown / quota** par service et par compte (service estompé jusqu'à l'expiration ; bouton manuel « Épuiser (24h) » retiré par l'issue #136).
 - Éditer des fichiers locaux via un **éditeur de code intégré (Monaco)** avec un explorateur de fichiers.
 - Ouvrir **autant d'onglets IA que voulu** (un par couple compte + service), avec bascule instantanée entre eux et fermeture individuelle libérant la RAM.
 - Consulter une **page d'aide** (« Comprendre les IA disponibles », bouton `?` dans la barre du workspace) décrivant chaque service et son cas d'usage.
@@ -60,6 +60,7 @@ iao/
 │   ├── claude-adapter.test.js # Tests de lib/claude-adapter.js
 │   ├── scheduler-rate-limiter.test.js # Tests du limiteur (countRunningJobs/canLaunchJob/checkJobLaunchEligibility)
 │   ├── settings.test.js  # Tests de lib/settings.js
+│   ├── copy-text.test.js # Tests de lib/copy-text.js + câblage de la copie d'e-mail (issue #138)
 │   └── icons.test.js           # Tests de validité d'assets/icons.js
 ├── package.json        # Scripts, dépendances, config de build.
 ├── package-lock.json
@@ -98,6 +99,9 @@ iao/
   `scheduler/core.js` (dont `parseFeaturesMd`/`isProjectComplete`) et les tests d'intégration scheduler
   (mocks Electron, heures calmes injectables) et la validité structurelle d'`assets/icons.js` (chargé dans un bac à
   sable `vm`, voir §13) — **680 tests** au total, déterministes quelle que soit l'heure d'exécution.
+- **Couverture avec seuil bloquant** (issue #101) : `npm run test:coverage` (Node ≥ 22.8). Seuils :
+  lignes 100 %, branches 97 %, fonctions 98 %, avec `test/` exclu. Le job « Qualité » échoue sous le
+  seuil. `test/coverage-inventory.test.js` charge chaque module pur. Détails : CLAUDE.md § 10 bis.
 - **Lancer les tests d'intégration Electron réels** : `npm run test:electron` (sous xvfb, fixtures locales
   uniquement — voir `test-electron/README.md`) — **14 tests** (popups, bouton « Continuer », webview, CSP).
   Tests de flux UI : `npm run test:electron:ui` — **18 tests** (démarrage sain, comptes, escapeHtml, réglages,
@@ -194,7 +198,7 @@ Les boutons de service d'une carte sont posés dans `.services-grid`, une **gril
 - `openService(accId, svcId)` — **réutilise l'onglet existant** pour ce couple (compte, service) s'il y en a un (simple `activateTab`, aucun rechargement) ; sinon crée un onglet et sa `<webview partition="persist:<profil>" src="<url>">`. Déplie la carte du compte si elle était repliée.
 - **Bouton « Ajouter un compte »** : un `+` en tête de la liste (à côté du titre « Comptes enregistrés ») + le bouton « Créer mon premier compte » de l'état vide. Les deux portent `data-action="add"` → `openModal()` en mode ajout. *(Avant ce lot, aucun bouton d'ajout n'existait dans l'UI.)*
 - `openModal()` / `saveAccount()` / `openDeleteModal()` / `confirmDelete()` — CRUD des comptes.
-- `toggleCooldown(accId, svcId)` — bascule le cooldown 24h d'un service.
+- *(Issue #136 : `toggleCooldown`, le bouton « Épuiser (24h) », `formatCooldown` et `refreshCooldownLabels` ont été retirés. Le tick 1 s continue de faire expirer les cooldowns déjà enregistrés.)*
 - **Onglets IA** (remplace l'ancienne vue scindée à 2 panneaux) — `tabs[]` est l'**unique source de vérité** : un tableau d'objets `{ id, accId, svcId, paneEl }`. Le DOM est entièrement redérivé de ce tableau.
   - `renderTabsBar()` redessine `#tabsBar` depuis `tabs[]` (pastille de couleur du service, nom du service + nom du compte, bouton `×`). Aucune donnée utilisateur dans un `onclick` : la barre utilise la **délégation d'événements** (`data-action="activate-tab"` / `"close-tab"` + `data-tab`), comme le reste de l'app.
   - `activateTab(tabId)` bascule la classe `active` sur les `.tab-pane` (positionnés en `absolute inset:0`, un seul visible) et masque/affiche le placeholder `#tabsEmpty`. Les onglets **inactifs restent vivants** (webview cachée, session et état de conversation préservés) — comportement d'un navigateur classique.
@@ -412,6 +416,13 @@ Deux features livrées (toutes deux `[~]` — application partielle) :
   `assets/app.js` écoute `change` sur `matchMedia` pour basculer en direct. Les choix
   explicites (`iao`, `light`, `dark`) ne suivent pas le bureau.
 
+- **Copie de l'e-mail d'un compte** (issue #138, `[x]`) : un clic sur l'e-mail
+  d'une carte de compte (menu latéral) le copie dans le presse-papiers, avec un toast
+  de confirmation. `lib/copy-text.js` (`copyText(text, { clipboard, document })`,
+  dépendances injectées) essaie d'abord `navigator.clipboard.writeText`, puis se replie
+  sur `<textarea>` + `execCommand('copy')`. Action `copy-email` résolue par la
+  délégation avant le `toggle-collapse` du header : le clic ne replie pas la carte.
+
 - **Panneau de réglages** (P2, `[x]`) : `lib/settings.js` (6 fonctions pures
   testées, 20 tests). Persistance via IPC `settings:load`/`settings:save` dans
   `main.js`. UI : modal « Réglages » dans `index.html`. **Application effective** :
@@ -439,12 +450,14 @@ Trois lots livrés dans la même session :
   cooldown existant d'`index.html` : détection tick-à-tick des transitions actif→expiré,
   puis notification navigateur (`new Notification()`), toast, et classe CSS `tab--flash`
   (animation `@keyframes tab-flash`) sur l'onglet concerné. Permission demandée
-  paresseusement au premier `toggleCooldown`. Anti-double-notification via `Set`.
+  paresseusement au premier `toggleCooldown` (retiré par l'issue #136 : plus de demande de permission depuis l'UI). Anti-double-notification via `Set`.
 
 - **Détection de complétude d'un projet — socle** (P1) :
   `parseFeaturesMd(content)` et `isProjectComplete(content)` dans `scheduler/core.js`
   (testées, 11 tests). `Scheduler.analyzeCompleteness(jobId)` dans `scheduler/index.js`
   extrait le FEATURES.md du ZIP via `unzip`/PowerShell, l'analyse, et renvoie le décompte.
+  Sous Windows, l'extraction se fait dans un dossier unique (`fs.mkdtempSync`, `iao-zip-XXXXXX`),
+  supprimé même si PowerShell échoue (30/09/2026 : l'ancien `Date.now()` pouvait être partagé).
   IPC `scheduler:analyze-completeness` + bouton dans le panneau Ordonnanceur.
   **Pas une décision automatique** : l'utilisateur garde la main.
 
