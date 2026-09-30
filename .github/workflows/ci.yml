@@ -26,7 +26,11 @@ jobs:
         run: npm ci
 
       - name: Tests unitaires avec couverture (node --test --experimental-test-coverage)
-        run: npm run test:coverage 2>&1 | tee coverage-output.txt
+        # pipefail : sans lui, le code de sortie est celui de tee (toujours 0)
+        # et un test en échec laissait le job vert.
+        run: |
+          set -o pipefail
+          npm run test:coverage 2>&1 | tee coverage-output.txt
 
       - name: Extraction du résumé de couverture
         run: |

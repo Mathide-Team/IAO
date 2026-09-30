@@ -79,6 +79,24 @@ Objectif : détecter automatiquement les ZIP livrés par les services IA dans le
   `.cooldown-btn`. Les cooldowns déjà enregistrés restent estompés puis expirent
   normalement (tick 1 s inchangé). Test statique : `test/cooldown-button-removed.test.js`.
 
+- **CI : seuil de couverture bloquant (issue #101, 30/09/2026)**
+  `test:coverage` : lignes 100 %, branches 97 %, fonctions 98 % (planchers sous la mesure
+  98,00 % / 98,46 %, 100 % inatteignable, voir CLAUDE.md § 10 bis). `test/coverage-inventory.test.js`
+  charge chaque module pur pour qu'un test supprimé fasse échouer le seuil. Vérifié : sans
+  `test/file-search.test.js` ou `test/main-harness.test.js`, le seuil échoue.
+
+- **Dossier temporaire unique pour l'analyse de ZIP sous Windows (30/09/2026)**
+  `analyzeCompleteness` (stratégie PowerShell) utilisait `'iao-zip-' + Date.now()` : deux
+  analyses dans la même milliseconde partageaient le dossier, et un `FEATURES.md` resté
+  d'un nettoyage raté était relu à tort (test intermittent « archive sans FEATURES.md »).
+  Passage à `fs.mkdtempSync`, et nettoyage même quand PowerShell échoue. +2 tests.
+
+- **CI : les tests en échec ne passent plus en vert (30/09/2026)**
+  `ci.yml` exécutait `npm run test:coverage | tee` sans `pipefail` : le code de sortie
+  était celui de `tee`, et un test en échec (`csvEscape gère null et undefined`,
+  introduit par #130) est passé inaperçu. Ajout de `set -o pipefail` et correction
+  de l'assertion (`started_at` est toujours renseigné par `buildJobRecord`).
+
 - **Validation Windows install.bat + corrections (18/09/2026, 20:38)**
   Lot 10. Corrections suite à validation statique :
   1. **install.bat corrigé** : auto-build si `dist\IAO-win32-x64` absent (`npm install` + `npm run dist:win`), parenthèses échappées `^(` `^)` dans echo, logique `/desktop` cohérente (Bureau optionnel, pas par défaut), `/no-desktop` ajouté, `DESKTOP_SHORTCUT` désormais utilisé.

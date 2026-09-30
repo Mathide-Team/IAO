@@ -98,6 +98,9 @@ iao/
   `scheduler/core.js` (dont `parseFeaturesMd`/`isProjectComplete`) et les tests d'intégration scheduler
   (mocks Electron, heures calmes injectables) et la validité structurelle d'`assets/icons.js` (chargé dans un bac à
   sable `vm`, voir §13) — **680 tests** au total, déterministes quelle que soit l'heure d'exécution.
+- **Couverture avec seuil bloquant** (issue #101) : `npm run test:coverage` (Node ≥ 22.8). Seuils :
+  lignes 100 %, branches 97 %, fonctions 98 %, avec `test/` exclu. Le job « Qualité » échoue sous le
+  seuil. `test/coverage-inventory.test.js` charge chaque module pur. Détails : CLAUDE.md § 10 bis.
 - **Lancer les tests d'intégration Electron réels** : `npm run test:electron` (sous xvfb, fixtures locales
   uniquement — voir `test-electron/README.md`) — **14 tests** (popups, bouton « Continuer », webview, CSP).
   Tests de flux UI : `npm run test:electron:ui` — **18 tests** (démarrage sain, comptes, escapeHtml, réglages,
@@ -439,6 +442,8 @@ Trois lots livrés dans la même session :
   `parseFeaturesMd(content)` et `isProjectComplete(content)` dans `scheduler/core.js`
   (testées, 11 tests). `Scheduler.analyzeCompleteness(jobId)` dans `scheduler/index.js`
   extrait le FEATURES.md du ZIP via `unzip`/PowerShell, l'analyse, et renvoie le décompte.
+  Sous Windows, l'extraction se fait dans un dossier unique (`fs.mkdtempSync`, `iao-zip-XXXXXX`),
+  supprimé même si PowerShell échoue (30/09/2026 : l'ancien `Date.now()` pouvait être partagé).
   IPC `scheduler:analyze-completeness` + bouton dans le panneau Ordonnanceur.
   **Pas une décision automatique** : l'utilisateur garde la main.
 
