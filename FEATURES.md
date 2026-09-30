@@ -73,6 +73,11 @@ Objectif : détecter automatiquement les ZIP livrés par les services IA dans le
 
 ## Fait
 
+- **Clic sur l'e-mail d'un compte : copie dans le presse-papiers (issue #138, 30/09/2026)**
+  `lib/copy-text.js` (clipboard API, repli `execCommand('copy')`), action `copy-email`
+  sur l'e-mail de chaque carte (curseur « copie », soulignement au survol), toast de
+  confirmation. Tests : `test/copy-text.test.js` (7 tests).
+
 - **Validation Windows install.bat + corrections (18/09/2026, 20:38)**
   Lot 10. Corrections suite à validation statique :
   1. **install.bat corrigé** : auto-build si `dist\IAO-win32-x64` absent (`npm install` + `npm run dist:win`), parenthèses échappées `^(` `^)` dans echo, logique `/desktop` cohérente (Bureau optionnel, pas par défaut), `/no-desktop` ajouté, `DESKTOP_SHORTCUT` désormais utilisé.
