@@ -556,17 +556,10 @@
         const id = escapeHtml(acc.id);
         const isActive = acc.id === activeAccountId;
         const isCollapsed = collapsedAccounts.has(acc.id);
-        // Badge de statut (lot 16/09/2026) : bleu si un onglet de ce compte
-        // est ouvert, rouge si utilisé manuellement il y a moins de 5h, vert
-        // au-delà — purement informatif, voir lib/activity-status.js.
-        const hasOpenTab = tabs.some(t => t.accId === acc.id);
-        const activityStatus = getAccountActivityStatus({
-          hasOpenTab,
-          lastUsedAt: acc.automation ? acc.automation.lastUsedAt : 0
-        });
-        const statusTitle = activityStatus === 'open' ? 'Compte ouvert (onglet actif)'
-          : activityStatus === 'recent' ? 'Utilisé il y a moins de 5h'
-          : 'Inactif depuis plus de 5h (ou jamais ouvert)';
+        // Puces de statut (lot 16/09/2026, déplacées par l'issue #137) : une
+        // par bouton d'IA, calculée par couple (compte, service) avec les mêmes
+        // règles bleu/rouge/vert — voir getServiceActivityStatus().
+        const lastUsedBySvc = acc.automation ? acc.automation.lastUsedBySvc : null;
         // Résumé « N/7 » de la carte repliée : même test de disponibilité que
         // updateStats -> reste synchro avec le tick des cooldowns (re-render 1×/min).
         const availCount = acc.services.filter(sid => !acc.cooldowns[sid] || acc.cooldowns[sid] <= Date.now()).length;
@@ -582,7 +575,7 @@
           // plus aucune donnée n'est injectée dans un attribut onclick.
           return `
             <div class="service-column">
-              <button class="svc-btn ${btnClass}" data-action="open-service" data-acc="${id}" data-svc="${svc.id}">${escapeHtml(svc.name)}</button>
+              <button class="svc-btn ${btnClass}" data-action="open-service" data-acc="${id}" data-svc="${svc.id}">${escapeHtml(svc.name)}${svcStatusDot(acc, svc.id, lastUsedBySvc)}</button>
             </div>
           `;
         }).join('');
@@ -593,7 +586,7 @@
         return `
           <div class="account-card ${isActive ? 'active' : ''} ${isCollapsed ? 'collapsed' : ''}" draggable="true" data-acc="${id}">
             <div class="account-header" data-action="toggle-collapse" data-acc="${id}">
-              <div class="account-avatar" data-avatar-color="${color}">${initials}<span class="status-dot status-dot--${activityStatus}" title="${statusTitle}"></span></div>
+              <div class="account-avatar" data-avatar-color="${color}">${initials}</div>
               <div class="account-info">
                 <div class="account-name">${escapeHtml(acc.name)} ${isActive ? '<span class="active-dot"></span>' : ''}</div>
                 <div class="account-email"><span class="account-email-copy" data-action="copy-email" data-acc="${id}" title="Cliquer pour copier l'e-mail">${escapeHtml(acc.email)}</span> • ${escapeHtml(acc.profile)}</div>
@@ -614,6 +607,12 @@
       applyDataColors(container); // lot 9 : couleurs dynamiques (avatars)
       hydrateIcons(container); // remplit les icônes SVG des boutons éditer/supprimer
       updateStats();
+    }
+
+    // Issue #137 : puce de statut d'un bouton d'IA (compte, service).
+    function svcStatusDot(acc, svcId, lastUsedBySvc, now) {
+      const status = getServiceActivityStatus({ tabs, accId: acc.id, svcId, lastUsedBySvc, now });
+      return `<span class="status-dot status-dot--${status}" title="${activityStatusTitle(status)}"></span>`;
     }
 
     function updateStats() {
@@ -661,6 +660,9 @@
       // l'ordonnanceur) — voir migrateOldAccounts().
       if (!acc.automation) acc.automation = { enabled: true, lastUsedAt: 0, lastAutomationAt: 0 };
       acc.automation.lastUsedAt = Date.now();
+      // Issue #137 : horodatage par service pour la puce du bouton d'IA.
+      if (!acc.automation.lastUsedBySvc || typeof acc.automation.lastUsedBySvc !== 'object') acc.automation.lastUsedBySvc = {};
+      acc.automation.lastUsedBySvc[svcId] = acc.automation.lastUsedAt;
       saveAccounts(accounts);
       // Ouvrir un service (carte OU palette Ctrl+K) déplie la carte concernée :
       // confirmation visuelle du compte utilisé même si elle était repliée.
@@ -1536,26 +1538,21 @@
       loadFileInEditor(item.getAttribute('data-path'), item.getAttribute('data-name'), item);
     });
 
-    // Lot 16/09/2026 : rafraîchissement ciblé par textContent
-    // (ne touche que le point + son title, pas de renderAccounts() complet)
-    // pour le badge de statut de chaque compte (bleu/rouge/vert).
+    // Lot 16/09/2026 : rafraîchissement ciblé par textContent (ne touche que
+    // la puce + son title, pas de renderAccounts() complet).
+    // Issue #137 : une puce par bouton d'IA (compte, service).
     function refreshAccountStatusDots() {
       const now = Date.now();
-      document.querySelectorAll('#accountsList .account-avatar').forEach(avatar => {
-        const header = avatar.closest('.account-header');
-        const accId = header && header.getAttribute('data-acc');
-        const acc = accounts.find(a => a.id === accId);
-        const dot = avatar.querySelector('.status-dot');
+      document.querySelectorAll('#accountsList .svc-btn[data-action="open-service"]').forEach(btn => {
+        const acc = accounts.find(a => a.id === btn.getAttribute('data-acc'));
+        const dot = btn.querySelector('.status-dot');
         if (!acc || !dot) return;
-        const hasOpenTab = tabs.some(t => t.accId === acc.id);
-        const status = getAccountActivityStatus({
-          hasOpenTab, now,
-          lastUsedAt: acc.automation ? acc.automation.lastUsedAt : 0
+        const status = getServiceActivityStatus({
+          tabs, accId: acc.id, svcId: btn.getAttribute('data-svc'), now,
+          lastUsedBySvc: acc.automation ? acc.automation.lastUsedBySvc : null
         });
         dot.className = `status-dot status-dot--${status}`;
-        dot.title = status === 'open' ? 'Compte ouvert (onglet actif)'
-          : status === 'recent' ? 'Utilisé il y a moins de 5h'
-          : 'Inactif depuis plus de 5h (ou jamais ouvert)';
+        dot.title = activityStatusTitle(status);
       });
     }
 

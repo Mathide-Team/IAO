@@ -247,7 +247,7 @@ test('getAssignableAccounts traite un compte sans champ automation comme jamais 
 // --- Export : contexte navigateur (window) vs Node (module) ----------------
 
 const MODULE_PATH = require.resolve('../lib/activity-status.js');
-const EXPORTED = ['compareAccountNames', 'getAccountActivityStatus', 'isTabIdle', 'isAccountAssignable', 'getAssignableAccounts'];
+const EXPORTED = ['compareAccountNames', 'getAccountActivityStatus', 'getServiceActivityStatus', 'activityStatusTitle', 'isTabIdle', 'isAccountAssignable', 'getAssignableAccounts'];
 
 test('en contexte navigateur, les fonctions sont exposées sur window', () => {
   const hadWindow = Object.prototype.hasOwnProperty.call(globalThis, 'window');
@@ -275,4 +275,46 @@ test('sans window ni module, le chargement ne plante pas et ne crée ni window n
   assert.doesNotThrow(() => vm.runInNewContext(source, sandbox, { filename: MODULE_PATH }));
   assert.equal('window' in sandbox, false);
   assert.equal('module' in sandbox, false);
+});
+
+// --- Issue #137 : puce par bouton d'IA (compte, service) --------------------
+
+const { getServiceActivityStatus, activityStatusTitle } = require('../lib/activity-status.js');
+
+test('#137 getServiceActivityStatus : bleu seulement pour le service dont l\'onglet est ouvert', () => {
+  const tabs = [{ accId: 'a1', svcId: 'claude' }];
+  assert.equal(getServiceActivityStatus({ tabs, accId: 'a1', svcId: 'claude' }), 'open');
+  assert.equal(getServiceActivityStatus({ tabs, accId: 'a1', svcId: 'chatgpt' }), 'idle');
+  assert.equal(getServiceActivityStatus({ tabs, accId: 'a2', svcId: 'claude' }), 'idle', 'autre compte');
+});
+
+test('#137 getServiceActivityStatus : rouge / vert selon lastUsedBySvc du service', () => {
+  const now = Date.now();
+  const lastUsedBySvc = { claude: now - 1 * H, gemini: now - 6 * H };
+  assert.equal(getServiceActivityStatus({ accId: 'a1', svcId: 'claude', lastUsedBySvc, now }), 'recent');
+  assert.equal(getServiceActivityStatus({ accId: 'a1', svcId: 'gemini', lastUsedBySvc, now }), 'idle');
+  assert.equal(getServiceActivityStatus({ accId: 'a1', svcId: 'grok', lastUsedBySvc, now }), 'idle', 'jamais ouvert');
+  assert.equal(getServiceActivityStatus({ accId: 'a1', svcId: 'gemini', lastUsedBySvc, now, thresholdHours: 8 }), 'recent');
+});
+
+test('#137 getServiceActivityStatus : entrées absentes ou invalides -> idle', () => {
+  assert.equal(getServiceActivityStatus(), 'idle');
+  assert.equal(getServiceActivityStatus({ tabs: 'x', lastUsedBySvc: 'x', svcId: 'claude' }), 'idle');
+  assert.equal(getServiceActivityStatus({ tabs: [null], accId: 'a', svcId: 'b' }), 'idle');
+});
+
+test('#137 activityStatusTitle : libellés des trois états', () => {
+  assert.equal(activityStatusTitle('open'), 'Onglet ouvert');
+  assert.equal(activityStatusTitle('recent'), 'Utilisé il y a moins de 5h');
+  assert.equal(activityStatusTitle('idle'), 'Inactif depuis plus de 5h (ou jamais ouvert)');
+});
+
+test('#137 câblage : puce dans chaque bouton d\'IA, plus sur l\'avatar', () => {
+  const fs = require('node:fs');
+  const path = require('node:path');
+  const app = fs.readFileSync(path.join(__dirname, '..', 'assets', 'app.js'), 'utf-8');
+  assert.match(app, /\$\{escapeHtml\(svc\.name\)\}\$\{svcStatusDot\(acc, svc\.id, lastUsedBySvc\)\}<\/button>/);
+  assert.ok(!/account-avatar[^\n]*status-dot/.test(app), 'plus de puce sur l\'avatar');
+  assert.match(app, /acc\.automation\.lastUsedBySvc\[svcId\] = acc\.automation\.lastUsedAt;/);
+  assert.match(app, /querySelectorAll\('#accountsList \.svc-btn\[data-action="open-service"\]'\)/);
 });

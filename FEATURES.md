@@ -73,6 +73,14 @@ Objectif : détecter automatiquement les ZIP livrés par les services IA dans le
 
 ## Fait
 
+- **Puce de statut déplacée sur chaque bouton d'IA (issue #137, 30/09/2026)**
+  La puce bleu/rouge/vert quitte l'avatar du compte et se place dans le coin de chaque
+  bouton d'IA : 9 puces par compte, une par couple (compte, service). Règles inchangées
+  (bleu = onglet ouvert, rouge = ouvert il y a moins de 5h, vert sinon), calculées par
+  `getServiceActivityStatus()` (`lib/activity-status.js`). `openService()` trace
+  `acc.automation.lastUsedBySvc[svcId]` en plus de `lastUsedAt` : l'ordonnanceur garde
+  l'horodatage par compte. Tests : `test/activity-status.test.js` (+5).
+
 - **Thème du bureau (issue #139, 30/09/2026)**
   Nouveau thème `system` (défaut des nouveaux réglages) : l'app suit le thème clair ou sombre
   du bureau (`prefers-color-scheme`, relayé par Electron `nativeTheme`) et bascule en direct
