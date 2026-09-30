@@ -60,6 +60,9 @@
      normalizeWordWrap/normalizeBoolean/settingsChanged : lot « Panneau de
      réglages » du 18/09/2026 — extraites vers lib/ dès l'écriture (invariant 11). -->
 <script src="lib/settings.js"></script>
+<!-- copyText : issue #138 (clic sur l'e-mail d'un compte -> presse-papiers),
+     extraite vers lib/ dès l'écriture (invariant 11), dépendances injectées. -->
+<script src="lib/copy-text.js"></script>
 <!-- Feuille de style extraite d'index.html (lot 8, 18/09/2026) :
      tout le CSS vit désormais dans assets/app.css, chargé par <link>.
      Les chemins des polices ont été ajustés (url("fonts/...") ) car la
@@ -338,7 +341,8 @@
       <div>
         <label class="settings-label">Thème</label>
         <select id="settingsTheme" class="settings-select">
-          <option value="iao">IAO (défaut)</option>
+          <option value="system">Thème du bureau (défaut)</option>
+          <option value="iao">IAO</option>
           <option value="light">Clair</option>
           <option value="dark">Sombre</option>
         </select>

@@ -570,15 +570,12 @@
           const cdTime = acc.cooldowns[sid] || 0;
           const isOnCooldown = cdTime > Date.now();
           const btnClass = isOnCooldown ? `${svc.cssClass} cooldown-active` : svc.cssClass;
-          const cdBtnClass = isOnCooldown ? 'cooldown-btn active' : 'cooldown-btn';
-          const cdText = isOnCooldown ? formatCooldown(cdTime - Date.now()) : 'Épuiser (24h)';
           // svc.id vient de SERVICES (valeurs sûres codées en dur). Les actions
           // passent par des data-* lus par la délégation d'événements (chantier A) :
           // plus aucune donnée n'est injectée dans un attribut onclick.
           return `
             <div class="service-column">
               <button class="svc-btn ${btnClass}" data-action="open-service" data-acc="${id}" data-svc="${svc.id}">${escapeHtml(svc.name)}${svcStatusDot(acc, svc.id, lastUsedBySvc)}</button>
-              <button class="${cdBtnClass}" data-action="toggle-cooldown" data-acc="${id}" data-svc="${svc.id}">${cdText}</button>
             </div>
           `;
         }).join('');
@@ -592,7 +589,7 @@
               <div class="account-avatar" data-avatar-color="${color}">${initials}</div>
               <div class="account-info">
                 <div class="account-name">${escapeHtml(acc.name)} ${isActive ? '<span class="active-dot"></span>' : ''}</div>
-                <div class="account-email">${escapeHtml(acc.email)} • ${escapeHtml(acc.profile)}</div>
+                <div class="account-email"><span class="account-email-copy" data-action="copy-email" data-acc="${id}" title="Cliquer pour copier l'e-mail">${escapeHtml(acc.email)}</span> • ${escapeHtml(acc.profile)}</div>
               </div>
               <div class="account-actions">
                 <button class="btn btn--icon" data-action="edit" data-acc="${id}"><span class="ic" data-icon="pen"></span></button>
@@ -633,13 +630,6 @@
       // global (appelé dans les deux branches de renderAccounts, y c. liste vide).
       const allBtn = document.getElementById('btnToggleAllCards');
       if (allBtn) allBtn.classList.toggle('all-collapsed', accounts.length > 0 && accounts.every(a => collapsedAccounts.has(a.id)));
-    }
-
-    function formatCooldown(ms) {
-      const totalSec = Math.floor(ms / 1000);
-      const h = Math.floor(totalSec / 3600);
-      const m = Math.floor((totalSec % 3600) / 60);
-      return `⏳ ${h}h ${m.toString().padStart(2, '0')}m`;
     }
 
     window.toggleDashboard = function() {
@@ -1325,22 +1315,15 @@
       closeModal();
     }
 
-    window.toggleCooldown = function(accId, svcId) {
+    // Issue #138 : clic sur l'e-mail d'un compte -> presse-papiers + toast.
+    // La délégation résout data-action="copy-email" avant le toggle-collapse
+    // du header (closest()), donc le clic ne replie pas la carte.
+    function copyAccountEmail(accId) {
       const acc = accounts.find(a => a.id === accId);
-      if (!acc) return; // garde : id obsolète (chantier audit 3.7)
-      const currentCd = acc.cooldowns[svcId] || 0;
-      acc.cooldowns[svcId] = currentCd > Date.now() ? 0 : Date.now() + 86400000;
-      // Lot 18/09/2026 : demande la permission de notification au premier
-      // cooldown activé (lazy) — sans ça, Notification.permission reste 'default'
-      // et les notifications de fin de cooldown ne se déclenchent jamais.
-      if (acc.cooldowns[svcId] > 0 && 'Notification' in window && Notification.permission === 'default') {
-        Notification.requestPermission().catch(() => {}); // silencieux si refusé
-      }
-      // Réinitialise le snapshot des cooldowns actifs pour ne pas rater
-      // l'expiration de ce nouveau cooldown (lot 18/09/2026).
-      prevActiveCooldowns = snapshotActiveCooldowns(accounts);
-      saveAccounts(accounts); // écrit + backup de la génération précédente (chantier C)
-      renderAccounts();
+      if (!acc || !acc.email) return;
+      copyText(acc.email, { clipboard: navigator.clipboard, document }).then(ok => {
+        showToast(ok ? 'E-mail copié : ' + acc.email : 'Copie impossible dans le presse-papiers', ok ? 'success' : 'error');
+      });
     }
 
     function showToast(msg, type = 'success') {
@@ -1465,10 +1448,10 @@
       switch (btn.getAttribute('data-action')) {
         case 'add':             openModal(); break;
         case 'open-service':    openService(accId, svcId); break;
-        case 'toggle-cooldown': toggleCooldown(accId, svcId); break;
         case 'edit':            openModal(accId); break;
         case 'delete':          openDeleteModal(accId); break;
         case 'toggle-collapse': toggleCardCollapse(accId); break;
+        case 'copy-email':      copyAccountEmail(accId); break;
       }
     });
 
@@ -1555,22 +1538,8 @@
       loadFileInEditor(item.getAttribute('data-path'), item.getAttribute('data-name'), item);
     });
 
-    // Rafraîchit UNIQUEMENT le texte des compteurs « ⏳ Xh YYm » en cours, par
-    // textContent (aucun innerHTML, aucune hydratation d'icônes) : bien moins
-    // cher qu'un renderAccounts() complet (mesuré ~50x), pour un affichage
-    // identique — le format du décompte est à la minute près.
-    function refreshCooldownLabels() {
-      const now = Date.now();
-      document.querySelectorAll('#accountsList [data-action="toggle-cooldown"]').forEach(btn => {
-        const acc = accounts.find(a => a.id === btn.getAttribute('data-acc'));
-        if (!acc) return;
-        const cd = acc.cooldowns[btn.getAttribute('data-svc')] || 0;
-        if (cd > now) btn.textContent = formatCooldown(cd - now);
-      });
-    }
-
-    // Lot 16/09/2026 : même logique que refreshCooldownLabels() ci-dessus
-    // (ne touche que la puce + son title, pas de renderAccounts() complet).
+    // Lot 16/09/2026 : rafraîchissement ciblé par textContent (ne touche que
+    // la puce + son title, pas de renderAccounts() complet).
     // Issue #137 : une puce par bouton d'IA (compte, service).
     function refreshAccountStatusDots() {
       const now = Date.now();
@@ -1598,11 +1567,10 @@
       });
     }
 
-    // Tick cooldowns (1 s) : remet à 0 les cooldowns expirés (seul cas de
-    // re-render complet : il faut réactiver le bouton de service) et, au
-    // changement de minute (le format du décompte est à la minute), met à jour
-    // les libellés via refreshCooldownLabels() — même ponctualité qu'avant
-    // (lag ≤ 1 s), mais sans reconstruire tout le DOM de la liste.
+    // Tick cooldowns (1 s) : remet à 0 les cooldowns expirés (re-render pour
+    // réactiver le bouton de service). Issue #136 : le bouton manuel de cooldown
+    // est retiré, plus aucun cooldown n'est créé depuis l'interface ; ce tick
+    // laisse expirer normalement ceux déjà enregistrés dans les comptes.
     // Coût d'un tick sans cooldown actif : boucle comptes x services pure (µs).
     //
     // Lot 18/09/2026 : notification de fin de cooldown. On compare le snapshot
@@ -1615,13 +1583,12 @@
 
     setInterval(() => {
       const now = Date.now();
-      let needsRender = false, anyActive = false;
+      let needsRender = false;
       accounts.forEach(acc => {
         SERVICES.forEach(svc => {
           const cd = acc.cooldowns[svc.id];
           if (!cd) return;
           if (cd <= now) { acc.cooldowns[svc.id] = 0; needsRender = true; }
-          else anyActive = true;
         });
       });
       // Lot 18/09/2026 : détection des cooldowns qui viennent d'expirer.
@@ -1663,7 +1630,6 @@
       const minute = Math.floor(now / 60000);
       const minuteChanged = minute !== lastCdMinute;
       if (needsRender) renderAccounts();
-      else if (anyActive && minuteChanged) refreshCooldownLabels();
       // Lot 16/09/2026 : badges de statut compte + rappel onglet inactif,
       // même cadence (1×/min) — indépendants des cooldowns de service
       // ci-dessus. Pas besoin de refreshAccountStatusDots() si renderAccounts()
@@ -1723,14 +1689,34 @@
     // via lib/settings.js (normalizeSettings, DEFAULT_SETTINGS).
     var currentSettings = null;
 
+    // Issue #139 : préférence claire/sombre du bureau. Electron relaie le thème
+    // du système (nativeTheme.themeSource = 'system' par défaut) vers
+    // prefers-color-scheme. undefined si matchMedia est indisponible.
+    var systemThemeQuery = (typeof window.matchMedia === 'function')
+      ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+    function systemPrefersDark() {
+      return systemThemeQuery ? systemThemeQuery.matches === true : undefined;
+    }
+    // Le bureau change de thème pendant que l'app tourne -> réappliquer si
+    // le réglage est « system » (les autres thèmes sont fixes).
+    if (systemThemeQuery && typeof systemThemeQuery.addEventListener === 'function') {
+      systemThemeQuery.addEventListener('change', function() {
+        if (currentSettings && normalizeTheme(currentSettings.theme) === 'system') {
+          document.documentElement.setAttribute('data-theme',
+            resolveTheme('system', systemPrefersDark()));
+        }
+      });
+    }
+
     // Applique effectivement tous les réglages à l'UI.
     // Appelée au démarrage (après chargement) et après chaque sauvegarde.
     function applySettings(settings) {
       if (!settings) return;
       currentSettings = settings;
-      var plan = buildApplySettingsPlan(settings);
+      var plan = buildApplySettingsPlan(settings, { prefersDark: systemPrefersDark() });
 
-      // 1. Thème : pose data-theme sur <html>
+      // 1. Thème : pose data-theme sur <html> (« system » -> dark/light selon
+      // le bureau, issue #139 ; suivi en direct par l'écouteur ci-dessous)
       document.documentElement.setAttribute('data-theme', plan.themeAttr);
 
       // 2. Taille de police + retour à la ligne de l'éditeur Monaco

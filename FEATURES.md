@@ -81,6 +81,41 @@ Objectif : détecter automatiquement les ZIP livrés par les services IA dans le
   `acc.automation.lastUsedBySvc[svcId]` en plus de `lastUsedAt` : l'ordonnanceur garde
   l'horodatage par compte. Tests : `test/activity-status.test.js` (+5).
 
+- **Thème du bureau (issue #139, 30/09/2026)**
+  Nouveau thème `system` (défaut des nouveaux réglages) : l'app suit le thème clair ou sombre
+  du bureau (`prefers-color-scheme`, relayé par Electron `nativeTheme`) et bascule en direct
+  quand le bureau change. `resolveTheme()` pure dans `lib/settings.js`. Les réglages déjà
+  enregistrés (`iao`, `light`, `dark`) sont conservés. Tests : `test/theme-system.test.js`.
+
+- **Clic sur l'e-mail d'un compte : copie dans le presse-papiers (issue #138, 30/09/2026)**
+  `lib/copy-text.js` (clipboard API, repli `execCommand('copy')`), action `copy-email`
+  sur l'e-mail de chaque carte (curseur « copie », soulignement au survol), toast de
+  confirmation. Tests : `test/copy-text.test.js` (7 tests).
+
+- **Retrait du bouton « Épuiser (24h) » (issue #136, 30/09/2026)**
+  Le bouton sous chaque service des cartes de compte est supprimé, avec son action
+  `toggle-cooldown`, `toggleCooldown`, `formatCooldown`, `refreshCooldownLabels` et le CSS
+  `.cooldown-btn`. Les cooldowns déjà enregistrés restent estompés puis expirent
+  normalement (tick 1 s inchangé). Test statique : `test/cooldown-button-removed.test.js`.
+
+- **CI : seuil de couverture bloquant (issue #101, 30/09/2026)**
+  `test:coverage` : lignes 100 %, branches 97 %, fonctions 98 % (planchers sous la mesure
+  98,00 % / 98,46 %, 100 % inatteignable, voir CLAUDE.md § 10 bis). `test/coverage-inventory.test.js`
+  charge chaque module pur pour qu'un test supprimé fasse échouer le seuil. Vérifié : sans
+  `test/file-search.test.js` ou `test/main-harness.test.js`, le seuil échoue.
+
+- **Dossier temporaire unique pour l'analyse de ZIP sous Windows (30/09/2026)**
+  `analyzeCompleteness` (stratégie PowerShell) utilisait `'iao-zip-' + Date.now()` : deux
+  analyses dans la même milliseconde partageaient le dossier, et un `FEATURES.md` resté
+  d'un nettoyage raté était relu à tort (test intermittent « archive sans FEATURES.md »).
+  Passage à `fs.mkdtempSync`, et nettoyage même quand PowerShell échoue. +2 tests.
+
+- **CI : les tests en échec ne passent plus en vert (30/09/2026)**
+  `ci.yml` exécutait `npm run test:coverage | tee` sans `pipefail` : le code de sortie
+  était celui de `tee`, et un test en échec (`csvEscape gère null et undefined`,
+  introduit par #130) est passé inaperçu. Ajout de `set -o pipefail` et correction
+  de l'assertion (`started_at` est toujours renseigné par `buildJobRecord`).
+
 - **Validation Windows install.bat + corrections (18/09/2026, 20:38)**
   Lot 10. Corrections suite à validation statique :
   1. **install.bat corrigé** : auto-build si `dist\IAO-win32-x64` absent (`npm install` + `npm run dist:win`), parenthèses échappées `^(` `^)` dans echo, logique `/desktop` cohérente (Bureau optionnel, pas par défaut), `/no-desktop` ajouté, `DESKTOP_SHORTCUT` désormais utilisé.
@@ -247,7 +282,7 @@ Objectif : détecter automatiquement les ZIP livrés par les services IA dans le
   8 tests). Intégration dans le tick cooldown existant d'`index.html` : comparaison
   tick-à-tick du snapshot des cooldowns actifs pour détecter les transitions
   actif→expiré, puis (1) `new Notification()` navigateur si la permission a été accordée
-  (demandée paresseusement au premier `toggleCooldown`), (2) toast de confirmation,
+  (demandée paresseusement au premier `toggleCooldown` — retiré par l'issue #136), (2) toast de confirmation,
   (3) classe CSS `tab--flash` (animation `@keyframes tab-flash`) posée sur l'onglet
   du couple (compte, service) concerné s'il est ouvert — l'animation s'arrête dès que
   l'onglet devient actif (`renderTabsBar()` reconstruit le DOM). Anti-double-notification
