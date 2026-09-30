@@ -8,7 +8,7 @@
 
 - Gérer plusieurs **comptes** (ex. plusieurs adresses Gmail), chacun avec une **session de connexion isolée** (cookies séparés) grâce aux `partition` d'Electron.
 - Ouvrir chaque service IA dans un **onglet** contenant sa `<webview>`, en restant connecté au bon compte.
-- Suivre un **cooldown / quota 24h** par service et par compte (bouton « Épuiser (24h) »).
+- Suivre un **cooldown / quota** par service et par compte (service estompé jusqu'à l'expiration ; bouton manuel « Épuiser (24h) » retiré par l'issue #136).
 - Éditer des fichiers locaux via un **éditeur de code intégré (Monaco)** avec un explorateur de fichiers.
 - Ouvrir **autant d'onglets IA que voulu** (un par couple compte + service), avec bascule instantanée entre eux et fermeture individuelle libérant la RAM.
 - Consulter une **page d'aide** (« Comprendre les IA disponibles », bouton `?` dans la barre du workspace) décrivant chaque service et son cas d'usage.
@@ -194,7 +194,7 @@ Les boutons de service d'une carte sont posés dans `.services-grid`, une **gril
 - `openService(accId, svcId)` — **réutilise l'onglet existant** pour ce couple (compte, service) s'il y en a un (simple `activateTab`, aucun rechargement) ; sinon crée un onglet et sa `<webview partition="persist:<profil>" src="<url>">`. Déplie la carte du compte si elle était repliée.
 - **Bouton « Ajouter un compte »** : un `+` en tête de la liste (à côté du titre « Comptes enregistrés ») + le bouton « Créer mon premier compte » de l'état vide. Les deux portent `data-action="add"` → `openModal()` en mode ajout. *(Avant ce lot, aucun bouton d'ajout n'existait dans l'UI.)*
 - `openModal()` / `saveAccount()` / `openDeleteModal()` / `confirmDelete()` — CRUD des comptes.
-- `toggleCooldown(accId, svcId)` — bascule le cooldown 24h d'un service.
+- *(Issue #136 : `toggleCooldown`, le bouton « Épuiser (24h) », `formatCooldown` et `refreshCooldownLabels` ont été retirés. Le tick 1 s continue de faire expirer les cooldowns déjà enregistrés.)*
 - **Onglets IA** (remplace l'ancienne vue scindée à 2 panneaux) — `tabs[]` est l'**unique source de vérité** : un tableau d'objets `{ id, accId, svcId, paneEl }`. Le DOM est entièrement redérivé de ce tableau.
   - `renderTabsBar()` redessine `#tabsBar` depuis `tabs[]` (pastille de couleur du service, nom du service + nom du compte, bouton `×`). Aucune donnée utilisateur dans un `onclick` : la barre utilise la **délégation d'événements** (`data-action="activate-tab"` / `"close-tab"` + `data-tab`), comme le reste de l'app.
   - `activateTab(tabId)` bascule la classe `active` sur les `.tab-pane` (positionnés en `absolute inset:0`, un seul visible) et masque/affiche le placeholder `#tabsEmpty`. Les onglets **inactifs restent vivants** (webview cachée, session et état de conversation préservés) — comportement d'un navigateur classique.
@@ -433,7 +433,7 @@ Trois lots livrés dans la même session :
   cooldown existant d'`index.html` : détection tick-à-tick des transitions actif→expiré,
   puis notification navigateur (`new Notification()`), toast, et classe CSS `tab--flash`
   (animation `@keyframes tab-flash`) sur l'onglet concerné. Permission demandée
-  paresseusement au premier `toggleCooldown`. Anti-double-notification via `Set`.
+  paresseusement au premier `toggleCooldown` (retiré par l'issue #136 : plus de demande de permission depuis l'UI). Anti-double-notification via `Set`.
 
 - **Détection de complétude d'un projet — socle** (P1) :
   `parseFeaturesMd(content)` et `isProjectComplete(content)` dans `scheduler/core.js`

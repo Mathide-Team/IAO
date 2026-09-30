@@ -73,6 +73,12 @@ Objectif : détecter automatiquement les ZIP livrés par les services IA dans le
 
 ## Fait
 
+- **Retrait du bouton « Épuiser (24h) » (issue #136, 30/09/2026)**
+  Le bouton sous chaque service des cartes de compte est supprimé, avec son action
+  `toggle-cooldown`, `toggleCooldown`, `formatCooldown`, `refreshCooldownLabels` et le CSS
+  `.cooldown-btn`. Les cooldowns déjà enregistrés restent estompés puis expirent
+  normalement (tick 1 s inchangé). Test statique : `test/cooldown-button-removed.test.js`.
+
 - **Validation Windows install.bat + corrections (18/09/2026, 20:38)**
   Lot 10. Corrections suite à validation statique :
   1. **install.bat corrigé** : auto-build si `dist\IAO-win32-x64` absent (`npm install` + `npm run dist:win`), parenthèses échappées `^(` `^)` dans echo, logique `/desktop` cohérente (Bureau optionnel, pas par défaut), `/no-desktop` ajouté, `DESKTOP_SHORTCUT` désormais utilisé.
@@ -239,7 +245,7 @@ Objectif : détecter automatiquement les ZIP livrés par les services IA dans le
   8 tests). Intégration dans le tick cooldown existant d'`index.html` : comparaison
   tick-à-tick du snapshot des cooldowns actifs pour détecter les transitions
   actif→expiré, puis (1) `new Notification()` navigateur si la permission a été accordée
-  (demandée paresseusement au premier `toggleCooldown`), (2) toast de confirmation,
+  (demandée paresseusement au premier `toggleCooldown` — retiré par l'issue #136), (2) toast de confirmation,
   (3) classe CSS `tab--flash` (animation `@keyframes tab-flash`) posée sur l'onglet
   du couple (compte, service) concerné s'il est ouvert — l'animation s'arrête dès que
   l'onglet devient actif (`renderTabsBar()` reconstruit le DOM). Anti-double-notification
