@@ -95,7 +95,7 @@ test('normalizeSettings renvoie tous les defaults pour un objet vide', function(
   var result = settings.normalizeSettings({});
   assert.strictEqual(result.editorFontSize, 14);
   assert.strictEqual(result.editorWordWrap, 'off');
-  assert.strictEqual(result.theme, 'iao');
+  assert.strictEqual(result.theme, 'system');
   assert.strictEqual(result.confirmBeforeClose, true);
   assert.strictEqual(result.showAutomationWindows, false);
   assert.strictEqual(result.startWithLastSession, false);
@@ -113,7 +113,7 @@ test('normalizeSettings normalise les valeurs invalides', function() {
   var result = settings.normalizeSettings(raw);
   assert.strictEqual(result.editorFontSize, 14);
   assert.strictEqual(result.editorWordWrap, 'off');
-  assert.strictEqual(result.theme, 'iao');
+  assert.strictEqual(result.theme, 'system');
   assert.strictEqual(result.confirmBeforeClose, false);
   assert.strictEqual(result.showAutomationWindows, true);
   assert.strictEqual(result.startWithLastSession, false);
@@ -140,7 +140,7 @@ test('normalizeSettings garde les valeurs valides', function() {
 test('normalizeSettings gère null/undefined', function() {
   var result = settings.normalizeSettings(null);
   assert.strictEqual(result.editorFontSize, 14);
-  assert.strictEqual(result.theme, 'iao');
+  assert.strictEqual(result.theme, 'system');
   var result2 = settings.normalizeSettings(undefined);
   assert.strictEqual(result2.editorFontSize, 14);
 });

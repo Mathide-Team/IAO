@@ -48,6 +48,7 @@ function createElectronMock(appDataDir, { lock = true } = {}) {
       windows.push(this);
     }
     loadFile() {}
+    setMenuBarVisibility() {}
     isMinimized() { return this.minimized; }
     restore() { this.restored++; this.minimized = false; }
     focus() { this.focused++; }

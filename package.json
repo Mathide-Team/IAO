@@ -10,7 +10,7 @@
     "start": "electron .",
     "start:linux-dev": "electron . --no-sandbox",
     "test": "node --test",
-    "test:coverage": "node --test --experimental-test-coverage --test-coverage-exclude='test/**'",
+    "test:coverage": "node --test --experimental-test-coverage --test-coverage-exclude='test/**' --test-coverage-lines=100 --test-coverage-branches=97 --test-coverage-functions=98",
     "test:electron": "xvfb-run -a electron --no-sandbox test-electron/popups-continue.js",
     "test:electron:ui": "xvfb-run -a electron --no-sandbox test-electron/ui-flows.js",
     "test:electron:smoke": "xvfb-run -a node test-electron/smoke-packaged.js",

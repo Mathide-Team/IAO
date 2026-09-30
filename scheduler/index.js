@@ -1056,14 +1056,18 @@ class Scheduler {
     } else {
       // Stratégie 2 (Windows) : PowerShell Expand-Archive vers un dossier
       // temporaire, puis lecture du FEATURES.md.
+      // mkdtempSync (et non « 'iao-zip-' + Date.now() ») : dossier UNIQUE. Deux
+      // analyses dans la même milliseconde partageaient le même dossier, et un
+      // FEATURES.md resté d'une analyse précédente (nettoyage raté) était relu
+      // à tort (test intermittent « archive sans FEATURES.md », 30/09/2026).
+      // path.join : chemin correct quel que soit l'OS (tests win32 sur Linux, PR #120).
+      const fs = require('fs');
+      let tmpDir = null;
       try {
-        // path.join (et non « + '\\' ») : chemin correct quel que soit l'OS
-        // qui exécute ce code (tests simulant win32 sur Linux compris, PR #120).
-        const tmpDir = path.join(require('os').tmpdir(), 'iao-zip-' + Date.now());
+        tmpDir = fs.mkdtempSync(path.join(require('os').tmpdir(), 'iao-zip-'));
         execSync('powershell -NoProfile -Command "Expand-Archive -LiteralPath \'' + target + '\' -DestinationPath \'' + tmpDir + '\' -Force"', {
           timeout: 10000, stdio: ['pipe', 'pipe', 'pipe']
         });
-        const fs = require('fs');
         function findFeaturesMd(dir) {
           const entries = fs.readdirSync(dir, { withFileTypes: true });
           for (const e of entries) {
@@ -1079,9 +1083,9 @@ class Scheduler {
           return null;
         }
         content = findFeaturesMd(tmpDir);
-        // Nettoie le dossier temporaire (best-effort)
-        try { fs.rmSync(tmpDir, { recursive: true, force: true }); } catch (_) {}
       } catch (e) { /* PowerShell a échoué */ }
+      // Nettoie le dossier temporaire, y compris si PowerShell a échoué (best-effort).
+      if (tmpDir) { try { fs.rmSync(tmpDir, { recursive: true, force: true }); } catch (_) {} }
     }
     if (!content) return { error: 'Aucun FEATURES.md trouvé dans le ZIP.' };
     const analysis = core.parseFeaturesMd(content);

@@ -45,6 +45,8 @@
     /* ===== Palette par défaut (violet / rose) ===== */
     --bg: #0b0817;                              /* theme-color officielle du site */
     --bg-elevated: #120e24;                     /* panneaux (relevé sur le site) */
+    --bg-panel: rgba(11, 8, 23, 0.72);          /* barre latérale, en-tête (fond translucide) */
+    --bg-panel-soft: rgba(11, 8, 23, 0.55);     /* barre d'onglets */
     --bg-card: rgba(24, 18, 49, 0.6);           /* cartes #181231 */
     --bg-card-hover: rgba(34, 26, 66, 0.8);
     --border: rgba(44, 34, 85, 0.75);           /* #2c2255 */
@@ -112,6 +114,8 @@
   [data-theme="dark"] {
     --bg: #0d1117;
     --bg-elevated: #161b22;
+    --bg-panel: rgba(13, 17, 23, 0.72);
+    --bg-panel-soft: rgba(13, 17, 23, 0.55);
     --bg-card: rgba(22, 27, 34, 0.8);
     --bg-card-hover: rgba(30, 37, 46, 0.9);
     --border: rgba(48, 54, 61, 0.75);
@@ -131,6 +135,8 @@
   [data-theme="light"] {
     --bg: #f6f8fa;
     --bg-elevated: #ffffff;
+    --bg-panel: rgba(255, 255, 255, 0.72);
+    --bg-panel-soft: rgba(246, 248, 250, 0.7);
     --bg-card: rgba(255, 255, 255, 0.9);
     --bg-card-hover: rgba(243, 244, 246, 0.95);
     --border: rgba(208, 215, 222, 0.75);
@@ -181,7 +187,7 @@
     width: 380px; min-width: 380px; height: 100vh;
     border-right: 1px solid var(--border);
     display: flex; flex-direction: column;
-    background: rgba(11, 8, 23, 0.72);
+    background: var(--bg-panel);
     backdrop-filter: blur(16px); z-index: 2;
     transition: width 0.3s ease, min-width 0.3s ease;
   }
@@ -196,17 +202,15 @@
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
 
-  /* Header */
-  .header { padding: 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
-  .header__brand { display: flex; align-items: center; gap: 14px; }
-  .header__icon { width: 42px; height: 42px; border-radius: 12px; background: linear-gradient(135deg, var(--rose), var(--accent)); display: flex; align-items: center; justify-content: center; font-size: 18px; color: #fff; box-shadow: 0 0 24px var(--accent-glow); animation: logoGlow 4.5s ease-in-out infinite; }
+  /* Nom de l'app dans la barre du workspace (issue #149, ex-en-tête de la barre latérale) */
+  .app-brand { display: flex; align-items: center; gap: 10px; padding-right: 8px; margin-right: 4px; border-right: 1px solid var(--border); flex-shrink: 0; }
+  .app-brand__icon { width: 30px; height: 30px; border-radius: 9px; background: linear-gradient(135deg, var(--rose), var(--accent)); display: flex; align-items: center; justify-content: center; font-size: 14px; color: #fff; box-shadow: 0 0 18px var(--accent-glow); animation: logoGlow 4.5s ease-in-out infinite; }
   /* Pulsation douce du halo du logo (CSS pur, léger) — ambiance communauté */
   @keyframes logoGlow {
-    0%, 100% { box-shadow: 0 0 22px var(--accent-glow); }
-    50%      { box-shadow: 0 0 34px var(--accent-glow), 0 0 12px var(--rose-dim); }
+    0%, 100% { box-shadow: 0 0 14px var(--accent-glow); }
+    50%      { box-shadow: 0 0 24px var(--accent-glow), 0 0 10px var(--rose-dim); }
   }
-  .header__title { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; }
-  .header__subtitle { font-size: 12px; color: var(--fg-muted); margin-top: 2px; }
+  .app-brand__title { font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 700; }
 
   /* Boutons */
   .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg-elevated); color: var(--fg); font-family: inherit; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s; }
@@ -215,7 +219,15 @@
   .btn--icon { padding: 8px; width: 32px; height: 32px; justify-content: center; }
 
   /* Stats */
-  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 20px 24px; flex-shrink: 0; }
+  /* Issue #149 : deux compteurs réduits + bouton Ctrl+K (palette) sur la même ligne */
+  .stats { display: grid; grid-template-columns: 1fr 1fr auto; gap: 10px; padding: 18px 24px 16px; flex-shrink: 0; }
+  .stats .stat-card { padding: 10px 12px; }
+  .stats .stat-card__label { font-size: 9px; margin-bottom: 4px; letter-spacing: 0.8px; }
+  .stats .stat-card__value { font-size: 20px; line-height: 1.1; }
+  .palette-btn { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; min-width: 64px; padding: 8px 10px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg-card); color: var(--fg-muted); font-family: inherit; cursor: pointer; transition: all 0.2s; }
+  .palette-btn:hover { color: var(--accent); border-color: var(--accent); background: var(--bg-card-hover); }
+  .palette-btn .ic { font-size: 15px; }
+  .palette-btn__kbd { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.3px; }
   .stat-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px; }
   .stat-card__label { font-size: 10px; color: var(--fg-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; font-weight: 600; }
   .stat-card__value { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700; }
@@ -240,7 +252,9 @@
      même esprit que .active-dot mais à 3 couleurs fixes plutôt qu'une seule.
      Purement informatif — voir lib/activity-status.js pour ce qu'il reflète
      (aucune lecture de contenu de service IA). */
-  .status-dot { position: absolute; right: -2px; bottom: -2px; width: 22px; height: 22px; border-radius: 50%; border: 3px solid var(--bg-elevated); }
+  /* Issue #137 : puce de statut sur chaque bouton d'IA (coin supérieur droit). */
+  .svc-btn { position: relative; }
+  .status-dot { position: absolute; right: 3px; top: 3px; width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid var(--bg-elevated); pointer-events: none; }
   .status-dot--open { background: var(--status-open); box-shadow: 0 0 6px var(--status-open); }
   .status-dot--recent { background: var(--danger); }
   .status-dot--idle { background: var(--status-idle); }
@@ -248,6 +262,8 @@
   .account-name { font-size: 15px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: flex; align-items: center; gap: 8px; }
   .active-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px var(--accent); animation: pulse 1.5s infinite; }
   @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+  .account-email-copy { cursor: copy; border-radius: 3px; }
+  .account-email-copy:hover { color: var(--fg); text-decoration: underline dotted; }
   .account-email { font-size: 11px; color: var(--fg-muted); font-family: 'JetBrains Mono', monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 2px; }
   .account-actions { display: flex; gap: 6px; }
 
@@ -281,8 +297,6 @@
   .svc-pika { background: var(--pika-dim); color: var(--pika); border-color: rgba(162,89,255,0.2); }
   .svc-qwen { background: var(--qwen-dim); color: var(--qwen); border-color: rgba(97,92,237,0.2); }
   .svc-btn.cooldown-active { opacity: 0.4; filter: grayscale(50%); }
-  .cooldown-btn { width: 100%; padding: 5px 4px; font-size: 10.5px; font-weight: 500; text-align: center; cursor: pointer; transition: all 0.2s; border-radius: 6px; border: 1px solid var(--border); background: transparent; color: var(--fg-muted); font-family: 'JetBrains Mono', monospace; }
-  .cooldown-btn.active { background: var(--danger-dim); border-color: rgba(255, 77, 106, 0.3); color: var(--danger); }
 
   /* --- Vue compacte : repli/dépli de la grille de services par carte --- */
   /* Animation de hauteur sans max-height arbitraire : la rangée de grille passe
@@ -303,7 +317,7 @@
   #btnToggleAllCards.all-collapsed .ic { transform: rotate(-90deg); }
 
   /* Workspace */
-  .workspace-header { height: 56px; border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 16px; gap: 16px; background: rgba(11, 8, 23, 0.72); backdrop-filter: blur(16px); z-index: 10; flex-shrink: 0; }
+  .workspace-header { height: 56px; border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 16px; gap: 16px; background: var(--bg-panel); backdrop-filter: blur(16px); z-index: 10; flex-shrink: 0; }
   .workspace-body { flex: 1; display: flex; overflow: hidden; }
   
   /* Éditeur & Explorateur */
@@ -325,7 +339,7 @@
   /* Zone IA : onglets + contenu (remplace l'ancienne vue scindée à 2 panneaux) */
   .ai-area { flex: 1; display: flex; flex-direction: column; min-width: 0; overflow: hidden; }
 
-  .tabs-bar { display: flex; align-items: flex-end; gap: 4px; padding: 8px 10px 0; overflow-x: auto; overflow-y: hidden; border-bottom: 1px solid var(--border); background: rgba(11, 8, 23, 0.55); flex-shrink: 0; }
+  .tabs-bar { display: flex; align-items: flex-end; gap: 4px; padding: 8px 10px 0; overflow-x: auto; overflow-y: hidden; border-bottom: 1px solid var(--border); background: var(--bg-panel-soft); flex-shrink: 0; }
   .tabs-bar::-webkit-scrollbar { height: 4px; }
   .tab { display: flex; align-items: center; gap: 8px; padding: 8px 8px 8px 12px; border-radius: 10px 10px 0 0; background: var(--bg-card); border: 1px solid var(--border); border-bottom: none; cursor: grab; font-size: 12px; color: var(--fg-muted); white-space: nowrap; max-width: 220px; flex-shrink: 0; transition: background 0.15s, color 0.15s; }
   .tab:hover { background: var(--bg-card-hover); color: var(--fg); }

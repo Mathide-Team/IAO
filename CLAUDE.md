@@ -176,6 +176,24 @@ Test réel avec Electron v43.7.2 + xvfb (test-electron-tabs.js) :
 - 15 tests quiet-hours
 - 195 tests autres (scheduler-core, rate-limiter, projects, settings, etc.)
 
+## 10 bis. Seuil de couverture bloquant (issue #101, parent #55)
+
+`npm run test:coverage` (job « Qualité » de `ci.yml`, Node 22) impose
+`--test-coverage-lines=100 --test-coverage-branches=97 --test-coverage-functions=98`.
+Sous le seuil, Node sort en code 1 et le job passe au rouge (`set -o pipefail` requis devant `| tee`).
+
+- **Lignes : 100 %**. Tout code ajouté sans test casse la CI.
+- **Branches 97 % / fonctions 98 %** : planchers juste sous la mesure du 30/09/2026 (98,00 % et 98,46 %).
+  100 % n'est pas atteignable, pour deux raisons : des gardes défensives sont inatteignables par
+  construction (`scheduler/core.js` lignes 48, 384, 435, 461, 465 ; `main.js` ligne 248), et le
+  reporter natif de Node sous-compte les fonctions de `main.js`, qui est chargé par plusieurs
+  processus de test (c8 mesure 100 %). On remonte ces planchers dès que la mesure le permet,
+  jamais on ne les baisse pour faire passer une PR.
+- **Inventaire** : `test/coverage-inventory.test.js` charge chaque `lib/*.js` et `scheduler/core.js`.
+  Le rapport de Node ne compte que les fichiers chargés : sans ce test, supprimer l'unique test
+  d'un module le ferait sortir du rapport au lieu de faire échouer le seuil.
+- En local, les options de seuil exigent Node ≥ 22.8. Sous Node 20, lancer `npm test`.
+
 ## 11. Couverture de `assets/app.js` — décision (issue #100, parent #55)
 
 `assets/app.js` (~2300 lignes de DOM, exécuté dans le renderer) est **exclu de l'objectif « 100 % »

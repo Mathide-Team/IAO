@@ -123,6 +123,12 @@ function createWindow() {
       preload: path.join(__dirname, 'preload.js')
     }
   });
+  // Issue #149 : la barre de menu native (File, Edit, View, Window) disparaît de
+  // l'écran. Le menu reste l'application menu d'Electron : ses raccourcis
+  // (Ctrl+Maj+I, Ctrl+R, zoom, copier/coller) fonctionnent toujours. Avec
+  // autoHideMenuBar à false (défaut), la touche Alt ne la fait pas réapparaître,
+  // ce qui compte ici : Alt+1..9 sert à changer d'onglet.
+  win.setMenuBarVisibility(false);
 
   // --- 1. La fenêtre HÔTE est privilégiée (nodeIntegration:true). Elle ne doit
   // JAMAIS naviguer ailleurs que vers son index.html local : sinon un contenu
@@ -211,6 +217,16 @@ function createWindow() {
   mainWindow = win;
   win.on('closed', () => { if (mainWindow === win) mainWindow = null; });
 }
+
+// Issue #149 : les outils de développement passent du menu natif (masqué) à
+// un bouton de la barre du workspace. Seule la fenêtre principale peut les
+// ouvrir, et seulement pour elle-même : une <webview> invitée n'a pas accès
+// à ce canal (preload non exposé), mais on vérifie l'émetteur par principe.
+ipcMain.handle('app:toggle-devtools', (event) => {
+  if (!mainWindow || event.sender !== mainWindow.webContents) return false;
+  event.sender.toggleDevTools();
+  return true;
+});
 
 // --- IPC pour la gestion des fichiers locaux ---
 

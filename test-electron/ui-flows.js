@@ -330,6 +330,55 @@ async function run() {
   });
 
   // =========================================================================
+  // C6. Issue #149 : menu natif masqué, barre du workspace, bouton Ctrl+K
+  // =========================================================================
+  await test('C6.1 La barre de menu native est masquée (le menu garde ses raccourcis)', async () => {
+    assert(win.isMenuBarVisible() === false, 'barre de menu visible');
+    assert(require('electron').Menu.getApplicationMenu() !== null, 'menu applicatif supprimé : raccourcis perdus');
+  });
+
+  await test('C6.2 Nom de l\'app, Explorateur, Éditeur et outils de dév. dans la barre du workspace', async () => {
+    const r = await exec(`(() => {
+      const bar = document.querySelector('.workspace-header');
+      return {
+        brand: bar.querySelector('.app-brand__title') && bar.querySelector('.app-brand__title').textContent,
+        actions: [...bar.querySelectorAll('[data-action]')].map(b => b.getAttribute('data-action')),
+        ancien: !!document.querySelector('#dashboard header, .header__brand')
+      };
+    })()`);
+    assert(r.brand === 'IAO', 'nom de l\'app absent de la barre : ' + r.brand);
+    const i = r.actions.indexOf('ui-toggleIdePanel');
+    assert(r.actions.indexOf('ui-toggleExplorer') >= 0 && i >= 0, 'Explorateur/Éditeur absents : ' + r.actions);
+    assert(r.actions[i + 1] === 'ui-toggleDevTools', 'outils de dév. pas à côté de l\'Éditeur : ' + r.actions);
+    assert(r.ancien === false, 'ancien en-tête encore présent dans la barre latérale');
+  });
+
+  await test('C6.3 Le bouton Ctrl+K, à côté des compteurs, ouvre la palette', async () => {
+    const r = await exec(`(() => {
+      const stats = document.querySelector('#dashboard .stats');
+      const btn = stats.querySelector('#btnOpenPalette');
+      if (!btn) return { btn: false };
+      btn.click();
+      const open = document.getElementById('paletteOverlay').classList.contains('open');
+      const focus = document.activeElement && document.activeElement.id;
+      document.getElementById('paletteOverlay').classList.remove('open');
+      return { btn: true, cartes: stats.querySelectorAll('.stat-card').length, open, focus };
+    })()`);
+    assert(r.btn, 'bouton Ctrl+K absent de la ligne des compteurs');
+    assert(r.cartes === 2 && r.open === true && r.focus === 'paletteInput', JSON.stringify(r));
+  });
+
+  await test('C6.4 Le bouton des outils de développement les ouvre puis les referme', async () => {
+    const ouvert = await exec('window.toggleDevTools()');
+    assert(ouvert === true, 'app:toggle-devtools refusé : ' + ouvert);
+    for (let i = 0; i < 30 && !win.webContents.isDevToolsOpened(); i++) await sleep(100);
+    assert(win.webContents.isDevToolsOpened(), 'outils de développement non ouverts');
+    await exec('window.toggleDevTools()');
+    for (let i = 0; i < 30 && win.webContents.isDevToolsOpened(); i++) await sleep(100);
+    assert(!win.webContents.isDevToolsOpened(), 'outils de développement non refermés');
+  });
+
+  // =========================================================================
   // Nettoyage
   // =========================================================================
   console.log('\n--- Résumé ---');
