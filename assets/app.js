@@ -1726,14 +1726,34 @@
     // via lib/settings.js (normalizeSettings, DEFAULT_SETTINGS).
     var currentSettings = null;
 
+    // Issue #139 : préférence claire/sombre du bureau. Electron relaie le thème
+    // du système (nativeTheme.themeSource = 'system' par défaut) vers
+    // prefers-color-scheme. undefined si matchMedia est indisponible.
+    var systemThemeQuery = (typeof window.matchMedia === 'function')
+      ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+    function systemPrefersDark() {
+      return systemThemeQuery ? systemThemeQuery.matches === true : undefined;
+    }
+    // Le bureau change de thème pendant que l'app tourne -> réappliquer si
+    // le réglage est « system » (les autres thèmes sont fixes).
+    if (systemThemeQuery && typeof systemThemeQuery.addEventListener === 'function') {
+      systemThemeQuery.addEventListener('change', function() {
+        if (currentSettings && normalizeTheme(currentSettings.theme) === 'system') {
+          document.documentElement.setAttribute('data-theme',
+            resolveTheme('system', systemPrefersDark()));
+        }
+      });
+    }
+
     // Applique effectivement tous les réglages à l'UI.
     // Appelée au démarrage (après chargement) et après chaque sauvegarde.
     function applySettings(settings) {
       if (!settings) return;
       currentSettings = settings;
-      var plan = buildApplySettingsPlan(settings);
+      var plan = buildApplySettingsPlan(settings, { prefersDark: systemPrefersDark() });
 
-      // 1. Thème : pose data-theme sur <html>
+      // 1. Thème : pose data-theme sur <html> (« system » -> dark/light selon
+      // le bureau, issue #139 ; suivi en direct par l'écouteur ci-dessous)
       document.documentElement.setAttribute('data-theme', plan.themeAttr);
 
       // 2. Taille de police + retour à la ligne de l'éditeur Monaco

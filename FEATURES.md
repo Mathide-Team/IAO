@@ -73,6 +73,12 @@ Objectif : détecter automatiquement les ZIP livrés par les services IA dans le
 
 ## Fait
 
+- **Thème du bureau (issue #139, 30/09/2026)**
+  Nouveau thème `system` (défaut des nouveaux réglages) : l'app suit le thème clair ou sombre
+  du bureau (`prefers-color-scheme`, relayé par Electron `nativeTheme`) et bascule en direct
+  quand le bureau change. `resolveTheme()` pure dans `lib/settings.js`. Les réglages déjà
+  enregistrés (`iao`, `light`, `dark`) sont conservés. Tests : `test/theme-system.test.js`.
+
 - **Validation Windows install.bat + corrections (18/09/2026, 20:38)**
   Lot 10. Corrections suite à validation statique :
   1. **install.bat corrigé** : auto-build si `dist\IAO-win32-x64` absent (`npm install` + `npm run dist:win`), parenthèses échappées `^(` `^)` dans echo, logique `/desktop` cohérente (Bureau optionnel, pas par défaut), `/no-desktop` ajouté, `DESKTOP_SHORTCUT` désormais utilisé.
