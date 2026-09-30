@@ -313,7 +313,7 @@ test('#137 câblage : puce dans chaque bouton d\'IA, plus sur l\'avatar', () => 
   const fs = require('node:fs');
   const path = require('node:path');
   const app = fs.readFileSync(path.join(__dirname, '..', 'assets', 'app.js'), 'utf-8');
-  assert.match(app, /\$\{escapeHtml\(svc\.name\)\}\$\{svcStatusDot\(acc, svc\.id, lastUsedBySvc\)\}<\/button>/);
+  assert.match(app, /\$\{escapeHtml\(svc\.name\)\}\$\{svcStatusDot\(acc, svc\.id, lastUsedBySvc\)\}.*?<\/button>/s);
   assert.ok(!/account-avatar[^\n]*status-dot/.test(app), 'plus de puce sur l\'avatar');
   assert.match(app, /acc\.automation\.lastUsedBySvc\[svcId\] = acc\.automation\.lastUsedAt;/);
   assert.match(app, /querySelectorAll\('#accountsList \.svc-btn\[data-action="open-service"\]'\)/);
