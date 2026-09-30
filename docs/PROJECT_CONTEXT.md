@@ -60,6 +60,7 @@ iao/
 │   ├── claude-adapter.test.js # Tests de lib/claude-adapter.js
 │   ├── scheduler-rate-limiter.test.js # Tests du limiteur (countRunningJobs/canLaunchJob/checkJobLaunchEligibility)
 │   ├── settings.test.js  # Tests de lib/settings.js
+│   ├── copy-text.test.js # Tests de lib/copy-text.js + câblage de la copie d'e-mail (issue #138)
 │   └── icons.test.js           # Tests de validité d'assets/icons.js
 ├── package.json        # Scripts, dépendances, config de build.
 ├── package-lock.json
@@ -408,6 +409,13 @@ Deux features livrées (toutes deux `[~]` — application partielle) :
   `scheduler/index.js` : `launchJob()`/`tryAutoLaunch()` vérifient l'éligibilité.
   **Application partielle** : contraintes vérifiées mais transition vers RUNNING
   + automatisation Claude pas encore câblée.
+
+- **Copie de l'e-mail d'un compte** (issue #138, `[x]`) : un clic sur l'e-mail
+  d'une carte de compte (menu latéral) le copie dans le presse-papiers, avec un toast
+  de confirmation. `lib/copy-text.js` (`copyText(text, { clipboard, document })`,
+  dépendances injectées) essaie d'abord `navigator.clipboard.writeText`, puis se replie
+  sur `<textarea>` + `execCommand('copy')`. Action `copy-email` résolue par la
+  délégation avant le `toggle-collapse` du header : le clic ne replie pas la carte.
 
 - **Panneau de réglages** (P2, `[x]`) : `lib/settings.js` (6 fonctions pures
   testées, 20 tests). Persistance via IPC `settings:load`/`settings:save` dans

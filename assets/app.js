@@ -596,7 +596,7 @@
               <div class="account-avatar" data-avatar-color="${color}">${initials}<span class="status-dot status-dot--${activityStatus}" title="${statusTitle}"></span></div>
               <div class="account-info">
                 <div class="account-name">${escapeHtml(acc.name)} ${isActive ? '<span class="active-dot"></span>' : ''}</div>
-                <div class="account-email">${escapeHtml(acc.email)} • ${escapeHtml(acc.profile)}</div>
+                <div class="account-email"><span class="account-email-copy" data-action="copy-email" data-acc="${id}" title="Cliquer pour copier l'e-mail">${escapeHtml(acc.email)}</span> • ${escapeHtml(acc.profile)}</div>
               </div>
               <div class="account-actions">
                 <button class="btn btn--icon" data-action="edit" data-acc="${id}"><span class="ic" data-icon="pen"></span></button>
@@ -1313,6 +1313,17 @@
       closeModal();
     }
 
+    // Issue #138 : clic sur l'e-mail d'un compte -> presse-papiers + toast.
+    // La délégation résout data-action="copy-email" avant le toggle-collapse
+    // du header (closest()), donc le clic ne replie pas la carte.
+    function copyAccountEmail(accId) {
+      const acc = accounts.find(a => a.id === accId);
+      if (!acc || !acc.email) return;
+      copyText(acc.email, { clipboard: navigator.clipboard, document }).then(ok => {
+        showToast(ok ? 'E-mail copié : ' + acc.email : 'Copie impossible dans le presse-papiers', ok ? 'success' : 'error');
+      });
+    }
+
     function showToast(msg, type = 'success') {
       const toast = document.createElement('div');
       toast.className = `toast`;
@@ -1438,6 +1449,7 @@
         case 'edit':            openModal(accId); break;
         case 'delete':          openDeleteModal(accId); break;
         case 'toggle-collapse': toggleCardCollapse(accId); break;
+        case 'copy-email':      copyAccountEmail(accId); break;
       }
     });
 

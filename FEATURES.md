@@ -73,6 +73,11 @@ Objectif : détecter automatiquement les ZIP livrés par les services IA dans le
 
 ## Fait
 
+- **Clic sur l'e-mail d'un compte : copie dans le presse-papiers (issue #138, 30/09/2026)**
+  `lib/copy-text.js` (clipboard API, repli `execCommand('copy')`), action `copy-email`
+  sur l'e-mail de chaque carte (curseur « copie », soulignement au survol), toast de
+  confirmation. Tests : `test/copy-text.test.js` (7 tests).
+
 - **Retrait du bouton « Épuiser (24h) » (issue #136, 30/09/2026)**
   Le bouton sous chaque service des cartes de compte est supprimé, avec son action
   `toggle-cooldown`, `toggleCooldown`, `formatCooldown`, `refreshCooldownLabels` et le CSS
