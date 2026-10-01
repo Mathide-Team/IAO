@@ -101,7 +101,7 @@ function loadMain() {
 }
 
 const MAIN_CHANNELS = [
-  'accounts:disconnect-profile', 'accounts:export', 'accounts:import', 'app:toggle-devtools',
+  'accounts:disconnect-profile', 'accounts:export', 'accounts:import', 'app:is-debug', 'app:toggle-devtools',
   'read-directory', 'read-directory-recursive', 'read-file', 'save-file',
   'select-folder', 'settings:load', 'settings:save'
 ];
