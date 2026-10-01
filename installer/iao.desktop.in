@@ -9,3 +9,9 @@ Terminal=false
 Categories=Network;Utility;Office;
 StartupWMClass=IAO
 StartupNotify=true
+Actions=debug;
+
+# Issue #162 : clic droit sur l'icône -> lancement avec journal détaillé.
+[Desktop Action debug]
+Name=IAO (mode debug)
+Exec=@EXEC@ --debug

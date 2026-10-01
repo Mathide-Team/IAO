@@ -158,8 +158,22 @@ Ce dossier n'est **pas** supprimé par la désinstallation — effacez-le manuel
 - Chaque lancement écrit un **journal** dans `<dossier de données>/logs/iao.log`
   (Linux : `~/.config/ai-manager/logs/iao.log`, Windows : `%APPDATA%\ai-manager\logs\iao.log`),
   y compris quand IAO est lancé depuis l'icône du Dock ou du menu Démarrer.
-- Pour un journal détaillé (tous les messages de l'interface) : `npm start -- --debug`
-  ou `IAO_DEBUG=1 npm start`.
+- **Mode debug** (journal détaillé de toute l'application) : option `--debug` ou variable
+  `IAO_DEBUG=1`.
+  - Lancement : `npm run start:debug` en développement, `iao --debug` après `install.sh`,
+    clic droit sur l'icône puis « IAO (mode debug) » (menu GNOME, installé par `install.sh`),
+    ou raccourci « IAO (mode debug) » du menu Démarrer (Windows, `install.bat`).
+  - Un badge **DEBUG** s'affiche alors à côté du nom de l'application.
+  - Sont ajoutés au journal : versions (Electron, Chrome, Node) et options de lancement ;
+    chaque appel IPC (canal, durée, succès ou erreur) ; tous les messages de l'interface
+    (ouverture, activation et fermeture d'onglets, enregistrement des comptes) ; pour chaque
+    onglet IA, navigations, échecs de chargement et avertissements/erreurs de la page ;
+    décisions détaillées de l'ordonnanceur (téléchargements ignorés, lancements refusés).
+  - Confidentialité : les **arguments** des appels IPC (contenus de fichiers, export de
+    comptes, prompts) ne sont jamais écrits, et les adresses des onglets sont réduites à
+    leur nom d'hôte (une URL de connexion peut contenir des jetons).
+- Le journal d'activité de l'ordonnanceur et ses erreurs sont aussi écrits dans `iao.log`,
+  avec ou sans mode debug.
 - IAO ne s'ouvre qu'**une fois** : relancer l'application ramène la fenêtre existante au
   premier plan. Deux instances sur le même dossier de données provoquaient des erreurs
   Chromium en rafale (`Failed to delete the database: Database IO error`).

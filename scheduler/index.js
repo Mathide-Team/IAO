@@ -83,8 +83,34 @@ class Scheduler {
     this.quietHoursCheck = core.isFrenchQuietHours;
     this.quietHoursRemainingMs = core.quietHoursRemainingMs;
 
+    // Issue #162 : journal commun de main.js (terminal + iao.log), injecté
+    // par setLogger(). Sans lui (tests, usage autonome), repli sur la console.
+    this._logFn = null;
+    this._debugEnabled = false;
+
     this._ensureDirSync();
     this._loadSync();
+  }
+
+  // Issue #162 : branche l'ordonnanceur sur le journal de main.js.
+  // `logFn(scope, level, message)` ; `debug` active les traces _debug().
+  setLogger(logFn, debug) {
+    this._logFn = typeof logFn === 'function' ? logFn : null;
+    this._debugEnabled = Boolean(debug);
+  }
+
+  _error(message, ...details) {
+    if (this._logFn) {
+      const text = details.map(d => (d && d.message ? d.message : String(d))).join(' ');
+      this._logFn('scheduler', 'error', message + (text ? ' ' + text : ''));
+    } else {
+      console.error('[scheduler] ' + message, ...details);
+    }
+  }
+
+  // Trace détaillée, uniquement en mode debug (--debug ou IAO_DEBUG=1).
+  _debug(message) {
+    if (this._debugEnabled && this._logFn) this._logFn('scheduler', 'debug', message);
   }
 
   init() {
@@ -130,25 +156,26 @@ class Scheduler {
     try {
       fs.writeFileSync(this.jobsPath, JSON.stringify(this.jobs, null, 2), 'utf-8');
       fs.writeFileSync(this.csvPath, core.jobsToCSV(this.jobs), 'utf-8');
-    } catch (e) { console.error('[scheduler] échec écriture jobs :', e); }
+    } catch (e) { this._error('échec écriture jobs :', e); }
   }
 
   _persistConfig() {
     try { fs.writeFileSync(this.configPath, JSON.stringify(this.config, null, 2), 'utf-8'); }
-    catch (e) { console.error('[scheduler] échec écriture config :', e); }
+    catch (e) { this._error('échec écriture config :', e); }
   }
 
   _persistAccounts() {
     try { fs.writeFileSync(this.accountsPath, JSON.stringify(this.accountsSnapshot, null, 2), 'utf-8'); }
-    catch (e) { console.error('[scheduler] échec écriture instantané comptes :', e); }
+    catch (e) { this._error('échec écriture instantané comptes :', e); }
   }
 
   _logActivity(message) {
     this.log.push({ ts: new Date().toISOString(), message });
     if (this.log.length > 500) this.log = this.log.slice(-500);
     try { fs.writeFileSync(this.logPath, JSON.stringify(this.log, null, 2), 'utf-8'); }
-    catch (e) { console.error('[scheduler] échec écriture journal :', e); }
-    console.log('[scheduler]', message);
+    catch (e) { this._error('échec écriture journal :', e); }
+    if (this._logFn) this._logFn('scheduler', 'info', message);
+    else console.log('[scheduler]', message);
   }
 
   // --- État exposé au renderer ---------------------------------------------
@@ -250,18 +277,24 @@ class Scheduler {
       const ses = this._session.fromPartition('persist:' + profile);
       ses.on('will-download', (event, item, webContents) => {
         try { this._onWillDownload(profile, item, webContents); }
-        catch (e) { console.error('[scheduler] erreur de traitement d\'un téléchargement :', e); }
+        catch (e) { this._error('erreur de traitement d\'un téléchargement :', e); }
       });
       this._logActivity('Surveillance des téléchargements activée pour le profil « ' + profile + ' ».');
     } catch (e) {
-      console.error('[scheduler] échec de la surveillance du profil', profile, e);
+      this._error('échec de la surveillance du profil', profile, e);
     }
   }
 
   _onWillDownload(profile, item, webContents) {
-    if (!this.config.enabled) return; // ordonnanceur désactivé -> pas de suivi
+    if (!this.config.enabled) { // ordonnanceur désactivé -> pas de suivi
+      this._debug('téléchargement ignoré (ordonnanceur désactivé), profil ' + profile);
+      return;
+    }
     const filename = item.getFilename();
-    if (!core.isZipFilename(filename)) return; // on ne trace que les .zip (ordo, point 1)
+    if (!core.isZipFilename(filename)) { // on ne trace que les .zip (ordo, point 1)
+      this._debug('téléchargement ignoré (pas un .zip) : ' + filename);
+      return;
+    }
 
     const url = item.getURL();
     let host = null;
@@ -290,7 +323,7 @@ class Scheduler {
       try {
         job.status = core.nextJobState(job.status, state === 'completed' ? 'COMPLETED' : 'ERROR');
       } catch (e) {
-        console.error('[scheduler] transition invalide sur job', job.id, e);
+        this._error('transition invalide sur job', job.id, e);
       }
       this._persistJobs();
       this._logActivity(state === 'completed'
@@ -382,7 +415,10 @@ class Scheduler {
     var now = Date.now();
     var lastAuto = this._getLastAutomationTime();
     var nextJob = core.selectNextJobToLaunch(this.jobs, this.config, lastAuto, now);
-    if (!nextJob) return null;
+    if (!nextJob) {
+      this._debug('auto-lancement : aucun job éligible');
+      return null;
+    }
     var eligibility = core.checkJobLaunchEligibility(nextJob, this.jobs, this.config, lastAuto, now);
     if (!eligibility.canLaunch) {
       this._logActivity('Auto-lancement : ' + eligibility.reason);
@@ -401,6 +437,7 @@ class Scheduler {
     var lastAuto = this._getLastAutomationTime();
     var eligibility = core.checkJobLaunchEligibility(job, this.jobs, this.config, lastAuto, now);
     if (!eligibility.canLaunch) {
+      this._debug('lancement manuel refusé pour ' + jobId + ' : ' + eligibility.reason);
       return { ok: false, job: job, reason: eligibility.reason };
     }
     // Lancement réel de l'automatisation
@@ -661,7 +698,7 @@ class Scheduler {
 
   _persistProjects() {
     try { fs.writeFileSync(this.projectsPath, JSON.stringify(this.projects, null, 2), 'utf-8'); }
-    catch (e) { console.error('[scheduler] échec écriture projets :', e); }
+    catch (e) { this._error('échec écriture projets :', e); }
   }
 
   createProject(name, allowedAccountIds) {

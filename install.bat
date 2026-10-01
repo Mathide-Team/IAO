@@ -96,6 +96,7 @@ if "%ACTION%"=="uninstall" (
     echo Desinstallation ^(%MODE%^)...
     if exist "%PREFIX%" rmdir /s /q "%PREFIX%"
     if exist "%SHORTCUT_DIR%\%SHORTCUT_NAME%.lnk" del /f /q "%SHORTCUT_DIR%\%SHORTCUT_NAME%.lnk"
+    if exist "%SHORTCUT_DIR%\%SHORTCUT_NAME% (mode debug).lnk" del /f /q "%SHORTCUT_DIR%\%SHORTCUT_NAME% (mode debug).lnk"
     if exist "%SHORTCUT_DIR%" rmdir /q "%SHORTCUT_DIR%" 2>nul
     if exist "%USERPROFILE%\Desktop\%SHORTCUT_NAME%.lnk" del /f /q "%USERPROFILE%\Desktop\%SHORTCUT_NAME%.lnk"
     echo Termine. Les comptes et sessions restent dans %APPDATA_DIR%
@@ -169,6 +170,14 @@ REM Raccourci Menu Demarrer - toujours cree
 >> "%VBS%" echo shortcut.Description = "IAO - Gestionnaire de comptes IA"
 >> "%VBS%" echo shortcut.IconLocation = "%PREFIX%\%BIN_EXE%,0"
 >> "%VBS%" echo shortcut.Save
+REM Issue #162 : raccourci Menu Demarrer en mode debug (journal detaille)
+>> "%VBS%" echo Set debugShortcut = WshShell.CreateShortcut("%SHORTCUT_DIR%\%SHORTCUT_NAME% (mode debug).lnk")
+>> "%VBS%" echo debugShortcut.TargetPath = "%PREFIX%\%BIN_EXE%"
+>> "%VBS%" echo debugShortcut.Arguments = "--debug"
+>> "%VBS%" echo debugShortcut.WorkingDirectory = "%PREFIX%"
+>> "%VBS%" echo debugShortcut.Description = "IAO - mode debug (journal detaille)"
+>> "%VBS%" echo debugShortcut.IconLocation = "%PREFIX%\%BIN_EXE%,0"
+>> "%VBS%" echo debugShortcut.Save
 
 REM Raccourci Bureau - seulement si /desktop
 REM On evite les parentheses de CreateShortcut(...) dans un bloc if()

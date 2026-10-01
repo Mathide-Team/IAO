@@ -91,6 +91,21 @@
     }
     const ipcRenderer = { invoke: window.iaoAPI.ipcInvoke };
 
+    // Issue #162 : mode debug (--debug ou IAO_DEBUG=1, décidé par main.js).
+    // dbg() écrit en console.debug : main.js ne recopie ce niveau dans
+    // iao.log qu'en mode debug, et dbg() se tait hors de ce mode.
+    let debugMode = false;
+    function dbg(scope, ...args) {
+      if (debugMode) console.debug('[' + scope + ']', ...args);
+    }
+    ipcRenderer.invoke('app:is-debug').then((on) => {
+      debugMode = on === true;
+      if (!debugMode) return;
+      const badge = document.getElementById('debugBadge');
+      if (badge) badge.classList.remove('hidden');
+      dbg('demarrage', 'mode debug actif dans l\'interface');
+    }).catch(() => { /* canal absent (ancienne version de main.js) : mode normal */ });
+
     const SERVICES = [
       { id: 'claude', name: 'Claude', url: 'https://claude.ai/new', cssClass: 'svc-claude' },
       { id: 'chatgpt', name: 'ChatGPT', url: 'https://chatgpt.com/', cssClass: 'svc-chatgpt' },
@@ -288,6 +303,7 @@
     // dans BACKUP_KEY — mais UNIQUEMENT si elle est elle-même un JSON valide, pour
     // ne jamais détruire un bon backup en y recopiant une valeur corrompue.
     function saveAccounts(list) {
+      dbg('comptes', 'enregistrement de ' + list.length + ' compte(s)');
       try {
         const prev = localStorage.getItem(STORE_KEY);
         if (prev != null) {
@@ -768,6 +784,10 @@
       // lastFocusAt initialisé ici (puis maintenu par activateTab) : lot
       // 16/09/2026, rappel visuel « onglet inactif depuis 5 min ».
       tabs.push({ id: tabId, accId, svcId, paneEl: pane, lastFocusAt: Date.now() });
+      dbg('onglets', 'ouverture', tabId, 'service=' + svcId, 'compte=' + accId);
+      webview.addEventListener('did-fail-load', (ev) => {
+        if (ev.isMainFrame) dbg('onglets', 'échec de chargement', tabId, ev.errorCode, ev.errorDescription);
+      });
       saveOpenTabs(); // lot 18/09/2026 : persistance pour startWithLastSession
       renderTabsBar();
       activateTab(tabId);
@@ -817,6 +837,7 @@
     // premier plan, pour le rappel visuel « inactif depuis 5 min » — ne lit
     // jamais le contenu de la <webview>.
     function activateTab(tabId) {
+      dbg('onglets', 'activation', tabId);
       activeTabId = tabId;
       const tab = tabs.find(t => t.id === tabId);
       if (tab) tab.lastFocusAt = Date.now();
@@ -852,6 +873,7 @@
       const idx = tabs.findIndex(t => t.id === tabId);
       if (idx === -1) return;
       const [tab] = tabs.splice(idx, 1);
+      dbg('onglets', 'fermeture', tabId, 'restants=' + tabs.length);
       tab.paneEl.remove(); // innerHTML/remove détruit la <webview> -> libère la mémoire
 
       if (activeTabId === tabId) {

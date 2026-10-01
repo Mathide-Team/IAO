@@ -27,6 +27,7 @@ app.setName('IAO');
 // fenêtre principale, pas seulement warnings et erreurs.
 const diag = require('./lib/startup-diagnostics');
 const DEBUG = diag.isDebugEnabled(process.argv, process.env);
+const debugTrace = require('./lib/debug-trace');
 const LOG_DIR = path.join(app.getPath('userData'), 'logs');
 const LOG_FILE = path.join(LOG_DIR, 'iao.log');
 const LOG_MAX_BYTES = 1024 * 1024;
@@ -54,6 +55,16 @@ function log(scope, level, message, sourceId, line) {
     try { fs.appendFileSync(LOG_FILE, text + '\n', 'utf-8'); } catch (_) { /* disque plein : terminal seul */ }
   }
 }
+
+// Issue #162 : trace réservée au mode debug (--debug ou IAO_DEBUG=1).
+function debug(scope, message) {
+  if (DEBUG) log(scope, 'debug', message);
+}
+
+// Issue #162 : en mode debug, chaque appel IPC (main.js et ordonnanceur) est
+// journalisé — canal, durée, succès ou erreur, jamais les arguments. Hors
+// mode debug, `ipc` est ipcMain lui-même.
+const ipc = debugTrace.traceIpcMain(ipcMain, { enabled: DEBUG, log });
 
 // ===== Instance unique (issue #52) =====
 // Deux IAO lancés en même temps se disputent le même dossier de données
@@ -153,6 +164,18 @@ function createWindow() {
     guestContents.on('render-process-gone', (_e, details) => {
       log('webview', 'warning', 'onglet ' + hostOf(guestContents.getURL()) + ' arrêté : ' + details.reason);
     });
+    // Issue #162 : en mode debug, navigations, échecs de chargement et
+    // avertissements/erreurs console de chaque onglet IA (hôte seulement).
+    debug('webview', 'onglet attaché : ' + hostOf(guestContents.getURL()));
+    guestContents.on('did-navigate', (_e, url) => debug('webview', 'navigation → ' + hostOf(url)));
+    guestContents.on('did-fail-load', (_e, code, description, url) => {
+      debug('webview', 'échec de chargement ' + hostOf(url) + ' : ' + description + ' (' + code + ')');
+    });
+    guestContents.on('console-message', (ev) => {
+      if (DEBUG && debugTrace.shouldForwardGuestConsole(ev.level)) {
+        log('webview ' + hostOf(guestContents.getURL()), ev.level, ev.message, ev.sourceId, ev.lineNumber);
+      }
+    });
     guestContents.setWindowOpenHandler(({ url }) => {
       if (isAllowedPopup(url)) return { action: 'allow' };
       // Origine hors liste : jamais de fenêtre Electron. Si c'est un lien web
@@ -222,7 +245,10 @@ function createWindow() {
 // un bouton de la barre du workspace. Seule la fenêtre principale peut les
 // ouvrir, et seulement pour elle-même : une <webview> invitée n'a pas accès
 // à ce canal (preload non exposé), mais on vérifie l'émetteur par principe.
-ipcMain.handle('app:toggle-devtools', (event) => {
+// Issue #162 : le renderer adapte ses traces (dbg) et affiche un badge.
+ipc.handle('app:is-debug', () => DEBUG);
+
+ipc.handle('app:toggle-devtools', (event) => {
   if (!mainWindow || event.sender !== mainWindow.webContents) return false;
   event.sender.toggleDevTools();
   return true;
@@ -230,13 +256,13 @@ ipcMain.handle('app:toggle-devtools', (event) => {
 
 // --- IPC pour la gestion des fichiers locaux ---
 
-ipcMain.handle('select-folder', async () => {
+ipc.handle('select-folder', async () => {
   const result = await dialog.showOpenDialog({ properties: ['openDirectory'] });
   if (!result.canceled && result.filePaths.length > 0) return result.filePaths[0];
   return null;
 });
 
-ipcMain.handle('read-directory', async (event, folderPath) => {
+ipc.handle('read-directory', async (event, folderPath) => {
   try {
     const files = await fsPromises.readdir(folderPath, { withFileTypes: true });
     const ignored = ['node_modules', '.git', '.next', 'dist', 'build', '.cache'];
@@ -257,7 +283,7 @@ const MAX_RECURSION_DEPTH = 5;
 const MAX_RECURSIVE_FILES = 500;
 const IGNORED_DIRS = new Set(['node_modules', '.git', '.next', 'dist', 'build', '.cache']);
 
-ipcMain.handle('read-directory-recursive', async (event, folderPath) => {
+ipc.handle('read-directory-recursive', async (event, folderPath) => {
   const result = [];
   async function walk(dir, prefix, depth) {
     if (depth > MAX_RECURSION_DEPTH) return;
@@ -284,7 +310,7 @@ ipcMain.handle('read-directory-recursive', async (event, folderPath) => {
   return result;
 });
 
-ipcMain.handle('read-file', async (event, filePath) => {
+ipc.handle('read-file', async (event, filePath) => {
   try {
     // Garde-fou taille : un gros fichier lu en entier figerait l'app. On renvoie
     // un objet-sentinel que le renderer sait distinguer d'un contenu texte.
@@ -297,7 +323,7 @@ ipcMain.handle('read-file', async (event, filePath) => {
 });
 
 // NOUVEAU : Sauvegarder un fichier depuis l'éditeur
-ipcMain.handle('save-file', async (event, filePath, content) => {
+ipc.handle('save-file', async (event, filePath, content) => {
   try {
     await fsPromises.writeFile(filePath, content, 'utf-8');
     return true;
@@ -312,7 +338,7 @@ ipcMain.handle('save-file', async (event, filePath, content) => {
 // renderer (index.html, chantier C) : main.js ne fait ici que ce que le
 // renderer ne peut pas faire lui-même (choix de fichier + lecture/écriture
 // disque), sur le même modèle que 'read-file'/'save-file' plus haut.
-ipcMain.handle('accounts:export', async (event, jsonContent) => {
+ipc.handle('accounts:export', async (event, jsonContent) => {
   const stamp = new Date().toISOString().replace(/[:T]/g, '-').slice(0, 19);
   const result = await dialog.showSaveDialog(mainWindow, {
     title: 'Exporter les comptes',
@@ -329,7 +355,7 @@ ipcMain.handle('accounts:export', async (event, jsonContent) => {
   }
 });
 
-ipcMain.handle('accounts:import', async () => {
+ipc.handle('accounts:import', async () => {
   const result = await dialog.showOpenDialog(mainWindow, {
     title: 'Importer des comptes',
     properties: ['openFile'],
@@ -352,7 +378,7 @@ ipcMain.handle('accounts:import', async () => {
 // `session` n'existe que côté process principal, d'où l'IPC (comme pour les 4
 // handlers fichiers ci-dessus). Un profil = un seul compte (invariant 4,
 // CLAUDE.md), donc ceci ne peut jamais affecter qu'un compte à la fois.
-ipcMain.handle('accounts:disconnect-profile', async (event, profile) => {
+ipc.handle('accounts:disconnect-profile', async (event, profile) => {
   if (!profile || typeof profile !== 'string') return { ok: false, error: 'invalid_profile' };
   try {
     const ses = session.fromPartition(`persist:${profile}`);
@@ -370,7 +396,7 @@ ipcMain.handle('accounts:disconnect-profile', async (event, profile) => {
 const { normalizeSettings, DEFAULT_SETTINGS } = require('./lib/settings');
 const settingsPath = path.join(app.getPath('userData'), 'settings.json');
 
-ipcMain.handle('settings:load', async () => {
+ipc.handle('settings:load', async () => {
   try {
     const raw = await fsPromises.readFile(settingsPath, 'utf-8');
     return normalizeSettings(JSON.parse(raw));
@@ -380,7 +406,7 @@ ipcMain.handle('settings:load', async () => {
   }
 });
 
-ipcMain.handle('settings:save', async (event, rawSettings) => {
+ipc.handle('settings:save', async (event, rawSettings) => {
   try {
     const normalized = normalizeSettings(rawSettings);
     await fsPromises.writeFile(settingsPath, JSON.stringify(normalized, null, 2), 'utf-8');
@@ -392,7 +418,7 @@ ipcMain.handle('settings:save', async (event, rawSettings) => {
 });
 
 // --- IPC pour l'ordonnanceur IA (chantier E) ---
-registerSchedulerIPC(ipcMain, scheduler, () => mainWindow);
+registerSchedulerIPC(ipc, scheduler, () => mainWindow);
 
 app.whenReady().then(() => {
   // 2e instance (voir « Instance unique ») : ne rien ouvrir, app.quit() est en cours.
@@ -400,6 +426,10 @@ app.whenReady().then(() => {
   log('demarrage', 'info', 'IAO ' + app.getVersion() + ' — Electron ' + process.versions.electron +
     ', ' + process.platform + '/' + process.arch + (app.isPackaged ? ', packagé' : ', sources') +
     (DEBUG ? ', mode debug' : '') + '. Données : ' + app.getPath('userData') + ' — journal : ' + LOG_FILE);
+  debug('demarrage', debugTrace.describeRuntime(process));
+  // Issue #162 : le journal d'activité de l'ordonnanceur rejoint iao.log, et
+  // ses traces détaillées sont actives en mode debug.
+  scheduler.setLogger(log, DEBUG);
   createWindow();
   scheduler.init();
   app.on('activate', () => {
