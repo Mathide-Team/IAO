@@ -41,7 +41,7 @@ scripts/          prune-locales.js (post-build)  build/            Icônes PNG 1
 | But | Commande |
 | --- | --- |
 | Lancer en dev | `npm start` (Linux : `npm run start:linux-dev`) |
-| Lancer avec journal détaillé | `npm start -- --debug` (ou `IAO_DEBUG=1 npm start`) — journal : `<userData>/logs/iao.log` |
+| Lancer en mode debug (issue #162) | `npm run start:debug` (ou `IAO_DEBUG=1 npm start`) — journal : `<userData>/logs/iao.log`. Traces IPC (`lib/debug-trace.js`), ordonnanceur (`_debug`), onglets IA et renderer (`dbg()`), jamais les arguments IPC |
 | Lancer les tests | `npm test` (= `node --test`) + `npm run test:electron` et `npm run test:electron:ui` (harnais réels, bloquants en CI) ; `npm run dist:linux && npm run test:electron:smoke` (binaire packagé) |
 | Build Windows | `npm run dist` |
 | Build Linux (packager) | `npm run dist:linux` |
