@@ -1,5 +1,31 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Correctif #165 — Démarrage difficile : --debug obsolète, sandbox, Database IO error (07/10/2026)
+
+### Causes
+1. **`--debug` obsolète** : Node.js intercepte `--debug` comme flag DEP0062 et affiche
+   un avertissement au lieu de le passer à l'application. Le mode debug (#162)
+   ne s'activait donc jamais via la ligne de commande.
+2. **Sandbox Linux en dev** : `npm run start` (sans `--no-sandbox`) crashait sur
+   Linux quand `chrome-sandbox` n'est pas setuid root (cas en développement).
+3. **Spam « Database IO error »** : les bases de données de service workers de
+   Chromium peuvent rester dans un état incohérent après un arrêt brutal,
+   provoquant des rafales d'erreurs au démarrage suivant.
+
+### Correctifs
+- Renommage du flag `--debug` en `--iao-debug` dans toute l'application
+  (`startup-diagnostics.js`, `package.json`, `install.bat`, `README.md`, tests).
+  `IAO_DEBUG=1` reste inchangé. `--debug` toujours accepté en compatibilité.
+- `package.json` : `start` et `start:debug` incluent `--no-sandbox` (dev).
+- `main.js` : `cleanupServiceWorkerStorage()` supprime le dossier `Service Worker`
+  avant l'initialisation de Chromium, prévenant le spam « Database IO error ».
+
+### Tests
+- `test/startup-diagnostics.test.js` : `isDebugEnabled` accepte `--iao-debug`,
+  `--debug` (compat) et `IAO_DEBUG`.
+- `test/debug-trace.test.js` : `describeRuntime` avec `--iao-debug`.
+- `npm test` : à vérifier.
+
 ## Correctif #52 — Démarrage : interface vide, sans icône ni diagnostic (29/09/2026)
 
 ### Cause

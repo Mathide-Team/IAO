@@ -158,9 +158,9 @@ Ce dossier n'est **pas** supprimé par la désinstallation — effacez-le manuel
 - Chaque lancement écrit un **journal** dans `<dossier de données>/logs/iao.log`
   (Linux : `~/.config/ai-manager/logs/iao.log`, Windows : `%APPDATA%\ai-manager\logs\iao.log`),
   y compris quand IAO est lancé depuis l'icône du Dock ou du menu Démarrer.
-- **Mode debug** (journal détaillé de toute l'application) : option `--debug` ou variable
+- **Mode debug** (journal détaillé de toute l'application) : option `--iao-debug` ou variable
   `IAO_DEBUG=1`.
-  - Lancement : `npm run start:debug` en développement, `iao --debug` après `install.sh`,
+  - Lancement : `npm run start:debug` en développement, `iao --iao-debug` après `install.sh`,
     clic droit sur l'icône puis « IAO (mode debug) » (menu GNOME, installé par `install.sh`),
     ou raccourci « IAO (mode debug) » du menu Démarrer (Windows, `install.bat`).
   - Un badge **DEBUG** s'affiche alors à côté du nom de l'application.

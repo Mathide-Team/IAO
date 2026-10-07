@@ -79,7 +79,8 @@ test('shortSource et formatLogLine produisent des lignes lisibles', () => {
   assert.equal(d.formatLogLine(date, 'x', 'info', null, 'a.js'), '2026-09-29T15:00:00.000Z [x] info  (a.js)');
 });
 
-test('isDebugEnabled : --debug ou IAO_DEBUG', () => {
+test('isDebugEnabled : --iao-debug, --debug (compat) ou IAO_DEBUG', () => {
+  assert.equal(d.isDebugEnabled(['electron', '.', '--iao-debug'], {}), true);
   assert.equal(d.isDebugEnabled(['electron', '.', '--debug'], {}), true);
   assert.equal(d.isDebugEnabled([], { IAO_DEBUG: '1' }), true);
   assert.equal(d.isDebugEnabled([], { IAO_DEBUG: 'oui' }), true);

@@ -95,9 +95,9 @@ test('isErrorResult : seul un objet avec un champ error non vide est une erreur'
 test('describeRuntime : versions et options de lancement (sans le chemin de l\'exécutable)', () => {
   const text = describeRuntime({
     versions: { electron: '43.1.1', chrome: '140.0', node: '22.1.0', v8: '14.0' },
-    argv: ['/opt/IAO/iao', '--debug', '--no-sandbox']
+    argv: ['/opt/IAO/iao', '--iao-debug', '--no-sandbox']
   });
-  assert.equal(text, 'mode debug actif — Electron 43.1.1, Chrome 140.0, Node 22.1.0, V8 14.0 ; options : --debug --no-sandbox');
+  assert.equal(text, 'mode debug actif — Electron 43.1.1, Chrome 140.0, Node 22.1.0, V8 14.0 ; options : --iao-debug --no-sandbox');
 });
 
 test('describeRuntime : valeurs absentes remplacées par « ? » et « (aucune) »', () => {
