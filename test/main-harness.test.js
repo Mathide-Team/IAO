@@ -167,6 +167,48 @@ test('main.js : « activate » recrée la fenêtre seulement si aucune n\'est ou
   }
 });
 
+test('cleanupServiceWorkerStorage : supprime le dossier Service Worker au demarrage (issue #165)', () => {
+  const h = loadMain();
+  const warn = console.warn; const log = console.log;
+  console.warn = console.log = () => {};
+  try {
+    const userData = h.electron.app.getPath('userData');
+    const swDir = path.join(userData, 'Service Worker');
+    fs.mkdirSync(swDir, { recursive: true });
+    fs.writeFileSync(path.join(swDir, 'test.db'), 'corrupt');
+    assert.equal(fs.existsSync(swDir), true, 'dossier Service Worker cree');
+    h.electron.calls.readyCallbacks[0]();
+    assert.equal(fs.existsSync(swDir), false, 'dossier Service Worker supprime');
+  } finally {
+    console.warn = warn; console.log = log;
+    h.cleanup();
+  }
+});
+
+test('cleanupServiceWorkerStorage : erreur de suppression journalisee sans bloquer (issue #165)', () => {
+  const h = loadMain();
+  const warn = console.warn; const log = console.log;
+  const messages = [];
+  console.warn = console.log = (msg) => { messages.push(String(msg)); };
+  try {
+    const userData = h.electron.app.getPath('userData');
+    const swDir = path.join(userData, 'Service Worker');
+    fs.mkdirSync(swDir, { recursive: true });
+    const origRmSync = fs.rmSync;
+    fs.rmSync = () => { throw new Error('EACCES permission refusee'); };
+    try {
+      h.electron.calls.readyCallbacks[0]();
+    } finally {
+      fs.rmSync = origRmSync;
+    }
+    assert.ok(messages.some(m => m.includes('Nettoyage Service Worker impossible')),
+      'avertissement journalise : ' + messages.join(' | '));
+  } finally {
+    console.warn = warn; console.log = log;
+    h.cleanup();
+  }
+});
+
 test('main.js : « window-all-closed » quitte hors macOS, reste ouvert sous macOS', () => {
   const h = loadMain();
   try {
