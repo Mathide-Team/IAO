@@ -15,7 +15,7 @@ permissions:
 jobs:
   rapport-phases:
     name: Rapport d'avancement par phase
-    runs-on: ubuntu-latest
+    runs-on: self-hosted,linux,maison
     if: github.actor != 'dependabot[bot]'
     steps:
       - name: Checkout

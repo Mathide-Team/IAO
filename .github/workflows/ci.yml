@@ -10,7 +10,7 @@ name: CI
 jobs:
   qualite:
     name: Qualité (tests + couverture + audit npm)
-    runs-on: ubuntu-latest
+    runs-on: self-hosted,linux,maison
 
     steps:
       - name: Checkout du dépôt
