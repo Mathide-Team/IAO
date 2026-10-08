@@ -23,7 +23,7 @@ app.setName('IAO');
 // terminal (seuls les messages de Chromium y défilaient) et rien du tout quand
 // IAO était lancé depuis l'icône du Dock. Désormais chaque événement utile est
 // écrit dans le terminal ET dans <userData>/logs/iao.log (tourné à 1 Mo).
-// `--debug` (ou IAO_DEBUG=1) recopie en plus TOUS les messages console de la
+// `--iao-debug` (ou IAO_DEBUG=1) recopie en plus TOUS les messages console de la
 // fenêtre principale, pas seulement warnings et erreurs.
 const diag = require('./lib/startup-diagnostics');
 const DEBUG = diag.isDebugEnabled(process.argv, process.env);
@@ -56,7 +56,7 @@ function log(scope, level, message, sourceId, line) {
   }
 }
 
-// Issue #162 : trace réservée au mode debug (--debug ou IAO_DEBUG=1).
+// Issue #162 : trace réservée au mode debug (--iao-debug ou IAO_DEBUG=1).
 function debug(scope, message) {
   if (DEBUG) log(scope, 'debug', message);
 }
@@ -102,6 +102,26 @@ function hostOf(urlStr) {
 // Taille max d'un fichier ouvrable dans l'éditeur intégré. Au-delà, lire le
 // fichier entier en mémoire + le transférer par IPC figerait main ET renderer.
 const MAX_EDITABLE_FILE_BYTES = 20 * 1024 * 1024; // 20 Mo
+
+// ===== Nettoyage du stockage Service Worker (issue #165) =====
+// Chromium peut laisser des bases de données de service workers dans un état
+// incohérent (arrêt brutal, verrous non relâchés). Au démarrage suivant,
+// le service de stockage tente de les supprimer, échoue en boucle et inonde
+// le terminal de « Failed to delete the database: Database IO error ».
+// On supprime le dossier avant que Chromium ne réouvre ses bases : il sera
+// recréé proprement. Les service workers des sites IA se réenregistreront
+// automatiquement à la prochaine visite.
+function cleanupServiceWorkerStorage() {
+  try {
+    const swDir = path.join(app.getPath('userData'), 'Service Worker');
+    if (fs.existsSync(swDir)) {
+      fs.rmSync(swDir, { recursive: true, force: true });
+      log('demarrage', 'info', 'Dossier Service Worker nettoyé au démarrage (prévention Database IO error).');
+    }
+  } catch (e) {
+    log('demarrage', 'warning', 'Nettoyage Service Worker impossible : ' + e.message);
+  }
+}
 
 // ===== Ordonnanceur IA (chantier E) =====
 // Instance unique, créée ici (module.getPath('userData') est déjà fixé plus
@@ -423,6 +443,7 @@ registerSchedulerIPC(ipc, scheduler, () => mainWindow);
 app.whenReady().then(() => {
   // 2e instance (voir « Instance unique ») : ne rien ouvrir, app.quit() est en cours.
   if (!gotSingleInstanceLock) return;
+  cleanupServiceWorkerStorage();
   log('demarrage', 'info', 'IAO ' + app.getVersion() + ' — Electron ' + process.versions.electron +
     ', ' + process.platform + '/' + process.arch + (app.isPackaged ? ', packagé' : ', sources') +
     (DEBUG ? ', mode debug' : '') + '. Données : ' + app.getPath('userData') + ' — journal : ' + LOG_FILE);

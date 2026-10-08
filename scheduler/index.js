@@ -108,7 +108,7 @@ class Scheduler {
     }
   }
 
-  // Trace détaillée, uniquement en mode debug (--debug ou IAO_DEBUG=1).
+  // Trace détaillée, uniquement en mode debug (--iao-debug ou IAO_DEBUG=1).
   _debug(message) {
     if (this._debugEnabled && this._logFn) this._logFn('scheduler', 'debug', message);
   }

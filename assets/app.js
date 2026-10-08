@@ -91,7 +91,7 @@
     }
     const ipcRenderer = { invoke: window.iaoAPI.ipcInvoke };
 
-    // Issue #162 : mode debug (--debug ou IAO_DEBUG=1, décidé par main.js).
+    // Issue #162 : mode debug (--iao-debug ou IAO_DEBUG=1, décidé par main.js).
     // dbg() écrit en console.debug : main.js ne recopie ce niveau dans
     // iao.log qu'en mode debug, et dbg() se tait hors de ce mode.
     let debugMode = false;

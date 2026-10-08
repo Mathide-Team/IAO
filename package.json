@@ -7,9 +7,9 @@
   "license": "ISC",
   "type": "commonjs",
   "scripts": {
-    "start": "electron .",
+    "start": "electron . --no-sandbox",
     "start:linux-dev": "electron . --no-sandbox",
-    "start:debug": "electron . --debug",
+    "start:debug": "electron . --iao-debug --no-sandbox",
     "test": "node --test",
     "test:coverage": "node --test --experimental-test-coverage --test-coverage-exclude='test/**' --test-coverage-lines=100 --test-coverage-branches=100 --test-coverage-functions=100",
     "test:electron": "xvfb-run -a electron --no-sandbox test-electron/popups-continue.js",
