@@ -15,7 +15,7 @@ permissions:
 jobs:
   rapport-phases:
     name: Rapport d'avancement par phase
-    runs-on: ubuntu-latest
+    runs-on: ${{ fromJSON(vars.IAO_RUNS_ON_LINUX || '{"group":"maison","labels":["self-hosted","linux"]}') }}
     if: github.actor != 'dependabot[bot]'
     steps:
       - name: Checkout

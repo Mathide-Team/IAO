@@ -27,7 +27,7 @@ permissions:
 jobs:
   build-linux:
     name: Build Linux (.deb + AppImage)
-    runs-on: ubuntu-latest
+    runs-on: ${{ fromJSON(vars.IAO_RUNS_ON_LINUX || '{"group":"maison","labels":["self-hosted","linux"]}') }}
 
     steps:
       - name: Checkout du dépôt
@@ -106,7 +106,7 @@ jobs:
   release:
     name: Publication GitHub Release
     needs: [build-linux, build-windows]
-    runs-on: ubuntu-latest
+    runs-on: ${{ fromJSON(vars.IAO_RUNS_ON_LINUX || '{"group":"maison","labels":["self-hosted","linux"]}') }}
 
     steps:
       - name: Checkout du dépôt

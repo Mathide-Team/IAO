@@ -17,7 +17,7 @@ name: Tests Electron (intégration)
 jobs:
   tests-electron:
     name: Harnais Electron (xvfb)
-    runs-on: ubuntu-latest
+    runs-on: ${{ fromJSON(vars.IAO_RUNS_ON_LINUX || '{"group":"maison","labels":["self-hosted","linux"]}') }}
     timeout-minutes: 20
 
     steps:
@@ -33,8 +33,21 @@ jobs:
       - name: Installation des dépendances (npm ci)
         run: npm ci
 
-      - name: Installation de xvfb
-        run: sudo apt-get update && sudo apt-get install -y xvfb
+      - name: Installation de xvfb et des bibliothèques d'Electron
+        # Runners « maison » : conteneurs Ubuntu minimaux, en root et sans sudo,
+        # sans les bibliothèques graphiques préinstallées sur ubuntu-latest.
+        # La liste couvre aussi ubuntu-latest (sudo y est présent).
+        run: |
+          SUDO=""
+          if [ "$(id -u)" != "0" ]; then SUDO="sudo"; fi
+          export DEBIAN_FRONTEND=noninteractive
+          $SUDO apt-get update
+          $SUDO apt-get install -y --no-install-recommends xvfb xauth \
+            libnss3 libgbm1 libgtk-3-0 libxss1 libxtst6 libatk-bridge2.0-0 \
+            libdrm2 libxkbcommon0 libxshmfence1 libsecret-1-0 libcups2 \
+            libnotify4 libuuid1 fonts-dejavu-core
+          $SUDO apt-get install -y --no-install-recommends libasound2t64 \
+            || $SUDO apt-get install -y --no-install-recommends libasound2
 
       - name: Tests d'intégration Electron (popups + Continuer)
         run: npm run test:electron
