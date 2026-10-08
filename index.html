@@ -67,6 +67,11 @@
 <!-- copyText : issue #138 (clic sur l'e-mail d'un compte -> presse-papiers),
      extraite vers lib/ dès l'écriture (invariant 11), dépendances injectées. -->
 <script src="lib/copy-text.js"></script>
+<!-- Issue #51 : internationalisation gettext. Fonctions pures (lecture du
+     catalogue, pluriels, traduction en conservant les espaces) ; le catalogue
+     lui-même est fourni par main.js (canal i18n:catalog) et appliqué au DOM
+     statique par applyTranslations() dans assets/app.js. -->
+<script src="lib/i18n.js"></script>
 <!-- Feuille de style extraite d'index.html (lot 8, 18/09/2026) :
      tout le CSS vit désormais dans assets/app.css, chargé par <link>.
      Les chemins des polices ont été ajustés (url("fonts/...") ) car la

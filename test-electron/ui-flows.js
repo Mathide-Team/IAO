@@ -379,6 +379,44 @@ async function run() {
   });
 
   // =========================================================================
+  // C7 — Internationalisation (issue #51)
+  // =========================================================================
+  console.log('\n--- C7 : Internationalisation ---');
+
+  await test('C7.1 Par défaut l\'interface reste en français (langue source)', async () => {
+    const r = await exec(`({ lang: document.documentElement.lang,
+      title: document.querySelector('[data-action="ui-openModal"]').getAttribute('title') })`);
+    assert(r.lang === 'fr', 'lang attendu fr, trouvé ' + r.lang);
+    assert(r.title === 'Ajouter un compte', 'title inattendu : ' + r.title);
+  });
+
+  await test('C7.2 IAO_LANG=en traduit textes, title et placeholder sans casser les icônes', async () => {
+    process.env.IAO_LANG = 'en';
+    try {
+      win.webContents.reload();
+      await sleep(300);
+      await waitLoaded();
+      const r = await exec(`({
+        lang: document.documentElement.lang,
+        title: document.querySelector('[data-action="ui-openModal"]').getAttribute('title'),
+        placeholder: document.getElementById('paletteInput').getAttribute('placeholder'),
+        section: document.querySelector('.section-title--accounts span').textContent,
+        icons: document.querySelectorAll('span.ic[data-icon]').length,
+        svgs: document.querySelectorAll('span.ic[data-icon] svg').length,
+        bootError: document.getElementById('bootError') !== null
+      })`);
+      assert(r.lang === 'en', 'lang attendu en, trouvé ' + r.lang);
+      assert(r.title === 'Add an account', 'title non traduit : ' + r.title);
+      assert(r.placeholder === 'Search for an account or an AI...', 'placeholder non traduit : ' + r.placeholder);
+      assert(r.section === 'Saved accounts', 'texte non traduit : ' + r.section);
+      assert(r.svgs === r.icons, 'icônes perdues après traduction : ' + r.svgs + '/' + r.icons);
+      assert(!r.bootError, 'bandeau d\'erreur de démarrage affiché');
+    } finally {
+      delete process.env.IAO_LANG;
+    }
+  });
+
+  // =========================================================================
   // Nettoyage
   // =========================================================================
   console.log('\n--- Résumé ---');

@@ -11,6 +11,8 @@
     "start:linux-dev": "electron . --no-sandbox",
     "start:debug": "electron . --iao-debug --no-sandbox",
     "test": "node --test",
+    "i18n:update": "bash scripts/i18n-update.sh",
+    "i18n:check": "bash scripts/i18n-update.sh --check",
     "test:coverage": "node --test --experimental-test-coverage --test-coverage-exclude='test/**' --test-coverage-lines=100 --test-coverage-branches=100 --test-coverage-functions=100",
     "test:electron": "xvfb-run -a electron --no-sandbox test-electron/popups-continue.js",
     "test:electron:ui": "xvfb-run -a electron --no-sandbox test-electron/ui-flows.js",

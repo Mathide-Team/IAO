@@ -408,6 +408,18 @@ de `scheduler/index.js` pour ne pas repartir de zéro.
 
 ## 13. Dernières évolutions
 
+### Internationalisation gettext — lot 1 (issue #51, 08/10/2026)
+
+- Langue source : français (`msgid`). Catalogues dans `lang/` (`LINGUAS`, `messages.pot`,
+  `<xx>.po`, `<xx>/LC_MESSAGES/iao.mo`), 29 locales.
+- `lib/i18n.js` (pur) ; `main.js` canal `i18n:catalog` (langue : `--iao-lang=xx` ou
+  `IAO_LANG`, français sinon) ; `assets/app.js` `applyTranslations()` sur le DOM statique
+  et `window.iaoT()`.
+- Outillage : `scripts/i18n-update.sh` (`npm run i18n:update` / `i18n:check`), CI
+  `.github/workflows/i18n.yml` (vérification + PR automatique). Détails : `docs/i18n.md`.
+- `lib/i18n.js` est enfermé dans une IIFE : chargé en `<script>` classique, il ne doit
+  déclarer aucun nom global (`api` existe déjà dans `lib/startup-diagnostics.js`).
+
 ### Limiteur de lancement + panneau de réglages (18/09/2026)
 
 Deux features livrées (toutes deux `[~]` — application partielle) :

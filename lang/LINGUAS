@@ -1,0 +1,5 @@
+# Locales livrées par IAO (issue #51). SEULE liste des langues du projet :
+# ni le code applicatif ni le packaging ne la répètent. Ajouter une langue :
+# l'ajouter ici puis lancer scripts/i18n-update.sh (crée lang/<xx>.po).
+# fr est la langue source (msgid = libellés français).
+ar bn cs da de el en fa fi fr he hi hu id it ja ko nb nl pl pt ro ru sv th tr uk vi zh

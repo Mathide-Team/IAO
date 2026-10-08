@@ -43,6 +43,7 @@ scripts/          prune-locales.js (post-build)  build/            Icônes PNG 1
 | Lancer en dev | `npm start` (Linux : `npm run start:linux-dev`) |
 | Lancer en mode debug (issue #162) | `npm run start:debug` (ou `IAO_DEBUG=1 npm start`) — journal : `<userData>/logs/iao.log`. Traces IPC (`lib/debug-trace.js`), ordonnanceur (`_debug`), onglets IA et renderer (`dbg()`), jamais les arguments IPC |
 | Lancer les tests | `npm test` (= `node --test`) + `npm run test:electron` et `npm run test:electron:ui` (harnais réels, bloquants en CI) ; `npm run dist:linux && npm run test:electron:smoke` (binaire packagé) |
+| Catalogues de traduction (issue #51) | `npm run i18n:update` (régénère `lang/`) ; `npm run i18n:check` (mode CI). Voir `docs/i18n.md` |
 | Build Windows | `npm run dist` |
 | Build Linux (packager) | `npm run dist:linux` |
 | Paquet `.deb` | `npm run dist:linux:deb` |
@@ -82,6 +83,10 @@ Il n'existe **pas** de `npm build` : la commande est `npm run dist` (ou `dist:li
    `require()` que `electron`, `events`, `timers` et `url`. Un `require('path')` (ou tout autre
    module Node) empêche le preload de s'exécuter, `window.iaoAPI` n'existe pas et **toute
    l'interface reste vide** (issue #52). Vérifié par `test/preload-sandbox.test.js`.
+13. **Libellés traduisibles (issue #51)** : le français est la langue source (`msgid`). Un libellé
+   construit en JavaScript passe par `window.iaoT('…')` ; tout libellé ajouté ou modifié impose
+   `npm run i18n:update` et le commit de `lang/` (sinon le job « Catalogues de traduction » échoue).
+   La liste des langues vit **uniquement** dans `lang/LINGUAS`.
 
 ## 5. Ajouter un service IA (pattern data-driven)
 

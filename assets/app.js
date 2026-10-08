@@ -106,6 +106,43 @@
       dbg('demarrage', 'mode debug actif dans l\'interface');
     }).catch(() => { /* canal absent (ancienne version de main.js) : mode normal */ });
 
+    // Issue #51 : internationalisation. main.js renvoie le catalogue de la
+    // langue demandée (--iao-lang=xx / IAO_LANG) ; en français (langue
+    // source) il est vide et rien n'est touché. Lot 1 : interface statique
+    // d'index.html (textes, title, placeholder...) ; les libellés construits
+    // par ce fichier passeront par window.iaoT() dans les lots suivants.
+    const I18N = window.IAO_I18N;
+    window.iaoT = (msgid) => msgid;
+    function applyTranslations(root, tr) {
+      const SKIP = new Set(['SCRIPT', 'STYLE', 'TEXTAREA', 'WEBVIEW']);
+      const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+      const texts = [];
+      for (let n = walker.nextNode(); n; n = walker.nextNode()) texts.push(n);
+      for (const node of texts) {
+        const parent = node.parentElement;
+        if (!parent || SKIP.has(parent.tagName) || parent.closest('#monacoContainer')) continue;
+        const next = I18N.translateText(node.nodeValue, tr);
+        if (next !== node.nodeValue) node.nodeValue = next;
+      }
+      for (const attr of I18N.TRANSLATED_ATTRIBUTES) {
+        root.querySelectorAll('[' + attr + ']').forEach((el) => {
+          const value = el.getAttribute(attr);
+          const next = I18N.translateText(value, tr);
+          if (next !== value) el.setAttribute(attr, next);
+        });
+      }
+    }
+    if (I18N) {
+      ipcRenderer.invoke('i18n:catalog').then((catalog) => {
+        if (!catalog || catalog.locale === I18N.SOURCE_LOCALE) return;
+        const tr = I18N.createTranslator(catalog);
+        window.iaoT = tr.gettext;
+        document.documentElement.lang = catalog.locale;
+        applyTranslations(document.body, tr);
+        dbg('i18n', 'interface traduite : ' + catalog.locale);
+      }).catch((e) => { console.warn('[i18n] catalogue indisponible, interface en français :', e && e.message); });
+    }
+
     const SERVICES = [
       { id: 'claude', name: 'Claude', url: 'https://claude.ai/new', cssClass: 'svc-claude' },
       { id: 'chatgpt', name: 'ChatGPT', url: 'https://chatgpt.com/', cssClass: 'svc-chatgpt' },

@@ -142,6 +142,12 @@ L'exe a besoin du dossier complet — pour distribuer, zippez tout le dossier. L
 
 **Limitation connue (Windows)** : `electron-builder` ne fonctionne pas sans droits administrateur ou Mode développeur Windows (création de liens symboliques) — c'est pourquoi le packaging Windows passe par `@electron/packager` et qu'il n'y a ni installateur ni exe portable mono-fichier côté Windows. Sous Linux, `electron-builder` fonctionne normalement, d'où le `.deb`.
 
+## Langue de l'interface
+
+IAO est en français. Les autres langues (29 locales gettext dans `lang/`) se
+choisissent avec `IAO_LANG=en npm start` ou `iao --iao-lang=en`. Traductions,
+ajout d'une langue et CI : [docs/i18n.md](docs/i18n.md) (issue #51).
+
 ## Emplacement des données
 
 | Plateforme | Comptes, cooldowns et sessions IA |

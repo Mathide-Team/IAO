@@ -1,0 +1,312 @@
+# Catalogue source d'IAO — généré par scripts/i18n-update.sh, ne pas éditer.
+# Langue source : français.
+msgid ""
+msgstr ""
+"Project-Id-Version: IAO\n"
+"Report-Msgid-Bugs-To: https://github.com/Mathide-Team/IAO/issues\n"
+"Last-Translator: IAO (relecture humaine attendue, issue #51)\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: index.html:90
+msgid "Rechercher un compte ou une IA..."
+msgstr "Search for an account or an AI..."
+
+#: index.html:100
+msgid "Comptes actifs"
+msgstr "Active accounts"
+
+#: index.html:101
+msgid "IA Disponibles"
+msgstr "Available AIs"
+
+#: index.html:102
+msgid "Rechercher un compte ou une IA (Ctrl+K)"
+msgstr "Search for an account or an AI (Ctrl+K)"
+
+#: index.html:106
+msgid "Comptes enregistrés"
+msgstr "Saved accounts"
+
+#: index.html:108
+msgid "Tout replier / Tout déplier"
+msgstr "Collapse all / Expand all"
+
+#: index.html:109
+msgid "Exporter les comptes (JSON)"
+msgstr "Export accounts (JSON)"
+
+#: index.html:110
+msgid "Importer des comptes (JSON)"
+msgstr "Import accounts (JSON)"
+
+#: index.html:111
+msgid "Ajouter un compte"
+msgstr "Add an account"
+
+#: index.html:126
+msgid "Mode debug actif : traces détaillées dans le journal iao.log"
+msgstr "Debug mode on: detailed traces in the iao.log file"
+
+#: index.html:128
+msgid "Masquer les comptes"
+msgstr "Hide accounts"
+
+#: index.html:129
+msgid "Afficher les comptes"
+msgstr "Show accounts"
+
+#: index.html:130
+msgid "Explorateur"
+msgstr "Explorer"
+
+#: index.html:131
+msgid "Éditeur"
+msgstr "Editor"
+
+#: index.html:132
+msgid "Outils de développement (Ctrl+Maj+I)"
+msgstr "Developer tools (Ctrl+Shift+I)"
+
+#: index.html:137
+msgid "Choisir mes 9 IA à portée de main"
+msgstr "Choose my 9 go-to AIs"
+
+#: index.html:138
+msgid "Comprendre les IA disponibles"
+msgstr "Understand the available AIs"
+
+#: index.html:140
+msgid "Ordonnanceur IA"
+msgstr "AI scheduler"
+
+#: index.html:141
+msgid "Réglages"
+msgstr "Settings"
+
+#: index.html:150
+msgid "Fichiers"
+msgstr "Files"
+
+#: index.html:152
+msgid "Ouvrir un dossier"
+msgstr "Open a folder"
+
+#: index.html:153
+msgid "Réduire"
+msgstr "Collapse"
+
+#: index.html:158
+msgid "Rechercher un fichier..."
+msgstr "Search for a file..."
+
+#: index.html:161
+msgid "Glisser pour redimensionner"
+msgstr "Drag to resize"
+
+#: index.html:163
+msgid "Aucun fichier"
+msgstr "No file"
+
+#: index.html:168
+msgid "Glisser pour redimensionner l'éditeur"
+msgstr "Drag to resize the editor"
+
+#: index.html:174
+msgid "Aucun onglet ouvert — choisissez un service dans la liste des comptes"
+msgstr "No open tab — pick a service in the account list"
+
+#: index.html:184
+msgid "Le profil permet d'isoler les cookies dans Electron."
+msgstr "The profile keeps cookies isolated in Electron."
+
+#: index.html:186
+msgid "Nom du compte"
+msgstr "Account name"
+
+#: index.html:188
+msgid "Nom du Profil"
+msgstr "Profile name"
+
+#: index.html:190
+msgid "Annuler"
+msgstr "Cancel"
+
+#: index.html:191
+msgid "Enregistrer"
+msgstr "Save"
+
+#: index.html:199
+msgid "Supprimer le compte"
+msgstr "Delete the account"
+
+#: index.html:200
+msgid "Cette action est irréversible."
+msgstr "This cannot be undone."
+
+#: index.html:204
+msgid "Supprimer"
+msgstr "Delete"
+
+#: index.html:215
+msgid "Importer des comptes"
+msgstr "Import accounts"
+
+#: index.html:219
+msgid "Remplacer et importer"
+msgstr "Replace and import"
+
+#: index.html:232
+msgid "Déconnecter le profil"
+msgstr "Sign out the profile"
+
+#: index.html:236
+msgid "Déconnecter"
+msgstr "Sign out"
+
+#: index.html:246
+msgid "À quoi sert chaque service, et quand l'utiliser."
+msgstr "What each service is for, and when to use it."
+
+#: index.html:249
+msgid "Fermer"
+msgstr "Close"
+
+#: index.html:260
+msgid "Sélectionnez les 9 services affichés dans l'interface. Les autres restent disponibles dans l'aide."
+msgstr "Select the 9 services shown in the interface. The others remain available in the help."
+
+#: index.html:277
+msgid "Détection des ZIP livrés par les onglets IA, reprise par profil."
+msgstr "Detects ZIP files delivered by AI tabs, with per-profile resume."
+
+#: index.html:279
+msgid "Activer / désactiver l'ordonnanceur"
+msgstr "Enable / disable the scheduler"
+
+#: index.html:287
+msgid "Jobs actifs"
+msgstr "Active jobs"
+
+#: index.html:288
+msgid "En attente"
+msgstr "Pending"
+
+#: index.html:289
+msgid "Livrés aujourd'hui"
+msgstr "Delivered today"
+
+#: index.html:293
+msgid "Jobs simultanés max."
+msgstr "Max. concurrent jobs"
+
+#: index.html:294
+msgid "Délai min. entre automatisations (min)"
+msgstr "Min. delay between automations (min)"
+
+#: index.html:295
+msgid "Seuil profil « le plus ancien » (h)"
+msgstr "\"Oldest\" profile threshold (h)"
+
+#: index.html:297
+msgid "Dossiers"
+msgstr "Folders"
+
+#: index.html:299
+msgid "Téléchargements…"
+msgstr "Downloads…"
+
+#: index.html:300
+msgid "Livraison…"
+msgstr "Delivery…"
+
+#: index.html:305
+msgid "Téléchargements :"
+msgstr "Downloads:"
+
+#: index.html:305
+msgid "(dossier de téléchargements du système)"
+msgstr "(system downloads folder)"
+
+#: index.html:306
+msgid "Livraison :"
+msgstr "Delivery:"
+
+#: index.html:306
+msgid "(non défini)"
+msgstr "(not set)"
+
+#: index.html:309
+msgid "Projets & tâches"
+msgstr "Projects & tasks"
+
+#: index.html:312
+msgid "Jobs"
+msgstr "Jobs"
+
+#: index.html:315
+msgid "Journal d'activité"
+msgstr "Activity log"
+
+#: index.html:327
+msgid "Confirmation"
+msgstr "Confirmation"
+
+#: index.html:331
+msgid "Confirmer"
+msgstr "Confirm"
+
+#: index.html:341
+msgid "Préférences de l'application, sauvegardées localement."
+msgstr "Application preferences, saved locally."
+
+#: index.html:346
+msgid "Taille de police de l'éditeur (px)"
+msgstr "Editor font size (px)"
+
+#: index.html:353
+msgid "Thème"
+msgstr "Theme"
+
+#: index.html:355
+msgid "Thème du bureau (défaut)"
+msgstr "Desktop theme (default)"
+
+#: index.html:357
+msgid "Clair"
+msgstr "Light"
+
+#: index.html:358
+msgid "Sombre"
+msgstr "Dark"
+
+#: index.html:364
+msgid "Retour à la ligne (éditeur)"
+msgstr "Word wrap (editor)"
+
+#: index.html:366
+msgid "Désactivé"
+msgstr "Off"
+
+#: index.html:367
+msgid "Activé"
+msgstr "On"
+
+#: index.html:368
+msgid "Colonne fixe"
+msgstr "Fixed column"
+
+#: index.html:375
+msgid "Confirmer avant de fermer un onglet"
+msgstr "Confirm before closing a tab"
+
+#: index.html:378
+msgid "Afficher les fenêtres d'automatisation"
+msgstr "Show automation windows"
+
+#: index.html:381
+msgid "Restaurer les onglets ouverts au démarrage"
+msgstr "Restore open tabs at startup"

@@ -1,5 +1,34 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issue #51 (lot 1) — Internationalisation gettext, 29 locales (08/10/2026)
+
+### Livré
+- `lang/LINGUAS` (seule liste des 29 locales), `lang/messages.pot`, `lang/<xx>.po`,
+  `lang/<xx>/LC_MESSAGES/iao.mo`.
+- `lib/i18n.js` (pur, 100 % couvert) : lecture `.mo`, `Plural-Forms` évalué sans `eval`
+  (CSP), `gettext`/`ngettext`/`pgettext`, négociation de locale, extraction HTML.
+- `main.js` : canal `i18n:catalog`. `assets/app.js` : traduction du DOM statique,
+  `window.iaoT()` pour les lots suivants.
+- `scripts/i18n-update.sh` (`npm run i18n:update` / `i18n:check`) : `xgettext` +
+  extracteur HTML, `msgmerge` (traductions conservées), `msgfmt --check`, compilation,
+  rapport par locale.
+- `.github/workflows/i18n.yml` : vérification CI + PR automatique
+  « chore(i18n): update translation catalogs » sur `dev`.
+- Anglais : les 75 chaînes de l'interface statique (à relire).
+- Doc : `docs/i18n.md`.
+
+### Comportement
+Français par défaut (inchangé). Autre langue : `IAO_LANG=en` ou `--iao-lang=en`.
+
+### Tests
+- `test/i18n.test.js` (24 tests), `main-harness` (canal `i18n:catalog`, repli si `.mo` corrompu).
+- Harnais Electron `ui-flows` : C7.1 (français par défaut), C7.2 (`IAO_LANG=en` traduit
+  textes, `title`, `placeholder`, icônes intactes).
+
+### Reste à faire (lots suivants)
+Libellés construits par `assets/app.js` via `window.iaoT()`, sélecteur de langue dans
+les réglages, bascule automatique sur la langue du système, relecture des traductions.
+
 ## Correctif #165 — Démarrage difficile : --debug obsolète, sandbox, Database IO error (07/10/2026)
 
 ### Causes
