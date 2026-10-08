@@ -332,4 +332,42 @@ test('preferredLocales : demande explicite, puis réglage, puis langues du syst�
   assert.deepEqual(i18n.preferredLocales({ setting: 42, system: ['nl', '', null] }), ['nl', 'null']);
   assert.deepEqual(i18n.preferredLocales({ system: 'fr' }), []);
   assert.deepEqual(i18n.preferredLocales(), []);
+test('blankTemplateText : texte des gabarits blanchi, expressions, chaînes et lignes conservées', () => {
+  const b = i18n.blankTemplateText;
+  const src = "const a = `L'import ${_('Garder')} fin`;\nx = _(\"C'est\");";
+  const out = b(src);
+  assert.equal(out.length, src.length);
+  assert.equal(out.split('\n').length, 2);
+  assert.ok(!out.includes("L'import") && !out.includes('fin'));
+  assert.ok(out.includes("_('Garder')") && out.includes('_("C\'est")'));
+  // gabarit sur plusieurs lignes, échappements, expressions imbriquées avec accolades
+  const multi = "t = `a\\`b\n${ {k: `in${1}ner`}.k } c\n`; y = _('ok');";
+  const m = b(multi);
+  assert.equal(m.split('\n').length, multi.split('\n').length);
+  assert.ok(m.includes("{k:") && m.includes(".k") && m.includes("_('ok')"));
+  assert.ok(!m.includes('ner') && !m.includes(' c\n'.trim() + '\n'));
+  // gabarit non terminé et échappement en fin de texte : pas de boucle infinie
+  assert.equal(b('`abc').length, 4);
+  assert.equal(b('`a\\').length, 3);
+});
+
+test('blankTemplateText : commentaires, chaînes et expressions régulières intacts', () => {
+  const b = i18n.blankTemplateText;
+  const keep = [
+    "// TRANSLATORS: `gabarit` dans un commentaire\n_('x');",
+    "/* bloc ` ' */ _('y');",
+    '/* non fermé `',
+    '// fin sans saut de ligne `',
+    "s = 'a\\'b`c'; t = \"d`\";",
+    "r = /[/`']+/g; q = x / 2 / y;",
+    "if (ok) return /a\\/`/.test(s);",
+    "r = /`/",
+    "u = 'non fermée\n`x`"
+  ];
+  for (const src of keep.slice(0, 8)) assert.equal(b(src), src, src);
+  assert.equal(b(keep[8]), "u = 'non fermée\n   ");
+  // division après un identifiant : pas une expression régulière
+  assert.equal(b('a = b / `t` / c'), 'a = b /     / c');
+  // accolades ordinaires hors gabarit
+  assert.equal(b('f() { return {a: 1}; }'), 'f() { return {a: 1}; }');
 });
