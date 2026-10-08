@@ -332,6 +332,8 @@ test('preferredLocales : demande explicite, puis réglage, puis langues du syst�
   assert.deepEqual(i18n.preferredLocales({ setting: 42, system: ['nl', '', null] }), ['nl', 'null']);
   assert.deepEqual(i18n.preferredLocales({ system: 'fr' }), []);
   assert.deepEqual(i18n.preferredLocales(), []);
+});
+
 test('blankTemplateText : texte des gabarits blanchi, expressions, chaînes et lignes conservées', () => {
   const b = i18n.blankTemplateText;
   const src = "const a = `L'import ${_('Garder')} fin`;\nx = _(\"C'est\");";
