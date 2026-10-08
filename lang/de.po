@@ -1,0 +1,311 @@
+# Catalogue source d'IAO — généré par scripts/i18n-update.sh, ne pas éditer.
+# Langue source : français.
+msgid ""
+msgstr ""
+"Project-Id-Version: IAO\n"
+"Report-Msgid-Bugs-To: https://github.com/Mathide-Team/IAO/issues\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: index.html:90
+msgid "Rechercher un compte ou une IA..."
+msgstr ""
+
+#: index.html:100
+msgid "Comptes actifs"
+msgstr ""
+
+#: index.html:101
+msgid "IA Disponibles"
+msgstr ""
+
+#: index.html:102
+msgid "Rechercher un compte ou une IA (Ctrl+K)"
+msgstr ""
+
+#: index.html:106
+msgid "Comptes enregistrés"
+msgstr ""
+
+#: index.html:108
+msgid "Tout replier / Tout déplier"
+msgstr ""
+
+#: index.html:109
+msgid "Exporter les comptes (JSON)"
+msgstr ""
+
+#: index.html:110
+msgid "Importer des comptes (JSON)"
+msgstr ""
+
+#: index.html:111
+msgid "Ajouter un compte"
+msgstr ""
+
+#: index.html:126
+msgid "Mode debug actif : traces détaillées dans le journal iao.log"
+msgstr ""
+
+#: index.html:128
+msgid "Masquer les comptes"
+msgstr ""
+
+#: index.html:129
+msgid "Afficher les comptes"
+msgstr ""
+
+#: index.html:130
+msgid "Explorateur"
+msgstr ""
+
+#: index.html:131
+msgid "Éditeur"
+msgstr ""
+
+#: index.html:132
+msgid "Outils de développement (Ctrl+Maj+I)"
+msgstr ""
+
+#: index.html:137
+msgid "Choisir mes 9 IA à portée de main"
+msgstr ""
+
+#: index.html:138
+msgid "Comprendre les IA disponibles"
+msgstr ""
+
+#: index.html:140
+msgid "Ordonnanceur IA"
+msgstr ""
+
+#: index.html:141
+msgid "Réglages"
+msgstr ""
+
+#: index.html:150
+msgid "Fichiers"
+msgstr ""
+
+#: index.html:152
+msgid "Ouvrir un dossier"
+msgstr ""
+
+#: index.html:153
+msgid "Réduire"
+msgstr ""
+
+#: index.html:158
+msgid "Rechercher un fichier..."
+msgstr ""
+
+#: index.html:161
+msgid "Glisser pour redimensionner"
+msgstr ""
+
+#: index.html:163
+msgid "Aucun fichier"
+msgstr ""
+
+#: index.html:168
+msgid "Glisser pour redimensionner l'éditeur"
+msgstr ""
+
+#: index.html:174
+msgid "Aucun onglet ouvert — choisissez un service dans la liste des comptes"
+msgstr ""
+
+#: index.html:184
+msgid "Le profil permet d'isoler les cookies dans Electron."
+msgstr ""
+
+#: index.html:186
+msgid "Nom du compte"
+msgstr ""
+
+#: index.html:188
+msgid "Nom du Profil"
+msgstr ""
+
+#: index.html:190
+msgid "Annuler"
+msgstr ""
+
+#: index.html:191
+msgid "Enregistrer"
+msgstr ""
+
+#: index.html:199
+msgid "Supprimer le compte"
+msgstr ""
+
+#: index.html:200
+msgid "Cette action est irréversible."
+msgstr ""
+
+#: index.html:204
+msgid "Supprimer"
+msgstr ""
+
+#: index.html:215
+msgid "Importer des comptes"
+msgstr ""
+
+#: index.html:219
+msgid "Remplacer et importer"
+msgstr ""
+
+#: index.html:232
+msgid "Déconnecter le profil"
+msgstr ""
+
+#: index.html:236
+msgid "Déconnecter"
+msgstr ""
+
+#: index.html:246
+msgid "À quoi sert chaque service, et quand l'utiliser."
+msgstr ""
+
+#: index.html:249
+msgid "Fermer"
+msgstr ""
+
+#: index.html:260
+msgid "Sélectionnez les 9 services affichés dans l'interface. Les autres restent disponibles dans l'aide."
+msgstr ""
+
+#: index.html:277
+msgid "Détection des ZIP livrés par les onglets IA, reprise par profil."
+msgstr ""
+
+#: index.html:279
+msgid "Activer / désactiver l'ordonnanceur"
+msgstr ""
+
+#: index.html:287
+msgid "Jobs actifs"
+msgstr ""
+
+#: index.html:288
+msgid "En attente"
+msgstr ""
+
+#: index.html:289
+msgid "Livrés aujourd'hui"
+msgstr ""
+
+#: index.html:293
+msgid "Jobs simultanés max."
+msgstr ""
+
+#: index.html:294
+msgid "Délai min. entre automatisations (min)"
+msgstr ""
+
+#: index.html:295
+msgid "Seuil profil « le plus ancien » (h)"
+msgstr ""
+
+#: index.html:297
+msgid "Dossiers"
+msgstr ""
+
+#: index.html:299
+msgid "Téléchargements…"
+msgstr ""
+
+#: index.html:300
+msgid "Livraison…"
+msgstr ""
+
+#: index.html:305
+msgid "Téléchargements :"
+msgstr ""
+
+#: index.html:305
+msgid "(dossier de téléchargements du système)"
+msgstr ""
+
+#: index.html:306
+msgid "Livraison :"
+msgstr ""
+
+#: index.html:306
+msgid "(non défini)"
+msgstr ""
+
+#: index.html:309
+msgid "Projets & tâches"
+msgstr ""
+
+#: index.html:312
+msgid "Jobs"
+msgstr ""
+
+#: index.html:315
+msgid "Journal d'activité"
+msgstr ""
+
+#: index.html:327
+msgid "Confirmation"
+msgstr ""
+
+#: index.html:331
+msgid "Confirmer"
+msgstr ""
+
+#: index.html:341
+msgid "Préférences de l'application, sauvegardées localement."
+msgstr ""
+
+#: index.html:346
+msgid "Taille de police de l'éditeur (px)"
+msgstr ""
+
+#: index.html:353
+msgid "Thème"
+msgstr ""
+
+#: index.html:355
+msgid "Thème du bureau (défaut)"
+msgstr ""
+
+#: index.html:357
+msgid "Clair"
+msgstr ""
+
+#: index.html:358
+msgid "Sombre"
+msgstr ""
+
+#: index.html:364
+msgid "Retour à la ligne (éditeur)"
+msgstr ""
+
+#: index.html:366
+msgid "Désactivé"
+msgstr ""
+
+#: index.html:367
+msgid "Activé"
+msgstr ""
+
+#: index.html:368
+msgid "Colonne fixe"
+msgstr ""
+
+#: index.html:375
+msgid "Confirmer avant de fermer un onglet"
+msgstr ""
+
+#: index.html:378
+msgid "Afficher les fenêtres d'automatisation"
+msgstr ""
+
+#: index.html:381
+msgid "Restaurer les onglets ouverts au démarrage"
+msgstr ""

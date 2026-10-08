@@ -102,7 +102,7 @@ function loadMain() {
 
 const MAIN_CHANNELS = [
   'accounts:disconnect-profile', 'accounts:export', 'accounts:import', 'app:is-debug', 'app:toggle-devtools',
-  'read-directory', 'read-directory-recursive', 'read-file', 'save-file',
+  'i18n:catalog', 'read-directory', 'read-directory-recursive', 'read-file', 'save-file',
   'select-folder', 'settings:load', 'settings:save'
 ];
 
@@ -162,6 +162,37 @@ test('main.js : « activate » recrée la fenêtre seulement si aucune n\'est ou
     assert.equal(h.electron.windows.length, 1, 'fenêtre recréée');
     assert.equal(h.electron.windows[0].loaded, 'index.html');
   } finally {
+    console.warn = warn; console.log = log;
+    h.cleanup();
+  }
+});
+
+test('i18n:catalog : français par défaut, IAO_LANG=en traduit, .mo illisible -> repli journalisé (issue #51)', () => {
+  const saved = process.env.IAO_LANG;
+  const messages = [];
+  const warn = console.warn; const log = console.log;
+  console.warn = console.log = (msg) => { messages.push(String(msg)); };
+  const h = loadMain();
+  const handler = h.electron.ipcHandlers.get('i18n:catalog');
+  const origRead = fs.readFileSync;
+  try {
+    delete process.env.IAO_LANG;
+    assert.equal(handler().locale, 'fr');
+    process.env.IAO_LANG = 'en';
+    const en = handler();
+    assert.equal(en.locale, 'en');
+    assert.equal(en.messages.Annuler, 'Cancel');
+    assert.ok(messages.some((m) => m.includes('Langue de l\'interface : en')), messages.join(' | '));
+    fs.readFileSync = function (file, ...rest) {
+      if (String(file).endsWith('iao.mo')) return Buffer.from('corrompu');
+      return origRead.call(fs, file, ...rest);
+    };
+    const bad = handler();
+    assert.equal(bad.locale, 'fr');
+    assert.ok(messages.some((m) => m.includes('repli en français')), messages.join(' | '));
+  } finally {
+    fs.readFileSync = origRead;
+    if (saved === undefined) delete process.env.IAO_LANG; else process.env.IAO_LANG = saved;
     console.warn = warn; console.log = log;
     h.cleanup();
   }

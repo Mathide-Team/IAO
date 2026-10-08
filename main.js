@@ -437,6 +437,24 @@ ipc.handle('settings:save', async (event, rawSettings) => {
   }
 });
 
+// --- Internationalisation (issue #51) ---
+// Catalogue gettext compilé (lang/<locale>/LC_MESSAGES/iao.mo) de la langue
+// demandée par --iao-lang=xx ou IAO_LANG ; français (langue source) sinon.
+// Lu à la demande du renderer, qui traduit l'interface statique.
+const i18n = require('./lib/i18n');
+
+ipc.handle('i18n:catalog', () => {
+  const catalog = i18n.loadCatalog({
+    langDir: path.join(__dirname, 'lang'),
+    preferred: i18n.requestedLocales(process.argv, process.env),
+    fs,
+    join: path.join
+  });
+  if (catalog.error) log('i18n', 'warning', 'Catalogue de traduction illisible, repli en français : ' + catalog.error);
+  else if (catalog.locale !== i18n.SOURCE_LOCALE) log('i18n', 'info', 'Langue de l\'interface : ' + catalog.locale);
+  return catalog;
+});
+
 // --- IPC pour l'ordonnanceur IA (chantier E) ---
 registerSchedulerIPC(ipc, scheduler, () => mainWindow);
 

@@ -1,0 +1,115 @@
+# Internationalisation (issue #51).
+#
+# - PR et push : scripts/i18n-update.sh --check échoue si lang/messages.pot,
+#   un lang/<xx>.po ou un .mo n'est plus synchronisé avec les sources, ou si
+#   un catalogue est invalide (msgfmt --check). Résumé des taux de traduction
+#   dans le résumé du job.
+# - Push sur dev (ou lancement manuel) : si les catalogues sont en retard, le
+#   job « Synchronisation » régénère lang/ et ouvre une PR
+#   « chore(i18n): update translation catalogs ». Les nouvelles chaînes y
+#   arrivent avec msgstr "" : aucune traduction automatique n'est ajoutée.
+name: i18n
+
+"on":
+  push:
+    branches: [main, dev]
+    paths: ['index.html', 'main.js', 'preload.js', 'assets/**', 'lib/**', 'scheduler/**', 'lang/**', 'scripts/i18n-*', '.github/workflows/i18n.yml']
+  pull_request:
+    branches: [main, dev]
+    paths: ['index.html', 'main.js', 'preload.js', 'assets/**', 'lib/**', 'scheduler/**', 'lang/**', 'scripts/i18n-*', '.github/workflows/i18n.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verification:
+    name: Catalogues de traduction (gettext)
+    runs-on: ${{ fromJSON(vars.IAO_RUNS_ON_LINUX || '{"group":"maison","labels":["self-hosted","linux"]}') }}
+    timeout-minutes: 10
+    outputs:
+      outdated: ${{ steps.check.outputs.outdated }}
+    steps:
+      - name: Checkout du dépôt
+        uses: actions/checkout@v4
+
+      - name: Installation de Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Installation de gettext
+        run: |
+          SUDO=""
+          if [ "$(id -u)" != "0" ]; then SUDO="sudo"; fi
+          command -v msgfmt >/dev/null || { $SUDO apt-get update && $SUDO apt-get install -y --no-install-recommends gettext; }
+          msgfmt --version | head -1
+
+      - name: Vérification des catalogues (scripts/i18n-update.sh --check)
+        id: check
+        run: |
+          if scripts/i18n-update.sh --check; then
+            echo "outdated=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "outdated=true" >> "$GITHUB_OUTPUT"
+            exit 1
+          fi
+
+  synchronisation:
+    name: Synchronisation automatique des catalogues
+    needs: verification
+    if: always() && needs.verification.outputs.outdated == 'true' && github.event_name != 'pull_request' && github.ref == 'refs/heads/dev'
+    runs-on: ${{ fromJSON(vars.IAO_RUNS_ON_LINUX || '{"group":"maison","labels":["self-hosted","linux"]}') }}
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout du dépôt
+        uses: actions/checkout@v4
+
+      - name: Installation de Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Installation de gettext
+        run: |
+          SUDO=""
+          if [ "$(id -u)" != "0" ]; then SUDO="sudo"; fi
+          command -v msgfmt >/dev/null || { $SUDO apt-get update && $SUDO apt-get install -y --no-install-recommends gettext; }
+
+      - name: Régénération de lang/
+        run: scripts/i18n-update.sh
+
+      - name: Branche chore/i18n-sync
+        id: push
+        run: |
+          if git diff --quiet -- lang; then echo "changed=false" >> "$GITHUB_OUTPUT"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B chore/i18n-sync
+          git add lang
+          git commit -m "chore(i18n): update translation catalogs"
+          git push --force origin chore/i18n-sync
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Pull request
+        if: steps.push.outputs.changed == 'true'
+        # Nécessite « Allow GitHub Actions to create and approve pull requests »
+        # (Settings > Actions > General). Sinon la branche est poussée et la PR
+        # reste à ouvrir à la main.
+        continue-on-error: true
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const open = await github.rest.pulls.list({ owner, repo, head: owner + ':chore/i18n-sync', state: 'open' });
+            if (open.data.length) { core.info('PR déjà ouverte : #' + open.data[0].number); return; }
+            const pr = await github.rest.pulls.create({
+              owner, repo, base: 'dev', head: 'chore/i18n-sync',
+              title: 'chore(i18n): update translation catalogs',
+              body: 'Catalogues régénérés par `scripts/i18n-update.sh` (issue #51).\n\n' +
+                    'Nouvelles chaînes avec `msgstr ""` : à traduire puis relire, aucune traduction automatique.'
+            });
+            core.info('PR ouverte : #' + pr.data.number);
