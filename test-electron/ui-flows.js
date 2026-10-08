@@ -411,6 +411,14 @@ async function run() {
       assert(r.section === 'Saved accounts', 'texte non traduit : ' + r.section);
       assert(r.svgs === r.icons, 'icônes perdues après traduction : ' + r.svgs + '/' + r.icons);
       assert(!r.bootError, 'bandeau d\'erreur de démarrage affiché');
+      // Lot 2 : libellés construits par app.js (toast « champs vides »).
+      const toast = await exec(`(() => {
+        ['inputName', 'inputEmail', 'inputProfile'].forEach((id) => { const el = document.getElementById(id); if (el) el.value = ''; });
+        window.saveAccount();
+        const all = document.querySelectorAll('#toastContainer .toast');
+        return all.length ? all[all.length - 1].textContent.trim() : '';
+      })()`);
+      assert(toast === 'Fill in all the fields', 'toast non traduit : ' + toast);
     } finally {
       delete process.env.IAO_LANG;
     }

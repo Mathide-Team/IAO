@@ -303,3 +303,22 @@ test('lib/i18n.js s\'expose en window.IAO_I18N dans le renderer', () => {
     require(file);
   }
 });
+
+test('formatMessage remplit les marqueurs nommés, même déplacés par la traduction', () => {
+  assert.equal(i18n.formatMessage('{service} ouvert avec {account}', { service: 'Claude', account: 'Pro' }), 'Claude ouvert avec Pro');
+  assert.equal(i18n.formatMessage('Opened {account} on {service}', { service: 'Claude', account: 'Pro' }), 'Opened Pro on Claude');
+  assert.equal(i18n.formatMessage('{count} compte(s)', { count: 0 }), '0 compte(s)');
+});
+
+test('formatMessage sans paramètres ou marqueur inconnu : texte inchangé', () => {
+  assert.equal(i18n.formatMessage('Compte ajouté'), 'Compte ajouté');
+  assert.equal(i18n.formatMessage('{absent} et {x}', { x: 1 }), '{absent} et 1');
+  assert.equal(i18n.formatMessage('{toString}', {}), '{toString}');
+  assert.equal(i18n.formatMessage(42, null), '42');
+});
+
+test('app.js : aucun toast littéral non traduisible', () => {
+  const src = fs.readFileSync(path.join(ROOT, 'assets', 'app.js'), 'utf8');
+  // showToast('...') ou showToast(`...`) direct : le libellé échapperait à xgettext.
+  assert.deepEqual(src.match(/showToast\(\s*['"`]/g) || [], []);
+});

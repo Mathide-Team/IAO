@@ -1,5 +1,22 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issue #51 (lot 2) — Libellés construits par app.js traduisibles (09/10/2026)
+
+### Livré
+- `lib/i18n.js` : `formatMessage(gabarit, paramètres)` (marqueurs `{nom}`, 100 % couvert).
+- `assets/app.js` : fonction `_()` (relit `window.iaoT`) sur les 78 toasts, le titre de
+  la fenêtre de résultat et la fenêtre de récupération des comptes ; concaténations et
+  littéraux de gabarit remplacés par des marqueurs nommés (76 nouvelles chaînes).
+- Catalogues régénérés : 151 chaînes, toutes traduites en anglais.
+
+### Tests
+- `test/i18n.test.js` : `formatMessage`, garde « aucun toast littéral » dans `app.js`.
+- Harnais Electron C7.2 : toast « Fill in all the fields » avec `IAO_LANG=en`.
+
+### Reste à faire
+Cartes de comptes et listes de l'ordonnanceur (HTML généré), sélecteur de langue,
+bascule automatique sur la langue du système, relecture des traductions.
+
 ## Issue #51 (lot 1) — Internationalisation gettext, 29 locales (08/10/2026)
 
 ### Livré
