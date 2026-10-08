@@ -12,7 +12,7 @@ var settings = require('../lib/settings');
 
 test('DEFAULT_SETTINGS contient toutes les cles attendues', function() {
   var keys = Object.keys(settings.DEFAULT_SETTINGS);
-  var expected = ['editorFontSize', 'editorWordWrap', 'theme', 'confirmBeforeClose', 'showAutomationWindows', 'startWithLastSession'];
+  var expected = ['editorFontSize', 'editorWordWrap', 'theme', 'confirmBeforeClose', 'showAutomationWindows', 'startWithLastSession', 'language'];
   assert.deepStrictEqual(keys.sort(), expected.sort());
 });
 
@@ -171,4 +171,20 @@ test('settingsChanged renvoie true pour objets differents', function() {
 test('settingsChanged renvoie true si un objet est null', function() {
   assert.strictEqual(settings.settingsChanged(null, {}), true);
   assert.strictEqual(settings.settingsChanged({}, null), true);
+});
+
+// --- language (issue #51, lot 3) ---------------------------------------------
+
+test('normalizeLanguage : auto, codes de locale bien formés, repli sur auto', function() {
+  assert.strictEqual(settings.DEFAULT_SETTINGS.language, 'auto');
+  assert.strictEqual(settings.normalizeLanguage('auto'), 'auto');
+  assert.strictEqual(settings.normalizeLanguage('en'), 'en');
+  assert.strictEqual(settings.normalizeLanguage('pt_BR'), 'pt_BR');
+  assert.strictEqual(settings.normalizeLanguage('fil'), 'fil');
+  ['EN', 'en-US', '../etc', '', null, 3].forEach(function(v) {
+    assert.strictEqual(settings.normalizeLanguage(v), 'auto', String(v));
+  });
+  assert.strictEqual(settings.normalizeSettings({ language: 'de' }).language, 'de');
+  assert.strictEqual(settings.normalizeSettings({ language: 'x y' }).language, 'auto');
+  assert.strictEqual(settings.normalizeSettings({}).language, 'auto');
 });

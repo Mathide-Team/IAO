@@ -439,17 +439,38 @@ ipc.handle('settings:save', async (event, rawSettings) => {
 
 // --- Internationalisation (issue #51) ---
 // Catalogue gettext compilé (lang/<locale>/LC_MESSAGES/iao.mo) de la langue
-// demandée par --iao-lang=xx ou IAO_LANG ; français (langue source) sinon.
+// demandée (--iao-lang=xx, IAO_LANG, réglage « Langue », langue du système) ;
+// français (langue source) si aucune n'est livrée.
 // Lu à la demande du renderer, qui traduit l'interface statique.
 const i18n = require('./lib/i18n');
 
+// Lot 3 : réglage « Langue » (settings.json, 'auto' par défaut) puis langues
+// du système ; --iao-lang / IAO_LANG gardent la priorité.
+function systemLocales() {
+  if (typeof app.getPreferredSystemLanguages === 'function') {
+    const list = app.getPreferredSystemLanguages();
+    if (Array.isArray(list) && list.length) return list;
+  }
+  return typeof app.getLocale === 'function' ? [app.getLocale()] : [];
+}
+
+function languageSetting() {
+  try {
+    return normalizeSettings(JSON.parse(fs.readFileSync(settingsPath, 'utf-8'))).language;
+  } catch (_) {
+    return DEFAULT_SETTINGS.language; // pas de settings.json : 'auto'
+  }
+}
+
 ipc.handle('i18n:catalog', () => {
+  const setting = languageSetting();
   const catalog = i18n.loadCatalog({
     langDir: path.join(__dirname, 'lang'),
-    preferred: i18n.requestedLocales(process.argv, process.env),
+    preferred: i18n.preferredLocales({ argv: process.argv, env: process.env, setting, system: systemLocales() }),
     fs,
     join: path.join
   });
+  catalog.setting = setting;
   if (catalog.error) log('i18n', 'warning', 'Catalogue de traduction illisible, repli en français : ' + catalog.error);
   else if (catalog.locale !== i18n.SOURCE_LOCALE) log('i18n', 'info', 'Langue de l\'interface : ' + catalog.locale);
   return catalog;

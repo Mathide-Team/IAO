@@ -322,3 +322,14 @@ test('app.js : aucun toast littéral non traduisible', () => {
   // showToast('...') ou showToast(`...`) direct : le libellé échapperait à xgettext.
   assert.deepEqual(src.match(/showToast\(\s*['"`]/g) || [], []);
 });
+
+test('preferredLocales : demande explicite, puis réglage, puis langues du système', () => {
+  const system = ['de-DE', 'en-US'];
+  assert.deepEqual(i18n.preferredLocales({ argv: ['--iao-lang=it'], env: {}, setting: 'en', system }), ['it']);
+  assert.deepEqual(i18n.preferredLocales({ argv: [], env: { IAO_LANG: 'ja' }, setting: 'en', system }), ['ja']);
+  assert.deepEqual(i18n.preferredLocales({ argv: [], env: {}, setting: ' en ', system }), ['en']);
+  assert.deepEqual(i18n.preferredLocales({ argv: [], env: {}, setting: 'auto', system }), system);
+  assert.deepEqual(i18n.preferredLocales({ setting: 42, system: ['nl', '', null] }), ['nl', 'null']);
+  assert.deepEqual(i18n.preferredLocales({ system: 'fr' }), []);
+  assert.deepEqual(i18n.preferredLocales(), []);
+});

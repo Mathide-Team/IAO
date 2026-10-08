@@ -1,5 +1,24 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issue #51 (lot 3) — Réglage « Langue », langue du système (09/10/2026)
+
+### Livré
+- `lib/i18n.js` : `preferredLocales` (demande explicite, réglage, langues du système).
+- `lib/settings.js` : réglage `language` (`auto` par défaut, code de locale validé sans
+  liste codée en dur).
+- `main.js` : `i18n:catalog` lit le réglage et `app.getPreferredSystemLanguages()`
+  (repli `app.getLocale()`), renvoie le réglage courant.
+- Réglages : liste « Langue » (« Langue du système » + catalogues livrés, nommés dans
+  leur langue), appliquée au prochain démarrage.
+
+### Comportement
+Sans `IAO_LANG` ni réglage, l'interface suit désormais la langue du système (anglais
+sur un bureau anglophone) ; chaîne non traduite : français.
+
+### Tests
+- `settings`, `i18n` (`preferredLocales`), `main-harness` (ordre de priorité, replis).
+- Harnais Electron : scénarios en `IAO_LANG=fr`, C7.3 (langue du système, sélecteur).
+
 ## Issue #51 (lot 2) — Libellés construits par app.js traduisibles (09/10/2026)
 
 ### Livré
