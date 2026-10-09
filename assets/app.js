@@ -113,6 +113,13 @@
     // par ce fichier passeront par window.iaoT() dans les lots suivants.
     const I18N = window.IAO_I18N;
     window.iaoT = (msgid) => msgid;
+    // Libellé traduisible construit en JavaScript (repéré par xgettext, mot-clé
+    // « _ ») : window.iaoT est relu à chaque appel, il devient le traducteur
+    // une fois le catalogue chargé ; params remplit les marqueurs {nom}.
+    const _ = (msgid, params) => {
+      const s = window.iaoT(msgid);
+      return I18N ? I18N.formatMessage(s, params) : s;
+    };
     function applyTranslations(root, tr) {
       const SKIP = new Set(['SCRIPT', 'STYLE', 'TEXTAREA', 'WEBVIEW']);
       const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
@@ -357,7 +364,7 @@
         return true;
       } catch (e) {
         console.error('[storage] échec écriture des comptes :', e);
-        showToast('Impossible d\'enregistrer les comptes (stockage plein ?)', 'error');
+        showToast(_('Impossible d\'enregistrer les comptes (stockage plein ?)'), 'error');
         return false;
       }
     }
@@ -554,8 +561,8 @@
       const content = getEditorValue();
       if (content === null) return;
       const success = await ipcRenderer.invoke('save-file', currentOpenFilePath, content);
-      if (success) showToast('Fichier enregistré !');
-      else showToast('Erreur d\'enregistrement.', 'error');
+      if (success) showToast(_('Fichier enregistré !'));
+      else showToast(_('Erreur d\'enregistrement.'), 'error');
     }
 
     // Rendu
@@ -770,7 +777,7 @@
       const existing = tabs.find(t => t.accId === accId && t.svcId === svcId);
       if (existing) {
         activateTab(existing.id);
-        showToast(`${svc.name} — ${acc.name} déjà ouvert`);
+        showToast(_('{service} — {account} déjà ouvert', { service: svc.name, account: acc.name }));
         return;
       }
 
@@ -828,7 +835,7 @@
       saveOpenTabs(); // lot 18/09/2026 : persistance pour startWithLastSession
       renderTabsBar();
       activateTab(tabId);
-      showToast(`${svc.name} ouvert avec ${acc.name}`);
+      showToast(_('{service} ouvert avec {account}', { service: svc.name, account: acc.name }));
       // Le renderAccounts() plus haut (avant la création de l'onglet) ne
       // voyait pas encore ce nouvel onglet : on re-rend pour que le badge de
       // statut du compte passe bleu « ouvert » immédiatement (lot 16/09/2026).
@@ -923,7 +930,7 @@
       // re-rendu ici pour repasser rouge/vert dès la fermeture (lot 16/09/2026).
       renderAccounts();
       saveOpenTabs(); // lot 18/09/2026 : persistance pour startWithLastSession
-      showToast('Onglet fermé (mémoire libérée)');
+      showToast(_('Onglet fermé (mémoire libérée)'));
     }
 
     document.getElementById('tabsBar').addEventListener('click', (e) => {
@@ -992,7 +999,7 @@
           toggleTabStarById(accId, svcId);
           renderTabsBar();
           renderAccounts();
-          showToast(isTabStarredById(accId, svcId) ? 'Onglet étoilé' : 'Étoile retirée');
+          showToast(isTabStarredById(accId, svcId) ? _('Onglet étoilé') : _('Étoile retirée'));
         } else if (action === 'close-tab') {
           closeTab(tabId);
         }
@@ -1085,7 +1092,7 @@
       const acc = accounts.find(a => a.id === accId);
       if (!acc) return;
       const res = await ipcRenderer.invoke('accounts:disconnect-profile', acc.profile);
-      if (!res || !res.ok) { showToast('Échec de la déconnexion du profil'); return; }
+      if (!res || !res.ok) { showToast(_('Échec de la déconnexion du profil')); return; }
       // Toutes les webviews de ce compte doivent recharger pour repartir sur
       // une session vierge (les cookies qu'elles avaient en mémoire ne sont
       // pas invalidés tant qu'elles ne rechargent pas).
@@ -1093,7 +1100,7 @@
         const webview = t.paneEl.querySelector('webview');
         if (webview) webview.reload();
       });
-      showToast(`Profil « ${acc.profile} » déconnecté — session effacée`);
+      showToast(_('Profil « {profile} » déconnecté — session effacée', { profile: acc.profile }));
     }
     document.getElementById('tabsContent').addEventListener('click', (e) => {
       const el = e.target.closest('[data-action]');
@@ -1154,7 +1161,7 @@
       const res = await ipcRenderer.invoke('read-file', filePath);
       // Fichier trop volumineux : main renvoie un sentinel {error:'too_large'}.
       if (res && typeof res === 'object' && res.error === 'too_large') {
-        showToast('Fichier trop volumineux pour l\'éditeur : ' + Math.round(res.size / 1048576) + ' Mo (limite : 20 Mo).', 'error');
+        showToast(_('Fichier trop volumineux pour l\'éditeur : {size} Mo (limite : 20 Mo).', { size: Math.round(res.size / 1048576) }), 'error');
         return;
       }
       if (res === null) return; // fichier illisible (permissions, disparu…)
@@ -1337,7 +1344,7 @@
           if (cb.checked) {
             if (pendingServices.size >= MAX_ACTIVE_SERVICES) {
               cb.checked = false;
-              showToast('Maximum ' + MAX_ACTIVE_SERVICES + ' services à portée de main', 'error');
+              showToast(_('Maximum {max} services à portée de main', { max: MAX_ACTIVE_SERVICES }), 'error');
               return;
             }
             pendingServices.add(cb.dataset.svcId);
@@ -1353,11 +1360,11 @@
     window.saveServicesModal = function() {
       if (!pendingServices) return closeServicesModal();
       const ids = Array.from(pendingServices);
-      if (ids.length === 0) { showToast('Sélectionnez au moins 1 service', 'error'); return; }
+      if (ids.length === 0) { showToast(_('Sélectionnez au moins 1 service'), 'error'); return; }
       saveActiveServices(ids);
       closeServicesModal();
       // Mettre à jour ALL_SERVICES et re-rendre les comptes
-      showToast('Services mis à jour (' + ids.length + '/' + MAX_ACTIVE_SERVICES + ')');
+      showToast(_('Services mis à jour ({count}/{max})', { count: ids.length, max: MAX_ACTIVE_SERVICES }));
       // Recharger pour appliquer les changements partout
       renderAccounts();
     };
@@ -1385,11 +1392,11 @@
       try {
         const res = await ipcRenderer.invoke('accounts:export', exportAccountsJSON());
         if (res && res.canceled) return; // l'utilisateur a fermé la boîte de dialogue
-        if (res && res.error) { showToast('Échec de l\'export (écriture impossible)', 'error'); return; }
-        showToast(`${accounts.length} compte(s) exporté(s)`);
+        if (res && res.error) { showToast(_('Échec de l\'export (écriture impossible)'), 'error'); return; }
+        showToast(_('{count} compte(s) exporté(s)', { count: accounts.length }));
       } catch (e) {
         console.error('[import-export] export impossible :', e);
-        showToast('Export impossible', 'error');
+        showToast(_('Export impossible'), 'error');
       }
     }
 
@@ -1401,11 +1408,11 @@
       try {
         const res = await ipcRenderer.invoke('accounts:import');
         if (res && res.canceled) return;
-        if (res && res.error) { showToast('Échec de la lecture du fichier', 'error'); return; }
+        if (res && res.error) { showToast(_('Échec de la lecture du fichier'), 'error'); return; }
         let parsed;
         try { parsed = JSON.parse(res.content); }
-        catch (e) { showToast('Fichier JSON invalide', 'error'); return; }
-        if (!Array.isArray(parsed)) { showToast('Format invalide : un tableau de comptes est attendu.', 'error'); return; }
+        catch (e) { showToast(_('Fichier JSON invalide'), 'error'); return; }
+        if (!Array.isArray(parsed)) { showToast(_('Format invalide : un tableau de comptes est attendu.'), 'error'); return; }
         pendingImportContent = res.content;
         document.getElementById('importConfirmDesc').textContent =
           `Le fichier contient ${parsed.length} compte(s). L'import REMPLACE entièrement la liste actuelle ` +
@@ -1414,7 +1421,7 @@
         document.getElementById('importConfirmModal').classList.add('open');
       } catch (e) {
         console.error('[import-export] import impossible :', e);
-        showToast('Import impossible', 'error');
+        showToast(_('Import impossible'), 'error');
       }
     }
     window.closeImportConfirm = function() {
@@ -1431,10 +1438,10 @@
       if (!content) return;
       try {
         const count = importAccountsJSON(content); // saveAccounts() + renderAccounts() déjà inclus
-        showToast(`${count} compte(s) importé(s)`);
+        showToast(_('{count} compte(s) importé(s)', { count }));
       } catch (e) {
         console.error('[import-export] échec de l\'import :', e);
-        showToast('Échec de l\'import : ' + (e.message || e), 'error');
+        showToast(_('Échec de l\'import : {error}', { error: e.message || e }), 'error');
       }
     }
     window.confirmDelete = function() {
@@ -1446,7 +1453,7 @@
       saveAccounts(accounts); // écrit + backup de la génération précédente (chantier C)
       renderAccounts();
       closeDeleteModal();
-      showToast('Compte supprimé');
+      showToast(_('Compte supprimé'));
     }
 
     window.saveAccount = function() {
@@ -1454,20 +1461,20 @@
       const name = document.getElementById('inputName').value.trim();
       const email = document.getElementById('inputEmail').value.trim();
       const profile = document.getElementById('inputProfile').value.trim();
-      if (!name || !email || !profile) return showToast('Remplissez tous les champs', 'error');
+      if (!name || !email || !profile) return showToast(_('Remplissez tous les champs'), 'error');
 
       // Unicité du profil (chantier audit 3.1) : deux comptes partageant le même
       // `profile` utiliseraient la MÊME partition Electron (persist:<profile>) →
       // cookies/sessions mêlés entre comptes. On refuse la collision.
       if (accounts.some(a => a.id !== id && a.profile === profile)) {
-        return showToast('Ce profil est déjà utilisé par un autre compte (les sessions seraient partagées).', 'error');
+        return showToast(_('Ce profil est déjà utilisé par un autre compte (les sessions seraient partagées).'), 'error');
       }
 
       if (id) {
         const acc = accounts.find(a => a.id === id);
         if (!acc) return; // garde : id obsolète
         Object.assign(acc, { name, email, profile });
-        showToast('Compte mis à jour');
+        showToast(_('Compte mis à jour'));
       } else {
         accounts.push({
           id: 'acc_' + Date.now(), name, email, profile,
@@ -1476,7 +1483,7 @@
           cooldowns: Object.fromEntries(SERVICES.map(s => [s.id, 0])),
           automation: { enabled: true, lastUsedAt: 0, lastAutomationAt: 0 }
         });
-        showToast('Compte ajouté');
+        showToast(_('Compte ajouté'));
       }
       saveAccounts(accounts); // écrit + backup de la génération précédente (chantier C)
       renderAccounts();
@@ -1490,7 +1497,7 @@
       const acc = accounts.find(a => a.id === accId);
       if (!acc || !acc.email) return;
       copyText(acc.email, { clipboard: navigator.clipboard, document }).then(ok => {
-        showToast(ok ? 'E-mail copié : ' + acc.email : 'Copie impossible dans le presse-papiers', ok ? 'success' : 'error');
+        showToast(ok ? _('E-mail copié : {email}', { email: acc.email }) : _('Copie impossible dans le presse-papiers'), ok ? 'success' : 'error');
       });
     }
 
@@ -1792,7 +1799,7 @@
             const tabEl = document.querySelector('#tabsBar .tab[data-tab="' + tab.id + '"]');
             if (tabEl) tabEl.classList.add('tab--flash');
           }
-          showToast(acc.name + ' — ' + svc.name + ' : cooldown terminé');
+          showToast(_('{account} — {service} : cooldown terminé', { account: acc.name, service: svc.name }));
         }
       }
       const minute = Math.floor(now / 60000);
@@ -1928,7 +1935,7 @@
           restoreOpenTabs();
         }
       } catch (e) {
-        showToast('Impossible de charger les réglages', 'error');
+        showToast(_('Impossible de charger les réglages'), 'error');
       }
     }
 
@@ -1945,13 +1952,13 @@
         var result = await ipcRenderer.invoke('settings:save', raw);
         if (result && result.ok) {
           applySettings(result.settings);
-          showToast('Réglages enregistrés', 'success');
+          showToast(_('Réglages enregistrés'), 'success');
           closeSettingsModal();
         } else {
-          showToast(result && result.error ? result.error : 'Erreur lors de la sauvegarde', 'error');
+          showToast(result && result.error ? result.error : _('Erreur lors de la sauvegarde'), 'error');
         }
       } catch (e) {
-        showToast('Erreur lors de la sauvegarde des réglages', 'error');
+        showToast(_('Erreur lors de la sauvegarde des réglages'), 'error');
       }
     }
     window.saveSettings = saveSettings;
@@ -2035,7 +2042,7 @@
         const res = await ipcRenderer.invoke('scheduler:set-enabled', e.target.checked);
         if (res && res.error) throw new Error(res.error);
         refreshScheduler();
-      } catch (err) { showToast("Impossible de modifier l'état de l'ordonnanceur", 'error'); }
+      } catch (err) { showToast(_("Impossible de modifier l'état de l'ordonnanceur"), 'error'); }
     });
 
     function bindSchedNumberInput(id, key) {
@@ -2045,7 +2052,7 @@
           const res = await ipcRenderer.invoke('scheduler:set-config', { [key]: value });
           if (res && res.error) throw new Error(res.error);
           refreshScheduler();
-        } catch (err) { showToast('Configuration non enregistrée', 'error'); }
+        } catch (err) { showToast(_('Configuration non enregistrée'), 'error'); }
       });
     }
     bindSchedNumberInput('schedMaxJobs', 'maxConcurrentJobs');
@@ -2057,14 +2064,14 @@
         const res = await ipcRenderer.invoke('scheduler:pick-downloads-dir');
         if (res && res.error) throw new Error(res.error);
         refreshScheduler();
-      } catch (e) { showToast('Sélection du dossier impossible', 'error'); }
+      } catch (e) { showToast(_('Sélection du dossier impossible'), 'error'); }
     });
     document.getElementById('schedPickDelivery').addEventListener('click', async () => {
       try {
         const res = await ipcRenderer.invoke('scheduler:pick-delivery-dir');
         if (res && res.error) throw new Error(res.error);
         refreshScheduler();
-      } catch (e) { showToast('Sélection du dossier impossible', 'error'); }
+      } catch (e) { showToast(_('Sélection du dossier impossible'), 'error'); }
     });
 
     // Délégation d'événements (chantier A) : un seul listener sur le conteneur,
@@ -2083,11 +2090,11 @@
           if (res && res.analysis) {
             const a = res.analysis;
             const msg = a.complete
-              ? `Projet terminé : ${a.done}/${a.total} tâches faites, 0 restante.`
-              : `${a.pending} à faire, ${a.inProgress} en cours, ${a.done} faite(s) sur ${a.total} au total.`;
+              ? _('Projet terminé : {done}/{total} tâches faites, 0 restante.', { done: a.done, total: a.total })
+              : _('{pending} à faire, {inProgress} en cours, {done} faite(s) sur {total} au total.', { pending: a.pending, inProgress: a.inProgress, done: a.done, total: a.total });
             showToast(msg, a.complete ? 'success' : 'warning');
           }
-        } catch (err) { showToast('Analyse impossible : ' + (err.message || err), 'error'); }
+        } catch (err) { showToast(_('Analyse impossible : {error}', { error: err.message || err }), 'error'); }
         return;
       }
       const channelByAction = {
@@ -2104,7 +2111,7 @@
         const res = await ipcRenderer.invoke(channel, jobId);
         if (res && res.error) { showToast(res.error, 'error'); return; }
         refreshScheduler();
-      } catch (err) { showToast('Action impossible : ' + (err.message || err), 'error'); }
+      } catch (err) { showToast(_('Action impossible : {error}', { error: err.message || err }), 'error'); }
     });
 
     // --- Projets & tâches (lot 18/09/2026, point 6) ---
@@ -2178,7 +2185,7 @@
     window.schedDiagnoseClaude = async function(profile) {
       try {
         var res = await ipcRenderer.invoke('scheduler:diagnose-claude', profile);
-        if (res && res.error) { showToast('Diagnostic Claude : ' + res.error, 'error'); return; }
+        if (res && res.error) { showToast(_('Diagnostic Claude : {error}', { error: res.error }), 'error'); return; }
         if (res) {
           var parts = [];
           if (res.continueButton && res.continueButton.found) parts.push('« Continuer »');
@@ -2188,9 +2195,9 @@
           if (res.fileUpload && res.fileUpload.found) parts.push('upload fichier');
           if (res.quotaMessage && res.quotaMessage.detected) parts.push('QUOTA: ' + res.quotaMessage.time);
           if (res.popups && res.popups.count > 0) parts.push(res.popups.count + ' popup(s)');
-          showToast('Claude (« ' + profile + ' ») : ' + (parts.length ? parts.join(', ') : 'aucun élément détecté'));
+          showToast(_('Claude (« {profile} ») : {details}', { profile, details: parts.length ? parts.join(', ') : _('aucun élément détecté') }));
         }
-      } catch (e) { showToast('Diagnostic impossible : ' + e.message, 'error'); }
+      } catch (e) { showToast(_('Diagnostic impossible : {error}', { error: e.message }), 'error'); }
     };
 
     window.schedRunClaudeJob = async function(profile, prompt, sourceZipPath) {
@@ -2198,29 +2205,29 @@
         var res = await ipcRenderer.invoke('scheduler:run-claude-job', profile, prompt, sourceZipPath);
         if (res && res.error) {
           if (res.error === 'quota_exhausted') {
-            showToast('Quota gratuit épuisé jusqu\'à ' + res.quotaTime + ' pour ce profil.', 'error');
+            showToast(_('Quota gratuit épuisé jusqu\'à {time} pour ce profil.', { time: res.quotaTime }), 'error');
           } else {
-            showToast('Job Claude échoué : ' + res.error, 'error');
+            showToast(_('Job Claude échoué : {error}', { error: res.error }), 'error');
           }
           return;
         }
         if (res && res.ok) {
-          showToast('Prompt envoyé à Claude via ' + res.method + ' (« ' + profile + ' »)');
+          showToast(_('Prompt envoyé à Claude via {method} (« {profile} »)', { method: res.method, profile }));
         }
-      } catch (e) { showToast('Job Claude impossible : ' + e.message, 'error'); }
+      } catch (e) { showToast(_('Job Claude impossible : {error}', { error: e.message }), 'error'); }
     };
 
     window.schedCollectResponse = async function(profile) {
       try {
         var res = await ipcRenderer.invoke('scheduler:collect-claude-response', profile);
-        if (res && res.error) { showToast('Collecte impossible : ' + res.error, 'error'); return; }
+        if (res && res.error) { showToast(_('Collecte impossible : {error}', { error: res.error }), 'error'); return; }
         if (res && res.ok && res.response) {
-          showToast('Réponse collectée : ' + res.response.length + ' caractères (« ' + profile + ' »)');
+          showToast(_('Réponse collectée : {count} caractères (« {profile} »)', { count: res.response.length, profile }));
           console.log('[claude] Réponse collectée (« ' + profile + ' »):', res.response);
         } else {
-          showToast('Aucune réponse trouvée pour le moment.', 'warning');
+          showToast(_('Aucune réponse trouvée pour le moment.'), 'warning');
         }
-      } catch (e) { showToast('Collecte impossible : ' + e.message, 'error'); }
+      } catch (e) { showToast(_('Collecte impossible : {error}', { error: e.message }), 'error'); }
     };
 
     // --- Gestion des projets (CRUD) ---
@@ -2231,18 +2238,18 @@
         // Pour l'instant, tous les comptes sont autorisés (liste vide = tous)
         var res = await ipcRenderer.invoke('scheduler:create-project', name, []);
         if (res && res.error) { showToast(res.error, 'error'); return; }
-        showToast('Projet « ' + name + ' » créé');
+        showToast(_('Projet « {name} » créé', { name }));
         refreshScheduler();
-      } catch (e) { showToast('Création impossible : ' + e.message, 'error'); }
+      } catch (e) { showToast(_('Création impossible : {error}', { error: e.message }), 'error'); }
     };
 
     window.schedDeleteProject = async function(projectId) {
       try {
         var res = await ipcRenderer.invoke('scheduler:delete-project', projectId);
         if (res && res.error) { showToast(res.error, 'error'); return; }
-        showToast('Projet supprimé');
+        showToast(_('Projet supprimé'));
         refreshScheduler();
-      } catch (e) { showToast('Suppression impossible : ' + e.message, 'error'); }
+      } catch (e) { showToast(_('Suppression impossible : {error}', { error: e.message }), 'error'); }
     };
 
     window.schedAddTask = async function(projectId) {
@@ -2251,9 +2258,9 @@
       try {
         var res = await ipcRenderer.invoke('scheduler:create-task', projectId, taskPrompt, null);
         if (res && res.error) { showToast(res.error, 'error'); return; }
-        showToast('Tâche créée dans le projet');
+        showToast(_('Tâche créée dans le projet'));
         refreshScheduler();
-      } catch (e) { showToast('Création impossible : ' + e.message, 'error'); }
+      } catch (e) { showToast(_('Création impossible : {error}', { error: e.message }), 'error'); }
     };
 
     window.schedAssignTask = async function(projectId) {
@@ -2263,45 +2270,45 @@
         var res = await ipcRenderer.invoke('scheduler:get-assignable-accounts', projectId, openAccountIds);
         if (res && res.error) { showToast(res.error, 'error'); return; }
         if (!res || !res.length) {
-          showToast('Aucun compte vert disponible pour ce projet.', 'warning');
+          showToast(_('Aucun compte vert disponible pour ce projet.'), 'warning');
           return;
         }
         var names = res.map(function(a) { return a.name + ' (' + a.profile + ')'; });
         var choice = prompt('Comptes verts disponibles :\n' + names.map(function(n, i) { return (i+1) + '. ' + n; }).join('\n') + '\n\nNuméro du compte :', '1');
         if (!choice) return;
         var idx = parseInt(choice, 10) - 1;
-        if (isNaN(idx) || idx < 0 || idx >= res.length) { showToast('Choix invalide', 'error'); return; }
+        if (isNaN(idx) || idx < 0 || idx >= res.length) { showToast(_('Choix invalide'), 'error'); return; }
         var account = res[idx];
         // Demande quelle tâche assigner
         var state = await ipcRenderer.invoke('scheduler:get-state');
         var project = state.projects.find(function(p) { return p.id === projectId; });
         if (!project || !project.tasks || !project.tasks.length) {
-          showToast('Aucune tâche dans ce projet.', 'warning');
+          showToast(_('Aucune tâche dans ce projet.'), 'warning');
           return;
         }
         var taskNames = project.tasks.map(function(t) { return t.id + (t.status !== 'pending' ? ' (' + t.status + ')' : ''); });
         var taskChoice = prompt('Tâches du projet :\n' + taskNames.map(function(n, i) { return (i+1) + '. ' + n; }).join('\n') + '\n\nNuméro de la tâche :', '1');
         if (!taskChoice) return;
         var taskIdx = parseInt(taskChoice, 10) - 1;
-        if (isNaN(taskIdx) || taskIdx < 0 || taskIdx >= project.tasks.length) { showToast('Choix invalide', 'error'); return; }
+        if (isNaN(taskIdx) || taskIdx < 0 || taskIdx >= project.tasks.length) { showToast(_('Choix invalide'), 'error'); return; }
         var task = project.tasks[taskIdx];
         var assignRes = await ipcRenderer.invoke('scheduler:assign-task', projectId, task.id, account.id, openAccountIds);
         if (assignRes && assignRes.error) { showToast(assignRes.error, 'error'); return; }
-        showToast('Tâche ' + task.id + ' assignée à « ' + account.name + ' »');
+        showToast(_('Tâche {task} assignée à « {account} »', { task: task.id, account: account.name }));
         refreshScheduler();
-      } catch (e) { showToast('Assignation impossible : ' + e.message, 'error'); }
+      } catch (e) { showToast(_('Assignation impossible : {error}', { error: e.message }), 'error'); }
     };
 
     // Exécute une tâche assignée : crée un job et lance l'automatisation Claude
     window.schedExecuteTask = async function(projectId, taskId) {
       try {
-        showToast('Lancement de l\'automatisation Claude...', 'info');
+        showToast(_('Lancement de l\'automatisation Claude...'), 'info');
         var res = await ipcRenderer.invoke('scheduler:execute-task', projectId, taskId);
         if (res && res.error) { showToast(res.error, 'error'); return; }
-        if (res && !res.ok) { showToast(res.reason || 'Lancement impossible', 'warning'); return; }
-        showToast('Tâche lancée — suivi dans le journal d\'activité');
+        if (res && !res.ok) { showToast(res.reason || _('Lancement impossible'), 'warning'); return; }
+        showToast(_('Tâche lancée — suivi dans le journal d\'activité'));
         refreshScheduler();
-      } catch (e) { showToast('Exécution impossible : ' + e.message, 'error'); }
+      } catch (e) { showToast(_('Exécution impossible : {error}', { error: e.message }), 'error'); }
     };
 
     // Affiche le résultat d'une tâche terminée
@@ -2310,13 +2317,13 @@
       var project = state.projects.find(function(p) { return p.id === projectId; });
       if (!project) return;
       var task = project.tasks.find(function(t) { return t.id === taskId; });
-      if (!task || !task.result) { showToast('Aucun résultat disponible', 'warning'); return; }
+      if (!task || !task.result) { showToast(_('Aucun résultat disponible'), 'warning'); return; }
       // Afficher dans une fenêtre modale simple
       var modal = document.getElementById('confirmModal');
       var titleEl = modal.querySelector('.modal-card__title');
       var bodyEl = modal.querySelector('.modal-card__body');
       var okBtn = modal.querySelector('[data-confirm]');
-      if (titleEl) titleEl.textContent = 'Résultat — ' + task.id;
+      if (titleEl) titleEl.textContent = _('Résultat — {task}', { task: task.id });
       if (bodyEl) bodyEl.innerHTML = '<pre class="sched-result-pre">' + escapeHtml(task.result) + '</pre>';
       modal.classList.add('open');
       modal.dataset.confirmAction = 'close-result';
@@ -2361,14 +2368,14 @@
 
       const title = document.createElement('div');
       title.className = 'modal__title';
-      title.textContent = 'Données de comptes illisibles';
+      title.textContent = _('Données de comptes illisibles');
 
       const desc = document.createElement('div');
       desc.className = 'modal__desc';
       // textContent (pas innerHTML) : aucune donnée n'est interprétée en HTML.
       desc.textContent = hasBackup
-        ? `La liste de comptes enregistrée est corrompue. Une sauvegarde de ${b.data.length} compte(s) a été trouvée. La restaurer ?`
-        : "La liste de comptes enregistrée est corrompue et aucune sauvegarde n'est disponible. L'application démarre avec une liste vide ; vos données actuelles ne seront pas écrasées tant que vous ne créez ou ne modifiez pas de compte.";
+        ? _('La liste de comptes enregistrée est corrompue. Une sauvegarde de {count} compte(s) a été trouvée. La restaurer ?', { count: b.data.length })
+        : _("La liste de comptes enregistrée est corrompue et aucune sauvegarde n'est disponible. L'application démarre avec une liste vide ; vos données actuelles ne seront pas écrasées tant que vous ne créez ou ne modifiez pas de compte.");
 
       const actions = document.createElement('div');
       actions.className = 'modal__actions';
@@ -2377,26 +2384,26 @@
       if (hasBackup) {
         const cancel = document.createElement('button');
         cancel.className = 'btn';
-        cancel.textContent = 'Ignorer';
+        cancel.textContent = _('Ignorer');
         cancel.addEventListener('click', close);
 
         const restore = document.createElement('button');
         restore.className = 'btn btn--primary';
-        restore.textContent = 'Restaurer la sauvegarde';
+        restore.textContent = _('Restaurer la sauvegarde');
         restore.addEventListener('click', () => {
           accounts = b.data;
           migrateOldAccounts();   // complète/répare les comptes restaurés
           saveAccounts(accounts); // saveAccounts préserve le backup (valeur actuelle illisible)
           renderAccounts();
           close();
-          showToast('Comptes restaurés depuis la sauvegarde');
+          showToast(_('Comptes restaurés depuis la sauvegarde'));
         });
         actions.appendChild(cancel);
         actions.appendChild(restore);
       } else {
         const ok = document.createElement('button');
         ok.className = 'btn btn--primary';
-        ok.textContent = 'Compris';
+        ok.textContent = _('Compris');
         ok.addEventListener('click', close);
         actions.appendChild(ok);
       }

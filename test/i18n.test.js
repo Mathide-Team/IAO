@@ -303,3 +303,62 @@ test('lib/i18n.js s\'expose en window.IAO_I18N dans le renderer', () => {
     require(file);
   }
 });
+
+test('formatMessage remplit les marqueurs nommés, même déplacés par la traduction', () => {
+  assert.equal(i18n.formatMessage('{service} ouvert avec {account}', { service: 'Claude', account: 'Pro' }), 'Claude ouvert avec Pro');
+  assert.equal(i18n.formatMessage('Opened {account} on {service}', { service: 'Claude', account: 'Pro' }), 'Opened Pro on Claude');
+  assert.equal(i18n.formatMessage('{count} compte(s)', { count: 0 }), '0 compte(s)');
+});
+
+test('formatMessage sans paramètres ou marqueur inconnu : texte inchangé', () => {
+  assert.equal(i18n.formatMessage('Compte ajouté'), 'Compte ajouté');
+  assert.equal(i18n.formatMessage('{absent} et {x}', { x: 1 }), '{absent} et 1');
+  assert.equal(i18n.formatMessage('{toString}', {}), '{toString}');
+  assert.equal(i18n.formatMessage(42, null), '42');
+});
+
+test('app.js : aucun toast littéral non traduisible', () => {
+  const src = fs.readFileSync(path.join(ROOT, 'assets', 'app.js'), 'utf8');
+  // showToast('...') ou showToast(`...`) direct : le libellé échapperait à xgettext.
+  assert.deepEqual(src.match(/showToast\(\s*['"`]/g) || [], []);
+});
+
+test('blankTemplateText : texte des gabarits blanchi, expressions, chaînes et lignes conservées', () => {
+  const b = i18n.blankTemplateText;
+  const src = "const a = `L'import ${_('Garder')} fin`;\nx = _(\"C'est\");";
+  const out = b(src);
+  assert.equal(out.length, src.length);
+  assert.equal(out.split('\n').length, 2);
+  assert.ok(!out.includes("L'import") && !out.includes('fin'));
+  assert.ok(out.includes("_('Garder')") && out.includes('_("C\'est")'));
+  // gabarit sur plusieurs lignes, échappements, expressions imbriquées avec accolades
+  const multi = "t = `a\\`b\n${ {k: `in${1}ner`}.k } c\n`; y = _('ok');";
+  const m = b(multi);
+  assert.equal(m.split('\n').length, multi.split('\n').length);
+  assert.ok(m.includes("{k:") && m.includes(".k") && m.includes("_('ok')"));
+  assert.ok(!m.includes('ner') && !m.includes(' c\n'.trim() + '\n'));
+  // gabarit non terminé et échappement en fin de texte : pas de boucle infinie
+  assert.equal(b('`abc').length, 4);
+  assert.equal(b('`a\\').length, 3);
+});
+
+test('blankTemplateText : commentaires, chaînes et expressions régulières intacts', () => {
+  const b = i18n.blankTemplateText;
+  const keep = [
+    "// TRANSLATORS: `gabarit` dans un commentaire\n_('x');",
+    "/* bloc ` ' */ _('y');",
+    '/* non fermé `',
+    '// fin sans saut de ligne `',
+    "s = 'a\\'b`c'; t = \"d`\";",
+    "r = /[/`']+/g; q = x / 2 / y;",
+    "if (ok) return /a\\/`/.test(s);",
+    "r = /`/",
+    "u = 'non fermée\n`x`"
+  ];
+  for (const src of keep.slice(0, 8)) assert.equal(b(src), src, src);
+  assert.equal(b(keep[8]), "u = 'non fermée\n   ");
+  // division après un identifiant : pas une expression régulière
+  assert.equal(b('a = b / `t` / c'), 'a = b /     / c');
+  // accolades ordinaires hors gabarit
+  assert.equal(b('f() { return {a: 1}; }'), 'f() { return {a: 1}; }');
+});

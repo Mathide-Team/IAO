@@ -310,3 +310,307 @@ msgstr "Show automation windows"
 #: index.html:381
 msgid "Restaurer les onglets ouverts au démarrage"
 msgstr "Restore open tabs at startup"
+
+#: assets/app.js:367
+msgid "Impossible d'enregistrer les comptes (stockage plein ?)"
+msgstr "Could not save the accounts (storage full?)"
+
+#: assets/app.js:564
+msgid "Fichier enregistré !"
+msgstr "File saved"
+
+#: assets/app.js:565
+msgid "Erreur d'enregistrement."
+msgstr "Save error."
+
+#: assets/app.js:780
+msgid "{service} — {account} déjà ouvert"
+msgstr "{service} — {account} already open"
+
+#: assets/app.js:838
+msgid "{service} ouvert avec {account}"
+msgstr "{service} opened with {account}"
+
+#: assets/app.js:933
+msgid "Onglet fermé (mémoire libérée)"
+msgstr "Tab closed (memory released)"
+
+#: assets/app.js:1002
+msgid "Onglet étoilé"
+msgstr "Tab starred"
+
+#: assets/app.js:1002
+msgid "Étoile retirée"
+msgstr "Star removed"
+
+#: assets/app.js:1095
+msgid "Échec de la déconnexion du profil"
+msgstr "Could not sign out of the profile"
+
+#: assets/app.js:1103
+msgid "Profil « {profile} » déconnecté — session effacée"
+msgstr "Profile “{profile}” signed out — session cleared"
+
+#: assets/app.js:1164
+msgid "Fichier trop volumineux pour l'éditeur : {size} Mo (limite : 20 Mo)."
+msgstr "File too large for the editor: {size} MB (limit: 20 MB)."
+
+#: assets/app.js:1347
+msgid "Maximum {max} services à portée de main"
+msgstr "At most {max} services at hand"
+
+#: assets/app.js:1363
+msgid "Sélectionnez au moins 1 service"
+msgstr "Select at least 1 service"
+
+#: assets/app.js:1367
+msgid "Services mis à jour ({count}/{max})"
+msgstr "Services updated ({count}/{max})"
+
+#: assets/app.js:1395
+msgid "Échec de l'export (écriture impossible)"
+msgstr "Export failed (cannot write)"
+
+#: assets/app.js:1396
+msgid "{count} compte(s) exporté(s)"
+msgstr "{count} account(s) exported"
+
+#: assets/app.js:1399
+msgid "Export impossible"
+msgstr "Export failed"
+
+#: assets/app.js:1411
+msgid "Échec de la lecture du fichier"
+msgstr "Could not read the file"
+
+#: assets/app.js:1414
+msgid "Fichier JSON invalide"
+msgstr "Invalid JSON file"
+
+#: assets/app.js:1415
+msgid "Format invalide : un tableau de comptes est attendu."
+msgstr "Invalid format: an array of accounts is expected."
+
+#: assets/app.js:1424
+msgid "Import impossible"
+msgstr "Import failed"
+
+#: assets/app.js:1441
+msgid "{count} compte(s) importé(s)"
+msgstr "{count} account(s) imported"
+
+#: assets/app.js:1444
+msgid "Échec de l'import : {error}"
+msgstr "Import failed: {error}"
+
+#: assets/app.js:1456
+msgid "Compte supprimé"
+msgstr "Account deleted"
+
+#: assets/app.js:1464
+msgid "Remplissez tous les champs"
+msgstr "Fill in all the fields"
+
+#: assets/app.js:1470
+msgid "Ce profil est déjà utilisé par un autre compte (les sessions seraient partagées)."
+msgstr "This profile is already used by another account (sessions would be shared)."
+
+#: assets/app.js:1477
+msgid "Compte mis à jour"
+msgstr "Account updated"
+
+#: assets/app.js:1486
+msgid "Compte ajouté"
+msgstr "Account added"
+
+#: assets/app.js:1500
+msgid "Copie impossible dans le presse-papiers"
+msgstr "Could not copy to the clipboard"
+
+#: assets/app.js:1500
+msgid "E-mail copié : {email}"
+msgstr "E-mail copied: {email}"
+
+#: assets/app.js:1802
+msgid "{account} — {service} : cooldown terminé"
+msgstr "{account} — {service}: cooldown over"
+
+#: assets/app.js:1938
+msgid "Impossible de charger les réglages"
+msgstr "Could not load the settings"
+
+#: assets/app.js:1955
+msgid "Réglages enregistrés"
+msgstr "Settings saved"
+
+#: assets/app.js:1958
+msgid "Erreur lors de la sauvegarde"
+msgstr "Error while saving"
+
+#: assets/app.js:1961
+msgid "Erreur lors de la sauvegarde des réglages"
+msgstr "Error while saving the settings"
+
+#: assets/app.js:2045
+msgid "Impossible de modifier l'état de l'ordonnanceur"
+msgstr "Could not change the scheduler state"
+
+#: assets/app.js:2055
+msgid "Configuration non enregistrée"
+msgstr "Configuration not saved"
+
+#: assets/app.js:2067 assets/app.js:2074
+msgid "Sélection du dossier impossible"
+msgstr "Could not select the folder"
+
+#: assets/app.js:2093
+msgid "Projet terminé : {done}/{total} tâches faites, 0 restante."
+msgstr "Project complete: {done}/{total} tasks done, 0 remaining."
+
+#: assets/app.js:2094
+msgid "{pending} à faire, {inProgress} en cours, {done} faite(s) sur {total} au total."
+msgstr "{pending} to do, {inProgress} in progress, {done} done out of {total} in total."
+
+#: assets/app.js:2097
+msgid "Analyse impossible : {error}"
+msgstr "Analysis failed: {error}"
+
+#: assets/app.js:2114
+msgid "Action impossible : {error}"
+msgstr "Action failed: {error}"
+
+#: assets/app.js:2188
+msgid "Diagnostic Claude : {error}"
+msgstr "Claude diagnostic: {error}"
+
+#: assets/app.js:2198
+msgid "Claude (« {profile} ») : {details}"
+msgstr "Claude (“{profile}”): {details}"
+
+#: assets/app.js:2198
+msgid "aucun élément détecté"
+msgstr "nothing detected"
+
+#: assets/app.js:2200
+msgid "Diagnostic impossible : {error}"
+msgstr "Diagnostic failed: {error}"
+
+#: assets/app.js:2208
+msgid "Quota gratuit épuisé jusqu'à {time} pour ce profil."
+msgstr "Free quota exhausted until {time} for this profile."
+
+#: assets/app.js:2210
+msgid "Job Claude échoué : {error}"
+msgstr "Claude job failed: {error}"
+
+#: assets/app.js:2215
+msgid "Prompt envoyé à Claude via {method} (« {profile} »)"
+msgstr "Prompt sent to Claude via {method} (“{profile}”)"
+
+#: assets/app.js:2217
+msgid "Job Claude impossible : {error}"
+msgstr "Claude job could not run: {error}"
+
+#: assets/app.js:2223 assets/app.js:2230
+msgid "Collecte impossible : {error}"
+msgstr "Collection failed: {error}"
+
+#: assets/app.js:2225
+msgid "Réponse collectée : {count} caractères (« {profile} »)"
+msgstr "Response collected: {count} characters (“{profile}”)"
+
+#: assets/app.js:2228
+msgid "Aucune réponse trouvée pour le moment."
+msgstr "No response found yet."
+
+#: assets/app.js:2241
+msgid "Projet « {name} » créé"
+msgstr "Project “{name}” created"
+
+#: assets/app.js:2243 assets/app.js:2263
+msgid "Création impossible : {error}"
+msgstr "Creation failed: {error}"
+
+#: assets/app.js:2250
+msgid "Projet supprimé"
+msgstr "Project deleted"
+
+#: assets/app.js:2252
+msgid "Suppression impossible : {error}"
+msgstr "Deletion failed: {error}"
+
+#: assets/app.js:2261
+msgid "Tâche créée dans le projet"
+msgstr "Task created in the project"
+
+#: assets/app.js:2273
+msgid "Aucun compte vert disponible pour ce projet."
+msgstr "No green account available for this project."
+
+#: assets/app.js:2280 assets/app.js:2293
+msgid "Choix invalide"
+msgstr "Invalid choice"
+
+#: assets/app.js:2286
+msgid "Aucune tâche dans ce projet."
+msgstr "No task in this project."
+
+#: assets/app.js:2297
+msgid "Tâche {task} assignée à « {account} »"
+msgstr "Task {task} assigned to “{account}”"
+
+#: assets/app.js:2299
+msgid "Assignation impossible : {error}"
+msgstr "Assignment failed: {error}"
+
+#: assets/app.js:2305
+msgid "Lancement de l'automatisation Claude..."
+msgstr "Starting the Claude automation..."
+
+#: assets/app.js:2308
+msgid "Lancement impossible"
+msgstr "Could not start"
+
+#: assets/app.js:2309
+msgid "Tâche lancée — suivi dans le journal d'activité"
+msgstr "Task started — follow it in the activity log"
+
+#: assets/app.js:2311
+msgid "Exécution impossible : {error}"
+msgstr "Execution failed: {error}"
+
+#: assets/app.js:2320
+msgid "Aucun résultat disponible"
+msgstr "No result available"
+
+#: assets/app.js:2326
+msgid "Résultat — {task}"
+msgstr "Result — {task}"
+
+#: assets/app.js:2371
+msgid "Données de comptes illisibles"
+msgstr "Unreadable account data"
+
+#: assets/app.js:2377
+msgid "La liste de comptes enregistrée est corrompue. Une sauvegarde de {count} compte(s) a été trouvée. La restaurer ?"
+msgstr "The saved account list is corrupted. A backup of {count} account(s) was found. Restore it?"
+
+#: assets/app.js:2378
+msgid "La liste de comptes enregistrée est corrompue et aucune sauvegarde n'est disponible. L'application démarre avec une liste vide ; vos données actuelles ne seront pas écrasées tant que vous ne créez ou ne modifiez pas de compte."
+msgstr "The saved account list is corrupted and no backup is available. The application starts with an empty list; your current data will not be overwritten until you create or edit an account."
+
+#: assets/app.js:2387
+msgid "Ignorer"
+msgstr "Ignore"
+
+#: assets/app.js:2392
+msgid "Restaurer la sauvegarde"
+msgstr "Restore the backup"
+
+#: assets/app.js:2399
+msgid "Comptes restaurés depuis la sauvegarde"
+msgstr "Accounts restored from the backup"
+
+#: assets/app.js:2406
+msgid "Compris"
+msgstr "Got it"
