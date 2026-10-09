@@ -424,6 +424,22 @@ async function run() {
         return all.length ? all[all.length - 1].textContent.trim() : '';
       })()`);
       assert(toast === 'Fill in all the fields', 'toast non traduit : ' + toast);
+      // Lot 4 : HTML construit par app.js (cartes de comptes, aide des services).
+      const built = await exec(`(() => {
+        window.openHelpModal();
+        const label = document.querySelector('#helpList .help-entry__label');
+        const line = document.querySelector('#helpList .help-entry__line');
+        const copy = document.querySelector('.account-email-copy');
+        window.closeHelpModal();
+        return {
+          label: label ? label.textContent : '',
+          line: line ? line.textContent : '',
+          copy: copy ? copy.getAttribute('title') : ''
+        };
+      })()`);
+      assert(built.label === 'What is it?', 'aide non traduite : ' + built.label);
+      assert(!/[éè]/.test(built.line) && built.line.length > 20, 'description non traduite : ' + built.line);
+      assert(built.copy === 'Click to copy the email address', 'carte de compte non traduite : ' + built.copy);
     } finally {
       process.env.IAO_LANG = 'fr';
     }

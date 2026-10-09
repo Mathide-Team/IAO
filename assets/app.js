@@ -120,6 +120,9 @@
       const s = window.iaoT(msgid);
       return I18N ? I18N.formatMessage(s, params) : s;
     };
+    // Marque un libellé à extraire sans le traduire tout de suite (tables
+    // construites avant le chargement du catalogue) : _() au moment du rendu.
+    const N_ = (msgid) => msgid;
     function applyTranslations(root, tr) {
       const SKIP = new Set(['SCRIPT', 'STYLE', 'TEXTAREA', 'WEBVIEW']);
       const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
@@ -231,89 +234,89 @@
     // Texte statique embarqué (aucun fetch réseau), rédigé neutre / grand public.
     const SERVICE_INFO = {
       claude: {
-        what: "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes.",
-        when: "Plutôt pour du code, des textes longs et soignés, ou des questions complexes qui demandent de la rigueur."
+        what: N_("L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."),
+        when: N_("Plutôt pour du code, des textes longs et soignés, ou des questions complexes qui demandent de la rigueur.")
       },
       chatgpt: {
-        what: "L'assistant généraliste d'OpenAI, le plus connu du grand public. Il discute, rédige, résume, génère des images, analyse des fichiers et peut chercher sur le web.",
-        when: "Le couteau suisse du quotidien : brainstorming, questions générales, petites tâches variées."
+        what: N_("L'assistant généraliste d'OpenAI, le plus connu du grand public. Il discute, rédige, résume, génère des images, analyse des fichiers et peut chercher sur le web."),
+        when: N_("Le couteau suisse du quotidien : brainstorming, questions générales, petites tâches variées.")
       },
       gemini: {
-        what: "L'assistant IA de Google. Multimodal (texte, images, audio, vidéo), il s'appuie sur la recherche Google et s'intègre aux outils Google (Docs, Gmail, Drive…).",
-        when: "Plutôt pour analyser des images ou vidéos, ou si vous travaillez déjà dans l'écosystème Google."
+        what: N_("L'assistant IA de Google. Multimodal (texte, images, audio, vidéo), il s'appuie sur la recherche Google et s'intègre aux outils Google (Docs, Gmail, Drive…)."),
+        when: N_("Plutôt pour analyser des images ou vidéos, ou si vous travaillez déjà dans l'écosystème Google.")
       },
       zeta: {
-        what: "Le chat de Z.ai, propulsé par les modèles GLM. Gratuit pour l'essentiel, avec un mode agent capable de chercher sur le web et de produire des fichiers (docx, pdf, xlsx).",
-        when: "Une alternative gratuite solide pour le chat et le code, quand les quotas des autres sont épuisés."
+        what: N_("Le chat de Z.ai, propulsé par les modèles GLM. Gratuit pour l'essentiel, avec un mode agent capable de chercher sur le web et de produire des fichiers (docx, pdf, xlsx)."),
+        when: N_("Une alternative gratuite solide pour le chat et le code, quand les quotas des autres sont épuisés.")
       },
       perplexity: {
-        what: "Un « moteur de réponse » : il cherche sur le web en direct, synthétise plusieurs sources et cite ses références pour chaque affirmation.",
-        when: "Plutôt pour la recherche d'informations à jour, la veille et la vérification de faits avec sources."
+        what: N_("Un « moteur de réponse » : il cherche sur le web en direct, synthétise plusieurs sources et cite ses références pour chaque affirmation."),
+        when: N_("Plutôt pour la recherche d'informations à jour, la veille et la vérification de faits avec sources.")
       },
       grok: {
-        what: "L'assistant de xAI (Elon Musk), connecté au réseau X (ex-Twitter). Ton direct, accès au temps réel de X, génération d'images incluse.",
-        when: "Plutôt pour suivre l'actualité chaude et les tendances via X, ou pour un ton moins formel."
+        what: N_("L'assistant de xAI (Elon Musk), connecté au réseau X (ex-Twitter). Ton direct, accès au temps réel de X, génération d'images incluse."),
+        when: N_("Plutôt pour suivre l'actualité chaude et les tendances via X, ou pour un ton moins formel.")
       },
       leonardo: {
-        what: "Une plateforme de génération d'images orientée création : illustrations, concept art, assets de jeu vidéo, avec des contrôles fins (styles, modèles, retouche).",
-        when: "Plutôt pour produire des visuels et illustrations de qualité avec un contrôle précis du style."
+        what: N_("Une plateforme de génération d'images orientée création : illustrations, concept art, assets de jeu vidéo, avec des contrôles fins (styles, modèles, retouche)."),
+        when: N_("Plutôt pour produire des visuels et illustrations de qualité avec un contrôle précis du style.")
       },
       suno: {
-        what: "Un générateur de musique : il compose des chansons complètes (instruments, voix, paroles) à partir d'une simple description texte, dans à peu près tous les genres.",
-        when: "Plutôt pour créer une musique, un jingle ou une chanson à partir d'un texte ou d'une idée."
+        what: N_("Un générateur de musique : il compose des chansons complètes (instruments, voix, paroles) à partir d'une simple description texte, dans à peu près tous les genres."),
+        when: N_("Plutôt pour créer une musique, un jingle ou une chanson à partir d'un texte ou d'une idée.")
       },
       meshy: {
-        what: "Un générateur de modèles 3D : il transforme un texte ou une image en objet 3D texturé, avec rigging/animation automatique et export vers les formats standards (GLB, FBX, STL…).",
-        when: "Plutôt pour créer des assets 3D (jeux, impression 3D, animation) sans savoir modéliser."
+        what: N_("Un générateur de modèles 3D : il transforme un texte ou une image en objet 3D texturé, avec rigging/animation automatique et export vers les formats standards (GLB, FBX, STL…)."),
+        when: N_("Plutôt pour créer des assets 3D (jeux, impression 3D, animation) sans savoir modéliser.")
       },
       // Issue #42 : fiches des services additionnels
       mistral: {
-        what: "Le Chat de Mistral AI, éditeur européen (français). Modèles open-weights performants, chat, code et analyse de documents.",
-        when: "Alternative européenne solide pour le chat et le code, avec une bonne maîtrise du français."
+        what: N_("Le Chat de Mistral AI, éditeur européen (français). Modèles open-weights performants, chat, code et analyse de documents."),
+        when: N_("Alternative européenne solide pour le chat et le code, avec une bonne maîtrise du français.")
       },
       deepseek: {
-        what: "DeepSeek : assistant IA chinois spécialisé en raisonnement et programmation, particulièrement performant en Python.",
-        when: "Pour du code Python, du raisonnement étape par étape, ou une alternative gratuite à ChatGPT."
+        what: N_("DeepSeek : assistant IA chinois spécialisé en raisonnement et programmation, particulièrement performant en Python."),
+        when: N_("Pour du code Python, du raisonnement étape par étape, ou une alternative gratuite à ChatGPT.")
       },
       copilot: {
-        what: "GitHub Copilot : assistant IA intégré dans VS Code et GitHub. Autocomplétion, chat, génération de tests, explication de code.",
-        when: "Pour programmer plus vite dans VS Code ou sur GitHub, avec un modèle IA qui connaît votre codebase."
+        what: N_("GitHub Copilot : assistant IA intégré dans VS Code et GitHub. Autocomplétion, chat, génération de tests, explication de code."),
+        when: N_("Pour programmer plus vite dans VS Code ou sur GitHub, avec un modèle IA qui connaît votre codebase.")
       },
       elicit: {
-        what: "Elicit : assistant de recherche scientifique. Trouve des articles, extrait des données, synthétise des études.",
-        when: "Pour la recherche académique, la revue de littérature et l'extraction de données d'articles scientifiques."
+        what: N_("Elicit : assistant de recherche scientifique. Trouve des articles, extrait des données, synthétise des études."),
+        when: N_("Pour la recherche académique, la revue de littérature et l'extraction de données d'articles scientifiques.")
       },
       notebooklm: {
-        what: "NotebookLM de Google : interagissez avec vos propres documents (PDF, texte, audio). Résumés, questions, génération de notes.",
-        when: "Pour interroger vos documents personnels ou professionnels avec une IA qui cite ses sources."
+        what: N_("NotebookLM de Google : interagissez avec vos propres documents (PDF, texte, audio). Résumés, questions, génération de notes."),
+        when: N_("Pour interroger vos documents personnels ou professionnels avec une IA qui cite ses sources.")
       },
       wolfram: {
-        what: "Wolfram Alpha : moteur de calcul symbolique. Mathématiques, physique, chimie, données factuelles, conversions.",
-        when: "Pour des calculs exacts (mathématiques symboliques), des données chiffrées ou des conversions d'unités."
+        what: N_("Wolfram Alpha : moteur de calcul symbolique. Mathématiques, physique, chimie, données factuelles, conversions."),
+        when: N_("Pour des calculs exacts (mathématiques symboliques), des données chiffrées ou des conversions d'unités.")
       },
       deepl: {
-        what: "DeepL : traduction automatique de haute qualité, plus naturelle que Google Traduction. Texte et documents entiers.",
-        when: "Pour traduire du texte ou des documents avec un rendu naturel et cohérent."
+        what: N_("DeepL : traduction automatique de haute qualité, plus naturelle que Google Traduction. Texte et documents entiers."),
+        when: N_("Pour traduire du texte ou des documents avec un rendu naturel et cohérent.")
       },
       ideogram: {
-        what: "Ideogram : génération d'images orientée design. Logos, typographies, affiches, avec un excellent rendu du texte.",
-        when: "Pour créer des visuels avec du texte lisible (logos, affiches, bannières) ou du design graphique."
+        what: N_("Ideogram : génération d'images orientée design. Logos, typographies, affiches, avec un excellent rendu du texte."),
+        when: N_("Pour créer des visuels avec du texte lisible (logos, affiches, bannières) ou du design graphique.")
       },
       kling: {
-        what: "Kling : générateur de vidéos courtes à partir de texte ou d'images. Animations réalistes, crédits gratuits disponibles.",
-        when: "Pour créer des clips vidéo animés à partir d'une description ou d'une image fixe."
+        what: N_("Kling : générateur de vidéos courtes à partir de texte ou d'images. Animations réalistes, crédits gratuits disponibles."),
+        when: N_("Pour créer des clips vidéo animés à partir d'une description ou d'une image fixe.")
       },
       runway: {
-        what: "Runway : suite d'outils IA pour la vidéo. Génération, édition, effets spéciaux, inpainting vidéo.",
-        when: "Pour le montage et la création vidéo avancée avec des outils IA intégrés."
+        what: N_("Runway : suite d'outils IA pour la vidéo. Génération, édition, effets spéciaux, inpainting vidéo."),
+        when: N_("Pour le montage et la création vidéo avancée avec des outils IA intégrés.")
       },
       pika: {
-        what: "Pika : générateur de vidéos courtes et créatives. Animation d'images, effets, transformation de styles.",
-        when: "Pour animer des images ou créer des vidéos courtes originales avec des effets IA."
+        what: N_("Pika : générateur de vidéos courtes et créatives. Animation d'images, effets, transformation de styles."),
+        when: N_("Pour animer des images ou créer des vidéos courtes originales avec des effets IA.")
       },
       qwen: {
-        what: "Qwen : assistant IA d'Alibaba. Multimodal (texte, images, code), open-source, disponible en plusieurs tailles.",
-        when: "Alternative gratuite pour le chat, le code et l'analyse d'images, avec un bon support multilingue."
+        what: N_("Qwen : assistant IA d'Alibaba. Multimodal (texte, images, code), open-source, disponible en plusieurs tailles."),
+        when: N_("Alternative gratuite pour le chat, le code et l'analyse d'images, avec un bon support multilingue.")
       }
     };
 
@@ -519,7 +522,7 @@
       const container = document.getElementById('monacoContainer');
       container.innerHTML = ''; // retire le placeholder « Chargement de l'éditeur… »
       monacoEditor = monaco.editor.create(container, {
-        value: '// Sélectionnez un fichier pour l\'éditer ici.\n// Ctrl+S pour sauvegarder.',
+        value: '// ' + _('Sélectionnez un fichier pour l\'éditer ici.') + '\n// ' + _('Ctrl+S pour sauvegarder.'),
         language: 'javascript',
         theme: 'vs-dark',
         automaticLayout: true
@@ -539,11 +542,11 @@
       c.innerHTML = `
         <div class="fallback-editor">
           <div class="fallback-editor__warning">
-            <span class="ic" data-icon="triangle-exclamation"></span> Éditeur simplifié (Monaco indisponible) — Ctrl+S pour sauvegarder
+            <span class="ic" data-icon="triangle-exclamation"></span> ${escapeHtml(_('Éditeur simplifié (Monaco indisponible) — Ctrl+S pour sauvegarder'))}
           </div>
           <textarea id="fallbackEditor" spellcheck="false" disabled
             class="fallback-editor__textarea"
-            placeholder="Sélectionnez un fichier pour l'éditer ici."></textarea>
+            placeholder="${escapeHtml(_('Sélectionnez un fichier pour l\'éditer ici.'))}"></textarea>
         </div>`;
       hydrateIcons(c); // remplit l'icône SVG du bandeau
       fallbackTextarea = document.getElementById('fallbackEditor');
@@ -640,8 +643,8 @@
         // donnée utilisateur ici de toute façon).
         container.innerHTML = `
           <div class="tabs-empty--full">
-            <div>Aucun compte pour l'instant.</div>
-            <button class="btn btn--primary" data-action="add"><span class="ic" data-icon="plus"></span> Créer mon premier compte</button>
+            <div>${escapeHtml(_('Aucun compte pour l\'instant.'))}</div>
+            <button class="btn btn--primary" data-action="add"><span class="ic" data-icon="plus"></span> ${escapeHtml(_('Créer mon premier compte'))}</button>
           </div>`;
         hydrateIcons(container);
         updateStats(); // remet les stats à 0 (ex. après suppression du dernier compte)
@@ -693,14 +696,14 @@
               <div class="account-avatar" data-avatar-color="${color}">${initials}</div>
               <div class="account-info">
                 <div class="account-name">${escapeHtml(acc.name)} ${isActive ? '<span class="active-dot"></span>' : ''}</div>
-                <div class="account-email"><span class="account-email-copy" data-action="copy-email" data-acc="${id}" title="Cliquer pour copier l'e-mail">${escapeHtml(acc.email)}</span> • ${escapeHtml(acc.profile)}</div>
+                <div class="account-email"><span class="account-email-copy" data-action="copy-email" data-acc="${id}" title="${escapeHtml(_('Cliquer pour copier l\'e-mail'))}">${escapeHtml(acc.email)}</span> • ${escapeHtml(acc.profile)}</div>
               </div>
               <div class="account-actions">
-                <button class="btn btn--icon" data-action="edit" data-acc="${id}"><span class="ic" data-icon="pen"></span></button>
-                <button class="btn btn--icon" data-action="delete" data-acc="${id}"><span class="ic icon-danger" data-icon="trash"></span></button>
+                <button class="btn btn--icon" data-action="edit" data-acc="${id}" title="${escapeHtml(_('Modifier le compte'))}"><span class="ic" data-icon="pen"></span></button>
+                <button class="btn btn--icon" data-action="delete" data-acc="${id}" title="${escapeHtml(_('Supprimer le compte'))}"><span class="ic icon-danger" data-icon="trash"></span></button>
               </div>
-              <span class="svc-summary ${availCount < acc.services.length ? 'has-cd' : ''}" title="${availCount} service(s) hors cooldown sur ${acc.services.length}">${availCount}/${acc.services.length}</span>
-              <span class="ic collapse-chevron" data-icon="chevron-down" title="Replier / déplier"></span>
+              <span class="svc-summary ${availCount < acc.services.length ? 'has-cd' : ''}" title="${escapeHtml(_('{available} service(s) hors cooldown sur {total}', { available: availCount, total: acc.services.length }))}">${availCount}/${acc.services.length}</span>
+              <span class="ic collapse-chevron" data-icon="chevron-down" title="${escapeHtml(_('Replier / déplier'))}"></span>
             </div>
             <div class="services-wrap"><div class="services-inner">
               <div class="services-grid">${servicesHtml}</div>
@@ -815,9 +818,9 @@
       const toolbar = document.createElement('div');
       toolbar.className = 'tab-toolbar';
       toolbar.innerHTML = `
-        <button type="button" class="tab-toolbar__btn" data-action="tab-reload" data-tab="${tabId}" title="Recharger l'onglet"><span class="ic" data-icon="arrow-rotate-right"></span></button>
-        <button type="button" class="tab-toolbar__btn" data-action="tab-home" data-tab="${tabId}" title="Revenir à l'accueil de ${escapeHtml(svc.name)}"><span class="ic" data-icon="house"></span></button>
-        <button type="button" class="tab-toolbar__btn tab-toolbar__btn--danger" data-action="tab-disconnect" data-tab="${tabId}" title="Se déconnecter du profil « ${escapeHtml(acc.profile)} »"><span class="ic" data-icon="right-from-bracket"></span></button>
+        <button type="button" class="tab-toolbar__btn" data-action="tab-reload" data-tab="${tabId}" title="${escapeHtml(_('Recharger l\'onglet'))}"><span class="ic" data-icon="arrow-rotate-right"></span></button>
+        <button type="button" class="tab-toolbar__btn" data-action="tab-home" data-tab="${tabId}" title="${escapeHtml(_('Revenir à l\'accueil de {service}', { service: svc.name }))}"><span class="ic" data-icon="house"></span></button>
+        <button type="button" class="tab-toolbar__btn tab-toolbar__btn--danger" data-action="tab-disconnect" data-tab="${tabId}" title="${escapeHtml(_('Se déconnecter du profil « {profile} »', { profile: acc.profile }))}"><span class="ic" data-icon="right-from-bracket"></span></button>
       `;
       pane.appendChild(toolbar);
       hydrateIcons(toolbar);
@@ -923,8 +926,8 @@
         const svc = SERVICES.find(s => s.id === tab.svcId);
         const label = (acc ? escapeHtml(acc.name) : '?') + ' — ' + (svc ? escapeHtml(svc.name) : '?');
         showConfirmDialog(
-          'Fermer l\'onglet',
-          'Fermer l\'onglet « ' + label + ' » ? La session web sera libérée.',
+          _('Fermer l\'onglet'),
+          _('Fermer l\'onglet « {tab} » ? La session web sera libérée.', { tab: label }),
           function() { _doCloseTab(tabId); }
         );
       } else {
@@ -990,7 +993,7 @@
       ctxMenuEl.innerHTML = `
         <div class="ctx-menu__item" data-ctx-action="toggle-star">
           <span class="ic" data-icon="star"></span>
-          <span>${starred ? 'Retirer l\'étoile' : 'Étoiler cet onglet'}</span>
+          <span>${escapeHtml(starred ? _('Retirer l\'étoile') : _('Étoiler cet onglet'))}</span>
         </div>
         <div class="ctx-menu__sep"></div>
         <div class="ctx-menu__item" data-ctx-action="close-tab">
@@ -1152,7 +1155,7 @@
     function renderFileList(files) {
       const list = document.getElementById('fileList');
       if (!files.length) {
-        list.innerHTML = '<div class="file-list-empty">Aucun fichier trouvé.</div>';
+        list.innerHTML = '<div class="file-list-empty">' + escapeHtml(_('Aucun fichier trouvé.')) + '</div>';
         return;
       }
       // Le chemin et le nom du fichier viennent du système de fichiers : ils
@@ -1284,13 +1287,13 @@
       const title = document.getElementById('modalTitle');
       if (accId) {
         const acc = accounts.find(a => a.id === accId);
-        title.textContent = "Modifier le compte";
+        title.textContent = _('Modifier le compte');
         document.getElementById('editId').value = acc.id;
         document.getElementById('inputName').value = acc.name;
         document.getElementById('inputEmail').value = acc.email;
         document.getElementById('inputProfile').value = acc.profile;
       } else {
-        title.textContent = "Ajouter un compte";
+        title.textContent = _('Ajouter un compte');
         document.getElementById('editId').value = '';
         document.getElementById('inputName').value = '';
         document.getElementById('inputEmail').value = '';
@@ -1319,9 +1322,9 @@
           <div class="help-entry">
             <div class="help-entry__name"><span class="help-entry__dot svc-bg-${svc.id}"></span>${escapeHtml(svc.name)}</div>
             ${info ? `
-              <div class="help-entry__line"><span class="help-entry__label">C'est quoi ?</span> ${escapeHtml(info.what)}</div>
-              <div class="help-entry__line"><span class="help-entry__label">Quand l'utiliser ?</span> ${escapeHtml(info.when)}</div>
-            ` : `<div class="help-entry__line help-entry__line--muted">Description à venir.</div>`}
+              <div class="help-entry__line"><span class="help-entry__label">${escapeHtml(_('C\'est quoi ?'))}</span> ${escapeHtml(_(info.what))}</div>
+              <div class="help-entry__line"><span class="help-entry__label">${escapeHtml(_('Quand l\'utiliser ?'))}</span> ${escapeHtml(_(info.when))}</div>
+            ` : `<div class="help-entry__line help-entry__line--muted">${escapeHtml(_('Description à venir.'))}</div>`}
           </div>
         `;
       }).join('');
@@ -1397,7 +1400,7 @@
       if (!acc) return;
       document.getElementById('deleteId').value = accId;
       document.getElementById('deleteDesc').textContent =
-        `Supprimer « ${acc.name} » (${acc.email}) ? La session restera stockée sur le disque, mais le compte disparaîtra de la liste.`;
+        _('Supprimer « {name} » ({email}) ? La session restera stockée sur le disque, mais le compte disparaîtra de la liste.', { name: acc.name, email: acc.email });
       document.getElementById('deleteModal').classList.add('open');
     }
     window.closeDeleteModal = function() { document.getElementById('deleteModal').classList.remove('open'); }
@@ -1434,9 +1437,7 @@
         if (!Array.isArray(parsed)) { showToast(_('Format invalide : un tableau de comptes est attendu.'), 'error'); return; }
         pendingImportContent = res.content;
         document.getElementById('importConfirmDesc').textContent =
-          `Le fichier contient ${parsed.length} compte(s). L'import REMPLACE entièrement la liste actuelle ` +
-          `(${accounts.length} compte(s)) — cette action écrase les comptes existants, pas leurs sessions ` +
-          `(cookies) déjà enregistrées sur le disque. Continuer ?`;
+          _('Le fichier contient {count} compte(s). L\'import REMPLACE entièrement la liste actuelle ({current} compte(s)) — cette action écrase les comptes existants, pas leurs sessions (cookies) déjà enregistrées sur le disque. Continuer ?', { count: parsed.length, current: accounts.length });
         document.getElementById('importConfirmModal').classList.add('open');
       } catch (e) {
         console.error('[import-export] import impossible :', e);
@@ -1806,8 +1807,8 @@
           // Notification navigateur (si permission accordée)
           if ('Notification' in window && Notification.permission === 'granted') {
             try {
-              new Notification('Cooldown terminé', {
-                body: acc.name + ' — ' + svc.name + ' est de nouveau disponible.',
+              new Notification(_('Cooldown terminé'), {
+                body: _('{account} — {service} est de nouveau disponible.', { account: acc.name, service: svc.name }),
                 silent: false
               });
             } catch (e) { /* l'app ne doit pas planter sur une notification */ }
@@ -1852,10 +1853,10 @@
     // le périmètre exact de ce lot (la fenêtre d'automatisation + le moteur
     // d'adaptateurs par service ne sont PAS encore implémentés).
     const SCHED_STATUS_LABELS = {
-      DOWNLOADING: 'Téléchargement…', COMPLETED: 'Téléchargé — à traiter',
-      PROJECT_PENDING: "Projet en cours d'analyse", WAITING_FOR_PROFILE: 'Aucun profil disponible',
-      RESUME_REQUIRED: 'Reprise programmée', RUNNING: 'En cours', PAUSED: 'En pause',
-      DELIVERED: 'Livré', ERROR: 'Erreur'
+      DOWNLOADING: N_('Téléchargement…'), COMPLETED: N_('Téléchargé — à traiter'),
+      PROJECT_PENDING: N_("Projet en cours d'analyse"), WAITING_FOR_PROFILE: N_('Aucun profil disponible'),
+      RESUME_REQUIRED: N_('Reprise programmée'), RUNNING: N_('En cours'), PAUSED: N_('En pause'),
+      DELIVERED: N_('Livré'), ERROR: N_('Erreur')
     };
     const SCHED_STATUS_COLORS = {
       DOWNLOADING: 'var(--accent)', RUNNING: 'var(--accent)', RESUME_REQUIRED: 'var(--accent)',
@@ -2009,46 +2010,46 @@
       document.getElementById('schedMaxJobs').value = cfg.maxConcurrentJobs;
       document.getElementById('schedMinDelay').value = cfg.minDelayBetweenAutomationsMinutes;
       document.getElementById('schedThreshold').value = cfg.profileAgeThresholdHours;
-      document.getElementById('schedDownloadsDir').textContent = cfg.downloadsDir || '(dossier de téléchargements du système)';
-      document.getElementById('schedDeliveryDir').textContent = cfg.deliveryDir || '(non défini)';
+      document.getElementById('schedDownloadsDir').textContent = cfg.downloadsDir || _('(dossier de téléchargements du système)');
+      document.getElementById('schedDeliveryDir').textContent = cfg.deliveryDir || _('(non défini)');
 
       // Projets & tâches (lot 18/09/2026, point 6)
       renderProjects(state.projects || []);
 
       const list = document.getElementById('schedJobsList');
       if (!state.jobs.length) {
-        list.innerHTML = '<div class="sched-empty">Aucun job pour l\'instant — un ZIP téléchargé depuis un onglet IA (ordonnanceur activé) en créera un automatiquement.</div>';
+        list.innerHTML = '<div class="sched-empty">' + escapeHtml(_('Aucun job pour l\'instant — un ZIP téléchargé depuis un onglet IA (ordonnanceur activé) en créera un automatiquement.')) + '</div>';
       } else {
         list.innerHTML = state.jobs.map(j => {
-          const label = SCHED_STATUS_LABELS[j.status] || j.status;
+          const label = SCHED_STATUS_LABELS[j.status] ? _(SCHED_STATUS_LABELS[j.status]) : j.status;
           const color = SCHED_STATUS_COLORS[j.status] || 'var(--fg-muted)';
           const actions = [];
           if (j.status === 'COMPLETED') {
-            actions.push(`<button class="btn" data-action="sched-continue" data-job="${escapeHtml(j.id)}">Continuer le projet</button>`);
-            actions.push(`<button class="btn" data-action="sched-deliver" data-job="${escapeHtml(j.id)}">Marquer livré</button>`);
+            actions.push(`<button class="btn" data-action="sched-continue" data-job="${escapeHtml(j.id)}">${escapeHtml(_('Continuer le projet'))}</button>`);
+            actions.push(`<button class="btn" data-action="sched-deliver" data-job="${escapeHtml(j.id)}">${escapeHtml(_('Marquer livré'))}</button>`);
           }
           if (['RUNNING', 'RESUME_REQUIRED', 'WAITING_FOR_PROFILE'].includes(j.status)) {
-            actions.push(`<button class="btn" data-action="sched-pause" data-job="${escapeHtml(j.id)}">Pause</button>`);
+            actions.push(`<button class="btn" data-action="sched-pause" data-job="${escapeHtml(j.id)}">${escapeHtml(_('Pause'))}</button>`);
           }
           if (j.status === 'PAUSED' || j.status === 'WAITING_FOR_PROFILE') {
-            actions.push(`<button class="btn" data-action="sched-resume" data-job="${escapeHtml(j.id)}">Reprendre</button>`);
+            actions.push(`<button class="btn" data-action="sched-resume" data-job="${escapeHtml(j.id)}">${escapeHtml(_('Reprendre'))}</button>`);
           }
           if (j.status === 'ERROR') {
-            actions.push(`<button class="btn" data-action="sched-retry" data-job="${escapeHtml(j.id)}">Relancer</button>`);
+            actions.push(`<button class="btn" data-action="sched-retry" data-job="${escapeHtml(j.id)}">${escapeHtml(_('Relancer'))}</button>`);
           }
           if (j.file_path || j.outputZip) {
-            actions.push(`<button class="btn" data-action="sched-open-zip" data-job="${escapeHtml(j.id)}">Ouvrir le ZIP</button>`);
+            actions.push(`<button class="btn" data-action="sched-open-zip" data-job="${escapeHtml(j.id)}">${escapeHtml(_('Ouvrir le ZIP'))}</button>`);
             // Lot 18/09/2026 : analyse de complétude — lit le FEATURES.md du ZIP
             // et compte les cases restantes (parseFeaturesMd, scheduler/core.js).
-            actions.push(`<button class="btn" data-action="sched-analyze" data-job="${escapeHtml(j.id)}">Analyser la complétude</button>`);
+            actions.push(`<button class="btn" data-action="sched-analyze" data-job="${escapeHtml(j.id)}">${escapeHtml(_('Analyser la complétude'))}</button>`);
           }
           const fileName = j.file_path ? String(j.file_path).split(/[\\/]/).pop() : null;
           return `
             <div class="sched-job">
               <div class="sched-job__dot" data-dot-color="${color}"></div>
               <div class="sched-job__body">
-                <div class="sched-job__title">${escapeHtml(j.id)} — ${escapeHtml(j.service || 'service inconnu')} · ${escapeHtml(j.profile || '—')}</div>
-                <div class="sched-job__meta">${escapeHtml(label)} · tentative ${j.attempts || 1}${fileName ? ' · ' + escapeHtml(fileName) : ''}</div>
+                <div class="sched-job__title">${escapeHtml(j.id)} — ${escapeHtml(j.service || _('service inconnu'))} · ${escapeHtml(j.profile || '—')}</div>
+                <div class="sched-job__meta">${escapeHtml(label)} · ${escapeHtml(_('tentative {n}', { n: j.attempts || 1 }))}${fileName ? ' · ' + escapeHtml(fileName) : ''}</div>
                 ${actions.length ? `<div class="sched-job__actions">${actions.join('')}</div>` : ''}
               </div>
             </div>
@@ -2060,7 +2061,7 @@
       const log = document.getElementById('schedLog');
       log.innerHTML = state.log.length
         ? state.log.map(l => `<div>[${escapeHtml(new Date(l.ts).toLocaleTimeString('fr-FR'))}] ${escapeHtml(l.message)}</div>`).join('')
-        : '<div class="sched-empty-log">Aucune activité enregistrée.</div>';
+        : '<div class="sched-empty-log">' + escapeHtml(_('Aucune activité enregistrée.')) + '</div>';
 
       hydrateIcons(document.getElementById('schedulerModal'));
     }
@@ -2149,15 +2150,15 @@
     function renderProjects(projects) {
       var list = document.getElementById('schedProjectsList');
       if (!projects || !projects.length) {
-        list.innerHTML = '<div class="sched-empty">Aucun projet pour l\'instant. <button class="btn sched-create-btn" data-action="sched-create-project">Créer un projet</button></div>';
+        list.innerHTML = '<div class="sched-empty">' + escapeHtml(_('Aucun projet pour l\'instant.')) + ' <button class="btn sched-create-btn" data-action="sched-create-project">' + escapeHtml(_('Créer un projet')) + '</button></div>';
         return;
       }
       list.innerHTML = projects.map(function(p) {
         var tasks = p.tasks || [];
         var taskHtml = tasks.length ? tasks.map(function(t) {
           var statusLabel = {
-            pending: 'En attente', assigned: 'Assignée', running: 'En cours',
-            completed: 'Terminée', failed: 'Échouée'
+            pending: _('En attente'), assigned: _('Assignée'), running: _('En cours'),
+            completed: _('Terminée'), failed: _('Échouée')
           }[t.status] || t.status;
           var statusColor = {
             pending: 'var(--fg-muted)', assigned: 'var(--warning)',
@@ -2166,11 +2167,11 @@
           }[t.status] || 'var(--fg-muted)';
           // Bouton « Lancer » pour les tâches assignées (automatisation Claude)
           var launchBtn = (t.status === 'assigned' && t.assignedProfile)
-            ? '<button class="btn sched-task-btn" data-action="sched-execute-task" data-project="' + escapeHtml(p.id) + '" data-task="' + escapeHtml(t.id) + '">Lancer</button>'
+            ? '<button class="btn sched-task-btn" data-action="sched-execute-task" data-project="' + escapeHtml(p.id) + '" data-task="' + escapeHtml(t.id) + '">' + escapeHtml(_('Lancer')) + '</button>'
             : '';
           // Bouton « Voir résultat » pour les tâches terminées
           var resultBtn = (t.status === 'completed' && t.result)
-            ? '<button class="btn sched-task-btn" data-action="sched-view-result" data-project="' + escapeHtml(p.id) + '" data-task="' + escapeHtml(t.id) + '">Résultat</button>'
+            ? '<button class="btn sched-task-btn" data-action="sched-view-result" data-project="' + escapeHtml(p.id) + '" data-task="' + escapeHtml(t.id) + '">' + escapeHtml(_('Résultat')) + '</button>'
             : '';
           return '<div class="sched-job sched-job--task">' +
             '<div class="sched-job__dot sched-job__dot--mt3" data-dot-color="' + statusColor + '"></div>' +
@@ -2183,28 +2184,28 @@
             '</div>' +
             '<div class="sched-job__actions sched-task-actions">' + launchBtn + resultBtn + '</div>' +
             '</div></div>';
-        }).join('') : '<div class="sched-task-empty">Aucune tâche.</div>';
+        }).join('') : '<div class="sched-task-empty">' + escapeHtml(_('Aucune tâche.')) + '</div>';
         var allowedText = p.allowedAccountIds && p.allowedAccountIds.length
           ? p.allowedAccountIds.map(function(id) {
               var acc = accounts.find(function(a) { return a.id === id; });
               return acc ? escapeHtml(acc.name) : escapeHtml(id);
             }).join(', ')
-          : 'Tous les comptes';
+          : escapeHtml(_('Tous les comptes'));
         return '<div class="sched-job">' +
           '<div class="sched-job__dot sched-job__dot--accent sched-job__dot--mt5"></div>' +
           '<div class="sched-job__body">' +
           '<div class="sched-job__title">' + escapeHtml(p.name) +
           ' <span class="sched-subtitle sched-subtitle--inline">(' + escapeHtml(p.id) + ')</span></div>' +
-          '<div class="sched-job__meta">' + tasks.length + ' tâche(s) · Comptes autorisés : ' + allowedText + '</div>' +
+          '<div class="sched-job__meta">' + escapeHtml(_('{count} tâche(s)', { count: tasks.length })) + ' · ' + escapeHtml(_('Comptes autorisés :')) + ' ' + allowedText + '</div>' +
           '<div class="sched-job__actions">' +
-          '<button class="btn" data-action="sched-add-task" data-project="' + escapeHtml(p.id) + '">Nouvelle tâche</button>' +
-          '<button class="btn" data-action="sched-assign-task" data-project="' + escapeHtml(p.id) + '">Assigner</button>' +
-          '<button class="btn" data-action="sched-delete-project" data-project="' + escapeHtml(p.id) + '">Supprimer</button>' +
+          '<button class="btn" data-action="sched-add-task" data-project="' + escapeHtml(p.id) + '">' + escapeHtml(_('Nouvelle tâche')) + '</button>' +
+          '<button class="btn" data-action="sched-assign-task" data-project="' + escapeHtml(p.id) + '">' + escapeHtml(_('Assigner')) + '</button>' +
+          '<button class="btn" data-action="sched-delete-project" data-project="' + escapeHtml(p.id) + '">' + escapeHtml(_('Supprimer')) + '</button>' +
           '</div>' +
           taskHtml +
           '</div></div>';
       }).join('') +
-      '<div class="sched-project-actions"><button class="btn" data-action="sched-create-project">Créer un projet</button></div>';
+      '<div class="sched-project-actions"><button class="btn" data-action="sched-create-project">' + escapeHtml(_('Créer un projet')) + '</button></div>';
       applyDataColors(list); // lot 9 : couleurs dynamiques (job dots, status colors)
     }
 
@@ -2216,13 +2217,13 @@
         if (res && res.error) { showToast(_('Diagnostic Claude : {error}', { error: res.error }), 'error'); return; }
         if (res) {
           var parts = [];
-          if (res.continueButton && res.continueButton.found) parts.push('« Continuer »');
-          if (res.downloadButton && res.downloadButton.found) parts.push('« Télécharger »');
-          if (res.newChatButton && res.newChatButton.found) parts.push('« Nouveau »');
-          if (res.chatInput && res.chatInput.found) parts.push('zone de chat');
-          if (res.fileUpload && res.fileUpload.found) parts.push('upload fichier');
+          if (res.continueButton && res.continueButton.found) parts.push(_('« Continuer »'));
+          if (res.downloadButton && res.downloadButton.found) parts.push(_('« Télécharger »'));
+          if (res.newChatButton && res.newChatButton.found) parts.push(_('« Nouveau »'));
+          if (res.chatInput && res.chatInput.found) parts.push(_('zone de chat'));
+          if (res.fileUpload && res.fileUpload.found) parts.push(_('envoi de fichier'));
           if (res.quotaMessage && res.quotaMessage.detected) parts.push('QUOTA: ' + res.quotaMessage.time);
-          if (res.popups && res.popups.count > 0) parts.push(res.popups.count + ' popup(s)');
+          if (res.popups && res.popups.count > 0) parts.push(_('{count} popup(s)', { count: res.popups.count }));
           showToast(_('Claude (« {profile} ») : {details}', { profile, details: parts.length ? parts.join(', ') : _('aucun élément détecté') }));
         }
       } catch (e) { showToast(_('Diagnostic impossible : {error}', { error: e.message }), 'error'); }
@@ -2260,7 +2261,7 @@
 
     // --- Gestion des projets (CRUD) ---
     window.schedCreateProject = async function() {
-      var name = prompt('Nom du projet :', 'Projet ' + Date.now());
+      var name = prompt(_('Nom du projet :'), _('Projet {n}', { n: Date.now() }));
       if (!name) return;
       try {
         // Pour l'instant, tous les comptes sont autorisés (liste vide = tous)
@@ -2281,7 +2282,7 @@
     };
 
     window.schedAddTask = async function(projectId) {
-      var taskPrompt = window.prompt('Prompt de la tâche :', '');
+      var taskPrompt = window.prompt(_('Prompt de la tâche :'), '');
       if (!taskPrompt) return;
       try {
         var res = await ipcRenderer.invoke('scheduler:create-task', projectId, taskPrompt, null);
@@ -2302,7 +2303,7 @@
           return;
         }
         var names = res.map(function(a) { return a.name + ' (' + a.profile + ')'; });
-        var choice = prompt('Comptes verts disponibles :\n' + names.map(function(n, i) { return (i+1) + '. ' + n; }).join('\n') + '\n\nNuméro du compte :', '1');
+        var choice = prompt(_('Comptes verts disponibles :') + '\n' + names.map(function(n, i) { return (i+1) + '. ' + n; }).join('\n') + '\n\n' + _('Numéro du compte :'), '1');
         if (!choice) return;
         var idx = parseInt(choice, 10) - 1;
         if (isNaN(idx) || idx < 0 || idx >= res.length) { showToast(_('Choix invalide'), 'error'); return; }
@@ -2315,7 +2316,7 @@
           return;
         }
         var taskNames = project.tasks.map(function(t) { return t.id + (t.status !== 'pending' ? ' (' + t.status + ')' : ''); });
-        var taskChoice = prompt('Tâches du projet :\n' + taskNames.map(function(n, i) { return (i+1) + '. ' + n; }).join('\n') + '\n\nNuméro de la tâche :', '1');
+        var taskChoice = prompt(_('Tâches du projet :') + '\n' + taskNames.map(function(n, i) { return (i+1) + '. ' + n; }).join('\n') + '\n\n' + _('Numéro de la tâche :'), '1');
         if (!taskChoice) return;
         var taskIdx = parseInt(taskChoice, 10) - 1;
         if (isNaN(taskIdx) || taskIdx < 0 || taskIdx >= project.tasks.length) { showToast(_('Choix invalide'), 'error'); return; }
