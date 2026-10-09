@@ -56,7 +56,7 @@ node scripts/i18n-extract-html.js index.html > "$WORK/html.pot"
 # avec xgettext 0.19 (Ubuntu 20.04, runners maison) et les versions récentes.
 node scripts/i18n-prepare-js.js "$WORK/js" "${JS_SOURCES[@]}"
 (cd "$WORK/js" && xgettext --language=JavaScript --from-code=UTF-8 --add-comments=TRANSLATORS \
-  --keyword=_ --keyword=gettext --keyword=ngettext:1,2 --keyword=pgettext:1c,2 \
+  --keyword=_ --keyword=N_ --keyword=gettext --keyword=ngettext:1,2 --keyword=pgettext:1c,2 \
   --sort-by-file --no-wrap -o "$WORK/js.pot" "${JS_SOURCES[@]}")
 POT_PARTS=("$WORK/html.pot")
 [[ -s "$WORK/js.pot" ]] && POT_PARTS+=("$WORK/js.pot")

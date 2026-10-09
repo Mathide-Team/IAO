@@ -1,5 +1,19 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issue #51 (lot 4) — HTML construit par app.js traduisible (09/10/2026)
+
+### Livré
+- `assets/app.js` : `_()` dans le HTML construit (état vide et cartes de comptes,
+  barre d'outils et menu des onglets, aide des services, éditeur de secours,
+  ordonnanceur : jobs, projets, tâches, invites, notification de fin de cooldown) ;
+  `N_()` pour les tables construites avant le catalogue (`SERVICE_INFO`, libellés
+  d'état), traduites au rendu. Boutons « modifier » et « supprimer » des cartes : `title`.
+- `scripts/i18n-update.sh` : mot-clé `N_`.
+- Catalogues : 267 chaînes (112 nouvelles), toutes traduites en anglais.
+
+### Tests
+- Harnais Electron C7.2 : aide des services et carte de compte en anglais.
+
 ## Issue #51 (lot 3) — Réglage « Langue », langue du système (09/10/2026)
 
 ### Livré
