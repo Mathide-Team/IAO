@@ -139,9 +139,28 @@
         });
       }
     }
+    // Lot 3 : liste du réglage « Langue », nom de chaque langue dans sa propre
+    // langue (« English », « Deutsch »...), d'après les catalogues livrés.
+    function fillLanguageSelect(available, current) {
+      const select = document.getElementById('settingsLanguage');
+      if (!select || !Array.isArray(available)) return;
+      for (const code of available) {
+        if (select.querySelector('option[value="' + code + '"]')) continue;
+        const opt = document.createElement('option');
+        opt.value = code;
+        let label = code;
+        try { label = new Intl.DisplayNames([code.replace('_', '-')], { type: 'language' }).of(code.replace('_', '-')) || code; }
+        catch (_) { /* code inconnu d'Intl : on garde le code */ }
+        opt.textContent = label.charAt(0).toUpperCase() + label.slice(1) + ' (' + code + ')';
+        select.appendChild(opt);
+      }
+      if (current) select.value = current;
+    }
     if (I18N) {
       ipcRenderer.invoke('i18n:catalog').then((catalog) => {
-        if (!catalog || catalog.locale === I18N.SOURCE_LOCALE) return;
+        if (!catalog) return;
+        fillLanguageSelect(catalog.available, catalog.setting);
+        if (catalog.locale === I18N.SOURCE_LOCALE) return;
         const tr = I18N.createTranslator(catalog);
         window.iaoT = tr.gettext;
         document.documentElement.lang = catalog.locale;
@@ -1919,6 +1938,7 @@
       if (e.target === e.currentTarget) closeSettingsModal();
     });
 
+    let loadedLanguage = 'auto';
     async function loadSettings() {
       try {
         var settings = await ipcRenderer.invoke('settings:load');
@@ -1930,6 +1950,9 @@
         document.getElementById('settingsConfirmBeforeClose').checked = settings.confirmBeforeClose;
         document.getElementById('settingsShowAutomationWindows').checked = settings.showAutomationWindows;
         document.getElementById('settingsStartWithLastSession').checked = settings.startWithLastSession;
+        loadedLanguage = settings.language || 'auto';
+        const langSelect = document.getElementById('settingsLanguage');
+        if (langSelect && langSelect.querySelector('option[value="' + loadedLanguage + '"]')) langSelect.value = loadedLanguage;
         // Restaurer les onglets si le réglage est activé (lot 18/09/2026)
         if (settings.startWithLastSession) {
           restoreOpenTabs();
@@ -1946,13 +1969,18 @@
         theme: document.getElementById('settingsTheme').value,
         confirmBeforeClose: document.getElementById('settingsConfirmBeforeClose').checked,
         showAutomationWindows: document.getElementById('settingsShowAutomationWindows').checked,
-        startWithLastSession: document.getElementById('settingsStartWithLastSession').checked
+        startWithLastSession: document.getElementById('settingsStartWithLastSession').checked,
+        language: (document.getElementById('settingsLanguage') || { value: loadedLanguage }).value
       };
       try {
         var result = await ipcRenderer.invoke('settings:save', raw);
         if (result && result.ok) {
           applySettings(result.settings);
-          showToast(_('Réglages enregistrés'), 'success');
+          const languageChanged = result.settings.language !== loadedLanguage;
+          loadedLanguage = result.settings.language;
+          showToast(languageChanged
+            ? _('Réglages enregistrés — la langue sera appliquée au prochain démarrage')
+            : _('Réglages enregistrés'), 'success');
           closeSettingsModal();
         } else {
           showToast(result && result.error ? result.error : _('Erreur lors de la sauvegarde'), 'error');
