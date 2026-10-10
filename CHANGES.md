@@ -1,5 +1,25 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issue #165 — install.sh réinstallait un build périmé (10/10/2026)
+
+### Cause
+`install.sh` ne lançait `npm run dist:linux` que si `dist/` était vide. Après un
+`git pull`, il recopiait donc le build du premier lancement : icônes absentes, menu
+natif visible, `--iao-debug` inconnu — les correctifs de `dev` n'étaient jamais installés.
+
+### Livré
+- `install.sh` : reconstruction automatique si une source embarquée (`main.js`,
+  `preload.js`, `index.html`, `package*.json`, `assets/`, `lib/`, `scheduler/`, `lang/`)
+  est plus récente que l'exécutable du build ; `npm install` relancé si
+  `package-lock.json` est plus récent que `node_modules/.package-lock.json`.
+- Options `--rebuild` (force) et `--no-build` (installe `dist/` tel quel).
+- Sous `sudo`, la construction est déléguée au compte appelant (`sudo -u "$SUDO_USER"`) ;
+  en root sans `SUDO_USER`, refus explicite plutôt que `npm` en root.
+
+### Tests
+- `test/install-sh.test.js` : le vrai `install.sh` dans un projet temporaire avec un faux
+  `npm` (build absent, à jour, périmé, `package-lock.json` modifié, `--no-build`, `--rebuild`).
+
 ## Issue #51 (lot 4) — HTML construit par app.js traduisible (09/10/2026)
 
 ### Livré
