@@ -1,5 +1,17 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issue #7 (partie sommes de contrôle) — SHA256SUMS.txt des fichiers publiés (10/10/2026)
+
+### Cause
+`release.yml` hachait `dist/*.exe` sous Windows alors que l'exécutable est dans
+`dist/IAO-win32-x64/` (liste vide), au format `Format-List` incompatible avec
+`sha256sum -c` ; le zip Windows réellement publié n'était jamais haché.
+
+### Livré
+- Job « release » : `SHA256SUMS.txt` unique, au format `sha256sum`, calculé sur les
+  fichiers publiés (`.deb`, `.AppImage`, zip Windows) après création du zip, puis
+  vérifié par `sha256sum -c` ; échec si un artefact manque.
+- Étapes de hachage par OS supprimées ; notes de release : commande de vérification.
 ## Issue #165 — install.sh réinstallait un build périmé (10/10/2026)
 
 ### Cause

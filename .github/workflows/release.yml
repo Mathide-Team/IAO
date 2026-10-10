@@ -1,7 +1,8 @@
 # Publication des builds via GitHub Releases.
 #
 # Déclenché par un tag v* (ex: v1.0.0) ou manuellement (workflow_dispatch).
-# Construit les binaires Windows + Linux, génère les sommes SHA-256,
+# Construit les binaires Windows + Linux, génère les sommes SHA-256 des
+# fichiers publiés (SHA256SUMS.txt, format sha256sum),
 # et publie une release GitHub avec les artefacts.
 #
 # La signature des binaires reste un sujet séparé (issue #7) — ce workflow
@@ -51,12 +52,6 @@ jobs:
       - name: Build electron-packager (Linux)
         run: npm run dist:linux
 
-      - name: Génération des sommes SHA-256
-        run: |
-          cd dist
-          sha256sum *.deb *.AppImage > SHA256SUMS-linux.txt
-          cat SHA256SUMS-linux.txt
-
       - name: Upload des artefacts Linux
         uses: actions/upload-artifact@v4
         with:
@@ -64,7 +59,6 @@ jobs:
           path: |
             dist/*.deb
             dist/*.AppImage
-            dist/SHA256SUMS-linux.txt
           retention-days: 30
 
   build-windows:
@@ -87,20 +81,12 @@ jobs:
       - name: Build .exe (electron-packager)
         run: npm run dist:win
 
-      - name: Génération des sommes SHA-256
-        shell: pwsh
-        run: |
-          cd dist
-          Get-FileHash *.exe -Algorithm SHA256 | Format-List > SHA256SUMS-windows.txt
-          Get-Content SHA256SUMS-windows.txt
-
       - name: Upload des artefacts Windows
         uses: actions/upload-artifact@v4
         with:
           name: windows-builds
           path: |
             dist/IAO-win32-x64/
-            dist/SHA256SUMS-windows.txt
           retention-days: 30
 
   release:
@@ -139,11 +125,20 @@ jobs:
           zip -r "IAO-${{ steps.version.outputs.version }}-win32-x64.zip" IAO-win32-x64/
           rm -rf IAO-win32-x64/
 
-      - name: Fusion des sommes SHA-256
+      # Issue #7 : une seule liste, au format de `sha256sum`, calculée sur les
+      # fichiers réellement publiés (dont le zip Windows créé ci-dessus).
+      # Avant : le hachage Windows visait dist/*.exe (l'exécutable est dans
+      # dist/IAO-win32-x64/, donc liste vide) au format Format-List, et le zip
+      # publié n'était jamais haché. Vérification : `sha256sum -c SHA256SUMS.txt`.
+      - name: Sommes SHA-256 des fichiers publiés
+        shell: bash
         run: |
           cd release-assets
-          cat SHA256SUMS-linux.txt SHA256SUMS-windows.txt > SHA256SUMS.txt
-          rm SHA256SUMS-linux.txt SHA256SUMS-windows.txt
+          shopt -s nullglob
+          files=( *.deb *.AppImage *.zip )
+          [ "${#files[@]}" -ge 3 ] || { echo "::error::artefacts manquants : ${files[*]}"; exit 1; }
+          sha256sum "${files[@]}" > SHA256SUMS.txt
+          sha256sum -c SHA256SUMS.txt
           cat SHA256SUMS.txt
 
       - name: Publication de la release
@@ -168,4 +163,5 @@ jobs:
             - **Linux** : installer le `.deb` avec `dpkg -i` ou utiliser l'AppImage
             - **Windows** : dézipper `IAO-*-win32-x64.zip` et lancer `IAO.exe`
 
-            Vérifier l'intégrité avec `SHA256SUMS.txt`.
+            Vérifier l'intégrité : `sha256sum -c SHA256SUMS.txt --ignore-missing`
+            (Windows : `Get-FileHash <fichier> -Algorithm SHA256`, à comparer à la ligne correspondante).
