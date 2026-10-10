@@ -59,7 +59,7 @@ npm install
 ./install.sh              # installation utilisateur, sans sudo
 ```
 
-Le script construit l'app si nécessaire, puis installe :
+Le script construit l'app si nécessaire, puis installe. Le build de `dist/` est reconstruit automatiquement s'il est absent ou plus ancien que les sources (après un `git pull`, par exemple) ; `npm install` est relancé si `package-lock.json` a changé. `--rebuild` force la construction, `--no-build` installe `dist/` tel quel. Sous `sudo`, la construction se fait sous votre compte (`sudo -u`), pour que `node_modules/` et `dist/` ne passent pas à root.
 
 | Élément | Installation utilisateur | Installation système (`sudo ./install.sh --system`) |
 | --- | --- | --- |
