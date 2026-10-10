@@ -123,16 +123,17 @@ build_app() {
     sudo -u "$SUDO_USER" -H "$0" --build-only
     return
   fi
-  if [ "$(id -u)" -eq 0 ]; then
-    # Ne pas lancer npm en root : cela laisse des fichiers appartenant à root
-    # dans node_modules/ et dist/.
-    echo "Construction nécessaire, mais npm ne doit pas tourner en root." >&2
-    echo "Lancez plutôt, en utilisateur normal :" >&2
-    echo "  cd \"$PROJECT_DIR\" && npm install && npm run dist:linux" >&2
-    echo "puis relancez : sudo $0 --system" >&2
-    exit 1
-  fi
   if deps_outdated; then
+    if [ "$(id -u)" -eq 0 ]; then
+      # Ne pas lancer `npm install` en root : cela laisse des fichiers
+      # appartenant à root dans node_modules/.
+      echo "Dépendances absentes ou périmées (node_modules)." >&2
+      echo "Ne lancez pas 'npm install' en root : cela laisse des fichiers appartenant" >&2
+      echo "à root dans node_modules. Lancez plutôt, en utilisateur normal :" >&2
+      echo "  cd \"$PROJECT_DIR\" && npm install && npm run dist:linux" >&2
+      echo "puis relancez : sudo $0 --system" >&2
+      exit 1
+    fi
     echo "Dépendances absentes ou périmées — installation (npm install)…"
     ( cd "$PROJECT_DIR" && npm install )
   fi
