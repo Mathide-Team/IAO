@@ -173,7 +173,7 @@ REM Raccourci Menu Demarrer - toujours cree
 REM Issue #162 : raccourci Menu Demarrer en mode debug (journal detaille)
 >> "%VBS%" echo Set debugShortcut = WshShell.CreateShortcut("%SHORTCUT_DIR%\%SHORTCUT_NAME% (mode debug).lnk")
 >> "%VBS%" echo debugShortcut.TargetPath = "%PREFIX%\%BIN_EXE%"
->> "%VBS%" echo debugShortcut.Arguments = "--debug"
+>> "%VBS%" echo debugShortcut.Arguments = "--iao-debug"
 >> "%VBS%" echo debugShortcut.WorkingDirectory = "%PREFIX%"
 >> "%VBS%" echo debugShortcut.Description = "IAO - mode debug (journal detaille)"
 >> "%VBS%" echo debugShortcut.IconLocation = "%PREFIX%\%BIN_EXE%,0"

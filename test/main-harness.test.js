@@ -102,7 +102,7 @@ function loadMain() {
 
 const MAIN_CHANNELS = [
   'accounts:disconnect-profile', 'accounts:export', 'accounts:import', 'app:is-debug', 'app:toggle-devtools',
-  'read-directory', 'read-directory-recursive', 'read-file', 'save-file',
+  'i18n:catalog', 'read-directory', 'read-directory-recursive', 'read-file', 'save-file',
   'select-folder', 'settings:load', 'settings:save'
 ];
 
@@ -161,6 +161,123 @@ test('main.js : « activate » recrée la fenêtre seulement si aucune n\'est ou
     activate();
     assert.equal(h.electron.windows.length, 1, 'fenêtre recréée');
     assert.equal(h.electron.windows[0].loaded, 'index.html');
+  } finally {
+    console.warn = warn; console.log = log;
+    h.cleanup();
+  }
+});
+
+test('i18n:catalog : français par défaut, IAO_LANG=en traduit, .mo illisible -> repli journalisé (issue #51)', () => {
+  const saved = process.env.IAO_LANG;
+  const messages = [];
+  const warn = console.warn; const log = console.log;
+  console.warn = console.log = (msg) => { messages.push(String(msg)); };
+  const h = loadMain();
+  const handler = h.electron.ipcHandlers.get('i18n:catalog');
+  const origRead = fs.readFileSync;
+  try {
+    delete process.env.IAO_LANG;
+    assert.equal(handler().locale, 'fr');
+    process.env.IAO_LANG = 'en';
+    const en = handler();
+    assert.equal(en.locale, 'en');
+    assert.equal(en.messages.Annuler, 'Cancel');
+    assert.ok(messages.some((m) => m.includes('Langue de l\'interface : en')), messages.join(' | '));
+    fs.readFileSync = function (file, ...rest) {
+      if (String(file).endsWith('iao.mo')) return Buffer.from('corrompu');
+      return origRead.call(fs, file, ...rest);
+    };
+    const bad = handler();
+    assert.equal(bad.locale, 'fr');
+    assert.ok(messages.some((m) => m.includes('repli en français')), messages.join(' | '));
+  } finally {
+    fs.readFileSync = origRead;
+    if (saved === undefined) delete process.env.IAO_LANG; else process.env.IAO_LANG = saved;
+    console.warn = warn; console.log = log;
+    h.cleanup();
+  }
+});
+
+test('i18n:catalog : réglage « Langue » puis langues du système, IAO_LANG prioritaire (issue #51, lot 3)', () => {
+  const saved = process.env.IAO_LANG;
+  const warn = console.warn; const log = console.log;
+  console.warn = console.log = () => {};
+  const h = loadMain();
+  const app = h.electron.app;
+  const handler = h.electron.ipcHandlers.get('i18n:catalog');
+  const settingsFile = path.join(app.getPath('userData'), 'settings.json');
+  try {
+    delete process.env.IAO_LANG;
+    // auto (pas de settings.json) : langues du système, la première livrée gagne
+    app.getPreferredSystemLanguages = () => ['xx-YY', 'en-GB'];
+    let c = handler();
+    assert.equal(c.locale, 'en');
+    assert.equal(c.setting, 'auto');
+    assert.ok(c.available.includes('en') && c.available.includes('fr'));
+    // liste système vide : repli sur app.getLocale()
+    app.getPreferredSystemLanguages = () => [];
+    app.getLocale = () => 'en-US';
+    assert.equal(handler().locale, 'en');
+    // ni l'un ni l'autre : français
+    delete app.getPreferredSystemLanguages;
+    delete app.getLocale;
+    assert.equal(handler().locale, 'fr');
+    // réglage explicite
+    fs.mkdirSync(path.dirname(settingsFile), { recursive: true });
+    fs.writeFileSync(settingsFile, JSON.stringify({ language: 'en' }));
+    c = handler();
+    assert.equal(c.locale, 'en');
+    assert.equal(c.setting, 'en');
+    // IAO_LANG l'emporte sur le réglage
+    process.env.IAO_LANG = 'fr';
+    assert.equal(handler().locale, 'fr');
+    delete process.env.IAO_LANG;
+    // settings.json illisible : auto
+    fs.writeFileSync(settingsFile, '{corrompu');
+    assert.equal(handler().setting, 'auto');
+  } finally {
+    if (saved === undefined) delete process.env.IAO_LANG; else process.env.IAO_LANG = saved;
+    console.warn = warn; console.log = log;
+    h.cleanup();
+  }
+});
+
+test('cleanupServiceWorkerStorage : supprime le dossier Service Worker au demarrage (issue #165)', () => {
+  const h = loadMain();
+  const warn = console.warn; const log = console.log;
+  console.warn = console.log = () => {};
+  try {
+    const userData = h.electron.app.getPath('userData');
+    const swDir = path.join(userData, 'Service Worker');
+    fs.mkdirSync(swDir, { recursive: true });
+    fs.writeFileSync(path.join(swDir, 'test.db'), 'corrupt');
+    assert.equal(fs.existsSync(swDir), true, 'dossier Service Worker cree');
+    h.electron.calls.readyCallbacks[0]();
+    assert.equal(fs.existsSync(swDir), false, 'dossier Service Worker supprime');
+  } finally {
+    console.warn = warn; console.log = log;
+    h.cleanup();
+  }
+});
+
+test('cleanupServiceWorkerStorage : erreur de suppression journalisee sans bloquer (issue #165)', () => {
+  const h = loadMain();
+  const warn = console.warn; const log = console.log;
+  const messages = [];
+  console.warn = console.log = (msg) => { messages.push(String(msg)); };
+  try {
+    const userData = h.electron.app.getPath('userData');
+    const swDir = path.join(userData, 'Service Worker');
+    fs.mkdirSync(swDir, { recursive: true });
+    const origRmSync = fs.rmSync;
+    fs.rmSync = () => { throw new Error('EACCES permission refusee'); };
+    try {
+      h.electron.calls.readyCallbacks[0]();
+    } finally {
+      fs.rmSync = origRmSync;
+    }
+    assert.ok(messages.some(m => m.includes('Nettoyage Service Worker impossible')),
+      'avertissement journalise : ' + messages.join(' | '));
   } finally {
     console.warn = warn; console.log = log;
     h.cleanup();

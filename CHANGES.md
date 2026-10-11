@@ -1,5 +1,144 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issue #7 (partie sommes de contrôle) — SHA256SUMS.txt des fichiers publiés (10/10/2026)
+
+### Cause
+`release.yml` hachait `dist/*.exe` sous Windows alors que l'exécutable est dans
+`dist/IAO-win32-x64/` (liste vide), au format `Format-List` incompatible avec
+`sha256sum -c` ; le zip Windows réellement publié n'était jamais haché.
+
+### Livré
+- Job « release » : `SHA256SUMS.txt` unique, au format `sha256sum`, calculé sur les
+  fichiers publiés (`.deb`, `.AppImage`, zip Windows) après création du zip, puis
+  vérifié par `sha256sum -c` ; échec si un artefact manque.
+- Étapes de hachage par OS supprimées ; notes de release : commande de vérification.
+## Issue #165 — install.sh réinstallait un build périmé (10/10/2026)
+
+### Cause
+`install.sh` ne lançait `npm run dist:linux` que si `dist/` était vide. Après un
+`git pull`, il recopiait donc le build du premier lancement : icônes absentes, menu
+natif visible, `--iao-debug` inconnu — les correctifs de `dev` n'étaient jamais installés.
+
+### Livré
+- `install.sh` : reconstruction automatique si une source embarquée (`main.js`,
+  `preload.js`, `index.html`, `package*.json`, `assets/`, `lib/`, `scheduler/`, `lang/`)
+  est plus récente que l'exécutable du build ; `npm install` relancé si
+  `package-lock.json` est plus récent que `node_modules/.package-lock.json`.
+- Options `--rebuild` (force) et `--no-build` (installe `dist/` tel quel).
+- Sous `sudo`, la construction est déléguée au compte appelant (`sudo -u "$SUDO_USER"`) ;
+  en root sans `SUDO_USER` (conteneur, runner CI), `npm install` reste refusé comme avant,
+  `npm run dist:linux` est permis si les dépendances sont à jour.
+
+### Tests
+- `test/install-sh.test.js` : le vrai `install.sh` dans un projet temporaire avec un faux
+  `npm` (build absent, à jour, périmé, `package-lock.json` modifié, refus de `npm install` en root,
+  `--no-build`, `--rebuild`) ; passe en compte normal comme sur les runners root.
+
+## Issue #51 (lot 4) — HTML construit par app.js traduisible (09/10/2026)
+
+### Livré
+- `assets/app.js` : `_()` dans le HTML construit (état vide et cartes de comptes,
+  barre d'outils et menu des onglets, aide des services, éditeur de secours,
+  ordonnanceur : jobs, projets, tâches, invites, notification de fin de cooldown) ;
+  `N_()` pour les tables construites avant le catalogue (`SERVICE_INFO`, libellés
+  d'état), traduites au rendu. Boutons « modifier » et « supprimer » des cartes : `title`.
+- `scripts/i18n-update.sh` : mot-clé `N_`.
+- Catalogues : 267 chaînes (112 nouvelles), toutes traduites en anglais.
+
+### Tests
+- Harnais Electron C7.2 : aide des services et carte de compte en anglais.
+
+## Issue #51 (lot 3) — Réglage « Langue », langue du système (09/10/2026)
+
+### Livré
+- `lib/i18n.js` : `preferredLocales` (demande explicite, réglage, langues du système).
+- `lib/settings.js` : réglage `language` (`auto` par défaut, code de locale validé sans
+  liste codée en dur).
+- `main.js` : `i18n:catalog` lit le réglage et `app.getPreferredSystemLanguages()`
+  (repli `app.getLocale()`), renvoie le réglage courant.
+- Réglages : liste « Langue » (« Langue du système » + catalogues livrés, nommés dans
+  leur langue), appliquée au prochain démarrage.
+
+### Comportement
+Sans `IAO_LANG` ni réglage, l'interface suit désormais la langue du système (anglais
+sur un bureau anglophone) ; chaîne non traduite : français.
+
+### Tests
+- `settings`, `i18n` (`preferredLocales`), `main-harness` (ordre de priorité, replis).
+- Harnais Electron : scénarios en `IAO_LANG=fr`, C7.3 (langue du système, sélecteur).
+
+## Issue #51 (lot 2) — Libellés construits par app.js traduisibles (09/10/2026)
+
+### Livré
+- `lib/i18n.js` : `formatMessage(gabarit, paramètres)` (marqueurs `{nom}`, 100 % couvert).
+- `assets/app.js` : fonction `_()` (relit `window.iaoT`) sur les 78 toasts, le titre de
+  la fenêtre de résultat et la fenêtre de récupération des comptes ; concaténations et
+  littéraux de gabarit remplacés par des marqueurs nommés (76 nouvelles chaînes).
+- Catalogues régénérés : 151 chaînes, toutes traduites en anglais.
+
+### Tests
+- `test/i18n.test.js` : `formatMessage`, garde « aucun toast littéral » dans `app.js`.
+- Harnais Electron C7.2 : toast « Fill in all the fields » avec `IAO_LANG=en`.
+
+### Reste à faire
+Cartes de comptes et listes de l'ordonnanceur (HTML généré), sélecteur de langue,
+bascule automatique sur la langue du système, relecture des traductions.
+
+## Issue #51 (lot 1) — Internationalisation gettext, 29 locales (08/10/2026)
+
+### Livré
+- `lang/LINGUAS` (seule liste des 29 locales), `lang/messages.pot`, `lang/<xx>.po`,
+  `lang/<xx>/LC_MESSAGES/iao.mo`.
+- `lib/i18n.js` (pur, 100 % couvert) : lecture `.mo`, `Plural-Forms` évalué sans `eval`
+  (CSP), `gettext`/`ngettext`/`pgettext`, négociation de locale, extraction HTML.
+- `main.js` : canal `i18n:catalog`. `assets/app.js` : traduction du DOM statique,
+  `window.iaoT()` pour les lots suivants.
+- `scripts/i18n-update.sh` (`npm run i18n:update` / `i18n:check`) : `xgettext` +
+  extracteur HTML, `msgmerge` (traductions conservées), `msgfmt --check`, compilation,
+  rapport par locale.
+- `.github/workflows/i18n.yml` : vérification CI + PR automatique
+  « chore(i18n): update translation catalogs » sur `dev`.
+- Anglais : les 75 chaînes de l'interface statique (à relire).
+- Doc : `docs/i18n.md`.
+
+### Comportement
+Français par défaut (inchangé). Autre langue : `IAO_LANG=en` ou `--iao-lang=en`.
+
+### Tests
+- `test/i18n.test.js` (24 tests), `main-harness` (canal `i18n:catalog`, repli si `.mo` corrompu).
+- Harnais Electron `ui-flows` : C7.1 (français par défaut), C7.2 (`IAO_LANG=en` traduit
+  textes, `title`, `placeholder`, icônes intactes).
+
+### Reste à faire (lots suivants)
+Libellés construits par `assets/app.js` via `window.iaoT()`, sélecteur de langue dans
+les réglages, bascule automatique sur la langue du système, relecture des traductions.
+
+## Correctif #165 — Démarrage difficile : --debug obsolète, sandbox, Database IO error (07/10/2026)
+
+### Causes
+1. **`--debug` obsolète** : Node.js intercepte `--debug` comme flag DEP0062 et affiche
+   un avertissement au lieu de le passer à l'application. Le mode debug (#162)
+   ne s'activait donc jamais via la ligne de commande.
+2. **Sandbox Linux en dev** : `npm run start` (sans `--no-sandbox`) crashait sur
+   Linux quand `chrome-sandbox` n'est pas setuid root (cas en développement).
+3. **Spam « Database IO error »** : les bases de données de service workers de
+   Chromium peuvent rester dans un état incohérent après un arrêt brutal,
+   provoquant des rafales d'erreurs au démarrage suivant.
+
+### Correctifs
+- Renommage du flag `--debug` en `--iao-debug` dans toute l'application
+  (`startup-diagnostics.js`, `package.json`, `install.bat`, `README.md`, tests).
+  `IAO_DEBUG=1` reste inchangé. `--debug` toujours accepté en compatibilité.
+- `package.json` : `start` et `start:debug` incluent `--no-sandbox` (dev).
+- `main.js` : `cleanupServiceWorkerStorage()` supprime le dossier `Service Worker`
+  avant l'initialisation de Chromium, prévenant le spam « Database IO error ».
+
+### Tests
+- `test/startup-diagnostics.test.js` : `isDebugEnabled` accepte `--iao-debug`,
+  `--debug` (compat) et `IAO_DEBUG`.
+- `test/debug-trace.test.js` : `describeRuntime` avec `--iao-debug`.
+- `npm test` : à vérifier.
+
 ## Correctif #52 — Démarrage : interface vide, sans icône ni diagnostic (29/09/2026)
 
 ### Cause

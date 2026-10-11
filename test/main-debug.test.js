@@ -3,7 +3,7 @@
 // Issue #162 : mode debug sur toute l'application, côté main.js.
 // Même principe que test/main-log-instance.test.js : `require('electron')` est
 // remplacé par un module simulé, tout se passe dans un dossier temporaire.
-// main.js lit --debug / IAO_DEBUG au chargement : chaque test recharge donc
+// main.js lit --iao-debug / IAO_DEBUG au chargement : chaque test recharge donc
 // une copie neuve de main.js avec ou sans IAO_DEBUG=1.
 
 const test = require('node:test');

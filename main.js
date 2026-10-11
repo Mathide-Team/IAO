@@ -23,7 +23,7 @@ app.setName('IAO');
 // terminal (seuls les messages de Chromium y défilaient) et rien du tout quand
 // IAO était lancé depuis l'icône du Dock. Désormais chaque événement utile est
 // écrit dans le terminal ET dans <userData>/logs/iao.log (tourné à 1 Mo).
-// `--debug` (ou IAO_DEBUG=1) recopie en plus TOUS les messages console de la
+// `--iao-debug` (ou IAO_DEBUG=1) recopie en plus TOUS les messages console de la
 // fenêtre principale, pas seulement warnings et erreurs.
 const diag = require('./lib/startup-diagnostics');
 const DEBUG = diag.isDebugEnabled(process.argv, process.env);
@@ -56,7 +56,7 @@ function log(scope, level, message, sourceId, line) {
   }
 }
 
-// Issue #162 : trace réservée au mode debug (--debug ou IAO_DEBUG=1).
+// Issue #162 : trace réservée au mode debug (--iao-debug ou IAO_DEBUG=1).
 function debug(scope, message) {
   if (DEBUG) log(scope, 'debug', message);
 }
@@ -102,6 +102,26 @@ function hostOf(urlStr) {
 // Taille max d'un fichier ouvrable dans l'éditeur intégré. Au-delà, lire le
 // fichier entier en mémoire + le transférer par IPC figerait main ET renderer.
 const MAX_EDITABLE_FILE_BYTES = 20 * 1024 * 1024; // 20 Mo
+
+// ===== Nettoyage du stockage Service Worker (issue #165) =====
+// Chromium peut laisser des bases de données de service workers dans un état
+// incohérent (arrêt brutal, verrous non relâchés). Au démarrage suivant,
+// le service de stockage tente de les supprimer, échoue en boucle et inonde
+// le terminal de « Failed to delete the database: Database IO error ».
+// On supprime le dossier avant que Chromium ne réouvre ses bases : il sera
+// recréé proprement. Les service workers des sites IA se réenregistreront
+// automatiquement à la prochaine visite.
+function cleanupServiceWorkerStorage() {
+  try {
+    const swDir = path.join(app.getPath('userData'), 'Service Worker');
+    if (fs.existsSync(swDir)) {
+      fs.rmSync(swDir, { recursive: true, force: true });
+      log('demarrage', 'info', 'Dossier Service Worker nettoyé au démarrage (prévention Database IO error).');
+    }
+  } catch (e) {
+    log('demarrage', 'warning', 'Nettoyage Service Worker impossible : ' + e.message);
+  }
+}
 
 // ===== Ordonnanceur IA (chantier E) =====
 // Instance unique, créée ici (module.getPath('userData') est déjà fixé plus
@@ -417,12 +437,52 @@ ipc.handle('settings:save', async (event, rawSettings) => {
   }
 });
 
+// --- Internationalisation (issue #51) ---
+// Catalogue gettext compilé (lang/<locale>/LC_MESSAGES/iao.mo) de la langue
+// demandée (--iao-lang=xx, IAO_LANG, réglage « Langue », langue du système) ;
+// français (langue source) si aucune n'est livrée.
+// Lu à la demande du renderer, qui traduit l'interface statique.
+const i18n = require('./lib/i18n');
+
+// Lot 3 : réglage « Langue » (settings.json, 'auto' par défaut) puis langues
+// du système ; --iao-lang / IAO_LANG gardent la priorité.
+function systemLocales() {
+  if (typeof app.getPreferredSystemLanguages === 'function') {
+    const list = app.getPreferredSystemLanguages();
+    if (Array.isArray(list) && list.length) return list;
+  }
+  return typeof app.getLocale === 'function' ? [app.getLocale()] : [];
+}
+
+function languageSetting() {
+  try {
+    return normalizeSettings(JSON.parse(fs.readFileSync(settingsPath, 'utf-8'))).language;
+  } catch (_) {
+    return DEFAULT_SETTINGS.language; // pas de settings.json : 'auto'
+  }
+}
+
+ipc.handle('i18n:catalog', () => {
+  const setting = languageSetting();
+  const catalog = i18n.loadCatalog({
+    langDir: path.join(__dirname, 'lang'),
+    preferred: i18n.preferredLocales({ argv: process.argv, env: process.env, setting, system: systemLocales() }),
+    fs,
+    join: path.join
+  });
+  catalog.setting = setting;
+  if (catalog.error) log('i18n', 'warning', 'Catalogue de traduction illisible, repli en français : ' + catalog.error);
+  else if (catalog.locale !== i18n.SOURCE_LOCALE) log('i18n', 'info', 'Langue de l\'interface : ' + catalog.locale);
+  return catalog;
+});
+
 // --- IPC pour l'ordonnanceur IA (chantier E) ---
 registerSchedulerIPC(ipc, scheduler, () => mainWindow);
 
 app.whenReady().then(() => {
   // 2e instance (voir « Instance unique ») : ne rien ouvrir, app.quit() est en cours.
   if (!gotSingleInstanceLock) return;
+  cleanupServiceWorkerStorage();
   log('demarrage', 'info', 'IAO ' + app.getVersion() + ' — Electron ' + process.versions.electron +
     ', ' + process.platform + '/' + process.arch + (app.isPackaged ? ', packagé' : ', sources') +
     (DEBUG ? ', mode debug' : '') + '. Données : ' + app.getPath('userData') + ' — journal : ' + LOG_FILE);
