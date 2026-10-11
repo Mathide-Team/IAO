@@ -43,6 +43,11 @@
 // ---------------------------------------------------------------------------
 
 const { app, BrowserWindow } = require('electron');
+
+// Issue #51, lot 3 : sans demande explicite, l'interface suit la langue du
+// système (anglais sur un runner anglophone). Les scénarios vérifient les
+// libellés français (langue source) : on l'impose.
+process.env.IAO_LANG = 'fr';
 const path = require('path');
 const fs = require('fs');
 const os = require('os');

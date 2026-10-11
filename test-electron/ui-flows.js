@@ -23,6 +23,11 @@ const fs = require('fs');
 const os = require('os');
 const v8cov = require('./v8-coverage');
 
+// Issue #51, lot 3 : sans demande explicite, l'interface suit la langue du
+// système. Les scénarios vérifient les libellés français (langue source) :
+// on l'impose, sauf dans C7.2/C7.3 qui changent la langue eux-mêmes.
+process.env.IAO_LANG = 'fr';
+
 // Mesure optionnelle (issue #100) : IAO_COVERAGE=1 affiche la couverture V8 de
 // assets/app.js. Purement informatif : n'affecte JAMAIS le code de sortie.
 const MEASURE_COVERAGE = process.env.IAO_COVERAGE === '1';
@@ -376,6 +381,96 @@ async function run() {
     await exec('window.toggleDevTools()');
     for (let i = 0; i < 30 && win.webContents.isDevToolsOpened(); i++) await sleep(100);
     assert(!win.webContents.isDevToolsOpened(), 'outils de développement non refermés');
+  });
+
+  // =========================================================================
+  // C7 — Internationalisation (issue #51)
+  // =========================================================================
+  console.log('\n--- C7 : Internationalisation ---');
+
+  await test('C7.1 IAO_LANG=fr : interface en français (langue source)', async () => {
+    const r = await exec(`({ lang: document.documentElement.lang,
+      title: document.querySelector('[data-action="ui-openModal"]').getAttribute('title') })`);
+    assert(r.lang === 'fr', 'lang attendu fr, trouvé ' + r.lang);
+    assert(r.title === 'Ajouter un compte', 'title inattendu : ' + r.title);
+  });
+
+  await test('C7.2 IAO_LANG=en traduit textes, title et placeholder sans casser les icônes', async () => {
+    process.env.IAO_LANG = 'en';
+    try {
+      win.webContents.reload();
+      await sleep(300);
+      await waitLoaded();
+      const r = await exec(`({
+        lang: document.documentElement.lang,
+        title: document.querySelector('[data-action="ui-openModal"]').getAttribute('title'),
+        placeholder: document.getElementById('paletteInput').getAttribute('placeholder'),
+        section: document.querySelector('.section-title--accounts span').textContent,
+        icons: document.querySelectorAll('span.ic[data-icon]').length,
+        svgs: document.querySelectorAll('span.ic[data-icon] svg').length,
+        bootError: document.getElementById('bootError') !== null
+      })`);
+      assert(r.lang === 'en', 'lang attendu en, trouvé ' + r.lang);
+      assert(r.title === 'Add an account', 'title non traduit : ' + r.title);
+      assert(r.placeholder === 'Search for an account or an AI...', 'placeholder non traduit : ' + r.placeholder);
+      assert(r.section === 'Saved accounts', 'texte non traduit : ' + r.section);
+      assert(r.svgs === r.icons, 'icônes perdues après traduction : ' + r.svgs + '/' + r.icons);
+      assert(!r.bootError, 'bandeau d\'erreur de démarrage affiché');
+      // Lot 2 : libellés construits par app.js (toast « champs vides »).
+      const toast = await exec(`(() => {
+        ['inputName', 'inputEmail', 'inputProfile'].forEach((id) => { const el = document.getElementById(id); if (el) el.value = ''; });
+        window.saveAccount();
+        const all = document.querySelectorAll('#toastContainer .toast');
+        return all.length ? all[all.length - 1].textContent.trim() : '';
+      })()`);
+      assert(toast === 'Fill in all the fields', 'toast non traduit : ' + toast);
+      // Lot 4 : HTML construit par app.js (cartes de comptes, aide des services).
+      const built = await exec(`(() => {
+        window.openHelpModal();
+        const label = document.querySelector('#helpList .help-entry__label');
+        const line = document.querySelector('#helpList .help-entry__line');
+        const copy = document.querySelector('.account-email-copy');
+        window.closeHelpModal();
+        return {
+          label: label ? label.textContent : '',
+          line: line ? line.textContent : '',
+          copy: copy ? copy.getAttribute('title') : ''
+        };
+      })()`);
+      assert(built.label === 'What is it?', 'aide non traduite : ' + built.label);
+      assert(!/[éè]/.test(built.line) && built.line.length > 20, 'description non traduite : ' + built.line);
+      assert(built.copy === 'Click to copy the email address', 'carte de compte non traduite : ' + built.copy);
+    } finally {
+      process.env.IAO_LANG = 'fr';
+    }
+  });
+
+  await test('C7.3 Sans IAO_LANG ni réglage : langue du système, sélecteur rempli', async () => {
+    const i18n = require('../lib/i18n');
+    delete process.env.IAO_LANG;
+    try {
+      win.webContents.reload();
+      await sleep(300);
+      await waitLoaded();
+      await sleep(200);
+      const available = i18n.parseLinguas(fs.readFileSync(path.join(__dirname, '..', 'lang', 'LINGUAS'), 'utf8'));
+      const sysList = app.getPreferredSystemLanguages();
+      const system = sysList.length ? sysList : [app.getLocale()]; // même repli que main.js
+      const expected = i18n.negotiateLocale(system, available, 'fr');
+      const r = await exec(`({
+        lang: document.documentElement.lang || 'fr',
+        options: Array.from(document.querySelectorAll('#settingsLanguage option')).map((o) => o.value),
+        selected: document.getElementById('settingsLanguage').value
+      })`);
+      assert(r.lang === expected, 'langue attendue ' + expected + ' (système : ' + system.join(',') + '), trouvée ' + r.lang);
+      assert(r.options[0] === 'auto' && r.options.includes('en') && r.options.includes('fr'), 'sélecteur incomplet : ' + r.options.join(','));
+      assert(r.selected === 'auto', 'réglage attendu auto, trouvé ' + r.selected);
+    } finally {
+      process.env.IAO_LANG = 'fr';
+      win.webContents.reload();
+      await sleep(300);
+      await waitLoaded();
+    }
   });
 
   // =========================================================================

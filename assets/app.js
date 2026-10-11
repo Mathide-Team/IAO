@@ -91,7 +91,7 @@
     }
     const ipcRenderer = { invoke: window.iaoAPI.ipcInvoke };
 
-    // Issue #162 : mode debug (--debug ou IAO_DEBUG=1, décidé par main.js).
+    // Issue #162 : mode debug (--iao-debug ou IAO_DEBUG=1, décidé par main.js).
     // dbg() écrit en console.debug : main.js ne recopie ce niveau dans
     // iao.log qu'en mode debug, et dbg() se tait hors de ce mode.
     let debugMode = false;
@@ -105,6 +105,72 @@
       if (badge) badge.classList.remove('hidden');
       dbg('demarrage', 'mode debug actif dans l\'interface');
     }).catch(() => { /* canal absent (ancienne version de main.js) : mode normal */ });
+
+    // Issue #51 : internationalisation. main.js renvoie le catalogue de la
+    // langue demandée (--iao-lang=xx / IAO_LANG) ; en français (langue
+    // source) il est vide et rien n'est touché. Lot 1 : interface statique
+    // d'index.html (textes, title, placeholder...) ; les libellés construits
+    // par ce fichier passeront par window.iaoT() dans les lots suivants.
+    const I18N = window.IAO_I18N;
+    window.iaoT = (msgid) => msgid;
+    // Libellé traduisible construit en JavaScript (repéré par xgettext, mot-clé
+    // « _ ») : window.iaoT est relu à chaque appel, il devient le traducteur
+    // une fois le catalogue chargé ; params remplit les marqueurs {nom}.
+    const _ = (msgid, params) => {
+      const s = window.iaoT(msgid);
+      return I18N ? I18N.formatMessage(s, params) : s;
+    };
+    // Marque un libellé à extraire sans le traduire tout de suite (tables
+    // construites avant le chargement du catalogue) : _() au moment du rendu.
+    const N_ = (msgid) => msgid;
+    function applyTranslations(root, tr) {
+      const SKIP = new Set(['SCRIPT', 'STYLE', 'TEXTAREA', 'WEBVIEW']);
+      const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+      const texts = [];
+      for (let n = walker.nextNode(); n; n = walker.nextNode()) texts.push(n);
+      for (const node of texts) {
+        const parent = node.parentElement;
+        if (!parent || SKIP.has(parent.tagName) || parent.closest('#monacoContainer')) continue;
+        const next = I18N.translateText(node.nodeValue, tr);
+        if (next !== node.nodeValue) node.nodeValue = next;
+      }
+      for (const attr of I18N.TRANSLATED_ATTRIBUTES) {
+        root.querySelectorAll('[' + attr + ']').forEach((el) => {
+          const value = el.getAttribute(attr);
+          const next = I18N.translateText(value, tr);
+          if (next !== value) el.setAttribute(attr, next);
+        });
+      }
+    }
+    // Lot 3 : liste du réglage « Langue », nom de chaque langue dans sa propre
+    // langue (« English », « Deutsch »...), d'après les catalogues livrés.
+    function fillLanguageSelect(available, current) {
+      const select = document.getElementById('settingsLanguage');
+      if (!select || !Array.isArray(available)) return;
+      for (const code of available) {
+        if (select.querySelector('option[value="' + code + '"]')) continue;
+        const opt = document.createElement('option');
+        opt.value = code;
+        let label = code;
+        try { label = new Intl.DisplayNames([code.replace('_', '-')], { type: 'language' }).of(code.replace('_', '-')) || code; }
+        catch (_) { /* code inconnu d'Intl : on garde le code */ }
+        opt.textContent = label.charAt(0).toUpperCase() + label.slice(1) + ' (' + code + ')';
+        select.appendChild(opt);
+      }
+      if (current) select.value = current;
+    }
+    if (I18N) {
+      ipcRenderer.invoke('i18n:catalog').then((catalog) => {
+        if (!catalog) return;
+        fillLanguageSelect(catalog.available, catalog.setting);
+        if (catalog.locale === I18N.SOURCE_LOCALE) return;
+        const tr = I18N.createTranslator(catalog);
+        window.iaoT = tr.gettext;
+        document.documentElement.lang = catalog.locale;
+        applyTranslations(document.body, tr);
+        dbg('i18n', 'interface traduite : ' + catalog.locale);
+      }).catch((e) => { console.warn('[i18n] catalogue indisponible, interface en français :', e && e.message); });
+    }
 
     const SERVICES = [
       { id: 'claude', name: 'Claude', url: 'https://claude.ai/new', cssClass: 'svc-claude' },
@@ -168,89 +234,89 @@
     // Texte statique embarqué (aucun fetch réseau), rédigé neutre / grand public.
     const SERVICE_INFO = {
       claude: {
-        what: "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes.",
-        when: "Plutôt pour du code, des textes longs et soignés, ou des questions complexes qui demandent de la rigueur."
+        what: N_("L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."),
+        when: N_("Plutôt pour du code, des textes longs et soignés, ou des questions complexes qui demandent de la rigueur.")
       },
       chatgpt: {
-        what: "L'assistant généraliste d'OpenAI, le plus connu du grand public. Il discute, rédige, résume, génère des images, analyse des fichiers et peut chercher sur le web.",
-        when: "Le couteau suisse du quotidien : brainstorming, questions générales, petites tâches variées."
+        what: N_("L'assistant généraliste d'OpenAI, le plus connu du grand public. Il discute, rédige, résume, génère des images, analyse des fichiers et peut chercher sur le web."),
+        when: N_("Le couteau suisse du quotidien : brainstorming, questions générales, petites tâches variées.")
       },
       gemini: {
-        what: "L'assistant IA de Google. Multimodal (texte, images, audio, vidéo), il s'appuie sur la recherche Google et s'intègre aux outils Google (Docs, Gmail, Drive…).",
-        when: "Plutôt pour analyser des images ou vidéos, ou si vous travaillez déjà dans l'écosystème Google."
+        what: N_("L'assistant IA de Google. Multimodal (texte, images, audio, vidéo), il s'appuie sur la recherche Google et s'intègre aux outils Google (Docs, Gmail, Drive…)."),
+        when: N_("Plutôt pour analyser des images ou vidéos, ou si vous travaillez déjà dans l'écosystème Google.")
       },
       zeta: {
-        what: "Le chat de Z.ai, propulsé par les modèles GLM. Gratuit pour l'essentiel, avec un mode agent capable de chercher sur le web et de produire des fichiers (docx, pdf, xlsx).",
-        when: "Une alternative gratuite solide pour le chat et le code, quand les quotas des autres sont épuisés."
+        what: N_("Le chat de Z.ai, propulsé par les modèles GLM. Gratuit pour l'essentiel, avec un mode agent capable de chercher sur le web et de produire des fichiers (docx, pdf, xlsx)."),
+        when: N_("Une alternative gratuite solide pour le chat et le code, quand les quotas des autres sont épuisés.")
       },
       perplexity: {
-        what: "Un « moteur de réponse » : il cherche sur le web en direct, synthétise plusieurs sources et cite ses références pour chaque affirmation.",
-        when: "Plutôt pour la recherche d'informations à jour, la veille et la vérification de faits avec sources."
+        what: N_("Un « moteur de réponse » : il cherche sur le web en direct, synthétise plusieurs sources et cite ses références pour chaque affirmation."),
+        when: N_("Plutôt pour la recherche d'informations à jour, la veille et la vérification de faits avec sources.")
       },
       grok: {
-        what: "L'assistant de xAI (Elon Musk), connecté au réseau X (ex-Twitter). Ton direct, accès au temps réel de X, génération d'images incluse.",
-        when: "Plutôt pour suivre l'actualité chaude et les tendances via X, ou pour un ton moins formel."
+        what: N_("L'assistant de xAI (Elon Musk), connecté au réseau X (ex-Twitter). Ton direct, accès au temps réel de X, génération d'images incluse."),
+        when: N_("Plutôt pour suivre l'actualité chaude et les tendances via X, ou pour un ton moins formel.")
       },
       leonardo: {
-        what: "Une plateforme de génération d'images orientée création : illustrations, concept art, assets de jeu vidéo, avec des contrôles fins (styles, modèles, retouche).",
-        when: "Plutôt pour produire des visuels et illustrations de qualité avec un contrôle précis du style."
+        what: N_("Une plateforme de génération d'images orientée création : illustrations, concept art, assets de jeu vidéo, avec des contrôles fins (styles, modèles, retouche)."),
+        when: N_("Plutôt pour produire des visuels et illustrations de qualité avec un contrôle précis du style.")
       },
       suno: {
-        what: "Un générateur de musique : il compose des chansons complètes (instruments, voix, paroles) à partir d'une simple description texte, dans à peu près tous les genres.",
-        when: "Plutôt pour créer une musique, un jingle ou une chanson à partir d'un texte ou d'une idée."
+        what: N_("Un générateur de musique : il compose des chansons complètes (instruments, voix, paroles) à partir d'une simple description texte, dans à peu près tous les genres."),
+        when: N_("Plutôt pour créer une musique, un jingle ou une chanson à partir d'un texte ou d'une idée.")
       },
       meshy: {
-        what: "Un générateur de modèles 3D : il transforme un texte ou une image en objet 3D texturé, avec rigging/animation automatique et export vers les formats standards (GLB, FBX, STL…).",
-        when: "Plutôt pour créer des assets 3D (jeux, impression 3D, animation) sans savoir modéliser."
+        what: N_("Un générateur de modèles 3D : il transforme un texte ou une image en objet 3D texturé, avec rigging/animation automatique et export vers les formats standards (GLB, FBX, STL…)."),
+        when: N_("Plutôt pour créer des assets 3D (jeux, impression 3D, animation) sans savoir modéliser.")
       },
       // Issue #42 : fiches des services additionnels
       mistral: {
-        what: "Le Chat de Mistral AI, éditeur européen (français). Modèles open-weights performants, chat, code et analyse de documents.",
-        when: "Alternative européenne solide pour le chat et le code, avec une bonne maîtrise du français."
+        what: N_("Le Chat de Mistral AI, éditeur européen (français). Modèles open-weights performants, chat, code et analyse de documents."),
+        when: N_("Alternative européenne solide pour le chat et le code, avec une bonne maîtrise du français.")
       },
       deepseek: {
-        what: "DeepSeek : assistant IA chinois spécialisé en raisonnement et programmation, particulièrement performant en Python.",
-        when: "Pour du code Python, du raisonnement étape par étape, ou une alternative gratuite à ChatGPT."
+        what: N_("DeepSeek : assistant IA chinois spécialisé en raisonnement et programmation, particulièrement performant en Python."),
+        when: N_("Pour du code Python, du raisonnement étape par étape, ou une alternative gratuite à ChatGPT.")
       },
       copilot: {
-        what: "GitHub Copilot : assistant IA intégré dans VS Code et GitHub. Autocomplétion, chat, génération de tests, explication de code.",
-        when: "Pour programmer plus vite dans VS Code ou sur GitHub, avec un modèle IA qui connaît votre codebase."
+        what: N_("GitHub Copilot : assistant IA intégré dans VS Code et GitHub. Autocomplétion, chat, génération de tests, explication de code."),
+        when: N_("Pour programmer plus vite dans VS Code ou sur GitHub, avec un modèle IA qui connaît votre codebase.")
       },
       elicit: {
-        what: "Elicit : assistant de recherche scientifique. Trouve des articles, extrait des données, synthétise des études.",
-        when: "Pour la recherche académique, la revue de littérature et l'extraction de données d'articles scientifiques."
+        what: N_("Elicit : assistant de recherche scientifique. Trouve des articles, extrait des données, synthétise des études."),
+        when: N_("Pour la recherche académique, la revue de littérature et l'extraction de données d'articles scientifiques.")
       },
       notebooklm: {
-        what: "NotebookLM de Google : interagissez avec vos propres documents (PDF, texte, audio). Résumés, questions, génération de notes.",
-        when: "Pour interroger vos documents personnels ou professionnels avec une IA qui cite ses sources."
+        what: N_("NotebookLM de Google : interagissez avec vos propres documents (PDF, texte, audio). Résumés, questions, génération de notes."),
+        when: N_("Pour interroger vos documents personnels ou professionnels avec une IA qui cite ses sources.")
       },
       wolfram: {
-        what: "Wolfram Alpha : moteur de calcul symbolique. Mathématiques, physique, chimie, données factuelles, conversions.",
-        when: "Pour des calculs exacts (mathématiques symboliques), des données chiffrées ou des conversions d'unités."
+        what: N_("Wolfram Alpha : moteur de calcul symbolique. Mathématiques, physique, chimie, données factuelles, conversions."),
+        when: N_("Pour des calculs exacts (mathématiques symboliques), des données chiffrées ou des conversions d'unités.")
       },
       deepl: {
-        what: "DeepL : traduction automatique de haute qualité, plus naturelle que Google Traduction. Texte et documents entiers.",
-        when: "Pour traduire du texte ou des documents avec un rendu naturel et cohérent."
+        what: N_("DeepL : traduction automatique de haute qualité, plus naturelle que Google Traduction. Texte et documents entiers."),
+        when: N_("Pour traduire du texte ou des documents avec un rendu naturel et cohérent.")
       },
       ideogram: {
-        what: "Ideogram : génération d'images orientée design. Logos, typographies, affiches, avec un excellent rendu du texte.",
-        when: "Pour créer des visuels avec du texte lisible (logos, affiches, bannières) ou du design graphique."
+        what: N_("Ideogram : génération d'images orientée design. Logos, typographies, affiches, avec un excellent rendu du texte."),
+        when: N_("Pour créer des visuels avec du texte lisible (logos, affiches, bannières) ou du design graphique.")
       },
       kling: {
-        what: "Kling : générateur de vidéos courtes à partir de texte ou d'images. Animations réalistes, crédits gratuits disponibles.",
-        when: "Pour créer des clips vidéo animés à partir d'une description ou d'une image fixe."
+        what: N_("Kling : générateur de vidéos courtes à partir de texte ou d'images. Animations réalistes, crédits gratuits disponibles."),
+        when: N_("Pour créer des clips vidéo animés à partir d'une description ou d'une image fixe.")
       },
       runway: {
-        what: "Runway : suite d'outils IA pour la vidéo. Génération, édition, effets spéciaux, inpainting vidéo.",
-        when: "Pour le montage et la création vidéo avancée avec des outils IA intégrés."
+        what: N_("Runway : suite d'outils IA pour la vidéo. Génération, édition, effets spéciaux, inpainting vidéo."),
+        when: N_("Pour le montage et la création vidéo avancée avec des outils IA intégrés.")
       },
       pika: {
-        what: "Pika : générateur de vidéos courtes et créatives. Animation d'images, effets, transformation de styles.",
-        when: "Pour animer des images ou créer des vidéos courtes originales avec des effets IA."
+        what: N_("Pika : générateur de vidéos courtes et créatives. Animation d'images, effets, transformation de styles."),
+        when: N_("Pour animer des images ou créer des vidéos courtes originales avec des effets IA.")
       },
       qwen: {
-        what: "Qwen : assistant IA d'Alibaba. Multimodal (texte, images, code), open-source, disponible en plusieurs tailles.",
-        when: "Alternative gratuite pour le chat, le code et l'analyse d'images, avec un bon support multilingue."
+        what: N_("Qwen : assistant IA d'Alibaba. Multimodal (texte, images, code), open-source, disponible en plusieurs tailles."),
+        when: N_("Alternative gratuite pour le chat, le code et l'analyse d'images, avec un bon support multilingue.")
       }
     };
 
@@ -320,7 +386,7 @@
         return true;
       } catch (e) {
         console.error('[storage] échec écriture des comptes :', e);
-        showToast('Impossible d\'enregistrer les comptes (stockage plein ?)', 'error');
+        showToast(_('Impossible d\'enregistrer les comptes (stockage plein ?)'), 'error');
         return false;
       }
     }
@@ -456,7 +522,7 @@
       const container = document.getElementById('monacoContainer');
       container.innerHTML = ''; // retire le placeholder « Chargement de l'éditeur… »
       monacoEditor = monaco.editor.create(container, {
-        value: '// Sélectionnez un fichier pour l\'éditer ici.\n// Ctrl+S pour sauvegarder.',
+        value: '// ' + _('Sélectionnez un fichier pour l\'éditer ici.') + '\n// ' + _('Ctrl+S pour sauvegarder.'),
         language: 'javascript',
         theme: 'vs-dark',
         automaticLayout: true
@@ -476,11 +542,11 @@
       c.innerHTML = `
         <div class="fallback-editor">
           <div class="fallback-editor__warning">
-            <span class="ic" data-icon="triangle-exclamation"></span> Éditeur simplifié (Monaco indisponible) — Ctrl+S pour sauvegarder
+            <span class="ic" data-icon="triangle-exclamation"></span> ${escapeHtml(_('Éditeur simplifié (Monaco indisponible) — Ctrl+S pour sauvegarder'))}
           </div>
           <textarea id="fallbackEditor" spellcheck="false" disabled
             class="fallback-editor__textarea"
-            placeholder="Sélectionnez un fichier pour l'éditer ici."></textarea>
+            placeholder="${escapeHtml(_('Sélectionnez un fichier pour l\'éditer ici.'))}"></textarea>
         </div>`;
       hydrateIcons(c); // remplit l'icône SVG du bandeau
       fallbackTextarea = document.getElementById('fallbackEditor');
@@ -517,8 +583,8 @@
       const content = getEditorValue();
       if (content === null) return;
       const success = await ipcRenderer.invoke('save-file', currentOpenFilePath, content);
-      if (success) showToast('Fichier enregistré !');
-      else showToast('Erreur d\'enregistrement.', 'error');
+      if (success) showToast(_('Fichier enregistré !'));
+      else showToast(_('Erreur d\'enregistrement.'), 'error');
     }
 
     // Rendu
@@ -577,8 +643,8 @@
         // donnée utilisateur ici de toute façon).
         container.innerHTML = `
           <div class="tabs-empty--full">
-            <div>Aucun compte pour l'instant.</div>
-            <button class="btn btn--primary" data-action="add"><span class="ic" data-icon="plus"></span> Créer mon premier compte</button>
+            <div>${escapeHtml(_('Aucun compte pour l\'instant.'))}</div>
+            <button class="btn btn--primary" data-action="add"><span class="ic" data-icon="plus"></span> ${escapeHtml(_('Créer mon premier compte'))}</button>
           </div>`;
         hydrateIcons(container);
         updateStats(); // remet les stats à 0 (ex. après suppression du dernier compte)
@@ -630,14 +696,14 @@
               <div class="account-avatar" data-avatar-color="${color}">${initials}</div>
               <div class="account-info">
                 <div class="account-name">${escapeHtml(acc.name)} ${isActive ? '<span class="active-dot"></span>' : ''}</div>
-                <div class="account-email"><span class="account-email-copy" data-action="copy-email" data-acc="${id}" title="Cliquer pour copier l'e-mail">${escapeHtml(acc.email)}</span> • ${escapeHtml(acc.profile)}</div>
+                <div class="account-email"><span class="account-email-copy" data-action="copy-email" data-acc="${id}" title="${escapeHtml(_('Cliquer pour copier l\'e-mail'))}">${escapeHtml(acc.email)}</span> • ${escapeHtml(acc.profile)}</div>
               </div>
               <div class="account-actions">
-                <button class="btn btn--icon" data-action="edit" data-acc="${id}"><span class="ic" data-icon="pen"></span></button>
-                <button class="btn btn--icon" data-action="delete" data-acc="${id}"><span class="ic icon-danger" data-icon="trash"></span></button>
+                <button class="btn btn--icon" data-action="edit" data-acc="${id}" title="${escapeHtml(_('Modifier le compte'))}"><span class="ic" data-icon="pen"></span></button>
+                <button class="btn btn--icon" data-action="delete" data-acc="${id}" title="${escapeHtml(_('Supprimer le compte'))}"><span class="ic icon-danger" data-icon="trash"></span></button>
               </div>
-              <span class="svc-summary ${availCount < acc.services.length ? 'has-cd' : ''}" title="${availCount} service(s) hors cooldown sur ${acc.services.length}">${availCount}/${acc.services.length}</span>
-              <span class="ic collapse-chevron" data-icon="chevron-down" title="Replier / déplier"></span>
+              <span class="svc-summary ${availCount < acc.services.length ? 'has-cd' : ''}" title="${escapeHtml(_('{available} service(s) hors cooldown sur {total}', { available: availCount, total: acc.services.length }))}">${availCount}/${acc.services.length}</span>
+              <span class="ic collapse-chevron" data-icon="chevron-down" title="${escapeHtml(_('Replier / déplier'))}"></span>
             </div>
             <div class="services-wrap"><div class="services-inner">
               <div class="services-grid">${servicesHtml}</div>
@@ -733,7 +799,7 @@
       const existing = tabs.find(t => t.accId === accId && t.svcId === svcId);
       if (existing) {
         activateTab(existing.id);
-        showToast(`${svc.name} — ${acc.name} déjà ouvert`);
+        showToast(_('{service} — {account} déjà ouvert', { service: svc.name, account: acc.name }));
         return;
       }
 
@@ -752,9 +818,9 @@
       const toolbar = document.createElement('div');
       toolbar.className = 'tab-toolbar';
       toolbar.innerHTML = `
-        <button type="button" class="tab-toolbar__btn" data-action="tab-reload" data-tab="${tabId}" title="Recharger l'onglet"><span class="ic" data-icon="arrow-rotate-right"></span></button>
-        <button type="button" class="tab-toolbar__btn" data-action="tab-home" data-tab="${tabId}" title="Revenir à l'accueil de ${escapeHtml(svc.name)}"><span class="ic" data-icon="house"></span></button>
-        <button type="button" class="tab-toolbar__btn tab-toolbar__btn--danger" data-action="tab-disconnect" data-tab="${tabId}" title="Se déconnecter du profil « ${escapeHtml(acc.profile)} »"><span class="ic" data-icon="right-from-bracket"></span></button>
+        <button type="button" class="tab-toolbar__btn" data-action="tab-reload" data-tab="${tabId}" title="${escapeHtml(_('Recharger l\'onglet'))}"><span class="ic" data-icon="arrow-rotate-right"></span></button>
+        <button type="button" class="tab-toolbar__btn" data-action="tab-home" data-tab="${tabId}" title="${escapeHtml(_('Revenir à l\'accueil de {service}', { service: svc.name }))}"><span class="ic" data-icon="house"></span></button>
+        <button type="button" class="tab-toolbar__btn tab-toolbar__btn--danger" data-action="tab-disconnect" data-tab="${tabId}" title="${escapeHtml(_('Se déconnecter du profil « {profile} »', { profile: acc.profile }))}"><span class="ic" data-icon="right-from-bracket"></span></button>
       `;
       pane.appendChild(toolbar);
       hydrateIcons(toolbar);
@@ -791,7 +857,7 @@
       saveOpenTabs(); // lot 18/09/2026 : persistance pour startWithLastSession
       renderTabsBar();
       activateTab(tabId);
-      showToast(`${svc.name} ouvert avec ${acc.name}`);
+      showToast(_('{service} ouvert avec {account}', { service: svc.name, account: acc.name }));
       // Le renderAccounts() plus haut (avant la création de l'onglet) ne
       // voyait pas encore ce nouvel onglet : on re-rend pour que le badge de
       // statut du compte passe bleu « ouvert » immédiatement (lot 16/09/2026).
@@ -860,8 +926,8 @@
         const svc = SERVICES.find(s => s.id === tab.svcId);
         const label = (acc ? escapeHtml(acc.name) : '?') + ' — ' + (svc ? escapeHtml(svc.name) : '?');
         showConfirmDialog(
-          'Fermer l\'onglet',
-          'Fermer l\'onglet « ' + label + ' » ? La session web sera libérée.',
+          _('Fermer l\'onglet'),
+          _('Fermer l\'onglet « {tab} » ? La session web sera libérée.', { tab: label }),
           function() { _doCloseTab(tabId); }
         );
       } else {
@@ -886,7 +952,7 @@
       // re-rendu ici pour repasser rouge/vert dès la fermeture (lot 16/09/2026).
       renderAccounts();
       saveOpenTabs(); // lot 18/09/2026 : persistance pour startWithLastSession
-      showToast('Onglet fermé (mémoire libérée)');
+      showToast(_('Onglet fermé (mémoire libérée)'));
     }
 
     document.getElementById('tabsBar').addEventListener('click', (e) => {
@@ -927,7 +993,7 @@
       ctxMenuEl.innerHTML = `
         <div class="ctx-menu__item" data-ctx-action="toggle-star">
           <span class="ic" data-icon="star"></span>
-          <span>${starred ? 'Retirer l\'étoile' : 'Étoiler cet onglet'}</span>
+          <span>${escapeHtml(starred ? _('Retirer l\'étoile') : _('Étoiler cet onglet'))}</span>
         </div>
         <div class="ctx-menu__sep"></div>
         <div class="ctx-menu__item" data-ctx-action="close-tab">
@@ -955,7 +1021,7 @@
           toggleTabStarById(accId, svcId);
           renderTabsBar();
           renderAccounts();
-          showToast(isTabStarredById(accId, svcId) ? 'Onglet étoilé' : 'Étoile retirée');
+          showToast(isTabStarredById(accId, svcId) ? _('Onglet étoilé') : _('Étoile retirée'));
         } else if (action === 'close-tab') {
           closeTab(tabId);
         }
@@ -1048,7 +1114,7 @@
       const acc = accounts.find(a => a.id === accId);
       if (!acc) return;
       const res = await ipcRenderer.invoke('accounts:disconnect-profile', acc.profile);
-      if (!res || !res.ok) { showToast('Échec de la déconnexion du profil'); return; }
+      if (!res || !res.ok) { showToast(_('Échec de la déconnexion du profil')); return; }
       // Toutes les webviews de ce compte doivent recharger pour repartir sur
       // une session vierge (les cookies qu'elles avaient en mémoire ne sont
       // pas invalidés tant qu'elles ne rechargent pas).
@@ -1056,7 +1122,7 @@
         const webview = t.paneEl.querySelector('webview');
         if (webview) webview.reload();
       });
-      showToast(`Profil « ${acc.profile} » déconnecté — session effacée`);
+      showToast(_('Profil « {profile} » déconnecté — session effacée', { profile: acc.profile }));
     }
     document.getElementById('tabsContent').addEventListener('click', (e) => {
       const el = e.target.closest('[data-action]');
@@ -1089,7 +1155,7 @@
     function renderFileList(files) {
       const list = document.getElementById('fileList');
       if (!files.length) {
-        list.innerHTML = '<div class="file-list-empty">Aucun fichier trouvé.</div>';
+        list.innerHTML = '<div class="file-list-empty">' + escapeHtml(_('Aucun fichier trouvé.')) + '</div>';
         return;
       }
       // Le chemin et le nom du fichier viennent du système de fichiers : ils
@@ -1117,7 +1183,7 @@
       const res = await ipcRenderer.invoke('read-file', filePath);
       // Fichier trop volumineux : main renvoie un sentinel {error:'too_large'}.
       if (res && typeof res === 'object' && res.error === 'too_large') {
-        showToast('Fichier trop volumineux pour l\'éditeur : ' + Math.round(res.size / 1048576) + ' Mo (limite : 20 Mo).', 'error');
+        showToast(_('Fichier trop volumineux pour l\'éditeur : {size} Mo (limite : 20 Mo).', { size: Math.round(res.size / 1048576) }), 'error');
         return;
       }
       if (res === null) return; // fichier illisible (permissions, disparu…)
@@ -1221,13 +1287,13 @@
       const title = document.getElementById('modalTitle');
       if (accId) {
         const acc = accounts.find(a => a.id === accId);
-        title.textContent = "Modifier le compte";
+        title.textContent = _('Modifier le compte');
         document.getElementById('editId').value = acc.id;
         document.getElementById('inputName').value = acc.name;
         document.getElementById('inputEmail').value = acc.email;
         document.getElementById('inputProfile').value = acc.profile;
       } else {
-        title.textContent = "Ajouter un compte";
+        title.textContent = _('Ajouter un compte');
         document.getElementById('editId').value = '';
         document.getElementById('inputName').value = '';
         document.getElementById('inputEmail').value = '';
@@ -1256,9 +1322,9 @@
           <div class="help-entry">
             <div class="help-entry__name"><span class="help-entry__dot svc-bg-${svc.id}"></span>${escapeHtml(svc.name)}</div>
             ${info ? `
-              <div class="help-entry__line"><span class="help-entry__label">C'est quoi ?</span> ${escapeHtml(info.what)}</div>
-              <div class="help-entry__line"><span class="help-entry__label">Quand l'utiliser ?</span> ${escapeHtml(info.when)}</div>
-            ` : `<div class="help-entry__line help-entry__line--muted">Description à venir.</div>`}
+              <div class="help-entry__line"><span class="help-entry__label">${escapeHtml(_('C\'est quoi ?'))}</span> ${escapeHtml(_(info.what))}</div>
+              <div class="help-entry__line"><span class="help-entry__label">${escapeHtml(_('Quand l\'utiliser ?'))}</span> ${escapeHtml(_(info.when))}</div>
+            ` : `<div class="help-entry__line help-entry__line--muted">${escapeHtml(_('Description à venir.'))}</div>`}
           </div>
         `;
       }).join('');
@@ -1300,7 +1366,7 @@
           if (cb.checked) {
             if (pendingServices.size >= MAX_ACTIVE_SERVICES) {
               cb.checked = false;
-              showToast('Maximum ' + MAX_ACTIVE_SERVICES + ' services à portée de main', 'error');
+              showToast(_('Maximum {max} services à portée de main', { max: MAX_ACTIVE_SERVICES }), 'error');
               return;
             }
             pendingServices.add(cb.dataset.svcId);
@@ -1316,11 +1382,11 @@
     window.saveServicesModal = function() {
       if (!pendingServices) return closeServicesModal();
       const ids = Array.from(pendingServices);
-      if (ids.length === 0) { showToast('Sélectionnez au moins 1 service', 'error'); return; }
+      if (ids.length === 0) { showToast(_('Sélectionnez au moins 1 service'), 'error'); return; }
       saveActiveServices(ids);
       closeServicesModal();
       // Mettre à jour ALL_SERVICES et re-rendre les comptes
-      showToast('Services mis à jour (' + ids.length + '/' + MAX_ACTIVE_SERVICES + ')');
+      showToast(_('Services mis à jour ({count}/{max})', { count: ids.length, max: MAX_ACTIVE_SERVICES }));
       // Recharger pour appliquer les changements partout
       renderAccounts();
     };
@@ -1334,7 +1400,7 @@
       if (!acc) return;
       document.getElementById('deleteId').value = accId;
       document.getElementById('deleteDesc').textContent =
-        `Supprimer « ${acc.name} » (${acc.email}) ? La session restera stockée sur le disque, mais le compte disparaîtra de la liste.`;
+        _('Supprimer « {name} » ({email}) ? La session restera stockée sur le disque, mais le compte disparaîtra de la liste.', { name: acc.name, email: acc.email });
       document.getElementById('deleteModal').classList.add('open');
     }
     window.closeDeleteModal = function() { document.getElementById('deleteModal').classList.remove('open'); }
@@ -1348,11 +1414,11 @@
       try {
         const res = await ipcRenderer.invoke('accounts:export', exportAccountsJSON());
         if (res && res.canceled) return; // l'utilisateur a fermé la boîte de dialogue
-        if (res && res.error) { showToast('Échec de l\'export (écriture impossible)', 'error'); return; }
-        showToast(`${accounts.length} compte(s) exporté(s)`);
+        if (res && res.error) { showToast(_('Échec de l\'export (écriture impossible)'), 'error'); return; }
+        showToast(_('{count} compte(s) exporté(s)', { count: accounts.length }));
       } catch (e) {
         console.error('[import-export] export impossible :', e);
-        showToast('Export impossible', 'error');
+        showToast(_('Export impossible'), 'error');
       }
     }
 
@@ -1364,20 +1430,18 @@
       try {
         const res = await ipcRenderer.invoke('accounts:import');
         if (res && res.canceled) return;
-        if (res && res.error) { showToast('Échec de la lecture du fichier', 'error'); return; }
+        if (res && res.error) { showToast(_('Échec de la lecture du fichier'), 'error'); return; }
         let parsed;
         try { parsed = JSON.parse(res.content); }
-        catch (e) { showToast('Fichier JSON invalide', 'error'); return; }
-        if (!Array.isArray(parsed)) { showToast('Format invalide : un tableau de comptes est attendu.', 'error'); return; }
+        catch (e) { showToast(_('Fichier JSON invalide'), 'error'); return; }
+        if (!Array.isArray(parsed)) { showToast(_('Format invalide : un tableau de comptes est attendu.'), 'error'); return; }
         pendingImportContent = res.content;
         document.getElementById('importConfirmDesc').textContent =
-          `Le fichier contient ${parsed.length} compte(s). L'import REMPLACE entièrement la liste actuelle ` +
-          `(${accounts.length} compte(s)) — cette action écrase les comptes existants, pas leurs sessions ` +
-          `(cookies) déjà enregistrées sur le disque. Continuer ?`;
+          _('Le fichier contient {count} compte(s). L\'import REMPLACE entièrement la liste actuelle ({current} compte(s)) — cette action écrase les comptes existants, pas leurs sessions (cookies) déjà enregistrées sur le disque. Continuer ?', { count: parsed.length, current: accounts.length });
         document.getElementById('importConfirmModal').classList.add('open');
       } catch (e) {
         console.error('[import-export] import impossible :', e);
-        showToast('Import impossible', 'error');
+        showToast(_('Import impossible'), 'error');
       }
     }
     window.closeImportConfirm = function() {
@@ -1394,10 +1458,10 @@
       if (!content) return;
       try {
         const count = importAccountsJSON(content); // saveAccounts() + renderAccounts() déjà inclus
-        showToast(`${count} compte(s) importé(s)`);
+        showToast(_('{count} compte(s) importé(s)', { count }));
       } catch (e) {
         console.error('[import-export] échec de l\'import :', e);
-        showToast('Échec de l\'import : ' + (e.message || e), 'error');
+        showToast(_('Échec de l\'import : {error}', { error: e.message || e }), 'error');
       }
     }
     window.confirmDelete = function() {
@@ -1409,7 +1473,7 @@
       saveAccounts(accounts); // écrit + backup de la génération précédente (chantier C)
       renderAccounts();
       closeDeleteModal();
-      showToast('Compte supprimé');
+      showToast(_('Compte supprimé'));
     }
 
     window.saveAccount = function() {
@@ -1417,20 +1481,20 @@
       const name = document.getElementById('inputName').value.trim();
       const email = document.getElementById('inputEmail').value.trim();
       const profile = document.getElementById('inputProfile').value.trim();
-      if (!name || !email || !profile) return showToast('Remplissez tous les champs', 'error');
+      if (!name || !email || !profile) return showToast(_('Remplissez tous les champs'), 'error');
 
       // Unicité du profil (chantier audit 3.1) : deux comptes partageant le même
       // `profile` utiliseraient la MÊME partition Electron (persist:<profile>) →
       // cookies/sessions mêlés entre comptes. On refuse la collision.
       if (accounts.some(a => a.id !== id && a.profile === profile)) {
-        return showToast('Ce profil est déjà utilisé par un autre compte (les sessions seraient partagées).', 'error');
+        return showToast(_('Ce profil est déjà utilisé par un autre compte (les sessions seraient partagées).'), 'error');
       }
 
       if (id) {
         const acc = accounts.find(a => a.id === id);
         if (!acc) return; // garde : id obsolète
         Object.assign(acc, { name, email, profile });
-        showToast('Compte mis à jour');
+        showToast(_('Compte mis à jour'));
       } else {
         accounts.push({
           id: 'acc_' + Date.now(), name, email, profile,
@@ -1439,7 +1503,7 @@
           cooldowns: Object.fromEntries(SERVICES.map(s => [s.id, 0])),
           automation: { enabled: true, lastUsedAt: 0, lastAutomationAt: 0 }
         });
-        showToast('Compte ajouté');
+        showToast(_('Compte ajouté'));
       }
       saveAccounts(accounts); // écrit + backup de la génération précédente (chantier C)
       renderAccounts();
@@ -1453,7 +1517,7 @@
       const acc = accounts.find(a => a.id === accId);
       if (!acc || !acc.email) return;
       copyText(acc.email, { clipboard: navigator.clipboard, document }).then(ok => {
-        showToast(ok ? 'E-mail copié : ' + acc.email : 'Copie impossible dans le presse-papiers', ok ? 'success' : 'error');
+        showToast(ok ? _('E-mail copié : {email}', { email: acc.email }) : _('Copie impossible dans le presse-papiers'), ok ? 'success' : 'error');
       });
     }
 
@@ -1743,8 +1807,8 @@
           // Notification navigateur (si permission accordée)
           if ('Notification' in window && Notification.permission === 'granted') {
             try {
-              new Notification('Cooldown terminé', {
-                body: acc.name + ' — ' + svc.name + ' est de nouveau disponible.',
+              new Notification(_('Cooldown terminé'), {
+                body: _('{account} — {service} est de nouveau disponible.', { account: acc.name, service: svc.name }),
                 silent: false
               });
             } catch (e) { /* l'app ne doit pas planter sur une notification */ }
@@ -1755,7 +1819,7 @@
             const tabEl = document.querySelector('#tabsBar .tab[data-tab="' + tab.id + '"]');
             if (tabEl) tabEl.classList.add('tab--flash');
           }
-          showToast(acc.name + ' — ' + svc.name + ' : cooldown terminé');
+          showToast(_('{account} — {service} : cooldown terminé', { account: acc.name, service: svc.name }));
         }
       }
       const minute = Math.floor(now / 60000);
@@ -1789,10 +1853,10 @@
     // le périmètre exact de ce lot (la fenêtre d'automatisation + le moteur
     // d'adaptateurs par service ne sont PAS encore implémentés).
     const SCHED_STATUS_LABELS = {
-      DOWNLOADING: 'Téléchargement…', COMPLETED: 'Téléchargé — à traiter',
-      PROJECT_PENDING: "Projet en cours d'analyse", WAITING_FOR_PROFILE: 'Aucun profil disponible',
-      RESUME_REQUIRED: 'Reprise programmée', RUNNING: 'En cours', PAUSED: 'En pause',
-      DELIVERED: 'Livré', ERROR: 'Erreur'
+      DOWNLOADING: N_('Téléchargement…'), COMPLETED: N_('Téléchargé — à traiter'),
+      PROJECT_PENDING: N_("Projet en cours d'analyse"), WAITING_FOR_PROFILE: N_('Aucun profil disponible'),
+      RESUME_REQUIRED: N_('Reprise programmée'), RUNNING: N_('En cours'), PAUSED: N_('En pause'),
+      DELIVERED: N_('Livré'), ERROR: N_('Erreur')
     };
     const SCHED_STATUS_COLORS = {
       DOWNLOADING: 'var(--accent)', RUNNING: 'var(--accent)', RESUME_REQUIRED: 'var(--accent)',
@@ -1875,6 +1939,7 @@
       if (e.target === e.currentTarget) closeSettingsModal();
     });
 
+    let loadedLanguage = 'auto';
     async function loadSettings() {
       try {
         var settings = await ipcRenderer.invoke('settings:load');
@@ -1886,12 +1951,15 @@
         document.getElementById('settingsConfirmBeforeClose').checked = settings.confirmBeforeClose;
         document.getElementById('settingsShowAutomationWindows').checked = settings.showAutomationWindows;
         document.getElementById('settingsStartWithLastSession').checked = settings.startWithLastSession;
+        loadedLanguage = settings.language || 'auto';
+        const langSelect = document.getElementById('settingsLanguage');
+        if (langSelect && langSelect.querySelector('option[value="' + loadedLanguage + '"]')) langSelect.value = loadedLanguage;
         // Restaurer les onglets si le réglage est activé (lot 18/09/2026)
         if (settings.startWithLastSession) {
           restoreOpenTabs();
         }
       } catch (e) {
-        showToast('Impossible de charger les réglages', 'error');
+        showToast(_('Impossible de charger les réglages'), 'error');
       }
     }
 
@@ -1902,19 +1970,24 @@
         theme: document.getElementById('settingsTheme').value,
         confirmBeforeClose: document.getElementById('settingsConfirmBeforeClose').checked,
         showAutomationWindows: document.getElementById('settingsShowAutomationWindows').checked,
-        startWithLastSession: document.getElementById('settingsStartWithLastSession').checked
+        startWithLastSession: document.getElementById('settingsStartWithLastSession').checked,
+        language: (document.getElementById('settingsLanguage') || { value: loadedLanguage }).value
       };
       try {
         var result = await ipcRenderer.invoke('settings:save', raw);
         if (result && result.ok) {
           applySettings(result.settings);
-          showToast('Réglages enregistrés', 'success');
+          const languageChanged = result.settings.language !== loadedLanguage;
+          loadedLanguage = result.settings.language;
+          showToast(languageChanged
+            ? _('Réglages enregistrés — la langue sera appliquée au prochain démarrage')
+            : _('Réglages enregistrés'), 'success');
           closeSettingsModal();
         } else {
-          showToast(result && result.error ? result.error : 'Erreur lors de la sauvegarde', 'error');
+          showToast(result && result.error ? result.error : _('Erreur lors de la sauvegarde'), 'error');
         }
       } catch (e) {
-        showToast('Erreur lors de la sauvegarde des réglages', 'error');
+        showToast(_('Erreur lors de la sauvegarde des réglages'), 'error');
       }
     }
     window.saveSettings = saveSettings;
@@ -1937,46 +2010,46 @@
       document.getElementById('schedMaxJobs').value = cfg.maxConcurrentJobs;
       document.getElementById('schedMinDelay').value = cfg.minDelayBetweenAutomationsMinutes;
       document.getElementById('schedThreshold').value = cfg.profileAgeThresholdHours;
-      document.getElementById('schedDownloadsDir').textContent = cfg.downloadsDir || '(dossier de téléchargements du système)';
-      document.getElementById('schedDeliveryDir').textContent = cfg.deliveryDir || '(non défini)';
+      document.getElementById('schedDownloadsDir').textContent = cfg.downloadsDir || _('(dossier de téléchargements du système)');
+      document.getElementById('schedDeliveryDir').textContent = cfg.deliveryDir || _('(non défini)');
 
       // Projets & tâches (lot 18/09/2026, point 6)
       renderProjects(state.projects || []);
 
       const list = document.getElementById('schedJobsList');
       if (!state.jobs.length) {
-        list.innerHTML = '<div class="sched-empty">Aucun job pour l\'instant — un ZIP téléchargé depuis un onglet IA (ordonnanceur activé) en créera un automatiquement.</div>';
+        list.innerHTML = '<div class="sched-empty">' + escapeHtml(_('Aucun job pour l\'instant — un ZIP téléchargé depuis un onglet IA (ordonnanceur activé) en créera un automatiquement.')) + '</div>';
       } else {
         list.innerHTML = state.jobs.map(j => {
-          const label = SCHED_STATUS_LABELS[j.status] || j.status;
+          const label = SCHED_STATUS_LABELS[j.status] ? _(SCHED_STATUS_LABELS[j.status]) : j.status;
           const color = SCHED_STATUS_COLORS[j.status] || 'var(--fg-muted)';
           const actions = [];
           if (j.status === 'COMPLETED') {
-            actions.push(`<button class="btn" data-action="sched-continue" data-job="${escapeHtml(j.id)}">Continuer le projet</button>`);
-            actions.push(`<button class="btn" data-action="sched-deliver" data-job="${escapeHtml(j.id)}">Marquer livré</button>`);
+            actions.push(`<button class="btn" data-action="sched-continue" data-job="${escapeHtml(j.id)}">${escapeHtml(_('Continuer le projet'))}</button>`);
+            actions.push(`<button class="btn" data-action="sched-deliver" data-job="${escapeHtml(j.id)}">${escapeHtml(_('Marquer livré'))}</button>`);
           }
           if (['RUNNING', 'RESUME_REQUIRED', 'WAITING_FOR_PROFILE'].includes(j.status)) {
-            actions.push(`<button class="btn" data-action="sched-pause" data-job="${escapeHtml(j.id)}">Pause</button>`);
+            actions.push(`<button class="btn" data-action="sched-pause" data-job="${escapeHtml(j.id)}">${escapeHtml(_('Pause'))}</button>`);
           }
           if (j.status === 'PAUSED' || j.status === 'WAITING_FOR_PROFILE') {
-            actions.push(`<button class="btn" data-action="sched-resume" data-job="${escapeHtml(j.id)}">Reprendre</button>`);
+            actions.push(`<button class="btn" data-action="sched-resume" data-job="${escapeHtml(j.id)}">${escapeHtml(_('Reprendre'))}</button>`);
           }
           if (j.status === 'ERROR') {
-            actions.push(`<button class="btn" data-action="sched-retry" data-job="${escapeHtml(j.id)}">Relancer</button>`);
+            actions.push(`<button class="btn" data-action="sched-retry" data-job="${escapeHtml(j.id)}">${escapeHtml(_('Relancer'))}</button>`);
           }
           if (j.file_path || j.outputZip) {
-            actions.push(`<button class="btn" data-action="sched-open-zip" data-job="${escapeHtml(j.id)}">Ouvrir le ZIP</button>`);
+            actions.push(`<button class="btn" data-action="sched-open-zip" data-job="${escapeHtml(j.id)}">${escapeHtml(_('Ouvrir le ZIP'))}</button>`);
             // Lot 18/09/2026 : analyse de complétude — lit le FEATURES.md du ZIP
             // et compte les cases restantes (parseFeaturesMd, scheduler/core.js).
-            actions.push(`<button class="btn" data-action="sched-analyze" data-job="${escapeHtml(j.id)}">Analyser la complétude</button>`);
+            actions.push(`<button class="btn" data-action="sched-analyze" data-job="${escapeHtml(j.id)}">${escapeHtml(_('Analyser la complétude'))}</button>`);
           }
           const fileName = j.file_path ? String(j.file_path).split(/[\\/]/).pop() : null;
           return `
             <div class="sched-job">
               <div class="sched-job__dot" data-dot-color="${color}"></div>
               <div class="sched-job__body">
-                <div class="sched-job__title">${escapeHtml(j.id)} — ${escapeHtml(j.service || 'service inconnu')} · ${escapeHtml(j.profile || '—')}</div>
-                <div class="sched-job__meta">${escapeHtml(label)} · tentative ${j.attempts || 1}${fileName ? ' · ' + escapeHtml(fileName) : ''}</div>
+                <div class="sched-job__title">${escapeHtml(j.id)} — ${escapeHtml(j.service || _('service inconnu'))} · ${escapeHtml(j.profile || '—')}</div>
+                <div class="sched-job__meta">${escapeHtml(label)} · ${escapeHtml(_('tentative {n}', { n: j.attempts || 1 }))}${fileName ? ' · ' + escapeHtml(fileName) : ''}</div>
                 ${actions.length ? `<div class="sched-job__actions">${actions.join('')}</div>` : ''}
               </div>
             </div>
@@ -1988,7 +2061,7 @@
       const log = document.getElementById('schedLog');
       log.innerHTML = state.log.length
         ? state.log.map(l => `<div>[${escapeHtml(new Date(l.ts).toLocaleTimeString('fr-FR'))}] ${escapeHtml(l.message)}</div>`).join('')
-        : '<div class="sched-empty-log">Aucune activité enregistrée.</div>';
+        : '<div class="sched-empty-log">' + escapeHtml(_('Aucune activité enregistrée.')) + '</div>';
 
       hydrateIcons(document.getElementById('schedulerModal'));
     }
@@ -1998,7 +2071,7 @@
         const res = await ipcRenderer.invoke('scheduler:set-enabled', e.target.checked);
         if (res && res.error) throw new Error(res.error);
         refreshScheduler();
-      } catch (err) { showToast("Impossible de modifier l'état de l'ordonnanceur", 'error'); }
+      } catch (err) { showToast(_("Impossible de modifier l'état de l'ordonnanceur"), 'error'); }
     });
 
     function bindSchedNumberInput(id, key) {
@@ -2008,7 +2081,7 @@
           const res = await ipcRenderer.invoke('scheduler:set-config', { [key]: value });
           if (res && res.error) throw new Error(res.error);
           refreshScheduler();
-        } catch (err) { showToast('Configuration non enregistrée', 'error'); }
+        } catch (err) { showToast(_('Configuration non enregistrée'), 'error'); }
       });
     }
     bindSchedNumberInput('schedMaxJobs', 'maxConcurrentJobs');
@@ -2020,14 +2093,14 @@
         const res = await ipcRenderer.invoke('scheduler:pick-downloads-dir');
         if (res && res.error) throw new Error(res.error);
         refreshScheduler();
-      } catch (e) { showToast('Sélection du dossier impossible', 'error'); }
+      } catch (e) { showToast(_('Sélection du dossier impossible'), 'error'); }
     });
     document.getElementById('schedPickDelivery').addEventListener('click', async () => {
       try {
         const res = await ipcRenderer.invoke('scheduler:pick-delivery-dir');
         if (res && res.error) throw new Error(res.error);
         refreshScheduler();
-      } catch (e) { showToast('Sélection du dossier impossible', 'error'); }
+      } catch (e) { showToast(_('Sélection du dossier impossible'), 'error'); }
     });
 
     // Délégation d'événements (chantier A) : un seul listener sur le conteneur,
@@ -2046,11 +2119,11 @@
           if (res && res.analysis) {
             const a = res.analysis;
             const msg = a.complete
-              ? `Projet terminé : ${a.done}/${a.total} tâches faites, 0 restante.`
-              : `${a.pending} à faire, ${a.inProgress} en cours, ${a.done} faite(s) sur ${a.total} au total.`;
+              ? _('Projet terminé : {done}/{total} tâches faites, 0 restante.', { done: a.done, total: a.total })
+              : _('{pending} à faire, {inProgress} en cours, {done} faite(s) sur {total} au total.', { pending: a.pending, inProgress: a.inProgress, done: a.done, total: a.total });
             showToast(msg, a.complete ? 'success' : 'warning');
           }
-        } catch (err) { showToast('Analyse impossible : ' + (err.message || err), 'error'); }
+        } catch (err) { showToast(_('Analyse impossible : {error}', { error: err.message || err }), 'error'); }
         return;
       }
       const channelByAction = {
@@ -2067,7 +2140,7 @@
         const res = await ipcRenderer.invoke(channel, jobId);
         if (res && res.error) { showToast(res.error, 'error'); return; }
         refreshScheduler();
-      } catch (err) { showToast('Action impossible : ' + (err.message || err), 'error'); }
+      } catch (err) { showToast(_('Action impossible : {error}', { error: err.message || err }), 'error'); }
     });
 
     // --- Projets & tâches (lot 18/09/2026, point 6) ---
@@ -2077,15 +2150,15 @@
     function renderProjects(projects) {
       var list = document.getElementById('schedProjectsList');
       if (!projects || !projects.length) {
-        list.innerHTML = '<div class="sched-empty">Aucun projet pour l\'instant. <button class="btn sched-create-btn" data-action="sched-create-project">Créer un projet</button></div>';
+        list.innerHTML = '<div class="sched-empty">' + escapeHtml(_('Aucun projet pour l\'instant.')) + ' <button class="btn sched-create-btn" data-action="sched-create-project">' + escapeHtml(_('Créer un projet')) + '</button></div>';
         return;
       }
       list.innerHTML = projects.map(function(p) {
         var tasks = p.tasks || [];
         var taskHtml = tasks.length ? tasks.map(function(t) {
           var statusLabel = {
-            pending: 'En attente', assigned: 'Assignée', running: 'En cours',
-            completed: 'Terminée', failed: 'Échouée'
+            pending: _('En attente'), assigned: _('Assignée'), running: _('En cours'),
+            completed: _('Terminée'), failed: _('Échouée')
           }[t.status] || t.status;
           var statusColor = {
             pending: 'var(--fg-muted)', assigned: 'var(--warning)',
@@ -2094,11 +2167,11 @@
           }[t.status] || 'var(--fg-muted)';
           // Bouton « Lancer » pour les tâches assignées (automatisation Claude)
           var launchBtn = (t.status === 'assigned' && t.assignedProfile)
-            ? '<button class="btn sched-task-btn" data-action="sched-execute-task" data-project="' + escapeHtml(p.id) + '" data-task="' + escapeHtml(t.id) + '">Lancer</button>'
+            ? '<button class="btn sched-task-btn" data-action="sched-execute-task" data-project="' + escapeHtml(p.id) + '" data-task="' + escapeHtml(t.id) + '">' + escapeHtml(_('Lancer')) + '</button>'
             : '';
           // Bouton « Voir résultat » pour les tâches terminées
           var resultBtn = (t.status === 'completed' && t.result)
-            ? '<button class="btn sched-task-btn" data-action="sched-view-result" data-project="' + escapeHtml(p.id) + '" data-task="' + escapeHtml(t.id) + '">Résultat</button>'
+            ? '<button class="btn sched-task-btn" data-action="sched-view-result" data-project="' + escapeHtml(p.id) + '" data-task="' + escapeHtml(t.id) + '">' + escapeHtml(_('Résultat')) + '</button>'
             : '';
           return '<div class="sched-job sched-job--task">' +
             '<div class="sched-job__dot sched-job__dot--mt3" data-dot-color="' + statusColor + '"></div>' +
@@ -2111,28 +2184,28 @@
             '</div>' +
             '<div class="sched-job__actions sched-task-actions">' + launchBtn + resultBtn + '</div>' +
             '</div></div>';
-        }).join('') : '<div class="sched-task-empty">Aucune tâche.</div>';
+        }).join('') : '<div class="sched-task-empty">' + escapeHtml(_('Aucune tâche.')) + '</div>';
         var allowedText = p.allowedAccountIds && p.allowedAccountIds.length
           ? p.allowedAccountIds.map(function(id) {
               var acc = accounts.find(function(a) { return a.id === id; });
               return acc ? escapeHtml(acc.name) : escapeHtml(id);
             }).join(', ')
-          : 'Tous les comptes';
+          : escapeHtml(_('Tous les comptes'));
         return '<div class="sched-job">' +
           '<div class="sched-job__dot sched-job__dot--accent sched-job__dot--mt5"></div>' +
           '<div class="sched-job__body">' +
           '<div class="sched-job__title">' + escapeHtml(p.name) +
           ' <span class="sched-subtitle sched-subtitle--inline">(' + escapeHtml(p.id) + ')</span></div>' +
-          '<div class="sched-job__meta">' + tasks.length + ' tâche(s) · Comptes autorisés : ' + allowedText + '</div>' +
+          '<div class="sched-job__meta">' + escapeHtml(_('{count} tâche(s)', { count: tasks.length })) + ' · ' + escapeHtml(_('Comptes autorisés :')) + ' ' + allowedText + '</div>' +
           '<div class="sched-job__actions">' +
-          '<button class="btn" data-action="sched-add-task" data-project="' + escapeHtml(p.id) + '">Nouvelle tâche</button>' +
-          '<button class="btn" data-action="sched-assign-task" data-project="' + escapeHtml(p.id) + '">Assigner</button>' +
-          '<button class="btn" data-action="sched-delete-project" data-project="' + escapeHtml(p.id) + '">Supprimer</button>' +
+          '<button class="btn" data-action="sched-add-task" data-project="' + escapeHtml(p.id) + '">' + escapeHtml(_('Nouvelle tâche')) + '</button>' +
+          '<button class="btn" data-action="sched-assign-task" data-project="' + escapeHtml(p.id) + '">' + escapeHtml(_('Assigner')) + '</button>' +
+          '<button class="btn" data-action="sched-delete-project" data-project="' + escapeHtml(p.id) + '">' + escapeHtml(_('Supprimer')) + '</button>' +
           '</div>' +
           taskHtml +
           '</div></div>';
       }).join('') +
-      '<div class="sched-project-actions"><button class="btn" data-action="sched-create-project">Créer un projet</button></div>';
+      '<div class="sched-project-actions"><button class="btn" data-action="sched-create-project">' + escapeHtml(_('Créer un projet')) + '</button></div>';
       applyDataColors(list); // lot 9 : couleurs dynamiques (job dots, status colors)
     }
 
@@ -2141,19 +2214,19 @@
     window.schedDiagnoseClaude = async function(profile) {
       try {
         var res = await ipcRenderer.invoke('scheduler:diagnose-claude', profile);
-        if (res && res.error) { showToast('Diagnostic Claude : ' + res.error, 'error'); return; }
+        if (res && res.error) { showToast(_('Diagnostic Claude : {error}', { error: res.error }), 'error'); return; }
         if (res) {
           var parts = [];
-          if (res.continueButton && res.continueButton.found) parts.push('« Continuer »');
-          if (res.downloadButton && res.downloadButton.found) parts.push('« Télécharger »');
-          if (res.newChatButton && res.newChatButton.found) parts.push('« Nouveau »');
-          if (res.chatInput && res.chatInput.found) parts.push('zone de chat');
-          if (res.fileUpload && res.fileUpload.found) parts.push('upload fichier');
+          if (res.continueButton && res.continueButton.found) parts.push(_('« Continuer »'));
+          if (res.downloadButton && res.downloadButton.found) parts.push(_('« Télécharger »'));
+          if (res.newChatButton && res.newChatButton.found) parts.push(_('« Nouveau »'));
+          if (res.chatInput && res.chatInput.found) parts.push(_('zone de chat'));
+          if (res.fileUpload && res.fileUpload.found) parts.push(_('envoi de fichier'));
           if (res.quotaMessage && res.quotaMessage.detected) parts.push('QUOTA: ' + res.quotaMessage.time);
-          if (res.popups && res.popups.count > 0) parts.push(res.popups.count + ' popup(s)');
-          showToast('Claude (« ' + profile + ' ») : ' + (parts.length ? parts.join(', ') : 'aucun élément détecté'));
+          if (res.popups && res.popups.count > 0) parts.push(_('{count} popup(s)', { count: res.popups.count }));
+          showToast(_('Claude (« {profile} ») : {details}', { profile, details: parts.length ? parts.join(', ') : _('aucun élément détecté') }));
         }
-      } catch (e) { showToast('Diagnostic impossible : ' + e.message, 'error'); }
+      } catch (e) { showToast(_('Diagnostic impossible : {error}', { error: e.message }), 'error'); }
     };
 
     window.schedRunClaudeJob = async function(profile, prompt, sourceZipPath) {
@@ -2161,62 +2234,62 @@
         var res = await ipcRenderer.invoke('scheduler:run-claude-job', profile, prompt, sourceZipPath);
         if (res && res.error) {
           if (res.error === 'quota_exhausted') {
-            showToast('Quota gratuit épuisé jusqu\'à ' + res.quotaTime + ' pour ce profil.', 'error');
+            showToast(_('Quota gratuit épuisé jusqu\'à {time} pour ce profil.', { time: res.quotaTime }), 'error');
           } else {
-            showToast('Job Claude échoué : ' + res.error, 'error');
+            showToast(_('Job Claude échoué : {error}', { error: res.error }), 'error');
           }
           return;
         }
         if (res && res.ok) {
-          showToast('Prompt envoyé à Claude via ' + res.method + ' (« ' + profile + ' »)');
+          showToast(_('Prompt envoyé à Claude via {method} (« {profile} »)', { method: res.method, profile }));
         }
-      } catch (e) { showToast('Job Claude impossible : ' + e.message, 'error'); }
+      } catch (e) { showToast(_('Job Claude impossible : {error}', { error: e.message }), 'error'); }
     };
 
     window.schedCollectResponse = async function(profile) {
       try {
         var res = await ipcRenderer.invoke('scheduler:collect-claude-response', profile);
-        if (res && res.error) { showToast('Collecte impossible : ' + res.error, 'error'); return; }
+        if (res && res.error) { showToast(_('Collecte impossible : {error}', { error: res.error }), 'error'); return; }
         if (res && res.ok && res.response) {
-          showToast('Réponse collectée : ' + res.response.length + ' caractères (« ' + profile + ' »)');
+          showToast(_('Réponse collectée : {count} caractères (« {profile} »)', { count: res.response.length, profile }));
           console.log('[claude] Réponse collectée (« ' + profile + ' »):', res.response);
         } else {
-          showToast('Aucune réponse trouvée pour le moment.', 'warning');
+          showToast(_('Aucune réponse trouvée pour le moment.'), 'warning');
         }
-      } catch (e) { showToast('Collecte impossible : ' + e.message, 'error'); }
+      } catch (e) { showToast(_('Collecte impossible : {error}', { error: e.message }), 'error'); }
     };
 
     // --- Gestion des projets (CRUD) ---
     window.schedCreateProject = async function() {
-      var name = prompt('Nom du projet :', 'Projet ' + Date.now());
+      var name = prompt(_('Nom du projet :'), _('Projet {n}', { n: Date.now() }));
       if (!name) return;
       try {
         // Pour l'instant, tous les comptes sont autorisés (liste vide = tous)
         var res = await ipcRenderer.invoke('scheduler:create-project', name, []);
         if (res && res.error) { showToast(res.error, 'error'); return; }
-        showToast('Projet « ' + name + ' » créé');
+        showToast(_('Projet « {name} » créé', { name }));
         refreshScheduler();
-      } catch (e) { showToast('Création impossible : ' + e.message, 'error'); }
+      } catch (e) { showToast(_('Création impossible : {error}', { error: e.message }), 'error'); }
     };
 
     window.schedDeleteProject = async function(projectId) {
       try {
         var res = await ipcRenderer.invoke('scheduler:delete-project', projectId);
         if (res && res.error) { showToast(res.error, 'error'); return; }
-        showToast('Projet supprimé');
+        showToast(_('Projet supprimé'));
         refreshScheduler();
-      } catch (e) { showToast('Suppression impossible : ' + e.message, 'error'); }
+      } catch (e) { showToast(_('Suppression impossible : {error}', { error: e.message }), 'error'); }
     };
 
     window.schedAddTask = async function(projectId) {
-      var taskPrompt = window.prompt('Prompt de la tâche :', '');
+      var taskPrompt = window.prompt(_('Prompt de la tâche :'), '');
       if (!taskPrompt) return;
       try {
         var res = await ipcRenderer.invoke('scheduler:create-task', projectId, taskPrompt, null);
         if (res && res.error) { showToast(res.error, 'error'); return; }
-        showToast('Tâche créée dans le projet');
+        showToast(_('Tâche créée dans le projet'));
         refreshScheduler();
-      } catch (e) { showToast('Création impossible : ' + e.message, 'error'); }
+      } catch (e) { showToast(_('Création impossible : {error}', { error: e.message }), 'error'); }
     };
 
     window.schedAssignTask = async function(projectId) {
@@ -2226,45 +2299,45 @@
         var res = await ipcRenderer.invoke('scheduler:get-assignable-accounts', projectId, openAccountIds);
         if (res && res.error) { showToast(res.error, 'error'); return; }
         if (!res || !res.length) {
-          showToast('Aucun compte vert disponible pour ce projet.', 'warning');
+          showToast(_('Aucun compte vert disponible pour ce projet.'), 'warning');
           return;
         }
         var names = res.map(function(a) { return a.name + ' (' + a.profile + ')'; });
-        var choice = prompt('Comptes verts disponibles :\n' + names.map(function(n, i) { return (i+1) + '. ' + n; }).join('\n') + '\n\nNuméro du compte :', '1');
+        var choice = prompt(_('Comptes verts disponibles :') + '\n' + names.map(function(n, i) { return (i+1) + '. ' + n; }).join('\n') + '\n\n' + _('Numéro du compte :'), '1');
         if (!choice) return;
         var idx = parseInt(choice, 10) - 1;
-        if (isNaN(idx) || idx < 0 || idx >= res.length) { showToast('Choix invalide', 'error'); return; }
+        if (isNaN(idx) || idx < 0 || idx >= res.length) { showToast(_('Choix invalide'), 'error'); return; }
         var account = res[idx];
         // Demande quelle tâche assigner
         var state = await ipcRenderer.invoke('scheduler:get-state');
         var project = state.projects.find(function(p) { return p.id === projectId; });
         if (!project || !project.tasks || !project.tasks.length) {
-          showToast('Aucune tâche dans ce projet.', 'warning');
+          showToast(_('Aucune tâche dans ce projet.'), 'warning');
           return;
         }
         var taskNames = project.tasks.map(function(t) { return t.id + (t.status !== 'pending' ? ' (' + t.status + ')' : ''); });
-        var taskChoice = prompt('Tâches du projet :\n' + taskNames.map(function(n, i) { return (i+1) + '. ' + n; }).join('\n') + '\n\nNuméro de la tâche :', '1');
+        var taskChoice = prompt(_('Tâches du projet :') + '\n' + taskNames.map(function(n, i) { return (i+1) + '. ' + n; }).join('\n') + '\n\n' + _('Numéro de la tâche :'), '1');
         if (!taskChoice) return;
         var taskIdx = parseInt(taskChoice, 10) - 1;
-        if (isNaN(taskIdx) || taskIdx < 0 || taskIdx >= project.tasks.length) { showToast('Choix invalide', 'error'); return; }
+        if (isNaN(taskIdx) || taskIdx < 0 || taskIdx >= project.tasks.length) { showToast(_('Choix invalide'), 'error'); return; }
         var task = project.tasks[taskIdx];
         var assignRes = await ipcRenderer.invoke('scheduler:assign-task', projectId, task.id, account.id, openAccountIds);
         if (assignRes && assignRes.error) { showToast(assignRes.error, 'error'); return; }
-        showToast('Tâche ' + task.id + ' assignée à « ' + account.name + ' »');
+        showToast(_('Tâche {task} assignée à « {account} »', { task: task.id, account: account.name }));
         refreshScheduler();
-      } catch (e) { showToast('Assignation impossible : ' + e.message, 'error'); }
+      } catch (e) { showToast(_('Assignation impossible : {error}', { error: e.message }), 'error'); }
     };
 
     // Exécute une tâche assignée : crée un job et lance l'automatisation Claude
     window.schedExecuteTask = async function(projectId, taskId) {
       try {
-        showToast('Lancement de l\'automatisation Claude...', 'info');
+        showToast(_('Lancement de l\'automatisation Claude...'), 'info');
         var res = await ipcRenderer.invoke('scheduler:execute-task', projectId, taskId);
         if (res && res.error) { showToast(res.error, 'error'); return; }
-        if (res && !res.ok) { showToast(res.reason || 'Lancement impossible', 'warning'); return; }
-        showToast('Tâche lancée — suivi dans le journal d\'activité');
+        if (res && !res.ok) { showToast(res.reason || _('Lancement impossible'), 'warning'); return; }
+        showToast(_('Tâche lancée — suivi dans le journal d\'activité'));
         refreshScheduler();
-      } catch (e) { showToast('Exécution impossible : ' + e.message, 'error'); }
+      } catch (e) { showToast(_('Exécution impossible : {error}', { error: e.message }), 'error'); }
     };
 
     // Affiche le résultat d'une tâche terminée
@@ -2273,13 +2346,13 @@
       var project = state.projects.find(function(p) { return p.id === projectId; });
       if (!project) return;
       var task = project.tasks.find(function(t) { return t.id === taskId; });
-      if (!task || !task.result) { showToast('Aucun résultat disponible', 'warning'); return; }
+      if (!task || !task.result) { showToast(_('Aucun résultat disponible'), 'warning'); return; }
       // Afficher dans une fenêtre modale simple
       var modal = document.getElementById('confirmModal');
       var titleEl = modal.querySelector('.modal-card__title');
       var bodyEl = modal.querySelector('.modal-card__body');
       var okBtn = modal.querySelector('[data-confirm]');
-      if (titleEl) titleEl.textContent = 'Résultat — ' + task.id;
+      if (titleEl) titleEl.textContent = _('Résultat — {task}', { task: task.id });
       if (bodyEl) bodyEl.innerHTML = '<pre class="sched-result-pre">' + escapeHtml(task.result) + '</pre>';
       modal.classList.add('open');
       modal.dataset.confirmAction = 'close-result';
@@ -2324,14 +2397,14 @@
 
       const title = document.createElement('div');
       title.className = 'modal__title';
-      title.textContent = 'Données de comptes illisibles';
+      title.textContent = _('Données de comptes illisibles');
 
       const desc = document.createElement('div');
       desc.className = 'modal__desc';
       // textContent (pas innerHTML) : aucune donnée n'est interprétée en HTML.
       desc.textContent = hasBackup
-        ? `La liste de comptes enregistrée est corrompue. Une sauvegarde de ${b.data.length} compte(s) a été trouvée. La restaurer ?`
-        : "La liste de comptes enregistrée est corrompue et aucune sauvegarde n'est disponible. L'application démarre avec une liste vide ; vos données actuelles ne seront pas écrasées tant que vous ne créez ou ne modifiez pas de compte.";
+        ? _('La liste de comptes enregistrée est corrompue. Une sauvegarde de {count} compte(s) a été trouvée. La restaurer ?', { count: b.data.length })
+        : _("La liste de comptes enregistrée est corrompue et aucune sauvegarde n'est disponible. L'application démarre avec une liste vide ; vos données actuelles ne seront pas écrasées tant que vous ne créez ou ne modifiez pas de compte.");
 
       const actions = document.createElement('div');
       actions.className = 'modal__actions';
@@ -2340,26 +2413,26 @@
       if (hasBackup) {
         const cancel = document.createElement('button');
         cancel.className = 'btn';
-        cancel.textContent = 'Ignorer';
+        cancel.textContent = _('Ignorer');
         cancel.addEventListener('click', close);
 
         const restore = document.createElement('button');
         restore.className = 'btn btn--primary';
-        restore.textContent = 'Restaurer la sauvegarde';
+        restore.textContent = _('Restaurer la sauvegarde');
         restore.addEventListener('click', () => {
           accounts = b.data;
           migrateOldAccounts();   // complète/répare les comptes restaurés
           saveAccounts(accounts); // saveAccounts préserve le backup (valeur actuelle illisible)
           renderAccounts();
           close();
-          showToast('Comptes restaurés depuis la sauvegarde');
+          showToast(_('Comptes restaurés depuis la sauvegarde'));
         });
         actions.appendChild(cancel);
         actions.appendChild(restore);
       } else {
         const ok = document.createElement('button');
         ok.className = 'btn btn--primary';
-        ok.textContent = 'Compris';
+        ok.textContent = _('Compris');
         ok.addEventListener('click', close);
         actions.appendChild(ok);
       }
