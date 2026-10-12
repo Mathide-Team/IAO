@@ -14,6 +14,10 @@ au lancement et reprenait l'état « activé » de la session précédente.
   profils ; Arrêter retire réellement les écouteurs `will-download`.
 - Tests : unitaires (couverture 100 %), scénario Electron C3.4, fumée du binaire
   packagé alignée sur le nouveau message.
+- CI sur les runners « maison » : gettext installé s'il manque (`i18n.yml`) ;
+  harnais Electron sans réinstallation si les bibliothèques sont déjà présentes,
+  et `sudo -n` (échec immédiat et message clair au lieu de `sudo: timed out`
+  sur la VM `ubuntu`, où sudo demande un mot de passe).
 
 ## Issue #7 (partie sommes de contrôle) — SHA256SUMS.txt des fichiers publiés (10/10/2026)
 

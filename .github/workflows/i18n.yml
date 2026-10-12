@@ -41,7 +41,8 @@ jobs:
       - name: Installation de gettext
         run: |
           SUDO=""
-          if [ "$(id -u)" != "0" ]; then SUDO="sudo"; fi
+          # sudo -n : échoue tout de suite si un mot de passe est demandé (VM `ubuntu`)
+          if [ "$(id -u)" != "0" ]; then SUDO="sudo -n"; fi
           { command -v msgfmt && command -v xgettext && command -v msgmerge; } >/dev/null || { $SUDO apt-get update && $SUDO apt-get install -y --no-install-recommends gettext; }
           msgfmt --version | head -1; xgettext --version | head -1
 
@@ -76,7 +77,8 @@ jobs:
       - name: Installation de gettext
         run: |
           SUDO=""
-          if [ "$(id -u)" != "0" ]; then SUDO="sudo"; fi
+          # sudo -n : échoue tout de suite si un mot de passe est demandé (VM `ubuntu`)
+          if [ "$(id -u)" != "0" ]; then SUDO="sudo -n"; fi
           { command -v msgfmt && command -v xgettext && command -v msgmerge; } >/dev/null || { $SUDO apt-get update && $SUDO apt-get install -y --no-install-recommends gettext; }
 
       - name: Régénération de lang/
