@@ -180,143 +180,151 @@ msgstr ""
 msgid "Détection des ZIP livrés par les onglets IA, reprise par profil."
 msgstr ""
 
-#: index.html:279
-msgid "Activer / désactiver l'ordonnanceur"
+#: index.html:280
+msgid "Arrêté"
 msgstr ""
 
-#: index.html:287
+#: index.html:281
+msgid "Démarrer ou arrêter l'ordonnanceur (il ne démarre jamais tout seul)"
+msgstr ""
+
+#: index.html:281
+msgid "Démarrer"
+msgstr ""
+
+#: index.html:286
 msgid "Jobs actifs"
 msgstr ""
 
-#: index.html:288
+#: index.html:287
 msgid "En attente"
 msgstr ""
 
-#: index.html:289
+#: index.html:288
 msgid "Livrés aujourd'hui"
 msgstr ""
 
-#: index.html:293
+#: index.html:292
 msgid "Jobs simultanés max."
 msgstr ""
 
-#: index.html:294
+#: index.html:293
 msgid "Délai min. entre automatisations (min)"
 msgstr ""
 
-#: index.html:295
+#: index.html:294
 msgid "Seuil profil « le plus ancien » (h)"
 msgstr ""
 
-#: index.html:297
+#: index.html:296
 msgid "Dossiers"
 msgstr ""
 
-#: index.html:299
+#: index.html:298
 msgid "Téléchargements…"
 msgstr ""
 
-#: index.html:300
+#: index.html:299
 msgid "Livraison…"
 msgstr ""
 
-#: index.html:305
+#: index.html:304
 msgid "Téléchargements :"
 msgstr ""
 
-#: index.html:305
+#: index.html:304
 msgid "(dossier de téléchargements du système)"
 msgstr ""
 
-#: index.html:306
+#: index.html:305
 msgid "Livraison :"
 msgstr ""
 
-#: index.html:306
+#: index.html:305
 msgid "(non défini)"
 msgstr ""
 
-#: index.html:309
+#: index.html:308
 msgid "Projets & tâches"
 msgstr ""
 
-#: index.html:312
+#: index.html:311
 msgid "Jobs"
 msgstr ""
 
-#: index.html:315
+#: index.html:314
 msgid "Journal d'activité"
 msgstr ""
 
-#: index.html:327
+#: index.html:326
 msgid "Confirmation"
 msgstr ""
 
-#: index.html:331
+#: index.html:330
 msgid "Confirmer"
 msgstr ""
 
-#: index.html:341
+#: index.html:340
 msgid "Préférences de l'application, sauvegardées localement."
 msgstr ""
 
-#: index.html:346
+#: index.html:345
 msgid "Taille de police de l'éditeur (px)"
 msgstr ""
 
-#: index.html:353
+#: index.html:352
 msgid "Thème"
 msgstr ""
 
-#: index.html:355
+#: index.html:354
 msgid "Thème du bureau (défaut)"
 msgstr ""
 
-#: index.html:357
+#: index.html:356
 msgid "Clair"
 msgstr ""
 
-#: index.html:358
+#: index.html:357
 msgid "Sombre"
 msgstr ""
 
-#: index.html:365
+#: index.html:364
 msgid "Langue"
 msgstr ""
 
-#: index.html:367
+#: index.html:366
 msgid "Langue du système (défaut)"
 msgstr ""
 
-#: index.html:369
+#: index.html:368
 msgid "Appliquée au prochain démarrage"
 msgstr ""
 
-#: index.html:374
+#: index.html:373
 msgid "Retour à la ligne (éditeur)"
 msgstr ""
 
-#: index.html:376
+#: index.html:375
 msgid "Désactivé"
 msgstr ""
 
-#: index.html:377
+#: index.html:376
 msgid "Activé"
 msgstr ""
 
-#: index.html:378
+#: index.html:377
 msgid "Colonne fixe"
 msgstr ""
 
-#: index.html:385
+#: index.html:384
 msgid "Confirmer avant de fermer un onglet"
 msgstr ""
 
-#: index.html:388
+#: index.html:387
 msgid "Afficher les fenêtres d'automatisation"
 msgstr ""
 
-#: index.html:391
+#: index.html:390
 msgid "Restaurer les onglets ouverts au démarrage"
 msgstr ""
 
@@ -724,7 +732,7 @@ msgstr ""
 msgid "Projet en cours d'analyse"
 msgstr ""
 
-#: assets/app.js:1858 assets/app.js:2160
+#: assets/app.js:1858 assets/app.js:2167
 msgid "En cours"
 msgstr ""
 
@@ -764,314 +772,322 @@ msgstr ""
 msgid "Erreur lors de la sauvegarde des réglages"
 msgstr ""
 
-#: assets/app.js:2021
-msgid "Aucun job pour l'instant — un ZIP téléchargé depuis un onglet IA (ordonnanceur activé) en créera un automatiquement."
+#: assets/app.js:2007
+msgid "Arrêter"
+msgstr ""
+
+#: assets/app.js:2011
+msgid "En marche"
 msgstr ""
 
 #: assets/app.js:2028
-msgid "Continuer le projet"
-msgstr ""
-
-#: assets/app.js:2029
-msgid "Marquer livré"
-msgstr ""
-
-#: assets/app.js:2032
-msgid "Pause"
+msgid "Aucun job pour l'instant — un ZIP téléchargé depuis un onglet IA (ordonnanceur activé) en créera un automatiquement."
 msgstr ""
 
 #: assets/app.js:2035
+msgid "Continuer le projet"
+msgstr ""
+
+#: assets/app.js:2036
+msgid "Marquer livré"
+msgstr ""
+
+#: assets/app.js:2039
+msgid "Pause"
+msgstr ""
+
+#: assets/app.js:2042
 msgid "Reprendre"
 msgstr ""
 
-#: assets/app.js:2038
+#: assets/app.js:2045
 msgid "Relancer"
 msgstr ""
 
-#: assets/app.js:2041
+#: assets/app.js:2048
 msgid "Ouvrir le ZIP"
 msgstr ""
 
-#: assets/app.js:2044
+#: assets/app.js:2051
 msgid "Analyser la complétude"
 msgstr ""
 
-#: assets/app.js:2051
+#: assets/app.js:2058
 msgid "service inconnu"
 msgstr ""
 
-#: assets/app.js:2052
+#: assets/app.js:2059
 msgid "tentative {n}"
 msgstr ""
 
-#: assets/app.js:2064
+#: assets/app.js:2071
 msgid "Aucune activité enregistrée."
 msgstr ""
 
-#: assets/app.js:2074
+#: assets/app.js:2081
 msgid "Impossible de modifier l'état de l'ordonnanceur"
 msgstr ""
 
-#: assets/app.js:2084
+#: assets/app.js:2091
 msgid "Configuration non enregistrée"
 msgstr ""
 
-#: assets/app.js:2096 assets/app.js:2103
+#: assets/app.js:2103 assets/app.js:2110
 msgid "Sélection du dossier impossible"
 msgstr ""
 
-#: assets/app.js:2122
+#: assets/app.js:2129
 msgid "Projet terminé : {done}/{total} tâches faites, 0 restante."
 msgstr ""
 
-#: assets/app.js:2123
+#: assets/app.js:2130
 msgid "{pending} à faire, {inProgress} en cours, {done} faite(s) sur {total} au total."
 msgstr ""
 
-#: assets/app.js:2126
+#: assets/app.js:2133
 msgid "Analyse impossible : {error}"
 msgstr ""
 
-#: assets/app.js:2143
+#: assets/app.js:2150
 msgid "Action impossible : {error}"
 msgstr ""
 
-#: assets/app.js:2153
+#: assets/app.js:2160
 msgid "Aucun projet pour l'instant."
 msgstr ""
 
-#: assets/app.js:2153 assets/app.js:2208
+#: assets/app.js:2160 assets/app.js:2215
 msgid "Créer un projet"
 msgstr ""
 
-#: assets/app.js:2160
+#: assets/app.js:2167
 msgid "Assignée"
 msgstr ""
 
-#: assets/app.js:2161
+#: assets/app.js:2168
 msgid "Terminée"
 msgstr ""
 
-#: assets/app.js:2161
+#: assets/app.js:2168
 msgid "Échouée"
 msgstr ""
 
-#: assets/app.js:2170
+#: assets/app.js:2177
 msgid "Lancer"
 msgstr ""
 
-#: assets/app.js:2174
+#: assets/app.js:2181
 msgid "Résultat"
 msgstr ""
 
-#: assets/app.js:2187
+#: assets/app.js:2194
 msgid "Aucune tâche."
 msgstr ""
 
-#: assets/app.js:2193
+#: assets/app.js:2200
 msgid "Tous les comptes"
 msgstr ""
 
-#: assets/app.js:2199
+#: assets/app.js:2206
 msgid "Comptes autorisés :"
 msgstr ""
 
-#: assets/app.js:2199
+#: assets/app.js:2206
 msgid "{count} tâche(s)"
 msgstr ""
 
-#: assets/app.js:2201
+#: assets/app.js:2208
 msgid "Nouvelle tâche"
 msgstr ""
 
-#: assets/app.js:2202
+#: assets/app.js:2209
 msgid "Assigner"
 msgstr ""
 
-#: assets/app.js:2217
+#: assets/app.js:2224
 msgid "Diagnostic Claude : {error}"
 msgstr ""
 
-#: assets/app.js:2220
+#: assets/app.js:2227
 msgid "« Continuer »"
 msgstr ""
 
-#: assets/app.js:2221
+#: assets/app.js:2228
 msgid "« Télécharger »"
 msgstr ""
 
-#: assets/app.js:2222
+#: assets/app.js:2229
 msgid "« Nouveau »"
 msgstr ""
 
-#: assets/app.js:2223
+#: assets/app.js:2230
 msgid "zone de chat"
 msgstr ""
 
-#: assets/app.js:2224
+#: assets/app.js:2231
 msgid "envoi de fichier"
 msgstr ""
 
-#: assets/app.js:2226
+#: assets/app.js:2233
 msgid "{count} popup(s)"
 msgstr ""
 
-#: assets/app.js:2227
+#: assets/app.js:2234
 msgid "Claude (« {profile} ») : {details}"
 msgstr ""
 
-#: assets/app.js:2227
+#: assets/app.js:2234
 msgid "aucun élément détecté"
 msgstr ""
 
-#: assets/app.js:2229
+#: assets/app.js:2236
 msgid "Diagnostic impossible : {error}"
 msgstr ""
 
-#: assets/app.js:2237
+#: assets/app.js:2244
 msgid "Quota gratuit épuisé jusqu'à {time} pour ce profil."
 msgstr ""
 
-#: assets/app.js:2239
+#: assets/app.js:2246
 msgid "Job Claude échoué : {error}"
 msgstr ""
 
-#: assets/app.js:2244
+#: assets/app.js:2251
 msgid "Prompt envoyé à Claude via {method} (« {profile} »)"
 msgstr ""
 
-#: assets/app.js:2246
+#: assets/app.js:2253
 msgid "Job Claude impossible : {error}"
 msgstr ""
 
-#: assets/app.js:2252 assets/app.js:2259
+#: assets/app.js:2259 assets/app.js:2266
 msgid "Collecte impossible : {error}"
 msgstr ""
 
-#: assets/app.js:2254
+#: assets/app.js:2261
 msgid "Réponse collectée : {count} caractères (« {profile} »)"
 msgstr ""
 
-#: assets/app.js:2257
+#: assets/app.js:2264
 msgid "Aucune réponse trouvée pour le moment."
 msgstr ""
 
-#: assets/app.js:2264
+#: assets/app.js:2271
 msgid "Nom du projet :"
 msgstr ""
 
-#: assets/app.js:2264
+#: assets/app.js:2271
 msgid "Projet {n}"
 msgstr ""
 
-#: assets/app.js:2270
+#: assets/app.js:2277
 msgid "Projet « {name} » créé"
 msgstr ""
 
-#: assets/app.js:2272 assets/app.js:2292
+#: assets/app.js:2279 assets/app.js:2299
 msgid "Création impossible : {error}"
 msgstr ""
 
-#: assets/app.js:2279
+#: assets/app.js:2286
 msgid "Projet supprimé"
 msgstr ""
 
-#: assets/app.js:2281
+#: assets/app.js:2288
 msgid "Suppression impossible : {error}"
 msgstr ""
 
-#: assets/app.js:2285
+#: assets/app.js:2292
 msgid "Prompt de la tâche :"
 msgstr ""
 
-#: assets/app.js:2290
+#: assets/app.js:2297
 msgid "Tâche créée dans le projet"
 msgstr ""
 
-#: assets/app.js:2302
+#: assets/app.js:2309
 msgid "Aucun compte vert disponible pour ce projet."
 msgstr ""
 
-#: assets/app.js:2306
+#: assets/app.js:2313
 msgid "Comptes verts disponibles :"
 msgstr ""
 
-#: assets/app.js:2306
+#: assets/app.js:2313
 msgid "Numéro du compte :"
 msgstr ""
 
-#: assets/app.js:2309 assets/app.js:2322
+#: assets/app.js:2316 assets/app.js:2329
 msgid "Choix invalide"
 msgstr ""
 
-#: assets/app.js:2315
+#: assets/app.js:2322
 msgid "Aucune tâche dans ce projet."
 msgstr ""
 
-#: assets/app.js:2319
+#: assets/app.js:2326
 msgid "Numéro de la tâche :"
 msgstr ""
 
-#: assets/app.js:2319
+#: assets/app.js:2326
 msgid "Tâches du projet :"
 msgstr ""
 
-#: assets/app.js:2326
+#: assets/app.js:2333
 msgid "Tâche {task} assignée à « {account} »"
 msgstr ""
 
-#: assets/app.js:2328
+#: assets/app.js:2335
 msgid "Assignation impossible : {error}"
 msgstr ""
 
-#: assets/app.js:2334
+#: assets/app.js:2341
 msgid "Lancement de l'automatisation Claude..."
 msgstr ""
 
-#: assets/app.js:2337
+#: assets/app.js:2344
 msgid "Lancement impossible"
 msgstr ""
 
-#: assets/app.js:2338
+#: assets/app.js:2345
 msgid "Tâche lancée — suivi dans le journal d'activité"
 msgstr ""
 
-#: assets/app.js:2340
+#: assets/app.js:2347
 msgid "Exécution impossible : {error}"
 msgstr ""
 
-#: assets/app.js:2349
+#: assets/app.js:2356
 msgid "Aucun résultat disponible"
 msgstr ""
 
-#: assets/app.js:2355
+#: assets/app.js:2362
 msgid "Résultat — {task}"
 msgstr ""
 
-#: assets/app.js:2400
+#: assets/app.js:2407
 msgid "Données de comptes illisibles"
 msgstr ""
 
-#: assets/app.js:2406
+#: assets/app.js:2413
 msgid "La liste de comptes enregistrée est corrompue. Une sauvegarde de {count} compte(s) a été trouvée. La restaurer ?"
 msgstr ""
 
-#: assets/app.js:2407
+#: assets/app.js:2414
 msgid "La liste de comptes enregistrée est corrompue et aucune sauvegarde n'est disponible. L'application démarre avec une liste vide ; vos données actuelles ne seront pas écrasées tant que vous ne créez ou ne modifiez pas de compte."
 msgstr ""
 
-#: assets/app.js:2416
+#: assets/app.js:2423
 msgid "Ignorer"
 msgstr ""
 
-#: assets/app.js:2421
+#: assets/app.js:2428
 msgid "Restaurer la sauvegarde"
 msgstr ""
 
-#: assets/app.js:2428
+#: assets/app.js:2435
 msgid "Comptes restaurés depuis la sauvegarde"
 msgstr ""
 
-#: assets/app.js:2435
+#: assets/app.js:2442
 msgid "Compris"
 msgstr ""

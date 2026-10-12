@@ -276,11 +276,10 @@
         <div class="modal__title modal__title--tight">Ordonnanceur IA</div>
         <div class="sched-subtitle">Détection des ZIP livrés par les onglets IA, reprise par profil.</div>
       </div>
-      <label class="sched-toggle" title="Activer / désactiver l'ordonnanceur">
-        <input type="checkbox" id="schedToggleInput">
-        <span class="sched-toggle__track"></span>
-        <span class="sched-toggle__thumb"></span>
-      </label>
+      <div class="sched-run">
+        <span class="sched-run__state" id="schedRunState">Arrêté</span>
+        <button class="btn btn--primary" id="schedStartStopBtn" title="Démarrer ou arrêter l'ordonnanceur (il ne démarre jamais tout seul)">Démarrer</button>
+      </div>
     </div>
 
     <div class="sched-stats">

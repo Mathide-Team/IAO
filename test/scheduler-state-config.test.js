@@ -146,6 +146,7 @@ test('syncAccounts : entrée non tableau -> instantané vide et persisté', () =
 test('syncAccounts : ajout de comptes, valeurs par défaut et surveillance des partitions', () => {
   const ctx = create();
   try {
+    ctx.scheduler.setEnabled(true); // #181 : surveillance seulement ordonnanceur démarré
     ctx.scheduler.syncAccounts([
       { id: 'a1', name: 'Alice', profile: 'profil_1' },
       { id: 'a2', name: 'Bob', profile: 'profil_2', automation: { enabled: false, lastUsedAt: '1700', lastAutomationAt: 900 } },
@@ -191,6 +192,7 @@ test('syncAccounts : valeur précédente non numérique -> 0', () => {
 test('syncAccounts : comptes supprimés retirés de l\'instantané, partitions déjà surveillées non redoublées', () => {
   const ctx = create();
   try {
+    ctx.scheduler.setEnabled(true); // #181 : surveillance seulement ordonnanceur démarré
     ctx.scheduler.syncAccounts([
       { id: 'a1', name: 'Alice', profile: 'profil_1' },
       { id: 'a2', name: 'Bob', profile: 'profil_2' }
@@ -214,13 +216,66 @@ test('setEnabled : bascule on/off, persiste la config et journalise', () => {
     const off = ctx.scheduler.setEnabled(false);
     assert.strictEqual(off.enabled, false);
     assert.strictEqual(readJSON(ctx.scheduler.configPath).enabled, false);
-    assert.strictEqual(ctx.scheduler.log[ctx.scheduler.log.length - 1].message, 'Ordonnanceur mis en pause.');
+    assert.strictEqual(ctx.scheduler.log[ctx.scheduler.log.length - 1].message, 'Ordonnanceur arrêté.');
 
     const on = ctx.scheduler.setEnabled(1);
     assert.strictEqual(on.enabled, true);
     assert.strictEqual(readJSON(ctx.scheduler.configPath).enabled, true);
-    assert.strictEqual(ctx.scheduler.log[ctx.scheduler.log.length - 1].message, 'Ordonnanceur activé.');
+    assert.strictEqual(ctx.scheduler.log[ctx.scheduler.log.length - 1].message, 'Ordonnanceur démarré.');
     assert.strictEqual(ctx.scheduler.getState().config.enabled, true);
+  } finally { cleanup(ctx); }
+});
+
+// --- Démarrage / arrêt manuel (issue #181) -----------------------------------
+
+test('#181 syncAccounts : ordonnanceur arrêté -> aucune partition surveillée', () => {
+  const ctx = create();
+  try {
+    ctx.scheduler.syncAccounts([{ id: 'a1', name: 'Alice', profile: 'profil_1' }]);
+    assert.deepStrictEqual(ctx.session.partitions, []);
+    assert.strictEqual(ctx.scheduler.watchedPartitions.size, 0);
+  } finally { cleanup(ctx); }
+});
+
+test('#181 setEnabled(false) : retire les écouteurs will-download et oublie les profils', () => {
+  const { EventEmitter } = require('events');
+  const app = createMockApp();
+  const sessions = {};
+  const session = { fromPartition(n) { return (sessions[n] = sessions[n] || new EventEmitter()); } };
+  const scheduler = new Scheduler(app, session);
+  try {
+    scheduler.syncAccounts([{ id: 'a1', profile: 'profil_1' }, { id: 'a2', profile: 'profil_2' }]);
+    scheduler.setEnabled(true);
+    assert.strictEqual(sessions['persist:profil_1'].listenerCount('will-download'), 1);
+    scheduler.setEnabled(false);
+    assert.strictEqual(sessions['persist:profil_1'].listenerCount('will-download'), 0);
+    assert.strictEqual(sessions['persist:profil_2'].listenerCount('will-download'), 0);
+    assert.strictEqual(scheduler.watchedPartitions.size, 0);
+    assert.ok(scheduler.log.some(l => l.message === 'Surveillance des téléchargements arrêtée (2 profil(s)).'));
+    // Redémarrer rebranche une seule fois chaque profil.
+    scheduler.setEnabled(true);
+    assert.strictEqual(sessions['persist:profil_1'].listenerCount('will-download'), 1);
+  } finally { cleanup({ app }); }
+});
+
+test('#181 setEnabled(false) : sans profil surveillé, aucun message de surveillance', () => {
+  const ctx = create();
+  try {
+    ctx.scheduler.setEnabled(false);
+    assert.ok(!ctx.scheduler.log.some(l => l.message.startsWith('Surveillance des téléchargements arrêtée')));
+  } finally { cleanup(ctx); }
+});
+
+test('#181 setEnabled(false) : un échec de retrait d\'écouteur est journalisé sans lever', (t) => {
+  const ctx = create(); // session simulée sans removeListener
+  const errors = t.mock.method(console, 'error', () => {});
+  try {
+    ctx.scheduler.syncAccounts([{ id: 'a1', profile: 'profil_1' }]);
+    ctx.scheduler.setEnabled(true);
+    assert.doesNotThrow(() => ctx.scheduler.setEnabled(false));
+    assert.strictEqual(errors.mock.callCount(), 1);
+    assert.match(String(errors.mock.calls[0].arguments[0]), /arrêt de la surveillance du profil/);
+    assert.strictEqual(ctx.scheduler.watchedPartitions.size, 0);
   } finally { cleanup(ctx); }
 });
 

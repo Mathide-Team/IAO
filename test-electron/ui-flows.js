@@ -286,6 +286,26 @@ async function run() {
     assert(rels.includes('subfolder/nested.js'), 'subfolder/nested.js absent : ' + rels.join(', '));
   });
 
+  // Issue #181 : IAO démarre sans l'ordonnanceur ; l'utilisateur le démarre
+  // et l'arrête avec un bouton.
+  await test('C3.4 Ordonnanceur arrêté au démarrage, bouton Démarrer / Arrêter (#181)', async () => {
+    const etat0 = await ipc('scheduler:get-state');
+    assert(etat0 && etat0.config && etat0.config.enabled === false, 'ordonnanceur actif au démarrage');
+    await exec('window.openSchedulerModal(); "ok"');
+    await sleep(300);
+    const libelle = () => exec('document.getElementById("schedStartStopBtn").textContent.trim()');
+    assert((await libelle()) === 'Démarrer', 'libellé initial : ' + (await libelle()));
+    await exec('document.getElementById("schedStartStopBtn").click(); "ok"');
+    await sleep(400);
+    assert((await ipc('scheduler:get-state')).config.enabled === true, 'le clic n\'a pas démarré l\'ordonnanceur');
+    assert((await libelle()) === 'Arrêter', 'libellé après démarrage : ' + (await libelle()));
+    await exec('document.getElementById("schedStartStopBtn").click(); "ok"');
+    await sleep(400);
+    assert((await ipc('scheduler:get-state')).config.enabled === false, 'le second clic n\'a pas arrêté l\'ordonnanceur');
+    assert((await libelle()) === 'Démarrer', 'libellé après arrêt : ' + (await libelle()));
+    await exec('window.closeSchedulerModal(); "ok"');
+  });
+
   // =========================================================================
   // C4 — Restauration et persistance des onglets
   // =========================================================================

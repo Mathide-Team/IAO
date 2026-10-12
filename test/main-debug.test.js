@@ -145,7 +145,7 @@ test('mode debug : versions, options et branchement de l\'ordonnanceur au démar
     assert.match(log, /\[demarrage\] info IAO 0\.0\.0-test .*mode debug/);
     assert.match(log, /\[demarrage\] debug mode debug actif — Electron .*; options : /);
     // setLogger : le journal d'activité de l'ordonnanceur rejoint iao.log.
-    assert.match(log, /\[scheduler\] info Ordonnanceur démarré/);
+    assert.match(log, /\[scheduler\] info Ordonnanceur arrêté au démarrage/);
   } finally { h.cleanup(); }
 });
 
@@ -182,6 +182,6 @@ test('mode normal : app:is-debug renvoie false, aucune trace debug ni console d\
     assert.ok(!log.includes('TypeError: x'));
     assert.ok(!log.includes('[ipc]'));
     // Le journal d'activité de l'ordonnanceur est écrit même hors mode debug.
-    assert.match(log, /\[scheduler\] info Ordonnanceur démarré/);
+    assert.match(log, /\[scheduler\] info Ordonnanceur arrêté au démarrage/);
   } finally { h.cleanup(); }
 });
