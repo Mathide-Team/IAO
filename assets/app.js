@@ -2002,7 +2002,14 @@
 
     function renderSchedulerState(state) {
       var cfg = state.config;
-      document.getElementById('schedToggleInput').checked = !!cfg.enabled;
+      // Issue #181 : bouton explicite, l'ordonnanceur ne démarre jamais seul.
+      var startStop = document.getElementById('schedStartStopBtn');
+      startStop.textContent = cfg.enabled ? _('Arrêter') : _('Démarrer');
+      startStop.dataset.enabled = cfg.enabled ? '1' : '0';
+      startStop.classList.toggle('btn--primary', !cfg.enabled);
+      var runState = document.getElementById('schedRunState');
+      runState.textContent = cfg.enabled ? _('En marche') : _('Arrêté');
+      runState.classList.toggle('sched-run__state--on', !!cfg.enabled);
       document.getElementById('statSchedActive').textContent = state.counters.active;
       document.getElementById('statSchedWaiting').textContent = state.counters.waiting;
       document.getElementById('statSchedDelivered').textContent = state.counters.deliveredToday;
@@ -2066,9 +2073,9 @@
       hydrateIcons(document.getElementById('schedulerModal'));
     }
 
-    document.getElementById('schedToggleInput').addEventListener('change', async (e) => {
+    document.getElementById('schedStartStopBtn').addEventListener('click', async (e) => {
       try {
-        const res = await ipcRenderer.invoke('scheduler:set-enabled', e.target.checked);
+        const res = await ipcRenderer.invoke('scheduler:set-enabled', e.currentTarget.dataset.enabled !== '1');
         if (res && res.error) throw new Error(res.error);
         refreshScheduler();
       } catch (err) { showToast(_("Impossible de modifier l'état de l'ordonnanceur"), 'error'); }

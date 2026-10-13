@@ -12,7 +12,7 @@
 // (dist/IAO-linux-x64/IAO) démarre réellement :
 //   1. le process reste vivant (pas de crash au lancement),
 //   2. main.js s'exécute : le scheduler démarre et journalise
-//      « Ordonnanceur démarré » (console + activity.json dans un userData
+//      « Ordonnanceur arrêté au démarrage » (console + activity.json dans un userData
 //      ISOLÉ via XDG_CONFIG_HOME temporaire),
 //   3. le preload et l'interface se chargent (logs/iao.log, issue #52) ;
 //   4. le process se termine proprement sur SIGTERM.
@@ -75,20 +75,20 @@ async function main() {
 
   // 2. Le scheduler a démarré et journalisé (console OU activity.json).
   await sleep(2000);
-  const loggedInConsole = stdout.indexOf('Ordonnanceur démarré') !== -1;
+  const loggedInConsole = stdout.indexOf('Ordonnanceur arrêté au démarrage') !== -1;
   let loggedInActivity = false;
   try {
     const activity = fs.readFileSync(activityPath, 'utf-8');
-    loggedInActivity = activity.indexOf('Ordonnanceur démarré') !== -1;
+    loggedInActivity = activity.indexOf('Ordonnanceur arrêté au démarrage') !== -1;
   } catch (e) { /* fichier pas encore écrit */ }
   if (!loggedInConsole && !loggedInActivity) {
     ok = false;
-    console.error('ECHEC : « Ordonnanceur démarré » introuvable (console=' + loggedInConsole +
+    console.error('ECHEC : « Ordonnanceur arrêté au démarrage » introuvable (console=' + loggedInConsole +
       ', activity.json=' + loggedInActivity + ')');
     console.error('Sortie du process (30 dernières lignes) :');
     console.error(stdout.split('\n').slice(-30).join('\n'));
   } else {
-    console.log('ok - main.js exécuté : « Ordonnanceur démarré » journalisé (' +
+    console.log('ok - main.js exécuté : « Ordonnanceur arrêté au démarrage » journalisé (' +
       (loggedInConsole ? 'console' : 'activity.json') + ')');
   }
 

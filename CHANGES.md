@@ -1,5 +1,24 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issue #181 — IAO démarre sans l'ordonnanceur (12/10/2026)
+
+### Cause
+`scheduler.init()` branchait la surveillance des téléchargements de tous les profils
+au lancement et reprenait l'état « activé » de la session précédente.
+
+### Livré
+- Au lancement, l'ordonnanceur est toujours **arrêté** (un état « activé » persisté
+  est remis à « arrêté ») et aucune partition n'est surveillée.
+- Fenêtre Ordonnanceur : l'interrupteur est remplacé par un bouton **Démarrer /
+  Arrêter** et un état « Arrêté / En marche ». Démarrer branche la surveillance des
+  profils ; Arrêter retire réellement les écouteurs `will-download`.
+- Tests : unitaires (couverture 100 %), scénario Electron C3.4, fumée du binaire
+  packagé alignée sur le nouveau message.
+- CI sur les runners « maison » : gettext installé s'il manque (`i18n.yml`) ;
+  harnais Electron sans réinstallation si les bibliothèques sont déjà présentes,
+  et `sudo -n` (échec immédiat et message clair au lieu de `sudo: timed out`
+  sur la VM `ubuntu`, où sudo demande un mot de passe).
+
 ## Issue #7 (partie sommes de contrôle) — SHA256SUMS.txt des fichiers publiés (10/10/2026)
 
 ### Cause

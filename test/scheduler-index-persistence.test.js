@@ -114,7 +114,7 @@ test('_loadSync : projectSeq et taskSeq calculés, tâches absentes ou non confo
 
 // --- init() ---------------------------------------------------------------
 
-test('init : surveille chaque profil du snapshot et journalise (ordonnanceur désactivé)', (t) => {
+test('init (#181) : démarre arrêté, sans surveiller aucun profil', (t) => {
   const { app, session, partitions } = setup(t, {
     'accounts-snapshot.json': [
       { id: 'a1', profile: 'profil_1' },
@@ -124,19 +124,36 @@ test('init : surveille chaque profil du snapshot et journalise (ordonnanceur dé
   });
   const s = new Scheduler(app, session);
   s.init();
-  assert.deepStrictEqual(partitions, ['persist:profil_1', 'persist:profil_2']);
-  assert.ok(s.watchedPartitions.has('profil_1'));
-  assert.ok(s.watchedPartitions.has('profil_2'));
+  assert.deepStrictEqual(partitions, []);
+  assert.strictEqual(s.watchedPartitions.size, 0);
+  assert.strictEqual(s.config.enabled, false);
   const last = s.log[s.log.length - 1];
-  assert.match(last.message, /Ordonnanceur démarré \(désactivé\)\./);
+  assert.match(last.message, /^Ordonnanceur arrêté au démarrage : le démarrer avec le bouton « Démarrer »/);
 });
 
-test('init : message « activé » quand la configuration est activée', (t) => {
-  const { app, session } = setup(t, { 'config.json': { enabled: true } });
+test('init (#181) : un état « démarré » persisté est remis à « arrêté »', (t) => {
+  const { app, session, partitions } = setup(t, {
+    'accounts-snapshot.json': [{ id: 'a1', profile: 'profil_1' }],
+    'config.json': { enabled: true }
+  });
   const s = new Scheduler(app, session);
   s.init();
+  assert.strictEqual(s.config.enabled, false);
+  assert.strictEqual(JSON.parse(fs.readFileSync(s.configPath, 'utf-8')).enabled, false);
+  assert.deepStrictEqual(partitions, []);
   const last = s.log[s.log.length - 1];
-  assert.match(last.message, /Ordonnanceur démarré \(activé\)\./);
+  assert.match(last.message, /Ordonnanceur arrêté au démarrage \(il était démarré à la fermeture\)/);
+});
+
+test('init (#181) puis setEnabled(true) : la surveillance démarre au clic', (t) => {
+  const { app, session, partitions } = setup(t, {
+    'accounts-snapshot.json': [{ id: 'a1', profile: 'profil_1' }, { id: 'a2', profile: 'profil_2' }]
+  });
+  const s = new Scheduler(app, session);
+  s.init();
+  s.setEnabled(true);
+  assert.deepStrictEqual(partitions, ['persist:profil_1', 'persist:profil_2']);
+  assert.ok(s.watchedPartitions.has('profil_1') && s.watchedPartitions.has('profil_2'));
 });
 
 test('init : sans compte, aucune partition surveillée', (t) => {

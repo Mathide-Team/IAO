@@ -858,7 +858,7 @@ synchronisé — pour ouvrir un onglet).
     `shell.openExternal` stubbé), bouton « Continuer le projet » →
     RESUME_REQUIRED (compte éligible) puis → WAITING_FOR_PROFILE.
 - `smoke-packaged.js` — fumée du binaire packagé (3 tests) : process vivant,
-  « Ordonnanceur démarré » journalisé dans un userData isolé, arrêt propre
+  « Ordonnanceur arrêté au démarrage » (#181) journalisé dans un userData isolé, arrêt propre
   sur SIGTERM.
 - Exclus des builds packagés (`--ignore="^/test-electron$"` electron-packager,
   `!test-electron/**` electron-builder).

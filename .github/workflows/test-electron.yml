@@ -34,18 +34,37 @@ jobs:
         run: npm ci
 
       - name: Installation de xvfb et des bibliothèques d'Electron
-        # Runners « maison » : conteneurs Ubuntu minimaux, en root et sans sudo,
-        # sans les bibliothèques graphiques préinstallées sur ubuntu-latest.
-        # La liste couvre aussi ubuntu-latest (sudo y est présent).
+        # Runners « maison » : conteneurs Ubuntu minimaux (root, sans sudo) ou
+        # VM `ubuntu` (compte non root, sudo avec mot de passe). Rien à
+        # installer si tout est déjà présent ; sinon `sudo -n` échoue tout de
+        # suite au lieu d'attendre un mot de passe (sudo: timed out après 5 min).
         run: |
+          PAQUETS="xvfb xauth libnss3 libgbm1 libgtk-3-0 libxss1 libxtst6 libatk-bridge2.0-0 libdrm2 libxkbcommon0 libxshmfence1 libsecret-1-0 libcups2 libnotify4 libuuid1 fonts-dejavu-core"
+          manquants=""
+          installe() {  # Ubuntu >= 24.04 : nom réel souvent suffixé t64 (libgtk-3-0t64...)
+            for n in "$1" "${1}t64"; do
+              dpkg-query -W -f='${Status}' "$n" 2>/dev/null | grep -q "install ok installed" && return 0
+            done
+            return 1
+          }
+          for p in $PAQUETS libasound2; do
+            installe "$p" || manquants="$manquants $p"
+          done
+          if [ -z "$manquants" ]; then
+            echo "Bibliothèques déjà installées : rien à faire."
+            exit 0
+          fi
           SUDO=""
-          if [ "$(id -u)" != "0" ]; then SUDO="sudo"; fi
+          if [ "$(id -u)" != "0" ]; then
+            if ! sudo -n true 2>/dev/null; then
+              echo "::error::Paquets manquants :$manquants -- sudo demande un mot de passe sur ce runner ($RUNNER_NAME). Les préinstaller, ou autoriser sudo sans mot de passe pour le compte du runner."
+              exit 1
+            fi
+            SUDO="sudo -n"
+          fi
           export DEBIAN_FRONTEND=noninteractive
           $SUDO apt-get update
-          $SUDO apt-get install -y --no-install-recommends xvfb xauth \
-            libnss3 libgbm1 libgtk-3-0 libxss1 libxtst6 libatk-bridge2.0-0 \
-            libdrm2 libxkbcommon0 libxshmfence1 libsecret-1-0 libcups2 \
-            libnotify4 libuuid1 fonts-dejavu-core
+          $SUDO apt-get install -y --no-install-recommends $PAQUETS
           $SUDO apt-get install -y --no-install-recommends libasound2t64 \
             || $SUDO apt-get install -y --no-install-recommends libasound2
 

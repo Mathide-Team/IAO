@@ -68,6 +68,7 @@ class Scheduler {
     this.projectSeq = 0;
     this.taskSeq = 0;
     this.watchedPartitions = new Set();
+    this._downloadListeners = new Map(); // profil -> { ses, listener } (issue #181)
     // Référence aux webviews ouvertes (pour l'automatisation Claude) :
     // Map<profile, webContents> mise à jour par le renderer via IPC.
     this._openWebviews = new Map();
@@ -113,9 +114,19 @@ class Scheduler {
     if (this._debugEnabled && this._logFn) this._logFn('scheduler', 'debug', message);
   }
 
+  // Issue #181 : IAO démarre TOUJOURS sans l'ordonnanceur. Un état « activé »
+  // persisté par la session précédente est remis à « arrêté » : seul le
+  // bouton « Démarrer » de la fenêtre Ordonnanceur le lance (setEnabled), et
+  // aucune partition n'est surveillée tant qu'il est arrêté.
   init() {
-    this.accountsSnapshot.forEach(acc => this._watchPartition(acc.profile));
-    this._logActivity('Ordonnanceur démarré (' + (this.config.enabled ? 'activé' : 'désactivé') + ').');
+    const wasEnabled = this.config.enabled === true;
+    if (this.config.enabled !== false) {
+      this.config.enabled = false;
+      this._persistConfig();
+    }
+    this._logActivity('Ordonnanceur arrêté au démarrage' +
+      (wasEnabled ? ' (il était démarré à la fermeture)' : '') +
+      ' : le démarrer avec le bouton « Démarrer » de la fenêtre Ordonnanceur.');
   }
 
   // --- Persistance ---------------------------------------------------------
@@ -230,15 +241,21 @@ class Scheduler {
       };
     });
     this._persistAccounts();
-    this.accountsSnapshot.forEach(acc => this._watchPartition(acc.profile));
+    // Issue #181 : pas de surveillance tant que l'ordonnanceur est arrêté.
+    if (this.config.enabled) this._watchAllPartitions();
   }
 
   // --- Configuration ---------------------------------------------------------
 
+  // Bouton « Démarrer / Arrêter » (issue #181) : démarrer branche la
+  // surveillance des téléchargements sur chaque profil connu, arrêter la
+  // débranche (aucun écouteur ne reste actif).
   setEnabled(enabled) {
     this.config.enabled = !!enabled;
     this._persistConfig();
-    this._logActivity('Ordonnanceur ' + (this.config.enabled ? 'activé' : 'mis en pause') + '.');
+    if (this.config.enabled) this._watchAllPartitions();
+    else this._unwatchAllPartitions();
+    this._logActivity('Ordonnanceur ' + (this.config.enabled ? 'démarré' : 'arrêté') + '.');
     return this.config;
   }
 
@@ -275,14 +292,34 @@ class Scheduler {
     this.watchedPartitions.add(profile);
     try {
       const ses = this._session.fromPartition('persist:' + profile);
-      ses.on('will-download', (event, item, webContents) => {
+      const listener = (event, item, webContents) => {
         try { this._onWillDownload(profile, item, webContents); }
         catch (e) { this._error('erreur de traitement d\'un téléchargement :', e); }
-      });
+      };
+      ses.on('will-download', listener);
+      this._downloadListeners.set(profile, { ses, listener });
       this._logActivity('Surveillance des téléchargements activée pour le profil « ' + profile + ' ».');
     } catch (e) {
       this._error('échec de la surveillance du profil', profile, e);
     }
+  }
+
+  _watchAllPartitions() {
+    this.accountsSnapshot.forEach(acc => this._watchPartition(acc.profile));
+  }
+
+  // Issue #181 : retire les écouteurs posés par _watchPartition. Un échec de
+  // retrait est journalisé ; le profil est oublié dans tous les cas (le
+  // garde-fou de _onWillDownload ignore de toute façon un ordonnanceur arrêté).
+  _unwatchAllPartitions() {
+    const count = this.watchedPartitions.size;
+    this._downloadListeners.forEach(({ ses, listener }, profile) => {
+      try { ses.removeListener('will-download', listener); }
+      catch (e) { this._error('échec de l\'arrêt de la surveillance du profil', profile, e); }
+    });
+    this._downloadListeners.clear();
+    this.watchedPartitions.clear();
+    if (count) this._logActivity('Surveillance des téléchargements arrêtée (' + count + ' profil(s)).');
   }
 
   _onWillDownload(profile, item, webContents) {
