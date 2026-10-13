@@ -1,5 +1,6 @@
 # IAO
 
+<!-- --8<-- [start:intro] -->
 **Un poste de travail de bureau (Windows et Linux) pour utiliser plusieurs services d'IA web avec plusieurs comptes, sans jongler entre navigateurs.** Chaque compte dispose de sessions isolées (cookies séparés), chaque IA s'ouvre dans son propre **onglet** intégré, et un suivi de « cooldown » 24 h par service aide à gérer les quotas gratuits.
 
 Publié ici pour quiconque en a l'usage.
@@ -8,6 +9,7 @@ Publié ici pour quiconque en a l'usage.
 >
 > **Responsabilité d'usage** — Cet outil n'utilise aucune API : il affiche les interfaces web officielles des services dans des onglets intégrés (webviews), où vous vous connectez et interagissez vous-même, comme dans un navigateur. Vous restez seul responsable du respect des conditions d'utilisation de chaque service, notamment de leurs règles sur l'usage de plusieurs comptes.
 
+<!-- --8<-- [end:intro] -->
 ## Aperçu
 
 <!-- À COMPLÉTER : captures d'écran à fournir avant/après publication -->
@@ -16,6 +18,7 @@ Publié ici pour quiconque en a l'usage.
 
 *(Captures à ajouter dans `docs/` — emplacements prévus ci-dessus.)*
 
+<!-- --8<-- [start:fonctionnalites] -->
 ## Fonctionnalités
 
 - **Multi-comptes isolés** : chaque compte utilise une partition Electron dédiée (`persist:<profil>`) — cookies et sessions strictement séparés. L'unicité du profil est imposée par l'app.
@@ -32,6 +35,8 @@ Publié ici pour quiconque en a l'usage.
 - **Stockage résilient** : sauvegarde automatique d'une génération des données de comptes, récupération proposée en cas de corruption.
 - **Ordonnanceur IA** (bouton robot, en cours de développement) : détecte automatiquement les fichiers `.zip` livrés par les IA dans les onglets, tient un registre de jobs, et propose de reprendre un projet inachevé sur le profil disponible le plus ancien plutôt que de toujours solliciter le même compte. La partie « upload + envoi du prompt » dans le service IA n'est pas encore automatisée — la reprise se fait aujourd'hui en un clic depuis le panneau.
 
+<!-- --8<-- [end:fonctionnalites] -->
+<!-- --8<-- [start:installation] -->
 ## Installation — Linux (Ubuntu et dérivées)
 
 Trois voies, de la plus simple à la plus manuelle. Toutes intègrent l'application au **menu des applications** (recherche GNOME, épinglage au Dock, icône, Alt+Tab).
@@ -107,7 +112,7 @@ npm run start:linux-dev    # electron . --no-sandbox
 
 ### Utilisateur (binaire)
 
-Récupérez le zip de la [dernière release](../../releases), décompressez le dossier **en entier**, lancez `IAO.exe`. Au premier lancement, Windows SmartScreen affiche un avertissement (exécutable non signé) : « Informations complémentaires » → « Exécuter quand même ». Voir `docs/DISTRIBUTION-LISEZ-MOI.txt` pour le détail.
+Récupérez le zip de la [dernière release](https://github.com/Mathide-Team/IAO/releases), décompressez le dossier **en entier**, lancez `IAO.exe`. Au premier lancement, Windows SmartScreen affiche un avertissement (exécutable non signé) : « Informations complémentaires » → « Exécuter quand même ». Voir `docs/DISTRIBUTION-LISEZ-MOI.txt` pour le détail.
 
 ### Depuis les sources
 
@@ -142,12 +147,14 @@ L'exe a besoin du dossier complet — pour distribuer, zippez tout le dossier. L
 
 **Limitation connue (Windows)** : `electron-builder` ne fonctionne pas sans droits administrateur ou Mode développeur Windows (création de liens symboliques) — c'est pourquoi le packaging Windows passe par `@electron/packager` et qu'il n'y a ni installateur ni exe portable mono-fichier côté Windows. Sous Linux, `electron-builder` fonctionne normalement, d'où le `.deb`.
 
+<!-- --8<-- [end:installation] -->
 ## Langue de l'interface
 
 IAO est en français. Les autres langues (29 locales gettext dans `lang/`) se
 choisissent avec `IAO_LANG=en npm start` ou `iao --iao-lang=en`. Traductions,
 ajout d'une langue et CI : [docs/i18n.md](docs/i18n.md) (issue #51).
 
+<!-- --8<-- [start:donnees] -->
 ## Emplacement des données
 
 | Plateforme | Comptes, cooldowns et sessions IA |
@@ -186,6 +193,8 @@ Ce dossier n'est **pas** supprimé par la désinstallation — effacez-le manuel
 - Les messages Chromium du type `vaInitialize failed` (accélération vidéo matérielle) sont
   sans incidence sur IAO.
 
+<!-- --8<-- [end:donnees] -->
+<!-- --8<-- [start:developpement] -->
 ## Structure du projet
 
 ```
@@ -247,6 +256,7 @@ Projet maintenu en solo, contributions bienvenues — en particulier :
 
 Règles du projet : JS vanilla sans dépendance nouvelle, toute donnée utilisateur passe par `escapeHtml()`, les écritures de comptes passent par `saveAccounts()`, les listes cliquables utilisent la délégation d'événements. Lisez `CLAUDE.md` (règles de contribution) et `docs/PROJECT_CONTEXT.md` avant une contribution non triviale. Fork → branche → pull request.
 
+<!-- --8<-- [end:developpement] -->
 ## Licence
 
 [MIT](LICENSE). Composants tiers (polices OFL, icônes Font Awesome CC BY 4.0, Monaco MIT) : voir [docs/THIRD-PARTY-NOTICES.md](docs/THIRD-PARTY-NOTICES.md).

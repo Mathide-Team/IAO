@@ -55,3 +55,37 @@ jobs:
           path: coverage-output.txt
           retention-days: 14
           if-no-files-found: warn
+
+  documentation:
+    # Règle d'équipe Mathide-Team : documentation MkDocs, même job que
+    # Netcross. Échoue sur lien mort ou sur une section incluse disparue
+    # (pymdownx.snippets check_paths) ; le site est publié en artefact.
+    name: Construction (mkdocs build --strict)
+    runs-on: ${{ fromJSON(vars.IAO_RUNS_ON_LINUX || '{"group":"maison","labels":["self-hosted","linux"]}') }}
+
+    steps:
+      - name: Checkout du dépôt
+        uses: actions/checkout@v4
+
+      - name: Installation de uv
+        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
+
+      - name: Installation de Python 3.14 (uv)
+        # Python système trop ancien sur certains runners maison : venv uv.
+        run: |
+          uv venv --python 3.14 --seed "$RUNNER_TEMP/venv"
+          echo "$RUNNER_TEMP/venv/bin" >> "$GITHUB_PATH"
+
+      - name: Installation de mkdocs-material
+        # mkdocs < 2 : MkDocs 2.0 abandonne le système de plugins/thèmes de Material.
+        run: pip install "mkdocs<2" mkdocs-material pymdown-extensions
+
+      - name: Construction (strict -- échoue sur lien mort)
+        run: mkdocs build --strict
+
+      - name: Publication du site HTML (artifact)
+        uses: actions/upload-artifact@v4
+        with:
+          name: mkdocs-site
+          path: site/
+          retention-days: 14

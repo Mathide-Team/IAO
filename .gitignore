@@ -26,3 +26,6 @@ npm-debug.log*
 .vscode/
 .idea/
 *.swp
+
+# Site MkDocs construit (mkdocs build)
+site/
