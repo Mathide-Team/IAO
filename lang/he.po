@@ -4,6 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: IAO\n"
 "Report-Msgid-Bugs-To: https://github.com/Mathide-Team/IAO/issues\n"
+"Last-Translator: IAO (traduction automatique Argos Translate, relecture humaine attendue, issue #188)\n"
+"Language-Team: aucune (relecture humaine attendue)\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -12,1084 +14,1089 @@ msgstr ""
 
 #: index.html:90
 msgid "Rechercher un compte ou une IA..."
-msgstr ""
+msgstr "חפש חשבון או AI..."
 
 #: index.html:100
 msgid "Comptes actifs"
-msgstr ""
+msgstr "חשבונות פעילים"
 
 #: index.html:101
 msgid "IA Disponibles"
-msgstr ""
+msgstr "זמין AIS"
 
 #: index.html:102
 msgid "Rechercher un compte ou une IA (Ctrl+K)"
-msgstr ""
+msgstr "חיפוש חשבון או AI (Ctrl+K)"
 
 #: index.html:106
 msgid "Comptes enregistrés"
-msgstr ""
+msgstr "חשבונות חוסכים"
 
 #: index.html:108
 msgid "Tout replier / Tout déplier"
-msgstr ""
+msgstr "הכל / הרחבה"
 
 #: index.html:109
 msgid "Exporter les comptes (JSON)"
-msgstr ""
+msgstr "חשבונות ייצוא (JSON)"
 
 #: index.html:110
 msgid "Importer des comptes (JSON)"
-msgstr ""
+msgstr "חשבונות ייבוא (JSON)"
 
 #: index.html:111
 msgid "Ajouter un compte"
-msgstr ""
+msgstr "הוסף חשבון"
 
 #: index.html:126
 msgid "Mode debug actif : traces détaillées dans le journal iao.log"
-msgstr ""
+msgstr "המונחים:מפורט בקובץ iao.log"
 
 #: index.html:128
 msgid "Masquer les comptes"
-msgstr ""
+msgstr "חשבונות Hide"
 
 #: index.html:129
 msgid "Afficher les comptes"
-msgstr ""
+msgstr "הצג חשבונות"
 
 #: index.html:130
 msgid "Explorateur"
-msgstr ""
+msgstr "Explorer"
 
 #: index.html:131
 msgid "Éditeur"
-msgstr ""
+msgstr "עורך"
 
 #: index.html:132
 msgid "Outils de développement (Ctrl+Maj+I)"
-msgstr ""
+msgstr "כלי פיתוח (Ctrl+Shift+I)"
 
 #: index.html:137
 msgid "Choisir mes 9 IA à portée de main"
-msgstr ""
+msgstr "בחרו את 9 Go-to AIs"
 
 #: index.html:138
 msgid "Comprendre les IA disponibles"
-msgstr ""
+msgstr "להבין את AIs זמין"
 
 #: index.html:140
 msgid "Ordonnanceur IA"
-msgstr ""
+msgstr "לוח הזמנים של AI"
 
 #: index.html:141
 msgid "Réglages"
-msgstr ""
+msgstr "הגדרות הגדרות"
 
 #: index.html:150
 msgid "Fichiers"
-msgstr ""
+msgstr "קבצים"
 
 #: index.html:152
 msgid "Ouvrir un dossier"
-msgstr ""
+msgstr "פתח תיקיה"
 
 #: index.html:153
 msgid "Réduire"
-msgstr ""
+msgstr "התמוטטות"
 
 #: index.html:158
 msgid "Rechercher un fichier..."
-msgstr ""
+msgstr "חפש קובץ..."
 
 #: index.html:161
 msgid "Glisser pour redimensionner"
-msgstr ""
+msgstr "לגרור מחדש"
 
 #: index.html:163
 msgid "Aucun fichier"
-msgstr ""
+msgstr "אין קובץ"
 
 #: index.html:168
 msgid "Glisser pour redimensionner l'éditeur"
-msgstr ""
+msgstr "להזיז את העורך"
 
 #: index.html:174
 msgid "Aucun onglet ouvert — choisissez un service dans la liste des comptes"
-msgstr ""
+msgstr "אין כרטיס פתוח - בחר שירות ברשימת החשבון"
 
 #: index.html:184
 msgid "Le profil permet d'isoler les cookies dans Electron."
-msgstr ""
+msgstr "הפרופיל ממשיך לבודד עוגיות באלקטרון."
 
 #: index.html:186
 msgid "Nom du compte"
-msgstr ""
+msgstr "שם חשבון"
 
 #: index.html:188
 msgid "Nom du Profil"
-msgstr ""
+msgstr "שם פרופיל"
 
 #: index.html:190
 msgid "Annuler"
-msgstr ""
+msgstr "ביטול"
 
 #: index.html:191
 msgid "Enregistrer"
-msgstr ""
+msgstr "להציל"
 
 #: index.html:199
 msgid "Supprimer le compte"
-msgstr ""
+msgstr "למחוק את החשבון"
 
 #: index.html:200
 msgid "Cette action est irréversible."
-msgstr ""
+msgstr "זה לא יכול להיות בלתי חוקי."
 
 #: index.html:204
 msgid "Supprimer"
-msgstr ""
+msgstr "Delete"
 
 #: index.html:215
 msgid "Importer des comptes"
-msgstr ""
+msgstr "חשבונות יבוא"
 
 #: index.html:219
 msgid "Remplacer et importer"
-msgstr ""
+msgstr "מקום וייבוא"
 
 #: index.html:232
 msgid "Déconnecter le profil"
-msgstr ""
+msgstr "לחתום על הפרופיל"
 
 #: index.html:236
 msgid "Déconnecter"
-msgstr ""
+msgstr "המונחים"
 
 #: index.html:246
 msgid "À quoi sert chaque service, et quand l'utiliser."
-msgstr ""
+msgstr "כל שירות הוא, ומתי להשתמש בו."
 
 #: index.html:249
 msgid "Fermer"
-msgstr ""
+msgstr "סגור"
 
 #: index.html:260
 msgid "Sélectionnez les 9 services affichés dans l'interface. Les autres restent disponibles dans l'aide."
-msgstr ""
+msgstr "בחר את 9 השירותים המוצגים בממשק. האחרים נשארים זמינים בסיוע."
 
 #: index.html:277
 msgid "Détection des ZIP livrés par les onglets IA, reprise par profil."
-msgstr ""
+msgstr "Detects ZIP קבצים המסופקים על ידי כרטיסיות AI, עם קורות חיים פרופיל."
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: index.html:280
 msgid "Arrêté"
-msgstr ""
+msgstr "מושבת"
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: index.html:281
 msgid "Démarrer ou arrêter l'ordonnanceur (il ne démarre jamais tout seul)"
-msgstr ""
+msgstr "הפעלה או עצירה של המתזמן (הוא אף פעם לא מתחיל מעצמו)"
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: index.html:281
 msgid "Démarrer"
-msgstr ""
+msgstr "הפעלה"
 
 #: index.html:286
 msgid "Jobs actifs"
-msgstr ""
+msgstr "עבודה פעילה"
 
 #: index.html:287
 msgid "En attente"
-msgstr ""
+msgstr "עקבו"
 
 #: index.html:288
 msgid "Livrés aujourd'hui"
-msgstr ""
+msgstr "היום"
 
 #: index.html:292
 msgid "Jobs simultanés max."
-msgstr ""
+msgstr "Max"
 
 #: index.html:293
 msgid "Délai min. entre automatisations (min)"
-msgstr ""
+msgstr "עיכוב בין אוטומציה (min)"
 
 #: index.html:294
 msgid "Seuil profil « le plus ancien » (h)"
-msgstr ""
+msgstr "\"Oldest\" פרופיל סף (h)"
 
 #: index.html:296
 msgid "Dossiers"
-msgstr ""
+msgstr "Folders"
 
 #: index.html:298
 msgid "Téléchargements…"
-msgstr ""
+msgstr "הורדים..."
 
 #: index.html:299
 msgid "Livraison…"
-msgstr ""
+msgstr "משלוח..."
 
 #: index.html:304
 msgid "Téléchargements :"
-msgstr ""
+msgstr "הורדות:"
 
 #: index.html:304
 msgid "(dossier de téléchargements du système)"
-msgstr ""
+msgstr "(מערכת מורידה תיקיה)"
 
 #: index.html:305
 msgid "Livraison :"
-msgstr ""
+msgstr "משלוח:"
 
 #: index.html:305
 msgid "(non défini)"
-msgstr ""
+msgstr "(לא מוגדר)"
 
 #: index.html:308
 msgid "Projets & tâches"
-msgstr ""
+msgstr "פרויקטים ומשימות"
 
 #: index.html:311
 msgid "Jobs"
-msgstr ""
+msgstr "משרות"
 
 #: index.html:314
 msgid "Journal d'activité"
-msgstr ""
+msgstr "יומן פעילות"
 
 #: index.html:326
 msgid "Confirmation"
-msgstr ""
+msgstr "אישור"
 
 #: index.html:330
 msgid "Confirmer"
-msgstr ""
+msgstr "אישור"
 
 #: index.html:340
 msgid "Préférences de l'application, sauvegardées localement."
-msgstr ""
+msgstr "העדפות יישומים, נשמרות באופן מקומי."
 
 #: index.html:345
 msgid "Taille de police de l'éditeur (px)"
-msgstr ""
+msgstr "גודל הגופן (px)"
 
 #: index.html:352
 msgid "Thème"
-msgstr ""
+msgstr "נושא"
 
 #: index.html:354
 msgid "Thème du bureau (défaut)"
-msgstr ""
+msgstr "נושא שולחן העבודה (default)"
 
 #: index.html:356
 msgid "Clair"
-msgstr ""
+msgstr "אור אור"
 
 #: index.html:357
 msgid "Sombre"
-msgstr ""
+msgstr "כהה כהה"
 
 #: index.html:364
 msgid "Langue"
-msgstr ""
+msgstr "שפה"
 
 #: index.html:366
 msgid "Langue du système (défaut)"
-msgstr ""
+msgstr "שפת המערכת (default)"
 
 #: index.html:368
 msgid "Appliquée au prochain démarrage"
-msgstr ""
+msgstr "יישום בהתחלה הבאה"
 
 #: index.html:373
 msgid "Retour à la ligne (éditeur)"
-msgstr ""
+msgstr "Word עטיפה (editor)"
 
 #: index.html:375
 msgid "Désactivé"
-msgstr ""
+msgstr "Off Off Off"
 
 #: index.html:376
 msgid "Activé"
-msgstr ""
+msgstr "On On"
 
 #: index.html:377
 msgid "Colonne fixe"
-msgstr ""
+msgstr "עמודה קבועה"
 
 #: index.html:384
 msgid "Confirmer avant de fermer un onglet"
-msgstr ""
+msgstr "אישור לפני סגירת הכרטיסיה"
 
 #: index.html:387
 msgid "Afficher les fenêtres d'automatisation"
-msgstr ""
+msgstr "הצג חלונות אוטומציה"
 
 #: index.html:390
 msgid "Restaurer les onglets ouverts au démarrage"
-msgstr ""
+msgstr "שחזור כרטיסיות פתוחות בסטארט-אפ"
 
 #: assets/app.js:237
 msgid "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."
-msgstr ""
+msgstr "עוזר השיחה של Anthropic. הוא מצטיין בכתב, מנתח מסמכים ארוכים, תכנות וחשיבה רב-שלבית."
 
 #: assets/app.js:238
 msgid "Plutôt pour du code, des textes longs et soignés, ou des questions complexes qui demandent de la rigueur."
-msgstr ""
+msgstr "הטוב ביותר עבור קוד, טקסטים ארוכים ומלוטשים, או שאלות מורכבות הקוראות לשקירה."
 
 #: assets/app.js:241
 msgid "L'assistant généraliste d'OpenAI, le plus connu du grand public. Il discute, rédige, résume, génère des images, analyse des fichiers et peut chercher sur le web."
-msgstr ""
+msgstr "עוזרו הכללי של OpenAI, הידוע לציבור הרחב. זה צ'אטים, כותב, מסכם, יוצר תמונות, מנתח קבצים ויכול לחפש את האינטרנט."
 
 #: assets/app.js:242
 msgid "Le couteau suisse du quotidien : brainstorming, questions générales, petites tâches variées."
-msgstr ""
+msgstr "סכין צבא שוויצרית יומיומית: סיעור מוח, שאלות כלליות, משימות קטנות."
 
 #: assets/app.js:245
 msgid "L'assistant IA de Google. Multimodal (texte, images, audio, vidéo), il s'appuie sur la recherche Google et s'intègre aux outils Google (Docs, Gmail, Drive…)."
-msgstr ""
+msgstr "עוזר AI של Google Multimodal (טקסט, תמונות, אודיו, וידאו), הוא בונה על Google Search ומשלב עם כלי Google (Docs, Gmail, Drive)."
 
 #: assets/app.js:246
 msgid "Plutôt pour analyser des images ou vidéos, ou si vous travaillez déjà dans l'écosystème Google."
-msgstr ""
+msgstr "עדיף לנתח תמונות או קטעי וידאו, או אם אתה כבר עובד במערכת האקולוגית של Google."
 
 #: assets/app.js:249
 msgid "Le chat de Z.ai, propulsé par les modèles GLM. Gratuit pour l'essentiel, avec un mode agent capable de chercher sur le web et de produire des fichiers (docx, pdf, xlsx)."
-msgstr ""
+msgstr "צ'אט Z.ai, המופעל על ידי דגמי GLM. בעיקר חינם, עם מצב סוכן שיכול לחפש באינטרנט לייצר קבצים (docx, pdf, xlsx)."
 
 #: assets/app.js:250
 msgid "Une alternative gratuite solide pour le chat et le code, quand les quotas des autres sont épuisés."
-msgstr ""
+msgstr "אלטרנטיבה חופשית מוצקה לצ'אט ולקוד כאשר המכסות של שירותים אחרים משמשים."
 
 #: assets/app.js:253
 msgid "Un « moteur de réponse » : il cherche sur le web en direct, synthétise plusieurs sources et cite ses références pour chaque affirmation."
-msgstr ""
+msgstr "\"מנוע מענה\": הוא מחפש את האינטרנט חי, מסנזה מספר מקורות ומצטט את ההתייחסות שלו לכל תביעה."
 
 #: assets/app.js:254
 msgid "Plutôt pour la recherche d'informations à jour, la veille et la vérification de faits avec sources."
-msgstr ""
+msgstr "הטוב ביותר עבור מציאת מידע עדכני, ניטור נושאים ובדיקה עובדה עם מקורות."
 
 #: assets/app.js:257
 msgid "L'assistant de xAI (Elon Musk), connecté au réseau X (ex-Twitter). Ton direct, accès au temps réel de X, génération d'images incluse."
-msgstr ""
+msgstr "עוזרו של XAI (Elon מאסק), המחובר לרשת X (לשעבר טוויטר). טון ישיר, גישה בזמן אמת ל- X, כולל דור תמונות."
 
 #: assets/app.js:258
 msgid "Plutôt pour suivre l'actualité chaude et les tendances via X, ou pour un ton moins formel."
-msgstr ""
+msgstr "הטוב ביותר עבור שידור חדשות ומגמות באמצעות X, או עבור טון פחות רשמי."
 
 #: assets/app.js:261
 msgid "Une plateforme de génération d'images orientée création : illustrations, concept art, assets de jeu vidéo, avec des contrôles fins (styles, modèles, retouche)."
-msgstr ""
+msgstr "פלטפורמה יצירתית של מבנה תמונה: איורים, אמנות קונספט, נכסי משחק וידאו, עם בקרה עתירה (סגנון, מודלים, השקעה)."
 
 #: assets/app.js:262
 msgid "Plutôt pour produire des visuels et illustrations de qualité avec un contrôle précis du style."
-msgstr ""
+msgstr "הטוב ביותר לייצור חזותיים איכותיים ואיורים עם שליטה מדויקת על הסגנון."
 
 #: assets/app.js:265
 msgid "Un générateur de musique : il compose des chansons complètes (instruments, voix, paroles) à partir d'une simple description texte, dans à peu près tous les genres."
-msgstr ""
+msgstr "מחולל מוזיקה: הוא מחבר שירים שלמים (סיפורים, שירה, מילים) מתיאור טקסט פשוט, כמעט בכל ז'אנר."
 
 #: assets/app.js:266
 msgid "Plutôt pour créer une musique, un jingle ou une chanson à partir d'un texte ou d'une idée."
-msgstr ""
+msgstr "הטוב ביותר ליצירת פיסת מוזיקה, ג'ינגלה או שיר מטקסט או רעיון."
 
 #: assets/app.js:269
 msgid "Un générateur de modèles 3D : il transforme un texte ou une image en objet 3D texturé, avec rigging/animation automatique et export vers les formats standards (GLB, FBX, STL…)."
-msgstr ""
+msgstr "גנרטור מודל 3D: זה הופך טקסט או תמונה לתוך אובייקט 3D מרקם, עם השקיה אוטומטית / חיים וייצוא פורמטים סטנדרטיים (GLB, FBX, STL...)."
 
 #: assets/app.js:270
 msgid "Plutôt pour créer des assets 3D (jeux, impression 3D, animation) sans savoir modéliser."
-msgstr ""
+msgstr "הטוב ביותר ליצירת נכסים 3D (משחקים, הדפסה 3D, אנימציה) ללא מיומנויות דוגמנות."
 
 #: assets/app.js:274
 msgid "Le Chat de Mistral AI, éditeur européen (français). Modèles open-weights performants, chat, code et analyse de documents."
-msgstr ""
+msgstr "לה צ'אט על ידי Mistral AI, מוכר אירופי (צרפתית) מודלים חזקים במשקל פתוח, צ'אט, קוד וניתוח מסמך."
 
 #: assets/app.js:275
 msgid "Alternative européenne solide pour le chat et le code, avec une bonne maîtrise du français."
-msgstr ""
+msgstr "אלטרנטיבה אירופית מוצקה לצ'אט ולקוד, עם פקודה טובה של צרפתית."
 
 #: assets/app.js:278
 msgid "DeepSeek : assistant IA chinois spécialisé en raisonnement et programmation, particulièrement performant en Python."
-msgstr ""
+msgstr "DeepSeek: עוזר בינה מלאכותית סיני המתמחה בחשיבה ובתכנות, במיוחד חזק בפייתון."
 
 #: assets/app.js:279
 msgid "Pour du code Python, du raisonnement étape par étape, ou une alternative gratuite à ChatGPT."
-msgstr ""
+msgstr "עבור קוד פייתון, חשיבה צעד אחר צעד, או אלטרנטיבה חופשית לצ'אטGPT."
 
 #: assets/app.js:282
 msgid "GitHub Copilot : assistant IA intégré dans VS Code et GitHub. Autocomplétion, chat, génération de tests, explication de code."
-msgstr ""
+msgstr "GitHub Co טייס: עוזר AI שנבנה לתוך קוד VS ו GitHub. Autocompletion, צ'אט, דור מבחן, הסבר קוד."
 
 #: assets/app.js:283
 msgid "Pour programmer plus vite dans VS Code ou sur GitHub, avec un modèle IA qui connaît votre codebase."
-msgstr ""
+msgstr "כדי לתכנן מהר יותר בקוד VS או על GitHub, עם מודל AI שמכיר את בסיס הקוד שלך."
 
 #: assets/app.js:286
 msgid "Elicit : assistant de recherche scientifique. Trouve des articles, extrait des données, synthétise des études."
-msgstr ""
+msgstr "אליסטן: עוזר מחקר מדעי. מצא מסמכים, תמצית נתונים, סינתזה מחקרים."
 
 #: assets/app.js:287
 msgid "Pour la recherche académique, la revue de littérature et l'extraction de données d'articles scientifiques."
-msgstr ""
+msgstr "למחקר אקדמי, ביקורות ספרות והוצאת נתונים ממסמכים מדעיים."
 
 #: assets/app.js:290
 msgid "NotebookLM de Google : interagissez avec vos propres documents (PDF, texte, audio). Résumés, questions, génération de notes."
-msgstr ""
+msgstr "Google NotebookLM: אינטראקציה עם המסמכים שלך (PDF, טקסט, אודיו). סוממים, שאלות, הערה דור."
 
 #: assets/app.js:291
 msgid "Pour interroger vos documents personnels ou professionnels avec une IA qui cite ses sources."
-msgstr ""
+msgstr "כדי לשאול את המסמכים האישיים או העבודה שלך עם בינה מלאכותית המציינת את מקורותיה."
 
 #: assets/app.js:294
 msgid "Wolfram Alpha : moteur de calcul symbolique. Mathématiques, physique, chimie, données factuelles, conversions."
-msgstr ""
+msgstr "וולפרם אלפא: מנוע חישוב סמלי. מתמטיקה, פיזיקה, כימיה, נתונים עובדתיים, המרות."
 
 #: assets/app.js:295
 msgid "Pour des calculs exacts (mathématiques symboliques), des données chiffrées ou des conversions d'unités."
-msgstr ""
+msgstr "עבור חישובים מדויקים (מתמטיקה פסיכוטית), נתונים מספריים או המרת יחידות."
 
 #: assets/app.js:298
 msgid "DeepL : traduction automatique de haute qualité, plus naturelle que Google Traduction. Texte et documents entiers."
-msgstr ""
+msgstr "DeepL: איכות גבוהה של תרגום מכונה, יותר טבעי מ-Google Translate. טקסט ומסמכים מלאים"
 
 #: assets/app.js:299
 msgid "Pour traduire du texte ou des documents avec un rendu naturel et cohérent."
-msgstr ""
+msgstr "לתרגם טקסט או מסמכים עם תוצאה טבעית ועקבית."
 
 #: assets/app.js:302
 msgid "Ideogram : génération d'images orientée design. Logos, typographies, affiches, avec un excellent rendu du texte."
-msgstr ""
+msgstr "Ideogram: עיצוב-oriented Image Generation. לוגו, טיפוגרפיה, פוסטרים, עם טקסט מצוין."
 
 #: assets/app.js:303
 msgid "Pour créer des visuels avec du texte lisible (logos, affiches, bannières) ou du design graphique."
-msgstr ""
+msgstr "כדי ליצור ויזואליות עם טקסט דביק (לוגוס, פוסטרים, כרזות) או עיצוב גרפי."
 
 #: assets/app.js:306
 msgid "Kling : générateur de vidéos courtes à partir de texte ou d'images. Animations réalistes, crédits gratuits disponibles."
-msgstr ""
+msgstr "קללינג: גנרטור וידאו קצר מטקסט או תמונות. אנימציה ריאליסטית, אשראי חינם זמין."
 
 #: assets/app.js:307
 msgid "Pour créer des clips vidéo animés à partir d'une description ou d'une image fixe."
-msgstr ""
+msgstr "כדי ליצור קטעי וידאו מתיאור או תמונה עדיין."
 
 #: assets/app.js:310
 msgid "Runway : suite d'outils IA pour la vidéo. Génération, édition, effets spéciaux, inpainting vidéo."
-msgstr ""
+msgstr "Runway: חבילת כלי וידאו של AI. דור, עריכה, אפקטים מיוחדים, וידאו inpainting."
 
 #: assets/app.js:311
 msgid "Pour le montage et la création vidéo avancée avec des outils IA intégrés."
-msgstr ""
+msgstr "עבור עריכת וידאו מתקדמת ויצירת עם כלי AI מובנה."
 
 #: assets/app.js:314
 msgid "Pika : générateur de vidéos courtes et créatives. Animation d'images, effets, transformation de styles."
-msgstr ""
+msgstr "Pika: גנרטור של סרטונים קצרים ויצירתיים. אנימציה תמונה, אפקטים, טרנספורמציה בסגנון."
 
 #: assets/app.js:315
 msgid "Pour animer des images ou créer des vidéos courtes originales avec des effets IA."
-msgstr ""
+msgstr "כדי לזהות תמונות או ליצור קטעי וידאו קצרים מקוריים עם השפעות AI."
 
 #: assets/app.js:318
 msgid "Qwen : assistant IA d'Alibaba. Multimodal (texte, images, code), open-source, disponible en plusieurs tailles."
-msgstr ""
+msgstr "מקור: Alibaba's AI assistant Multimodal (טקסט, תמונות, קוד), קוד פתוח, זמין במספר גדלים."
 
 #: assets/app.js:319
 msgid "Alternative gratuite pour le chat, le code et l'analyse d'images, avec un bon support multilingue."
-msgstr ""
+msgstr "אלטרנטיבה חופשית לצ'אט, קוד וניתוח תמונה, עם תמיכה רב לשונית טובה."
 
 #: assets/app.js:389
 msgid "Impossible d'enregistrer les comptes (stockage plein ?)"
-msgstr ""
+msgstr "לא יכול להציל את החשבונות (מלאים?)"
 
 #: assets/app.js:525
 msgid "Ctrl+S pour sauvegarder."
-msgstr ""
+msgstr "Ctrl+S כדי לחסוך"
 
 #: assets/app.js:525 assets/app.js:549
 msgid "Sélectionnez un fichier pour l'éditer ici."
-msgstr ""
+msgstr "בחר קובץ כדי לערוך אותו כאן."
 
 #: assets/app.js:545
 msgid "Éditeur simplifié (Monaco indisponible) — Ctrl+S pour sauvegarder"
-msgstr ""
+msgstr "עורך סימולציה (Monaco לא זמין) - Ctrl+S כדי לחסוך"
 
 #: assets/app.js:586
 msgid "Fichier enregistré !"
-msgstr ""
+msgstr "קובץ שנשמר"
 
 #: assets/app.js:587
 msgid "Erreur d'enregistrement."
-msgstr ""
+msgstr "הצילו את השגיאה"
 
 #: assets/app.js:646
 msgid "Aucun compte pour l'instant."
-msgstr ""
+msgstr "עדיין אין חשבונות."
 
 #: assets/app.js:647
 msgid "Créer mon premier compte"
-msgstr ""
+msgstr "יצירת החשבון הראשון שלי"
 
 #: assets/app.js:699
 msgid "Cliquer pour copier l'e-mail"
-msgstr ""
+msgstr "לחץ כדי להעתיק את כתובת הדואר האלקטרוני"
 
 #: assets/app.js:702 assets/app.js:1290
 msgid "Modifier le compte"
-msgstr ""
+msgstr "Edit חשבון"
 
 #: assets/app.js:705
 msgid "{available} service(s) hors cooldown sur {total}"
-msgstr ""
+msgstr "{available} של {total} שירות (s) מתוך קירור"
 
 #: assets/app.js:706
 msgid "Replier / déplier"
-msgstr ""
+msgstr "התמוטטות / הרחבה"
 
 #: assets/app.js:802
 msgid "{service} — {account} déjà ouvert"
-msgstr ""
+msgstr "{service} - {account} כבר פתוח"
 
 #: assets/app.js:821
 msgid "Recharger l'onglet"
-msgstr ""
+msgstr "Reload tab"
 
 #: assets/app.js:822
 msgid "Revenir à l'accueil de {service}"
-msgstr ""
+msgstr "חזרה לדף הבית {service}"
 
 #: assets/app.js:823
 msgid "Se déconnecter du profil « {profile} »"
-msgstr ""
+msgstr "מתוך פרופיל \"{profile}"
 
 #: assets/app.js:860
 msgid "{service} ouvert avec {account}"
-msgstr ""
+msgstr "{service} נפתח עם {account}"
 
 #: assets/app.js:929
 msgid "Fermer l'onglet"
-msgstr ""
+msgstr "הכרטיסיה סגורה"
 
 #: assets/app.js:930
 msgid "Fermer l'onglet « {tab} » ? La session web sera libérée."
-msgstr ""
+msgstr "סגור את הכרטיסייה \"{tab} השידור ישוחרר."
 
 #: assets/app.js:955
 msgid "Onglet fermé (mémoire libérée)"
-msgstr ""
+msgstr "סגור (memory שוחרר)"
 
 #: assets/app.js:996
 msgid "Retirer l'étoile"
-msgstr ""
+msgstr "להסיר כוכב"
 
 #: assets/app.js:996
 msgid "Étoiler cet onglet"
-msgstr ""
+msgstr "Star this tab"
 
 #: assets/app.js:1024
 msgid "Onglet étoilé"
-msgstr ""
+msgstr "Tab"
 
 #: assets/app.js:1024
 msgid "Étoile retirée"
-msgstr ""
+msgstr "כוכב הוסר"
 
 #: assets/app.js:1117
 msgid "Échec de la déconnexion du profil"
-msgstr ""
+msgstr "לא יכול לצאת מהפרופיל"
 
 #: assets/app.js:1125
 msgid "Profil « {profile} » déconnecté — session effacée"
-msgstr ""
+msgstr "פרופיל \"{profile}\" חתום - ישיבה ברורה"
 
 #: assets/app.js:1158
 msgid "Aucun fichier trouvé."
-msgstr ""
+msgstr "לא נמצאו קבצים."
 
 #: assets/app.js:1186
 msgid "Fichier trop volumineux pour l'éditeur : {size} Mo (limite : 20 Mo)."
-msgstr ""
+msgstr "תגית: {size} MB (Limit: 20 MB)."
 
 #: assets/app.js:1325
 msgid "C'est quoi ?"
-msgstr ""
+msgstr "מה זה?"
 
 #: assets/app.js:1326
 msgid "Quand l'utiliser ?"
-msgstr ""
+msgstr "מתי להשתמש בו?"
 
 #: assets/app.js:1327
 msgid "Description à venir."
-msgstr ""
+msgstr "תיאור מגיע בקרוב."
 
 #: assets/app.js:1369
 msgid "Maximum {max} services à portée de main"
-msgstr ""
+msgstr "לרוב {max} שירותים"
 
 #: assets/app.js:1385
 msgid "Sélectionnez au moins 1 service"
-msgstr ""
+msgstr "בחר שירות אחד לפחות"
 
 #: assets/app.js:1389
 msgid "Services mis à jour ({count}/{max})"
-msgstr ""
+msgstr "שירותים מעודכנים ({count}/{max})"
 
 #: assets/app.js:1403
 msgid "Supprimer « {name} » ({email}) ? La session restera stockée sur le disque, mais le compte disparaîtra de la liste."
-msgstr ""
+msgstr "לקט \"{name}\" ({email})? הפגישה תישאר מאוחסנת בדיסק, אך החשבון יעלם מהרשימה."
 
 #: assets/app.js:1417
 msgid "Échec de l'export (écriture impossible)"
-msgstr ""
+msgstr "יצוא נכשל (לא יכול לכתוב)"
 
 #: assets/app.js:1418
 msgid "{count} compte(s) exporté(s)"
-msgstr ""
+msgstr "{count}"
 
 #: assets/app.js:1421
 msgid "Export impossible"
-msgstr ""
+msgstr "היצוא נכשל"
 
 #: assets/app.js:1433
 msgid "Échec de la lecture du fichier"
-msgstr ""
+msgstr "לא יכול לקרוא את הקובץ"
 
 #: assets/app.js:1436
 msgid "Fichier JSON invalide"
-msgstr ""
+msgstr "קובץ Invalid JSON"
 
 #: assets/app.js:1437
 msgid "Format invalide : un tableau de comptes est attendu."
-msgstr ""
+msgstr "פורמט לא חוקי: מערך של חשבונות צפוי."
 
 #: assets/app.js:1440
 msgid "Le fichier contient {count} compte(s). L'import REMPLACE entièrement la liste actuelle ({current} compte(s)) — cette action écrase les comptes existants, pas leurs sessions (cookies) déjà enregistrées sur le disque. Continuer ?"
-msgstr ""
+msgstr "הקובץ מכיל {count} ייבוא COMPLETELY REPLACES את הרשימה הנוכחית ({current} חשבון(s) - זה מעלה את החשבונות הקיימים, לא את המפגשים שלהם (cookies) שכבר מאוחסנים בדיסק. ממשיכים?"
 
 #: assets/app.js:1444
 msgid "Import impossible"
-msgstr ""
+msgstr "ייבוא נכשל"
 
 #: assets/app.js:1461
 msgid "{count} compte(s) importé(s)"
-msgstr ""
+msgstr "{count}"
 
 #: assets/app.js:1464
 msgid "Échec de l'import : {error}"
-msgstr ""
+msgstr "ייבוא נכשל: {error}"
 
 #: assets/app.js:1476
 msgid "Compte supprimé"
-msgstr ""
+msgstr "חשבון נמחק"
 
 #: assets/app.js:1484
 msgid "Remplissez tous les champs"
-msgstr ""
+msgstr "למלא את כל השדות"
 
 #: assets/app.js:1490
 msgid "Ce profil est déjà utilisé par un autre compte (les sessions seraient partagées)."
-msgstr ""
+msgstr "פרופיל זה כבר בשימוש על ידי חשבון אחר (יש לשתף)."
 
 #: assets/app.js:1497
 msgid "Compte mis à jour"
-msgstr ""
+msgstr "חשבון מעודכן"
 
 #: assets/app.js:1506
 msgid "Compte ajouté"
-msgstr ""
+msgstr "חשבון נוסף"
 
 #: assets/app.js:1520
 msgid "Copie impossible dans le presse-papiers"
-msgstr ""
+msgstr "לא ניתן להעתיק ללוח"
 
 #: assets/app.js:1520
 msgid "E-mail copié : {email}"
-msgstr ""
+msgstr "דואר אלקטרוני הועתק: {email}"
 
 #: assets/app.js:1810
 msgid "Cooldown terminé"
-msgstr ""
+msgstr "קול לאחור"
 
 #: assets/app.js:1811
 msgid "{account} — {service} est de nouveau disponible."
-msgstr ""
+msgstr "{account} - {service} זמין שוב."
 
 #: assets/app.js:1822
 msgid "{account} — {service} : cooldown terminé"
-msgstr ""
+msgstr "{account} - {service}: קירור"
 
 #: assets/app.js:1856
 msgid "Téléchargement…"
-msgstr ""
+msgstr "הורד..."
 
 #: assets/app.js:1856
 msgid "Téléchargé — à traiter"
-msgstr ""
+msgstr "להורדה - to be מעובד"
 
 #: assets/app.js:1857
 msgid "Aucun profil disponible"
-msgstr ""
+msgstr "אין פרופיל זמין"
 
 #: assets/app.js:1857
 msgid "Projet en cours d'analyse"
-msgstr ""
+msgstr "הפרויקט מנתח"
 
 #: assets/app.js:1858 assets/app.js:2167
 msgid "En cours"
-msgstr ""
+msgstr "ריצה"
 
 #: assets/app.js:1858
 msgid "En pause"
-msgstr ""
+msgstr "פולש"
 
 #: assets/app.js:1858
 msgid "Reprise programmée"
-msgstr ""
+msgstr "המונחים:"
 
 #: assets/app.js:1859
 msgid "Erreur"
-msgstr ""
+msgstr "טעות שגיאה"
 
 #: assets/app.js:1859
 msgid "Livré"
-msgstr ""
+msgstr "אספקה"
 
 #: assets/app.js:1962
 msgid "Impossible de charger les réglages"
-msgstr ""
+msgstr "לא יכול לטעון את ההגדרות"
 
 #: assets/app.js:1983
 msgid "Réglages enregistrés — la langue sera appliquée au prochain démarrage"
-msgstr ""
+msgstr "הגדרות שנשמרו - השפה תיושם בהתחלה"
 
 #: assets/app.js:1984
 msgid "Réglages enregistrés"
-msgstr ""
+msgstr "הגדרות הצילו"
 
 #: assets/app.js:1987
 msgid "Erreur lors de la sauvegarde"
-msgstr ""
+msgstr "טעות תוך שמירה"
 
 #: assets/app.js:1990
 msgid "Erreur lors de la sauvegarde des réglages"
-msgstr ""
+msgstr "טעות בעת שמירת ההגדרות"
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: assets/app.js:2007
 msgid "Arrêter"
-msgstr ""
+msgstr "עצירה"
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: assets/app.js:2011
 msgid "En marche"
-msgstr ""
+msgstr "פועל"
 
 #: assets/app.js:2028
 msgid "Aucun job pour l'instant — un ZIP téléchargé depuis un onglet IA (ordonnanceur activé) en créera un automatiquement."
-msgstr ""
+msgstr "עדיין אין משרות - ZIP שהוריד מכרטיסיה בינה מלאכותית (עם לוח הזמנים המותר) תיצור אחת באופן אוטומטי."
 
 #: assets/app.js:2035
 msgid "Continuer le projet"
-msgstr ""
+msgstr "המשך הפרויקט"
 
 #: assets/app.js:2036
 msgid "Marquer livré"
-msgstr ""
+msgstr "מארק כאמור"
 
 #: assets/app.js:2039
 msgid "Pause"
-msgstr ""
+msgstr "Pause"
 
 #: assets/app.js:2042
 msgid "Reprendre"
-msgstr ""
+msgstr "המונחים"
 
 #: assets/app.js:2045
 msgid "Relancer"
-msgstr ""
+msgstr "Retry"
 
 #: assets/app.js:2048
 msgid "Ouvrir le ZIP"
-msgstr ""
+msgstr "פתח את ZIP"
 
 #: assets/app.js:2051
 msgid "Analyser la complétude"
-msgstr ""
+msgstr "שלמות אנאלית"
 
 #: assets/app.js:2058
 msgid "service inconnu"
-msgstr ""
+msgstr "שירות לא ידוע"
 
 #: assets/app.js:2059
 msgid "tentative {n}"
-msgstr ""
+msgstr "ניסיון {n}"
 
 #: assets/app.js:2071
 msgid "Aucune activité enregistrée."
-msgstr ""
+msgstr "אין פעילות שנרשמה."
 
 #: assets/app.js:2081
 msgid "Impossible de modifier l'état de l'ordonnanceur"
-msgstr ""
+msgstr "לא יכול לשנות את מצב לוח הזמנים"
 
 #: assets/app.js:2091
 msgid "Configuration non enregistrée"
-msgstr ""
+msgstr "לא להציל"
 
 #: assets/app.js:2103 assets/app.js:2110
 msgid "Sélection du dossier impossible"
-msgstr ""
+msgstr "לא יכול לבחור את התיקיה"
 
 #: assets/app.js:2129
 msgid "Projet terminé : {done}/{total} tâches faites, 0 restante."
-msgstr ""
+msgstr "השלמת הפרויקט: {done}/{total} משימות, 0 נותרו."
 
 #: assets/app.js:2130
 msgid "{pending} à faire, {inProgress} en cours, {done} faite(s) sur {total} au total."
-msgstr ""
+msgstr "{pending} לעשות, {inProgress} מראש, {done} עשה מתוך {total} בסך הכל."
 
 #: assets/app.js:2133
 msgid "Analyse impossible : {error}"
-msgstr ""
+msgstr "ניתוח נכשל: {error}"
 
 #: assets/app.js:2150
 msgid "Action impossible : {error}"
-msgstr ""
+msgstr "פעולה נכשלה: {error}"
 
 #: assets/app.js:2160
 msgid "Aucun projet pour l'instant."
-msgstr ""
+msgstr "עדיין אין פרויקטים."
 
 #: assets/app.js:2160 assets/app.js:2215
 msgid "Créer un projet"
-msgstr ""
+msgstr "יצירת פרויקט"
 
 #: assets/app.js:2167
 msgid "Assignée"
-msgstr ""
+msgstr "חתום"
 
 #: assets/app.js:2168
 msgid "Terminée"
-msgstr ""
+msgstr "שלם"
 
 #: assets/app.js:2168
 msgid "Échouée"
-msgstr ""
+msgstr "נכשל"
 
 #: assets/app.js:2177
 msgid "Lancer"
-msgstr ""
+msgstr "לרוץ"
 
 #: assets/app.js:2181
 msgid "Résultat"
-msgstr ""
+msgstr "תוצאה"
 
 #: assets/app.js:2194
 msgid "Aucune tâche."
-msgstr ""
+msgstr "אין משימות."
 
 #: assets/app.js:2200
 msgid "Tous les comptes"
-msgstr ""
+msgstr "כל החשבונות"
 
 #: assets/app.js:2206
 msgid "Comptes autorisés :"
-msgstr ""
+msgstr "חשבונות מותרים:"
 
 #: assets/app.js:2206
 msgid "{count} tâche(s)"
-msgstr ""
+msgstr "{count} משימה (s)"
 
 #: assets/app.js:2208
 msgid "Nouvelle tâche"
-msgstr ""
+msgstr "משימה חדשה"
 
 #: assets/app.js:2209
 msgid "Assigner"
-msgstr ""
+msgstr "חתימה"
 
 #: assets/app.js:2224
 msgid "Diagnostic Claude : {error}"
-msgstr ""
+msgstr "אבחון: {error}"
 
 #: assets/app.js:2227
 msgid "« Continuer »"
-msgstr ""
+msgstr "\"המשך\""
 
 #: assets/app.js:2228
 msgid "« Télécharger »"
-msgstr ""
+msgstr "\"Download\""
 
 #: assets/app.js:2229
 msgid "« Nouveau »"
-msgstr ""
+msgstr "\"חדש\""
 
 #: assets/app.js:2230
 msgid "zone de chat"
-msgstr ""
+msgstr "chat Box"
 
 #: assets/app.js:2231
 msgid "envoi de fichier"
-msgstr ""
+msgstr "קובץ העלאה"
 
 #: assets/app.js:2233
 msgid "{count} popup(s)"
-msgstr ""
+msgstr "{count} Popup(s)"
 
 #: assets/app.js:2234
 msgid "Claude (« {profile} ») : {details}"
-msgstr ""
+msgstr "קלוד (\"{profile}\"): {details}"
 
 #: assets/app.js:2234
 msgid "aucun élément détecté"
-msgstr ""
+msgstr "שום דבר לא גילה"
 
 #: assets/app.js:2236
 msgid "Diagnostic impossible : {error}"
-msgstr ""
+msgstr "נכשלים: {error}"
 
 #: assets/app.js:2244
 msgid "Quota gratuit épuisé jusqu'à {time} pour ce profil."
-msgstr ""
+msgstr "ציטוט חינם מותש עד {time} לפרופיל זה."
 
 #: assets/app.js:2246
 msgid "Job Claude échoué : {error}"
-msgstr ""
+msgstr "עבודתו של קלוד נכשלה: {error}"
 
 #: assets/app.js:2251
 msgid "Prompt envoyé à Claude via {method} (« {profile} »)"
-msgstr ""
+msgstr "Prompt נשלח אל קלוד באמצעות {method} (\"{profile}\")"
 
 #: assets/app.js:2253
 msgid "Job Claude impossible : {error}"
-msgstr ""
+msgstr "העבודה של קלוד לא יכלה לרוץ: {error}"
 
 #: assets/app.js:2259 assets/app.js:2266
 msgid "Collecte impossible : {error}"
-msgstr ""
+msgstr "האוסף נכשל: {error}"
 
 #: assets/app.js:2261
 msgid "Réponse collectée : {count} caractères (« {profile} »)"
-msgstr ""
+msgstr "תשובה: {count} תווים ({profile})."
 
 #: assets/app.js:2264
 msgid "Aucune réponse trouvée pour le moment."
-msgstr ""
+msgstr "עדיין לא נמצאה תגובה."
 
 #: assets/app.js:2271
 msgid "Nom du projet :"
-msgstr ""
+msgstr "שם הפרויקט:"
 
 #: assets/app.js:2271
 msgid "Projet {n}"
-msgstr ""
+msgstr "פרויקט {n}"
 
 #: assets/app.js:2277
 msgid "Projet « {name} » créé"
-msgstr ""
+msgstr "פרויקט \"{name}\""
 
 #: assets/app.js:2279 assets/app.js:2299
 msgid "Création impossible : {error}"
-msgstr ""
+msgstr "הבריאה נכשלה: {error}"
 
 #: assets/app.js:2286
 msgid "Projet supprimé"
-msgstr ""
+msgstr "הפרויקט נמחק"
 
 #: assets/app.js:2288
 msgid "Suppression impossible : {error}"
-msgstr ""
+msgstr "ההתנתקות נכשלה: {error}"
 
 #: assets/app.js:2292
 msgid "Prompt de la tâche :"
-msgstr ""
+msgstr "המונחים:"
 
 #: assets/app.js:2297
 msgid "Tâche créée dans le projet"
-msgstr ""
+msgstr "משימות שנוצרו בפרויקט"
 
 #: assets/app.js:2309
 msgid "Aucun compte vert disponible pour ce projet."
-msgstr ""
+msgstr "אין חשבון ירוק זמין לפרויקט הזה."
 
 #: assets/app.js:2313
 msgid "Comptes verts disponibles :"
-msgstr ""
+msgstr "חשבונות ירוקים זמינים:"
 
 #: assets/app.js:2313
 msgid "Numéro du compte :"
-msgstr ""
+msgstr "מספר חשבון:"
 
 #: assets/app.js:2316 assets/app.js:2329
 msgid "Choix invalide"
-msgstr ""
+msgstr "בחירה בלתי חוקית"
 
 #: assets/app.js:2322
 msgid "Aucune tâche dans ce projet."
-msgstr ""
+msgstr "אין משימה בפרויקט הזה."
 
 #: assets/app.js:2326
 msgid "Numéro de la tâche :"
-msgstr ""
+msgstr "מספר המשימות:"
 
 #: assets/app.js:2326
 msgid "Tâches du projet :"
-msgstr ""
+msgstr "משימות פרוייקט:"
 
 #: assets/app.js:2333
 msgid "Tâche {task} assignée à « {account} »"
-msgstr ""
+msgstr "{task} שהוקצה ל-{account}"
 
 #: assets/app.js:2335
 msgid "Assignation impossible : {error}"
-msgstr ""
+msgstr "ההתפטרות נכשלה: {error}"
 
 #: assets/app.js:2341
 msgid "Lancement de l'automatisation Claude..."
-msgstr ""
+msgstr "החל את האוטומציה של קלוד..."
 
 #: assets/app.js:2344
 msgid "Lancement impossible"
-msgstr ""
+msgstr "לא יכול להתחיל"
 
 #: assets/app.js:2345
 msgid "Tâche lancée — suivi dans le journal d'activité"
-msgstr ""
+msgstr "המשימה החלה - לעקוב אחריה ב יומן הפעילות"
 
 #: assets/app.js:2347
 msgid "Exécution impossible : {error}"
-msgstr ""
+msgstr "הוצאה להורג נכשלה: {error}"
 
 #: assets/app.js:2356
 msgid "Aucun résultat disponible"
-msgstr ""
+msgstr "לא תוצאות זמינות"
 
 #: assets/app.js:2362
 msgid "Résultat — {task}"
-msgstr ""
+msgstr "תוצאות - {task}"
 
 #: assets/app.js:2407
 msgid "Données de comptes illisibles"
-msgstr ""
+msgstr "נתונים בלתי קריאים"
 
 #: assets/app.js:2413
 msgid "La liste de comptes enregistrée est corrompue. Une sauvegarde de {count} compte(s) a été trouvée. La restaurer ?"
-msgstr ""
+msgstr "רשימת החשבון שנשמרה מושחתת. נמצאו גיבוי של {count}. לשחזר את זה?"
 
 #: assets/app.js:2414
 msgid "La liste de comptes enregistrée est corrompue et aucune sauvegarde n'est disponible. L'application démarre avec une liste vide ; vos données actuelles ne seront pas écrasées tant que vous ne créez ou ne modifiez pas de compte."
-msgstr ""
+msgstr "רשימת החשבון שנשמרה מושחתת ואין גיבוי זמין. היישום מתחיל עם רשימה ריקה; הנתונים הנוכחיים שלך לא יוכתבו עד שאתה יוצר או לערוך חשבון."
 
 #: assets/app.js:2423
 msgid "Ignorer"
-msgstr ""
+msgstr "להתעלם"
 
 #: assets/app.js:2428
 msgid "Restaurer la sauvegarde"
-msgstr ""
+msgstr "שחזור הגיבוי"
 
 #: assets/app.js:2435
 msgid "Comptes restaurés depuis la sauvegarde"
-msgstr ""
+msgstr "חשבונות משוחזרים מהגיבוי"
 
 #: assets/app.js:2442
 msgid "Compris"
-msgstr ""
+msgstr "Got It"
