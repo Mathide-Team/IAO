@@ -1,5 +1,20 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Documentation MkDocs (13/10/2026)
+
+Règle d'équipe Mathide-Team : documentation navigable MkDocs sur le modèle de Netcross.
+
+### Livré
+- `mkdocs.yml` (thème Material, français, navigation explicite, sans `site_url`).
+- Pages sous `docs/` : accueil, installation, données et dépannage, langue,
+  développement, contexte du projet, travaux à faire, historique.
+- Sans copie : les pages incluent des sections du README, `FEATURES.md` et
+  `CHANGES.md` (`pymdownx.snippets`, repères invisibles sur GitHub) ; une section
+  disparue fait échouer la construction.
+- CI : job « Construction (mkdocs build --strict) » sur les runners maison, site
+  publié en artefact.
+- README : lien « dernière release » en URL absolue (valable dans la doc et sur GitHub).
+
 ## Issue #181 — IAO démarre sans l'ordonnanceur (12/10/2026)
 
 ### Cause
