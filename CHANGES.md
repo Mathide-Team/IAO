@@ -1,5 +1,21 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issue #184 — diagnostic du propriétaire des fichiers de données (17/10/2026)
+
+### Hypothèse
+`Failed to delete the database: Database IO error` et `Could not open the quota database,
+resetting` signifient que Chromium ne peut ni supprimer ni rouvrir ses bases. Hors seconde
+instance (déjà empêchée depuis #52), la cause connue est un fichier que le compte courant
+ne peut pas modifier, par exemple créé par un lancement en root. Ce cas expliquerait aussi
+la perte des comptes de #186.
+
+### Livré
+- `lib/data-dir-check.js` (testé, système de fichiers injecté) : parcours borné du dossier de
+  données (20 000 entrées, profondeur 6, caches Chromium ignorés), sans aucune modification.
+- `main.js` : au démarrage, un `warning` dans `iao.log` donne le nombre de fichiers concernés,
+  des exemples et la commande `sudo chown -R "$USER": <dossier>`.
+- README (section Dépannage, reprise dans la doc MkDocs).
+
 ## Documentation MkDocs (13/10/2026)
 
 Règle d'équipe Mathide-Team : documentation navigable MkDocs sur le modèle de Netcross.
