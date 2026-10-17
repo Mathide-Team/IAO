@@ -451,3 +451,37 @@ test('#149 : app:toggle-devtools bascule les outils de la fenêtre principale un
     h.cleanup();
   }
 });
+
+test('#187 : app:relaunch-debug relance avec --iao-debug, fenêtre principale uniquement', async () => {
+  const h = boot();
+  const savedArgv = process.argv;
+  try {
+    const handler = h.electron.ipcHandlers.get('app:relaunch-debug');
+    const calls = [];
+    h.electron.app.relaunch = (opts) => calls.push(['relaunch', opts]);
+    h.electron.app.exit = (code) => calls.push(['exit', code]);
+    process.argv = ['/usr/bin/electron', '.', '--no-sandbox'];
+    assert.equal(await handler({ sender: h.wc }), true);
+    assert.deepEqual(calls, [['relaunch', { args: ['.', '--no-sandbox', '--iao-debug'] }], ['exit', 0]]);
+    assert.match(h.readLog(), /Relance en mode debug demandée/);
+
+    // Autre émetteur (webview invitée) : refus, aucune relance.
+    assert.equal(await handler({ sender: {} }), false);
+    h.win.emit('closed');
+    assert.equal(await handler({ sender: h.wc }), false);
+    assert.equal(calls.length, 2);
+  } finally {
+    process.argv = savedArgv;
+    h.cleanup();
+  }
+});
+
+test('#187 : app:log-path renvoie le chemin du journal', async () => {
+  const h = boot();
+  try {
+    const p = await h.electron.ipcHandlers.get('app:log-path')({});
+    assert.equal(p, path.join(h.electron.app.getPath('userData'), 'logs', 'iao.log'));
+  } finally {
+    h.cleanup();
+  }
+});

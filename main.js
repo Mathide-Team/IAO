@@ -268,6 +268,21 @@ function createWindow() {
 // Issue #162 : le renderer adapte ses traces (dbg) et affiche un badge.
 ipc.handle('app:is-debug', () => DEBUG);
 
+// Issue #187 : « Relancer en mode debug » depuis l'application (bandeau
+// d'erreur de démarrage, bouton de la barre du workspace). Réservé à la fenêtre
+// principale, comme app:toggle-devtools. app.relaunch() n'arrête pas l'app :
+// app.exit(0) ensuite (documentation Electron, app.relaunch).
+ipc.handle('app:relaunch-debug', (event) => {
+  if (!mainWindow || event.sender !== mainWindow.webContents) return false;
+  log('demarrage', 'info', 'Relance en mode debug demandée depuis l\'interface.');
+  app.relaunch({ args: diag.debugRelaunchArgs(process.argv) });
+  app.exit(0);
+  return true;
+});
+
+// Issue #187 : chemin du journal, affiché dans le bandeau d'erreur.
+ipc.handle('app:log-path', () => LOG_FILE);
+
 ipc.handle('app:toggle-devtools', (event) => {
   if (!mainWindow || event.sender !== mainWindow.webContents) return false;
   event.sender.toggleDevTools();

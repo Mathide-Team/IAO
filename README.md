@@ -176,6 +176,9 @@ Ce dossier n'est **pas** supprimé par la désinstallation — effacez-le manuel
   - Lancement : `npm run start:debug` en développement, `iao --iao-debug` après `install.sh`,
     clic droit sur l'icône puis « IAO (mode debug) » (menu GNOME, installé par `install.sh`),
     ou raccourci « IAO (mode debug) » du menu Démarrer (Windows, `install.bat`).
+  - Depuis l'application : bouton **Redémarrer en mode debug** (flèche circulaire) de la barre
+    du workspace, ou bouton **Relancer en mode debug** du bandeau rouge, qui affiche aussi le
+    chemin du journal.
   - Un badge **DEBUG** s'affiche alors à côté du nom de l'application.
   - Sont ajoutés au journal : versions (Electron, Chrome, Node) et options de lancement ;
     chaque appel IPC (canal, durée, succès ou erreur) ; tous les messages de l'interface
@@ -190,6 +193,11 @@ Ce dossier n'est **pas** supprimé par la désinstallation — effacez-le manuel
 - IAO ne s'ouvre qu'**une fois** : relancer l'application ramène la fenêtre existante au
   premier plan. Deux instances sur le même dossier de données provoquaient des erreurs
   Chromium en rafale (`Failed to delete the database: Database IO error`).
+- **Que joindre à une issue** : la version (`git log -1 --oneline` ou numéro de release), le mode
+  de lancement (`npm start`, `iao` installé, icône), une capture du bandeau rouge s'il y en a un,
+  et le journal `iao.log` d'un lancement en mode debug (relancer, reproduire, puis joindre le
+  fichier). Le journal ne contient ni mots de passe ni contenus de conversation ; vérifiez
+  quand même les noms de profils avant de le publier.
 - Les messages Chromium du type `vaInitialize failed` (accélération vidéo matérielle) sont
   sans incidence sur IAO.
 
