@@ -68,1026 +68,1030 @@ msgstr ""
 msgid "Outils de développement (Ctrl+Maj+I)"
 msgstr ""
 
-#: index.html:137
+#: index.html:134
+msgid "Redémarrer en mode debug (journal détaillé)"
+msgstr ""
+
+#: index.html:139
 msgid "Choisir mes 9 IA à portée de main"
 msgstr ""
 
-#: index.html:138
+#: index.html:140
 msgid "Comprendre les IA disponibles"
 msgstr ""
 
-#: index.html:140
+#: index.html:142
 msgid "Ordonnanceur IA"
 msgstr ""
 
-#: index.html:141
+#: index.html:143
 msgid "Réglages"
 msgstr ""
 
-#: index.html:150
+#: index.html:152
 msgid "Fichiers"
 msgstr ""
 
-#: index.html:152
+#: index.html:154
 msgid "Ouvrir un dossier"
 msgstr ""
 
-#: index.html:153
+#: index.html:155
 msgid "Réduire"
 msgstr ""
 
-#: index.html:158
+#: index.html:160
 msgid "Rechercher un fichier..."
 msgstr ""
 
-#: index.html:161
+#: index.html:163
 msgid "Glisser pour redimensionner"
 msgstr ""
 
-#: index.html:163
+#: index.html:165
 msgid "Aucun fichier"
 msgstr ""
 
-#: index.html:168
+#: index.html:170
 msgid "Glisser pour redimensionner l'éditeur"
 msgstr ""
 
-#: index.html:174
+#: index.html:176
 msgid "Aucun onglet ouvert — choisissez un service dans la liste des comptes"
 msgstr ""
 
-#: index.html:184
+#: index.html:186
 msgid "Le profil permet d'isoler les cookies dans Electron."
 msgstr ""
 
-#: index.html:186
+#: index.html:188
 msgid "Nom du compte"
 msgstr ""
 
-#: index.html:188
+#: index.html:190
 msgid "Nom du Profil"
 msgstr ""
 
-#: index.html:190
+#: index.html:192
 msgid "Annuler"
 msgstr ""
 
-#: index.html:191
+#: index.html:193
 msgid "Enregistrer"
 msgstr ""
 
-#: index.html:199
+#: index.html:201
 msgid "Supprimer le compte"
 msgstr ""
 
-#: index.html:200
+#: index.html:202
 msgid "Cette action est irréversible."
 msgstr ""
 
-#: index.html:204
+#: index.html:206
 msgid "Supprimer"
 msgstr ""
 
-#: index.html:215
+#: index.html:217
 msgid "Importer des comptes"
 msgstr ""
 
-#: index.html:219
+#: index.html:221
 msgid "Remplacer et importer"
 msgstr ""
 
-#: index.html:232
+#: index.html:234
 msgid "Déconnecter le profil"
 msgstr ""
 
-#: index.html:236
+#: index.html:238
 msgid "Déconnecter"
 msgstr ""
 
-#: index.html:246
+#: index.html:248
 msgid "À quoi sert chaque service, et quand l'utiliser."
 msgstr ""
 
-#: index.html:249
+#: index.html:251
 msgid "Fermer"
 msgstr ""
 
-#: index.html:260
+#: index.html:262
 msgid "Sélectionnez les 9 services affichés dans l'interface. Les autres restent disponibles dans l'aide."
 msgstr ""
 
-#: index.html:277
+#: index.html:279
 msgid "Détection des ZIP livrés par les onglets IA, reprise par profil."
 msgstr ""
 
-#: index.html:280
+#: index.html:282
 msgid "Arrêté"
 msgstr ""
 
-#: index.html:281
+#: index.html:283
 msgid "Démarrer ou arrêter l'ordonnanceur (il ne démarre jamais tout seul)"
 msgstr ""
 
-#: index.html:281
+#: index.html:283
 msgid "Démarrer"
 msgstr ""
 
-#: index.html:286
+#: index.html:288
 msgid "Jobs actifs"
 msgstr ""
 
-#: index.html:287
+#: index.html:289
 msgid "En attente"
 msgstr ""
 
-#: index.html:288
+#: index.html:290
 msgid "Livrés aujourd'hui"
 msgstr ""
 
-#: index.html:292
+#: index.html:294
 msgid "Jobs simultanés max."
 msgstr ""
 
-#: index.html:293
+#: index.html:295
 msgid "Délai min. entre automatisations (min)"
 msgstr ""
 
-#: index.html:294
+#: index.html:296
 msgid "Seuil profil « le plus ancien » (h)"
 msgstr ""
 
-#: index.html:296
+#: index.html:298
 msgid "Dossiers"
 msgstr ""
 
-#: index.html:298
+#: index.html:300
 msgid "Téléchargements…"
 msgstr ""
 
-#: index.html:299
+#: index.html:301
 msgid "Livraison…"
 msgstr ""
 
-#: index.html:304
+#: index.html:306
 msgid "Téléchargements :"
 msgstr ""
 
-#: index.html:304
+#: index.html:306
 msgid "(dossier de téléchargements du système)"
 msgstr ""
 
-#: index.html:305
+#: index.html:307
 msgid "Livraison :"
 msgstr ""
 
-#: index.html:305
+#: index.html:307
 msgid "(non défini)"
 msgstr ""
 
-#: index.html:308
+#: index.html:310
 msgid "Projets & tâches"
 msgstr ""
 
-#: index.html:311
+#: index.html:313
 msgid "Jobs"
 msgstr ""
 
-#: index.html:314
+#: index.html:316
 msgid "Journal d'activité"
 msgstr ""
 
-#: index.html:326
+#: index.html:328
 msgid "Confirmation"
 msgstr ""
 
-#: index.html:330
+#: index.html:332
 msgid "Confirmer"
 msgstr ""
 
-#: index.html:340
+#: index.html:342
 msgid "Préférences de l'application, sauvegardées localement."
 msgstr ""
 
-#: index.html:345
+#: index.html:347
 msgid "Taille de police de l'éditeur (px)"
 msgstr ""
 
-#: index.html:352
+#: index.html:354
 msgid "Thème"
 msgstr ""
 
-#: index.html:354
+#: index.html:356
 msgid "Thème du bureau (défaut)"
 msgstr ""
 
-#: index.html:356
+#: index.html:358
 msgid "Clair"
 msgstr ""
 
-#: index.html:357
+#: index.html:359
 msgid "Sombre"
 msgstr ""
 
-#: index.html:364
+#: index.html:366
 msgid "Langue"
 msgstr ""
 
-#: index.html:366
+#: index.html:368
 msgid "Langue du système (défaut)"
 msgstr ""
 
-#: index.html:368
+#: index.html:370
 msgid "Appliquée au prochain démarrage"
 msgstr ""
 
-#: index.html:373
+#: index.html:375
 msgid "Retour à la ligne (éditeur)"
 msgstr ""
 
-#: index.html:375
+#: index.html:377
 msgid "Désactivé"
 msgstr ""
 
-#: index.html:376
+#: index.html:378
 msgid "Activé"
 msgstr ""
 
-#: index.html:377
+#: index.html:379
 msgid "Colonne fixe"
 msgstr ""
 
-#: index.html:384
+#: index.html:386
 msgid "Confirmer avant de fermer un onglet"
 msgstr ""
 
-#: index.html:387
+#: index.html:389
 msgid "Afficher les fenêtres d'automatisation"
 msgstr ""
 
-#: index.html:390
+#: index.html:392
 msgid "Restaurer les onglets ouverts au démarrage"
 msgstr ""
 
-#: assets/app.js:237
+#: assets/app.js:239
 msgid "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."
 msgstr ""
 
-#: assets/app.js:238
+#: assets/app.js:240
 msgid "Plutôt pour du code, des textes longs et soignés, ou des questions complexes qui demandent de la rigueur."
 msgstr ""
 
-#: assets/app.js:241
+#: assets/app.js:243
 msgid "L'assistant généraliste d'OpenAI, le plus connu du grand public. Il discute, rédige, résume, génère des images, analyse des fichiers et peut chercher sur le web."
 msgstr ""
 
-#: assets/app.js:242
+#: assets/app.js:244
 msgid "Le couteau suisse du quotidien : brainstorming, questions générales, petites tâches variées."
 msgstr ""
 
-#: assets/app.js:245
+#: assets/app.js:247
 msgid "L'assistant IA de Google. Multimodal (texte, images, audio, vidéo), il s'appuie sur la recherche Google et s'intègre aux outils Google (Docs, Gmail, Drive…)."
 msgstr ""
 
-#: assets/app.js:246
+#: assets/app.js:248
 msgid "Plutôt pour analyser des images ou vidéos, ou si vous travaillez déjà dans l'écosystème Google."
 msgstr ""
 
-#: assets/app.js:249
+#: assets/app.js:251
 msgid "Le chat de Z.ai, propulsé par les modèles GLM. Gratuit pour l'essentiel, avec un mode agent capable de chercher sur le web et de produire des fichiers (docx, pdf, xlsx)."
 msgstr ""
 
-#: assets/app.js:250
+#: assets/app.js:252
 msgid "Une alternative gratuite solide pour le chat et le code, quand les quotas des autres sont épuisés."
 msgstr ""
 
-#: assets/app.js:253
+#: assets/app.js:255
 msgid "Un « moteur de réponse » : il cherche sur le web en direct, synthétise plusieurs sources et cite ses références pour chaque affirmation."
 msgstr ""
 
-#: assets/app.js:254
+#: assets/app.js:256
 msgid "Plutôt pour la recherche d'informations à jour, la veille et la vérification de faits avec sources."
 msgstr ""
 
-#: assets/app.js:257
+#: assets/app.js:259
 msgid "L'assistant de xAI (Elon Musk), connecté au réseau X (ex-Twitter). Ton direct, accès au temps réel de X, génération d'images incluse."
 msgstr ""
 
-#: assets/app.js:258
+#: assets/app.js:260
 msgid "Plutôt pour suivre l'actualité chaude et les tendances via X, ou pour un ton moins formel."
 msgstr ""
 
-#: assets/app.js:261
+#: assets/app.js:263
 msgid "Une plateforme de génération d'images orientée création : illustrations, concept art, assets de jeu vidéo, avec des contrôles fins (styles, modèles, retouche)."
 msgstr ""
 
-#: assets/app.js:262
+#: assets/app.js:264
 msgid "Plutôt pour produire des visuels et illustrations de qualité avec un contrôle précis du style."
 msgstr ""
 
-#: assets/app.js:265
+#: assets/app.js:267
 msgid "Un générateur de musique : il compose des chansons complètes (instruments, voix, paroles) à partir d'une simple description texte, dans à peu près tous les genres."
 msgstr ""
 
-#: assets/app.js:266
+#: assets/app.js:268
 msgid "Plutôt pour créer une musique, un jingle ou une chanson à partir d'un texte ou d'une idée."
 msgstr ""
 
-#: assets/app.js:269
+#: assets/app.js:271
 msgid "Un générateur de modèles 3D : il transforme un texte ou une image en objet 3D texturé, avec rigging/animation automatique et export vers les formats standards (GLB, FBX, STL…)."
 msgstr ""
 
-#: assets/app.js:270
+#: assets/app.js:272
 msgid "Plutôt pour créer des assets 3D (jeux, impression 3D, animation) sans savoir modéliser."
 msgstr ""
 
-#: assets/app.js:274
+#: assets/app.js:276
 msgid "Le Chat de Mistral AI, éditeur européen (français). Modèles open-weights performants, chat, code et analyse de documents."
 msgstr ""
 
-#: assets/app.js:275
+#: assets/app.js:277
 msgid "Alternative européenne solide pour le chat et le code, avec une bonne maîtrise du français."
 msgstr ""
 
-#: assets/app.js:278
+#: assets/app.js:280
 msgid "DeepSeek : assistant IA chinois spécialisé en raisonnement et programmation, particulièrement performant en Python."
 msgstr ""
 
-#: assets/app.js:279
+#: assets/app.js:281
 msgid "Pour du code Python, du raisonnement étape par étape, ou une alternative gratuite à ChatGPT."
 msgstr ""
 
-#: assets/app.js:282
+#: assets/app.js:284
 msgid "GitHub Copilot : assistant IA intégré dans VS Code et GitHub. Autocomplétion, chat, génération de tests, explication de code."
 msgstr ""
 
-#: assets/app.js:283
+#: assets/app.js:285
 msgid "Pour programmer plus vite dans VS Code ou sur GitHub, avec un modèle IA qui connaît votre codebase."
 msgstr ""
 
-#: assets/app.js:286
+#: assets/app.js:288
 msgid "Elicit : assistant de recherche scientifique. Trouve des articles, extrait des données, synthétise des études."
 msgstr ""
 
-#: assets/app.js:287
+#: assets/app.js:289
 msgid "Pour la recherche académique, la revue de littérature et l'extraction de données d'articles scientifiques."
 msgstr ""
 
-#: assets/app.js:290
+#: assets/app.js:292
 msgid "NotebookLM de Google : interagissez avec vos propres documents (PDF, texte, audio). Résumés, questions, génération de notes."
 msgstr ""
 
-#: assets/app.js:291
+#: assets/app.js:293
 msgid "Pour interroger vos documents personnels ou professionnels avec une IA qui cite ses sources."
 msgstr ""
 
-#: assets/app.js:294
+#: assets/app.js:296
 msgid "Wolfram Alpha : moteur de calcul symbolique. Mathématiques, physique, chimie, données factuelles, conversions."
 msgstr ""
 
-#: assets/app.js:295
+#: assets/app.js:297
 msgid "Pour des calculs exacts (mathématiques symboliques), des données chiffrées ou des conversions d'unités."
 msgstr ""
 
-#: assets/app.js:298
+#: assets/app.js:300
 msgid "DeepL : traduction automatique de haute qualité, plus naturelle que Google Traduction. Texte et documents entiers."
 msgstr ""
 
-#: assets/app.js:299
+#: assets/app.js:301
 msgid "Pour traduire du texte ou des documents avec un rendu naturel et cohérent."
 msgstr ""
 
-#: assets/app.js:302
+#: assets/app.js:304
 msgid "Ideogram : génération d'images orientée design. Logos, typographies, affiches, avec un excellent rendu du texte."
 msgstr ""
 
-#: assets/app.js:303
+#: assets/app.js:305
 msgid "Pour créer des visuels avec du texte lisible (logos, affiches, bannières) ou du design graphique."
 msgstr ""
 
-#: assets/app.js:306
+#: assets/app.js:308
 msgid "Kling : générateur de vidéos courtes à partir de texte ou d'images. Animations réalistes, crédits gratuits disponibles."
 msgstr ""
 
-#: assets/app.js:307
+#: assets/app.js:309
 msgid "Pour créer des clips vidéo animés à partir d'une description ou d'une image fixe."
 msgstr ""
 
-#: assets/app.js:310
+#: assets/app.js:312
 msgid "Runway : suite d'outils IA pour la vidéo. Génération, édition, effets spéciaux, inpainting vidéo."
 msgstr ""
 
-#: assets/app.js:311
+#: assets/app.js:313
 msgid "Pour le montage et la création vidéo avancée avec des outils IA intégrés."
 msgstr ""
 
-#: assets/app.js:314
+#: assets/app.js:316
 msgid "Pika : générateur de vidéos courtes et créatives. Animation d'images, effets, transformation de styles."
 msgstr ""
 
-#: assets/app.js:315
+#: assets/app.js:317
 msgid "Pour animer des images ou créer des vidéos courtes originales avec des effets IA."
 msgstr ""
 
-#: assets/app.js:318
+#: assets/app.js:320
 msgid "Qwen : assistant IA d'Alibaba. Multimodal (texte, images, code), open-source, disponible en plusieurs tailles."
 msgstr ""
 
-#: assets/app.js:319
+#: assets/app.js:321
 msgid "Alternative gratuite pour le chat, le code et l'analyse d'images, avec un bon support multilingue."
 msgstr ""
 
-#: assets/app.js:389
+#: assets/app.js:391
 msgid "Impossible d'enregistrer les comptes (stockage plein ?)"
 msgstr ""
 
-#: assets/app.js:525
+#: assets/app.js:527
 msgid "Ctrl+S pour sauvegarder."
 msgstr ""
 
-#: assets/app.js:525 assets/app.js:549
+#: assets/app.js:527 assets/app.js:551
 msgid "Sélectionnez un fichier pour l'éditer ici."
 msgstr ""
 
-#: assets/app.js:545
+#: assets/app.js:547
 msgid "Éditeur simplifié (Monaco indisponible) — Ctrl+S pour sauvegarder"
 msgstr ""
 
-#: assets/app.js:586
+#: assets/app.js:588
 msgid "Fichier enregistré !"
 msgstr ""
 
-#: assets/app.js:587
+#: assets/app.js:589
 msgid "Erreur d'enregistrement."
 msgstr ""
 
-#: assets/app.js:646
+#: assets/app.js:648
 msgid "Aucun compte pour l'instant."
 msgstr ""
 
-#: assets/app.js:647
+#: assets/app.js:649
 msgid "Créer mon premier compte"
 msgstr ""
 
-#: assets/app.js:699
+#: assets/app.js:701
 msgid "Cliquer pour copier l'e-mail"
 msgstr ""
 
-#: assets/app.js:702 assets/app.js:1290
+#: assets/app.js:704 assets/app.js:1297
 msgid "Modifier le compte"
 msgstr ""
 
-#: assets/app.js:705
+#: assets/app.js:707
 msgid "{available} service(s) hors cooldown sur {total}"
 msgstr ""
 
-#: assets/app.js:706
+#: assets/app.js:708
 msgid "Replier / déplier"
 msgstr ""
 
-#: assets/app.js:802
+#: assets/app.js:809
 msgid "{service} — {account} déjà ouvert"
 msgstr ""
 
-#: assets/app.js:821
+#: assets/app.js:828
 msgid "Recharger l'onglet"
 msgstr ""
 
-#: assets/app.js:822
+#: assets/app.js:829
 msgid "Revenir à l'accueil de {service}"
 msgstr ""
 
-#: assets/app.js:823
+#: assets/app.js:830
 msgid "Se déconnecter du profil « {profile} »"
 msgstr ""
 
-#: assets/app.js:860
+#: assets/app.js:867
 msgid "{service} ouvert avec {account}"
 msgstr ""
 
-#: assets/app.js:929
+#: assets/app.js:936
 msgid "Fermer l'onglet"
 msgstr ""
 
-#: assets/app.js:930
+#: assets/app.js:937
 msgid "Fermer l'onglet « {tab} » ? La session web sera libérée."
 msgstr ""
 
-#: assets/app.js:955
+#: assets/app.js:962
 msgid "Onglet fermé (mémoire libérée)"
 msgstr ""
 
-#: assets/app.js:996
+#: assets/app.js:1003
 msgid "Retirer l'étoile"
 msgstr ""
 
-#: assets/app.js:996
+#: assets/app.js:1003
 msgid "Étoiler cet onglet"
 msgstr ""
 
-#: assets/app.js:1024
+#: assets/app.js:1031
 msgid "Onglet étoilé"
 msgstr ""
 
-#: assets/app.js:1024
+#: assets/app.js:1031
 msgid "Étoile retirée"
 msgstr ""
 
-#: assets/app.js:1117
+#: assets/app.js:1124
 msgid "Échec de la déconnexion du profil"
 msgstr ""
 
-#: assets/app.js:1125
+#: assets/app.js:1132
 msgid "Profil « {profile} » déconnecté — session effacée"
 msgstr ""
 
-#: assets/app.js:1158
+#: assets/app.js:1165
 msgid "Aucun fichier trouvé."
 msgstr ""
 
-#: assets/app.js:1186
+#: assets/app.js:1193
 msgid "Fichier trop volumineux pour l'éditeur : {size} Mo (limite : 20 Mo)."
 msgstr ""
 
-#: assets/app.js:1325
+#: assets/app.js:1332
 msgid "C'est quoi ?"
 msgstr ""
 
-#: assets/app.js:1326
+#: assets/app.js:1333
 msgid "Quand l'utiliser ?"
 msgstr ""
 
-#: assets/app.js:1327
+#: assets/app.js:1334
 msgid "Description à venir."
 msgstr ""
 
-#: assets/app.js:1369
+#: assets/app.js:1376
 msgid "Maximum {max} services à portée de main"
 msgstr ""
 
-#: assets/app.js:1385
+#: assets/app.js:1392
 msgid "Sélectionnez au moins 1 service"
 msgstr ""
 
-#: assets/app.js:1389
+#: assets/app.js:1396
 msgid "Services mis à jour ({count}/{max})"
 msgstr ""
 
-#: assets/app.js:1403
+#: assets/app.js:1410
 msgid "Supprimer « {name} » ({email}) ? La session restera stockée sur le disque, mais le compte disparaîtra de la liste."
 msgstr ""
 
-#: assets/app.js:1417
+#: assets/app.js:1424
 msgid "Échec de l'export (écriture impossible)"
 msgstr ""
 
-#: assets/app.js:1418
+#: assets/app.js:1425
 msgid "{count} compte(s) exporté(s)"
 msgstr ""
 
-#: assets/app.js:1421
+#: assets/app.js:1428
 msgid "Export impossible"
 msgstr ""
 
-#: assets/app.js:1433
+#: assets/app.js:1440
 msgid "Échec de la lecture du fichier"
 msgstr ""
 
-#: assets/app.js:1436
+#: assets/app.js:1443
 msgid "Fichier JSON invalide"
 msgstr ""
 
-#: assets/app.js:1437
+#: assets/app.js:1444
 msgid "Format invalide : un tableau de comptes est attendu."
 msgstr ""
 
-#: assets/app.js:1440
+#: assets/app.js:1447
 msgid "Le fichier contient {count} compte(s). L'import REMPLACE entièrement la liste actuelle ({current} compte(s)) — cette action écrase les comptes existants, pas leurs sessions (cookies) déjà enregistrées sur le disque. Continuer ?"
 msgstr ""
 
-#: assets/app.js:1444
+#: assets/app.js:1451
 msgid "Import impossible"
 msgstr ""
 
-#: assets/app.js:1461
+#: assets/app.js:1468
 msgid "{count} compte(s) importé(s)"
 msgstr ""
 
-#: assets/app.js:1464
+#: assets/app.js:1471
 msgid "Échec de l'import : {error}"
 msgstr ""
 
-#: assets/app.js:1476
+#: assets/app.js:1483
 msgid "Compte supprimé"
 msgstr ""
 
-#: assets/app.js:1484
+#: assets/app.js:1491
 msgid "Remplissez tous les champs"
 msgstr ""
 
-#: assets/app.js:1490
+#: assets/app.js:1497
 msgid "Ce profil est déjà utilisé par un autre compte (les sessions seraient partagées)."
 msgstr ""
 
-#: assets/app.js:1497
+#: assets/app.js:1504
 msgid "Compte mis à jour"
 msgstr ""
 
-#: assets/app.js:1506
+#: assets/app.js:1513
 msgid "Compte ajouté"
 msgstr ""
 
-#: assets/app.js:1520
+#: assets/app.js:1527
 msgid "Copie impossible dans le presse-papiers"
 msgstr ""
 
-#: assets/app.js:1520
+#: assets/app.js:1527
 msgid "E-mail copié : {email}"
 msgstr ""
 
-#: assets/app.js:1810
+#: assets/app.js:1817
 msgid "Cooldown terminé"
 msgstr ""
 
-#: assets/app.js:1811
+#: assets/app.js:1818
 msgid "{account} — {service} est de nouveau disponible."
 msgstr ""
 
-#: assets/app.js:1822
+#: assets/app.js:1829
 msgid "{account} — {service} : cooldown terminé"
 msgstr ""
 
-#: assets/app.js:1856
+#: assets/app.js:1863
 msgid "Téléchargement…"
 msgstr ""
 
-#: assets/app.js:1856
+#: assets/app.js:1863
 msgid "Téléchargé — à traiter"
 msgstr ""
 
-#: assets/app.js:1857
+#: assets/app.js:1864
 msgid "Aucun profil disponible"
 msgstr ""
 
-#: assets/app.js:1857
+#: assets/app.js:1864
 msgid "Projet en cours d'analyse"
 msgstr ""
 
-#: assets/app.js:1858 assets/app.js:2167
+#: assets/app.js:1865 assets/app.js:2174
 msgid "En cours"
 msgstr ""
 
-#: assets/app.js:1858
+#: assets/app.js:1865
 msgid "En pause"
 msgstr ""
 
-#: assets/app.js:1858
+#: assets/app.js:1865
 msgid "Reprise programmée"
 msgstr ""
 
-#: assets/app.js:1859
+#: assets/app.js:1866
 msgid "Erreur"
 msgstr ""
 
-#: assets/app.js:1859
+#: assets/app.js:1866
 msgid "Livré"
 msgstr ""
 
-#: assets/app.js:1962
+#: assets/app.js:1969
 msgid "Impossible de charger les réglages"
 msgstr ""
 
-#: assets/app.js:1983
+#: assets/app.js:1990
 msgid "Réglages enregistrés — la langue sera appliquée au prochain démarrage"
 msgstr ""
 
-#: assets/app.js:1984
+#: assets/app.js:1991
 msgid "Réglages enregistrés"
 msgstr ""
 
-#: assets/app.js:1987
+#: assets/app.js:1994
 msgid "Erreur lors de la sauvegarde"
 msgstr ""
 
-#: assets/app.js:1990
+#: assets/app.js:1997
 msgid "Erreur lors de la sauvegarde des réglages"
 msgstr ""
 
-#: assets/app.js:2007
+#: assets/app.js:2014
 msgid "Arrêter"
 msgstr ""
 
-#: assets/app.js:2011
+#: assets/app.js:2018
 msgid "En marche"
 msgstr ""
 
-#: assets/app.js:2028
+#: assets/app.js:2035
 msgid "Aucun job pour l'instant — un ZIP téléchargé depuis un onglet IA (ordonnanceur activé) en créera un automatiquement."
 msgstr ""
 
-#: assets/app.js:2035
+#: assets/app.js:2042
 msgid "Continuer le projet"
 msgstr ""
 
-#: assets/app.js:2036
+#: assets/app.js:2043
 msgid "Marquer livré"
 msgstr ""
 
-#: assets/app.js:2039
+#: assets/app.js:2046
 msgid "Pause"
 msgstr ""
 
-#: assets/app.js:2042
+#: assets/app.js:2049
 msgid "Reprendre"
 msgstr ""
 
-#: assets/app.js:2045
+#: assets/app.js:2052
 msgid "Relancer"
 msgstr ""
 
-#: assets/app.js:2048
+#: assets/app.js:2055
 msgid "Ouvrir le ZIP"
 msgstr ""
 
-#: assets/app.js:2051
+#: assets/app.js:2058
 msgid "Analyser la complétude"
 msgstr ""
 
-#: assets/app.js:2058
+#: assets/app.js:2065
 msgid "service inconnu"
 msgstr ""
 
-#: assets/app.js:2059
+#: assets/app.js:2066
 msgid "tentative {n}"
 msgstr ""
 
-#: assets/app.js:2071
+#: assets/app.js:2078
 msgid "Aucune activité enregistrée."
 msgstr ""
 
-#: assets/app.js:2081
+#: assets/app.js:2088
 msgid "Impossible de modifier l'état de l'ordonnanceur"
 msgstr ""
 
-#: assets/app.js:2091
+#: assets/app.js:2098
 msgid "Configuration non enregistrée"
 msgstr ""
 
-#: assets/app.js:2103 assets/app.js:2110
+#: assets/app.js:2110 assets/app.js:2117
 msgid "Sélection du dossier impossible"
 msgstr ""
 
-#: assets/app.js:2129
+#: assets/app.js:2136
 msgid "Projet terminé : {done}/{total} tâches faites, 0 restante."
 msgstr ""
 
-#: assets/app.js:2130
+#: assets/app.js:2137
 msgid "{pending} à faire, {inProgress} en cours, {done} faite(s) sur {total} au total."
 msgstr ""
 
-#: assets/app.js:2133
+#: assets/app.js:2140
 msgid "Analyse impossible : {error}"
 msgstr ""
 
-#: assets/app.js:2150
+#: assets/app.js:2157
 msgid "Action impossible : {error}"
 msgstr ""
 
-#: assets/app.js:2160
+#: assets/app.js:2167
 msgid "Aucun projet pour l'instant."
 msgstr ""
 
-#: assets/app.js:2160 assets/app.js:2215
+#: assets/app.js:2167 assets/app.js:2222
 msgid "Créer un projet"
 msgstr ""
 
-#: assets/app.js:2167
+#: assets/app.js:2174
 msgid "Assignée"
 msgstr ""
 
-#: assets/app.js:2168
+#: assets/app.js:2175
 msgid "Terminée"
 msgstr ""
 
-#: assets/app.js:2168
+#: assets/app.js:2175
 msgid "Échouée"
 msgstr ""
 
-#: assets/app.js:2177
+#: assets/app.js:2184
 msgid "Lancer"
 msgstr ""
 
-#: assets/app.js:2181
+#: assets/app.js:2188
 msgid "Résultat"
 msgstr ""
 
-#: assets/app.js:2194
+#: assets/app.js:2201
 msgid "Aucune tâche."
 msgstr ""
 
-#: assets/app.js:2200
+#: assets/app.js:2207
 msgid "Tous les comptes"
 msgstr ""
 
-#: assets/app.js:2206
+#: assets/app.js:2213
 msgid "Comptes autorisés :"
 msgstr ""
 
-#: assets/app.js:2206
+#: assets/app.js:2213
 msgid "{count} tâche(s)"
 msgstr ""
 
-#: assets/app.js:2208
+#: assets/app.js:2215
 msgid "Nouvelle tâche"
 msgstr ""
 
-#: assets/app.js:2209
+#: assets/app.js:2216
 msgid "Assigner"
 msgstr ""
 
-#: assets/app.js:2224
+#: assets/app.js:2231
 msgid "Diagnostic Claude : {error}"
 msgstr ""
 
-#: assets/app.js:2227
+#: assets/app.js:2234
 msgid "« Continuer »"
 msgstr ""
 
-#: assets/app.js:2228
+#: assets/app.js:2235
 msgid "« Télécharger »"
 msgstr ""
 
-#: assets/app.js:2229
+#: assets/app.js:2236
 msgid "« Nouveau »"
 msgstr ""
 
-#: assets/app.js:2230
+#: assets/app.js:2237
 msgid "zone de chat"
 msgstr ""
 
-#: assets/app.js:2231
+#: assets/app.js:2238
 msgid "envoi de fichier"
 msgstr ""
 
-#: assets/app.js:2233
+#: assets/app.js:2240
 msgid "{count} popup(s)"
 msgstr ""
 
-#: assets/app.js:2234
+#: assets/app.js:2241
 msgid "Claude (« {profile} ») : {details}"
 msgstr ""
 
-#: assets/app.js:2234
+#: assets/app.js:2241
 msgid "aucun élément détecté"
 msgstr ""
 
-#: assets/app.js:2236
+#: assets/app.js:2243
 msgid "Diagnostic impossible : {error}"
 msgstr ""
 
-#: assets/app.js:2244
+#: assets/app.js:2251
 msgid "Quota gratuit épuisé jusqu'à {time} pour ce profil."
 msgstr ""
 
-#: assets/app.js:2246
+#: assets/app.js:2253
 msgid "Job Claude échoué : {error}"
 msgstr ""
 
-#: assets/app.js:2251
+#: assets/app.js:2258
 msgid "Prompt envoyé à Claude via {method} (« {profile} »)"
 msgstr ""
 
-#: assets/app.js:2253
+#: assets/app.js:2260
 msgid "Job Claude impossible : {error}"
 msgstr ""
 
-#: assets/app.js:2259 assets/app.js:2266
+#: assets/app.js:2266 assets/app.js:2273
 msgid "Collecte impossible : {error}"
 msgstr ""
 
-#: assets/app.js:2261
+#: assets/app.js:2268
 msgid "Réponse collectée : {count} caractères (« {profile} »)"
 msgstr ""
 
-#: assets/app.js:2264
+#: assets/app.js:2271
 msgid "Aucune réponse trouvée pour le moment."
 msgstr ""
 
-#: assets/app.js:2271
+#: assets/app.js:2278
 msgid "Nom du projet :"
 msgstr ""
 
-#: assets/app.js:2271
+#: assets/app.js:2278
 msgid "Projet {n}"
 msgstr ""
 
-#: assets/app.js:2277
+#: assets/app.js:2284
 msgid "Projet « {name} » créé"
 msgstr ""
 
-#: assets/app.js:2279 assets/app.js:2299
+#: assets/app.js:2286 assets/app.js:2306
 msgid "Création impossible : {error}"
 msgstr ""
 
-#: assets/app.js:2286
+#: assets/app.js:2293
 msgid "Projet supprimé"
 msgstr ""
 
-#: assets/app.js:2288
+#: assets/app.js:2295
 msgid "Suppression impossible : {error}"
 msgstr ""
 
-#: assets/app.js:2292
+#: assets/app.js:2299
 msgid "Prompt de la tâche :"
 msgstr ""
 
-#: assets/app.js:2297
+#: assets/app.js:2304
 msgid "Tâche créée dans le projet"
 msgstr ""
 
-#: assets/app.js:2309
+#: assets/app.js:2316
 msgid "Aucun compte vert disponible pour ce projet."
 msgstr ""
 
-#: assets/app.js:2313
+#: assets/app.js:2320
 msgid "Comptes verts disponibles :"
 msgstr ""
 
-#: assets/app.js:2313
+#: assets/app.js:2320
 msgid "Numéro du compte :"
 msgstr ""
 
-#: assets/app.js:2316 assets/app.js:2329
+#: assets/app.js:2323 assets/app.js:2336
 msgid "Choix invalide"
 msgstr ""
 
-#: assets/app.js:2322
+#: assets/app.js:2329
 msgid "Aucune tâche dans ce projet."
 msgstr ""
 
-#: assets/app.js:2326
+#: assets/app.js:2333
 msgid "Numéro de la tâche :"
 msgstr ""
 
-#: assets/app.js:2326
+#: assets/app.js:2333
 msgid "Tâches du projet :"
 msgstr ""
 
-#: assets/app.js:2333
+#: assets/app.js:2340
 msgid "Tâche {task} assignée à « {account} »"
 msgstr ""
 
-#: assets/app.js:2335
+#: assets/app.js:2342
 msgid "Assignation impossible : {error}"
 msgstr ""
 
-#: assets/app.js:2341
+#: assets/app.js:2348
 msgid "Lancement de l'automatisation Claude..."
 msgstr ""
 
-#: assets/app.js:2344
+#: assets/app.js:2351
 msgid "Lancement impossible"
 msgstr ""
 
-#: assets/app.js:2345
+#: assets/app.js:2352
 msgid "Tâche lancée — suivi dans le journal d'activité"
 msgstr ""
 
-#: assets/app.js:2347
+#: assets/app.js:2354
 msgid "Exécution impossible : {error}"
 msgstr ""
 
-#: assets/app.js:2356
+#: assets/app.js:2363
 msgid "Aucun résultat disponible"
 msgstr ""
 
-#: assets/app.js:2362
+#: assets/app.js:2369
 msgid "Résultat — {task}"
 msgstr ""
 
-#: assets/app.js:2407
+#: assets/app.js:2414
 msgid "Données de comptes illisibles"
 msgstr ""
 
-#: assets/app.js:2413
+#: assets/app.js:2420
 msgid "La liste de comptes enregistrée est corrompue. Une sauvegarde de {count} compte(s) a été trouvée. La restaurer ?"
 msgstr ""
 
-#: assets/app.js:2414
+#: assets/app.js:2421
 msgid "La liste de comptes enregistrée est corrompue et aucune sauvegarde n'est disponible. L'application démarre avec une liste vide ; vos données actuelles ne seront pas écrasées tant que vous ne créez ou ne modifiez pas de compte."
 msgstr ""
 
-#: assets/app.js:2423
+#: assets/app.js:2430
 msgid "Ignorer"
 msgstr ""
 
-#: assets/app.js:2428
+#: assets/app.js:2435
 msgid "Restaurer la sauvegarde"
 msgstr ""
 
-#: assets/app.js:2435
+#: assets/app.js:2442
 msgid "Comptes restaurés depuis la sauvegarde"
 msgstr ""
 
-#: assets/app.js:2442
+#: assets/app.js:2449
 msgid "Compris"
 msgstr ""

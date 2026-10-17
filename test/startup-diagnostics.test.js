@@ -50,6 +50,12 @@ test('describeStartupProblem donne titre, détail et piste selon le type', () =>
   assert.match(d.describeStartupProblem('rejection', 'r').title, /asynchrone/);
 });
 
+test('debugRelaunchArgs (#187) : garde les arguments, sans doublon, ajoute --iao-debug', () => {
+  assert.deepEqual(d.debugRelaunchArgs(['/usr/bin/electron', '.', '--no-sandbox']), ['.', '--no-sandbox', '--iao-debug']);
+  assert.deepEqual(d.debugRelaunchArgs(['/opt/iao/IAO', '--iao-debug', '--debug', '--iao-lang=en']), ['--iao-lang=en', '--iao-debug']);
+  assert.deepEqual(d.debugRelaunchArgs(undefined), ['--iao-debug']);
+});
+
 test('consoleLevelName accepte les niveaux Electron (chaîne) et historiques (entier)', () => {
   assert.equal(d.consoleLevelName('error'), 'error');
   assert.equal(d.consoleLevelName('warn'), 'warning');

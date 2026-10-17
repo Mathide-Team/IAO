@@ -103,6 +103,8 @@
       if (!debugMode) return;
       const badge = document.getElementById('debugBadge');
       if (badge) badge.classList.remove('hidden');
+      const relaunch = document.getElementById('btnRelaunchDebug');
+      if (relaunch) relaunch.classList.add('hidden'); // #187 : déjà en mode debug
       dbg('demarrage', 'mode debug actif dans l\'interface');
     }).catch(() => { /* canal absent (ancienne version de main.js) : mode normal */ });
 
@@ -762,6 +764,11 @@
     // pour la fenêtre principale (canal app:toggle-devtools).
     window.toggleDevTools = function() {
       return window.iaoAPI.ipcInvoke('app:toggle-devtools').catch(() => false);
+    }
+
+    // Issue #187 : redémarre IAO avec --iao-debug (canal app:relaunch-debug).
+    window.relaunchDebug = function() {
+      return window.iaoAPI.ipcInvoke('app:relaunch-debug').catch(() => false);
     }
 
     window.toggleExplorer = function() { document.getElementById('fileExplorer').classList.toggle('collapsed'); }
@@ -2469,6 +2476,7 @@ const UI_ACTIONS = {
   'ui-toggleExplorer': 'toggleExplorer',
   'ui-toggleIdePanel': 'toggleIdePanel',
   'ui-toggleDevTools': 'toggleDevTools',
+  'ui-relaunchDebug': 'relaunchDebug',
   'ui-openPalette': 'openPalette',
   'ui-openModal': 'openModal',
   'ui-openHelpModal': 'openHelpModal',

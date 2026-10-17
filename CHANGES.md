@@ -1,5 +1,17 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issue #187 — mode debug accessible depuis l'application (17/10/2026)
+
+### Livré
+- Canal `app:relaunch-debug` (fenêtre principale uniquement) : `app.relaunch()` avec les mêmes
+  arguments plus `--iao-debug` (`debugRelaunchArgs()`, `lib/startup-diagnostics.js`), puis
+  `app.exit(0)`. Canal `app:log-path` : chemin du journal.
+- Bandeau d'erreur de démarrage : bouton « Relancer en mode debug » et chemin du journal.
+- Barre du workspace : bouton « Redémarrer en mode debug », masqué quand le mode debug est actif.
+- Documentation (README, section Dépannage reprise par MkDocs) : relance depuis l'application,
+  que joindre à une issue.
+- Tests : unitaires (couverture 100 %), harnais main.js, scénario Electron C6.5.
+
 ## Documentation MkDocs (13/10/2026)
 
 Règle d'équipe Mathide-Team : documentation navigable MkDocs sur le modèle de Netcross.

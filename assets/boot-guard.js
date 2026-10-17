@@ -59,11 +59,36 @@
     list.className = 'boot-error__list';
     banner.appendChild(head);
     banner.appendChild(list);
+    appendDebugActions(banner);
     document.body.insertBefore(banner, document.body.firstChild);
     if (typeof window.hydrateIcons === 'function') {
       try { window.hydrateIcons(banner); } catch (_) { /* icône facultative */ }
     }
     return banner;
+  }
+
+  // Issue #187 : bouton « Relancer en mode debug » et chemin du journal, si le
+  // pont du preload existe (sinon main.js est injoignable : rien à proposer).
+  function appendDebugActions(banner) {
+    var api = window.iaoAPI;
+    if (!api || typeof api.ipcInvoke !== 'function') return;
+    var foot = document.createElement('div');
+    foot.className = 'boot-error__actions';
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'btn boot-error__debug';
+    btn.textContent = 'Relancer en mode debug';
+    btn.addEventListener('click', function () {
+      api.ipcInvoke('app:relaunch-debug').catch(function () { /* canal absent */ });
+    });
+    var where = document.createElement('code');
+    where.className = 'boot-error__log';
+    foot.appendChild(btn);
+    foot.appendChild(where);
+    banner.appendChild(foot);
+    api.ipcInvoke('app:log-path').then(function (p) {
+      if (p) where.textContent = 'Journal : ' + p;
+    }).catch(function () { /* canal absent : pas de chemin affiché */ });
   }
 
   function report(kind, err, source) {
