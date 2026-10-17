@@ -190,6 +190,10 @@ Ce dossier n'est **pas** supprimé par la désinstallation — effacez-le manuel
 - IAO ne s'ouvre qu'**une fois** : relancer l'application ramène la fenêtre existante au
   premier plan. Deux instances sur le même dossier de données provoquaient des erreurs
   Chromium en rafale (`Failed to delete the database: Database IO error`).
+- Si `iao.log` signale des fichiers du dossier de données qui **n'appartiennent pas au compte
+  courant** (souvent après un lancement avec `sudo`), Chromium ne peut plus les modifier :
+  erreurs `Database IO error` / `Could not open the quota database`, comptes ou sessions qui
+  disparaissent. Quitter IAO puis lancer `sudo chown -R "$USER": ~/.config/ai-manager`.
 - Les messages Chromium du type `vaInitialize failed` (accélération vidéo matérielle) sont
   sans incidence sur IAO.
 
