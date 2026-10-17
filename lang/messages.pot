@@ -532,7 +532,7 @@ msgstr ""
 msgid "Cliquer pour copier l'e-mail"
 msgstr ""
 
-#: assets/app.js:702 assets/app.js:1290
+#: assets/app.js:702 assets/app.js:1294
 msgid "Modifier le compte"
 msgstr ""
 
@@ -592,502 +592,502 @@ msgstr ""
 msgid "Étoile retirée"
 msgstr ""
 
-#: assets/app.js:1117
+#: assets/app.js:1121
 msgid "Échec de la déconnexion du profil"
 msgstr ""
 
-#: assets/app.js:1125
+#: assets/app.js:1129
 msgid "Profil « {profile} » déconnecté — session effacée"
 msgstr ""
 
-#: assets/app.js:1158
+#: assets/app.js:1162
 msgid "Aucun fichier trouvé."
 msgstr ""
 
-#: assets/app.js:1186
+#: assets/app.js:1190
 msgid "Fichier trop volumineux pour l'éditeur : {size} Mo (limite : 20 Mo)."
 msgstr ""
 
-#: assets/app.js:1325
+#: assets/app.js:1329
 msgid "C'est quoi ?"
 msgstr ""
 
-#: assets/app.js:1326
+#: assets/app.js:1330
 msgid "Quand l'utiliser ?"
 msgstr ""
 
-#: assets/app.js:1327
+#: assets/app.js:1331
 msgid "Description à venir."
 msgstr ""
 
-#: assets/app.js:1369
+#: assets/app.js:1373
 msgid "Maximum {max} services à portée de main"
 msgstr ""
 
-#: assets/app.js:1385
+#: assets/app.js:1389
 msgid "Sélectionnez au moins 1 service"
 msgstr ""
 
-#: assets/app.js:1389
+#: assets/app.js:1393
 msgid "Services mis à jour ({count}/{max})"
 msgstr ""
 
-#: assets/app.js:1403
+#: assets/app.js:1407
 msgid "Supprimer « {name} » ({email}) ? La session restera stockée sur le disque, mais le compte disparaîtra de la liste."
 msgstr ""
 
-#: assets/app.js:1417
+#: assets/app.js:1421
 msgid "Échec de l'export (écriture impossible)"
 msgstr ""
 
-#: assets/app.js:1418
+#: assets/app.js:1422
 msgid "{count} compte(s) exporté(s)"
 msgstr ""
 
-#: assets/app.js:1421
+#: assets/app.js:1425
 msgid "Export impossible"
 msgstr ""
 
-#: assets/app.js:1433
+#: assets/app.js:1437
 msgid "Échec de la lecture du fichier"
 msgstr ""
 
-#: assets/app.js:1436
+#: assets/app.js:1440
 msgid "Fichier JSON invalide"
 msgstr ""
 
-#: assets/app.js:1437
+#: assets/app.js:1441
 msgid "Format invalide : un tableau de comptes est attendu."
 msgstr ""
 
-#: assets/app.js:1440
+#: assets/app.js:1444
 msgid "Le fichier contient {count} compte(s). L'import REMPLACE entièrement la liste actuelle ({current} compte(s)) — cette action écrase les comptes existants, pas leurs sessions (cookies) déjà enregistrées sur le disque. Continuer ?"
 msgstr ""
 
-#: assets/app.js:1444
+#: assets/app.js:1448
 msgid "Import impossible"
 msgstr ""
 
-#: assets/app.js:1461
+#: assets/app.js:1465
 msgid "{count} compte(s) importé(s)"
 msgstr ""
 
-#: assets/app.js:1464
+#: assets/app.js:1468
 msgid "Échec de l'import : {error}"
 msgstr ""
 
-#: assets/app.js:1476
+#: assets/app.js:1480
 msgid "Compte supprimé"
 msgstr ""
 
-#: assets/app.js:1484
+#: assets/app.js:1488
 msgid "Remplissez tous les champs"
 msgstr ""
 
-#: assets/app.js:1490
+#: assets/app.js:1494
 msgid "Ce profil est déjà utilisé par un autre compte (les sessions seraient partagées)."
 msgstr ""
 
-#: assets/app.js:1497
+#: assets/app.js:1501
 msgid "Compte mis à jour"
 msgstr ""
 
-#: assets/app.js:1506
+#: assets/app.js:1510
 msgid "Compte ajouté"
 msgstr ""
 
-#: assets/app.js:1520
+#: assets/app.js:1524
 msgid "Copie impossible dans le presse-papiers"
 msgstr ""
 
-#: assets/app.js:1520
+#: assets/app.js:1524
 msgid "E-mail copié : {email}"
 msgstr ""
 
-#: assets/app.js:1810
+#: assets/app.js:1814
 msgid "Cooldown terminé"
 msgstr ""
 
-#: assets/app.js:1811
+#: assets/app.js:1815
 msgid "{account} — {service} est de nouveau disponible."
 msgstr ""
 
-#: assets/app.js:1822
+#: assets/app.js:1826
 msgid "{account} — {service} : cooldown terminé"
 msgstr ""
 
-#: assets/app.js:1856
+#: assets/app.js:1860
 msgid "Téléchargement…"
 msgstr ""
 
-#: assets/app.js:1856
+#: assets/app.js:1860
 msgid "Téléchargé — à traiter"
 msgstr ""
 
-#: assets/app.js:1857
+#: assets/app.js:1861
 msgid "Aucun profil disponible"
 msgstr ""
 
-#: assets/app.js:1857
+#: assets/app.js:1861
 msgid "Projet en cours d'analyse"
 msgstr ""
 
-#: assets/app.js:1858 assets/app.js:2167
+#: assets/app.js:1862 assets/app.js:2171
 msgid "En cours"
 msgstr ""
 
-#: assets/app.js:1858
+#: assets/app.js:1862
 msgid "En pause"
 msgstr ""
 
-#: assets/app.js:1858
+#: assets/app.js:1862
 msgid "Reprise programmée"
 msgstr ""
 
-#: assets/app.js:1859
+#: assets/app.js:1863
 msgid "Erreur"
 msgstr ""
 
-#: assets/app.js:1859
+#: assets/app.js:1863
 msgid "Livré"
 msgstr ""
 
-#: assets/app.js:1962
+#: assets/app.js:1966
 msgid "Impossible de charger les réglages"
 msgstr ""
 
-#: assets/app.js:1983
+#: assets/app.js:1987
 msgid "Réglages enregistrés — la langue sera appliquée au prochain démarrage"
 msgstr ""
 
-#: assets/app.js:1984
+#: assets/app.js:1988
 msgid "Réglages enregistrés"
 msgstr ""
 
-#: assets/app.js:1987
+#: assets/app.js:1991
 msgid "Erreur lors de la sauvegarde"
 msgstr ""
 
-#: assets/app.js:1990
+#: assets/app.js:1994
 msgid "Erreur lors de la sauvegarde des réglages"
 msgstr ""
 
-#: assets/app.js:2007
+#: assets/app.js:2011
 msgid "Arrêter"
 msgstr ""
 
-#: assets/app.js:2011
+#: assets/app.js:2015
 msgid "En marche"
 msgstr ""
 
-#: assets/app.js:2028
+#: assets/app.js:2032
 msgid "Aucun job pour l'instant — un ZIP téléchargé depuis un onglet IA (ordonnanceur activé) en créera un automatiquement."
 msgstr ""
 
-#: assets/app.js:2035
+#: assets/app.js:2039
 msgid "Continuer le projet"
 msgstr ""
 
-#: assets/app.js:2036
+#: assets/app.js:2040
 msgid "Marquer livré"
 msgstr ""
 
-#: assets/app.js:2039
+#: assets/app.js:2043
 msgid "Pause"
 msgstr ""
 
-#: assets/app.js:2042
+#: assets/app.js:2046
 msgid "Reprendre"
 msgstr ""
 
-#: assets/app.js:2045
+#: assets/app.js:2049
 msgid "Relancer"
 msgstr ""
 
-#: assets/app.js:2048
+#: assets/app.js:2052
 msgid "Ouvrir le ZIP"
 msgstr ""
 
-#: assets/app.js:2051
+#: assets/app.js:2055
 msgid "Analyser la complétude"
 msgstr ""
 
-#: assets/app.js:2058
+#: assets/app.js:2062
 msgid "service inconnu"
 msgstr ""
 
-#: assets/app.js:2059
+#: assets/app.js:2063
 msgid "tentative {n}"
 msgstr ""
 
-#: assets/app.js:2071
+#: assets/app.js:2075
 msgid "Aucune activité enregistrée."
 msgstr ""
 
-#: assets/app.js:2081
+#: assets/app.js:2085
 msgid "Impossible de modifier l'état de l'ordonnanceur"
 msgstr ""
 
-#: assets/app.js:2091
+#: assets/app.js:2095
 msgid "Configuration non enregistrée"
 msgstr ""
 
-#: assets/app.js:2103 assets/app.js:2110
+#: assets/app.js:2107 assets/app.js:2114
 msgid "Sélection du dossier impossible"
 msgstr ""
 
-#: assets/app.js:2129
+#: assets/app.js:2133
 msgid "Projet terminé : {done}/{total} tâches faites, 0 restante."
 msgstr ""
 
-#: assets/app.js:2130
+#: assets/app.js:2134
 msgid "{pending} à faire, {inProgress} en cours, {done} faite(s) sur {total} au total."
 msgstr ""
 
-#: assets/app.js:2133
+#: assets/app.js:2137
 msgid "Analyse impossible : {error}"
 msgstr ""
 
-#: assets/app.js:2150
+#: assets/app.js:2154
 msgid "Action impossible : {error}"
 msgstr ""
 
-#: assets/app.js:2160
+#: assets/app.js:2164
 msgid "Aucun projet pour l'instant."
 msgstr ""
 
-#: assets/app.js:2160 assets/app.js:2215
+#: assets/app.js:2164 assets/app.js:2219
 msgid "Créer un projet"
 msgstr ""
 
-#: assets/app.js:2167
+#: assets/app.js:2171
 msgid "Assignée"
 msgstr ""
 
-#: assets/app.js:2168
+#: assets/app.js:2172
 msgid "Terminée"
 msgstr ""
 
-#: assets/app.js:2168
+#: assets/app.js:2172
 msgid "Échouée"
 msgstr ""
 
-#: assets/app.js:2177
+#: assets/app.js:2181
 msgid "Lancer"
 msgstr ""
 
-#: assets/app.js:2181
+#: assets/app.js:2185
 msgid "Résultat"
 msgstr ""
 
-#: assets/app.js:2194
+#: assets/app.js:2198
 msgid "Aucune tâche."
 msgstr ""
 
-#: assets/app.js:2200
+#: assets/app.js:2204
 msgid "Tous les comptes"
 msgstr ""
 
-#: assets/app.js:2206
+#: assets/app.js:2210
 msgid "Comptes autorisés :"
 msgstr ""
 
-#: assets/app.js:2206
+#: assets/app.js:2210
 msgid "{count} tâche(s)"
 msgstr ""
 
-#: assets/app.js:2208
+#: assets/app.js:2212
 msgid "Nouvelle tâche"
 msgstr ""
 
-#: assets/app.js:2209
+#: assets/app.js:2213
 msgid "Assigner"
 msgstr ""
 
-#: assets/app.js:2224
+#: assets/app.js:2228
 msgid "Diagnostic Claude : {error}"
 msgstr ""
 
-#: assets/app.js:2227
+#: assets/app.js:2231
 msgid "« Continuer »"
 msgstr ""
 
-#: assets/app.js:2228
+#: assets/app.js:2232
 msgid "« Télécharger »"
 msgstr ""
 
-#: assets/app.js:2229
+#: assets/app.js:2233
 msgid "« Nouveau »"
 msgstr ""
 
-#: assets/app.js:2230
+#: assets/app.js:2234
 msgid "zone de chat"
 msgstr ""
 
-#: assets/app.js:2231
+#: assets/app.js:2235
 msgid "envoi de fichier"
 msgstr ""
 
-#: assets/app.js:2233
+#: assets/app.js:2237
 msgid "{count} popup(s)"
 msgstr ""
 
-#: assets/app.js:2234
+#: assets/app.js:2238
 msgid "Claude (« {profile} ») : {details}"
 msgstr ""
 
-#: assets/app.js:2234
+#: assets/app.js:2238
 msgid "aucun élément détecté"
 msgstr ""
 
-#: assets/app.js:2236
+#: assets/app.js:2240
 msgid "Diagnostic impossible : {error}"
 msgstr ""
 
-#: assets/app.js:2244
+#: assets/app.js:2248
 msgid "Quota gratuit épuisé jusqu'à {time} pour ce profil."
 msgstr ""
 
-#: assets/app.js:2246
+#: assets/app.js:2250
 msgid "Job Claude échoué : {error}"
 msgstr ""
 
-#: assets/app.js:2251
+#: assets/app.js:2255
 msgid "Prompt envoyé à Claude via {method} (« {profile} »)"
 msgstr ""
 
-#: assets/app.js:2253
+#: assets/app.js:2257
 msgid "Job Claude impossible : {error}"
 msgstr ""
 
-#: assets/app.js:2259 assets/app.js:2266
+#: assets/app.js:2263 assets/app.js:2270
 msgid "Collecte impossible : {error}"
 msgstr ""
 
-#: assets/app.js:2261
+#: assets/app.js:2265
 msgid "Réponse collectée : {count} caractères (« {profile} »)"
 msgstr ""
 
-#: assets/app.js:2264
+#: assets/app.js:2268
 msgid "Aucune réponse trouvée pour le moment."
 msgstr ""
 
-#: assets/app.js:2271
+#: assets/app.js:2275
 msgid "Nom du projet :"
 msgstr ""
 
-#: assets/app.js:2271
+#: assets/app.js:2275
 msgid "Projet {n}"
 msgstr ""
 
-#: assets/app.js:2277
+#: assets/app.js:2281
 msgid "Projet « {name} » créé"
 msgstr ""
 
-#: assets/app.js:2279 assets/app.js:2299
+#: assets/app.js:2283 assets/app.js:2303
 msgid "Création impossible : {error}"
 msgstr ""
 
-#: assets/app.js:2286
+#: assets/app.js:2290
 msgid "Projet supprimé"
 msgstr ""
 
-#: assets/app.js:2288
+#: assets/app.js:2292
 msgid "Suppression impossible : {error}"
 msgstr ""
 
-#: assets/app.js:2292
+#: assets/app.js:2296
 msgid "Prompt de la tâche :"
 msgstr ""
 
-#: assets/app.js:2297
+#: assets/app.js:2301
 msgid "Tâche créée dans le projet"
 msgstr ""
 
-#: assets/app.js:2309
+#: assets/app.js:2313
 msgid "Aucun compte vert disponible pour ce projet."
 msgstr ""
 
-#: assets/app.js:2313
+#: assets/app.js:2317
 msgid "Comptes verts disponibles :"
 msgstr ""
 
-#: assets/app.js:2313
+#: assets/app.js:2317
 msgid "Numéro du compte :"
 msgstr ""
 
-#: assets/app.js:2316 assets/app.js:2329
+#: assets/app.js:2320 assets/app.js:2333
 msgid "Choix invalide"
 msgstr ""
 
-#: assets/app.js:2322
+#: assets/app.js:2326
 msgid "Aucune tâche dans ce projet."
 msgstr ""
 
-#: assets/app.js:2326
+#: assets/app.js:2330
 msgid "Numéro de la tâche :"
 msgstr ""
 
-#: assets/app.js:2326
+#: assets/app.js:2330
 msgid "Tâches du projet :"
 msgstr ""
 
-#: assets/app.js:2333
+#: assets/app.js:2337
 msgid "Tâche {task} assignée à « {account} »"
 msgstr ""
 
-#: assets/app.js:2335
+#: assets/app.js:2339
 msgid "Assignation impossible : {error}"
 msgstr ""
 
-#: assets/app.js:2341
+#: assets/app.js:2345
 msgid "Lancement de l'automatisation Claude..."
 msgstr ""
 
-#: assets/app.js:2344
+#: assets/app.js:2348
 msgid "Lancement impossible"
 msgstr ""
 
-#: assets/app.js:2345
+#: assets/app.js:2349
 msgid "Tâche lancée — suivi dans le journal d'activité"
 msgstr ""
 
-#: assets/app.js:2347
+#: assets/app.js:2351
 msgid "Exécution impossible : {error}"
 msgstr ""
 
-#: assets/app.js:2356
+#: assets/app.js:2360
 msgid "Aucun résultat disponible"
 msgstr ""
 
-#: assets/app.js:2362
+#: assets/app.js:2366
 msgid "Résultat — {task}"
 msgstr ""
 
-#: assets/app.js:2407
+#: assets/app.js:2411
 msgid "Données de comptes illisibles"
 msgstr ""
 
-#: assets/app.js:2413
+#: assets/app.js:2417
 msgid "La liste de comptes enregistrée est corrompue. Une sauvegarde de {count} compte(s) a été trouvée. La restaurer ?"
 msgstr ""
 
-#: assets/app.js:2414
+#: assets/app.js:2418
 msgid "La liste de comptes enregistrée est corrompue et aucune sauvegarde n'est disponible. L'application démarre avec une liste vide ; vos données actuelles ne seront pas écrasées tant que vous ne créez ou ne modifiez pas de compte."
 msgstr ""
 
-#: assets/app.js:2423
+#: assets/app.js:2427
 msgid "Ignorer"
 msgstr ""
 
-#: assets/app.js:2428
+#: assets/app.js:2432
 msgid "Restaurer la sauvegarde"
 msgstr ""
 
-#: assets/app.js:2435
+#: assets/app.js:2439
 msgid "Comptes restaurés depuis la sauvegarde"
 msgstr ""
 
-#: assets/app.js:2442
+#: assets/app.js:2446
 msgid "Compris"
 msgstr ""
