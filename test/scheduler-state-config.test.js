@@ -317,3 +317,32 @@ test('état rechargé : un nouveau Scheduler relit config et instantané persist
     assert.deepStrictEqual(reloaded.accountsSnapshot.map(a => a.id), ['a1']);
   } finally { cleanup(ctx); }
 });
+
+// --- reportStartupAccounts (issue #186) -------------------------------------
+
+test('reportStartupAccounts : interface vide, instantané non vide -> warning journalisé et comptes renvoyés', () => {
+  const ctx = create();
+  try {
+    ctx.scheduler.syncAccounts([{ id: 'a1', name: 'Alice', profile: 'profil_1' }, { id: 'a2', name: 'Bob', profile: 'profil_2' }]);
+    const lines = [];
+    ctx.scheduler.setLogger((scope, level, message) => lines.push([scope, level, message]), false);
+    const res = ctx.scheduler.reportStartupAccounts({ status: 'empty', count: 0 });
+    assert.strictEqual(res.offerRestore, true);
+    assert.deepStrictEqual(res.accounts.map(a => a.id + ':' + a.profile + ':' + a.email), ['a1:profil_1:', 'a2:profil_2:']);
+    assert.strictEqual(lines.length, 1);
+    assert.strictEqual(lines[0][0], 'scheduler');
+    assert.strictEqual(lines[0][1], 'warning');
+    assert.match(lines[0][2], /Comptes lus au démarrage : 0 .* instantané de l'ordonnanceur : 2 compte\(s\)/);
+  } finally { cleanup(ctx); }
+});
+
+test('reportStartupAccounts : comptes présents -> info sur la console sans logger, aucun compte renvoyé', () => {
+  const ctx = create();
+  try {
+    ctx.scheduler.syncAccounts([{ id: 'a1', name: 'Alice', profile: 'profil_1' }]);
+    const res = ctx.scheduler.reportStartupAccounts({ status: 'ok', count: 1 });
+    assert.deepStrictEqual(res, { offerRestore: false, accounts: [] });
+    const logged = console.log.mock.calls.map(c => c.arguments.join(' '));
+    assert.ok(logged.some(l => /\[scheduler\] Comptes lus au démarrage : 1 \(stockage de l'interface : ok\)/.test(l)));
+  } finally { cleanup(ctx); }
+});
