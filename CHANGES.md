@@ -15,6 +15,27 @@ Règle d'équipe Mathide-Team : documentation navigable MkDocs sur le modèle de
   publié en artefact.
 - README : lien « dernière release » en URL absolue (valable dans la doc et sur GitHub).
 
+## Issue #186 — comptes absents au démarrage : journal et restauration (17/10/2026)
+
+### Constat
+Journal de #58 (12/10/2026) : au lancement, l'ordonnanceur connaissait ~70 profils
+(`<userData>/scheduler/accounts-snapshot.json`), alors que l'interface n'en lisait aucun
+dans son `localStorage`. Ensuite, l'interface renvoyait sa liste vide à l'ordonnanceur
+et effaçait l'instantané : un import devenait la seule issue. La cause de la perte du
+`localStorage` n'est pas reproduite dans le bac à sable.
+
+### Livré
+- `lib/accounts-recovery.js` (pur, testé) : `accountsFromSnapshot()` reconstruit les
+  comptes (id, nom, profil, automatisation ; doublons de profil écartés) ;
+  `startupAccountsReport()` écrit la ligne de journal et décide de la proposition.
+- Ordonnanceur : `reportStartupAccounts()` et canal `scheduler:accounts-startup`. La ligne
+  « Comptes lus au démarrage : N (stockage de l'interface : …) ; instantané de
+  l'ordonnanceur : M compte(s). » part toujours dans `iao.log` (`warning` si N = 0 et M > 0).
+- Interface : une liste vide au démarrage n'écrase plus l'instantané ; modale « Comptes
+  retrouvés » qui restaure les comptes sans import. Les sessions sont conservées
+  (partitions `persist:<profil>`) ; l'e-mail est à compléter.
+- Tests : unitaires (couverture 100 %), scénarios Electron C8.1 et C8.2.
+
 ## Issue #181 — IAO démarre sans l'ordonnanceur (12/10/2026)
 
 ### Cause
