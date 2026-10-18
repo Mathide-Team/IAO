@@ -4,6 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: IAO\n"
 "Report-Msgid-Bugs-To: https://github.com/Mathide-Team/IAO/issues\n"
+"Last-Translator: IAO (traduction automatique Argos Translate, relecture humaine attendue, issue #188)\n"
+"Language-Team: aucune (relecture humaine attendue)\n"
 "Language: bn\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -12,63 +14,63 @@ msgstr ""
 
 #: index.html
 msgid "Rechercher un compte ou une IA..."
-msgstr ""
+msgstr "একটি অ্যাকাউন্ট অনুসন্ধান..."
 
 #: index.html
 msgid "Comptes actifs"
-msgstr ""
+msgstr "সক্রিয় অ্যাকাউন্ট"
 
 #: index.html
 msgid "IA Disponibles"
-msgstr ""
+msgstr "উপলব্ধ"
 
 #: index.html
 msgid "Rechercher un compte ou une IA (Ctrl+K)"
-msgstr ""
+msgstr "একটি অ্যাকাউন্ট অনুসন্ধান করুন অথবা একটি AI (Ctrl+K)"
 
 #: index.html
 msgid "Comptes enregistrés"
-msgstr ""
+msgstr "সংরক্ষিত অ্যাকাউন্টগুলি সংরক্ষণ করা হবে"
 
 #: index.html
 msgid "Tout replier / Tout déplier"
-msgstr ""
+msgstr "সমস্ত থ্রেড সংকুচিত করা হবে"
 
 #: index.html
 msgid "Exporter les comptes (JSON)"
-msgstr ""
+msgstr "অ্যাকাউন্ট এক্সপোর্ট করুন (JONON)"
 
 #: index.html
 msgid "Importer des comptes (JSON)"
-msgstr ""
+msgstr "অ্যাকাউন্ট ইম্পোর্ট করুন (JON)"
 
 #: index.html
 msgid "Ajouter un compte"
-msgstr ""
+msgstr "একটি অ্যাকাউন্ট যোগ করুন"
 
 #: index.html
 msgid "Mode debug actif : traces détaillées dans le journal iao.log"
-msgstr ""
+msgstr ".io-র মধ্যে বিস্তারিত চিহ্ন অনুসন্ধানের মোড:"
 
 #: index.html
 msgid "Masquer les comptes"
-msgstr ""
+msgstr "অ্যাকাউন্ট আড়াল করা হবে"
 
 #: index.html
 msgid "Afficher les comptes"
-msgstr ""
+msgstr "অ্যাকাউন্ট প্রদর্শন করা হবে"
 
 #: index.html
 msgid "Explorateur"
-msgstr ""
+msgstr "এক্সপ্লোরার"
 
 #: index.html
 msgid "Éditeur"
-msgstr ""
+msgstr "সম্পাদক"
 
 #: index.html
 msgid "Outils de développement (Ctrl+Maj+I)"
-msgstr ""
+msgstr "ডেভেলপার টুলসমূহ (Ctrl+Shift+I)"
 
 #: index.html
 msgid "Redémarrer en mode debug (journal détaillé)"
@@ -76,1024 +78,1041 @@ msgstr ""
 
 #: index.html
 msgid "Choisir mes 9 IA à portée de main"
-msgstr ""
+msgstr "আমার ৯-থেকে- AI বেছে নিন"
 
 #: index.html
 msgid "Comprendre les IA disponibles"
-msgstr ""
+msgstr "উপলব্ধ AIগুলি বুঝতে ব্যর্থ"
 
 #: index.html
 msgid "Ordonnanceur IA"
-msgstr ""
+msgstr "AI সিডিউলার"
 
 #: index.html
 msgid "Réglages"
-msgstr ""
+msgstr "বৈশিষ্ট্য"
 
 #: index.html
 msgid "Fichiers"
-msgstr ""
+msgstr "ফাইল"
 
 #: index.html
 msgid "Ouvrir un dossier"
-msgstr ""
+msgstr "ফোল্ডার খুলুন"
 
 #: index.html
 msgid "Réduire"
-msgstr ""
+msgstr "সংকুচিত"
 
 #: index.html
 msgid "Rechercher un fichier..."
-msgstr ""
+msgstr "ফাইল অনুসন্ধান..."
 
 #: index.html
 msgid "Glisser pour redimensionner"
-msgstr ""
+msgstr "মাপ পরিবর্তন করুন"
 
 #: index.html
 msgid "Aucun fichier"
-msgstr ""
+msgstr "কোনো ফাইল নেই"
 
 #: index.html
 msgid "Glisser pour redimensionner l'éditeur"
-msgstr ""
+msgstr "সম্পাদকে পরিবর্তন করুন"
 
 #: index.html
 msgid "Aucun onglet ouvert — choisissez un service dans la liste des comptes"
-msgstr ""
+msgstr "কোনো ট্যাব খোলা হয়নি - অ্যাকাউন্টের মধ্যে একটি সার্ভিস নির্বাচন করা হবে"
 
 #: index.html
 msgid "Le profil permet d'isoler les cookies dans Electron."
-msgstr ""
+msgstr "প্রোফাইলটা ইলেকট্রিসিটিতে বিচ্ছিন্ন থাকে।"
 
 #: index.html
 msgid "Nom du compte"
-msgstr ""
+msgstr "অ্যাকাউন্ট অনুসন্ধান"
 
 #: index.html
 msgid "Nom du Profil"
-msgstr ""
+msgstr "প্রোফাইলের নাম"
 
 #: index.html
 msgid "Annuler"
-msgstr ""
+msgstr "বাতিল"
 
 #: index.html
 msgid "Enregistrer"
-msgstr ""
+msgstr "সংরক্ষণ"
 
 #: index.html
 msgid "Supprimer le compte"
-msgstr ""
+msgstr "অ্যাকাউন্ট মুছে ফেলুন"
 
 #: index.html
 msgid "Cette action est irréversible."
-msgstr ""
+msgstr "এই কাজ নাকচ করা যাবে না।"
 
 #: index.html
 msgid "Supprimer"
-msgstr ""
+msgstr "মুছে ফেলুন"
 
 #: index.html
 msgid "Importer des comptes"
-msgstr ""
+msgstr "অ্যাকাউন্ট ইম্পোর্ট করুন"
 
 #: index.html
 msgid "Remplacer et importer"
-msgstr ""
+msgstr "প্রতিস্থাপন এবং ইম্পোর্ট করুন"
 
 #: index.html
 msgid "Déconnecter le profil"
-msgstr ""
+msgstr "প্রোফাইল স্বাক্ষর করুন"
 
 #: index.html
 msgid "Déconnecter"
-msgstr ""
+msgstr "সাইন আউট করুন"
 
 #: index.html
 msgid "À quoi sert chaque service, et quand l'utiliser."
-msgstr ""
+msgstr "প্রত্যেক সেবাই কি জন্য, এবং যখন তা ব্যবহার করা হয়।"
 
 #: index.html
 msgid "Fermer"
-msgstr ""
+msgstr "বন্ধ"
 
 #: index.html
 msgid "Sélectionnez les 9 services affichés dans l'interface. Les autres restent disponibles dans l'aide."
-msgstr ""
+msgstr "ইন্টারফেসের মধ্যে ৯টি পরিষেবা নির্বাচন করুন । ( গীত."
 
 #: index.html
 msgid "Détection des ZIP livrés par les onglets IA, reprise par profil."
-msgstr ""
+msgstr "স্বয়ংক্রিয়রূপে সংরক্ষণ করে AI ট্যাবের ফাইল সনাক্ত করা হয়।"
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: index.html
 msgid "Arrêté"
-msgstr ""
+msgstr "বন্ধ"
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: index.html
 msgid "Démarrer ou arrêter l'ordonnanceur (il ne démarre jamais tout seul)"
-msgstr ""
+msgstr "শিডিউলার চালু বা বন্ধ করুন (এটি কখনো নিজে থেকে চালু হয় না)"
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: index.html
 msgid "Démarrer"
-msgstr ""
+msgstr "চালু করুন"
 
 #: index.html
 msgid "Jobs actifs"
-msgstr ""
+msgstr "সক্রিয় কাজ"
 
 #: index.html
 msgid "En attente"
-msgstr ""
+msgstr "অসমাপ্ত"
 
 #: index.html
 msgid "Livrés aujourd'hui"
-msgstr ""
+msgstr "প্রেরিত হয়েছে"
 
 #: index.html
 msgid "Jobs simultanés max."
-msgstr ""
+msgstr "সর্বাধিক কর্ম"
 
 #: index.html
 msgid "Délai min. entre automatisations (min)"
-msgstr ""
+msgstr "প্রতিবার গড়িয়ে দেওয়ার মাঝে বিরতি (সেকেন্ডে)"
 
 #: index.html
 msgid "Seuil profil « le plus ancien » (h)"
-msgstr ""
+msgstr "পূর্ববর্তী স্থান"
 
 #: index.html
 msgid "Dossiers"
-msgstr ""
+msgstr "ফোল্ডার"
 
 #: index.html
 msgid "Téléchargements…"
-msgstr ""
+msgstr "ডাউনলোড করা হয়েছে..."
 
 #: index.html
 msgid "Livraison…"
-msgstr ""
+msgstr "বিতরণ..."
 
 #: index.html
 msgid "Téléchargements :"
-msgstr ""
+msgstr "ডাউনলোড:"
 
 #: index.html
 msgid "(dossier de téléchargements du système)"
-msgstr ""
+msgstr "(সিস্টেম ডাউনলোড করা ফোল্ডার)"
 
 #: index.html
 msgid "Livraison :"
-msgstr ""
+msgstr "বিতরণ:"
 
 #: index.html
 msgid "(non défini)"
-msgstr ""
+msgstr "(মান নির্ধারিত হয়নি)"
 
 #: index.html
 msgid "Projets & tâches"
-msgstr ""
+msgstr "প্রজেক্ট ও কর্ম"
 
 #: index.html
 msgid "Jobs"
-msgstr ""
+msgstr "কাজ"
 
 #: index.html
 msgid "Journal d'activité"
-msgstr ""
+msgstr "কর্ম"
 
 #: index.html
 msgid "Confirmation"
-msgstr ""
+msgstr "নিশ্চিতি"
 
 #: index.html
 msgid "Confirmer"
-msgstr ""
+msgstr "নিশ্চায়ণ:"
 
 #: index.html
 msgid "Préférences de l'application, sauvegardées localement."
-msgstr ""
+msgstr "অ্যাপ্লিকেশন সংক্রান্ত পছন্দসই মান, স্থানীয়ভাবে সংরক্ষণ করা হয়েছে।"
 
 #: index.html
 msgid "Taille de police de l'éditeur (px)"
-msgstr ""
+msgstr "হরফের মাপ বৃদ্ধি করা হবে (যেমন: %s)"
 
 #: index.html
 msgid "Thème"
-msgstr ""
+msgstr "থিম"
 
 #: index.html
 msgid "Thème du bureau (défaut)"
-msgstr ""
+msgstr "ডেস্কটপ থিম (ডিফল্ট)"
 
 #: index.html
 msgid "Clair"
-msgstr ""
+msgstr "সাদা"
 
 #: index.html
 msgid "Sombre"
-msgstr ""
+msgstr "কালো"
 
 #: index.html
 msgid "Langue"
-msgstr ""
+msgstr "ভাষা"
 
 #: index.html
 msgid "Langue du système (défaut)"
-msgstr ""
+msgstr "সিস্টেমের ভাষা (ডিফল্ট)"
 
 #: index.html
 msgid "Appliquée au prochain démarrage"
-msgstr ""
+msgstr "পরবর্তী আরম্ভে উপনীত"
 
 #: index.html
 msgid "Retour à la ligne (éditeur)"
-msgstr ""
+msgstr "শব্দ ঘুরিয়ে ( ব্যবস্থাপক)"
 
 #: index.html
 msgid "Désactivé"
-msgstr ""
+msgstr "বন্ধ"
 
 #: index.html
 msgid "Activé"
-msgstr ""
+msgstr "চালু করুন"
 
 #: index.html
 msgid "Colonne fixe"
-msgstr ""
+msgstr "কলামের পূর্বনির্দিষ্ট প্রস্থ"
 
 #: index.html
 msgid "Confirmer avant de fermer un onglet"
-msgstr ""
+msgstr "ট্যাব বন্ধ করার পূর্বে নিশ্চিত করা হবে"
 
 #: index.html
 msgid "Afficher les fenêtres d'automatisation"
-msgstr ""
+msgstr "উইন্ডো আড়াল করা হবে"
 
 #: index.html
 msgid "Restaurer les onglets ouverts au démarrage"
-msgstr ""
+msgstr "প্রারম্ভে খোলার সময় ট্যাব খোলা হবে"
 
 #: assets/app.js
 msgid "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."
-msgstr ""
+msgstr "এনথ্রোপিক এর কথোপকথন সহকারী. লেখাতে এর চেয়ে ভালো, দীর্ঘ নথি, প্রোগ্রামিং আর বহুমুখী যুক্তি।"
 
 #: assets/app.js
 msgid "Plutôt pour du code, des textes longs et soignés, ou des questions complexes qui demandent de la rigueur."
-msgstr ""
+msgstr "কোডের জন্য সেরা, লম্বা এবং উজ্জ্বল টেক্সট, অথবা জটিল প্রশ্ন, যেগুলোকে আমরা Vory এর জন্য আহ্বান জানাই।"
 
 #: assets/app.js
 msgid "L'assistant généraliste d'OpenAI, le plus connu du grand public. Il discute, rédige, résume, génère des images, analyse des fichiers et peut chercher sur le web."
-msgstr ""
+msgstr "ওপেনআইপিওর সাধারণ সহকারী, সাধারণ মানুষের কাছে সবচেয়ে পরিচিত। এটি আড্ডা, ব্লগ, সারসংক্ষেপ, ছবি, বিশ্লেষণ এবং ওয়েব অনুসন্ধান করতে পারে।"
 
 #: assets/app.js
 msgid "Le couteau suisse du quotidien : brainstorming, questions générales, petites tâches variées."
-msgstr ""
+msgstr "প্রতিদিন সুইস আর্মি ছুরি: মস্তিষ্ক ঝড় তুলেছে, সাধারণ প্রশ্ন, যা ছোট ছোট ছোট কাজ।"
 
 #: assets/app.js
 msgid "L'assistant IA de Google. Multimodal (texte, images, audio, vidéo), il s'appuie sur la recherche Google et s'intègre aux outils Google (Docs, Gmail, Drive…)."
-msgstr ""
+msgstr "গুগল AI সহকারী। মাল্টিমুড্যাল (যেমন, ছবি, অডিও, ভিডিও, ভিডিও) এটি গুগল সার্চ এবং গুগল টুলস (Doc, জিমেইল, ড্রাইভ) এর সাথে মিলে কাজ করে।"
 
 #: assets/app.js
 msgid "Plutôt pour analyser des images ou vidéos, ou si vous travaillez déjà dans l'écosystème Google."
-msgstr ""
+msgstr "ভিডিও বা ভিডিওর জন্য ভালো, অথবা গুগল বাস্তুসংস্থানে কাজ করলে।"
 
 #: assets/app.js
 msgid "Le chat de Z.ai, propulsé par les modèles GLM. Gratuit pour l'essentiel, avec un mode agent capable de chercher sur le web et de produire des fichiers (docx, pdf, xlsx)."
-msgstr ""
+msgstr "জি. বেশিরভাগ মুক্ত, একটি এজেন্ট মোড, যা ওয়েব অনুসন্ধান এবং ফাইল তৈরি করতে পারে (এলএক্স, xx, xx)।"
 
 #: assets/app.js
 msgid "Une alternative gratuite solide pour le chat et le code, quand les quotas des autres sont épuisés."
-msgstr ""
+msgstr "অন্যান্য পরিষেবার কোটায় ব্যবহৃত আলাপন ও কোডের জন্য একটি কঠিন বিকল্প।"
 
 #: assets/app.js
 msgid "Un « moteur de réponse » : il cherche sur le web en direct, synthétise plusieurs sources et cite ses références pour chaque affirmation."
-msgstr ""
+msgstr "একটি \"এনয়ার ইঞ্জিন\": এটি ওয়েব সরাসরি অনুসন্ধান করে, বেশ কিছু উৎস অনুসন্ধান করে এবং প্রতিটি দাবীর উল্লেখ করে এর উল্লেখ করা হয়েছে।"
 
 #: assets/app.js
 msgid "Plutôt pour la recherche d'informations à jour, la veille et la vérification de faits avec sources."
-msgstr ""
+msgstr "সূত্র থেকে পাওয়া তথ্য, বিষয়বস্তু এবং তথ্য পর্যবেক্ষণ এবং বিশ্লেষণের জন্য সেরা।"
 
 #: assets/app.js
 msgid "L'assistant de xAI (Elon Musk), connecté au réseau X (ex-Twitter). Ton direct, accès au temps réel de X, génération d'images incluse."
-msgstr ""
+msgstr "এক্সআই এর সহকারী (এলঅন মুস্ক) এক্স নেটওয়ার্কের সাথে যুক্ত। সরাসরি স্বর, বাস্তব সময়ের এক্স-এ প্রবেশাধিকার, ছবি প্রজন্মের মধ্যে অর্ন্তভুক্ত।"
 
 #: assets/app.js
 msgid "Plutôt pour suivre l'actualité chaude et les tendances via X, ou pour un ton moins formel."
-msgstr ""
+msgstr "X এর মাধ্যমে তাজা সংবাদ আর ধারার জন্য সেরা, অথবা কম আনুষ্ঠানিক স্বরের জন্য।"
 
 #: assets/app.js
 msgid "Une plateforme de génération d'images orientée création : illustrations, concept art, assets de jeu vidéo, avec des contrôles fins (styles, modèles, retouche)."
-msgstr ""
+msgstr "সৃজনশীল একটি ছবি-প্রজেক্ট প্লাটফর্ম: দৃষ্টান্ত, ধারণা, চিত্রায়ন, ভিডিও গেমের সম্পদ, চমৎকার নিয়ন্ত্রণ (মানচিত্র, মডেল)।"
 
 #: assets/app.js
 msgid "Plutôt pour produire des visuels et illustrations de qualité avec un contrôle précis du style."
-msgstr ""
+msgstr "( বাঁকা অক্ষরে মুদ্রণ আমাদের ।)"
 
 #: assets/app.js
 msgid "Un générateur de musique : il compose des chansons complètes (instruments, voix, paroles) à partir d'une simple description texte, dans à peu près tous les genres."
-msgstr ""
+msgstr "একটা মিউজিক জেনারেটর: এটা সম্পূর্ণ গান (অন্তর্চি, আওয়াজ, গানের কথা), যা প্রায় যেকোনো শব্দ থেকে পাওয়া যায় ।"
 
 #: assets/app.js
 msgid "Plutôt pour créer une musique, un jingle ou une chanson à partir d'un texte ou d'une idée."
-msgstr ""
+msgstr "গান, গান, গান, গান অথবা একটা আইডিয়ার মাধ্যমে।"
 
 #: assets/app.js
 msgid "Un générateur de modèles 3D : il transforme un texte ou une image en objet 3D texturé, avec rigging/animation automatique et export vers les formats standards (GLB, FBX, STL…)."
-msgstr ""
+msgstr "একটি ত্রিমাত্রিক মডেল জেনারেটর: এটি একটি লেখা বা চিত্র ত্রিমাত্রিক ত্রিমাত্রিক অবজেক্টে পরিণত হয়, সাথে স্বয়ংক্রিয় দড়ি এবং স্ট্যান্ডার্ড বিন্যাসে রপ্তানি করে."
 
 #: assets/app.js
 msgid "Plutôt pour créer des assets 3D (jeux, impression 3D, animation) sans savoir modéliser."
-msgstr ""
+msgstr "৩-ডি সম্পদ তৈরীর জন্য সর্বোত্তম ( অক্টোবর, ত্রিমাত্রিক মুদ্রণ, অ্যানিমেশন, মডেলবিহীন)।"
 
 #: assets/app.js
 msgid "Le Chat de Mistral AI, éditeur européen (français). Modèles open-weights performants, chat, code et analyse de documents."
-msgstr ""
+msgstr "লে বেগমল AI, ইউরোপীয় (ফ্রেঞ্চ) বিক্রেতা। শক্তিশালী ওপেন সোর্স মডেল, চ্যাট, কোড এবং নথি বিশ্লেষণ।"
 
 #: assets/app.js
 msgid "Alternative européenne solide pour le chat et le code, avec une bonne maîtrise du français."
-msgstr ""
+msgstr "চ্যাট এবং কোডের জন্য একটি কঠিন ইউরোপীয় বিকল্প, যেখানে ফরাসীদের ভালো কমান্ড রয়েছে।"
 
 #: assets/app.js
 msgid "DeepSeek : assistant IA chinois spécialisé en raisonnement et programmation, particulièrement performant en Python."
-msgstr ""
+msgstr "ডিপশন: একটি চীনা AI সহকারী বিশেষজ্ঞ যুক্তি এবং প্রোগ্রামিংতে, বিশেষ করে পাইথনে শক্তিশালী।"
 
 #: assets/app.js
 msgid "Pour du code Python, du raisonnement étape par étape, ou une alternative gratuite à ChatGPT."
-msgstr ""
+msgstr "পাইথন কোডের জন্য, পা-বি-প্রজেক্ট যুক্তি বা চ্যাটিপির জন্য একটি মুক্ত বিকল্প।"
 
 #: assets/app.js
 msgid "GitHub Copilot : assistant IA intégré dans VS Code et GitHub. Autocomplétion, chat, génération de tests, explication de code."
-msgstr ""
+msgstr "গিটহাব কো পাইলট: ভিএস কোড এবং জিওহাবে একটি AI সহকারী। স্বয়ংক্রিয়ভাবে, চ্যাট, প্রজন্মের জন্য, কোড ব্যাখ্যা।"
 
 #: assets/app.js
 msgid "Pour programmer plus vite dans VS Code ou sur GitHub, avec un modèle IA qui connaît votre codebase."
-msgstr ""
+msgstr "ভিএস কোড বা জিওহাবে আরো দ্রুত প্রোগ্রাম করতে হবে। একটি AI মডেল যা আপনার কোডবে জানে।"
 
 #: assets/app.js
 msgid "Elicit : assistant de recherche scientifique. Trouve des articles, extrait des données, synthétise des études."
-msgstr ""
+msgstr "Elinit: একটি বৈজ্ঞানিক গবেষণা সহকারী। কাগজপত্র, তথ্য সংগ্রহ, গবেষণা।"
 
 #: assets/app.js
 msgid "Pour la recherche académique, la revue de littérature et l'extraction de données d'articles scientifiques."
-msgstr ""
+msgstr "শিক্ষা বিষয়ক গবেষণা, সাহিত্য বিশ্লেষণ এবং বৈজ্ঞানিক পত্রিকা থেকে তথ্য সংগ্রহ করে।"
 
 #: assets/app.js
 msgid "NotebookLM de Google : interagissez avec vos propres documents (PDF, texte, audio). Résumés, questions, génération de notes."
-msgstr ""
+msgstr "গুগলের নোটবই: আপনার নিজস্ব নথি, টেক্সট, অডিওর সাথে যোগাযোগ করুন। প্রশ্ন, প্রশ্ন, নোট প্রজন্ম।"
 
 #: assets/app.js
 msgid "Pour interroger vos documents personnels ou professionnels avec une IA qui cite ses sources."
-msgstr ""
+msgstr "আপনার ব্যক্তিগত অথবা কাজের নথির তথ্য অনুসন্ধান করুন।"
 
 #: assets/app.js
 msgid "Wolfram Alpha : moteur de calcul symbolique. Mathématiques, physique, chimie, données factuelles, conversions."
-msgstr ""
+msgstr "উল্রাম আলফা: একটি প্রতীকী গণক ইঞ্জিন. ফিজিক্স, ফিজিক্স, রসায়নবিজ্ঞান, বাস্তব তথ্য, রূপান্তর."
 
 #: assets/app.js
 msgid "Pour des calculs exacts (mathématiques symboliques), des données chiffrées ou des conversions d'unités."
-msgstr ""
+msgstr "সঠিক গণনা করার জন্য (দশ সংখ্যা, সংখ্যা বা একক রূপান্তর) ।"
 
 #: assets/app.js
 msgid "DeepL : traduction automatique de haute qualité, plus naturelle que Google Traduction. Texte et documents entiers."
-msgstr ""
+msgstr "ডিপ্লড: উচ্চ মানের মেশিন অনুবাদ, গুগল অনুবাদ থেকে স্বাভাবিক। টেক্সট এবং সমস্ত নথি।"
 
 #: assets/app.js
 msgid "Pour traduire du texte ou des documents avec un rendu naturel et cohérent."
-msgstr ""
+msgstr "বিভিন্ন ভাষায় অনুবাদ বা কাগজপত্র অনুবাদ করার মাধ্যমে ।"
 
 #: assets/app.js
 msgid "Ideogram : génération d'images orientée design. Logos, typographies, affiches, avec un excellent rendu du texte."
-msgstr ""
+msgstr "ক্রমবিবর্তন: ডিজাইন করা ছবি প্রজন্ম। বিভিন্ন প্রতীক, ট্যাপোগ্রাফি, পোস্টার, চমৎকার লেখা।"
 
 #: assets/app.js
 msgid "Pour créer des visuels avec du texte lisible (logos, affiches, bannières) ou du design graphique."
-msgstr ""
+msgstr "শিরোনামের সাহায্যে দৃশ্যমান লেখা (লগ, পোস্টার, ব্যানার অথবা গ্রাফিক ডিজাইন)।"
 
 #: assets/app.js
 msgid "Kling : générateur de vidéos courtes à partir de texte ou d'images. Animations réalistes, crédits gratuits disponibles."
-msgstr ""
+msgstr "Kinging: টেক্সট অথবা ছবি থেকে ছোট ভিডিও উৎপাদক। বাস্তব অ্যানিমেশন, বিনামূল্যে উপলব্ধ।"
 
 #: assets/app.js
 msgid "Pour créer des clips vidéo animés à partir d'une description ou d'une image fixe."
-msgstr ""
+msgstr "একটি বর্ণনা অথবা চিত্র থেকে অ্যানিমেটেড ভিডিও ক্লিপ তৈরি করতে পারেন।"
 
 #: assets/app.js
 msgid "Runway : suite d'outils IA pour la vidéo. Génération, édition, effets spéciaux, inpainting vidéo."
-msgstr ""
+msgstr "রানওয়ে: AI ভিডিও টুলের একটি স্যুইট। প্রজন্ম, সম্পাদনা, বিশেষ প্রভাব, ভিডিও টবে।"
 
 #: assets/app.js
 msgid "Pour le montage et la création vidéo avancée avec des outils IA intégrés."
-msgstr ""
+msgstr "উন্নত ভিডিও সম্পাদনা এবং তৈরি করার জন্য নির্মাণ করুন।"
 
 #: assets/app.js
 msgid "Pika : générateur de vidéos courtes et créatives. Animation d'images, effets, transformation de styles."
-msgstr ""
+msgstr "পিকাঃ সংক্ষিপ্ত, সৃজনশীল ভিডিওর একটি জেনারেটর। ছবি অ্যানিমেশন, ইফেক্ট, স্টাইল রূপান্তর।"
 
 #: assets/app.js
 msgid "Pour animer des images ou créer des vidéos courtes originales avec des effets IA."
-msgstr ""
+msgstr "AI ইফেক্ট থেকে ছবি অথবা সংক্ষিপ্ত ভিডিও তৈরি করার জন্য।"
 
 #: assets/app.js
 msgid "Qwen : assistant IA d'Alibaba. Multimodal (texte, images, code), open-source, disponible en plusieurs tailles."
-msgstr ""
+msgstr "কিউয়েন: আলিবাবার AI সহকারী। মাল্টিমুডাল (টেক্সট, ছবি, কোড, ওপেন সোর্স, কয়েকটি মাপ অনুসারে)।"
 
 #: assets/app.js
 msgid "Alternative gratuite pour le chat, le code et l'analyse d'images, avec un bon support multilingue."
-msgstr ""
+msgstr "চ্যাট, কোড এবং ছবি বিশ্লেষণের জন্য একটি মুক্ত বিকল্প।"
 
 #: assets/app.js
 msgid "Impossible d'enregistrer les comptes (stockage plein ?)"
-msgstr ""
+msgstr "অ্যাকাউন্টের তথ্য সংরক্ষণ করতে ব্যর্থ (??)"
 
 #: assets/app.js
 msgid "Ctrl+S pour sauvegarder."
-msgstr ""
+msgstr "সংরক্ষণ করার জন্য Ctrl+S চাপুন ।"
 
 #: assets/app.js
 msgid "Sélectionnez un fichier pour l'éditer ici."
-msgstr ""
+msgstr "এখানে একটি ফাইল বেছে নিন"
 
 #: assets/app.js
 msgid "Éditeur simplifié (Monaco indisponible) — Ctrl+S pour sauvegarder"
-msgstr ""
+msgstr "সরল সম্পাদক (প্রস্তাবিত নয়) - সংরক্ষণ করার জন্য Ctrl+S চাপুন"
 
 #: assets/app.js
 msgid "Fichier enregistré !"
-msgstr ""
+msgstr "ফাইল সংরক্ষণ করুন"
 
 #: assets/app.js
 msgid "Erreur d'enregistrement."
-msgstr ""
+msgstr "সংরক্ষণ করতে সমস্যা ।"
 
 #: assets/app.js
 msgid "Aucun compte pour l'instant."
-msgstr ""
+msgstr "কোনো অ্যাকাউন্ট বর্তমানে উপস্থিত নেই।"
 
 #: assets/app.js
 msgid "Créer mon premier compte"
-msgstr ""
+msgstr "আমার প্রথম অ্যাকাউন্ট"
 
 #: assets/app.js
 msgid "Cliquer pour copier l'e-mail"
-msgstr ""
+msgstr "ই-মেইল ঠিকানা কপি করতে ক্লিক করুন"
 
 #: assets/app.js
 msgid "Modifier le compte"
-msgstr ""
+msgstr "অ্যাকউন্ট সংক্রান্ত তথ্য সম্পাদনা করুন"
 
 #: assets/app.js
 msgid "{available} service(s) hors cooldown sur {total}"
-msgstr ""
+msgstr "{total} পরিসেবা থেকে {available}(s)"
 
 #: assets/app.js
 msgid "Replier / déplier"
-msgstr ""
+msgstr "প্রসারণ"
 
 #: assets/app.js
 msgid "{service} — {account} déjà ouvert"
-msgstr ""
+msgstr "{service} - {account} ইতিমধ্যেই খোলা"
 
 #: assets/app.js
 msgid "Recharger l'onglet"
-msgstr ""
+msgstr "ট্যাব পুনরায় লোড করুন"
 
 #: assets/app.js
 msgid "Revenir à l'accueil de {service}"
-msgstr ""
+msgstr "{service}-এ প্রত্যাবর্তন করুন"
 
+# Traduit à la main (le marqueur était perdu par la traduction automatique) ;
+# relecture humaine attendue.
 #: assets/app.js
 msgid "Se déconnecter du profil « {profile} »"
-msgstr ""
+msgstr "\"{profile}\" প্রোফাইল থেকে সাইন আউট করুন"
 
+# Traduit à la main (le marqueur était perdu par la traduction automatique) ;
+# relecture humaine attendue.
 #: assets/app.js
 msgid "{service} ouvert avec {account}"
-msgstr ""
+msgstr "{account} দিয়ে {service} খোলা হয়েছে"
 
 #: assets/app.js
 msgid "Fermer l'onglet"
-msgstr ""
+msgstr "ট্যাব বন্ধ করুন"
 
+# Traduit à la main (le marqueur était perdu par la traduction automatique) ;
+# relecture humaine attendue.
 #: assets/app.js
 msgid "Fermer l'onglet « {tab} » ? La session web sera libérée."
-msgstr ""
+msgstr "\"{tab}\" ট্যাবটি বন্ধ করবেন? ওয়েব সেশনটি মুক্ত করা হবে।"
 
 #: assets/app.js
 msgid "Onglet fermé (mémoire libérée)"
-msgstr ""
+msgstr "ট্যাব বন্ধ করা হয়েছে (লগ-অফ করেছেন)"
 
 #: assets/app.js
 msgid "Retirer l'étoile"
-msgstr ""
+msgstr "তারা অপসারণ করো"
 
 #: assets/app.js
 msgid "Étoiler cet onglet"
-msgstr ""
+msgstr "এই ট্যাব বন্ধ করো"
 
 #: assets/app.js
 msgid "Onglet étoilé"
-msgstr ""
+msgstr "ট্যাবের দৈর্ঘ্য"
 
 #: assets/app.js
 msgid "Étoile retirée"
-msgstr ""
+msgstr "তারা অপসারণ করা হয়েছেName"
 
 #: assets/app.js
 msgid "Échec de la déconnexion du profil"
-msgstr ""
+msgstr "প্রোফাইল থেকে প্রাপ্ত করতে ব্যর্থ"
 
 #: assets/app.js
 msgid "Profil « {profile} » déconnecté — session effacée"
-msgstr ""
+msgstr "প্রোফাইল {profile} স্বাক্ষর করা হয়েছে - সেশন ফাঁকা"
 
 #: assets/app.js
 msgid "Aucun fichier trouvé."
-msgstr ""
+msgstr "একটিও ফাইল পাওয়া যায়নি।"
 
 #: assets/app.js
 msgid "Fichier trop volumineux pour l'éditeur : {size} Mo (limite : 20 Mo)."
-msgstr ""
+msgstr "সম্পাদকের জন্য অত্যাধিক বড়: {size} MB (বিশেষ/ 20 MB)।"
 
 #: assets/app.js
 msgid "C'est quoi ?"
-msgstr ""
+msgstr "এটা কি?"
 
 #: assets/app.js
 msgid "Quand l'utiliser ?"
-msgstr ""
+msgstr "কখন এটি ব্যবহার করবেন?"
 
 #: assets/app.js
 msgid "Description à venir."
-msgstr ""
+msgstr "শীঘ্রই বিবরণ আসছে।"
 
 #: assets/app.js
 msgid "Maximum {max} services à portée de main"
-msgstr ""
+msgstr "হাতে {max} সার্ভিস"
 
 #: assets/app.js
 msgid "Sélectionnez au moins 1 service"
-msgstr ""
+msgstr "অন্তত ১ পরিসেবা নির্বাচন করুন"
 
+# Traduit à la main (le marqueur était perdu par la traduction automatique) ;
+# relecture humaine attendue.
 #: assets/app.js
 msgid "Services mis à jour ({count}/{max})"
-msgstr ""
+msgstr "পরিষেবা হালনাগাদ হয়েছে ({count}/{max})"
 
 #: assets/app.js
 msgid "Supprimer « {name} » ({email}) ? La session restera stockée sur le disque, mais le compte disparaîtra de la liste."
-msgstr ""
+msgstr "\"{name}\" মুছে ফেলুন ({email})? এই সেশানটি ডিস্কের মধ্যে সংরক্ষিত থাকবে, কিন্তু অ্যাকাউন্টের তথ্য মুছে ফেলা হবে।"
 
 #: assets/app.js
 msgid "Échec de l'export (écriture impossible)"
-msgstr ""
+msgstr "পরিচয় প্রমাণ প্রক্রিয়া ব্যর্থ"
 
 #: assets/app.js
 msgid "{count} compte(s) exporté(s)"
-msgstr ""
+msgstr "{count} অ্যাকাউন্ট এক্সপোর্ট করা হয়েছে"
 
 #: assets/app.js
 msgid "Export impossible"
-msgstr ""
+msgstr "কি এক্সপোর্ট করতে ব্যর্থ"
 
 #: assets/app.js
 msgid "Échec de la lecture du fichier"
-msgstr ""
+msgstr "ফাইল পড়তে ব্যর্থ"
 
 #: assets/app.js
 msgid "Fichier JSON invalide"
-msgstr ""
+msgstr "অবৈধ JSON ফাইল"
 
 #: assets/app.js
 msgid "Format invalide : un tableau de comptes est attendu."
-msgstr ""
+msgstr "অবৈধ বিন্যাস: অ্যাকাউন্টের অ্যারে প্রত্যাশিত ছিল।"
 
 #: assets/app.js
 msgid "Le fichier contient {count} compte(s). L'import REMPLACE entièrement la liste actuelle ({current} compte(s)) — cette action écrase les comptes existants, pas leurs sessions (cookies) déjà enregistrées sur le disque. Continuer ?"
-msgstr ""
+msgstr "ফাইলটিতে {count}(গুলো) অ্যাকাউন্ট রয়েছে । COPCLE তালিকা ইম্পোর্ট করা হবে ({current} অ্যাকাউন্ট) - বর্তমান অ্যাকাউন্টের নতুন করে লেখা হয়নি, তাদের সেশন ইতিমধ্যে সংরক্ষণ করা হয়নি । চালিয়ে যাওয়া হবে কি?"
 
 #: assets/app.js
 msgid "Import impossible"
-msgstr ""
+msgstr "ইম্পোর্ট করতে ব্যর্থ"
 
 #: assets/app.js
 msgid "{count} compte(s) importé(s)"
-msgstr ""
+msgstr "{count} অ্যাকাউন্ট ইম্পোর্ট করা হয়েছে"
 
 #: assets/app.js
 msgid "Échec de l'import : {error}"
-msgstr ""
+msgstr "{error} ব্যর্থ:"
 
 #: assets/app.js
 msgid "Compte supprimé"
-msgstr ""
+msgstr "অ্যাকাউন্ট মুছে ফেলা হয়েছে"
 
 #: assets/app.js
 msgid "Remplissez tous les champs"
-msgstr ""
+msgstr "সকল ক্ষেত্রে মান পূরণ করুন"
 
 #: assets/app.js
 msgid "Ce profil est déjà utilisé par un autre compte (les sessions seraient partagées)."
-msgstr ""
+msgstr "এই প্রোফাইলটি ইতিমধ্যেই একটি ভিন্ন অ্যাকাউন্ট দ্বারা ব্যবহৃত হয়েছে (session-র মাধ্যমে শেয়ার করা হয়েছে)।"
 
 #: assets/app.js
 msgid "Compte mis à jour"
-msgstr ""
+msgstr "অ্যাকাউন্ট আপডেট করা হয়েছে"
 
 #: assets/app.js
 msgid "Compte ajouté"
-msgstr ""
+msgstr "অ্যাকাউন্ট যোগ করা হয়েছে"
 
 #: assets/app.js
 msgid "Copie impossible dans le presse-papiers"
-msgstr ""
+msgstr "ক্লিপ-বোর্ডে কপি করতে ব্যর্থ"
 
 #: assets/app.js
 msgid "E-mail copié : {email}"
-msgstr ""
+msgstr "ই-মেইল কপি: {email}"
 
 #: assets/app.js
 msgid "Cooldown terminé"
-msgstr ""
+msgstr "দুর্দান্ত"
 
 #: assets/app.js
 msgid "{account} — {service} est de nouveau disponible."
-msgstr ""
+msgstr "{account} - {service} আবার পাওয়া যাচ্ছে ।"
 
 #: assets/app.js
 msgid "{account} — {service} : cooldown terminé"
-msgstr ""
+msgstr "{account} - {service}: ওভার"
 
 #: assets/app.js
 msgid "Téléchargement…"
-msgstr ""
+msgstr "ডাউনলোড করা হচ্ছে..."
 
 #: assets/app.js
 msgid "Téléchargé — à traiter"
-msgstr ""
+msgstr "ডাউনলোড করা হয়েছে - প্রক্রিয়া সম্পন্ন করা হবে"
 
 #: assets/app.js
 msgid "Aucun profil disponible"
-msgstr ""
+msgstr "কোনো প্রোফাইল উপলব্ধ নেই"
 
 #: assets/app.js
 msgid "Projet en cours d'analyse"
-msgstr ""
+msgstr "প্রজেক্ট বিশ্লেষণ করা হচ্ছে"
 
 #: assets/app.js
 msgid "En cours"
-msgstr ""
+msgstr "চলমান"
 
 #: assets/app.js
 msgid "En pause"
-msgstr ""
+msgstr "সাময়িক বিরতি চলছে"
 
 #: assets/app.js
 msgid "Reprise programmée"
-msgstr ""
+msgstr "আরম্ভ করা হবে"
 
 #: assets/app.js
 msgid "Erreur"
-msgstr ""
+msgstr "ত্রুটি"
 
 #: assets/app.js
 msgid "Livré"
-msgstr ""
+msgstr "প্রেরিত হয়েছে"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"
-msgstr ""
+msgstr "বৈশিষ্ট্য লোড করা যায়নি"
 
 #: assets/app.js
 msgid "Réglages enregistrés — la langue sera appliquée au prochain démarrage"
-msgstr ""
+msgstr "সেটিংস সংরক্ষণ করা হবে — পরবর্তীবার আরম্ভ করার সময় ভাষা প্রয়োগ করা হবে"
 
 #: assets/app.js
 msgid "Réglages enregistrés"
-msgstr ""
+msgstr "বৈশিষ্ট্য সংরক্ষণ করা হচ্ছে"
 
 #: assets/app.js
 msgid "Erreur lors de la sauvegarde"
-msgstr ""
+msgstr "সংরক্ষণ করতে সমস্যা"
 
 #: assets/app.js
 msgid "Erreur lors de la sauvegarde des réglages"
-msgstr ""
+msgstr "বৈশিষ্ট্য সংরক্ষণ করতে সমস্যা"
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: assets/app.js
 msgid "Arrêter"
-msgstr ""
+msgstr "বন্ধ করুন"
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: assets/app.js
 msgid "En marche"
-msgstr ""
+msgstr "চলছে"
 
 #: assets/app.js
 msgid "Aucun job pour l'instant — un ZIP téléchargé depuis un onglet IA (ordonnanceur activé) en créera un automatiquement."
-msgstr ""
+msgstr "কোনও কাজ নেই - একটি AI ট্যাব থেকে একটি ZIP ডাউনলোড করা যা স্বয়ংক্রিয়ভাবে তৈরি করা হবে ।"
 
 #: assets/app.js
 msgid "Continuer le projet"
-msgstr ""
+msgstr "প্রকল্পটি চালিয়ে যান"
 
 #: assets/app.js
 msgid "Marquer livré"
-msgstr ""
+msgstr "চিহ্ন হিসেবে চিহ্নিত করা হবে"
 
 #: assets/app.js
 msgid "Pause"
-msgstr ""
+msgstr "সাময়িক বিরতি"
 
 #: assets/app.js
 msgid "Reprendre"
-msgstr ""
+msgstr "পুনরারম্ভ হয়েছে"
 
 #: assets/app.js
 msgid "Relancer"
-msgstr ""
+msgstr "পুনরায় চেষ্টা করুন"
 
 #: assets/app.js
 msgid "Ouvrir le ZIP"
-msgstr ""
+msgstr "ZIP খুলুন"
 
 #: assets/app.js
 msgid "Analyser la complétude"
-msgstr ""
+msgstr "সম্পূর্ণ বিশ্লেষণ"
 
 #: assets/app.js
 msgid "service inconnu"
-msgstr ""
+msgstr "অজানা পরিসেবা"
 
 #: assets/app.js
 msgid "tentative {n}"
-msgstr ""
+msgstr "{n} প্রচেষ্টা"
 
 #: assets/app.js
 msgid "Aucune activité enregistrée."
-msgstr ""
+msgstr "কোনো কর্ম হয়নি"
 
 #: assets/app.js
 msgid "Impossible de modifier l'état de l'ordonnanceur"
-msgstr ""
+msgstr "অবস্থা পরিবর্তন করা যায়নি"
 
 #: assets/app.js
 msgid "Configuration non enregistrée"
-msgstr ""
+msgstr "কনফিগারেশন সংরক্ষিত হয়নি"
 
 #: assets/app.js
 msgid "Sélection du dossier impossible"
-msgstr ""
+msgstr "ফোল্ডার নির্বাচন করতে ব্যর্থ"
 
 #: assets/app.js
 msgid "Projet terminé : {done}/{total} tâches faites, 0 restante."
-msgstr ""
+msgstr "প্রজেক্ট সম্পূর্ণ হয়েছে: {done}/{total} কাজ, অবশিষ্ট"
 
+# Traduit à la main (le marqueur était perdu par la traduction automatique) ;
+# relecture humaine attendue.
 #: assets/app.js
 msgid "{pending} à faire, {inProgress} en cours, {done} faite(s) sur {total} au total."
-msgstr ""
+msgstr "মোট {total}টির মধ্যে {pending}টি বাকি, {inProgress}টি চলছে, {done}টি সম্পন্ন।"
 
 #: assets/app.js
 msgid "Analyse impossible : {error}"
-msgstr ""
+msgstr "বিশ্লেষণ করতে ব্যর্থ: {error}"
 
 #: assets/app.js
 msgid "Action impossible : {error}"
-msgstr ""
+msgstr "কর্ম বিফল: {error}"
 
 #: assets/app.js
 msgid "Aucun projet pour l'instant."
-msgstr ""
+msgstr "এখনো না।"
 
 #: assets/app.js
 msgid "Créer un projet"
-msgstr ""
+msgstr "একটি নতুন প্রজেক্ট নির্মাণ করুন"
 
 #: assets/app.js
 msgid "Assignée"
-msgstr ""
+msgstr "বরাদ্দকৃত"
 
 #: assets/app.js
 msgid "Terminée"
-msgstr ""
+msgstr "সম্পন্ন"
 
 #: assets/app.js
 msgid "Échouée"
-msgstr ""
+msgstr "ব্যর্থ"
 
 #: assets/app.js
 msgid "Lancer"
-msgstr ""
+msgstr "সঞ্চালন ( R)"
 
 #: assets/app.js
 msgid "Résultat"
-msgstr ""
+msgstr "ফলাফল"
 
 #: assets/app.js
 msgid "Aucune tâche."
-msgstr ""
+msgstr "কোন কাজ নেই."
 
 #: assets/app.js
 msgid "Tous les comptes"
-msgstr ""
+msgstr "অ্যাকাউন্ট"
 
 #: assets/app.js
 msgid "Comptes autorisés :"
-msgstr ""
+msgstr "অনুমতি:"
 
 #: assets/app.js
 msgid "{count} tâche(s)"
-msgstr ""
+msgstr "{count} কর্ম"
 
 #: assets/app.js
 msgid "Nouvelle tâche"
-msgstr ""
+msgstr "নতুন কাজ"
 
 #: assets/app.js
 msgid "Assigner"
-msgstr ""
+msgstr "পরিমাপ নির্ধারণ করুন"
 
 #: assets/app.js
 msgid "Diagnostic Claude : {error}"
-msgstr ""
+msgstr "ক্লড ডিজিট: {error}"
 
 #: assets/app.js
 msgid "« Continuer »"
-msgstr ""
+msgstr "\" এগিয়ে চলুন\""
 
 #: assets/app.js
 msgid "« Télécharger »"
-msgstr ""
+msgstr "\"ড\""
 
 #: assets/app.js
 msgid "« Nouveau »"
-msgstr ""
+msgstr "\"নতুন\""
 
 #: assets/app.js
 msgid "zone de chat"
-msgstr ""
+msgstr "আড্ডার বাক্স"
 
 #: assets/app.js
 msgid "envoi de fichier"
-msgstr ""
+msgstr "ফাইল আপলোড করুন"
 
 #: assets/app.js
 msgid "{count} popup(s)"
-msgstr ""
+msgstr "{count} পপ- আপ"
 
 #: assets/app.js
 msgid "Claude (« {profile} ») : {details}"
-msgstr ""
+msgstr "ক্লড ({profile}): {details}"
 
 #: assets/app.js
 msgid "aucun élément détecté"
-msgstr ""
+msgstr "কিছু সনাক্ত হয়নি"
 
 #: assets/app.js
 msgid "Diagnostic impossible : {error}"
-msgstr ""
+msgstr "ডায়াগনস্টিক ব্যর্থ হয়েছে: {error}"
 
 #: assets/app.js
 msgid "Quota gratuit épuisé jusqu'à {time} pour ce profil."
-msgstr ""
+msgstr "এই প্রোফাইলের জন্য {time} পর্যন্ত ফাঁকা কোটা ক্লান্ত।"
 
 #: assets/app.js
 msgid "Job Claude échoué : {error}"
-msgstr ""
+msgstr "ক্লড কর্ম ব্যর্থ হয়েছে: {error}"
 
 #: assets/app.js
 msgid "Prompt envoyé à Claude via {method} (« {profile} »)"
-msgstr ""
+msgstr "{method} ({profile}) এর মাধ্যমে ক্লড-কে পাঠানো হয়েছে"
 
 #: assets/app.js
 msgid "Job Claude impossible : {error}"
-msgstr ""
+msgstr "ক্লড কর্ম সঞ্চালন করতে ব্যর্থ: {error}"
 
 #: assets/app.js
 msgid "Collecte impossible : {error}"
-msgstr ""
+msgstr "সংগ্রহ ব্যর্থ: {error}"
 
 #: assets/app.js
 msgid "Réponse collectée : {count} caractères (« {profile} »)"
-msgstr ""
+msgstr "প্রত্যুত্তর: {count} অক্ষর (“{profile}”)"
 
 #: assets/app.js
 msgid "Aucune réponse trouvée pour le moment."
-msgstr ""
+msgstr "কোন প্রতিক্রিয়া পাওয়া যায় নি।"
 
 #: assets/app.js
 msgid "Nom du projet :"
-msgstr ""
+msgstr "প্রজেক্টের নাম:"
 
 #: assets/app.js
 msgid "Projet {n}"
-msgstr ""
+msgstr "প্রজেক্ট {n}"
 
 #: assets/app.js
 msgid "Projet « {name} » créé"
-msgstr ""
+msgstr "প্রজেক্ট {name} নির্মাণ করা হয়েছে"
 
 #: assets/app.js
 msgid "Création impossible : {error}"
-msgstr ""
+msgstr "নির্মাণের ব্যর্থ: {error}"
 
 #: assets/app.js
 msgid "Projet supprimé"
-msgstr ""
+msgstr "প্রজেক্ট মুছে ফেলা হয়েছে"
 
 #: assets/app.js
 msgid "Suppression impossible : {error}"
-msgstr ""
+msgstr "মুছে ফেলতে ব্যর্থ: {error}"
 
 #: assets/app.js
 msgid "Prompt de la tâche :"
-msgstr ""
+msgstr "কাজের প্রম্পট:"
 
 #: assets/app.js
 msgid "Tâche créée dans le projet"
-msgstr ""
+msgstr "প্রজেক্টের মধ্যে উপস্থিত কর্ম"
 
 #: assets/app.js
 msgid "Aucun compte vert disponible pour ce projet."
-msgstr ""
+msgstr "এই প্রজেক্টের জন্য কোনো সবুজ অ্যাকাউন্ট উপলব্ধ নেই।"
 
 #: assets/app.js
 msgid "Comptes verts disponibles :"
-msgstr ""
+msgstr "উপলব্ধ সবুজ অ্যাকাউন্ট:"
 
 #: assets/app.js
 msgid "Numéro du compte :"
-msgstr ""
+msgstr "অ্যাকাউন্ট নম্বর:"
 
 #: assets/app.js
 msgid "Choix invalide"
-msgstr ""
+msgstr "অবৈধ বিকল্প"
 
 #: assets/app.js
 msgid "Aucune tâche dans ce projet."
-msgstr ""
+msgstr "এই প্রকল্পে কোন কাজ নেই।"
 
 #: assets/app.js
 msgid "Numéro de la tâche :"
-msgstr ""
+msgstr "কাজের নম্বর:"
 
 #: assets/app.js
 msgid "Tâches du projet :"
-msgstr ""
+msgstr "প্রজেক্টের কাজ:"
 
+# Traduit à la main (le marqueur était perdu par la traduction automatique) ;
+# relecture humaine attendue.
 #: assets/app.js
 msgid "Tâche {task} assignée à « {account} »"
-msgstr ""
+msgstr "কাজ {task} “{account}”-কে দেওয়া হয়েছে"
 
 #: assets/app.js
 msgid "Assignation impossible : {error}"
-msgstr ""
+msgstr "প্রেরণ করতে ব্যর্থ: {error}"
 
 #: assets/app.js
 msgid "Lancement de l'automatisation Claude..."
-msgstr ""
+msgstr "ক্লড্যুড শুরু হল..."
 
 #: assets/app.js
 msgid "Lancement impossible"
-msgstr ""
+msgstr "আরম্ভ করতে ব্যর্থ"
 
 #: assets/app.js
 msgid "Tâche lancée — suivi dans le journal d'activité"
-msgstr ""
+msgstr "কর্ম আরম্ভ করতে - লগ ফাইলে এটি অনুসরণ করবে"
 
 #: assets/app.js
 msgid "Exécution impossible : {error}"
-msgstr ""
+msgstr "কর্ম সঞ্চালন করতে ব্যর্থ: {error}"
 
 #: assets/app.js
 msgid "Aucun résultat disponible"
-msgstr ""
+msgstr "কোনো ফলাফল পাওয়া যায়নি"
 
 #: assets/app.js
 msgid "Résultat — {task}"
-msgstr ""
+msgstr "ফলাফল — {task}"
 
 #: assets/app.js
 msgid "Données de comptes illisibles"
-msgstr ""
+msgstr "অ্যাকাউন্ট সংক্রান্ত তথ্য পাঠযোগ্য নয়"
 
 #: assets/app.js
 msgid "La liste de comptes enregistrée est corrompue. Une sauvegarde de {count} compte(s) a été trouvée. La restaurer ?"
-msgstr ""
+msgstr "সংরক্ষিত অ্যাকাউন্টের তালিকা ক্ষতিগ্রস্ত। {count} অ্যাকাউন্টের একটি ব্যাকআপ পাওয়া গেছে। এটা আবার চালু হবে?"
 
 #: assets/app.js
 msgid "La liste de comptes enregistrée est corrompue et aucune sauvegarde n'est disponible. L'application démarre avec une liste vide ; vos données actuelles ne seront pas écrasées tant que vous ne créez ou ne modifiez pas de compte."
-msgstr ""
+msgstr "সংরক্ষিত অ্যাকাউন্টের তালিকা ক্ষতিগ্রস্ত এবং কোনো ব্যাক-আপ বর্তমানে উপলব্ধ নেই। অ্যাপ্লিকেশন আরম্ভ করা হচ্ছে ফাঁকা তালিকা থেকে; আপনার বর্তমান তথ্য মুছে ফেলা হবে না যতক্ষণ না আপনি নতুন কোনো অ্যাকাউন্ট তৈরি অথবা সম্পাদনা করতে পারবেন না ।"
 
 #: assets/app.js
 msgid "Ignorer"
-msgstr ""
+msgstr "উপেক্ষা করা হবে"
 
 #: assets/app.js
 msgid "Restaurer la sauvegarde"
-msgstr ""
+msgstr "ব্যাক-আপ পুনরুদ্ধার করুন"
 
 #: assets/app.js
 msgid "Comptes restaurés depuis la sauvegarde"
-msgstr ""
+msgstr "ব্যাক-আপ থেকে অ্যাকাউন্ট উদ্ধার করা হবে"
 
 #: assets/app.js
 msgid "Compris"
-msgstr ""
+msgstr "বুঝেছি"

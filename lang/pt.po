@@ -4,6 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: IAO\n"
 "Report-Msgid-Bugs-To: https://github.com/Mathide-Team/IAO/issues\n"
+"Last-Translator: IAO (traduction automatique Argos Translate, relecture humaine attendue, issue #188)\n"
+"Language-Team: aucune (relecture humaine attendue)\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -12,63 +14,63 @@ msgstr ""
 
 #: index.html
 msgid "Rechercher un compte ou une IA..."
-msgstr ""
+msgstr "Procurar por uma conta ou uma IA..."
 
 #: index.html
 msgid "Comptes actifs"
-msgstr ""
+msgstr "Contas activas"
 
 #: index.html
 msgid "IA Disponibles"
-msgstr ""
+msgstr "IA disponíveis"
 
 #: index.html
 msgid "Rechercher un compte ou une IA (Ctrl+K)"
-msgstr ""
+msgstr "Procurar por uma conta ou uma IA (Ctrl+K)"
 
 #: index.html
 msgid "Comptes enregistrés"
-msgstr ""
+msgstr "Contas salvas"
 
 #: index.html
 msgid "Tout replier / Tout déplier"
-msgstr ""
+msgstr "Recolher tudo / Expandir tudo"
 
 #: index.html
 msgid "Exporter les comptes (JSON)"
-msgstr ""
+msgstr "Contas de exportação (JSON)"
 
 #: index.html
 msgid "Importer des comptes (JSON)"
-msgstr ""
+msgstr "Contas de importação (JSON)"
 
 #: index.html
 msgid "Ajouter un compte"
-msgstr ""
+msgstr "Adicionar uma conta"
 
 #: index.html
 msgid "Mode debug actif : traces détaillées dans le journal iao.log"
-msgstr ""
+msgstr "Modo de depuração ligado: traços detalhados no ficheiro iao.log"
 
 #: index.html
 msgid "Masquer les comptes"
-msgstr ""
+msgstr "Ocultar contas"
 
 #: index.html
 msgid "Afficher les comptes"
-msgstr ""
+msgstr "Mostrar contas"
 
 #: index.html
 msgid "Explorateur"
-msgstr ""
+msgstr "Explorador"
 
 #: index.html
 msgid "Éditeur"
-msgstr ""
+msgstr "Editor"
 
 #: index.html
 msgid "Outils de développement (Ctrl+Maj+I)"
-msgstr ""
+msgstr "Ferramentas de desenvolvimento (Ctrl+Shift+I)"
 
 #: index.html
 msgid "Redémarrer en mode debug (journal détaillé)"
@@ -76,1024 +78,1029 @@ msgstr ""
 
 #: index.html
 msgid "Choisir mes 9 IA à portée de main"
-msgstr ""
+msgstr "Escolha meus 9 ir-para IA"
 
 #: index.html
 msgid "Comprendre les IA disponibles"
-msgstr ""
+msgstr "Compreender as IA disponíveis"
 
 #: index.html
 msgid "Ordonnanceur IA"
-msgstr ""
+msgstr "Programador de IA"
 
 #: index.html
 msgid "Réglages"
-msgstr ""
+msgstr "Configurações"
 
 #: index.html
 msgid "Fichiers"
-msgstr ""
+msgstr "Ficheiros"
 
 #: index.html
 msgid "Ouvrir un dossier"
-msgstr ""
+msgstr "Abrir uma pasta"
 
 #: index.html
 msgid "Réduire"
-msgstr ""
+msgstr "Recolher"
 
 #: index.html
 msgid "Rechercher un fichier..."
-msgstr ""
+msgstr "Procurar por um ficheiro..."
 
 #: index.html
 msgid "Glisser pour redimensionner"
-msgstr ""
+msgstr "Arrastar para redimensionar"
 
 #: index.html
 msgid "Aucun fichier"
-msgstr ""
+msgstr "Nenhum arquivo"
 
 #: index.html
 msgid "Glisser pour redimensionner l'éditeur"
-msgstr ""
+msgstr "Arraste para redimensionar o editor"
 
 #: index.html
 msgid "Aucun onglet ouvert — choisissez un service dans la liste des comptes"
-msgstr ""
+msgstr "Nenhuma aba aberta — escolha um serviço na lista de contas"
 
 #: index.html
 msgid "Le profil permet d'isoler les cookies dans Electron."
-msgstr ""
+msgstr "O perfil mantém os cookies isolados em Electron."
 
 #: index.html
 msgid "Nom du compte"
-msgstr ""
+msgstr "Nome da conta"
 
 #: index.html
 msgid "Nom du Profil"
-msgstr ""
+msgstr "Nome do perfil"
 
 #: index.html
 msgid "Annuler"
-msgstr ""
+msgstr "Cancelar"
 
 #: index.html
 msgid "Enregistrer"
-msgstr ""
+msgstr "Gravar"
 
 #: index.html
 msgid "Supprimer le compte"
-msgstr ""
+msgstr "Apagar a conta"
 
 #: index.html
 msgid "Cette action est irréversible."
-msgstr ""
+msgstr "Isto não pode ser desfeito."
 
 #: index.html
 msgid "Supprimer"
-msgstr ""
+msgstr "Apagar"
 
 #: index.html
 msgid "Importer des comptes"
-msgstr ""
+msgstr "Importar contas"
 
 #: index.html
 msgid "Remplacer et importer"
-msgstr ""
+msgstr "Substituir e importar"
 
 #: index.html
 msgid "Déconnecter le profil"
-msgstr ""
+msgstr "Assinar o perfil"
 
 #: index.html
 msgid "Déconnecter"
-msgstr ""
+msgstr "Sair"
 
 #: index.html
 msgid "À quoi sert chaque service, et quand l'utiliser."
-msgstr ""
+msgstr "Para que serve cada serviço e quando usá - lo."
 
 #: index.html
 msgid "Fermer"
-msgstr ""
+msgstr "Fechar"
 
 #: index.html
 msgid "Sélectionnez les 9 services affichés dans l'interface. Les autres restent disponibles dans l'aide."
-msgstr ""
+msgstr "Selecione os 9 serviços mostrados na interface. Os outros permanecem disponíveis na ajuda."
 
 #: index.html
 msgid "Détection des ZIP livrés par les onglets IA, reprise par profil."
-msgstr ""
+msgstr "Detecta arquivos ZIP entregues por guias de IA, com currículo por perfil."
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: index.html
 msgid "Arrêté"
-msgstr ""
+msgstr "Parado"
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: index.html
 msgid "Démarrer ou arrêter l'ordonnanceur (il ne démarre jamais tout seul)"
-msgstr ""
+msgstr "Iniciar ou parar o agendador (ele nunca inicia sozinho)"
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: index.html
 msgid "Démarrer"
-msgstr ""
+msgstr "Iniciar"
 
 #: index.html
 msgid "Jobs actifs"
-msgstr ""
+msgstr "Trabalhos activos"
 
 #: index.html
 msgid "En attente"
-msgstr ""
+msgstr "Pendente"
 
 #: index.html
 msgid "Livrés aujourd'hui"
-msgstr ""
+msgstr "Entregue hoje"
 
 #: index.html
 msgid "Jobs simultanés max."
-msgstr ""
+msgstr "Max. trabalhos simultâneos"
 
 #: index.html
 msgid "Délai min. entre automatisations (min)"
-msgstr ""
+msgstr "Mín. atraso entre automações (min)"
 
 #: index.html
 msgid "Seuil profil « le plus ancien » (h)"
-msgstr ""
+msgstr "Limiar de perfil mais antigo (h)"
 
 #: index.html
 msgid "Dossiers"
-msgstr ""
+msgstr "Pastas"
 
 #: index.html
 msgid "Téléchargements…"
-msgstr ""
+msgstr "Transferências..."
 
 #: index.html
 msgid "Livraison…"
-msgstr ""
+msgstr "Entrega..."
 
 #: index.html
 msgid "Téléchargements :"
-msgstr ""
+msgstr "Downloads:"
 
 #: index.html
 msgid "(dossier de téléchargements du système)"
-msgstr ""
+msgstr "(pasta de downloads do sistema)"
 
 #: index.html
 msgid "Livraison :"
-msgstr ""
+msgstr "Entrega:"
 
 #: index.html
 msgid "(non défini)"
-msgstr ""
+msgstr "(não definido)"
 
 #: index.html
 msgid "Projets & tâches"
-msgstr ""
+msgstr "Projetos e tarefas"
 
 #: index.html
 msgid "Jobs"
-msgstr ""
+msgstr "Trabalhos"
 
 #: index.html
 msgid "Journal d'activité"
-msgstr ""
+msgstr "Registo de actividades"
 
 #: index.html
 msgid "Confirmation"
-msgstr ""
+msgstr "Confirmação"
 
 #: index.html
 msgid "Confirmer"
-msgstr ""
+msgstr "Confirmar"
 
 #: index.html
 msgid "Préférences de l'application, sauvegardées localement."
-msgstr ""
+msgstr "Preferências de aplicativos, salvas localmente."
 
 #: index.html
 msgid "Taille de police de l'éditeur (px)"
-msgstr ""
+msgstr "Tamanho da fonte do editor (px)"
 
 #: index.html
 msgid "Thème"
-msgstr ""
+msgstr "Tema"
 
 #: index.html
 msgid "Thème du bureau (défaut)"
-msgstr ""
+msgstr "Tema da área de trabalho (por omissão)"
 
 #: index.html
 msgid "Clair"
-msgstr ""
+msgstr "Luz"
 
 #: index.html
 msgid "Sombre"
-msgstr ""
+msgstr "Escuro"
 
 #: index.html
 msgid "Langue"
-msgstr ""
+msgstr "Língua"
 
 #: index.html
 msgid "Langue du système (défaut)"
-msgstr ""
+msgstr "Língua do sistema (padrão)"
 
 #: index.html
 msgid "Appliquée au prochain démarrage"
-msgstr ""
+msgstr "Aplicado no início seguinte"
 
 #: index.html
 msgid "Retour à la ligne (éditeur)"
-msgstr ""
+msgstr "Mudança de linha (editor)"
 
 #: index.html
 msgid "Désactivé"
-msgstr ""
+msgstr "Desligado"
 
 #: index.html
 msgid "Activé"
-msgstr ""
+msgstr "Ligado"
 
 #: index.html
 msgid "Colonne fixe"
-msgstr ""
+msgstr "Coluna fixa"
 
 #: index.html
 msgid "Confirmer avant de fermer un onglet"
-msgstr ""
+msgstr "Confirmar antes de fechar uma página"
 
 #: index.html
 msgid "Afficher les fenêtres d'automatisation"
-msgstr ""
+msgstr "Mostrar janelas de automação"
 
 #: index.html
 msgid "Restaurer les onglets ouverts au démarrage"
-msgstr ""
+msgstr "Restaurar as páginas abertas na inicialização"
 
 #: assets/app.js
 msgid "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."
-msgstr ""
+msgstr "Assistente de conversação do Antrópico. Ele se destaca na escrita, análise de documentos longos, programação e raciocínio multi-passo."
 
 #: assets/app.js
 msgid "Plutôt pour du code, des textes longs et soignés, ou des questions complexes qui demandent de la rigueur."
-msgstr ""
+msgstr "Melhor para código, textos longos e polidos, ou perguntas complexas que exigem rigor."
 
 #: assets/app.js
 msgid "L'assistant généraliste d'OpenAI, le plus connu du grand public. Il discute, rédige, résume, génère des images, analyse des fichiers et peut chercher sur le web."
-msgstr ""
+msgstr "Assistente geral da OpenAI, o mais conhecido do público em geral. Ele conversa, escreve, resume, gera imagens, analisa arquivos e pode pesquisar na web."
 
 #: assets/app.js
 msgid "Le couteau suisse du quotidien : brainstorming, questions générales, petites tâches variées."
-msgstr ""
+msgstr "A faca do exército suíço diário: brainstorming, perguntas gerais, diversas pequenas tarefas."
 
 #: assets/app.js
 msgid "L'assistant IA de Google. Multimodal (texte, images, audio, vidéo), il s'appuie sur la recherche Google et s'intègre aux outils Google (Docs, Gmail, Drive…)."
-msgstr ""
+msgstr "Assistente de IA do Google. Multimodal (texto, imagens, áudio, vídeo), ele constrói no Google Search e se integra com ferramentas do Google (Docs, Gmail, Drive...)."
 
 #: assets/app.js
 msgid "Plutôt pour analyser des images ou vidéos, ou si vous travaillez déjà dans l'écosystème Google."
-msgstr ""
+msgstr "Melhor para analisar imagens ou vídeos, ou se você já trabalha no ecossistema do Google."
 
 #: assets/app.js
 msgid "Le chat de Z.ai, propulsé par les modèles GLM. Gratuit pour l'essentiel, avec un mode agent capable de chercher sur le web et de produire des fichiers (docx, pdf, xlsx)."
-msgstr ""
+msgstr "A conversa do Z.ai, alimentada pelos modelos GLM. Principalmente livre, com um modo agente que pode pesquisar na web e produzir arquivos (docx, pdf, xlsx)."
 
 #: assets/app.js
 msgid "Une alternative gratuite solide pour le chat et le code, quand les quotas des autres sont épuisés."
-msgstr ""
+msgstr "Uma alternativa sólida e gratuita para chat e código quando as quotas dos outros serviços são esgotadas."
 
 #: assets/app.js
 msgid "Un « moteur de réponse » : il cherche sur le web en direct, synthétise plusieurs sources et cite ses références pour chaque affirmation."
-msgstr ""
+msgstr "Um \"motor de resposta\": busca na web ao vivo, sintetiza várias fontes e cita suas referências para cada reivindicação."
 
 #: assets/app.js
 msgid "Plutôt pour la recherche d'informations à jour, la veille et la vérification de faits avec sources."
-msgstr ""
+msgstr "Melhor para encontrar informações atualizadas, monitorar tópicos e verificar fatos com fontes."
 
 #: assets/app.js
 msgid "L'assistant de xAI (Elon Musk), connecté au réseau X (ex-Twitter). Ton direct, accès au temps réel de X, génération d'images incluse."
-msgstr ""
+msgstr "assistente do xAI (Elon Musk), conectado à rede X (anteriormente Twitter). Tom direto, acesso em tempo real ao X, geração de imagem incluída."
 
 #: assets/app.js
 msgid "Plutôt pour suivre l'actualité chaude et les tendances via X, ou pour un ton moins formel."
-msgstr ""
+msgstr "Melhor para seguir notícias de última hora e tendências via X, ou para um tom menos formal."
 
 #: assets/app.js
 msgid "Une plateforme de génération d'images orientée création : illustrations, concept art, assets de jeu vidéo, avec des contrôles fins (styles, modèles, retouche)."
-msgstr ""
+msgstr "Uma plataforma criativa de geração de imagens: ilustrações, arte conceitual, recursos de jogos de vídeo, com controles finos (estilos, modelos, retoque)."
 
 #: assets/app.js
 msgid "Plutôt pour produire des visuels et illustrations de qualité avec un contrôle précis du style."
-msgstr ""
+msgstr "Melhor para produzir visuais de qualidade e ilustrações com controle preciso sobre o estilo."
 
 #: assets/app.js
 msgid "Un générateur de musique : il compose des chansons complètes (instruments, voix, paroles) à partir d'une simple description texte, dans à peu près tous les genres."
-msgstr ""
+msgstr "Um gerador de música: ele compõe canções completas (instrumentos, vocais, letras) a partir de uma descrição de texto simples, em quase qualquer gênero."
 
 #: assets/app.js
 msgid "Plutôt pour créer une musique, un jingle ou une chanson à partir d'un texte ou d'une idée."
-msgstr ""
+msgstr "Melhor para criar uma peça de música, um jingle ou uma canção de um texto ou uma ideia."
 
 #: assets/app.js
 msgid "Un générateur de modèles 3D : il transforme un texte ou une image en objet 3D texturé, avec rigging/animation automatique et export vers les formats standards (GLB, FBX, STL…)."
-msgstr ""
+msgstr "Um gerador de modelo 3D: transforma um texto ou uma imagem em um objeto 3D texturizado, com montagem/animação automática e exportação para formatos padrão (GLB, FBX, STL...)."
 
 #: assets/app.js
 msgid "Plutôt pour créer des assets 3D (jeux, impression 3D, animation) sans savoir modéliser."
-msgstr ""
+msgstr "Melhor para criar ativos 3D (jogos, impressão 3D, animação) sem habilidades de modelagem."
 
 #: assets/app.js
 msgid "Le Chat de Mistral AI, éditeur européen (français). Modèles open-weights performants, chat, code et analyse de documents."
-msgstr ""
+msgstr "Le Chat by Mistral AI, um vendedor europeu (francês). Fortes modelos de pesos abertos, chat, código e análise de documentos."
 
 #: assets/app.js
 msgid "Alternative européenne solide pour le chat et le code, avec une bonne maîtrise du français."
-msgstr ""
+msgstr "Uma sólida alternativa europeia para chat e código, com um bom comando do francês."
 
 #: assets/app.js
 msgid "DeepSeek : assistant IA chinois spécialisé en raisonnement et programmation, particulièrement performant en Python."
-msgstr ""
+msgstr "DeepSeek: um assistente de IA chinês especializado em raciocínio e programação, particularmente forte em Python."
 
 #: assets/app.js
 msgid "Pour du code Python, du raisonnement étape par étape, ou une alternative gratuite à ChatGPT."
-msgstr ""
+msgstr "Para código Python, raciocínio passo a passo, ou uma alternativa livre para ChatGPT."
 
 #: assets/app.js
 msgid "GitHub Copilot : assistant IA intégré dans VS Code et GitHub. Autocomplétion, chat, génération de tests, explication de code."
-msgstr ""
+msgstr "GitHub Copilot: um assistente de IA incorporado no VS Code e GitHub. Completação automática, chat, geração de testes, explicação de código."
 
 #: assets/app.js
 msgid "Pour programmer plus vite dans VS Code ou sur GitHub, avec un modèle IA qui connaît votre codebase."
-msgstr ""
+msgstr "Para programar mais rápido em VS Code ou no GitHub, com um modelo de IA que conheça sua base de código."
 
 #: assets/app.js
 msgid "Elicit : assistant de recherche scientifique. Trouve des articles, extrait des données, synthétise des études."
-msgstr ""
+msgstr "Elicit: um assistente de pesquisa científica. Encontra artigos, extrai dados, sintetiza estudos."
 
 #: assets/app.js
 msgid "Pour la recherche académique, la revue de littérature et l'extraction de données d'articles scientifiques."
-msgstr ""
+msgstr "Para pesquisas acadêmicas, revisões de literatura e extração de dados de artigos científicos."
 
 #: assets/app.js
 msgid "NotebookLM de Google : interagissez avec vos propres documents (PDF, texte, audio). Résumés, questions, génération de notes."
-msgstr ""
+msgstr "NotebookLM do Google: interaja com seus próprios documentos (PDF, texto, áudio). Resumos, perguntas, geração de notas."
 
 #: assets/app.js
 msgid "Pour interroger vos documents personnels ou professionnels avec une IA qui cite ses sources."
-msgstr ""
+msgstr "Para consultar seus documentos pessoais ou de trabalho com uma IA que cita suas fontes."
 
 #: assets/app.js
 msgid "Wolfram Alpha : moteur de calcul symbolique. Mathématiques, physique, chimie, données factuelles, conversions."
-msgstr ""
+msgstr "Wolfram Alpha: um mecanismo de computação simbólico. Matemática, física, química, dados factuais, conversões."
 
 #: assets/app.js
 msgid "Pour des calculs exacts (mathématiques symboliques), des données chiffrées ou des conversions d'unités."
-msgstr ""
+msgstr "Para cálculos exatos (matemática simbólica), dados numéricos ou conversões de unidades."
 
 #: assets/app.js
 msgid "DeepL : traduction automatique de haute qualité, plus naturelle que Google Traduction. Texte et documents entiers."
-msgstr ""
+msgstr "DeepL: tradução de máquina de alta qualidade, mais natural do que o Google Translate. Texto e documentos inteiros."
 
 #: assets/app.js
 msgid "Pour traduire du texte ou des documents avec un rendu naturel et cohérent."
-msgstr ""
+msgstr "Para traduzir texto ou documentos com um resultado natural e consistente."
 
 #: assets/app.js
 msgid "Ideogram : génération d'images orientée design. Logos, typographies, affiches, avec un excellent rendu du texte."
-msgstr ""
+msgstr "Ideograma: geração de imagem orientada para o design. Logos, tipografia, cartazes, com excelente renderização de texto."
 
 #: assets/app.js
 msgid "Pour créer des visuels avec du texte lisible (logos, affiches, bannières) ou du design graphique."
-msgstr ""
+msgstr "Criar visuais com texto legível (logos, cartazes, banners) ou design gráfico."
 
 #: assets/app.js
 msgid "Kling : générateur de vidéos courtes à partir de texte ou d'images. Animations réalistes, crédits gratuits disponibles."
-msgstr ""
+msgstr "Kling: um gerador de vídeo curto de texto ou imagens. Animações realistas, créditos gratuitos disponíveis."
 
 #: assets/app.js
 msgid "Pour créer des clips vidéo animés à partir d'une description ou d'une image fixe."
-msgstr ""
+msgstr "Para criar clipes de vídeo animados a partir de uma descrição ou imagem imóvel."
 
 #: assets/app.js
 msgid "Runway : suite d'outils IA pour la vidéo. Génération, édition, effets spéciaux, inpainting vidéo."
-msgstr ""
+msgstr "Pista: um conjunto de ferramentas de vídeo IA. Geração, edição, efeitos especiais, pintura de vídeo."
 
 #: assets/app.js
 msgid "Pour le montage et la création vidéo avancée avec des outils IA intégrés."
-msgstr ""
+msgstr "Para edição avançada de vídeo e criação com ferramentas de IA integradas."
 
 #: assets/app.js
 msgid "Pika : générateur de vidéos courtes et créatives. Animation d'images, effets, transformation de styles."
-msgstr ""
+msgstr "Pika: um gerador de vídeos curtos e criativos. Animação de imagem, efeitos, transformação de estilo."
 
 #: assets/app.js
 msgid "Pour animer des images ou créer des vidéos courtes originales avec des effets IA."
-msgstr ""
+msgstr "Para animar imagens ou criar vídeos curtos originais com efeitos de IA."
 
 #: assets/app.js
 msgid "Qwen : assistant IA d'Alibaba. Multimodal (texte, images, code), open-source, disponible en plusieurs tailles."
-msgstr ""
+msgstr "Assistente de IA da Alibaba. Multimodal (texto, imagens, código), código aberto, disponível em vários tamanhos."
 
 #: assets/app.js
 msgid "Alternative gratuite pour le chat, le code et l'analyse d'images, avec un bon support multilingue."
-msgstr ""
+msgstr "Uma alternativa gratuita para chat, código e análise de imagens, com bom suporte multilingue."
 
 #: assets/app.js
 msgid "Impossible d'enregistrer les comptes (stockage plein ?)"
-msgstr ""
+msgstr "Não foi possível salvar as contas (armazenamento completo?)"
 
 #: assets/app.js
 msgid "Ctrl+S pour sauvegarder."
-msgstr ""
+msgstr "Ctrl+S para salvar."
 
 #: assets/app.js
 msgid "Sélectionnez un fichier pour l'éditer ici."
-msgstr ""
+msgstr "Selecione um arquivo para editá- lo aqui."
 
 #: assets/app.js
 msgid "Éditeur simplifié (Monaco indisponible) — Ctrl+S pour sauvegarder"
-msgstr ""
+msgstr "Editor simplificado (Monaco indisponível) — Ctrl+S para gravar"
 
 #: assets/app.js
 msgid "Fichier enregistré !"
-msgstr ""
+msgstr "Ficheiro gravado"
 
 #: assets/app.js
 msgid "Erreur d'enregistrement."
-msgstr ""
+msgstr "Gravar o erro."
 
 #: assets/app.js
 msgid "Aucun compte pour l'instant."
-msgstr ""
+msgstr "Ainda não há contas."
 
 #: assets/app.js
 msgid "Créer mon premier compte"
-msgstr ""
+msgstr "Criar minha primeira conta"
 
 #: assets/app.js
 msgid "Cliquer pour copier l'e-mail"
-msgstr ""
+msgstr "Clique para copiar o endereço de e- mail"
 
 #: assets/app.js
 msgid "Modifier le compte"
-msgstr ""
+msgstr "Editar conta"
 
 #: assets/app.js
 msgid "{available} service(s) hors cooldown sur {total}"
-msgstr ""
+msgstr "{available} de {total} serviço(s) fora de arrefecimento"
 
 #: assets/app.js
 msgid "Replier / déplier"
-msgstr ""
+msgstr "Recolher/ expandir"
 
 #: assets/app.js
 msgid "{service} — {account} déjà ouvert"
-msgstr ""
+msgstr "{service} — {account} já em aberto"
 
 #: assets/app.js
 msgid "Recharger l'onglet"
-msgstr ""
+msgstr "Recarregar página"
 
 #: assets/app.js
 msgid "Revenir à l'accueil de {service}"
-msgstr ""
+msgstr "Voltar à página inicial {service}"
 
 #: assets/app.js
 msgid "Se déconnecter du profil « {profile} »"
-msgstr ""
+msgstr "Sair do perfil \"{profile}\""
 
 #: assets/app.js
 msgid "{service} ouvert avec {account}"
-msgstr ""
+msgstr "{service} com início em {account}"
 
 #: assets/app.js
 msgid "Fermer l'onglet"
-msgstr ""
+msgstr "Fechar página"
 
 #: assets/app.js
 msgid "Fermer l'onglet « {tab} » ? La session web sera libérée."
-msgstr ""
+msgstr "Fechar a aba \"{tab}\"? A sessão web será lançada."
 
 #: assets/app.js
 msgid "Onglet fermé (mémoire libérée)"
-msgstr ""
+msgstr "Aba fechada (memória liberada)"
 
 #: assets/app.js
 msgid "Retirer l'étoile"
-msgstr ""
+msgstr "Remover estrela"
 
 #: assets/app.js
 msgid "Étoiler cet onglet"
-msgstr ""
+msgstr "Estrelar esta página"
 
 #: assets/app.js
 msgid "Onglet étoilé"
-msgstr ""
+msgstr "Tab com a estrela"
 
 #: assets/app.js
 msgid "Étoile retirée"
-msgstr ""
+msgstr "Estrela removida"
 
 #: assets/app.js
 msgid "Échec de la déconnexion du profil"
-msgstr ""
+msgstr "Não foi possível sair do perfil"
 
 #: assets/app.js
 msgid "Profil « {profile} » déconnecté — session effacée"
-msgstr ""
+msgstr "Perfil “{profile}” assinado – sessão cancelada"
 
 #: assets/app.js
 msgid "Aucun fichier trouvé."
-msgstr ""
+msgstr "Nenhum ficheiro encontrado."
 
 #: assets/app.js
 msgid "Fichier trop volumineux pour l'éditeur : {size} Mo (limite : 20 Mo)."
-msgstr ""
+msgstr "Ficheiro demasiado grande para o editor: {size} MB (limite: 20 MB)."
 
 #: assets/app.js
 msgid "C'est quoi ?"
-msgstr ""
+msgstr "O que foi?"
 
 #: assets/app.js
 msgid "Quand l'utiliser ?"
-msgstr ""
+msgstr "Quando usá-lo?"
 
 #: assets/app.js
 msgid "Description à venir."
-msgstr ""
+msgstr "A descrição está a chegar."
 
 #: assets/app.js
 msgid "Maximum {max} services à portée de main"
-msgstr ""
+msgstr "No máximo {max} serviços à mão"
 
 #: assets/app.js
 msgid "Sélectionnez au moins 1 service"
-msgstr ""
+msgstr "Selecione pelo menos 1 serviço"
 
 #: assets/app.js
 msgid "Services mis à jour ({count}/{max})"
-msgstr ""
+msgstr "Serviços actualizados {count}/{max}"
 
 #: assets/app.js
 msgid "Supprimer « {name} » ({email}) ? La session restera stockée sur le disque, mais le compte disparaîtra de la liste."
-msgstr ""
+msgstr "Apagar \"{name}\" ({email})? A sessão permanecerá armazenada no disco, mas a conta desaparecerá da lista."
 
 #: assets/app.js
 msgid "Échec de l'export (écriture impossible)"
-msgstr ""
+msgstr "A exportação falhou (não é possível gravar)"
 
 #: assets/app.js
 msgid "{count} compte(s) exporté(s)"
-msgstr ""
+msgstr "{count} Contas exportadas"
 
 #: assets/app.js
 msgid "Export impossible"
-msgstr ""
+msgstr "A exportação falhou"
 
 #: assets/app.js
 msgid "Échec de la lecture du fichier"
-msgstr ""
+msgstr "Não foi possível ler o arquivo"
 
 #: assets/app.js
 msgid "Fichier JSON invalide"
-msgstr ""
+msgstr "Ficheiro JSON inválido"
 
 #: assets/app.js
 msgid "Format invalide : un tableau de comptes est attendu."
-msgstr ""
+msgstr "Formato inválido: é esperado um array de contas."
 
 #: assets/app.js
 msgid "Le fichier contient {count} compte(s). L'import REMPLACE entièrement la liste actuelle ({current} compte(s)) — cette action écrase les comptes existants, pas leurs sessions (cookies) déjà enregistrées sur le disque. Continuer ?"
-msgstr ""
+msgstr "O arquivo contém {count} conta(s). Importando COMPLETEMENTE REPLACES a lista atual ({current} conta(s)) — isso substitui as contas existentes, não suas sessões (cookies) já armazenadas no disco. Continuar?"
 
 #: assets/app.js
 msgid "Import impossible"
-msgstr ""
+msgstr "A importação falhou"
 
 #: assets/app.js
 msgid "{count} compte(s) importé(s)"
-msgstr ""
+msgstr "{count} Contas importadas"
 
 #: assets/app.js
 msgid "Échec de l'import : {error}"
-msgstr ""
+msgstr "Falha na importação: {error}"
 
 #: assets/app.js
 msgid "Compte supprimé"
-msgstr ""
+msgstr "Conta apagada"
 
 #: assets/app.js
 msgid "Remplissez tous les champs"
-msgstr ""
+msgstr "Preencha todos os campos"
 
 #: assets/app.js
 msgid "Ce profil est déjà utilisé par un autre compte (les sessions seraient partagées)."
-msgstr ""
+msgstr "Este perfil já é usado por outra conta (sessões seriam compartilhadas)."
 
 #: assets/app.js
 msgid "Compte mis à jour"
-msgstr ""
+msgstr "Conta atualizada"
 
 #: assets/app.js
 msgid "Compte ajouté"
-msgstr ""
+msgstr "Conta adicionada"
 
 #: assets/app.js
 msgid "Copie impossible dans le presse-papiers"
-msgstr ""
+msgstr "Não foi possível copiar para a área de transferência"
 
 #: assets/app.js
 msgid "E-mail copié : {email}"
-msgstr ""
+msgstr "Correio electrónico copiado: {email}"
 
 #: assets/app.js
 msgid "Cooldown terminé"
-msgstr ""
+msgstr "Arrefecer sobre"
 
 #: assets/app.js
 msgid "{account} — {service} est de nouveau disponible."
-msgstr ""
+msgstr "{account} — {service} está novamente disponível."
 
 #: assets/app.js
 msgid "{account} — {service} : cooldown terminé"
-msgstr ""
+msgstr "{account} — {service}: arrefecimento sobre"
 
 #: assets/app.js
 msgid "Téléchargement…"
-msgstr ""
+msgstr "Baixando..."
 
 #: assets/app.js
 msgid "Téléchargé — à traiter"
-msgstr ""
+msgstr "Dados — a tratar"
 
 #: assets/app.js
 msgid "Aucun profil disponible"
-msgstr ""
+msgstr "Nenhum perfil disponível"
 
 #: assets/app.js
 msgid "Projet en cours d'analyse"
-msgstr ""
+msgstr "Projecto em análise"
 
 #: assets/app.js
 msgid "En cours"
-msgstr ""
+msgstr "Em execução"
 
 #: assets/app.js
 msgid "En pause"
-msgstr ""
+msgstr "Pausa"
 
 #: assets/app.js
 msgid "Reprise programmée"
-msgstr ""
+msgstr "Continuar agendado"
 
 #: assets/app.js
 msgid "Erreur"
-msgstr ""
+msgstr "Erro"
 
 #: assets/app.js
 msgid "Livré"
-msgstr ""
+msgstr "Administrado"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"
-msgstr ""
+msgstr "Não foi possível carregar as configurações"
 
 #: assets/app.js
 msgid "Réglages enregistrés — la langue sera appliquée au prochain démarrage"
-msgstr ""
+msgstr "Configurações salvas — o idioma será aplicado no início seguinte"
 
 #: assets/app.js
 msgid "Réglages enregistrés"
-msgstr ""
+msgstr "Configurações salvas"
 
 #: assets/app.js
 msgid "Erreur lors de la sauvegarde"
-msgstr ""
+msgstr "Erro ao gravar"
 
 #: assets/app.js
 msgid "Erreur lors de la sauvegarde des réglages"
-msgstr ""
+msgstr "Erro ao salvar as configurações"
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: assets/app.js
 msgid "Arrêter"
-msgstr ""
+msgstr "Parar"
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: assets/app.js
 msgid "En marche"
-msgstr ""
+msgstr "Em execução"
 
 #: assets/app.js
 msgid "Aucun job pour l'instant — un ZIP téléchargé depuis un onglet IA (ordonnanceur activé) en créera un automatiquement."
-msgstr ""
+msgstr "Nenhum trabalho ainda — um ZIP baixado de uma aba IA (com o agendador ativado) criará um automaticamente."
 
 #: assets/app.js
 msgid "Continuer le projet"
-msgstr ""
+msgstr "Continuar o projeto"
 
 #: assets/app.js
 msgid "Marquer livré"
-msgstr ""
+msgstr "Marcar como entregue"
 
 #: assets/app.js
 msgid "Pause"
-msgstr ""
+msgstr "Pausa"
 
 #: assets/app.js
 msgid "Reprendre"
-msgstr ""
+msgstr "Continuar"
 
 #: assets/app.js
 msgid "Relancer"
-msgstr ""
+msgstr "Repetir"
 
 #: assets/app.js
 msgid "Ouvrir le ZIP"
-msgstr ""
+msgstr "Abrir o ZIP"
 
 #: assets/app.js
 msgid "Analyser la complétude"
-msgstr ""
+msgstr "Analisar a integralidade"
 
 #: assets/app.js
 msgid "service inconnu"
-msgstr ""
+msgstr "serviço desconhecido"
 
 #: assets/app.js
 msgid "tentative {n}"
-msgstr ""
+msgstr "tentativa {n}"
 
 #: assets/app.js
 msgid "Aucune activité enregistrée."
-msgstr ""
+msgstr "Nenhuma actividade registada."
 
 #: assets/app.js
 msgid "Impossible de modifier l'état de l'ordonnanceur"
-msgstr ""
+msgstr "Não foi possível alterar o estado do escalonamento"
 
 #: assets/app.js
 msgid "Configuration non enregistrée"
-msgstr ""
+msgstr "Configuração não gravada"
 
 #: assets/app.js
 msgid "Sélection du dossier impossible"
-msgstr ""
+msgstr "Não foi possível selecionar a pasta"
 
 #: assets/app.js
 msgid "Projet terminé : {done}/{total} tâches faites, 0 restante."
-msgstr ""
+msgstr "Projeto completo: {done}/{total} tarefas feitas, 0 restantes."
 
 #: assets/app.js
 msgid "{pending} à faire, {inProgress} en cours, {done} faite(s) sur {total} au total."
-msgstr ""
+msgstr "{pending} a fazer, {inProgress} em curso, {done} de {total} no total."
 
 #: assets/app.js
 msgid "Analyse impossible : {error}"
-msgstr ""
+msgstr "Falha na análise: {error}"
 
 #: assets/app.js
 msgid "Action impossible : {error}"
-msgstr ""
+msgstr "A ação falhou: {error}"
 
 #: assets/app.js
 msgid "Aucun projet pour l'instant."
-msgstr ""
+msgstr "Ainda não há projectos."
 
 #: assets/app.js
 msgid "Créer un projet"
-msgstr ""
+msgstr "Criar um projeto"
 
 #: assets/app.js
 msgid "Assignée"
-msgstr ""
+msgstr "Atribuído"
 
 #: assets/app.js
 msgid "Terminée"
-msgstr ""
+msgstr "Concluído"
 
 #: assets/app.js
 msgid "Échouée"
-msgstr ""
+msgstr "Falha"
 
 #: assets/app.js
 msgid "Lancer"
-msgstr ""
+msgstr "Executar"
 
 #: assets/app.js
 msgid "Résultat"
-msgstr ""
+msgstr "Resultado"
 
 #: assets/app.js
 msgid "Aucune tâche."
-msgstr ""
+msgstr "Sem tarefas."
 
 #: assets/app.js
 msgid "Tous les comptes"
-msgstr ""
+msgstr "Todas as contas"
 
 #: assets/app.js
 msgid "Comptes autorisés :"
-msgstr ""
+msgstr "Contas permitidas:"
 
 #: assets/app.js
 msgid "{count} tâche(s)"
-msgstr ""
+msgstr "{count} tarefas"
 
 #: assets/app.js
 msgid "Nouvelle tâche"
-msgstr ""
+msgstr "Nova tarefa"
 
 #: assets/app.js
 msgid "Assigner"
-msgstr ""
+msgstr "Atribuir"
 
 #: assets/app.js
 msgid "Diagnostic Claude : {error}"
-msgstr ""
+msgstr "Diagnóstico de Claude: {error}"
 
 #: assets/app.js
 msgid "« Continuer »"
-msgstr ""
+msgstr "\"Continue\""
 
 #: assets/app.js
 msgid "« Télécharger »"
-msgstr ""
+msgstr "\"Download\""
 
 #: assets/app.js
 msgid "« Nouveau »"
-msgstr ""
+msgstr "\"Novo\""
 
 #: assets/app.js
 msgid "zone de chat"
-msgstr ""
+msgstr "caixa de chat"
 
 #: assets/app.js
 msgid "envoi de fichier"
-msgstr ""
+msgstr "envio de arquivos"
 
 #: assets/app.js
 msgid "{count} popup(s)"
-msgstr ""
+msgstr "{count} popup(s)"
 
 #: assets/app.js
 msgid "Claude (« {profile} ») : {details}"
-msgstr ""
+msgstr "Claude (“{profile}”): {details}"
 
 #: assets/app.js
 msgid "aucun élément détecté"
-msgstr ""
+msgstr "nada detectado"
 
 #: assets/app.js
 msgid "Diagnostic impossible : {error}"
-msgstr ""
+msgstr "Falha diagnóstica: {error}"
 
 #: assets/app.js
 msgid "Quota gratuit épuisé jusqu'à {time} pour ce profil."
-msgstr ""
+msgstr "Contingente livre esgotado até {time} para este perfil."
 
 #: assets/app.js
 msgid "Job Claude échoué : {error}"
-msgstr ""
+msgstr "O trabalho de Claude falhou: {error}"
 
 #: assets/app.js
 msgid "Prompt envoyé à Claude via {method} (« {profile} »)"
-msgstr ""
+msgstr "Pedido enviado a Claude via {method} (“{profile}”)"
 
 #: assets/app.js
 msgid "Job Claude impossible : {error}"
-msgstr ""
+msgstr "Claude trabalho não poderia executar: {error}"
 
 #: assets/app.js
 msgid "Collecte impossible : {error}"
-msgstr ""
+msgstr "Falha na coleta: {error}"
 
 #: assets/app.js
 msgid "Réponse collectée : {count} caractères (« {profile} »)"
-msgstr ""
+msgstr "Resposta recolhida: {count} caracteres (“{profile}”)"
 
 #: assets/app.js
 msgid "Aucune réponse trouvée pour le moment."
-msgstr ""
+msgstr "Nenhuma resposta encontrada ainda."
 
 #: assets/app.js
 msgid "Nom du projet :"
-msgstr ""
+msgstr "Nome do projeto:"
 
 #: assets/app.js
 msgid "Projet {n}"
-msgstr ""
+msgstr "Projecto {n}"
 
 #: assets/app.js
 msgid "Projet « {name} » créé"
-msgstr ""
+msgstr "Projeto “{name}” criado"
 
 #: assets/app.js
 msgid "Création impossible : {error}"
-msgstr ""
+msgstr "A criação falhou: {error}"
 
 #: assets/app.js
 msgid "Projet supprimé"
-msgstr ""
+msgstr "Projeto excluído"
 
 #: assets/app.js
 msgid "Suppression impossible : {error}"
-msgstr ""
+msgstr "Falha na eliminação: {error}"
 
 #: assets/app.js
 msgid "Prompt de la tâche :"
-msgstr ""
+msgstr "Pedido de tarefa:"
 
 #: assets/app.js
 msgid "Tâche créée dans le projet"
-msgstr ""
+msgstr "Tarefa criada no projeto"
 
 #: assets/app.js
 msgid "Aucun compte vert disponible pour ce projet."
-msgstr ""
+msgstr "Nenhuma conta verde disponível para este projeto."
 
 #: assets/app.js
 msgid "Comptes verts disponibles :"
-msgstr ""
+msgstr "Contas verdes disponíveis:"
 
 #: assets/app.js
 msgid "Numéro du compte :"
-msgstr ""
+msgstr "Número da conta:"
 
 #: assets/app.js
 msgid "Choix invalide"
-msgstr ""
+msgstr "Escolha inválida"
 
 #: assets/app.js
 msgid "Aucune tâche dans ce projet."
-msgstr ""
+msgstr "Nenhuma tarefa neste projeto."
 
 #: assets/app.js
 msgid "Numéro de la tâche :"
-msgstr ""
+msgstr "Número da tarefa:"
 
 #: assets/app.js
 msgid "Tâches du projet :"
-msgstr ""
+msgstr "Tarefas do projeto:"
 
 #: assets/app.js
 msgid "Tâche {task} assignée à « {account} »"
-msgstr ""
+msgstr "Tarefa {task} atribuída a “{account}”"
 
 #: assets/app.js
 msgid "Assignation impossible : {error}"
-msgstr ""
+msgstr "Falha na atribuição: {error}"
 
 #: assets/app.js
 msgid "Lancement de l'automatisation Claude..."
-msgstr ""
+msgstr "A iniciar a automação Claude..."
 
 #: assets/app.js
 msgid "Lancement impossible"
-msgstr ""
+msgstr "Não foi possível iniciar"
 
 #: assets/app.js
 msgid "Tâche lancée — suivi dans le journal d'activité"
-msgstr ""
+msgstr "Tarefa iniciada — siga-a no diário de atividades"
 
 #: assets/app.js
 msgid "Exécution impossible : {error}"
-msgstr ""
+msgstr "Falha na execução: {error}"
 
 #: assets/app.js
 msgid "Aucun résultat disponible"
-msgstr ""
+msgstr "Nenhum resultado disponível"
 
 #: assets/app.js
 msgid "Résultat — {task}"
-msgstr ""
+msgstr "Resultado — {task}"
 
 #: assets/app.js
 msgid "Données de comptes illisibles"
-msgstr ""
+msgstr "Dados da conta ilegíveis"
 
 #: assets/app.js
 msgid "La liste de comptes enregistrée est corrompue. Une sauvegarde de {count} compte(s) a été trouvée. La restaurer ?"
-msgstr ""
+msgstr "A lista de contas salvas está corrompida. Um backup de {count} conta(s) foi encontrado. Restaurá-lo?"
 
 #: assets/app.js
 msgid "La liste de comptes enregistrée est corrompue et aucune sauvegarde n'est disponible. L'application démarre avec une liste vide ; vos données actuelles ne seront pas écrasées tant que vous ne créez ou ne modifiez pas de compte."
-msgstr ""
+msgstr "A lista de contas salvas está corrompida e nenhum backup está disponível. O aplicativo começa com uma lista vazia; seus dados atuais não serão substituídos até que você crie ou edite uma conta."
 
 #: assets/app.js
 msgid "Ignorer"
-msgstr ""
+msgstr "Ignorar"
 
 #: assets/app.js
 msgid "Restaurer la sauvegarde"
-msgstr ""
+msgstr "Restaurar a cópia de segurança"
 
 #: assets/app.js
 msgid "Comptes restaurés depuis la sauvegarde"
-msgstr ""
+msgstr "Contas restauradas da cópia de segurança"
 
 #: assets/app.js
 msgid "Compris"
-msgstr ""
+msgstr "Entendido."

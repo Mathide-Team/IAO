@@ -4,6 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: IAO\n"
 "Report-Msgid-Bugs-To: https://github.com/Mathide-Team/IAO/issues\n"
+"Last-Translator: IAO (traduction automatique Argos Translate, relecture humaine attendue, issue #188)\n"
+"Language-Team: aucune (relecture humaine attendue)\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -12,63 +14,63 @@ msgstr ""
 
 #: index.html
 msgid "Rechercher un compte ou une IA..."
-msgstr ""
+msgstr "جستجو برای یک حساب یا یک AI"
 
 #: index.html
 msgid "Comptes actifs"
-msgstr ""
+msgstr "حساب های فعال"
 
 #: index.html
 msgid "IA Disponibles"
-msgstr ""
+msgstr "AI های موجود"
 
 #: index.html
 msgid "Rechercher un compte ou une IA (Ctrl+K)"
-msgstr ""
+msgstr "جستجو برای یک حساب یا یک AI (Ctrl+K)"
 
 #: index.html
 msgid "Comptes enregistrés"
-msgstr ""
+msgstr "حساب های ذخیره شده"
 
 #: index.html
 msgid "Tout replier / Tout déplier"
-msgstr ""
+msgstr "سقوط همه / گسترش همه"
 
 #: index.html
 msgid "Exporter les comptes (JSON)"
-msgstr ""
+msgstr "حساب های صادرات (JSON)"
 
 #: index.html
 msgid "Importer des comptes (JSON)"
-msgstr ""
+msgstr "حساب های واردات (JSON)"
 
 #: index.html
 msgid "Ajouter un compte"
-msgstr ""
+msgstr "اضافه کردن حساب"
 
 #: index.html
 msgid "Mode debug actif : traces détaillées dans le journal iao.log"
-msgstr ""
+msgstr "حالت Debug در فایل iao.log"
 
 #: index.html
 msgid "Masquer les comptes"
-msgstr ""
+msgstr "حساب های مخفی"
 
 #: index.html
 msgid "Afficher les comptes"
-msgstr ""
+msgstr "نشان دادن حساب"
 
 #: index.html
 msgid "Explorateur"
-msgstr ""
+msgstr "Explorer"
 
 #: index.html
 msgid "Éditeur"
-msgstr ""
+msgstr "ویرایشگر ویرایشگر"
 
 #: index.html
 msgid "Outils de développement (Ctrl+Maj+I)"
-msgstr ""
+msgstr "ابزارهای توسعه دهنده (Ctrl + Shift + I)"
 
 #: index.html
 msgid "Redémarrer en mode debug (journal détaillé)"
@@ -76,1024 +78,1029 @@ msgstr ""
 
 #: index.html
 msgid "Choisir mes 9 IA à portée de main"
-msgstr ""
+msgstr "گزینه 9 go-to AIs"
 
 #: index.html
 msgid "Comprendre les IA disponibles"
-msgstr ""
+msgstr "درک AI های موجود"
 
 #: index.html
 msgid "Ordonnanceur IA"
-msgstr ""
+msgstr "برنامه زمانبندی AI"
 
 #: index.html
 msgid "Réglages"
-msgstr ""
+msgstr "تنظیمات"
 
 #: index.html
 msgid "Fichiers"
-msgstr ""
+msgstr "فایل های Files"
 
 #: index.html
 msgid "Ouvrir un dossier"
-msgstr ""
+msgstr "باز کردن یک پوشه"
 
 #: index.html
 msgid "Réduire"
-msgstr ""
+msgstr "سقوط سقوط"
 
 #: index.html
 msgid "Rechercher un fichier..."
-msgstr ""
+msgstr "جستجو برای یک فایل ..."
 
 #: index.html
 msgid "Glisser pour redimensionner"
-msgstr ""
+msgstr "حرکت برای اندازه گیری"
 
 #: index.html
 msgid "Aucun fichier"
-msgstr ""
+msgstr "فایل بدون فایل"
 
 #: index.html
 msgid "Glisser pour redimensionner l'éditeur"
-msgstr ""
+msgstr "برای تغییر ویرایشگر"
 
 #: index.html
 msgid "Aucun onglet ouvert — choisissez un service dans la liste des comptes"
-msgstr ""
+msgstr "هیچ برگه باز - انتخاب یک سرویس در لیست حساب"
 
 #: index.html
 msgid "Le profil permet d'isoler les cookies dans Electron."
-msgstr ""
+msgstr "این پروفایل کوکی ها را در Electron جدا می کند."
 
 #: index.html
 msgid "Nom du compte"
-msgstr ""
+msgstr "نام حساب"
 
 #: index.html
 msgid "Nom du Profil"
-msgstr ""
+msgstr "نام پروفایل"
 
 #: index.html
 msgid "Annuler"
-msgstr ""
+msgstr "لغو لغو"
 
 #: index.html
 msgid "Enregistrer"
-msgstr ""
+msgstr "Save Save"
 
 #: index.html
 msgid "Supprimer le compte"
-msgstr ""
+msgstr "حذف حساب"
 
 #: index.html
 msgid "Cette action est irréversible."
-msgstr ""
+msgstr "این را نمی توان انجام داد."
 
 #: index.html
 msgid "Supprimer"
-msgstr ""
+msgstr "حذف"
 
 #: index.html
 msgid "Importer des comptes"
-msgstr ""
+msgstr "حساب های واردات"
 
 #: index.html
 msgid "Remplacer et importer"
-msgstr ""
+msgstr "جایگزین و واردات"
 
 #: index.html
 msgid "Déconnecter le profil"
-msgstr ""
+msgstr "ثبت نام پروفایل"
 
 #: index.html
 msgid "Déconnecter"
-msgstr ""
+msgstr "ثبت نام"
 
 #: index.html
 msgid "À quoi sert chaque service, et quand l'utiliser."
-msgstr ""
+msgstr "هر سرویس برای چه چیزی است و چه زمانی از آن استفاده کنید."
 
 #: index.html
 msgid "Fermer"
-msgstr ""
+msgstr "نزدیک"
 
 #: index.html
 msgid "Sélectionnez les 9 services affichés dans l'interface. Les autres restent disponibles dans l'aide."
-msgstr ""
+msgstr "9 سرویس نشان داده شده در رابط را انتخاب کنید. دیگران در کمک در دسترس هستند."
 
 #: index.html
 msgid "Détection des ZIP livrés par les onglets IA, reprise par profil."
-msgstr ""
+msgstr "فایل های پستی را که توسط زبانه های AI تحویل داده شده اند، با رزومه های مشخص."
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: index.html
 msgid "Arrêté"
-msgstr ""
+msgstr "متوقف"
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: index.html
 msgid "Démarrer ou arrêter l'ordonnanceur (il ne démarre jamais tout seul)"
-msgstr ""
+msgstr "راه‌اندازی یا توقف زمان‌بند (هرگز خودبه‌خود شروع نمی‌شود)"
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: index.html
 msgid "Démarrer"
-msgstr ""
+msgstr "شروع"
 
 #: index.html
 msgid "Jobs actifs"
-msgstr ""
+msgstr "شغل های فعال"
 
 #: index.html
 msgid "En attente"
-msgstr ""
+msgstr "Pending"
 
 #: index.html
 msgid "Livrés aujourd'hui"
-msgstr ""
+msgstr "تحویل امروز"
 
 #: index.html
 msgid "Jobs simultanés max."
-msgstr ""
+msgstr "مکس"
 
 #: index.html
 msgid "Délai min. entre automatisations (min)"
-msgstr ""
+msgstr "تاخیر بین اتوماسیون (مین)"
 
 #: index.html
 msgid "Seuil profil « le plus ancien » (h)"
-msgstr ""
+msgstr "آستانه پروفایل قدیمی (h)"
 
 #: index.html
 msgid "Dossiers"
-msgstr ""
+msgstr "پوشه ها"
 
 #: index.html
 msgid "Téléchargements…"
-msgstr ""
+msgstr "دانلود ..."
 
 #: index.html
 msgid "Livraison…"
-msgstr ""
+msgstr "تحویل ..."
 
 #: index.html
 msgid "Téléchargements :"
-msgstr ""
+msgstr "برچسب ها:"
 
 #: index.html
 msgid "(dossier de téléchargements du système)"
-msgstr ""
+msgstr "(فایل بارگیری سیستم)"
 
 #: index.html
 msgid "Livraison :"
-msgstr ""
+msgstr "تحویل:"
 
 #: index.html
 msgid "(non défini)"
-msgstr ""
+msgstr "(تنظیم نشده)"
 
 #: index.html
 msgid "Projets & tâches"
-msgstr ""
+msgstr "پروژه ها و وظایف"
 
 #: index.html
 msgid "Jobs"
-msgstr ""
+msgstr "شغل های شغلی"
 
 #: index.html
 msgid "Journal d'activité"
-msgstr ""
+msgstr "فعالیت log"
 
 #: index.html
 msgid "Confirmation"
-msgstr ""
+msgstr "تایید تایید"
 
 #: index.html
 msgid "Confirmer"
-msgstr ""
+msgstr "تایید"
 
 #: index.html
 msgid "Préférences de l'application, sauvegardées localement."
-msgstr ""
+msgstr "تنظیمات درخواست، ذخیره شده به صورت محلی."
 
 #: index.html
 msgid "Taille de police de l'éditeur (px)"
-msgstr ""
+msgstr "اندازه فونت ویرایشگر (px)"
 
 #: index.html
 msgid "Thème"
-msgstr ""
+msgstr "Theme Theme"
 
 #: index.html
 msgid "Thème du bureau (défaut)"
-msgstr ""
+msgstr "موضوع دسکتاپ (default)"
 
 #: index.html
 msgid "Clair"
-msgstr ""
+msgstr "نور نور"
 
 #: index.html
 msgid "Sombre"
-msgstr ""
+msgstr "تاریکی تاریک"
 
 #: index.html
 msgid "Langue"
-msgstr ""
+msgstr "زبان زبان زبان"
 
 #: index.html
 msgid "Langue du système (défaut)"
-msgstr ""
+msgstr "زبان سیستم (default)"
 
 #: index.html
 msgid "Appliquée au prochain démarrage"
-msgstr ""
+msgstr "کاربردی در شروع بعدی"
 
 #: index.html
 msgid "Retour à la ligne (éditeur)"
-msgstr ""
+msgstr "بسته بندی کلمه (editor)"
 
 #: index.html
 msgid "Désactivé"
-msgstr ""
+msgstr "Off Off Off"
 
 #: index.html
 msgid "Activé"
-msgstr ""
+msgstr "On On"
 
 #: index.html
 msgid "Colonne fixe"
-msgstr ""
+msgstr "ستون ثابت"
 
 #: index.html
 msgid "Confirmer avant de fermer un onglet"
-msgstr ""
+msgstr "تایید قبل از بستن یک برگه"
 
 #: index.html
 msgid "Afficher les fenêtres d'automatisation"
-msgstr ""
+msgstr "پنجره های اتوماسیون"
 
 #: index.html
 msgid "Restaurer les onglets ouverts au démarrage"
-msgstr ""
+msgstr "بازگرداندن برگه های باز در استارت آپ"
 
 #: assets/app.js
 msgid "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."
-msgstr ""
+msgstr "دستیار مکالمه Anthropic این در نوشتن، تجزیه و تحلیل اسناد طولانی، برنامه نویسی و استدلال چند مرحله ای برتری دارد."
 
 #: assets/app.js
 msgid "Plutôt pour du code, des textes longs et soignés, ou des questions complexes qui demandent de la rigueur."
-msgstr ""
+msgstr "بهترین گزینه برای کد، متون طولانی و جلا، یا سوالات پیچیده که برای سخت افزار تماس می گیرند."
 
 #: assets/app.js
 msgid "L'assistant généraliste d'OpenAI, le plus connu du grand public. Il discute, rédige, résume, génère des images, analyse des fichiers et peut chercher sur le web."
-msgstr ""
+msgstr "دستیار عمومی OpenAI، که به عموم مردم مشهور است. چت، می نویسد، خلاصه، تولید تصاویر، تجزیه و تحلیل فایل ها و می تواند جستجو در وب."
 
 #: assets/app.js
 msgid "Le couteau suisse du quotidien : brainstorming, questions générales, petites tâches variées."
-msgstr ""
+msgstr "چاقوی روزانه ارتش سوئیس: طوفان مغزی، سوالات عمومی، وظایف کوچک را تحت تاثیر قرار می دهد."
 
 #: assets/app.js
 msgid "L'assistant IA de Google. Multimodal (texte, images, audio, vidéo), il s'appuie sur la recherche Google et s'intègre aux outils Google (Docs, Gmail, Drive…)."
-msgstr ""
+msgstr "دستیار Google AI Multimodal (متن، تصاویر، صدا، ویدئو)، آن را بر روی جستجوی گوگل و ادغام با ابزار گوگل (دکتر ها، Gmail، Drive ...)"
 
 #: assets/app.js
 msgid "Plutôt pour analyser des images ou vidéos, ou si vous travaillez déjà dans l'écosystème Google."
-msgstr ""
+msgstr "بهترین کار برای تجزیه و تحلیل تصاویر یا فیلم ها، یا اگر شما در حال حاضر در اکوسیستم گوگل کار می کنید."
 
 #: assets/app.js
 msgid "Le chat de Z.ai, propulsé par les modèles GLM. Gratuit pour l'essentiel, avec un mode agent capable de chercher sur le web et de produire des fichiers (docx, pdf, xlsx)."
-msgstr ""
+msgstr "چت Z.ai با استفاده از مدل های GLM اغلب رایگان، با یک حالت عامل که می تواند وب را جستجو و تولید فایل (Docx، pdf، xlsx)."
 
 #: assets/app.js
 msgid "Une alternative gratuite solide pour le chat et le code, quand les quotas des autres sont épuisés."
-msgstr ""
+msgstr "یک جایگزین آزاد جامد برای چت و کد زمانی که سهمیه خدمات دیگر استفاده می شود."
 
 #: assets/app.js
 msgid "Un « moteur de réponse » : il cherche sur le web en direct, synthétise plusieurs sources et cite ses références pour chaque affirmation."
-msgstr ""
+msgstr "یک \"موتور پاسخگو\": آن را جستجو می کند وب زندگی می کنند، چندین منبع را سنتز می کند و اشاره به منابع آن برای هر ادعا."
 
 #: assets/app.js
 msgid "Plutôt pour la recherche d'informations à jour, la veille et la vérification de faits avec sources."
-msgstr ""
+msgstr "بهترین برای پیدا کردن اطلاعات به روز، نظارت بر موضوعات و بررسی واقعیت با منابع."
 
 #: assets/app.js
 msgid "L'assistant de xAI (Elon Musk), connecté au réseau X (ex-Twitter). Ton direct, accès au temps réel de X, génération d'images incluse."
-msgstr ""
+msgstr "دستیار xAI (Elon Musk) متصل به شبکه X (که قبلا توییتر بود) لحن مستقیم، دسترسی زمان واقعی به X، نسل تصویر شامل."
 
 #: assets/app.js
 msgid "Plutôt pour suivre l'actualité chaude et les tendances via X, ou pour un ton moins formel."
-msgstr ""
+msgstr "بهتر است برای دنبال کردن اخبار و روند از طریق X، یا برای لحن رسمی کمتر."
 
 #: assets/app.js
 msgid "Une plateforme de génération d'images orientée création : illustrations, concept art, assets de jeu vidéo, avec des contrôles fins (styles, modèles, retouche)."
-msgstr ""
+msgstr "یک پلت فرم تصویر خلاق: تصاویر، هنر مفهومی، دارایی های بازی های ویدئویی، با کنترل های ظریف (مدل ها، مدل ها، retouching)"
 
 #: assets/app.js
 msgid "Plutôt pour produire des visuels et illustrations de qualité avec un contrôle précis du style."
-msgstr ""
+msgstr "بهترین برای تولید تصاویر و تصاویر با کیفیت با کنترل دقیق بر سبک."
 
 #: assets/app.js
 msgid "Un générateur de musique : il compose des chansons complètes (instruments, voix, paroles) à partir d'une simple description texte, dans à peu près tous les genres."
-msgstr ""
+msgstr "یک ژنراتور موسیقی: آن را ترکیب آهنگ های کامل (instruments، آواز، اشعار) از یک توصیف متن ساده، تقریبا در هر ژانر."
 
 #: assets/app.js
 msgid "Plutôt pour créer une musique, un jingle ou une chanson à partir d'un texte ou d'une idée."
-msgstr ""
+msgstr "بهترین برای ایجاد یک قطعه موسیقی، یک آهنگ یا یک آهنگ از یک متن یا یک ایده."
 
 #: assets/app.js
 msgid "Un générateur de modèles 3D : il transforme un texte ou une image en objet 3D texturé, avec rigging/animation automatique et export vers les formats standards (GLB, FBX, STL…)."
-msgstr ""
+msgstr "یک ژنراتور مدل 3D: آن را تبدیل یک متن و یا یک تصویر به یک شی 3D بافت، با چرخش خودکار / تکان دادن و صادرات به فرمت های استاندارد (GLB، FBX، STL)."
 
 #: assets/app.js
 msgid "Plutôt pour créer des assets 3D (jeux, impression 3D, animation) sans savoir modéliser."
-msgstr ""
+msgstr "بهترین برای ایجاد دارایی های 3D (بازی، چاپ 3D، انیمیشن) بدون مهارت های مدل سازی."
 
 #: assets/app.js
 msgid "Le Chat de Mistral AI, éditeur européen (français). Modèles open-weights performants, chat, code et analyse de documents."
-msgstr ""
+msgstr "Le Chat by Mistral AI، یک فروشنده اروپایی (فرانسوی) مدل های قوی باز وزن، چت، کد و تجزیه و تحلیل سند."
 
 #: assets/app.js
 msgid "Alternative européenne solide pour le chat et le code, avec une bonne maîtrise du français."
-msgstr ""
+msgstr "یک جایگزین اروپایی قوی برای چت و کد، با یک دستور خوب فرانسوی."
 
 #: assets/app.js
 msgid "DeepSeek : assistant IA chinois spécialisé en raisonnement et programmation, particulièrement performant en Python."
-msgstr ""
+msgstr "DeepSeek: یک دستیار هوش مصنوعی چینی متخصص در استدلال و برنامه نویسی، به ویژه قوی در پایتون."
 
 #: assets/app.js
 msgid "Pour du code Python, du raisonnement étape par étape, ou une alternative gratuite à ChatGPT."
-msgstr ""
+msgstr "برای کد پایتون، استدلال گام به گام یا جایگزین رایگان برای ChatGPT."
 
 #: assets/app.js
 msgid "GitHub Copilot : assistant IA intégré dans VS Code et GitHub. Autocomplétion, chat, génération de tests, explication de code."
-msgstr ""
+msgstr "GitHub Copilot: دستیار AI ساخته شده در VS Code و GitHub Autocompletion، چت، نسل آزمایشی، توضیح کد."
 
 #: assets/app.js
 msgid "Pour programmer plus vite dans VS Code ou sur GitHub, avec un modèle IA qui connaît votre codebase."
-msgstr ""
+msgstr "برای برنامه ریزی سریع تر در VS Code یا در GitHub، با یک مدل AI که پایگاه کد شما را می شناسد."
 
 #: assets/app.js
 msgid "Elicit : assistant de recherche scientifique. Trouve des articles, extrait des données, synthétise des études."
-msgstr ""
+msgstr "درخواست: یک دستیار تحقیقاتی علمی پیدا کردن مقالات، استخراج داده ها، مطالعات سنتز."
 
 #: assets/app.js
 msgid "Pour la recherche académique, la revue de littérature et l'extraction de données d'articles scientifiques."
-msgstr ""
+msgstr "برای تحقیقات علمی، بررسی های ادبیات و استخراج اطلاعات از مقالات علمی."
 
 #: assets/app.js
 msgid "NotebookLM de Google : interagissez avec vos propres documents (PDF, texte, audio). Résumés, questions, génération de notes."
-msgstr ""
+msgstr "Google’s NotebookLM: با اسناد خود ارتباط برقرار کنید (PDF, text, Audio). خاطرات، سوالات، نسل یادداشت"
 
 #: assets/app.js
 msgid "Pour interroger vos documents personnels ou professionnels avec une IA qui cite ses sources."
-msgstr ""
+msgstr "برای جستجوی اسناد شخصی یا کاری خود با AI که منابع آن را ذکر می کند."
 
 #: assets/app.js
 msgid "Wolfram Alpha : moteur de calcul symbolique. Mathématiques, physique, chimie, données factuelles, conversions."
-msgstr ""
+msgstr "Wolfram Alpha: یک موتور محاسبات نمادین ریاضیات، فیزیک، شیمی، داده های واقعی، تبدیل."
 
 #: assets/app.js
 msgid "Pour des calculs exacts (mathématiques symboliques), des données chiffrées ou des conversions d'unités."
-msgstr ""
+msgstr "برای محاسبات دقیق (نماز های مولکولی)، داده های عددی یا تبدیل واحد."
 
 #: assets/app.js
 msgid "DeepL : traduction automatique de haute qualité, plus naturelle que Google Traduction. Texte et documents entiers."
-msgstr ""
+msgstr "DeepL: ترجمه ماشینی با کیفیت بالا، طبیعی تر از Google Translate. متن و تمام اسناد"
 
 #: assets/app.js
 msgid "Pour traduire du texte ou des documents avec un rendu naturel et cohérent."
-msgstr ""
+msgstr "ترجمه متن یا اسناد با یک نتیجه طبیعی و سازگار"
 
 #: assets/app.js
 msgid "Ideogram : génération d'images orientée design. Logos, typographies, affiches, avec un excellent rendu du texte."
-msgstr ""
+msgstr "Ideogram: Design-oriented image Generation لوگوها، تایپوگرافی، پوسترها، با ارائه متن عالی."
 
 #: assets/app.js
 msgid "Pour créer des visuels avec du texte lisible (logos, affiches, bannières) ou du design graphique."
-msgstr ""
+msgstr "برای ایجاد تصاویر با متن قابل قبول (گوئل، پوستر، بنرها) یا طراحی گرافیک."
 
 #: assets/app.js
 msgid "Kling : générateur de vidéos courtes à partir de texte ou d'images. Animations réalistes, crédits gratuits disponibles."
-msgstr ""
+msgstr "Kling: یک ژنراتور فیلم کوتاه از متن یا تصاویر. انیمیشن های واقعی، اعتبارات رایگان موجود"
 
 #: assets/app.js
 msgid "Pour créer des clips vidéo animés à partir d'une description ou d'une image fixe."
-msgstr ""
+msgstr "برای ایجاد کلیپ های ویدئویی متحرک از یک توصیف یا یک تصویر هنوز."
 
 #: assets/app.js
 msgid "Runway : suite d'outils IA pour la vidéo. Génération, édition, effets spéciaux, inpainting vidéo."
-msgstr ""
+msgstr "Runway: مجموعه ای از ابزارهای ویدئویی AI نسل، ویرایش، اثرات ویژه، ویدئو در نقاشی."
 
 #: assets/app.js
 msgid "Pour le montage et la création vidéo avancée avec des outils IA intégrés."
-msgstr ""
+msgstr "برای ویرایش و ساخت ویدیو پیشرفته با ابزارهای AI ساخته شده است."
 
 #: assets/app.js
 msgid "Pika : générateur de vidéos courtes et créatives. Animation d'images, effets, transformation de styles."
-msgstr ""
+msgstr "Pika: یک ژنراتور فیلم های کوتاه و خلاق انیمیشن تصویر، اثرات، تغییر سبک."
 
 #: assets/app.js
 msgid "Pour animer des images ou créer des vidéos courtes originales avec des effets IA."
-msgstr ""
+msgstr "برای ایجاد تصاویر یا ایجاد فیلم های کوتاه اولیه با اثرات AI."
 
 #: assets/app.js
 msgid "Qwen : assistant IA d'Alibaba. Multimodal (texte, images, code), open-source, disponible en plusieurs tailles."
-msgstr ""
+msgstr "Qwen: دستیار AI Alibaba Multimodal (متن، تصاویر، کد)، منبع باز، در اندازه های مختلف موجود است."
 
 #: assets/app.js
 msgid "Alternative gratuite pour le chat, le code et l'analyse d'images, avec un bon support multilingue."
-msgstr ""
+msgstr "یک جایگزین رایگان برای چت، کد و تجزیه و تحلیل تصویر، با پشتیبانی چند زبانه خوب."
 
 #: assets/app.js
 msgid "Impossible d'enregistrer les comptes (stockage plein ?)"
-msgstr ""
+msgstr "آیا نمی توان حساب ها را ذخیره کرد (?)"
 
 #: assets/app.js
 msgid "Ctrl+S pour sauvegarder."
-msgstr ""
+msgstr "Ctrl+S برای نجات"
 
 #: assets/app.js
 msgid "Sélectionnez un fichier pour l'éditer ici."
-msgstr ""
+msgstr "یک فایل را برای ویرایش آن در اینجا انتخاب کنید."
 
 #: assets/app.js
 msgid "Éditeur simplifié (Monaco indisponible) — Ctrl+S pour sauvegarder"
-msgstr ""
+msgstr "ویرایشگر ساده (Monaco در دسترس نیست) - Ctrl +S برای ذخیره"
 
 #: assets/app.js
 msgid "Fichier enregistré !"
-msgstr ""
+msgstr "فایل ذخیره شده"
 
 #: assets/app.js
 msgid "Erreur d'enregistrement."
-msgstr ""
+msgstr "نجات خطا"
 
 #: assets/app.js
 msgid "Aucun compte pour l'instant."
-msgstr ""
+msgstr "هنوز حساب نیست."
 
 #: assets/app.js
 msgid "Créer mon premier compte"
-msgstr ""
+msgstr "اولین حساب خود را بسازید"
 
 #: assets/app.js
 msgid "Cliquer pour copier l'e-mail"
-msgstr ""
+msgstr "کلیک کنید تا آدرس ایمیل را کپی کنید"
 
 #: assets/app.js
 msgid "Modifier le compte"
-msgstr ""
+msgstr "حساب ویرایش"
 
 #: assets/app.js
 msgid "{available} service(s) hors cooldown sur {total}"
-msgstr ""
+msgstr "{available} از خدمات {total} (بازدید کنندگان) از سرد شدن"
 
 #: assets/app.js
 msgid "Replier / déplier"
-msgstr ""
+msgstr "فروپاشی / گسترش"
 
 #: assets/app.js
 msgid "{service} — {account} déjà ouvert"
-msgstr ""
+msgstr "{service} - {account} در حال حاضر باز است"
 
 #: assets/app.js
 msgid "Recharger l'onglet"
-msgstr ""
+msgstr "Reload tab"
 
 #: assets/app.js
 msgid "Revenir à l'accueil de {service}"
-msgstr ""
+msgstr "بازگشت به صفحه اصلی {service}"
 
 #: assets/app.js
 msgid "Se déconnecter du profil « {profile} »"
-msgstr ""
+msgstr "ثبت نام از پروفایل {profile}"
 
 #: assets/app.js
 msgid "{service} ouvert avec {account}"
-msgstr ""
+msgstr "{service} با {account} افتتاح شد"
 
 #: assets/app.js
 msgid "Fermer l'onglet"
-msgstr ""
+msgstr "بستن زبانه"
 
 #: assets/app.js
 msgid "Fermer l'onglet « {tab} » ? La session web sera libérée."
-msgstr ""
+msgstr "بستن برگه \"{tab}\" جلسه وب منتشر خواهد شد."
 
 #: assets/app.js
 msgid "Onglet fermé (mémoire libérée)"
-msgstr ""
+msgstr "بسته (memory release)"
 
 #: assets/app.js
 msgid "Retirer l'étoile"
-msgstr ""
+msgstr "حذف ستاره"
 
 #: assets/app.js
 msgid "Étoiler cet onglet"
-msgstr ""
+msgstr "ستاره این تب"
 
 #: assets/app.js
 msgid "Onglet étoilé"
-msgstr ""
+msgstr "بازی Tab"
 
 #: assets/app.js
 msgid "Étoile retirée"
-msgstr ""
+msgstr "ستاره حذف شد"
 
 #: assets/app.js
 msgid "Échec de la déconnexion du profil"
-msgstr ""
+msgstr "نمی تواند از پروفایل خارج شود"
 
 #: assets/app.js
 msgid "Profil « {profile} » déconnecté — session effacée"
-msgstr ""
+msgstr "پروفایل \"{profile}\" امضا شده است - جلسه پاک شده"
 
 #: assets/app.js
 msgid "Aucun fichier trouvé."
-msgstr ""
+msgstr "هیچ فایلی پیدا نشد."
 
 #: assets/app.js
 msgid "Fichier trop volumineux pour l'éditeur : {size} Mo (limite : 20 Mo)."
-msgstr ""
+msgstr "فایل برای ویرایشگر بسیار بزرگ است: {size} MB (محدودیت: 20 MB)."
 
 #: assets/app.js
 msgid "C'est quoi ?"
-msgstr ""
+msgstr "این چیست؟"
 
 #: assets/app.js
 msgid "Quand l'utiliser ?"
-msgstr ""
+msgstr "چه زمانی از آن استفاده کنیم؟"
 
 #: assets/app.js
 msgid "Description à venir."
-msgstr ""
+msgstr "توضیحات به زودی"
 
 #: assets/app.js
 msgid "Maximum {max} services à portée de main"
-msgstr ""
+msgstr "در بیشتر موارد {max} خدمات در دست"
 
 #: assets/app.js
 msgid "Sélectionnez au moins 1 service"
-msgstr ""
+msgstr "انتخاب حداقل 1 سرویس"
 
 #: assets/app.js
 msgid "Services mis à jour ({count}/{max})"
-msgstr ""
+msgstr "خدمات به روز شده ({count}/{max})"
 
 #: assets/app.js
 msgid "Supprimer « {name} » ({email}) ? La session restera stockée sur le disque, mais le compte disparaîtra de la liste."
-msgstr ""
+msgstr "حذف \"{name}\" ({email}) این جلسه در دیسک ذخیره می شود، اما حساب از لیست ناپدید می شود."
 
 #: assets/app.js
 msgid "Échec de l'export (écriture impossible)"
-msgstr ""
+msgstr "صادرات شکست خورد (نمی تواند بنویسد)"
 
 #: assets/app.js
 msgid "{count} compte(s) exporté(s)"
-msgstr ""
+msgstr "حساب {count} صادر شده"
 
 #: assets/app.js
 msgid "Export impossible"
-msgstr ""
+msgstr "صادرات شکست خورد"
 
 #: assets/app.js
 msgid "Échec de la lecture du fichier"
-msgstr ""
+msgstr "نمی تواند فایل را بخواند"
 
 #: assets/app.js
 msgid "Fichier JSON invalide"
-msgstr ""
+msgstr "فایل Invalid JSON"
 
 #: assets/app.js
 msgid "Format invalide : un tableau de comptes est attendu."
-msgstr ""
+msgstr "فرمت Invalid: مجموعه ای از حساب ها انتظار می رود."
 
 #: assets/app.js
 msgid "Le fichier contient {count} compte(s). L'import REMPLACE entièrement la liste actuelle ({current} compte(s)) — cette action écrase les comptes existants, pas leurs sessions (cookies) déjà enregistrées sur le disque. Continuer ?"
-msgstr ""
+msgstr "این فایل شامل {count} حساب (s) است. واردات COMPLETELY REPLACES لیست فعلی ( {current} حساب (بازدید کنندگان) - این بیش از حد حساب های موجود، نه جلسات آنها (کوکی ها) که در حال حاضر در دیسک ذخیره شده است. ادامه دهید؟"
 
 #: assets/app.js
 msgid "Import impossible"
-msgstr ""
+msgstr "واردات شکست خورد"
 
 #: assets/app.js
 msgid "{count} compte(s) importé(s)"
-msgstr ""
+msgstr "حساب {count} وارداتی"
 
 #: assets/app.js
 msgid "Échec de l'import : {error}"
-msgstr ""
+msgstr "واردات شکست خورد: {error}"
 
 #: assets/app.js
 msgid "Compte supprimé"
-msgstr ""
+msgstr "حساب حذف شده"
 
 #: assets/app.js
 msgid "Remplissez tous les champs"
-msgstr ""
+msgstr "پر کردن در تمام زمینه ها"
 
 #: assets/app.js
 msgid "Ce profil est déjà utilisé par un autre compte (les sessions seraient partagées)."
-msgstr ""
+msgstr "این پروفایل در حال حاضر توسط یک حساب کاربری دیگر استفاده می شود (مشارکت ها به اشتراک گذاشته می شوند)."
 
 #: assets/app.js
 msgid "Compte mis à jour"
-msgstr ""
+msgstr "حساب به روز شده"
 
 #: assets/app.js
 msgid "Compte ajouté"
-msgstr ""
+msgstr "حساب اضافه شده"
 
 #: assets/app.js
 msgid "Copie impossible dans le presse-papiers"
-msgstr ""
+msgstr "نمی تواند به کلیپ کپی کند"
 
 #: assets/app.js
 msgid "E-mail copié : {email}"
-msgstr ""
+msgstr "ایمیل کپی شده: {email}"
 
 #: assets/app.js
 msgid "Cooldown terminé"
-msgstr ""
+msgstr "Cooldown"
 
 #: assets/app.js
 msgid "{account} — {service} est de nouveau disponible."
-msgstr ""
+msgstr "{account} - {service} دوباره در دسترس است."
 
 #: assets/app.js
 msgid "{account} — {service} : cooldown terminé"
-msgstr ""
+msgstr "{account} - {service}: سرد کردن"
 
 #: assets/app.js
 msgid "Téléchargement…"
-msgstr ""
+msgstr "دانلود ..."
 
 #: assets/app.js
 msgid "Téléchargé — à traiter"
-msgstr ""
+msgstr "دانلود زیرنویس فارسی فیلم To پردازش"
 
 #: assets/app.js
 msgid "Aucun profil disponible"
-msgstr ""
+msgstr "هیچ پروفایل در دسترس نیست"
 
 #: assets/app.js
 msgid "Projet en cours d'analyse"
-msgstr ""
+msgstr "پروژه تجزیه و تحلیل"
 
 #: assets/app.js
 msgid "En cours"
-msgstr ""
+msgstr "دویدن"
 
 #: assets/app.js
 msgid "En pause"
-msgstr ""
+msgstr "استفاده از"
 
 #: assets/app.js
 msgid "Reprise programmée"
-msgstr ""
+msgstr "برنامه ریزی شده"
 
 #: assets/app.js
 msgid "Erreur"
-msgstr ""
+msgstr "خطای خطا"
 
 #: assets/app.js
 msgid "Livré"
-msgstr ""
+msgstr "تحویل داده شده"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"
-msgstr ""
+msgstr "نمی تواند تنظیمات را بارگیری کند"
 
 #: assets/app.js
 msgid "Réglages enregistrés — la langue sera appliquée au prochain démarrage"
-msgstr ""
+msgstr "تنظیمات ذخیره شده - زبان در آغاز بعدی اعمال خواهد شد"
 
 #: assets/app.js
 msgid "Réglages enregistrés"
-msgstr ""
+msgstr "تنظیمات ذخیره شده"
 
 #: assets/app.js
 msgid "Erreur lors de la sauvegarde"
-msgstr ""
+msgstr "خطا در هنگام صرفه جویی"
 
 #: assets/app.js
 msgid "Erreur lors de la sauvegarde des réglages"
-msgstr ""
+msgstr "خطا در هنگام صرفه جویی در تنظیمات"
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: assets/app.js
 msgid "Arrêter"
-msgstr ""
+msgstr "توقف"
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: assets/app.js
 msgid "En marche"
-msgstr ""
+msgstr "در حال اجرا"
 
 #: assets/app.js
 msgid "Aucun job pour l'instant — un ZIP téléchargé depuis un onglet IA (ordonnanceur activé) en créera un automatiquement."
-msgstr ""
+msgstr "هنوز هیچ شغلی - یک پستی که از یک برگه هوش مصنوعی (با فعال شدن برنامه) دانلود شده است، یک به طور خودکار ایجاد می کند."
 
 #: assets/app.js
 msgid "Continuer le projet"
-msgstr ""
+msgstr "ادامه پروژه"
 
 #: assets/app.js
 msgid "Marquer livré"
-msgstr ""
+msgstr "مارک تحویل"
 
 #: assets/app.js
 msgid "Pause"
-msgstr ""
+msgstr "Pause"
 
 #: assets/app.js
 msgid "Reprendre"
-msgstr ""
+msgstr "Next post"
 
 #: assets/app.js
 msgid "Relancer"
-msgstr ""
+msgstr "Retry"
 
 #: assets/app.js
 msgid "Ouvrir le ZIP"
-msgstr ""
+msgstr "باز کردن ZIP"
 
 #: assets/app.js
 msgid "Analyser la complétude"
-msgstr ""
+msgstr "کامل بودن آن"
 
 #: assets/app.js
 msgid "service inconnu"
-msgstr ""
+msgstr "خدمات ناشناخته"
 
 #: assets/app.js
 msgid "tentative {n}"
-msgstr ""
+msgstr "تلاش {n}"
 
 #: assets/app.js
 msgid "Aucune activité enregistrée."
-msgstr ""
+msgstr "هیچ فعالیتی ثبت نشده است."
 
 #: assets/app.js
 msgid "Impossible de modifier l'état de l'ordonnanceur"
-msgstr ""
+msgstr "نمی تواند وضعیت زمانبندی را تغییر دهد"
 
 #: assets/app.js
 msgid "Configuration non enregistrée"
-msgstr ""
+msgstr "دانلود فیلم NotSave"
 
 #: assets/app.js
 msgid "Sélection du dossier impossible"
-msgstr ""
+msgstr "نمی تواند پوشه را انتخاب کند"
 
 #: assets/app.js
 msgid "Projet terminé : {done}/{total} tâches faites, 0 restante."
-msgstr ""
+msgstr "پروژه کامل: {done} / {total} وظایف انجام شده، 0 باقی مانده است."
 
 #: assets/app.js
 msgid "{pending} à faire, {inProgress} en cours, {done} faite(s) sur {total} au total."
-msgstr ""
+msgstr "{pending} برای انجام، {inProgress} در حال پیشرفت، {done} انجام شده از {total} در مجموع."
 
 #: assets/app.js
 msgid "Analyse impossible : {error}"
-msgstr ""
+msgstr "تحلیل شکست خورد: {error}"
 
 #: assets/app.js
 msgid "Action impossible : {error}"
-msgstr ""
+msgstr "شکست خورد: {error}"
 
 #: assets/app.js
 msgid "Aucun projet pour l'instant."
-msgstr ""
+msgstr "هنوز پروژه ای نیست."
 
 #: assets/app.js
 msgid "Créer un projet"
-msgstr ""
+msgstr "ایجاد یک پروژه"
 
 #: assets/app.js
 msgid "Assignée"
-msgstr ""
+msgstr "امضا"
 
 #: assets/app.js
 msgid "Terminée"
-msgstr ""
+msgstr "تکمیل شده"
 
 #: assets/app.js
 msgid "Échouée"
-msgstr ""
+msgstr "شکست خورده"
 
 #: assets/app.js
 msgid "Lancer"
-msgstr ""
+msgstr "دویدن Run Run"
 
 #: assets/app.js
 msgid "Résultat"
-msgstr ""
+msgstr "نتیجه"
 
 #: assets/app.js
 msgid "Aucune tâche."
-msgstr ""
+msgstr "نه وظایف."
 
 #: assets/app.js
 msgid "Tous les comptes"
-msgstr ""
+msgstr "همه حساب ها"
 
 #: assets/app.js
 msgid "Comptes autorisés :"
-msgstr ""
+msgstr "حساب های مجاز:"
 
 #: assets/app.js
 msgid "{count} tâche(s)"
-msgstr ""
+msgstr "وظیفه {count} (بازدید کنندگان)"
 
 #: assets/app.js
 msgid "Nouvelle tâche"
-msgstr ""
+msgstr "کار جدید"
 
 #: assets/app.js
 msgid "Assigner"
-msgstr ""
+msgstr "Assign"
 
 #: assets/app.js
 msgid "Diagnostic Claude : {error}"
-msgstr ""
+msgstr "تشخیص کلود: {error}"
 
 #: assets/app.js
 msgid "« Continuer »"
-msgstr ""
+msgstr "\"ادامه\""
 
 #: assets/app.js
 msgid "« Télécharger »"
-msgstr ""
+msgstr "\"Download\""
 
 #: assets/app.js
 msgid "« Nouveau »"
-msgstr ""
+msgstr "«جدید»"
 
 #: assets/app.js
 msgid "zone de chat"
-msgstr ""
+msgstr "جعبه چت"
 
 #: assets/app.js
 msgid "envoi de fichier"
-msgstr ""
+msgstr "فایل آپلود"
 
 #: assets/app.js
 msgid "{count} popup(s)"
-msgstr ""
+msgstr "{count} پاپ آپ (بازدید کنندگان)"
 
 #: assets/app.js
 msgid "Claude (« {profile} ») : {details}"
-msgstr ""
+msgstr "کلود (\"{profile}\"): {details}"
 
 #: assets/app.js
 msgid "aucun élément détecté"
-msgstr ""
+msgstr "هیچ چیز کشف نشد"
 
 #: assets/app.js
 msgid "Diagnostic impossible : {error}"
-msgstr ""
+msgstr "شکست تشخیصی: {error}"
 
 #: assets/app.js
 msgid "Quota gratuit épuisé jusqu'à {time} pour ce profil."
-msgstr ""
+msgstr "سهم آزاد تا {time} برای این مشخصات خسته شده است."
 
 #: assets/app.js
 msgid "Job Claude échoué : {error}"
-msgstr ""
+msgstr "کار کلود شکست خورد: {error}"
 
 #: assets/app.js
 msgid "Prompt envoyé à Claude via {method} (« {profile} »)"
-msgstr ""
+msgstr "ارسال سریع به کلود از طریق {method} (\"{profile}\")"
 
 #: assets/app.js
 msgid "Job Claude impossible : {error}"
-msgstr ""
+msgstr "کار کلود نمی تواند اجرا شود: {error}"
 
 #: assets/app.js
 msgid "Collecte impossible : {error}"
-msgstr ""
+msgstr "شکست خورده: {error}"
 
 #: assets/app.js
 msgid "Réponse collectée : {count} caractères (« {profile} »)"
-msgstr ""
+msgstr "پاسخ جمع آوری شده: شخصیت های {count} (\"{profile}\")"
 
 #: assets/app.js
 msgid "Aucune réponse trouvée pour le moment."
-msgstr ""
+msgstr "هنوز پاسخی پیدا نشد."
 
 #: assets/app.js
 msgid "Nom du projet :"
-msgstr ""
+msgstr "نام پروژه:"
 
 #: assets/app.js
 msgid "Projet {n}"
-msgstr ""
+msgstr "پروژه {n}"
 
 #: assets/app.js
 msgid "Projet « {name} » créé"
-msgstr ""
+msgstr "پروژه {name} ساخته شده"
 
 #: assets/app.js
 msgid "Création impossible : {error}"
-msgstr ""
+msgstr "ایجاد شکست: {error}"
 
 #: assets/app.js
 msgid "Projet supprimé"
-msgstr ""
+msgstr "پروژه حذف شده"
 
 #: assets/app.js
 msgid "Suppression impossible : {error}"
-msgstr ""
+msgstr "شکست خورد: {error}"
 
 #: assets/app.js
 msgid "Prompt de la tâche :"
-msgstr ""
+msgstr "دستور کار:"
 
 #: assets/app.js
 msgid "Tâche créée dans le projet"
-msgstr ""
+msgstr "وظایف ایجاد شده در پروژه"
 
 #: assets/app.js
 msgid "Aucun compte vert disponible pour ce projet."
-msgstr ""
+msgstr "هیچ حساب سبز برای این پروژه در دسترس نیست."
 
 #: assets/app.js
 msgid "Comptes verts disponibles :"
-msgstr ""
+msgstr "حساب های سبز موجود:"
 
 #: assets/app.js
 msgid "Numéro du compte :"
-msgstr ""
+msgstr "شماره حساب:"
 
 #: assets/app.js
 msgid "Choix invalide"
-msgstr ""
+msgstr "انتخاب Invalid"
 
 #: assets/app.js
 msgid "Aucune tâche dans ce projet."
-msgstr ""
+msgstr "هیچ وظیفه ای در این پروژه نیست."
 
 #: assets/app.js
 msgid "Numéro de la tâche :"
-msgstr ""
+msgstr "شماره وظایف:"
 
 #: assets/app.js
 msgid "Tâches du projet :"
-msgstr ""
+msgstr "وظایف پروژه:"
 
 #: assets/app.js
 msgid "Tâche {task} assignée à « {account} »"
-msgstr ""
+msgstr "Task {task} به {account} اختصاص داده شده است."
 
 #: assets/app.js
 msgid "Assignation impossible : {error}"
-msgstr ""
+msgstr "شکست خورده: {error}"
 
 #: assets/app.js
 msgid "Lancement de l'automatisation Claude..."
-msgstr ""
+msgstr "شروع اتوماسیون کلود ..."
 
 #: assets/app.js
 msgid "Lancement impossible"
-msgstr ""
+msgstr "نمی تواند شروع کند"
 
 #: assets/app.js
 msgid "Tâche lancée — suivi dans le journal d'activité"
-msgstr ""
+msgstr "شروع کار – آن را در log فعالیت دنبال کنید"
 
 #: assets/app.js
 msgid "Exécution impossible : {error}"
-msgstr ""
+msgstr "اعدام شکست خورد: {error}"
 
 #: assets/app.js
 msgid "Aucun résultat disponible"
-msgstr ""
+msgstr "هیچ نتیجه ای در دسترس نیست"
 
 #: assets/app.js
 msgid "Résultat — {task}"
-msgstr ""
+msgstr "{task}"
 
 #: assets/app.js
 msgid "Données de comptes illisibles"
-msgstr ""
+msgstr "داده های حساب غیر قابل خواندن"
 
 #: assets/app.js
 msgid "La liste de comptes enregistrée est corrompue. Une sauvegarde de {count} compte(s) a été trouvée. La restaurer ?"
-msgstr ""
+msgstr "فهرست ذخیره شده فاسد است. یک نسخه پشتیبان از حساب {count} (بازدید کنندگان) پیدا شد. آن را باز کنید؟"
 
 #: assets/app.js
 msgid "La liste de comptes enregistrée est corrompue et aucune sauvegarde n'est disponible. L'application démarre avec une liste vide ; vos données actuelles ne seront pas écrasées tant que vous ne créez ou ne modifiez pas de compte."
-msgstr ""
+msgstr "لیست حساب ذخیره شده فاسد است و هیچ پشتیبان گیری در دسترس نیست. برنامه با یک لیست خالی شروع می شود؛ داده های فعلی شما تا زمانی که یک حساب ایجاد یا ویرایش کنید، بازنویسی نخواهند شد."
 
 #: assets/app.js
 msgid "Ignorer"
-msgstr ""
+msgstr "غفلت"
 
 #: assets/app.js
 msgid "Restaurer la sauvegarde"
-msgstr ""
+msgstr "بازیابی پشتیبان"
 
 #: assets/app.js
 msgid "Comptes restaurés depuis la sauvegarde"
-msgstr ""
+msgstr "حساب های بازسازی شده از نسخه پشتیبان"
 
 #: assets/app.js
 msgid "Compris"
-msgstr ""
+msgstr "آن را"
