@@ -184,6 +184,24 @@ async function run() {
     assert(await exec('document.getElementById("bootError") === null'), 'bandeau d\'erreur de démarrage affiché');
   });
 
+  await test('C0.3 ERR_ABORTED (-3) non rattrapé : pas de bandeau ; une vraie erreur réseau en affiche un (#185)', async () => {
+    const r = await exec(`new Promise((resolve) => {
+      Promise.reject(new Error("Error invoking remote method 'GUEST_VIEW_MANAGER_CALL': Error: ERR_ABORTED (-3) loading 'https://claude.ai/new'"));
+      setTimeout(() => {
+        const afterAbort = document.getElementById('bootError') !== null;
+        Promise.reject(new Error("ERR_NAME_NOT_RESOLVED (-105) loading 'https://chat.z.ai/'"));
+        setTimeout(() => {
+          const banner = document.getElementById('bootError');
+          const afterRealError = banner !== null;
+          if (banner) banner.remove(); // la suite du harnais attend une page sans bandeau
+          resolve({ afterAbort, afterRealError });
+        }, 100);
+      }, 100);
+    })`);
+    assert(!r.afterAbort, 'bandeau affiché pour une navigation remplacée (ERR_ABORTED -3)');
+    assert(r.afterRealError, 'aucun bandeau pour une vraie erreur réseau (ERR_NAME_NOT_RESOLVED)');
+  });
+
   await test('C0.2 toutes les icônes statiques sont hydratées (SVG)', async () => {
     const r = await exec(`({ total: document.querySelectorAll('span.ic[data-icon]').length,
       done: document.querySelectorAll('span.ic[data-icon] svg').length })`);

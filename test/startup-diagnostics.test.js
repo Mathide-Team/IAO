@@ -50,6 +50,19 @@ test('describeStartupProblem donne titre, détail et piste selon le type', () =>
   assert.match(d.describeStartupProblem('rejection', 'r').title, /asynchrone/);
 });
 
+test('isNavigationAbort (#185) : ERR_ABORTED -3 n\'est pas une panne, les vraies erreurs restent signalées', () => {
+  const msg = "Error invoking remote method 'GUEST_VIEW_MANAGER_CALL': Error: ERR_ABORTED (-3) loading 'https://claude.ai/new'";
+  assert.equal(d.isNavigationAbort(new Error(msg)), true);
+  assert.equal(d.isNavigationAbort(msg), true);
+  assert.equal(d.isNavigationAbort({ code: 'ERR_ABORTED', message: 'x' }), true);
+  assert.equal(d.isNavigationAbort({ errno: -3, message: 'x' }), true);
+  assert.equal(d.isNavigationAbort(new Error("ERR_NAME_NOT_RESOLVED (-105) loading 'https://chat.z.ai/'")), false);
+  assert.equal(d.isNavigationAbort(new Error('ERR_CERT_AUTHORITY_INVALID (-202)')), false);
+  assert.equal(d.isNavigationAbort(new Error('ERR_ABORTED_BY_USER')), false);
+  assert.equal(d.isNavigationAbort(null), false);
+  assert.equal(d.isNavigationAbort(undefined), false);
+});
+
 test('consoleLevelName accepte les niveaux Electron (chaîne) et historiques (entier)', () => {
   assert.equal(d.consoleLevelName('error'), 'error');
   assert.equal(d.consoleLevelName('warn'), 'warning');
