@@ -4,6 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: IAO\n"
 "Report-Msgid-Bugs-To: https://github.com/Mathide-Team/IAO/issues\n"
+"Last-Translator: IAO (traduction automatique Argos Translate, relecture humaine attendue, issue #188)\n"
+"Language-Team: aucune (relecture humaine attendue)\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -12,1084 +14,1101 @@ msgstr ""
 
 #: index.html
 msgid "Rechercher un compte ou une IA..."
-msgstr ""
+msgstr "Zoek naar een account of een AI..."
 
 #: index.html
 msgid "Comptes actifs"
-msgstr ""
+msgstr "Actieve rekeningen"
 
 #: index.html
 msgid "IA Disponibles"
-msgstr ""
+msgstr "Beschikbare AIS"
 
 #: index.html
 msgid "Rechercher un compte ou une IA (Ctrl+K)"
-msgstr ""
+msgstr "Zoek naar een account of een AI (Ctrl+K)"
 
 #: index.html
 msgid "Comptes enregistrés"
-msgstr ""
+msgstr "Opgeslagen rekeningen"
 
 #: index.html
 msgid "Tout replier / Tout déplier"
-msgstr ""
+msgstr "Alles invouwen / alles uitvouwen"
 
 #: index.html
 msgid "Exporter les comptes (JSON)"
-msgstr ""
+msgstr "Uitvoerrekeningen (JSON)"
 
 #: index.html
 msgid "Importer des comptes (JSON)"
-msgstr ""
+msgstr "Importrekeningen (JSON)"
 
 #: index.html
 msgid "Ajouter un compte"
-msgstr ""
+msgstr "Een account toevoegen"
 
 #: index.html
 msgid "Mode debug actif : traces détaillées dans le journal iao.log"
-msgstr ""
+msgstr "Debugmodus op: gedetailleerde sporen in het iao.log bestand"
 
 #: index.html
 msgid "Masquer les comptes"
-msgstr ""
+msgstr "Accounts verbergen"
 
 #: index.html
 msgid "Afficher les comptes"
-msgstr ""
+msgstr "Accounts tonen"
 
 #: index.html
 msgid "Explorateur"
-msgstr ""
+msgstr "Explorer"
 
 #: index.html
 msgid "Éditeur"
-msgstr ""
+msgstr "Editor"
 
 #: index.html
 msgid "Outils de développement (Ctrl+Maj+I)"
-msgstr ""
+msgstr "Ontwikkelaarsgereedschappen (Ctrl+Shift+I)"
 
 #: index.html
 msgid "Choisir mes 9 IA à portée de main"
-msgstr ""
+msgstr "Kies mijn 9 go-to-AIs"
 
 #: index.html
 msgid "Comprendre les IA disponibles"
-msgstr ""
+msgstr "Begrijp de beschikbare AI's"
 
 #: index.html
 msgid "Ordonnanceur IA"
-msgstr ""
+msgstr "AI-planner"
 
 #: index.html
 msgid "Réglages"
-msgstr ""
+msgstr "Instellingen"
 
 #: index.html
 msgid "Fichiers"
-msgstr ""
+msgstr "Bestanden"
 
 #: index.html
 msgid "Ouvrir un dossier"
-msgstr ""
+msgstr "Map openen"
 
 #: index.html
 msgid "Réduire"
-msgstr ""
+msgstr "Inklappen"
 
 #: index.html
 msgid "Rechercher un fichier..."
-msgstr ""
+msgstr "Een bestand zoeken..."
 
 #: index.html
 msgid "Glisser pour redimensionner"
-msgstr ""
+msgstr "Sleep naar grootte wijzigen"
 
 #: index.html
 msgid "Aucun fichier"
-msgstr ""
+msgstr "Geen bestand"
 
 #: index.html
 msgid "Glisser pour redimensionner l'éditeur"
-msgstr ""
+msgstr "Sleep om de grootte van de editor te wijzigen"
 
 #: index.html
 msgid "Aucun onglet ouvert — choisissez un service dans la liste des comptes"
-msgstr ""
+msgstr "Geen geopend tabblad"
 
 #: index.html
 msgid "Le profil permet d'isoler les cookies dans Electron."
-msgstr ""
+msgstr "Het profiel houdt cookies geïsoleerd in Electron."
 
 #: index.html
 msgid "Nom du compte"
-msgstr ""
+msgstr "Accountnaam"
 
 #: index.html
 msgid "Nom du Profil"
-msgstr ""
+msgstr "Profielnaam"
 
 #: index.html
 msgid "Annuler"
-msgstr ""
+msgstr "Annuleren"
 
 #: index.html
 msgid "Enregistrer"
-msgstr ""
+msgstr "Opslaan"
 
 #: index.html
 msgid "Supprimer le compte"
-msgstr ""
+msgstr "Account verwijderen"
 
 #: index.html
 msgid "Cette action est irréversible."
-msgstr ""
+msgstr "Dit kan niet ongedaan worden gemaakt."
 
 #: index.html
 msgid "Supprimer"
-msgstr ""
+msgstr "Verwijderen"
 
 #: index.html
 msgid "Importer des comptes"
-msgstr ""
+msgstr "Accounts importeren"
 
 #: index.html
 msgid "Remplacer et importer"
-msgstr ""
+msgstr "Vervangen en importeren"
 
 #: index.html
 msgid "Déconnecter le profil"
-msgstr ""
+msgstr "Het profiel uittekenen"
 
 #: index.html
 msgid "Déconnecter"
-msgstr ""
+msgstr "Afmelden"
 
 #: index.html
 msgid "À quoi sert chaque service, et quand l'utiliser."
-msgstr ""
+msgstr "Waar elke dienst voor is, en wanneer te gebruiken."
 
 #: index.html
 msgid "Fermer"
-msgstr ""
+msgstr "Sluiten"
 
 #: index.html
 msgid "Sélectionnez les 9 services affichés dans l'interface. Les autres restent disponibles dans l'aide."
-msgstr ""
+msgstr "Selecteer de 9 diensten in de interface. De anderen blijven beschikbaar in de hulp."
 
 #: index.html
 msgid "Détection des ZIP livrés par les onglets IA, reprise par profil."
-msgstr ""
+msgstr "Detecteert ZIP-bestanden geleverd door AI-tabbladen, met per-profiel cv."
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: index.html
 msgid "Arrêté"
-msgstr ""
+msgstr "Gestopt"
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: index.html
 msgid "Démarrer ou arrêter l'ordonnanceur (il ne démarre jamais tout seul)"
-msgstr ""
+msgstr "De planner starten of stoppen (hij start nooit vanzelf)"
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: index.html
 msgid "Démarrer"
-msgstr ""
+msgstr "Starten"
 
 #: index.html
 msgid "Jobs actifs"
-msgstr ""
+msgstr "Actieve banen"
 
 #: index.html
 msgid "En attente"
-msgstr ""
+msgstr "In afwachting"
 
 #: index.html
 msgid "Livrés aujourd'hui"
-msgstr ""
+msgstr "Vandaag geleverd"
 
 #: index.html
 msgid "Jobs simultanés max."
-msgstr ""
+msgstr "Max. gelijktijdige werkzaamheden"
 
 #: index.html
 msgid "Délai min. entre automatisations (min)"
-msgstr ""
+msgstr "Min. vertraging tussen automatiseringen (min)"
 
 #: index.html
 msgid "Seuil profil « le plus ancien » (h)"
-msgstr ""
+msgstr "\"Oudste\" profieldrempel (h)"
 
 #: index.html
 msgid "Dossiers"
-msgstr ""
+msgstr "Mappen"
 
 #: index.html
 msgid "Téléchargements…"
-msgstr ""
+msgstr "Downloads"
 
 #: index.html
 msgid "Livraison…"
-msgstr ""
+msgstr "Levering..."
 
 #: index.html
 msgid "Téléchargements :"
-msgstr ""
+msgstr "Downloads:"
 
 #: index.html
 msgid "(dossier de téléchargements du système)"
-msgstr ""
+msgstr "(systeemdownloadmap)"
 
 #: index.html
 msgid "Livraison :"
-msgstr ""
+msgstr "Levering:"
 
 #: index.html
 msgid "(non défini)"
-msgstr ""
+msgstr "(niet ingesteld)"
 
 #: index.html
 msgid "Projets & tâches"
-msgstr ""
+msgstr "Projecten & taken"
 
 #: index.html
 msgid "Jobs"
-msgstr ""
+msgstr "Taken"
 
 #: index.html
 msgid "Journal d'activité"
-msgstr ""
+msgstr "Activiteitslogboek"
 
 #: index.html
 msgid "Confirmation"
-msgstr ""
+msgstr "Bevestiging"
 
 #: index.html
 msgid "Confirmer"
-msgstr ""
+msgstr "Bevestigen"
 
 #: index.html
 msgid "Préférences de l'application, sauvegardées localement."
-msgstr ""
+msgstr "Toepassingsvoorkeuren, lokaal opgeslagen."
 
 #: index.html
 msgid "Taille de police de l'éditeur (px)"
-msgstr ""
+msgstr "Editor-lettertypegrootte (px)"
 
 #: index.html
 msgid "Thème"
-msgstr ""
+msgstr "Thema"
 
 #: index.html
 msgid "Thème du bureau (défaut)"
-msgstr ""
+msgstr "Bureaubladthema (standaard)"
 
 #: index.html
 msgid "Clair"
-msgstr ""
+msgstr "Licht"
 
 #: index.html
 msgid "Sombre"
-msgstr ""
+msgstr "Donker"
 
 #: index.html
 msgid "Langue"
-msgstr ""
+msgstr "Taal"
 
 #: index.html
 msgid "Langue du système (défaut)"
-msgstr ""
+msgstr "Systeemtaal (standaard)"
 
 #: index.html
 msgid "Appliquée au prochain démarrage"
-msgstr ""
+msgstr "Toegepast bij volgende start"
 
 #: index.html
 msgid "Retour à la ligne (éditeur)"
-msgstr ""
+msgstr "Wordwrap (editor)"
 
 #: index.html
 msgid "Désactivé"
-msgstr ""
+msgstr "Uit"
 
 #: index.html
 msgid "Activé"
-msgstr ""
+msgstr "Aan"
 
 #: index.html
 msgid "Colonne fixe"
-msgstr ""
+msgstr "Vaste kolom"
 
 #: index.html
 msgid "Confirmer avant de fermer un onglet"
-msgstr ""
+msgstr "Bevestigen voor het sluiten van een tabblad"
 
 #: index.html
 msgid "Afficher les fenêtres d'automatisation"
-msgstr ""
+msgstr "Automatiseringsvensters tonen"
 
 #: index.html
 msgid "Restaurer les onglets ouverts au démarrage"
-msgstr ""
+msgstr "Open tabbladen herstellen bij opstarten"
 
 #: assets/app.js
 msgid "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."
-msgstr ""
+msgstr "Antropic's gespreksassistent. Het blinkt uit in schrijven, het analyseren van lange documenten, programmering en multi-stap redeneren."
 
 #: assets/app.js
 msgid "Plutôt pour du code, des textes longs et soignés, ou des questions complexes qui demandent de la rigueur."
-msgstr ""
+msgstr "Beste voor code, lange en gepolijste teksten, of complexe vragen die om strengheid vragen."
 
 #: assets/app.js
 msgid "L'assistant généraliste d'OpenAI, le plus connu du grand public. Il discute, rédige, résume, génère des images, analyse des fichiers et peut chercher sur le web."
-msgstr ""
+msgstr "OpenAI's algemeen assistent, de bekendste bij het grote publiek. Het chatten, schrijven, samenvattingen, genereert afbeeldingen, analyseert bestanden en kan het web doorzoeken."
 
 #: assets/app.js
 msgid "Le couteau suisse du quotidien : brainstorming, questions générales, petites tâches variées."
-msgstr ""
+msgstr "Het dagelijkse Zwitserse legermes: brainstormen, algemene vragen, diverse kleine taken."
 
 #: assets/app.js
 msgid "L'assistant IA de Google. Multimodal (texte, images, audio, vidéo), il s'appuie sur la recherche Google et s'intègre aux outils Google (Docs, Gmail, Drive…)."
-msgstr ""
+msgstr "Google's AI assistent. Multimodal (tekst, afbeeldingen, audio, video), het bouwt op Google Search en integreert met Google tools (Docs, Gmail, Drive...)."
 
 #: assets/app.js
 msgid "Plutôt pour analyser des images ou vidéos, ou si vous travaillez déjà dans l'écosystème Google."
-msgstr ""
+msgstr "Het beste voor het analyseren van beelden of video's, of als u al werkt in het ecosysteem van Google."
 
 #: assets/app.js
 msgid "Le chat de Z.ai, propulsé par les modèles GLM. Gratuit pour l'essentiel, avec un mode agent capable de chercher sur le web et de produire des fichiers (docx, pdf, xlsx)."
-msgstr ""
+msgstr "Z.ai's chat, aangedreven door de GLM modellen. Meestal gratis, met een agentmodus die het web kan doorzoeken en bestanden kan produceren (docx, pdf, xlsx)."
 
 #: assets/app.js
 msgid "Une alternative gratuite solide pour le chat et le code, quand les quotas des autres sont épuisés."
-msgstr ""
+msgstr "Een solide gratis alternatief voor chat en code wanneer de quota van de andere diensten zijn opgebruikt."
 
 #: assets/app.js
 msgid "Un « moteur de réponse » : il cherche sur le web en direct, synthétise plusieurs sources et cite ses références pour chaque affirmation."
-msgstr ""
+msgstr "Een \"antwoordengine\": het doorzoekt het web live, synthetiseert verschillende bronnen en citeert zijn referenties voor elke claim."
 
 #: assets/app.js
 msgid "Plutôt pour la recherche d'informations à jour, la veille et la vérification de faits avec sources."
-msgstr ""
+msgstr "Beste voor het vinden van actuele informatie, het monitoren van onderwerpen en het controleren van feiten met bronnen."
 
 #: assets/app.js
 msgid "L'assistant de xAI (Elon Musk), connecté au réseau X (ex-Twitter). Ton direct, accès au temps réel de X, génération d'images incluse."
-msgstr ""
+msgstr "XAI's assistent (Elon Musk), aangesloten op het X-netwerk (voorheen Twitter). Directe toon, real-time toegang tot X, beeldgeneratie inbegrepen."
 
 #: assets/app.js
 msgid "Plutôt pour suivre l'actualité chaude et les tendances via X, ou pour un ton moins formel."
-msgstr ""
+msgstr "Beste voor het volgen van het laatste nieuws en trends via X, of voor een minder formele toon."
 
 #: assets/app.js
 msgid "Une plateforme de génération d'images orientée création : illustrations, concept art, assets de jeu vidéo, avec des contrôles fins (styles, modèles, retouche)."
-msgstr ""
+msgstr "Een creatief beeld-generatie platform: illustraties, concept kunst, video game assets, met fijnkorrelige controles (stijlen, modellen, retoucheren)."
 
 #: assets/app.js
 msgid "Plutôt pour produire des visuels et illustrations de qualité avec un contrôle précis du style."
-msgstr ""
+msgstr "Beste voor het produceren van kwaliteit visuals en illustraties met nauwkeurige controle over stijl."
 
 #: assets/app.js
 msgid "Un générateur de musique : il compose des chansons complètes (instruments, voix, paroles) à partir d'une simple description texte, dans à peu près tous les genres."
-msgstr ""
+msgstr "Een muziekgenerator: het componeert complete songs (instrumenten, vocalen, teksten) uit een eenvoudige tekstbeschrijving, in bijna elk genre."
 
 #: assets/app.js
 msgid "Plutôt pour créer une musique, un jingle ou une chanson à partir d'un texte ou d'une idée."
-msgstr ""
+msgstr "Beste voor het maken van een muziekstuk, een jingle of een liedje van een tekst of een idee."
 
 #: assets/app.js
 msgid "Un générateur de modèles 3D : il transforme un texte ou une image en objet 3D texturé, avec rigging/animation automatique et export vers les formats standards (GLB, FBX, STL…)."
-msgstr ""
+msgstr "Een 3D model generator: het verandert een tekst of een afbeelding in een gestructureerd 3D object, met automatische rigging/animatie en export naar standaard formaten (GLB, FBX, STL...)."
 
 #: assets/app.js
 msgid "Plutôt pour créer des assets 3D (jeux, impression 3D, animation) sans savoir modéliser."
-msgstr ""
+msgstr "Beste voor het creëren van 3D-activa (games, 3D-printen, animatie) zonder modellering vaardigheden."
 
 #: assets/app.js
 msgid "Le Chat de Mistral AI, éditeur européen (français). Modèles open-weights performants, chat, code et analyse de documents."
-msgstr ""
+msgstr "Le Chat door Mistral AI, een Europese (Franse) verkoper. Sterke open-gewicht modellen, chat, code en document analyse."
 
 #: assets/app.js
 msgid "Alternative européenne solide pour le chat et le code, avec une bonne maîtrise du français."
-msgstr ""
+msgstr "Een solide Europees alternatief voor chat en code, met een goede Fransman."
 
 #: assets/app.js
 msgid "DeepSeek : assistant IA chinois spécialisé en raisonnement et programmation, particulièrement performant en Python."
-msgstr ""
+msgstr "DeepSeek: een Chinese AI assistent gespecialiseerd in redeneren en programmeren, vooral sterk in Python."
 
 #: assets/app.js
 msgid "Pour du code Python, du raisonnement étape par étape, ou une alternative gratuite à ChatGPT."
-msgstr ""
+msgstr "Voor Python code, stap-voor-stap redeneren, of een gratis alternatief voor ChatGPT."
 
 #: assets/app.js
 msgid "GitHub Copilot : assistant IA intégré dans VS Code et GitHub. Autocomplétion, chat, génération de tests, explication de code."
-msgstr ""
+msgstr "GitHub Copilot: een AI assistent ingebouwd in VS Code en GitHub. Auto-aanvulling, chat, testgeneratie, code uitleg."
 
 #: assets/app.js
 msgid "Pour programmer plus vite dans VS Code ou sur GitHub, avec un modèle IA qui connaît votre codebase."
-msgstr ""
+msgstr "Sneller programmeren in VS Code of op GitHub, met een AI model dat je codebase kent."
 
 #: assets/app.js
 msgid "Elicit : assistant de recherche scientifique. Trouve des articles, extrait des données, synthétise des études."
-msgstr ""
+msgstr "Een wetenschappelijke onderzoeksassistent. Vindt papers, uittreksels data, synthese studies."
 
 #: assets/app.js
 msgid "Pour la recherche académique, la revue de littérature et l'extraction de données d'articles scientifiques."
-msgstr ""
+msgstr "Voor academisch onderzoek, literatuur reviews en het extraheren van gegevens uit wetenschappelijke papers."
 
 #: assets/app.js
 msgid "NotebookLM de Google : interagissez avec vos propres documents (PDF, texte, audio). Résumés, questions, génération de notes."
-msgstr ""
+msgstr "Google's NotebookLM: interactie met uw eigen documenten (PDF, tekst, audio). Samenvattingen, vragen, notitie generatie."
 
 #: assets/app.js
 msgid "Pour interroger vos documents personnels ou professionnels avec une IA qui cite ses sources."
-msgstr ""
+msgstr "Om uw persoonlijke of werkdocumenten te vragen met een AI die de bronnen citeert."
 
 #: assets/app.js
 msgid "Wolfram Alpha : moteur de calcul symbolique. Mathématiques, physique, chimie, données factuelles, conversions."
-msgstr ""
+msgstr "Wolfram Alpha: een symbolische rekenmachine. Wiskunde, natuurkunde, scheikunde, feitelijke gegevens, conversies."
 
 #: assets/app.js
 msgid "Pour des calculs exacts (mathématiques symboliques), des données chiffrées ou des conversions d'unités."
-msgstr ""
+msgstr "Voor exacte berekeningen (symbolische wiskunde), numerieke gegevens of eenheidsconversies."
 
 #: assets/app.js
 msgid "DeepL : traduction automatique de haute qualité, plus naturelle que Google Traduction. Texte et documents entiers."
-msgstr ""
+msgstr "DeepL: hoogwaardige machinevertaling, natuurlijker dan Google Translate. Tekst en hele documenten."
 
 #: assets/app.js
 msgid "Pour traduire du texte ou des documents avec un rendu naturel et cohérent."
-msgstr ""
+msgstr "Tekst of documenten vertalen met een natuurlijk, consistent resultaat."
 
 #: assets/app.js
 msgid "Ideogram : génération d'images orientée design. Logos, typographies, affiches, avec un excellent rendu du texte."
-msgstr ""
+msgstr "Ideogram: ontwerpgerichte beeldgeneratie. Logos, typografie, posters, met uitstekende tekstweergave."
 
 #: assets/app.js
 msgid "Pour créer des visuels avec du texte lisible (logos, affiches, bannières) ou du design graphique."
-msgstr ""
+msgstr "Visuals maken met leesbare tekst (logos, posters, banners) of grafisch ontwerp."
 
 #: assets/app.js
 msgid "Kling : générateur de vidéos courtes à partir de texte ou d'images. Animations réalistes, crédits gratuits disponibles."
-msgstr ""
+msgstr "Kling: een korte-video generator van tekst of beelden. Realistische animaties, gratis credits beschikbaar."
 
 #: assets/app.js
 msgid "Pour créer des clips vidéo animés à partir d'une description ou d'une image fixe."
-msgstr ""
+msgstr "Geanimeerde videoclips maken van een beschrijving of een stilstaande afbeelding."
 
 #: assets/app.js
 msgid "Runway : suite d'outils IA pour la vidéo. Génération, édition, effets spéciaux, inpainting vidéo."
-msgstr ""
+msgstr "Runway: een suite van AI video tools. Genereren, bewerken, speciale effecten, video-inverven."
 
 #: assets/app.js
 msgid "Pour le montage et la création vidéo avancée avec des outils IA intégrés."
-msgstr ""
+msgstr "Voor geavanceerde videobewerking en -creatie met ingebouwde AI-tools."
 
 #: assets/app.js
 msgid "Pika : générateur de vidéos courtes et créatives. Animation d'images, effets, transformation de styles."
-msgstr ""
+msgstr "Pika: een generator van korte, creatieve video's. Afbeelding animatie, effecten, stijl transformatie."
 
 #: assets/app.js
 msgid "Pour animer des images ou créer des vidéos courtes originales avec des effets IA."
-msgstr ""
+msgstr "Om afbeeldingen te animeren of originele korte video's te maken met AI-effecten."
 
 #: assets/app.js
 msgid "Qwen : assistant IA d'Alibaba. Multimodal (texte, images, code), open-source, disponible en plusieurs tailles."
-msgstr ""
+msgstr "Alibaba's AI assistent. Multimodal (tekst, afbeeldingen, code), open source, verkrijgbaar in verschillende maten."
 
 #: assets/app.js
 msgid "Alternative gratuite pour le chat, le code et l'analyse d'images, avec un bon support multilingue."
-msgstr ""
+msgstr "Een gratis alternatief voor chat, code en beeldanalyse, met goede meertalige ondersteuning."
 
 #: assets/app.js
 msgid "Impossible d'enregistrer les comptes (stockage plein ?)"
-msgstr ""
+msgstr "Kon de accounts niet opslaan (volledig opslaan?)"
 
 #: assets/app.js
 msgid "Ctrl+S pour sauvegarder."
-msgstr ""
+msgstr "Ctrl+S om op te slaan."
 
 #: assets/app.js
 msgid "Sélectionnez un fichier pour l'éditer ici."
-msgstr ""
+msgstr "Selecteer een bestand om het hier te bewerken."
 
 #: assets/app.js
 msgid "Éditeur simplifié (Monaco indisponible) — Ctrl+S pour sauvegarder"
-msgstr ""
+msgstr "Vereenvoudigde editor (Monaco is niet beschikbaar)"
 
 #: assets/app.js
 msgid "Fichier enregistré !"
-msgstr ""
+msgstr "Bestand opgeslagen"
 
 #: assets/app.js
 msgid "Erreur d'enregistrement."
-msgstr ""
+msgstr "Fout opslaan."
 
 #: assets/app.js
 msgid "Aucun compte pour l'instant."
-msgstr ""
+msgstr "Nog geen rekeningen."
 
 #: assets/app.js
 msgid "Créer mon premier compte"
-msgstr ""
+msgstr "Mijn eerste account aanmaken"
 
 #: assets/app.js
 msgid "Cliquer pour copier l'e-mail"
-msgstr ""
+msgstr "Klik om het e-mailadres te kopiëren"
 
 #: assets/app.js
 msgid "Modifier le compte"
-msgstr ""
+msgstr "Account bewerken"
 
 #: assets/app.js
 msgid "{available} service(s) hors cooldown sur {total}"
-msgstr ""
+msgstr "{available} van {total} service(s) uit afkoeling"
 
 #: assets/app.js
 msgid "Replier / déplier"
-msgstr ""
+msgstr "Invouwen / uitvouwen"
 
+# Traduit à la main (le marqueur était perdu par la traduction automatique) ;
+# relecture humaine attendue.
 #: assets/app.js
 msgid "{service} — {account} déjà ouvert"
-msgstr ""
+msgstr "{service} — {account} is al geopend"
 
 #: assets/app.js
 msgid "Recharger l'onglet"
-msgstr ""
+msgstr "Tabblad herladen"
 
 #: assets/app.js
 msgid "Revenir à l'accueil de {service}"
-msgstr ""
+msgstr "Terug naar de {service} startpagina"
 
 #: assets/app.js
 msgid "Se déconnecter du profil « {profile} »"
-msgstr ""
+msgstr "Afmelden uit profiel \"{profile}\""
 
 #: assets/app.js
 msgid "{service} ouvert avec {account}"
-msgstr ""
+msgstr "{service} geopend met {account}"
 
 #: assets/app.js
 msgid "Fermer l'onglet"
-msgstr ""
+msgstr "Tabblad sluiten"
 
 #: assets/app.js
 msgid "Fermer l'onglet « {tab} » ? La session web sera libérée."
-msgstr ""
+msgstr "De tab \"{tab}\" sluiten? De websessie wordt vrijgegeven."
 
 #: assets/app.js
 msgid "Onglet fermé (mémoire libérée)"
-msgstr ""
+msgstr "Tabblad gesloten (geheugen vrijgegeven)"
 
 #: assets/app.js
 msgid "Retirer l'étoile"
-msgstr ""
+msgstr "Ster verwijderen"
 
 #: assets/app.js
 msgid "Étoiler cet onglet"
-msgstr ""
+msgstr "Dit tabblad tonen"
 
 #: assets/app.js
 msgid "Onglet étoilé"
-msgstr ""
+msgstr "Tabblad met ster"
 
 #: assets/app.js
 msgid "Étoile retirée"
-msgstr ""
+msgstr "Ster verwijderd"
 
 #: assets/app.js
 msgid "Échec de la déconnexion du profil"
-msgstr ""
+msgstr "Kon niet uit het profiel tekenen"
 
 #: assets/app.js
 msgid "Profil « {profile} » déconnecté — session effacée"
-msgstr ""
+msgstr "Profiel \"{profile}\" afgemeld"
 
 #: assets/app.js
 msgid "Aucun fichier trouvé."
-msgstr ""
+msgstr "Geen bestanden gevonden."
 
 #: assets/app.js
 msgid "Fichier trop volumineux pour l'éditeur : {size} Mo (limite : 20 Mo)."
-msgstr ""
+msgstr "Bestand te groot voor de editor: {size} MB (limiet: 20 MB)."
 
 #: assets/app.js
 msgid "C'est quoi ?"
-msgstr ""
+msgstr "Wat is er?"
 
 #: assets/app.js
 msgid "Quand l'utiliser ?"
-msgstr ""
+msgstr "Wanneer moet ik het gebruiken?"
 
 #: assets/app.js
 msgid "Description à venir."
-msgstr ""
+msgstr "Beschrijving komt binnenkort."
 
 #: assets/app.js
 msgid "Maximum {max} services à portée de main"
-msgstr ""
+msgstr "Hoogstens {max} diensten bij de hand"
 
 #: assets/app.js
 msgid "Sélectionnez au moins 1 service"
-msgstr ""
+msgstr "Selecteer ten minste 1 dienst"
 
 #: assets/app.js
 msgid "Services mis à jour ({count}/{max})"
-msgstr ""
+msgstr "Diensten bijgewerkt ({count}/{max})"
 
 #: assets/app.js
 msgid "Supprimer « {name} » ({email}) ? La session restera stockée sur le disque, mais le compte disparaîtra de la liste."
-msgstr ""
+msgstr "\"{name}\" ({email}) schrappen? De sessie blijft opgeslagen op schijf, maar het account verdwijnt uit de lijst."
 
 #: assets/app.js
 msgid "Échec de l'export (écriture impossible)"
-msgstr ""
+msgstr "Exporteren mislukt (kan niet schrijven)"
 
 #: assets/app.js
 msgid "{count} compte(s) exporté(s)"
-msgstr ""
+msgstr "{count} uitgevoerde rekening(s)"
 
 #: assets/app.js
 msgid "Export impossible"
-msgstr ""
+msgstr "Exporteren mislukt"
 
 #: assets/app.js
 msgid "Échec de la lecture du fichier"
-msgstr ""
+msgstr "Kon het bestand niet lezen"
 
 #: assets/app.js
 msgid "Fichier JSON invalide"
-msgstr ""
+msgstr "Ongeldig JSON-bestand"
 
 #: assets/app.js
 msgid "Format invalide : un tableau de comptes est attendu."
-msgstr ""
+msgstr "Ongeldig formaat: er wordt een reeks accounts verwacht."
 
 #: assets/app.js
 msgid "Le fichier contient {count} compte(s). L'import REMPLACE entièrement la liste actuelle ({current} compte(s)) — cette action écrase les comptes existants, pas leurs sessions (cookies) déjà enregistrées sur le disque. Continuer ?"
-msgstr ""
+msgstr "Het bestand bevat {count} account(s). Het importeren van VOLLE VERVANGT de huidige lijst ({current} account(s)) Dit overschrijft de bestaande accounts, niet hun sessies (cookies) al opgeslagen op schijf. Doorgaan?"
 
 #: assets/app.js
 msgid "Import impossible"
-msgstr ""
+msgstr "Importeren mislukt"
 
 #: assets/app.js
 msgid "{count} compte(s) importé(s)"
-msgstr ""
+msgstr "{count} account(s) geïmporteerd"
 
 #: assets/app.js
 msgid "Échec de l'import : {error}"
-msgstr ""
+msgstr "Import is mislukt: {error}"
 
 #: assets/app.js
 msgid "Compte supprimé"
-msgstr ""
+msgstr "Account verwijderd"
 
 #: assets/app.js
 msgid "Remplissez tous les champs"
-msgstr ""
+msgstr "Alle velden invullen"
 
 #: assets/app.js
 msgid "Ce profil est déjà utilisé par un autre compte (les sessions seraient partagées)."
-msgstr ""
+msgstr "Dit profiel wordt al gebruikt door een ander account (sessies zouden gedeeld worden)."
 
 #: assets/app.js
 msgid "Compte mis à jour"
-msgstr ""
+msgstr "Account bijgewerkt"
 
 #: assets/app.js
 msgid "Compte ajouté"
-msgstr ""
+msgstr "Account toegevoegd"
 
 #: assets/app.js
 msgid "Copie impossible dans le presse-papiers"
-msgstr ""
+msgstr "Kon niet naar het klembord kopiëren"
 
 #: assets/app.js
 msgid "E-mail copié : {email}"
-msgstr ""
+msgstr "E-mail gekopieerd: {email}"
 
 #: assets/app.js
 msgid "Cooldown terminé"
-msgstr ""
+msgstr "Afkoelen over"
 
 #: assets/app.js
 msgid "{account} — {service} est de nouveau disponible."
-msgstr ""
+msgstr "{account} {service} is weer beschikbaar."
 
+# Traduit à la main (le marqueur était perdu par la traduction automatique) ;
+# relecture humaine attendue.
 #: assets/app.js
 msgid "{account} — {service} : cooldown terminé"
-msgstr ""
+msgstr "{account} — {service}: wachttijd voorbij"
 
 #: assets/app.js
 msgid "Téléchargement…"
-msgstr ""
+msgstr "Downloaden"
 
 #: assets/app.js
 msgid "Téléchargé — à traiter"
-msgstr ""
+msgstr "Gedownload om te verwerken"
 
 #: assets/app.js
 msgid "Aucun profil disponible"
-msgstr ""
+msgstr "Geen profiel beschikbaar"
 
 #: assets/app.js
 msgid "Projet en cours d'analyse"
-msgstr ""
+msgstr "Project wordt geanalyseerd"
 
 #: assets/app.js
 msgid "En cours"
-msgstr ""
+msgstr "Uitvoeren"
 
 #: assets/app.js
 msgid "En pause"
-msgstr ""
+msgstr "Gepauzeerd"
 
 #: assets/app.js
 msgid "Reprise programmée"
-msgstr ""
+msgstr "Gepland hervatten"
 
 #: assets/app.js
 msgid "Erreur"
-msgstr ""
+msgstr "Fout"
 
 #: assets/app.js
 msgid "Livré"
-msgstr ""
+msgstr "Geleverd"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"
-msgstr ""
+msgstr "Kon de instellingen niet laden"
 
 #: assets/app.js
 msgid "Réglages enregistrés — la langue sera appliquée au prochain démarrage"
-msgstr ""
+msgstr "Instellingen opgeslagen in de taal worden toegepast bij volgende start"
 
 #: assets/app.js
 msgid "Réglages enregistrés"
-msgstr ""
+msgstr "Opgeslagen instellingen"
 
 #: assets/app.js
 msgid "Erreur lors de la sauvegarde"
-msgstr ""
+msgstr "Fout bij opslaan"
 
 #: assets/app.js
 msgid "Erreur lors de la sauvegarde des réglages"
-msgstr ""
+msgstr "Fout bij opslaan van de instellingen"
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: assets/app.js
 msgid "Arrêter"
-msgstr ""
+msgstr "Stoppen"
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: assets/app.js
 msgid "En marche"
-msgstr ""
+msgstr "Actief"
 
 #: assets/app.js
 msgid "Aucun job pour l'instant — un ZIP téléchargé depuis un onglet IA (ordonnanceur activé) en créera un automatiquement."
-msgstr ""
+msgstr "Nog geen taken Een ZIP gedownload van een AI-tabblad (met de scheduler ingeschakeld) zal er automatisch een aanmaken."
 
 #: assets/app.js
 msgid "Continuer le projet"
-msgstr ""
+msgstr "Het project voortzetten"
 
 #: assets/app.js
 msgid "Marquer livré"
-msgstr ""
+msgstr "Markeren zoals geleverd"
 
 #: assets/app.js
 msgid "Pause"
-msgstr ""
+msgstr "Pauze"
 
 #: assets/app.js
 msgid "Reprendre"
-msgstr ""
+msgstr "Hervatten"
 
 #: assets/app.js
 msgid "Relancer"
-msgstr ""
+msgstr "Opnieuw proberen"
 
 #: assets/app.js
 msgid "Ouvrir le ZIP"
-msgstr ""
+msgstr "ZIP openen"
 
 #: assets/app.js
 msgid "Analyser la complétude"
-msgstr ""
+msgstr "Volledigheid analyseren"
 
 #: assets/app.js
 msgid "service inconnu"
-msgstr ""
+msgstr "onbekende dienst"
 
 #: assets/app.js
 msgid "tentative {n}"
-msgstr ""
+msgstr "poging {n}"
 
 #: assets/app.js
 msgid "Aucune activité enregistrée."
-msgstr ""
+msgstr "Geen activiteit geregistreerd."
 
 #: assets/app.js
 msgid "Impossible de modifier l'état de l'ordonnanceur"
-msgstr ""
+msgstr "Kon de schedulerstatus niet wijzigen"
 
 #: assets/app.js
 msgid "Configuration non enregistrée"
-msgstr ""
+msgstr "Configuratie niet opgeslagen"
 
 #: assets/app.js
 msgid "Sélection du dossier impossible"
-msgstr ""
+msgstr "Kon de map niet selecteren"
 
 #: assets/app.js
 msgid "Projet terminé : {done}/{total} tâches faites, 0 restante."
-msgstr ""
+msgstr "Project voltooid: {done}/{total} taken uitgevoerd, 0 resterend."
 
 #: assets/app.js
 msgid "{pending} à faire, {inProgress} en cours, {done} faite(s) sur {total} au total."
-msgstr ""
+msgstr "{pending} te doen, {inProgress} in volle gang, {done} in totaal uitgevoerd {total}."
 
 #: assets/app.js
 msgid "Analyse impossible : {error}"
-msgstr ""
+msgstr "Analyse mislukt: {error}"
 
 #: assets/app.js
 msgid "Action impossible : {error}"
-msgstr ""
+msgstr "Actie mislukt: {error}"
 
 #: assets/app.js
 msgid "Aucun projet pour l'instant."
-msgstr ""
+msgstr "Nog geen projecten."
 
 #: assets/app.js
 msgid "Créer un projet"
-msgstr ""
+msgstr "Een project aanmaken"
 
 #: assets/app.js
 msgid "Assignée"
-msgstr ""
+msgstr "Toewijzing"
 
 #: assets/app.js
 msgid "Terminée"
-msgstr ""
+msgstr "Voltooid"
 
 #: assets/app.js
 msgid "Échouée"
-msgstr ""
+msgstr "Mislukt"
 
 #: assets/app.js
 msgid "Lancer"
-msgstr ""
+msgstr "Uitvoeren"
 
 #: assets/app.js
 msgid "Résultat"
-msgstr ""
+msgstr "Resultaat"
 
 #: assets/app.js
 msgid "Aucune tâche."
-msgstr ""
+msgstr "Geen taken."
 
 #: assets/app.js
 msgid "Tous les comptes"
-msgstr ""
+msgstr "Alle rekeningen"
 
 #: assets/app.js
 msgid "Comptes autorisés :"
-msgstr ""
+msgstr "Toegestane rekeningen:"
 
 #: assets/app.js
 msgid "{count} tâche(s)"
-msgstr ""
+msgstr "{count} taak(s)"
 
 #: assets/app.js
 msgid "Nouvelle tâche"
-msgstr ""
+msgstr "Nieuwe taak"
 
 #: assets/app.js
 msgid "Assigner"
-msgstr ""
+msgstr "Toewijzen"
 
 #: assets/app.js
 msgid "Diagnostic Claude : {error}"
-msgstr ""
+msgstr "Claudediagnostiek: {error}"
 
 #: assets/app.js
 msgid "« Continuer »"
-msgstr ""
+msgstr "\"Ga door\""
 
 #: assets/app.js
 msgid "« Télécharger »"
-msgstr ""
+msgstr "\"Download\""
 
 #: assets/app.js
 msgid "« Nouveau »"
-msgstr ""
+msgstr "\"Nieuw\""
 
 #: assets/app.js
 msgid "zone de chat"
-msgstr ""
+msgstr "chatbox"
 
 #: assets/app.js
 msgid "envoi de fichier"
-msgstr ""
+msgstr "bestand uploaden"
 
 #: assets/app.js
 msgid "{count} popup(s)"
-msgstr ""
+msgstr "{count} popup(s)"
 
+# Traduit à la main (le marqueur était perdu par la traduction automatique) ;
+# relecture humaine attendue.
 #: assets/app.js
 msgid "Claude (« {profile} ») : {details}"
-msgstr ""
+msgstr "Claude (“{profile}”): {details}"
 
 #: assets/app.js
 msgid "aucun élément détecté"
-msgstr ""
+msgstr "niets gedetecteerd"
 
 #: assets/app.js
 msgid "Diagnostic impossible : {error}"
-msgstr ""
+msgstr "Diagnostisch mislukt: {error}"
 
 #: assets/app.js
 msgid "Quota gratuit épuisé jusqu'à {time} pour ce profil."
-msgstr ""
+msgstr "Gratis quota die zijn opgebruikt tot {time} voor dit profiel."
 
 #: assets/app.js
 msgid "Job Claude échoué : {error}"
-msgstr ""
+msgstr "Claude-taak mislukt: {error}"
 
+# Traduit à la main (le marqueur était perdu par la traduction automatique) ;
+# relecture humaine attendue.
 #: assets/app.js
 msgid "Prompt envoyé à Claude via {method} (« {profile} »)"
-msgstr ""
+msgstr "Prompt naar Claude verzonden via {method} (“{profile}”)"
 
 #: assets/app.js
 msgid "Job Claude impossible : {error}"
-msgstr ""
+msgstr "Claude-job kon niet draaien: {error}"
 
 #: assets/app.js
 msgid "Collecte impossible : {error}"
-msgstr ""
+msgstr "Verzameling mislukt: {error}"
 
+# Traduit à la main (le marqueur était perdu par la traduction automatique) ;
+# relecture humaine attendue.
 #: assets/app.js
 msgid "Réponse collectée : {count} caractères (« {profile} »)"
-msgstr ""
+msgstr "Antwoord opgehaald: {count} tekens (“{profile}”)"
 
 #: assets/app.js
 msgid "Aucune réponse trouvée pour le moment."
-msgstr ""
+msgstr "Nog geen antwoord gevonden."
 
 #: assets/app.js
 msgid "Nom du projet :"
-msgstr ""
+msgstr "Projectnaam:"
 
 #: assets/app.js
 msgid "Projet {n}"
-msgstr ""
+msgstr "Project {n}"
 
+# Traduit à la main (le marqueur était perdu par la traduction automatique) ;
+# relecture humaine attendue.
 #: assets/app.js
 msgid "Projet « {name} » créé"
-msgstr ""
+msgstr "Project “{name}” aangemaakt"
 
 #: assets/app.js
 msgid "Création impossible : {error}"
-msgstr ""
+msgstr "Aanmaak mislukt: {error}"
 
 #: assets/app.js
 msgid "Projet supprimé"
-msgstr ""
+msgstr "Project verwijderd"
 
 #: assets/app.js
 msgid "Suppression impossible : {error}"
-msgstr ""
+msgstr "Verwijdering mislukt: {error}"
 
 #: assets/app.js
 msgid "Prompt de la tâche :"
-msgstr ""
+msgstr "Taakprompt:"
 
 #: assets/app.js
 msgid "Tâche créée dans le projet"
-msgstr ""
+msgstr "Taak aangemaakt in het project"
 
 #: assets/app.js
 msgid "Aucun compte vert disponible pour ce projet."
-msgstr ""
+msgstr "Geen groene account beschikbaar voor dit project."
 
 #: assets/app.js
 msgid "Comptes verts disponibles :"
-msgstr ""
+msgstr "Beschikbare groene rekeningen:"
 
 #: assets/app.js
 msgid "Numéro du compte :"
-msgstr ""
+msgstr "Rekeningnummer:"
 
 #: assets/app.js
 msgid "Choix invalide"
-msgstr ""
+msgstr "Ongeldige keuze"
 
 #: assets/app.js
 msgid "Aucune tâche dans ce projet."
-msgstr ""
+msgstr "Geen taak in dit project."
 
 #: assets/app.js
 msgid "Numéro de la tâche :"
-msgstr ""
+msgstr "Taaknummer:"
 
 #: assets/app.js
 msgid "Tâches du projet :"
-msgstr ""
+msgstr "Projecttaken:"
 
 #: assets/app.js
 msgid "Tâche {task} assignée à « {account} »"
-msgstr ""
+msgstr "Taak {task} toegewezen aan {account}"
 
 #: assets/app.js
 msgid "Assignation impossible : {error}"
-msgstr ""
+msgstr "Opdracht mislukt: {error}"
 
 #: assets/app.js
 msgid "Lancement de l'automatisation Claude..."
-msgstr ""
+msgstr "Start de Claude automatisering..."
 
 #: assets/app.js
 msgid "Lancement impossible"
-msgstr ""
+msgstr "Kon niet starten"
 
 #: assets/app.js
 msgid "Tâche lancée — suivi dans le journal d'activité"
-msgstr ""
+msgstr "Taak gestart"
 
 #: assets/app.js
 msgid "Exécution impossible : {error}"
-msgstr ""
+msgstr "Uitvoering mislukt: {error}"
 
 #: assets/app.js
 msgid "Aucun résultat disponible"
-msgstr ""
+msgstr "Geen resultaat beschikbaar"
 
 #: assets/app.js
 msgid "Résultat — {task}"
-msgstr ""
+msgstr "Resultaat {task}"
 
 #: assets/app.js
 msgid "Données de comptes illisibles"
-msgstr ""
+msgstr "Onleesbare rekeninggegevens"
 
 #: assets/app.js
 msgid "La liste de comptes enregistrée est corrompue. Une sauvegarde de {count} compte(s) a été trouvée. La restaurer ?"
-msgstr ""
+msgstr "De opgeslagen accountlijst is beschadigd. Een backup van {count} account(s) werd gevonden. Herstellen?"
 
 #: assets/app.js
 msgid "La liste de comptes enregistrée est corrompue et aucune sauvegarde n'est disponible. L'application démarre avec une liste vide ; vos données actuelles ne seront pas écrasées tant que vous ne créez ou ne modifiez pas de compte."
-msgstr ""
+msgstr "De opgeslagen accountlijst is beschadigd en er is geen back-up beschikbaar. De toepassing begint met een lege lijst; uw huidige gegevens worden niet overschreven totdat u een account aanmaakt of bewerkt."
 
 #: assets/app.js
 msgid "Ignorer"
-msgstr ""
+msgstr "Negeren"
 
 #: assets/app.js
 msgid "Restaurer la sauvegarde"
-msgstr ""
+msgstr "Reservekopie herstellen"
 
 #: assets/app.js
 msgid "Comptes restaurés depuis la sauvegarde"
-msgstr ""
+msgstr "Accounts hersteld uit de back-up"
 
 #: assets/app.js
 msgid "Compris"
-msgstr ""
+msgstr "Begrepen."

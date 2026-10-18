@@ -4,6 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: IAO\n"
 "Report-Msgid-Bugs-To: https://github.com/Mathide-Team/IAO/issues\n"
+"Last-Translator: IAO (traduction automatique Argos Translate, relecture humaine attendue, issue #188)\n"
+"Language-Team: aucune (relecture humaine attendue)\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -12,1084 +14,1089 @@ msgstr ""
 
 #: index.html
 msgid "Rechercher un compte ou une IA..."
-msgstr ""
+msgstr "Hledejte účet nebo Al..."
 
 #: index.html
 msgid "Comptes actifs"
-msgstr ""
+msgstr "Aktivní účty"
 
 #: index.html
 msgid "IA Disponibles"
-msgstr ""
+msgstr "Dostupné AI"
 
 #: index.html
 msgid "Rechercher un compte ou une IA (Ctrl+K)"
-msgstr ""
+msgstr "Vyhledávání účtu nebo AI (Ctrl + K)"
 
 #: index.html
 msgid "Comptes enregistrés"
-msgstr ""
+msgstr "Uložené účty"
 
 #: index.html
 msgid "Tout replier / Tout déplier"
-msgstr ""
+msgstr "Rozbalit vše / Rozbalit vše"
 
 #: index.html
 msgid "Exporter les comptes (JSON)"
-msgstr ""
+msgstr "Vývozní účty (JSON)"
 
 #: index.html
 msgid "Importer des comptes (JSON)"
-msgstr ""
+msgstr "Dovozní účty (JSON)"
 
 #: index.html
 msgid "Ajouter un compte"
-msgstr ""
+msgstr "Přidat účet"
 
 #: index.html
 msgid "Mode debug actif : traces détaillées dans le journal iao.log"
-msgstr ""
+msgstr "Režim ladění zapnuto: podrobné stopy v souboru iao.log"
 
 #: index.html
 msgid "Masquer les comptes"
-msgstr ""
+msgstr "Skrýt účty"
 
 #: index.html
 msgid "Afficher les comptes"
-msgstr ""
+msgstr "Zobrazit účty"
 
 #: index.html
 msgid "Explorateur"
-msgstr ""
+msgstr "Explorer"
 
 #: index.html
 msgid "Éditeur"
-msgstr ""
+msgstr "Editor"
 
 #: index.html
 msgid "Outils de développement (Ctrl+Maj+I)"
-msgstr ""
+msgstr "Vývojářské nástroje (Ctrl + Shift + I)"
 
 #: index.html
 msgid "Choisir mes 9 IA à portée de main"
-msgstr ""
+msgstr "Vyberte si mých 9 do AI"
 
 #: index.html
 msgid "Comprendre les IA disponibles"
-msgstr ""
+msgstr "Porozumět dostupným AI"
 
 #: index.html
 msgid "Ordonnanceur IA"
-msgstr ""
+msgstr "AI plánovač"
 
 #: index.html
 msgid "Réglages"
-msgstr ""
+msgstr "Nastavení"
 
 #: index.html
 msgid "Fichiers"
-msgstr ""
+msgstr "Soubory"
 
 #: index.html
 msgid "Ouvrir un dossier"
-msgstr ""
+msgstr "Otevřít složku"
 
 #: index.html
 msgid "Réduire"
-msgstr ""
+msgstr "Kolaps"
 
 #: index.html
 msgid "Rechercher un fichier..."
-msgstr ""
+msgstr "Hledat soubor..."
 
 #: index.html
 msgid "Glisser pour redimensionner"
-msgstr ""
+msgstr "Přetáhněte do velikosti"
 
 #: index.html
 msgid "Aucun fichier"
-msgstr ""
+msgstr "Žádný soubor"
 
 #: index.html
 msgid "Glisser pour redimensionner l'éditeur"
-msgstr ""
+msgstr "Přetáhněte pro změnu velikosti editoru"
 
 #: index.html
 msgid "Aucun onglet ouvert — choisissez un service dans la liste des comptes"
-msgstr ""
+msgstr "No open tab - vyberte si službu v seznamu účtů"
 
 #: index.html
 msgid "Le profil permet d'isoler les cookies dans Electron."
-msgstr ""
+msgstr "Profil udržuje cookies izolované v Electronu."
 
 #: index.html
 msgid "Nom du compte"
-msgstr ""
+msgstr "Název účtu"
 
 #: index.html
 msgid "Nom du Profil"
-msgstr ""
+msgstr "Název profilu"
 
 #: index.html
 msgid "Annuler"
-msgstr ""
+msgstr "Zrušit"
 
 #: index.html
 msgid "Enregistrer"
-msgstr ""
+msgstr "Uložit"
 
 #: index.html
 msgid "Supprimer le compte"
-msgstr ""
+msgstr "Smazat účet"
 
 #: index.html
 msgid "Cette action est irréversible."
-msgstr ""
+msgstr "To se nedá odčinit."
 
 #: index.html
 msgid "Supprimer"
-msgstr ""
+msgstr "Smazat"
 
 #: index.html
 msgid "Importer des comptes"
-msgstr ""
+msgstr "Dovozní účty"
 
 #: index.html
 msgid "Remplacer et importer"
-msgstr ""
+msgstr "Náhrada a dovoz"
 
 #: index.html
 msgid "Déconnecter le profil"
-msgstr ""
+msgstr "Vypsat profil"
 
 #: index.html
 msgid "Déconnecter"
-msgstr ""
+msgstr "Odhlásit se"
 
 #: index.html
 msgid "À quoi sert chaque service, et quand l'utiliser."
-msgstr ""
+msgstr "K čemu je každá služba a kdy ji použít."
 
 #: index.html
 msgid "Fermer"
-msgstr ""
+msgstr "Zavřít"
 
 #: index.html
 msgid "Sélectionnez les 9 services affichés dans l'interface. Les autres restent disponibles dans l'aide."
-msgstr ""
+msgstr "Vyberte 9 služeb uvedených v rozhraní. Ostatní zůstávají k dispozici."
 
 #: index.html
 msgid "Détection des ZIP livrés par les onglets IA, reprise par profil."
-msgstr ""
+msgstr "Detekuje soubory ZIP dodané pomocí AI karet, s per- profilem životopisu."
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: index.html
 msgid "Arrêté"
-msgstr ""
+msgstr "Zastaveno"
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: index.html
 msgid "Démarrer ou arrêter l'ordonnanceur (il ne démarre jamais tout seul)"
-msgstr ""
+msgstr "Spustit nebo zastavit plánovač (nikdy se nespustí sám)"
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: index.html
 msgid "Démarrer"
-msgstr ""
+msgstr "Spustit"
 
 #: index.html
 msgid "Jobs actifs"
-msgstr ""
+msgstr "Aktivní práce"
 
 #: index.html
 msgid "En attente"
-msgstr ""
+msgstr "Probíhá"
 
 #: index.html
 msgid "Livrés aujourd'hui"
-msgstr ""
+msgstr "Doručeno dnes"
 
 #: index.html
 msgid "Jobs simultanés max."
-msgstr ""
+msgstr "Max. souběžné práce"
 
 #: index.html
 msgid "Délai min. entre automatisations (min)"
-msgstr ""
+msgstr "Minimální zpoždění mezi automaty (min)"
 
 #: index.html
 msgid "Seuil profil « le plus ancien » (h)"
-msgstr ""
+msgstr "\"Nejstarší\" práh profilu (h)"
 
 #: index.html
 msgid "Dossiers"
-msgstr ""
+msgstr "Složky"
 
 #: index.html
 msgid "Téléchargements…"
-msgstr ""
+msgstr "Stáhnout..."
 
 #: index.html
 msgid "Livraison…"
-msgstr ""
+msgstr "Dodávka..."
 
 #: index.html
 msgid "Téléchargements :"
-msgstr ""
+msgstr "Ke stažení:"
 
 #: index.html
 msgid "(dossier de téléchargements du système)"
-msgstr ""
+msgstr "(systém stahuje složku)"
 
 #: index.html
 msgid "Livraison :"
-msgstr ""
+msgstr "Dodávka:"
 
 #: index.html
 msgid "(non défini)"
-msgstr ""
+msgstr "(není stanoveno)"
 
 #: index.html
 msgid "Projets & tâches"
-msgstr ""
+msgstr "Projekty a úkoly"
 
 #: index.html
 msgid "Jobs"
-msgstr ""
+msgstr "Pracovní místa"
 
 #: index.html
 msgid "Journal d'activité"
-msgstr ""
+msgstr "Záznam činnosti"
 
 #: index.html
 msgid "Confirmation"
-msgstr ""
+msgstr "Potvrzení"
 
 #: index.html
 msgid "Confirmer"
-msgstr ""
+msgstr "Potvrdit"
 
 #: index.html
 msgid "Préférences de l'application, sauvegardées localement."
-msgstr ""
+msgstr "Aplikace preference, uložené lokálně."
 
 #: index.html
 msgid "Taille de police de l'éditeur (px)"
-msgstr ""
+msgstr "Velikost písma editoru (px)"
 
 #: index.html
 msgid "Thème"
-msgstr ""
+msgstr "Téma"
 
 #: index.html
 msgid "Thème du bureau (défaut)"
-msgstr ""
+msgstr "Téma plochy (přednastaveno)"
 
 #: index.html
 msgid "Clair"
-msgstr ""
+msgstr "Světlo"
 
 #: index.html
 msgid "Sombre"
-msgstr ""
+msgstr "Tmavé"
 
 #: index.html
 msgid "Langue"
-msgstr ""
+msgstr "Jazyk"
 
 #: index.html
 msgid "Langue du système (défaut)"
-msgstr ""
+msgstr "Jazyk systému (výchozí)"
 
 #: index.html
 msgid "Appliquée au prochain démarrage"
-msgstr ""
+msgstr "Aplikováno na příštím startu"
 
 #: index.html
 msgid "Retour à la ligne (éditeur)"
-msgstr ""
+msgstr "Zabalování slov (editor)"
 
 #: index.html
 msgid "Désactivé"
-msgstr ""
+msgstr "Vypnout"
 
 #: index.html
 msgid "Activé"
-msgstr ""
+msgstr "Zapnout"
 
 #: index.html
 msgid "Colonne fixe"
-msgstr ""
+msgstr "Pevný sloupec"
 
 #: index.html
 msgid "Confirmer avant de fermer un onglet"
-msgstr ""
+msgstr "Potvrdit před zavřením karty"
 
 #: index.html
 msgid "Afficher les fenêtres d'automatisation"
-msgstr ""
+msgstr "Zobrazit okna automatizace"
 
 #: index.html
 msgid "Restaurer les onglets ouverts au démarrage"
-msgstr ""
+msgstr "Obnovit otevřené karty při spuštění"
 
 #: assets/app.js
 msgid "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."
-msgstr ""
+msgstr "Antropická asistentka. Exceluje při psaní, analýze dlouhých dokumentů, programování a vícestupňovém uvažování."
 
 #: assets/app.js
 msgid "Plutôt pour du code, des textes longs et soignés, ou des questions complexes qui demandent de la rigueur."
-msgstr ""
+msgstr "Nejlepší pro kódové, dlouhé a leštěné texty, nebo složité otázky, které vyžadují přísnost."
 
 #: assets/app.js
 msgid "L'assistant généraliste d'OpenAI, le plus connu du grand public. Il discute, rédige, résume, génère des images, analyse des fichiers et peut chercher sur le web."
-msgstr ""
+msgstr "Asistentka OpenAI, nejznámější pro širokou veřejnost. Mluví, píše, shrnuje, generuje obrázky, analyzuje soubory a může vyhledávat na webu."
 
 #: assets/app.js
 msgid "Le couteau suisse du quotidien : brainstorming, questions générales, petites tâches variées."
-msgstr ""
+msgstr "Denní švýcarský armádní nůž: brainstorming, obecné otázky, různé malé úkoly."
 
 #: assets/app.js
 msgid "L'assistant IA de Google. Multimodal (texte, images, audio, vidéo), il s'appuie sur la recherche Google et s'intègre aux outils Google (Docs, Gmail, Drive…)."
-msgstr ""
+msgstr "Asistent Google AI. Multimodální (text, obrázky, audio, video), staví na Google Search a integruje se s nástroji Google (Docs, Gmail, Drive...)."
 
 #: assets/app.js
 msgid "Plutôt pour analyser des images ou vidéos, ou si vous travaillez déjà dans l'écosystème Google."
-msgstr ""
+msgstr "Nejlepší pro analýzu obrázků nebo videí, nebo pokud již pracujete v ekosystému Google."
 
 #: assets/app.js
 msgid "Le chat de Z.ai, propulsé par les modèles GLM. Gratuit pour l'essentiel, avec un mode agent capable de chercher sur le web et de produire des fichiers (docx, pdf, xlsx)."
-msgstr ""
+msgstr "Z. ai 's chat, poháněný modely GLM. Většinou zdarma, s módem agent, který může vyhledávat na webu a produkovat soubory (docx, pdf, xlsx)."
 
 #: assets/app.js
 msgid "Une alternative gratuite solide pour le chat et le code, quand les quotas des autres sont épuisés."
-msgstr ""
+msgstr "Bezplatná alternativa pro chat a kódování, pokud jsou kvóty ostatních služeb vyčerpány."
 
 #: assets/app.js
 msgid "Un « moteur de réponse » : il cherche sur le web en direct, synthétise plusieurs sources et cite ses références pour chaque affirmation."
-msgstr ""
+msgstr "\"Response engine\": hledá web live, syntetizuje několik zdrojů a cituje své reference pro každé tvrzení."
 
 #: assets/app.js
 msgid "Plutôt pour la recherche d'informations à jour, la veille et la vérification de faits avec sources."
-msgstr ""
+msgstr "Nejlepší pro nalezení aktuálních informací, sledování témat a fakt- kontrola se zdroji."
 
 #: assets/app.js
 msgid "L'assistant de xAI (Elon Musk), connecté au réseau X (ex-Twitter). Ton direct, accès au temps réel de X, génération d'images incluse."
-msgstr ""
+msgstr "XAI asistent (Elon Musk), připojen k síti X (dříve Twitter). Přímý tón, reálný přístup k X, včetně generování obrazu."
 
 #: assets/app.js
 msgid "Plutôt pour suivre l'actualité chaude et les tendances via X, ou pour un ton moins formel."
-msgstr ""
+msgstr "Nejlepší pro následující aktuální zprávy a trendy přes X, nebo pro méně formální tón."
 
 #: assets/app.js
 msgid "Une plateforme de génération d'images orientée création : illustrations, concept art, assets de jeu vidéo, avec des contrôles fins (styles, modèles, retouche)."
-msgstr ""
+msgstr "Kreativní image-generační platforma: ilustrace, koncept umění, video herní aktiva, s finegrained ovládání (styly, modely, retouch)."
 
 #: assets/app.js
 msgid "Plutôt pour produire des visuels et illustrations de qualité avec un contrôle précis du style."
-msgstr ""
+msgstr "Nejlepší pro výrobu kvalitních vizuálů a ilustrací s přesným ovládáním stylu."
 
 #: assets/app.js
 msgid "Un générateur de musique : il compose des chansons complètes (instruments, voix, paroles) à partir d'une simple description texte, dans à peu près tous les genres."
-msgstr ""
+msgstr "Hudební generátor: skládá kompletní písně (nástroje, vokály, texty) z jednoduchého textového popisu, v téměř každém žánru."
 
 #: assets/app.js
 msgid "Plutôt pour créer une musique, un jingle ou une chanson à partir d'un texte ou d'une idée."
-msgstr ""
+msgstr "Nejlepší pro vytvoření hudby, znělky nebo písně z textu nebo myšlenky."
 
 #: assets/app.js
 msgid "Un générateur de modèles 3D : il transforme un texte ou une image en objet 3D texturé, avec rigging/animation automatique et export vers les formats standards (GLB, FBX, STL…)."
-msgstr ""
+msgstr "3D model generátor: přemění text nebo obraz na texturovaný 3D objekt s automatickou montáží / animací a exportuje do standardních formátů (GLB, FBX, STL...)."
 
 #: assets/app.js
 msgid "Plutôt pour créer des assets 3D (jeux, impression 3D, animation) sans savoir modéliser."
-msgstr ""
+msgstr "Nejlepší pro vytváření 3D aktiv (hry, 3D tisk, animace) bez modelovacích dovedností."
 
 #: assets/app.js
 msgid "Le Chat de Mistral AI, éditeur européen (français). Modèles open-weights performants, chat, code et analyse de documents."
-msgstr ""
+msgstr "Le Chat od Mistral AI, evropského (francouzského) prodejce. Strong open-váhy modely, chat, kód a analýzu dokumentů."
 
 #: assets/app.js
 msgid "Alternative européenne solide pour le chat et le code, avec une bonne maîtrise du français."
-msgstr ""
+msgstr "Pevná evropská alternativa pro chat a kodex, s dobrým velením francouzštiny."
 
 #: assets/app.js
 msgid "DeepSeek : assistant IA chinois spécialisé en raisonnement et programmation, particulièrement performant en Python."
-msgstr ""
+msgstr "DeepSeek: čínský asistent AI specializovaný na uvažování a programování, zejména silný v Pythonu."
 
 #: assets/app.js
 msgid "Pour du code Python, du raisonnement étape par étape, ou une alternative gratuite à ChatGPT."
-msgstr ""
+msgstr "Pro Python kód, step-by- krok uvažování, nebo volné alternativy k ChatGPT."
 
 #: assets/app.js
 msgid "GitHub Copilot : assistant IA intégré dans VS Code et GitHub. Autocomplétion, chat, génération de tests, explication de code."
-msgstr ""
+msgstr "GitHub Copilot: asistent AI zabudovaný do VS Code a GitHub. Automatické dokončení, chat, generace testů, vysvětlení kódu."
 
 #: assets/app.js
 msgid "Pour programmer plus vite dans VS Code ou sur GitHub, avec un modèle IA qui connaît votre codebase."
-msgstr ""
+msgstr "Naprogramovat rychleji VS Code nebo na GitHub, s AI modelem, který zná váš kód."
 
 #: assets/app.js
 msgid "Elicit : assistant de recherche scientifique. Trouve des articles, extrait des données, synthétise des études."
-msgstr ""
+msgstr "Elicit: vědecký výzkumný asistent. Najde papíry, extrahuje data, syntetizuje studie."
 
 #: assets/app.js
 msgid "Pour la recherche académique, la revue de littérature et l'extraction de données d'articles scientifiques."
-msgstr ""
+msgstr "Pro akademický výzkum, recenze literatury a získávání údajů z vědeckých dokumentů."
 
 #: assets/app.js
 msgid "NotebookLM de Google : interagissez avec vos propres documents (PDF, texte, audio). Résumés, questions, génération de notes."
-msgstr ""
+msgstr "Google NotebookLM: interagovat s vlastními dokumenty (PDF, text, audio). Shrnutí, otázky, generace poznámek."
 
 #: assets/app.js
 msgid "Pour interroger vos documents personnels ou professionnels avec une IA qui cite ses sources."
-msgstr ""
+msgstr "Chcete-li dotazovat své osobní nebo pracovní dokumenty s AI, který cituje své zdroje."
 
 #: assets/app.js
 msgid "Wolfram Alpha : moteur de calcul symbolique. Mathématiques, physique, chimie, données factuelles, conversions."
-msgstr ""
+msgstr "Wolfram Alpha: symbolický výpočetní motor. Matematika, fyzika, chemie, faktická data, konverze."
 
 #: assets/app.js
 msgid "Pour des calculs exacts (mathématiques symboliques), des données chiffrées ou des conversions d'unités."
-msgstr ""
+msgstr "Pro přesné výpočty (symbolická matematika), číselné údaje nebo jednotkové přepočty."
 
 #: assets/app.js
 msgid "DeepL : traduction automatique de haute qualité, plus naturelle que Google Traduction. Texte et documents entiers."
-msgstr ""
+msgstr "DeepL: vysoce kvalitní strojový překlad, přirozenější než Google Translate. Text a celé dokumenty."
 
 #: assets/app.js
 msgid "Pour traduire du texte ou des documents avec un rendu naturel et cohérent."
-msgstr ""
+msgstr "Přeložit text nebo dokumenty s přirozeným, konzistentním výsledkem."
 
 #: assets/app.js
 msgid "Ideogram : génération d'images orientée design. Logos, typographies, affiches, avec un excellent rendu du texte."
-msgstr ""
+msgstr "Ideogram: rating-oriented image generation. Loga, typografie, plakáty s výborným textovým vykreslováním."
 
 #: assets/app.js
 msgid "Pour créer des visuels avec du texte lisible (logos, affiches, bannières) ou du design graphique."
-msgstr ""
+msgstr "Vytvoření vizuálů s čitelným textem (loga, plakáty, bannery) nebo grafickým designem."
 
 #: assets/app.js
 msgid "Kling : générateur de vidéos courtes à partir de texte ou d'images. Animations réalistes, crédits gratuits disponibles."
-msgstr ""
+msgstr "Kling: krátký video generátor z textu nebo obrázků. Realistické animace, zdarma dostupné kredity."
 
 #: assets/app.js
 msgid "Pour créer des clips vidéo animés à partir d'une description ou d'une image fixe."
-msgstr ""
+msgstr "Chcete-li vytvořit animované klipy z popisu nebo ještě obrázek."
 
 #: assets/app.js
 msgid "Runway : suite d'outils IA pour la vidéo. Génération, édition, effets spéciaux, inpainting vidéo."
-msgstr ""
+msgstr "Runway: apartmá AI video nástrojů. Generace, editace, speciální efekty, video malování."
 
 #: assets/app.js
 msgid "Pour le montage et la création vidéo avancée avec des outils IA intégrés."
-msgstr ""
+msgstr "Pro pokročilou editaci videa a tvorbu s nářadím AI."
 
 #: assets/app.js
 msgid "Pika : générateur de vidéos courtes et créatives. Animation d'images, effets, transformation de styles."
-msgstr ""
+msgstr "Pika: generátor krátkých, kreativních videí. Image animace, efekty, transformace stylu."
 
 #: assets/app.js
 msgid "Pour animer des images ou créer des vidéos courtes originales avec des effets IA."
-msgstr ""
+msgstr "Chcete-li animovat obrázky nebo vytvořit originální krátké videa s AI efekty."
 
 #: assets/app.js
 msgid "Qwen : assistant IA d'Alibaba. Multimodal (texte, images, code), open-source, disponible en plusieurs tailles."
-msgstr ""
+msgstr "Asistent Alibaby. Multimodální (text, obrázky, kód), open source, dostupné v několika velikostech."
 
 #: assets/app.js
 msgid "Alternative gratuite pour le chat, le code et l'analyse d'images, avec un bon support multilingue."
-msgstr ""
+msgstr "Bezplatná alternativa pro chat, kód a analýzu obrazu, s dobrou vícejazyčnou podporou."
 
 #: assets/app.js
 msgid "Impossible d'enregistrer les comptes (stockage plein ?)"
-msgstr ""
+msgstr "Nelze uložit účty (skladování plné?)"
 
 #: assets/app.js
 msgid "Ctrl+S pour sauvegarder."
-msgstr ""
+msgstr "Ctrl + S pro uložení."
 
 #: assets/app.js
 msgid "Sélectionnez un fichier pour l'éditer ici."
-msgstr ""
+msgstr "Zde vyberte soubor pro jeho úpravu."
 
 #: assets/app.js
 msgid "Éditeur simplifié (Monaco indisponible) — Ctrl+S pour sauvegarder"
-msgstr ""
+msgstr "Zjednodušený editor (Monako není k dispozici) - Ctrl + S pro uložení"
 
 #: assets/app.js
 msgid "Fichier enregistré !"
-msgstr ""
+msgstr "Soubor uložen"
 
 #: assets/app.js
 msgid "Erreur d'enregistrement."
-msgstr ""
+msgstr "Uložit chybu."
 
 #: assets/app.js
 msgid "Aucun compte pour l'instant."
-msgstr ""
+msgstr "Zatím žádné účty."
 
 #: assets/app.js
 msgid "Créer mon premier compte"
-msgstr ""
+msgstr "Vytvořit svůj první účet"
 
 #: assets/app.js
 msgid "Cliquer pour copier l'e-mail"
-msgstr ""
+msgstr "Kliknutím zkopírujete e-mailovou adresu"
 
 #: assets/app.js
 msgid "Modifier le compte"
-msgstr ""
+msgstr "Upravit účet"
 
 #: assets/app.js
 msgid "{available} service(s) hors cooldown sur {total}"
-msgstr ""
+msgstr "{available} z {total} služeb z chlazení"
 
 #: assets/app.js
 msgid "Replier / déplier"
-msgstr ""
+msgstr "Kolaps / rozšíření"
 
 #: assets/app.js
 msgid "{service} — {account} déjà ouvert"
-msgstr ""
+msgstr "{service} - {account} již otevřené"
 
 #: assets/app.js
 msgid "Recharger l'onglet"
-msgstr ""
+msgstr "Obnovit kartu"
 
 #: assets/app.js
 msgid "Revenir à l'accueil de {service}"
-msgstr ""
+msgstr "Zpět na domovskou stránku {service}"
 
 #: assets/app.js
 msgid "Se déconnecter du profil « {profile} »"
-msgstr ""
+msgstr "Odepsat profil \"{profile}\""
 
 #: assets/app.js
 msgid "{service} ouvert avec {account}"
-msgstr ""
+msgstr "{service} Otevřeno {account}"
 
 #: assets/app.js
 msgid "Fermer l'onglet"
-msgstr ""
+msgstr "Zavřít kartu"
 
 #: assets/app.js
 msgid "Fermer l'onglet « {tab} » ? La session web sera libérée."
-msgstr ""
+msgstr "Zavřít kartu \"{tab}\"? Webová relace bude vydána."
 
 #: assets/app.js
 msgid "Onglet fermé (mémoire libérée)"
-msgstr ""
+msgstr "Tab zavřená (uvolněná paměť)"
 
 #: assets/app.js
 msgid "Retirer l'étoile"
-msgstr ""
+msgstr "Odstranit hvězdu"
 
 #: assets/app.js
 msgid "Étoiler cet onglet"
-msgstr ""
+msgstr "Zahrát tuto kartu"
 
 #: assets/app.js
 msgid "Onglet étoilé"
-msgstr ""
+msgstr "Tab started"
 
 #: assets/app.js
 msgid "Étoile retirée"
-msgstr ""
+msgstr "Odstraněna hvězda"
 
 #: assets/app.js
 msgid "Échec de la déconnexion du profil"
-msgstr ""
+msgstr "Nelze odhlásit profil"
 
 #: assets/app.js
 msgid "Profil « {profile} » déconnecté — session effacée"
-msgstr ""
+msgstr "Profil \"{profile}\" odepsán - odsouhlasen"
 
 #: assets/app.js
 msgid "Aucun fichier trouvé."
-msgstr ""
+msgstr "Žádné soubory nenalezeny."
 
 #: assets/app.js
 msgid "Fichier trop volumineux pour l'éditeur : {size} Mo (limite : 20 Mo)."
-msgstr ""
+msgstr "Soubor příliš velký pro editor: {size} MB (limit: 20 MB)."
 
 #: assets/app.js
 msgid "C'est quoi ?"
-msgstr ""
+msgstr "Co je to?"
 
 #: assets/app.js
 msgid "Quand l'utiliser ?"
-msgstr ""
+msgstr "Kdy ho použít?"
 
 #: assets/app.js
 msgid "Description à venir."
-msgstr ""
+msgstr "Popis bude brzy."
 
 #: assets/app.js
 msgid "Maximum {max} services à portée de main"
-msgstr ""
+msgstr "Maximálně {max} služby na vyžádání"
 
 #: assets/app.js
 msgid "Sélectionnez au moins 1 service"
-msgstr ""
+msgstr "Vyberte alespoň 1 službu"
 
 #: assets/app.js
 msgid "Services mis à jour ({count}/{max})"
-msgstr ""
+msgstr "Aktualizované služby ({count} / {max})"
 
 #: assets/app.js
 msgid "Supprimer « {name} » ({email}) ? La session restera stockée sur le disque, mais le compte disparaîtra de la liste."
-msgstr ""
+msgstr "Smazat \"{name}\" ({email})? Relace zůstane uložena na disku, ale účet zmizí ze seznamu."
 
 #: assets/app.js
 msgid "Échec de l'export (écriture impossible)"
-msgstr ""
+msgstr "Vývoz selhal (nelze zapsat)"
 
 #: assets/app.js
 msgid "{count} compte(s) exporté(s)"
-msgstr ""
+msgstr "{count} Vyvezené účty"
 
 #: assets/app.js
 msgid "Export impossible"
-msgstr ""
+msgstr "Vývoz selhal"
 
 #: assets/app.js
 msgid "Échec de la lecture du fichier"
-msgstr ""
+msgstr "Nelze přečíst soubor"
 
 #: assets/app.js
 msgid "Fichier JSON invalide"
-msgstr ""
+msgstr "Neplatný soubor JSON"
 
 #: assets/app.js
 msgid "Format invalide : un tableau de comptes est attendu."
-msgstr ""
+msgstr "Neplatný formát: očekává se řada účtů."
 
 #: assets/app.js
 msgid "Le fichier contient {count} compte(s). L'import REMPLACE entièrement la liste actuelle ({current} compte(s)) — cette action écrase les comptes existants, pas leurs sessions (cookies) déjà enregistrées sur le disque. Continuer ?"
-msgstr ""
+msgstr "Soubor obsahuje {count} účet / účty. Importování ÚPLNĚ REPLACES aktuální seznam ({current} účtu (s)) - to přepisuje stávající účty, ne jejich relace (cookies) již uložené na disku. Pokračovat?"
 
 #: assets/app.js
 msgid "Import impossible"
-msgstr ""
+msgstr "Import selhal"
 
 #: assets/app.js
 msgid "{count} compte(s) importé(s)"
-msgstr ""
+msgstr "{count} Importované účty"
 
 #: assets/app.js
 msgid "Échec de l'import : {error}"
-msgstr ""
+msgstr "Import selhal: {error}"
 
 #: assets/app.js
 msgid "Compte supprimé"
-msgstr ""
+msgstr "Zrušený účet"
 
 #: assets/app.js
 msgid "Remplissez tous les champs"
-msgstr ""
+msgstr "Vyplňte všechna pole"
 
 #: assets/app.js
 msgid "Ce profil est déjà utilisé par un autre compte (les sessions seraient partagées)."
-msgstr ""
+msgstr "Tento profil je již používán jiným účtem (sezení by se sdílela)."
 
 #: assets/app.js
 msgid "Compte mis à jour"
-msgstr ""
+msgstr "Aktualizovaný účet"
 
 #: assets/app.js
 msgid "Compte ajouté"
-msgstr ""
+msgstr "Přidaný účet"
 
 #: assets/app.js
 msgid "Copie impossible dans le presse-papiers"
-msgstr ""
+msgstr "Nelze kopírovat do schránky"
 
 #: assets/app.js
 msgid "E-mail copié : {email}"
-msgstr ""
+msgstr "E- mail zkopírován: {email}"
 
 #: assets/app.js
 msgid "Cooldown terminé"
-msgstr ""
+msgstr "Ochlazování nad"
 
 #: assets/app.js
 msgid "{account} — {service} est de nouveau disponible."
-msgstr ""
+msgstr "{account} - {service} je opět k dispozici."
 
 #: assets/app.js
 msgid "{account} — {service} : cooldown terminé"
-msgstr ""
+msgstr "{account} - {service}: přechlazení"
 
 #: assets/app.js
 msgid "Téléchargement…"
-msgstr ""
+msgstr "Stahuji..."
 
 #: assets/app.js
 msgid "Téléchargé — à traiter"
-msgstr ""
+msgstr "Staženo - bude zpracováno"
 
 #: assets/app.js
 msgid "Aucun profil disponible"
-msgstr ""
+msgstr "Není k dispozici žádný profil"
 
 #: assets/app.js
 msgid "Projet en cours d'analyse"
-msgstr ""
+msgstr "Analyzovaný projekt"
 
 #: assets/app.js
 msgid "En cours"
-msgstr ""
+msgstr "Běžící"
 
 #: assets/app.js
 msgid "En pause"
-msgstr ""
+msgstr "Pozastaveno"
 
 #: assets/app.js
 msgid "Reprise programmée"
-msgstr ""
+msgstr "Obnovit naplánováno"
 
 #: assets/app.js
 msgid "Erreur"
-msgstr ""
+msgstr "Chyba"
 
 #: assets/app.js
 msgid "Livré"
-msgstr ""
+msgstr "Podávané"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"
-msgstr ""
+msgstr "Nelze načíst nastavení"
 
 #: assets/app.js
 msgid "Réglages enregistrés — la langue sera appliquée au prochain démarrage"
-msgstr ""
+msgstr "Uložené nastavení - jazyk bude aplikován při příštím startu"
 
 #: assets/app.js
 msgid "Réglages enregistrés"
-msgstr ""
+msgstr "Nastavení uloženo"
 
 #: assets/app.js
 msgid "Erreur lors de la sauvegarde"
-msgstr ""
+msgstr "Chyba při ukládání"
 
 #: assets/app.js
 msgid "Erreur lors de la sauvegarde des réglages"
-msgstr ""
+msgstr "Chyba při ukládání nastavení"
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: assets/app.js
 msgid "Arrêter"
-msgstr ""
+msgstr "Zastavit"
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: assets/app.js
 msgid "En marche"
-msgstr ""
+msgstr "Běží"
 
 #: assets/app.js
 msgid "Aucun job pour l'instant — un ZIP téléchargé depuis un onglet IA (ordonnanceur activé) en créera un automatiquement."
-msgstr ""
+msgstr "Zatím žádná pracovní místa - ZIP stažené z karty AI (s povoleným plánovačem) vytvoří jednu automaticky."
 
 #: assets/app.js
 msgid "Continuer le projet"
-msgstr ""
+msgstr "Pokračovat v projektu"
 
 #: assets/app.js
 msgid "Marquer livré"
-msgstr ""
+msgstr "Označit jako doručené"
 
 #: assets/app.js
 msgid "Pause"
-msgstr ""
+msgstr "Pauza"
 
 #: assets/app.js
 msgid "Reprendre"
-msgstr ""
+msgstr "Pokračovat"
 
 #: assets/app.js
 msgid "Relancer"
-msgstr ""
+msgstr "Znovu"
 
 #: assets/app.js
 msgid "Ouvrir le ZIP"
-msgstr ""
+msgstr "Otevřít ZIP"
 
 #: assets/app.js
 msgid "Analyser la complétude"
-msgstr ""
+msgstr "Analýza úplnosti"
 
 #: assets/app.js
 msgid "service inconnu"
-msgstr ""
+msgstr "neznámá služba"
 
 #: assets/app.js
 msgid "tentative {n}"
-msgstr ""
+msgstr "pokus {n}"
 
 #: assets/app.js
 msgid "Aucune activité enregistrée."
-msgstr ""
+msgstr "Žádná aktivita."
 
 #: assets/app.js
 msgid "Impossible de modifier l'état de l'ordonnanceur"
-msgstr ""
+msgstr "Nelze změnit stav plánovače"
 
 #: assets/app.js
 msgid "Configuration non enregistrée"
-msgstr ""
+msgstr "Nastavení nebylo uloženo"
 
 #: assets/app.js
 msgid "Sélection du dossier impossible"
-msgstr ""
+msgstr "Nelze vybrat složku"
 
 #: assets/app.js
 msgid "Projet terminé : {done}/{total} tâches faites, 0 restante."
-msgstr ""
+msgstr "Projekt dokončen: {done} / {total} dokončen, zbývá0."
 
 #: assets/app.js
 msgid "{pending} à faire, {inProgress} en cours, {done} faite(s) sur {total} au total."
-msgstr ""
+msgstr "{pending} to do, {inProgress} v průběhu, {done} z {total} celkem."
 
 #: assets/app.js
 msgid "Analyse impossible : {error}"
-msgstr ""
+msgstr "Analýza selhala: {error}"
 
 #: assets/app.js
 msgid "Action impossible : {error}"
-msgstr ""
+msgstr "Akce selhala: {error}"
 
 #: assets/app.js
 msgid "Aucun projet pour l'instant."
-msgstr ""
+msgstr "Zatím žádné projekty."
 
 #: assets/app.js
 msgid "Créer un projet"
-msgstr ""
+msgstr "Vytvořit projekt"
 
 #: assets/app.js
 msgid "Assignée"
-msgstr ""
+msgstr "Přidělené"
 
 #: assets/app.js
 msgid "Terminée"
-msgstr ""
+msgstr "Dokončeno"
 
 #: assets/app.js
 msgid "Échouée"
-msgstr ""
+msgstr "Selhalo"
 
 #: assets/app.js
 msgid "Lancer"
-msgstr ""
+msgstr "Běž."
 
 #: assets/app.js
 msgid "Résultat"
-msgstr ""
+msgstr "Výsledek"
 
 #: assets/app.js
 msgid "Aucune tâche."
-msgstr ""
+msgstr "Žádné úkoly."
 
 #: assets/app.js
 msgid "Tous les comptes"
-msgstr ""
+msgstr "Všechny účty"
 
 #: assets/app.js
 msgid "Comptes autorisés :"
-msgstr ""
+msgstr "Přípustné účty:"
 
 #: assets/app.js
 msgid "{count} tâche(s)"
-msgstr ""
+msgstr "{count} Úkol (úkoly)"
 
 #: assets/app.js
 msgid "Nouvelle tâche"
-msgstr ""
+msgstr "Nový úkol"
 
 #: assets/app.js
 msgid "Assigner"
-msgstr ""
+msgstr "Přiřazení"
 
 #: assets/app.js
 msgid "Diagnostic Claude : {error}"
-msgstr ""
+msgstr "Diagnostika Clauda: {error}"
 
 #: assets/app.js
 msgid "« Continuer »"
-msgstr ""
+msgstr "\"Pokračovat\""
 
 #: assets/app.js
 msgid "« Télécharger »"
-msgstr ""
+msgstr "\"Stáhnout\""
 
 #: assets/app.js
 msgid "« Nouveau »"
-msgstr ""
+msgstr "\"Nový\""
 
 #: assets/app.js
 msgid "zone de chat"
-msgstr ""
+msgstr "Chat box"
 
 #: assets/app.js
 msgid "envoi de fichier"
-msgstr ""
+msgstr "nahrát soubor"
 
 #: assets/app.js
 msgid "{count} popup(s)"
-msgstr ""
+msgstr "{count} vyskakování"
 
 #: assets/app.js
 msgid "Claude (« {profile} ») : {details}"
-msgstr ""
+msgstr "Claude (\"{profile}\"): {details}"
 
 #: assets/app.js
 msgid "aucun élément détecté"
-msgstr ""
+msgstr "nic detekováno"
 
 #: assets/app.js
 msgid "Diagnostic impossible : {error}"
-msgstr ""
+msgstr "Diagnostické selhání: {error}"
 
 #: assets/app.js
 msgid "Quota gratuit épuisé jusqu'à {time} pour ce profil."
-msgstr ""
+msgstr "Bezplatná kvóta vyčerpána do {time} pro tento profil."
 
 #: assets/app.js
 msgid "Job Claude échoué : {error}"
-msgstr ""
+msgstr "Claude práce selhala: {error}"
 
 #: assets/app.js
 msgid "Prompt envoyé à Claude via {method} (« {profile} »)"
-msgstr ""
+msgstr "Prompt zaslán Claude prostřednictvím {method} (\"{profile}\")"
 
 #: assets/app.js
 msgid "Job Claude impossible : {error}"
-msgstr ""
+msgstr "Claude práce nemohla spustit: {error}"
 
 #: assets/app.js
 msgid "Collecte impossible : {error}"
-msgstr ""
+msgstr "Sběr selhal: {error}"
 
 #: assets/app.js
 msgid "Réponse collectée : {count} caractères (« {profile} »)"
-msgstr ""
+msgstr "Vybraná odpověď: {count} znaky (\"{profile}\")"
 
 #: assets/app.js
 msgid "Aucune réponse trouvée pour le moment."
-msgstr ""
+msgstr "Zatím žádná odpověď."
 
 #: assets/app.js
 msgid "Nom du projet :"
-msgstr ""
+msgstr "Název projektu:"
 
 #: assets/app.js
 msgid "Projet {n}"
-msgstr ""
+msgstr "Projekt {n}"
 
 #: assets/app.js
 msgid "Projet « {name} » créé"
-msgstr ""
+msgstr "Projekt \"{name}\" vytvořen"
 
 #: assets/app.js
 msgid "Création impossible : {error}"
-msgstr ""
+msgstr "Vytvoření selhalo: {error}"
 
 #: assets/app.js
 msgid "Projet supprimé"
-msgstr ""
+msgstr "Projekt zrušen"
 
 #: assets/app.js
 msgid "Suppression impossible : {error}"
-msgstr ""
+msgstr "Vymazání selhalo: {error}"
 
 #: assets/app.js
 msgid "Prompt de la tâche :"
-msgstr ""
+msgstr "Úkoly:"
 
 #: assets/app.js
 msgid "Tâche créée dans le projet"
-msgstr ""
+msgstr "Úkol vytvořený v rámci projektu"
 
 #: assets/app.js
 msgid "Aucun compte vert disponible pour ce projet."
-msgstr ""
+msgstr "Pro tento projekt neexistuje zelený účet."
 
 #: assets/app.js
 msgid "Comptes verts disponibles :"
-msgstr ""
+msgstr "Dostupné zelené účty:"
 
 #: assets/app.js
 msgid "Numéro du compte :"
-msgstr ""
+msgstr "Číslo účtu:"
 
 #: assets/app.js
 msgid "Choix invalide"
-msgstr ""
+msgstr "Neplatná volba"
 
 #: assets/app.js
 msgid "Aucune tâche dans ce projet."
-msgstr ""
+msgstr "V tomto projektu není žádný úkol."
 
 #: assets/app.js
 msgid "Numéro de la tâche :"
-msgstr ""
+msgstr "Číslo úkolu:"
 
 #: assets/app.js
 msgid "Tâches du projet :"
-msgstr ""
+msgstr "Úkoly projektu:"
 
 #: assets/app.js
 msgid "Tâche {task} assignée à « {account} »"
-msgstr ""
+msgstr "Úkol {task} přidělený \"{account}\""
 
 #: assets/app.js
 msgid "Assignation impossible : {error}"
-msgstr ""
+msgstr "Přidělení selhalo: {error}"
 
 #: assets/app.js
 msgid "Lancement de l'automatisation Claude..."
-msgstr ""
+msgstr "Spouštím Claude automatizaci..."
 
 #: assets/app.js
 msgid "Lancement impossible"
-msgstr ""
+msgstr "Nelze spustit"
 
 #: assets/app.js
 msgid "Tâche lancée — suivi dans le journal d'activité"
-msgstr ""
+msgstr "Úkol zahájen - následujte jej v záznamu činností"
 
 #: assets/app.js
 msgid "Exécution impossible : {error}"
-msgstr ""
+msgstr "Provedení selhalo: {error}"
 
 #: assets/app.js
 msgid "Aucun résultat disponible"
-msgstr ""
+msgstr "Není k dispozici žádný výsledek"
 
 #: assets/app.js
 msgid "Résultat — {task}"
-msgstr ""
+msgstr "Výsledek - {task}"
 
 #: assets/app.js
 msgid "Données de comptes illisibles"
-msgstr ""
+msgstr "Údaje o nečitelném účtu"
 
 #: assets/app.js
 msgid "La liste de comptes enregistrée est corrompue. Une sauvegarde de {count} compte(s) a été trouvée. La restaurer ?"
-msgstr ""
+msgstr "Seznam uložených účtů je poškozen. Byla nalezena záloha {count} účtu (účtů). Obnovit?"
 
 #: assets/app.js
 msgid "La liste de comptes enregistrée est corrompue et aucune sauvegarde n'est disponible. L'application démarre avec une liste vide ; vos données actuelles ne seront pas écrasées tant que vous ne créez ou ne modifiez pas de compte."
-msgstr ""
+msgstr "Seznam uložených účtů je poškozen a není k dispozici žádná záloha. Aplikace začíná s prázdným seznamem; vaše aktuální data nebudou přepsána, dokud nevytvoříte nebo needitujete účet."
 
 #: assets/app.js
 msgid "Ignorer"
-msgstr ""
+msgstr "Ignorovat"
 
 #: assets/app.js
 msgid "Restaurer la sauvegarde"
-msgstr ""
+msgstr "Obnovit zálohu"
 
 #: assets/app.js
 msgid "Comptes restaurés depuis la sauvegarde"
-msgstr ""
+msgstr "Účty obnovené ze zálohy"
 
 #: assets/app.js
 msgid "Compris"
-msgstr ""
+msgstr "Mám to."

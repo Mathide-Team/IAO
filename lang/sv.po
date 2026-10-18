@@ -4,6 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: IAO\n"
 "Report-Msgid-Bugs-To: https://github.com/Mathide-Team/IAO/issues\n"
+"Last-Translator: IAO (traduction automatique Argos Translate, relecture humaine attendue, issue #188)\n"
+"Language-Team: aucune (relecture humaine attendue)\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -12,1084 +14,1089 @@ msgstr ""
 
 #: index.html
 msgid "Rechercher un compte ou une IA..."
-msgstr ""
+msgstr "Sök efter ett konto eller ett AI..."
 
 #: index.html
 msgid "Comptes actifs"
-msgstr ""
+msgstr "Aktiva konton"
 
 #: index.html
 msgid "IA Disponibles"
-msgstr ""
+msgstr "Tillgängliga AIs"
 
 #: index.html
 msgid "Rechercher un compte ou une IA (Ctrl+K)"
-msgstr ""
+msgstr "Sök efter ett konto eller ett AI (Ctrl+K)"
 
 #: index.html
 msgid "Comptes enregistrés"
-msgstr ""
+msgstr "Sparade konton"
 
 #: index.html
 msgid "Tout replier / Tout déplier"
-msgstr ""
+msgstr "kollapsa alla / expandera alla"
 
 #: index.html
 msgid "Exporter les comptes (JSON)"
-msgstr ""
+msgstr "Exportkonton (JSON)"
 
 #: index.html
 msgid "Importer des comptes (JSON)"
-msgstr ""
+msgstr "Importera konton (JSON)"
 
 #: index.html
 msgid "Ajouter un compte"
-msgstr ""
+msgstr "Lägga till ett konto"
 
 #: index.html
 msgid "Mode debug actif : traces détaillées dans le journal iao.log"
-msgstr ""
+msgstr "Debug mode på: detaljerade spår i iao.log-filen"
 
 #: index.html
 msgid "Masquer les comptes"
-msgstr ""
+msgstr "Dölja konton"
 
 #: index.html
 msgid "Afficher les comptes"
-msgstr ""
+msgstr "Visa konton"
 
 #: index.html
 msgid "Explorateur"
-msgstr ""
+msgstr "Utforskaren"
 
 #: index.html
 msgid "Éditeur"
-msgstr ""
+msgstr "Redaktör"
 
 #: index.html
 msgid "Outils de développement (Ctrl+Maj+I)"
-msgstr ""
+msgstr "Utvecklare verktyg (Ctrl+Shift+I)"
 
 #: index.html
 msgid "Choisir mes 9 IA à portée de main"
-msgstr ""
+msgstr "Välj mina 9 go-to AIs"
 
 #: index.html
 msgid "Comprendre les IA disponibles"
-msgstr ""
+msgstr "Förstå tillgängliga AI"
 
 #: index.html
 msgid "Ordonnanceur IA"
-msgstr ""
+msgstr "AI schemaläggare"
 
 #: index.html
 msgid "Réglages"
-msgstr ""
+msgstr "Inställningar"
 
 #: index.html
 msgid "Fichiers"
-msgstr ""
+msgstr "Filer"
 
 #: index.html
 msgid "Ouvrir un dossier"
-msgstr ""
+msgstr "Öppna en mapp"
 
 #: index.html
 msgid "Réduire"
-msgstr ""
+msgstr "kollaps"
 
 #: index.html
 msgid "Rechercher un fichier..."
-msgstr ""
+msgstr "Sök efter en fil..."
 
 #: index.html
 msgid "Glisser pour redimensionner"
-msgstr ""
+msgstr "Drag för att ändra storlek"
 
 #: index.html
 msgid "Aucun fichier"
-msgstr ""
+msgstr "Ingen fil"
 
 #: index.html
 msgid "Glisser pour redimensionner l'éditeur"
-msgstr ""
+msgstr "Dra för att ändra storlek på redaktören"
 
 #: index.html
 msgid "Aucun onglet ouvert — choisissez un service dans la liste des comptes"
-msgstr ""
+msgstr "Ingen öppen flik – välj en tjänst i kontolistan"
 
 #: index.html
 msgid "Le profil permet d'isoler les cookies dans Electron."
-msgstr ""
+msgstr "Profilen håller cookies isolerade i Electron."
 
 #: index.html
 msgid "Nom du compte"
-msgstr ""
+msgstr "Kontonamn"
 
 #: index.html
 msgid "Nom du Profil"
-msgstr ""
+msgstr "Profilnamn"
 
 #: index.html
 msgid "Annuler"
-msgstr ""
+msgstr "Avbokning"
 
 #: index.html
 msgid "Enregistrer"
-msgstr ""
+msgstr "Spara"
 
 #: index.html
 msgid "Supprimer le compte"
-msgstr ""
+msgstr "Ta bort kontot"
 
 #: index.html
 msgid "Cette action est irréversible."
-msgstr ""
+msgstr "Detta kan inte vara ogjort."
 
 #: index.html
 msgid "Supprimer"
-msgstr ""
+msgstr "Delete"
 
 #: index.html
 msgid "Importer des comptes"
-msgstr ""
+msgstr "Importera konton"
 
 #: index.html
 msgid "Remplacer et importer"
-msgstr ""
+msgstr "Ersätt och import"
 
 #: index.html
 msgid "Déconnecter le profil"
-msgstr ""
+msgstr "Logga ut profilen"
 
 #: index.html
 msgid "Déconnecter"
-msgstr ""
+msgstr "Logga ut"
 
 #: index.html
 msgid "À quoi sert chaque service, et quand l'utiliser."
-msgstr ""
+msgstr "Vad varje tjänst är för, och när du ska använda den."
 
 #: index.html
 msgid "Fermer"
-msgstr ""
+msgstr "Nära"
 
 #: index.html
 msgid "Sélectionnez les 9 services affichés dans l'interface. Les autres restent disponibles dans l'aide."
-msgstr ""
+msgstr "Välj de 9 tjänster som visas i gränssnittet. De andra är tillgängliga i hjälpen."
 
 #: index.html
 msgid "Détection des ZIP livrés par les onglets IA, reprise par profil."
-msgstr ""
+msgstr "Detekterar ZIP-filer som levereras av AI-flikar, med per profil återupptas."
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: index.html
 msgid "Arrêté"
-msgstr ""
+msgstr "Stoppad"
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: index.html
 msgid "Démarrer ou arrêter l'ordonnanceur (il ne démarre jamais tout seul)"
-msgstr ""
+msgstr "Starta eller stoppa schemaläggaren (den startar aldrig av sig själv)"
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: index.html
 msgid "Démarrer"
-msgstr ""
+msgstr "Starta"
 
 #: index.html
 msgid "Jobs actifs"
-msgstr ""
+msgstr "Aktiva jobb"
 
 #: index.html
 msgid "En attente"
-msgstr ""
+msgstr "I väntan"
 
 #: index.html
 msgid "Livrés aujourd'hui"
-msgstr ""
+msgstr "Levereras idag"
 
 #: index.html
 msgid "Jobs simultanés max."
-msgstr ""
+msgstr "Max. samtidiga jobb"
 
 #: index.html
 msgid "Délai min. entre automatisations (min)"
-msgstr ""
+msgstr "Min fördröjning mellan automatisering (min)"
 
 #: index.html
 msgid "Seuil profil « le plus ancien » (h)"
-msgstr ""
+msgstr "\"Äldsta\" profil tröskel (h)"
 
 #: index.html
 msgid "Dossiers"
-msgstr ""
+msgstr "Mappar"
 
 #: index.html
 msgid "Téléchargements…"
-msgstr ""
+msgstr "Ladda ner..."
 
 #: index.html
 msgid "Livraison…"
-msgstr ""
+msgstr "Leverans..."
 
 #: index.html
 msgid "Téléchargements :"
-msgstr ""
+msgstr "Ladda ner:"
 
 #: index.html
 msgid "(dossier de téléchargements du système)"
-msgstr ""
+msgstr "(systemhämtningsmapp)"
 
 #: index.html
 msgid "Livraison :"
-msgstr ""
+msgstr "Leverans:"
 
 #: index.html
 msgid "(non défini)"
-msgstr ""
+msgstr "(Inte inställd)"
 
 #: index.html
 msgid "Projets & tâches"
-msgstr ""
+msgstr "Projekt och uppgifter"
 
 #: index.html
 msgid "Jobs"
-msgstr ""
+msgstr "Jobb"
 
 #: index.html
 msgid "Journal d'activité"
-msgstr ""
+msgstr "Aktivitetslogg"
 
 #: index.html
 msgid "Confirmation"
-msgstr ""
+msgstr "Bekräftelse"
 
 #: index.html
 msgid "Confirmer"
-msgstr ""
+msgstr "bekräfta"
 
 #: index.html
 msgid "Préférences de l'application, sauvegardées localement."
-msgstr ""
+msgstr "Applikationspreferenser, sparade lokalt."
 
 #: index.html
 msgid "Taille de police de l'éditeur (px)"
-msgstr ""
+msgstr "Editor font size (px)"
 
 #: index.html
 msgid "Thème"
-msgstr ""
+msgstr "Tema"
 
 #: index.html
 msgid "Thème du bureau (défaut)"
-msgstr ""
+msgstr "Desktop tema (standard)"
 
 #: index.html
 msgid "Clair"
-msgstr ""
+msgstr "Ljus ljus"
 
 #: index.html
 msgid "Sombre"
-msgstr ""
+msgstr "Mörk"
 
 #: index.html
 msgid "Langue"
-msgstr ""
+msgstr "Språkspråk"
 
 #: index.html
 msgid "Langue du système (défaut)"
-msgstr ""
+msgstr "Systemspråk (standard)"
 
 #: index.html
 msgid "Appliquée au prochain démarrage"
-msgstr ""
+msgstr "Tillämpad vid nästa start"
 
 #: index.html
 msgid "Retour à la ligne (éditeur)"
-msgstr ""
+msgstr "Word wrap (redaktör)"
 
 #: index.html
 msgid "Désactivé"
-msgstr ""
+msgstr "Off Off Off"
 
 #: index.html
 msgid "Activé"
-msgstr ""
+msgstr "På"
 
 #: index.html
 msgid "Colonne fixe"
-msgstr ""
+msgstr "Fast kolumn"
 
 #: index.html
 msgid "Confirmer avant de fermer un onglet"
-msgstr ""
+msgstr "Bekräfta innan du stänger en flik"
 
 #: index.html
 msgid "Afficher les fenêtres d'automatisation"
-msgstr ""
+msgstr "Visa automationsfönster"
 
 #: index.html
 msgid "Restaurer les onglets ouverts au démarrage"
-msgstr ""
+msgstr "Återställ öppna flikar vid start"
 
 #: assets/app.js
 msgid "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."
-msgstr ""
+msgstr "Antropics konversationsassistent. Det utmärker sig på att skriva, analysera långa dokument, programmering och flerstegs resonemang."
 
 #: assets/app.js
 msgid "Plutôt pour du code, des textes longs et soignés, ou des questions complexes qui demandent de la rigueur."
-msgstr ""
+msgstr "Bäst för kod, långa och polerade texter eller komplexa frågor som kräver rigor."
 
 #: assets/app.js
 msgid "L'assistant généraliste d'OpenAI, le plus connu du grand public. Il discute, rédige, résume, génère des images, analyse des fichiers et peut chercher sur le web."
-msgstr ""
+msgstr "OpenAI: s allmänt ändamål assistent, den mest kända för allmänheten. Det chattar, skriver, sammanfattar, genererar bilder, analyserar filer och kan söka på webben."
 
 #: assets/app.js
 msgid "Le couteau suisse du quotidien : brainstorming, questions générales, petites tâches variées."
-msgstr ""
+msgstr "Den dagliga schweiziska armékniven: brainstorming, allmänna frågor, utsåg små uppgifter."
 
 #: assets/app.js
 msgid "L'assistant IA de Google. Multimodal (texte, images, audio, vidéo), il s'appuie sur la recherche Google et s'intègre aux outils Google (Docs, Gmail, Drive…)."
-msgstr ""
+msgstr "Googles AI assistent. Multimodal (text, bilder, ljud, video), den bygger på Google Search och integreras med Google-verktyg (Docs, Gmail, Drive ...)."
 
 #: assets/app.js
 msgid "Plutôt pour analyser des images ou vidéos, ou si vous travaillez déjà dans l'écosystème Google."
-msgstr ""
+msgstr "Bäst för att analysera bilder eller videor, eller om du redan arbetar i Googles ekosystem."
 
 #: assets/app.js
 msgid "Le chat de Z.ai, propulsé par les modèles GLM. Gratuit pour l'essentiel, avec un mode agent capable de chercher sur le web et de produire des fichiers (docx, pdf, xlsx)."
-msgstr ""
+msgstr "Z.ai chatt, drivs av GLM modeller. För det mesta gratis, med ett agentläge som kan söka på webben och producera filer (docx, pdf, xlsx)."
 
 #: assets/app.js
 msgid "Une alternative gratuite solide pour le chat et le code, quand les quotas des autres sont épuisés."
-msgstr ""
+msgstr "Ett solidt gratis alternativ för chatt och kod när de andra tjänsternas kvoter används."
 
 #: assets/app.js
 msgid "Un « moteur de réponse » : il cherche sur le web en direct, synthétise plusieurs sources et cite ses références pour chaque affirmation."
-msgstr ""
+msgstr "En \"svarsmotor\": den söker webben live, syntetiserar flera källor och citerar sina referenser för varje påstående."
 
 #: assets/app.js
 msgid "Plutôt pour la recherche d'informations à jour, la veille et la vérification de faits avec sources."
-msgstr ""
+msgstr "Bäst för att hitta aktuell information, övervaka ämnen och faktakontroll med källor."
 
 #: assets/app.js
 msgid "L'assistant de xAI (Elon Musk), connecté au réseau X (ex-Twitter). Ton direct, accès au temps réel de X, génération d'images incluse."
-msgstr ""
+msgstr "xAI: s assistent (Elon Musk), ansluten till X-nätverket (tidigare Twitter). Direkt ton, realtid tillgång till X, bildgenerering ingår."
 
 #: assets/app.js
 msgid "Plutôt pour suivre l'actualité chaude et les tendances via X, ou pour un ton moins formel."
-msgstr ""
+msgstr "Bäst för att följa nyheter och trender via X eller för en mindre formell ton."
 
 #: assets/app.js
 msgid "Une plateforme de génération d'images orientée création : illustrations, concept art, assets de jeu vidéo, avec des contrôles fins (styles, modèles, retouche)."
-msgstr ""
+msgstr "En kreativ bildgenerationsplattform: illustrationer, konceptkonst, videospeltillgångar, med finkorniga kontroller (stilar, modeller, retuschering)."
 
 #: assets/app.js
 msgid "Plutôt pour produire des visuels et illustrations de qualité avec un contrôle précis du style."
-msgstr ""
+msgstr "Bäst för att producera kvalitet visuella och illustrationer med exakt kontroll över stil."
 
 #: assets/app.js
 msgid "Un générateur de musique : il compose des chansons complètes (instruments, voix, paroles) à partir d'une simple description texte, dans à peu près tous les genres."
-msgstr ""
+msgstr "En musikgenerator: den komponerar kompletta låtar (instrument, sång, texter) från en enkel textbeskrivning, i nästan vilken genre som helst."
 
 #: assets/app.js
 msgid "Plutôt pour créer une musique, un jingle ou une chanson à partir d'un texte ou d'une idée."
-msgstr ""
+msgstr "Bäst för att skapa en musik, en jingle eller en låt från en text eller en idé."
 
 #: assets/app.js
 msgid "Un générateur de modèles 3D : il transforme un texte ou une image en objet 3D texturé, avec rigging/animation automatique et export vers les formats standards (GLB, FBX, STL…)."
-msgstr ""
+msgstr "En 3D-modellgenerator: den förvandlar en text eller en bild till ett texturerat 3D-objekt, med automatisk riggning / animation och export till standardformat (GLB, FBX, STL...)."
 
 #: assets/app.js
 msgid "Plutôt pour créer des assets 3D (jeux, impression 3D, animation) sans savoir modéliser."
-msgstr ""
+msgstr "Bäst för att skapa 3D-tillgångar (spel, 3D-utskrift, animation) utan modelleringsförmåga."
 
 #: assets/app.js
 msgid "Le Chat de Mistral AI, éditeur européen (français). Modèles open-weights performants, chat, code et analyse de documents."
-msgstr ""
+msgstr "Le Chat av Mistral AI, en europeisk (franska) leverantör. Starka öppna vikter modeller, chatt, kod och dokumentanalys."
 
 #: assets/app.js
 msgid "Alternative européenne solide pour le chat et le code, avec une bonne maîtrise du français."
-msgstr ""
+msgstr "Ett solidt europeiskt alternativ för chatt och kod, med ett bra kommando av franska."
 
 #: assets/app.js
 msgid "DeepSeek : assistant IA chinois spécialisé en raisonnement et programmation, particulièrement performant en Python."
-msgstr ""
+msgstr "DeepSeek: en kinesisk AI-assistent specialiserad på resonemang och programmering, särskilt stark i Python."
 
 #: assets/app.js
 msgid "Pour du code Python, du raisonnement étape par étape, ou une alternative gratuite à ChatGPT."
-msgstr ""
+msgstr "För Python-kod, steg för steg resonemang eller ett gratis alternativ till ChatGPT."
 
 #: assets/app.js
 msgid "GitHub Copilot : assistant IA intégré dans VS Code et GitHub. Autocomplétion, chat, génération de tests, explication de code."
-msgstr ""
+msgstr "GitHub Copilot: en AI-assistent inbyggd i VS Code och GitHub. Autokompletion, chatt, testgenerering, kodförklaring."
 
 #: assets/app.js
 msgid "Pour programmer plus vite dans VS Code ou sur GitHub, avec un modèle IA qui connaît votre codebase."
-msgstr ""
+msgstr "För att programmera snabbare i VS-kod eller på GitHub, med en AI-modell som vet din kodbas."
 
 #: assets/app.js
 msgid "Elicit : assistant de recherche scientifique. Trouve des articles, extrait des données, synthétise des études."
-msgstr ""
+msgstr "Elicit: en vetenskaplig forskningsassistent. Hittar papper, extraherar data, syntetiserar studier."
 
 #: assets/app.js
 msgid "Pour la recherche académique, la revue de littérature et l'extraction de données d'articles scientifiques."
-msgstr ""
+msgstr "För akademisk forskning, litteraturrecensioner och extrahera data från vetenskapliga artiklar."
 
 #: assets/app.js
 msgid "NotebookLM de Google : interagissez avec vos propres documents (PDF, texte, audio). Résumés, questions, génération de notes."
-msgstr ""
+msgstr "Googles NotebookLM: interagera med dina egna dokument (PDF, text, ljud). Sammanfattningar, frågor, note generation."
 
 #: assets/app.js
 msgid "Pour interroger vos documents personnels ou professionnels avec une IA qui cite ses sources."
-msgstr ""
+msgstr "För att fråga dina personliga eller arbeta dokument med en AI som citerar sina källor."
 
 #: assets/app.js
 msgid "Wolfram Alpha : moteur de calcul symbolique. Mathématiques, physique, chimie, données factuelles, conversions."
-msgstr ""
+msgstr "Wolfram Alpha: en symbolisk beräkningsmotor. Matematik, fysik, kemi, faktadata, omvandlingar."
 
 #: assets/app.js
 msgid "Pour des calculs exacts (mathématiques symboliques), des données chiffrées ou des conversions d'unités."
-msgstr ""
+msgstr "För exakta beräkningar (symbolisk matematik), numeriska data eller enhetskonverteringar."
 
 #: assets/app.js
 msgid "DeepL : traduction automatique de haute qualité, plus naturelle que Google Traduction. Texte et documents entiers."
-msgstr ""
+msgstr "DeepL: högkvalitativ maskinöversättning, mer naturlig än Google Translate. Text och hela dokument."
 
 #: assets/app.js
 msgid "Pour traduire du texte ou des documents avec un rendu naturel et cohérent."
-msgstr ""
+msgstr "Översätta text eller dokument med ett naturligt och konsekvent resultat."
 
 #: assets/app.js
 msgid "Ideogram : génération d'images orientée design. Logos, typographies, affiches, avec un excellent rendu du texte."
-msgstr ""
+msgstr "Ideogram: designorienterad bildgenerering. Logos, typografi, affischer, med utmärkt textrendering."
 
 #: assets/app.js
 msgid "Pour créer des visuels avec du texte lisible (logos, affiches, bannières) ou du design graphique."
-msgstr ""
+msgstr "För att skapa bilder med läsbar text (logotyper, affischer, banners) eller grafisk design."
 
 #: assets/app.js
 msgid "Kling : générateur de vidéos courtes à partir de texte ou d'images. Animations réalistes, crédits gratuits disponibles."
-msgstr ""
+msgstr "Kling: en kort videogenerator från text eller bilder. Realistiska animationer, gratis krediter tillgängliga."
 
 #: assets/app.js
 msgid "Pour créer des clips vidéo animés à partir d'une description ou d'une image fixe."
-msgstr ""
+msgstr "För att skapa animerade videoklipp från en beskrivning eller en stillbild."
 
 #: assets/app.js
 msgid "Runway : suite d'outils IA pour la vidéo. Génération, édition, effets spéciaux, inpainting vidéo."
-msgstr ""
+msgstr "Runway: en serie av AI-videoverktyg. Generation, redigering, specialeffekter, videoinmålning."
 
 #: assets/app.js
 msgid "Pour le montage et la création vidéo avancée avec des outils IA intégrés."
-msgstr ""
+msgstr "För avancerad videoredigering och skapande med inbyggda AI-verktyg."
 
 #: assets/app.js
 msgid "Pika : générateur de vidéos courtes et créatives. Animation d'images, effets, transformation de styles."
-msgstr ""
+msgstr "Pika: en generator av korta, kreativa videor. Bild animation, effekter, stil transformation."
 
 #: assets/app.js
 msgid "Pour animer des images ou créer des vidéos courtes originales avec des effets IA."
-msgstr ""
+msgstr "För att animera bilder eller skapa original korta videor med AI-effekter."
 
 #: assets/app.js
 msgid "Qwen : assistant IA d'Alibaba. Multimodal (texte, images, code), open-source, disponible en plusieurs tailles."
-msgstr ""
+msgstr "Qwen: Alibabas AI-assistent. Multimodal (text, bilder, kod), öppen källkod, tillgänglig i flera storlekar."
 
 #: assets/app.js
 msgid "Alternative gratuite pour le chat, le code et l'analyse d'images, avec un bon support multilingue."
-msgstr ""
+msgstr "Ett gratis alternativ för chatt, kod och bildanalys, med bra flerspråkigt stöd."
 
 #: assets/app.js
 msgid "Impossible d'enregistrer les comptes (stockage plein ?)"
-msgstr ""
+msgstr "Kan inte spara konton (lagring full?)"
 
 #: assets/app.js
 msgid "Ctrl+S pour sauvegarder."
-msgstr ""
+msgstr "Ctrl+S att spara."
 
 #: assets/app.js
 msgid "Sélectionnez un fichier pour l'éditer ici."
-msgstr ""
+msgstr "Välj en fil för att redigera den här."
 
 #: assets/app.js
 msgid "Éditeur simplifié (Monaco indisponible) — Ctrl+S pour sauvegarder"
-msgstr ""
+msgstr "Förenklad redaktör (Monaco otillgänglig) - Ctrl + S för att spara"
 
 #: assets/app.js
 msgid "Fichier enregistré !"
-msgstr ""
+msgstr "Fil sparad"
 
 #: assets/app.js
 msgid "Erreur d'enregistrement."
-msgstr ""
+msgstr "Spara fel."
 
 #: assets/app.js
 msgid "Aucun compte pour l'instant."
-msgstr ""
+msgstr "Inga konton ännu."
 
 #: assets/app.js
 msgid "Créer mon premier compte"
-msgstr ""
+msgstr "Skapa mitt första konto"
 
 #: assets/app.js
 msgid "Cliquer pour copier l'e-mail"
-msgstr ""
+msgstr "Klicka för att kopiera e-postadressen"
 
 #: assets/app.js
 msgid "Modifier le compte"
-msgstr ""
+msgstr "Redigera konto"
 
 #: assets/app.js
 msgid "{available} service(s) hors cooldown sur {total}"
-msgstr ""
+msgstr "{available} av {total} service(n) ur nedkylning"
 
 #: assets/app.js
 msgid "Replier / déplier"
-msgstr ""
+msgstr "Kollaps / expandera"
 
 #: assets/app.js
 msgid "{service} — {account} déjà ouvert"
-msgstr ""
+msgstr "{service} – {account} öppnas redan"
 
 #: assets/app.js
 msgid "Recharger l'onglet"
-msgstr ""
+msgstr "Reload Tab"
 
 #: assets/app.js
 msgid "Revenir à l'accueil de {service}"
-msgstr ""
+msgstr "Tillbaka till {service} hemsida"
 
 #: assets/app.js
 msgid "Se déconnecter du profil « {profile} »"
-msgstr ""
+msgstr "Logga ut från profil \"{profile}\""
 
 #: assets/app.js
 msgid "{service} ouvert avec {account}"
-msgstr ""
+msgstr "{service} Öppna med {account}"
 
 #: assets/app.js
 msgid "Fermer l'onglet"
-msgstr ""
+msgstr "Nära fliken"
 
 #: assets/app.js
 msgid "Fermer l'onglet « {tab} » ? La session web sera libérée."
-msgstr ""
+msgstr "Stäng fliken \"{tab}\"? Webbsessionen kommer att släppas."
 
 #: assets/app.js
 msgid "Onglet fermé (mémoire libérée)"
-msgstr ""
+msgstr "Tab stängd (minne släppt)"
 
 #: assets/app.js
 msgid "Retirer l'étoile"
-msgstr ""
+msgstr "Ta bort stjärna"
 
 #: assets/app.js
 msgid "Étoiler cet onglet"
-msgstr ""
+msgstr "Stjärna denna flik"
 
 #: assets/app.js
 msgid "Onglet étoilé"
-msgstr ""
+msgstr "Tab starred"
 
 #: assets/app.js
 msgid "Étoile retirée"
-msgstr ""
+msgstr "Star bort"
 
 #: assets/app.js
 msgid "Échec de la déconnexion du profil"
-msgstr ""
+msgstr "Kunde inte logga ut ur profilen"
 
 #: assets/app.js
 msgid "Profil « {profile} » déconnecté — session effacée"
-msgstr ""
+msgstr "Profil \"{profile}\" signerad - session klarerad"
 
 #: assets/app.js
 msgid "Aucun fichier trouvé."
-msgstr ""
+msgstr "Inga filer hittades."
 
 #: assets/app.js
 msgid "Fichier trop volumineux pour l'éditeur : {size} Mo (limite : 20 Mo)."
-msgstr ""
+msgstr "Fil för stor för redaktören: {size} MB (gräns: 20 MB)."
 
 #: assets/app.js
 msgid "C'est quoi ?"
-msgstr ""
+msgstr "Vad är det?"
 
 #: assets/app.js
 msgid "Quand l'utiliser ?"
-msgstr ""
+msgstr "När ska man använda den?"
 
 #: assets/app.js
 msgid "Description à venir."
-msgstr ""
+msgstr "Beskrivning kommer snart."
 
 #: assets/app.js
 msgid "Maximum {max} services à portée de main"
-msgstr ""
+msgstr "högst {max} tjänster till hands"
 
 #: assets/app.js
 msgid "Sélectionnez au moins 1 service"
-msgstr ""
+msgstr "Välj minst 1 tjänst"
 
 #: assets/app.js
 msgid "Services mis à jour ({count}/{max})"
-msgstr ""
+msgstr "Uppdaterade tjänster ({count}/{max})"
 
 #: assets/app.js
 msgid "Supprimer « {name} » ({email}) ? La session restera stockée sur le disque, mais le compte disparaîtra de la liste."
-msgstr ""
+msgstr "Radera \"{name}\" ({email})? Sessionen lagras på disken, men kontot försvinner från listan."
 
 #: assets/app.js
 msgid "Échec de l'export (écriture impossible)"
-msgstr ""
+msgstr "Export misslyckades (kan inte skriva)"
 
 #: assets/app.js
 msgid "{count} compte(s) exporté(s)"
-msgstr ""
+msgstr "{count} Konto(er) exporterade"
 
 #: assets/app.js
 msgid "Export impossible"
-msgstr ""
+msgstr "Export misslyckades"
 
 #: assets/app.js
 msgid "Échec de la lecture du fichier"
-msgstr ""
+msgstr "Kunde inte läsa filen"
 
 #: assets/app.js
 msgid "Fichier JSON invalide"
-msgstr ""
+msgstr "Invalid JSON-fil"
 
 #: assets/app.js
 msgid "Format invalide : un tableau de comptes est attendu."
-msgstr ""
+msgstr "Ogiltigt format: ett antal konton förväntas."
 
 #: assets/app.js
 msgid "Le fichier contient {count} compte(s). L'import REMPLACE entièrement la liste actuelle ({current} compte(s)) — cette action écrase les comptes existants, pas leurs sessions (cookies) déjà enregistrées sur le disque. Continuer ?"
-msgstr ""
+msgstr "Filen innehåller {count} konto(er). Importera KOMPLETELIGA REPLAcerar den aktuella listan ({current} konto(n)) - detta skriver över befintliga konton, inte deras sessioner (cookies) som redan lagras på disken. Fortsätt?"
 
 #: assets/app.js
 msgid "Import impossible"
-msgstr ""
+msgstr "Import misslyckades"
 
 #: assets/app.js
 msgid "{count} compte(s) importé(s)"
-msgstr ""
+msgstr "{count} Konto(er) importerade"
 
 #: assets/app.js
 msgid "Échec de l'import : {error}"
-msgstr ""
+msgstr "Import misslyckades: {error}"
 
 #: assets/app.js
 msgid "Compte supprimé"
-msgstr ""
+msgstr "Konto raderat"
 
 #: assets/app.js
 msgid "Remplissez tous les champs"
-msgstr ""
+msgstr "Fyll i alla fält"
 
 #: assets/app.js
 msgid "Ce profil est déjà utilisé par un autre compte (les sessions seraient partagées)."
-msgstr ""
+msgstr "Denna profil används redan av ett annat konto (sessioner skulle delas)."
 
 #: assets/app.js
 msgid "Compte mis à jour"
-msgstr ""
+msgstr "Konto uppdaterat"
 
 #: assets/app.js
 msgid "Compte ajouté"
-msgstr ""
+msgstr "Konto tillsatt"
 
 #: assets/app.js
 msgid "Copie impossible dans le presse-papiers"
-msgstr ""
+msgstr "Kunde inte kopiera till klippbordet"
 
 #: assets/app.js
 msgid "E-mail copié : {email}"
-msgstr ""
+msgstr "E-post kopierad: {email}"
 
 #: assets/app.js
 msgid "Cooldown terminé"
-msgstr ""
+msgstr "Cooldown över"
 
 #: assets/app.js
 msgid "{account} — {service} est de nouveau disponible."
-msgstr ""
+msgstr "{account} - {service} är tillgänglig igen."
 
 #: assets/app.js
 msgid "{account} — {service} : cooldown terminé"
-msgstr ""
+msgstr "{account} {service}: nedkylning över"
 
 #: assets/app.js
 msgid "Téléchargement…"
-msgstr ""
+msgstr "Ladda ner..."
 
 #: assets/app.js
 msgid "Téléchargé — à traiter"
-msgstr ""
+msgstr "Ladda ner – för att bearbetas"
 
 #: assets/app.js
 msgid "Aucun profil disponible"
-msgstr ""
+msgstr "Ingen profil tillgänglig"
 
 #: assets/app.js
 msgid "Projet en cours d'analyse"
-msgstr ""
+msgstr "Projekt analyseras"
 
 #: assets/app.js
 msgid "En cours"
-msgstr ""
+msgstr "Running"
 
 #: assets/app.js
 msgid "En pause"
-msgstr ""
+msgstr "Paused"
 
 #: assets/app.js
 msgid "Reprise programmée"
-msgstr ""
+msgstr "Resume schemalagd"
 
 #: assets/app.js
 msgid "Erreur"
-msgstr ""
+msgstr "Fel"
 
 #: assets/app.js
 msgid "Livré"
-msgstr ""
+msgstr "Levereras"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"
-msgstr ""
+msgstr "Kunde inte ladda inställningarna"
 
 #: assets/app.js
 msgid "Réglages enregistrés — la langue sera appliquée au prochain démarrage"
-msgstr ""
+msgstr "Inställningar sparade - språket kommer att tillämpas vid nästa start"
 
 #: assets/app.js
 msgid "Réglages enregistrés"
-msgstr ""
+msgstr "Inställningar sparade"
 
 #: assets/app.js
 msgid "Erreur lors de la sauvegarde"
-msgstr ""
+msgstr "Fel när du sparar"
 
 #: assets/app.js
 msgid "Erreur lors de la sauvegarde des réglages"
-msgstr ""
+msgstr "Fel när du sparar inställningarna"
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: assets/app.js
 msgid "Arrêter"
-msgstr ""
+msgstr "Stoppa"
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: assets/app.js
 msgid "En marche"
-msgstr ""
+msgstr "Körs"
 
 #: assets/app.js
 msgid "Aucun job pour l'instant — un ZIP téléchargé depuis un onglet IA (ordonnanceur activé) en créera un automatiquement."
-msgstr ""
+msgstr "Inga jobb ännu - en ZIP hämtad från en AI-flik (med schemaläggaren aktiverad) kommer att skapa en automatiskt."
 
 #: assets/app.js
 msgid "Continuer le projet"
-msgstr ""
+msgstr "Fortsätt projektet"
 
 #: assets/app.js
 msgid "Marquer livré"
-msgstr ""
+msgstr "Mark som levereras"
 
 #: assets/app.js
 msgid "Pause"
-msgstr ""
+msgstr "Paus"
 
 #: assets/app.js
 msgid "Reprendre"
-msgstr ""
+msgstr "Återkomma"
 
 #: assets/app.js
 msgid "Relancer"
-msgstr ""
+msgstr "Retry"
 
 #: assets/app.js
 msgid "Ouvrir le ZIP"
-msgstr ""
+msgstr "Öppna ZIP"
 
 #: assets/app.js
 msgid "Analyser la complétude"
-msgstr ""
+msgstr "Analysera fullständighet"
 
 #: assets/app.js
 msgid "service inconnu"
-msgstr ""
+msgstr "Okänd tjänst"
 
 #: assets/app.js
 msgid "tentative {n}"
-msgstr ""
+msgstr "Försök {n}"
 
 #: assets/app.js
 msgid "Aucune activité enregistrée."
-msgstr ""
+msgstr "Ingen aktivitet registrerad."
 
 #: assets/app.js
 msgid "Impossible de modifier l'état de l'ordonnanceur"
-msgstr ""
+msgstr "Kunde inte ändra schemaläggningsstatus"
 
 #: assets/app.js
 msgid "Configuration non enregistrée"
-msgstr ""
+msgstr "Konfiguration inte sparad"
 
 #: assets/app.js
 msgid "Sélection du dossier impossible"
-msgstr ""
+msgstr "Kunde inte välja mappen"
 
 #: assets/app.js
 msgid "Projet terminé : {done}/{total} tâches faites, 0 restante."
-msgstr ""
+msgstr "Projekt komplett: {done}/{total} utförda uppgifter, 0 kvarvarande."
 
 #: assets/app.js
 msgid "{pending} à faire, {inProgress} en cours, {done} faite(s) sur {total} au total."
-msgstr ""
+msgstr "{pending} att göra, {inProgress} pågående, {done} gjort av {total} totalt."
 
 #: assets/app.js
 msgid "Analyse impossible : {error}"
-msgstr ""
+msgstr "Analys misslyckades: {error}"
 
 #: assets/app.js
 msgid "Action impossible : {error}"
-msgstr ""
+msgstr "Åtgärder misslyckades: {error}"
 
 #: assets/app.js
 msgid "Aucun projet pour l'instant."
-msgstr ""
+msgstr "Inga projekt ännu."
 
 #: assets/app.js
 msgid "Créer un projet"
-msgstr ""
+msgstr "Skapa ett projekt"
 
 #: assets/app.js
 msgid "Assignée"
-msgstr ""
+msgstr "Tilldelat"
 
 #: assets/app.js
 msgid "Terminée"
-msgstr ""
+msgstr "Fullbordad"
 
 #: assets/app.js
 msgid "Échouée"
-msgstr ""
+msgstr "Misslyckades"
 
 #: assets/app.js
 msgid "Lancer"
-msgstr ""
+msgstr "Kör"
 
 #: assets/app.js
 msgid "Résultat"
-msgstr ""
+msgstr "Resultat"
 
 #: assets/app.js
 msgid "Aucune tâche."
-msgstr ""
+msgstr "Inga uppgifter."
 
 #: assets/app.js
 msgid "Tous les comptes"
-msgstr ""
+msgstr "Alla konton"
 
 #: assets/app.js
 msgid "Comptes autorisés :"
-msgstr ""
+msgstr "Tillåtna konton:"
 
 #: assets/app.js
 msgid "{count} tâche(s)"
-msgstr ""
+msgstr "{count} uppgift(er)"
 
 #: assets/app.js
 msgid "Nouvelle tâche"
-msgstr ""
+msgstr "Ny uppgift"
 
 #: assets/app.js
 msgid "Assigner"
-msgstr ""
+msgstr "Tilldelning"
 
 #: assets/app.js
 msgid "Diagnostic Claude : {error}"
-msgstr ""
+msgstr "Claude diagnostic: {error}"
 
 #: assets/app.js
 msgid "« Continuer »"
-msgstr ""
+msgstr "\"Continue\""
 
 #: assets/app.js
 msgid "« Télécharger »"
-msgstr ""
+msgstr "\"Download\""
 
 #: assets/app.js
 msgid "« Nouveau »"
-msgstr ""
+msgstr "\"New\""
 
 #: assets/app.js
 msgid "zone de chat"
-msgstr ""
+msgstr "Chat box"
 
 #: assets/app.js
 msgid "envoi de fichier"
-msgstr ""
+msgstr "Fil Upload"
 
 #: assets/app.js
 msgid "{count} popup(s)"
-msgstr ""
+msgstr "{count} popup(s)"
 
 #: assets/app.js
 msgid "Claude (« {profile} ») : {details}"
-msgstr ""
+msgstr "Claude (\"{profile}\"): {details}"
 
 #: assets/app.js
 msgid "aucun élément détecté"
-msgstr ""
+msgstr "Inget upptäckt"
 
 #: assets/app.js
 msgid "Diagnostic impossible : {error}"
-msgstr ""
+msgstr "Diagnostik misslyckades: {error}"
 
 #: assets/app.js
 msgid "Quota gratuit épuisé jusqu'à {time} pour ce profil."
-msgstr ""
+msgstr "Gratis kvot utmattad till {time} för denna profil."
 
 #: assets/app.js
 msgid "Job Claude échoué : {error}"
-msgstr ""
+msgstr "Claude jobb misslyckades: {error}"
 
 #: assets/app.js
 msgid "Prompt envoyé à Claude via {method} (« {profile} »)"
-msgstr ""
+msgstr "Prompt skickas till Claude via {method} (\"{profile}\")"
 
 #: assets/app.js
 msgid "Job Claude impossible : {error}"
-msgstr ""
+msgstr "Claude jobb kunde inte springa: {error}"
 
 #: assets/app.js
 msgid "Collecte impossible : {error}"
-msgstr ""
+msgstr "Samling misslyckades: {error}"
 
 #: assets/app.js
 msgid "Réponse collectée : {count} caractères (« {profile} »)"
-msgstr ""
+msgstr "Response samlad: {count} tecken (”{profile}”)"
 
 #: assets/app.js
 msgid "Aucune réponse trouvée pour le moment."
-msgstr ""
+msgstr "Inget svar hittade ännu."
 
 #: assets/app.js
 msgid "Nom du projet :"
-msgstr ""
+msgstr "Projektnamn:"
 
 #: assets/app.js
 msgid "Projet {n}"
-msgstr ""
+msgstr "Projekt {n}"
 
 #: assets/app.js
 msgid "Projet « {name} » créé"
-msgstr ""
+msgstr "Projekt \"{name}\" skapat"
 
 #: assets/app.js
 msgid "Création impossible : {error}"
-msgstr ""
+msgstr "Skapelsen misslyckades: {error}"
 
 #: assets/app.js
 msgid "Projet supprimé"
-msgstr ""
+msgstr "Projektet raderat"
 
 #: assets/app.js
 msgid "Suppression impossible : {error}"
-msgstr ""
+msgstr "Deletion misslyckades: {error}"
 
 #: assets/app.js
 msgid "Prompt de la tâche :"
-msgstr ""
+msgstr "Uppgift prompt:"
 
 #: assets/app.js
 msgid "Tâche créée dans le projet"
-msgstr ""
+msgstr "Uppgift skapad i projektet"
 
 #: assets/app.js
 msgid "Aucun compte vert disponible pour ce projet."
-msgstr ""
+msgstr "Inget grönt konto tillgängligt för detta projekt."
 
 #: assets/app.js
 msgid "Comptes verts disponibles :"
-msgstr ""
+msgstr "Tillgängliga gröna konton:"
 
 #: assets/app.js
 msgid "Numéro du compte :"
-msgstr ""
+msgstr "Kontonummer:"
 
 #: assets/app.js
 msgid "Choix invalide"
-msgstr ""
+msgstr "Invalid val"
 
 #: assets/app.js
 msgid "Aucune tâche dans ce projet."
-msgstr ""
+msgstr "Ingen uppgift i detta projekt."
 
 #: assets/app.js
 msgid "Numéro de la tâche :"
-msgstr ""
+msgstr "Uppgiftsnummer:"
 
 #: assets/app.js
 msgid "Tâches du projet :"
-msgstr ""
+msgstr "Projektuppgifter:"
 
 #: assets/app.js
 msgid "Tâche {task} assignée à « {account} »"
-msgstr ""
+msgstr "Uppgift {task} tilldelad \"{account}\""
 
 #: assets/app.js
 msgid "Assignation impossible : {error}"
-msgstr ""
+msgstr "Uppdraget misslyckades: {error}"
 
 #: assets/app.js
 msgid "Lancement de l'automatisation Claude..."
-msgstr ""
+msgstr "Starta Claude automation..."
 
 #: assets/app.js
 msgid "Lancement impossible"
-msgstr ""
+msgstr "Kunde inte börja"
 
 #: assets/app.js
 msgid "Tâche lancée — suivi dans le journal d'activité"
-msgstr ""
+msgstr "Uppgiften började – följ den i aktivitetsloggen"
 
 #: assets/app.js
 msgid "Exécution impossible : {error}"
-msgstr ""
+msgstr "Avrättning misslyckades: {error}"
 
 #: assets/app.js
 msgid "Aucun résultat disponible"
-msgstr ""
+msgstr "Inget resultat tillgängligt"
 
 #: assets/app.js
 msgid "Résultat — {task}"
-msgstr ""
+msgstr "Resultat – {task}"
 
 #: assets/app.js
 msgid "Données de comptes illisibles"
-msgstr ""
+msgstr "Oläsbara kontodata"
 
 #: assets/app.js
 msgid "La liste de comptes enregistrée est corrompue. Une sauvegarde de {count} compte(s) a été trouvée. La restaurer ?"
-msgstr ""
+msgstr "Den sparade kontolistan är skadad. En säkerhetskopia av {count} konto (er) hittades. Återställ det?"
 
 #: assets/app.js
 msgid "La liste de comptes enregistrée est corrompue et aucune sauvegarde n'est disponible. L'application démarre avec une liste vide ; vos données actuelles ne seront pas écrasées tant que vous ne créez ou ne modifiez pas de compte."
-msgstr ""
+msgstr "Den sparade kontolistan är skadad och ingen säkerhetskopia är tillgänglig. Ansökan börjar med en tom lista; dina aktuella data kommer inte att skrivas över förrän du skapar eller redigerar ett konto."
 
 #: assets/app.js
 msgid "Ignorer"
-msgstr ""
+msgstr "Ignorera"
 
 #: assets/app.js
 msgid "Restaurer la sauvegarde"
-msgstr ""
+msgstr "Återställ backup"
 
 #: assets/app.js
 msgid "Comptes restaurés depuis la sauvegarde"
-msgstr ""
+msgstr "Konton som återställts från backup"
 
 #: assets/app.js
 msgid "Compris"
-msgstr ""
+msgstr "Fick det"

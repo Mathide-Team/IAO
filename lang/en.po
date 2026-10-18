@@ -185,15 +185,15 @@ msgstr "Detects ZIP files delivered by AI tabs, with per-profile resume."
 
 #: index.html
 msgid "Arrêté"
-msgstr ""
+msgstr "Stopped"
 
 #: index.html
 msgid "Démarrer ou arrêter l'ordonnanceur (il ne démarre jamais tout seul)"
-msgstr ""
+msgstr "Start or stop the scheduler (it never starts on its own)"
 
 #: index.html
 msgid "Démarrer"
-msgstr ""
+msgstr "Start"
 
 #: index.html
 msgid "Jobs actifs"
@@ -777,11 +777,11 @@ msgstr "Error while saving the settings"
 
 #: assets/app.js
 msgid "Arrêter"
-msgstr ""
+msgstr "Stop"
 
 #: assets/app.js
 msgid "En marche"
-msgstr ""
+msgstr "Running"
 
 #: assets/app.js
 msgid "Aucun job pour l'instant — un ZIP téléchargé depuis un onglet IA (ordonnanceur activé) en créera un automatiquement."

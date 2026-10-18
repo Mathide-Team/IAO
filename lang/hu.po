@@ -4,6 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: IAO\n"
 "Report-Msgid-Bugs-To: https://github.com/Mathide-Team/IAO/issues\n"
+"Last-Translator: IAO (traduction automatique Argos Translate, relecture humaine attendue, issue #188)\n"
+"Language-Team: aucune (relecture humaine attendue)\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -12,1084 +14,1089 @@ msgstr ""
 
 #: index.html
 msgid "Rechercher un compte ou une IA..."
-msgstr ""
+msgstr "Keress egy fiókot vagy egy MI-t..."
 
 #: index.html
 msgid "Comptes actifs"
-msgstr ""
+msgstr "Aktív számlák"
 
 #: index.html
 msgid "IA Disponibles"
-msgstr ""
+msgstr "A rendelkezésre álló segédeszközök"
 
 #: index.html
 msgid "Rechercher un compte ou une IA (Ctrl+K)"
-msgstr ""
+msgstr "Számla vagy AI keresése (Ctrl + K)"
 
 #: index.html
 msgid "Comptes enregistrés"
-msgstr ""
+msgstr "Mentett számlák"
 
 #: index.html
 msgid "Tout replier / Tout déplier"
-msgstr ""
+msgstr "Összecsukás / kiterjesztés"
 
 #: index.html
 msgid "Exporter les comptes (JSON)"
-msgstr ""
+msgstr "Exportszámlák (JSON)"
 
 #: index.html
 msgid "Importer des comptes (JSON)"
-msgstr ""
+msgstr "Importszámlák (JSON)"
 
 #: index.html
 msgid "Ajouter un compte"
-msgstr ""
+msgstr "Számla hozzáadása"
 
 #: index.html
 msgid "Mode debug actif : traces détaillées dans le journal iao.log"
-msgstr ""
+msgstr "Debug mód bekapcsolva: részletes nyomok az iao.log fájlban"
 
 #: index.html
 msgid "Masquer les comptes"
-msgstr ""
+msgstr "Számlák elrejtése"
 
 #: index.html
 msgid "Afficher les comptes"
-msgstr ""
+msgstr "Számlák megjelenítése"
 
 #: index.html
 msgid "Explorateur"
-msgstr ""
+msgstr "Felfedező"
 
 #: index.html
 msgid "Éditeur"
-msgstr ""
+msgstr "Szerkesztő"
 
 #: index.html
 msgid "Outils de développement (Ctrl+Maj+I)"
-msgstr ""
+msgstr "Fejlesztő eszközök (Ctrl + Shift + I)"
 
 #: index.html
 msgid "Choisir mes 9 IA à portée de main"
-msgstr ""
+msgstr "Válassza ki a 9 go- to AI"
 
 #: index.html
 msgid "Comprendre les IA disponibles"
-msgstr ""
+msgstr "A rendelkezésre álló mesterséges intelligenciák megértése"
 
 #: index.html
 msgid "Ordonnanceur IA"
-msgstr ""
+msgstr "AI ütemező"
 
 #: index.html
 msgid "Réglages"
-msgstr ""
+msgstr "Beállítások"
 
 #: index.html
 msgid "Fichiers"
-msgstr ""
+msgstr "Fájlok"
 
 #: index.html
 msgid "Ouvrir un dossier"
-msgstr ""
+msgstr "Egy mappa megnyitása"
 
 #: index.html
 msgid "Réduire"
-msgstr ""
+msgstr "Ütközés"
 
 #: index.html
 msgid "Rechercher un fichier..."
-msgstr ""
+msgstr "Keresünk egy fájlt..."
 
 #: index.html
 msgid "Glisser pour redimensionner"
-msgstr ""
+msgstr "Átméretezésig húzandó"
 
 #: index.html
 msgid "Aucun fichier"
-msgstr ""
+msgstr "Nincs fájl"
 
 #: index.html
 msgid "Glisser pour redimensionner l'éditeur"
-msgstr ""
+msgstr "A szerkesztő átméretezéséhez húzza"
 
 #: index.html
 msgid "Aucun onglet ouvert — choisissez un service dans la liste des comptes"
-msgstr ""
+msgstr "Nincs nyitott lap - válasszon szolgáltatást a listában"
 
 #: index.html
 msgid "Le profil permet d'isoler les cookies dans Electron."
-msgstr ""
+msgstr "A profil elszigeteli a sütiket Electronban."
 
 #: index.html
 msgid "Nom du compte"
-msgstr ""
+msgstr "Számlanév"
 
 #: index.html
 msgid "Nom du Profil"
-msgstr ""
+msgstr "A profil neve"
 
 #: index.html
 msgid "Annuler"
-msgstr ""
+msgstr "Törlés"
 
 #: index.html
 msgid "Enregistrer"
-msgstr ""
+msgstr "Mentés"
 
 #: index.html
 msgid "Supprimer le compte"
-msgstr ""
+msgstr "A számla törlése"
 
 #: index.html
 msgid "Cette action est irréversible."
-msgstr ""
+msgstr "Ezt nem lehet visszacsinálni."
 
 #: index.html
 msgid "Supprimer"
-msgstr ""
+msgstr "Törlés"
 
 #: index.html
 msgid "Importer des comptes"
-msgstr ""
+msgstr "Importszámlák"
 
 #: index.html
 msgid "Remplacer et importer"
-msgstr ""
+msgstr "Helyettesítés és behozatal"
 
 #: index.html
 msgid "Déconnecter le profil"
-msgstr ""
+msgstr "Írja alá a profilt"
 
 #: index.html
 msgid "Déconnecter"
-msgstr ""
+msgstr "Kijelentkezés"
 
 #: index.html
 msgid "À quoi sert chaque service, et quand l'utiliser."
-msgstr ""
+msgstr "Mire való minden szolgáltatás, és mikor kell használni."
 
 #: index.html
 msgid "Fermer"
-msgstr ""
+msgstr "Bezárás"
 
 #: index.html
 msgid "Sélectionnez les 9 services affichés dans l'interface. Les autres restent disponibles dans l'aide."
-msgstr ""
+msgstr "Válassza ki az interfész 9 szolgáltatását. A többiek a segítségben maradnak."
 
 #: index.html
 msgid "Détection des ZIP livrés par les onglets IA, reprise par profil."
-msgstr ""
+msgstr "Megjeleníti a ZIP fájlokat, melyeket AI fülek szállítanak, a per- profil újraindításával."
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: index.html
 msgid "Arrêté"
-msgstr ""
+msgstr "Leállítva"
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: index.html
 msgid "Démarrer ou arrêter l'ordonnanceur (il ne démarre jamais tout seul)"
-msgstr ""
+msgstr "Az ütemező indítása vagy leállítása (soha nem indul el magától)"
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: index.html
 msgid "Démarrer"
-msgstr ""
+msgstr "Indítás"
 
 #: index.html
 msgid "Jobs actifs"
-msgstr ""
+msgstr "Aktív foglalkoztatás"
 
 #: index.html
 msgid "En attente"
-msgstr ""
+msgstr "Függőben"
 
 #: index.html
 msgid "Livrés aujourd'hui"
-msgstr ""
+msgstr "Ma kézbesítve"
 
 #: index.html
 msgid "Jobs simultanés max."
-msgstr ""
+msgstr "Max. párhuzamos munkahelyek"
 
 #: index.html
 msgid "Délai min. entre automatisations (min)"
-msgstr ""
+msgstr "Min. késleltetés automatizálás között (perc)"
 
 #: index.html
 msgid "Seuil profil « le plus ancien » (h)"
-msgstr ""
+msgstr "\"Legrégebbi\" profilküszöbérték (h)"
 
 #: index.html
 msgid "Dossiers"
-msgstr ""
+msgstr "Könyvtárak"
 
 #: index.html
 msgid "Téléchargements…"
-msgstr ""
+msgstr "Letöltések..."
 
 #: index.html
 msgid "Livraison…"
-msgstr ""
+msgstr "Szállítás..."
 
 #: index.html
 msgid "Téléchargements :"
-msgstr ""
+msgstr "Letöltések:"
 
 #: index.html
 msgid "(dossier de téléchargements du système)"
-msgstr ""
+msgstr "(rendszerletöltés mappa)"
 
 #: index.html
 msgid "Livraison :"
-msgstr ""
+msgstr "Szállítás:"
 
 #: index.html
 msgid "(non défini)"
-msgstr ""
+msgstr "(nincs beállítva)"
 
 #: index.html
 msgid "Projets & tâches"
-msgstr ""
+msgstr "Projektek és feladatok"
 
 #: index.html
 msgid "Jobs"
-msgstr ""
+msgstr "Munkahelyek"
 
 #: index.html
 msgid "Journal d'activité"
-msgstr ""
+msgstr "Tevékenységi napló"
 
 #: index.html
 msgid "Confirmation"
-msgstr ""
+msgstr "Megerősítés"
 
 #: index.html
 msgid "Confirmer"
-msgstr ""
+msgstr "Megerősítés"
 
 #: index.html
 msgid "Préférences de l'application, sauvegardées localement."
-msgstr ""
+msgstr "Alkalmazási preferenciák, helyi szinten."
 
 #: index.html
 msgid "Taille de police de l'éditeur (px)"
-msgstr ""
+msgstr "A szerkesztő betűmérete (px)"
 
 #: index.html
 msgid "Thème"
-msgstr ""
+msgstr "Téma"
 
 #: index.html
 msgid "Thème du bureau (défaut)"
-msgstr ""
+msgstr "Asztaltéma (alapértelmezés)"
 
 #: index.html
 msgid "Clair"
-msgstr ""
+msgstr "Fény"
 
 #: index.html
 msgid "Sombre"
-msgstr ""
+msgstr "Sötét"
 
 #: index.html
 msgid "Langue"
-msgstr ""
+msgstr "Nyelv"
 
 #: index.html
 msgid "Langue du système (défaut)"
-msgstr ""
+msgstr "Rendszernyelv (alapértelmezett)"
 
 #: index.html
 msgid "Appliquée au prochain démarrage"
-msgstr ""
+msgstr "Alkalmazás a következő indításra"
 
 #: index.html
 msgid "Retour à la ligne (éditeur)"
-msgstr ""
+msgstr "Wordwrap (szerkesztő)"
 
 #: index.html
 msgid "Désactivé"
-msgstr ""
+msgstr "Ki"
 
 #: index.html
 msgid "Activé"
-msgstr ""
+msgstr "On"
 
 #: index.html
 msgid "Colonne fixe"
-msgstr ""
+msgstr "Rögzített oszlop"
 
 #: index.html
 msgid "Confirmer avant de fermer un onglet"
-msgstr ""
+msgstr "A lap lezárása előtt megerősítendő"
 
 #: index.html
 msgid "Afficher les fenêtres d'automatisation"
-msgstr ""
+msgstr "Automatikus ablakok megjelenítése"
 
 #: index.html
 msgid "Restaurer les onglets ouverts au démarrage"
-msgstr ""
+msgstr "Nyitott fülek visszaállítása indításkor"
 
 #: assets/app.js
 msgid "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."
-msgstr ""
+msgstr "Antropikus társalgási asszisztense. Kiváló írás, hosszú dokumentumok elemzése, programozás és többlépcsős érvelés."
 
 #: assets/app.js
 msgid "Plutôt pour du code, des textes longs et soignés, ou des questions complexes qui demandent de la rigueur."
-msgstr ""
+msgstr "A legjobb a kód, hosszú és csiszolt szövegek, vagy összetett kérdések, amelyek szükségessé teszik a szigor."
 
 #: assets/app.js
 msgid "L'assistant généraliste d'OpenAI, le plus connu du grand public. Il discute, rédige, résume, génère des images, analyse des fichiers et peut chercher sur le web."
-msgstr ""
+msgstr "OpenAI általános célú asszisztense, a közismert. Beszélget, ír, összegez, képeket készít, elemzi a fájlokat, és átkutatja az internetet."
 
 #: assets/app.js
 msgid "Le couteau suisse du quotidien : brainstorming, questions générales, petites tâches variées."
-msgstr ""
+msgstr "A mindennapi svájci hadsereg kés: ötletelés, általános kérdések, válogatott kis feladatok."
 
 #: assets/app.js
 msgid "L'assistant IA de Google. Multimodal (texte, images, audio, vidéo), il s'appuie sur la recherche Google et s'intègre aux outils Google (Docs, Gmail, Drive…)."
-msgstr ""
+msgstr "Google MI asszisztense. Multimodális (szöveg, képek, audio, videó), épül Google Search és integrálja a Google eszközök (Dokumentumok, Gmail, Drive...)."
 
 #: assets/app.js
 msgid "Plutôt pour analyser des images ou vidéos, ou si vous travaillez déjà dans l'écosystème Google."
-msgstr ""
+msgstr "A legjobb képek vagy videók elemzésére, vagy ha már a Google ökoszisztémájában dolgozik."
 
 #: assets/app.js
 msgid "Le chat de Z.ai, propulsé par les modèles GLM. Gratuit pour l'essentiel, avec un mode agent capable de chercher sur le web et de produire des fichiers (docx, pdf, xlsx)."
-msgstr ""
+msgstr "Zai beszélgetése, amit a GLM modellek működtetnek. Többnyire ingyenes, egy ügynök mód, amely képes keresni a weben, és készítsen fájlokat (docx, pdf, xlsx)."
 
 #: assets/app.js
 msgid "Une alternative gratuite solide pour le chat et le code, quand les quotas des autres sont épuisés."
-msgstr ""
+msgstr "A chat és a kód megbízható, ingyenes alternatívája a többi szolgáltatás kvótáinak felhasználásakor."
 
 #: assets/app.js
 msgid "Un « moteur de réponse » : il cherche sur le web en direct, synthétise plusieurs sources et cite ses références pour chaque affirmation."
-msgstr ""
+msgstr "\"Válasz motor\": a web élő keresése, több forrást szintetizál és minden igényre hivatkozik."
 
 #: assets/app.js
 msgid "Plutôt pour la recherche d'informations à jour, la veille et la vérification de faits avec sources."
-msgstr ""
+msgstr "A legjobb, hogy megtalálja a -to-date információkat, monitoring témák és a tény-ellenőrzés források."
 
 #: assets/app.js
 msgid "L'assistant de xAI (Elon Musk), connecté au réseau X (ex-Twitter). Ton direct, accès au temps réel de X, génération d'images incluse."
-msgstr ""
+msgstr "xAI asszisztense (Elon Musk), csatlakozik az X hálózathoz (korábban Twitter). Közvetlen hang, valós idejű hozzáférés az X-hez, képgenerálás is."
 
 #: assets/app.js
 msgid "Plutôt pour suivre l'actualité chaude et les tendances via X, ou pour un ton moins formel."
-msgstr ""
+msgstr "A legjobb, ha az X-en keresztül követjük a legfrissebb híreket és trendeket, vagy kevésbé formális hangnemben."
 
 #: assets/app.js
 msgid "Une plateforme de génération d'images orientée création : illustrations, concept art, assets de jeu vidéo, avec des contrôles fins (styles, modèles, retouche)."
-msgstr ""
+msgstr "Creative image-generation platform: illusztráció, koncepció művészet, videojáték eszközök, finomszemcsés vezérléssel (stílusok, modellek, retusálás)."
 
 #: assets/app.js
 msgid "Plutôt pour produire des visuels et illustrations de qualité avec un contrôle précis du style."
-msgstr ""
+msgstr "A legjobb a minőségi vizuálisok és illusztrációk, pontos ellenőrzés a stílus."
 
 #: assets/app.js
 msgid "Un générateur de musique : il compose des chansons complètes (instruments, voix, paroles) à partir d'une simple description texte, dans à peu près tous les genres."
-msgstr ""
+msgstr "Zeneteremtő: egy egyszerű szövegleírásból, szinte minden műfajban komplett dalokat (hangszereket, énekeket, dalszövegeket) készít."
 
 #: assets/app.js
 msgid "Plutôt pour créer une musique, un jingle ou une chanson à partir d'un texte ou d'une idée."
-msgstr ""
+msgstr "A legjobb egy darab zene, egy dal vagy egy szöveg vagy egy ötlet."
 
 #: assets/app.js
 msgid "Un générateur de modèles 3D : il transforme un texte ou une image en objet 3D texturé, avec rigging/animation automatique et export vers les formats standards (GLB, FBX, STL…)."
-msgstr ""
+msgstr "Egy 3D-s modell generátor: egy szöveget vagy egy képet egy texturált 3D-s objektummá alakít, automatikus kötéllel / animációval és szabványos formátumú exporttal (GLB, FBX, STL...)."
 
 #: assets/app.js
 msgid "Plutôt pour créer des assets 3D (jeux, impression 3D, animation) sans savoir modéliser."
-msgstr ""
+msgstr "A legjobb 3D eszközök (játékok, 3D nyomtatás, animáció) létrehozása nélkül modellezési készségek."
 
 #: assets/app.js
 msgid "Le Chat de Mistral AI, éditeur européen (français). Modèles open-weights performants, chat, code et analyse de documents."
-msgstr ""
+msgstr "Le Chat by Mistral AI, a European (French) seller. Erős nyílt súlyú modellek, chat, kód és dokumentum elemzés."
 
 #: assets/app.js
 msgid "Alternative européenne solide pour le chat et le code, avec une bonne maîtrise du français."
-msgstr ""
+msgstr "Szilárd európai alternatíva a csevegésre és a kódolásra, jó francia parancsnoksággal."
 
 #: assets/app.js
 msgid "DeepSeek : assistant IA chinois spécialisé en raisonnement et programmation, particulièrement performant en Python."
-msgstr ""
+msgstr "DeepSeek: a kínai AI asszisztens szakosodott érvelés és programozás, különösen erős a Python."
 
 #: assets/app.js
 msgid "Pour du code Python, du raisonnement étape par étape, ou une alternative gratuite à ChatGPT."
-msgstr ""
+msgstr "Python kód, lépés-by-step érvelés, vagy egy ingyenes alternatívája ChatGPT."
 
 #: assets/app.js
 msgid "GitHub Copilot : assistant IA intégré dans VS Code et GitHub. Autocomplétion, chat, génération de tests, explication de code."
-msgstr ""
+msgstr "GitHub Copilot: egy AI asszisztens beépített VS kód és GitHub. Automatikus befejezés, chat, teszt generáció, kódmagyarázat."
 
 #: assets/app.js
 msgid "Pour programmer plus vite dans VS Code ou sur GitHub, avec un modèle IA qui connaît votre codebase."
-msgstr ""
+msgstr "A program gyorsabb VS kód vagy a GitHub, egy AI modell, amely ismeri a kódját."
 
 #: assets/app.js
 msgid "Elicit : assistant de recherche scientifique. Trouve des articles, extrait des données, synthétise des études."
-msgstr ""
+msgstr "Elicit: tudományos kutatási asszisztens. Papírokat, kivonatokat, szintetizálja a tanulmányokat."
 
 #: assets/app.js
 msgid "Pour la recherche académique, la revue de littérature et l'extraction de données d'articles scientifiques."
-msgstr ""
+msgstr "A tudományos kutatás, az irodalom felülvizsgálata és az adatok kinyerése a tudományos lapok."
 
 #: assets/app.js
 msgid "NotebookLM de Google : interagissez avec vos propres documents (PDF, texte, audio). Résumés, questions, génération de notes."
-msgstr ""
+msgstr "Google NotebookLM: kölcsönhatásba lép a saját dokumentumaival (PDF, szöveg, audio). Összefoglalások, kérdések, jegyzet generáció."
 
 #: assets/app.js
 msgid "Pour interroger vos documents personnels ou professionnels avec une IA qui cite ses sources."
-msgstr ""
+msgstr "Hogy lekérdezze a személyes vagy munkadokumentumait egy mesterséges intelligenciával, ami a forrásaira hivatkozik."
 
 #: assets/app.js
 msgid "Wolfram Alpha : moteur de calcul symbolique. Mathématiques, physique, chimie, données factuelles, conversions."
-msgstr ""
+msgstr "Wolfram Alpha: egy szimbolikus számítási motor. Matematika, fizika, kémia, tényadatok, átalakítások."
 
 #: assets/app.js
 msgid "Pour des calculs exacts (mathématiques symboliques), des données chiffrées ou des conversions d'unités."
-msgstr ""
+msgstr "Pontos számításokhoz (szimbolikus matematika), numerikus adatok vagy egységátalakítások."
 
 #: assets/app.js
 msgid "DeepL : traduction automatique de haute qualité, plus naturelle que Google Traduction. Texte et documents entiers."
-msgstr ""
+msgstr "DeepL: kiváló minőségű gépi fordítás, természetesebb, mint a Google Fordítás. Szöveg és teljes dokumentumok."
 
 #: assets/app.js
 msgid "Pour traduire du texte ou des documents avec un rendu naturel et cohérent."
-msgstr ""
+msgstr "A szöveg vagy dokumentumok lefordítása természetes, következetes eredménnyel."
 
 #: assets/app.js
 msgid "Ideogram : génération d'images orientée design. Logos, typographies, affiches, avec un excellent rendu du texte."
-msgstr ""
+msgstr "Ideogram: design- orientált képalkotás. Logók, tipográfia, plakátok, kiváló szövegszerkesztéssel."
 
 #: assets/app.js
 msgid "Pour créer des visuels avec du texte lisible (logos, affiches, bannières) ou du design graphique."
-msgstr ""
+msgstr "Látványok létrehozása olvasható szöveggel (logók, plakátok, bannerek) vagy grafikus kialakítással."
 
 #: assets/app.js
 msgid "Kling : générateur de vidéos courtes à partir de texte ou d'images. Animations réalistes, crédits gratuits disponibles."
-msgstr ""
+msgstr "Kling: rövid videó generátor szövegből vagy képekből. Realista animációk, ingyenes kreditek."
 
 #: assets/app.js
 msgid "Pour créer des clips vidéo animés à partir d'une description ou d'une image fixe."
-msgstr ""
+msgstr "Animált videoklippek létrehozása leírásból vagy állóképből."
 
 #: assets/app.js
 msgid "Runway : suite d'outils IA pour la vidéo. Génération, édition, effets spéciaux, inpainting vidéo."
-msgstr ""
+msgstr "Kifutópálya: egy lakosztály AI videó eszközök. Generáció, szerkesztés, speciális effektek, videó festés."
 
 #: assets/app.js
 msgid "Pour le montage et la création vidéo avancée avec des outils IA intégrés."
-msgstr ""
+msgstr "A fejlett videó szerkesztő és létrehozása építmény-in AI eszközök."
 
 #: assets/app.js
 msgid "Pika : générateur de vidéos courtes et créatives. Animation d'images, effets, transformation de styles."
-msgstr ""
+msgstr "Pika: rövid, kreatív videók generátora. Image animáció, hatások, stílus átalakulás."
 
 #: assets/app.js
 msgid "Pour animer des images ou créer des vidéos courtes originales avec des effets IA."
-msgstr ""
+msgstr "Képek animációja vagy eredeti rövid videók készítése MI effektekkel."
 
 #: assets/app.js
 msgid "Qwen : assistant IA d'Alibaba. Multimodal (texte, images, code), open-source, disponible en plusieurs tailles."
-msgstr ""
+msgstr "Alibapa AI asszisztense. Multimodális (szöveg, képek, kód), nyílt forráskódú, több méretben kapható."
 
 #: assets/app.js
 msgid "Alternative gratuite pour le chat, le code et l'analyse d'images, avec un bon support multilingue."
-msgstr ""
+msgstr "Ingyenes alternatíva chat, kód és képelemzés, jó többnyelvű támogatással."
 
 #: assets/app.js
 msgid "Impossible d'enregistrer les comptes (stockage plein ?)"
-msgstr ""
+msgstr "Nem sikerült elmenteni a fiókokat (teljes tárhely?)"
 
 #: assets/app.js
 msgid "Ctrl+S pour sauvegarder."
-msgstr ""
+msgstr "Ctrl + S menthető."
 
 #: assets/app.js
 msgid "Sélectionnez un fichier pour l'éditer ici."
-msgstr ""
+msgstr "Válassza ki a fájl szerkesztéséhez itt."
 
 #: assets/app.js
 msgid "Éditeur simplifié (Monaco indisponible) — Ctrl+S pour sauvegarder"
-msgstr ""
+msgstr "Egyszerűsített szerkesztő (Monaco nem elérhető) - Ctrl + S menteni"
 
 #: assets/app.js
 msgid "Fichier enregistré !"
-msgstr ""
+msgstr "Fájl mentése"
 
 #: assets/app.js
 msgid "Erreur d'enregistrement."
-msgstr ""
+msgstr "Hiba mentése."
 
 #: assets/app.js
 msgid "Aucun compte pour l'instant."
-msgstr ""
+msgstr "Még nincs számla."
 
 #: assets/app.js
 msgid "Créer mon premier compte"
-msgstr ""
+msgstr "Az első fiókom létrehozása"
 
 #: assets/app.js
 msgid "Cliquer pour copier l'e-mail"
-msgstr ""
+msgstr "Kattintson az e-mail cím másolásához"
 
 #: assets/app.js
 msgid "Modifier le compte"
-msgstr ""
+msgstr "Fiók szerkesztése"
 
 #: assets/app.js
 msgid "{available} service(s) hors cooldown sur {total}"
-msgstr ""
+msgstr "{available} a {total} szolgáltatás (oka) t kihűlve"
 
 #: assets/app.js
 msgid "Replier / déplier"
-msgstr ""
+msgstr "Ütközés / terjeszkedés"
 
 #: assets/app.js
 msgid "{service} — {account} déjà ouvert"
-msgstr ""
+msgstr "{service} - {account} már nyitva"
 
 #: assets/app.js
 msgid "Recharger l'onglet"
-msgstr ""
+msgstr "Újratölthető lap"
 
 #: assets/app.js
 msgid "Revenir à l'accueil de {service}"
-msgstr ""
+msgstr "Vissza a {service} kezdőoldalra"
 
 #: assets/app.js
 msgid "Se déconnecter du profil « {profile} »"
-msgstr ""
+msgstr "\"{profile}\" profilból való kilépés"
 
 #: assets/app.js
 msgid "{service} ouvert avec {account}"
-msgstr ""
+msgstr "{service} megnyitva {account}"
 
 #: assets/app.js
 msgid "Fermer l'onglet"
-msgstr ""
+msgstr "A lap bezárása"
 
 #: assets/app.js
 msgid "Fermer l'onglet « {tab} » ? La session web sera libérée."
-msgstr ""
+msgstr "Zárjuk le a \"{tab}\" lapot? A webes ülés kerül közzétételre."
 
 #: assets/app.js
 msgid "Onglet fermé (mémoire libérée)"
-msgstr ""
+msgstr "Tab bezárva (memória felszabadítva)"
 
 #: assets/app.js
 msgid "Retirer l'étoile"
-msgstr ""
+msgstr "A csillag eltávolítása"
 
 #: assets/app.js
 msgid "Étoiler cet onglet"
-msgstr ""
+msgstr "Lapozzunk!"
 
 #: assets/app.js
 msgid "Onglet étoilé"
-msgstr ""
+msgstr "Tab főszerepben"
 
 #: assets/app.js
 msgid "Étoile retirée"
-msgstr ""
+msgstr "Csillag eltávolítva"
 
 #: assets/app.js
 msgid "Échec de la déconnexion du profil"
-msgstr ""
+msgstr "Nem sikerült kilépni a profilból"
 
 #: assets/app.js
 msgid "Profil « {profile} » déconnecté — session effacée"
-msgstr ""
+msgstr "Profil \"{profile}\" kiiktatva - ülésszak törölve"
 
 #: assets/app.js
 msgid "Aucun fichier trouvé."
-msgstr ""
+msgstr "Nem találtunk fájlokat."
 
 #: assets/app.js
 msgid "Fichier trop volumineux pour l'éditeur : {size} Mo (limite : 20 Mo)."
-msgstr ""
+msgstr "Túl nagy fájl a szerkesztőnek: {size} MB (limit: 20 MB)."
 
 #: assets/app.js
 msgid "C'est quoi ?"
-msgstr ""
+msgstr "Mi az?"
 
 #: assets/app.js
 msgid "Quand l'utiliser ?"
-msgstr ""
+msgstr "Mikor kell használni?"
 
 #: assets/app.js
 msgid "Description à venir."
-msgstr ""
+msgstr "Hamarosan jön a leírás."
 
 #: assets/app.js
 msgid "Maximum {max} services à portée de main"
-msgstr ""
+msgstr "Legfeljebb {max} nyújtott szolgáltatások"
 
 #: assets/app.js
 msgid "Sélectionnez au moins 1 service"
-msgstr ""
+msgstr "Válassza ki legalább 1 szolgáltatás"
 
 #: assets/app.js
 msgid "Services mis à jour ({count}/{max})"
-msgstr ""
+msgstr "Frissített szolgáltatások ({count} / {max})"
 
 #: assets/app.js
 msgid "Supprimer « {name} » ({email}) ? La session restera stockée sur le disque, mais le compte disparaîtra de la liste."
-msgstr ""
+msgstr "A \"{name}\" ({email}) törlendő? A munkamenet a lemezen marad, de a számla eltűnik a listáról."
 
 #: assets/app.js
 msgid "Échec de l'export (écriture impossible)"
-msgstr ""
+msgstr "Nem sikerült exportálni (nem sikerült írni)"
 
 #: assets/app.js
 msgid "{count} compte(s) exporté(s)"
-msgstr ""
+msgstr "{count} exportált számla (ok)"
 
 #: assets/app.js
 msgid "Export impossible"
-msgstr ""
+msgstr "Nem sikerült exportálni"
 
 #: assets/app.js
 msgid "Échec de la lecture du fichier"
-msgstr ""
+msgstr "Nem sikerült elolvasni a fájlt"
 
 #: assets/app.js
 msgid "Fichier JSON invalide"
-msgstr ""
+msgstr "Érvénytelen JSON fájl"
 
 #: assets/app.js
 msgid "Format invalide : un tableau de comptes est attendu."
-msgstr ""
+msgstr "Érvénytelen formátum: egy sor számla várható."
 
 #: assets/app.js
 msgid "Le fichier contient {count} compte(s). L'import REMPLACE entièrement la liste actuelle ({current} compte(s)) — cette action écrase les comptes existants, pas leurs sessions (cookies) déjà enregistrées sur le disque. Continuer ?"
-msgstr ""
+msgstr "A fájl {count} fiókot tartalmaz. TELJESEN MEGERŐSÍTI az aktuális listát ({current} számla (ok)) - ez felülírja a már meglévő fiókokat, nem pedig a lemezen tárolt foglalkozásokat (sütiket). Folytassam?"
 
 #: assets/app.js
 msgid "Import impossible"
-msgstr ""
+msgstr "Nem sikerült importálni"
 
 #: assets/app.js
 msgid "{count} compte(s) importé(s)"
-msgstr ""
+msgstr "{count} importált számla (ok)"
 
 #: assets/app.js
 msgid "Échec de l'import : {error}"
-msgstr ""
+msgstr "Nem sikerült importálni: {error}"
 
 #: assets/app.js
 msgid "Compte supprimé"
-msgstr ""
+msgstr "Törölt számla"
 
 #: assets/app.js
 msgid "Remplissez tous les champs"
-msgstr ""
+msgstr "Töltse ki az összes mezőt"
 
 #: assets/app.js
 msgid "Ce profil est déjà utilisé par un autre compte (les sessions seraient partagées)."
-msgstr ""
+msgstr "Ezt a profilt már egy másik fiók is használja (az üléseket megosztjuk)."
 
 #: assets/app.js
 msgid "Compte mis à jour"
-msgstr ""
+msgstr "A számla frissítése"
 
 #: assets/app.js
 msgid "Compte ajouté"
-msgstr ""
+msgstr "Hozzáadott számla"
 
 #: assets/app.js
 msgid "Copie impossible dans le presse-papiers"
-msgstr ""
+msgstr "Nem sikerült másolni a vágólapra"
 
 #: assets/app.js
 msgid "E-mail copié : {email}"
-msgstr ""
+msgstr "E-mail másolat: {email}"
 
 #: assets/app.js
 msgid "Cooldown terminé"
-msgstr ""
+msgstr "Hűtés vége"
 
 #: assets/app.js
 msgid "{account} — {service} est de nouveau disponible."
-msgstr ""
+msgstr "{account} - {service} ismét rendelkezésre áll."
 
 #: assets/app.js
 msgid "{account} — {service} : cooldown terminé"
-msgstr ""
+msgstr "{account} - {service}: hűtés felett"
 
 #: assets/app.js
 msgid "Téléchargement…"
-msgstr ""
+msgstr "Letöltés..."
 
 #: assets/app.js
 msgid "Téléchargé — à traiter"
-msgstr ""
+msgstr "Letöltés - feldolgozandó"
 
 #: assets/app.js
 msgid "Aucun profil disponible"
-msgstr ""
+msgstr "Nem áll rendelkezésre profil"
 
 #: assets/app.js
 msgid "Projet en cours d'analyse"
-msgstr ""
+msgstr "A projekt elemzése"
 
 #: assets/app.js
 msgid "En cours"
-msgstr ""
+msgstr "Futtatás"
 
 #: assets/app.js
 msgid "En pause"
-msgstr ""
+msgstr "Szünet"
 
 #: assets/app.js
 msgid "Reprise programmée"
-msgstr ""
+msgstr "Menetrend"
 
 #: assets/app.js
 msgid "Erreur"
-msgstr ""
+msgstr "Hiba"
 
 #: assets/app.js
 msgid "Livré"
-msgstr ""
+msgstr "Szállított"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"
-msgstr ""
+msgstr "Nem sikerült betölteni a beállításokat"
 
 #: assets/app.js
 msgid "Réglages enregistrés — la langue sera appliquée au prochain démarrage"
-msgstr ""
+msgstr "Mentett beállítások - a nyelv a következő indításkor kerül alkalmazásra"
 
 #: assets/app.js
 msgid "Réglages enregistrés"
-msgstr ""
+msgstr "Mentett beállítások"
 
 #: assets/app.js
 msgid "Erreur lors de la sauvegarde"
-msgstr ""
+msgstr "Hiba történt a mentés közben"
 
 #: assets/app.js
 msgid "Erreur lors de la sauvegarde des réglages"
-msgstr ""
+msgstr "Hiba történt a beállítások mentése közben"
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: assets/app.js
 msgid "Arrêter"
-msgstr ""
+msgstr "Leállítás"
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: assets/app.js
 msgid "En marche"
-msgstr ""
+msgstr "Fut"
 
 #: assets/app.js
 msgid "Aucun job pour l'instant — un ZIP téléchargé depuis un onglet IA (ordonnanceur activé) en créera un automatiquement."
-msgstr ""
+msgstr "Még nincs állás - az AI fülről letöltött ZIP (a program bekapcsolva) automatikusan létrehoz egyet."
 
 #: assets/app.js
 msgid "Continuer le projet"
-msgstr ""
+msgstr "A projekt folytatása"
 
 #: assets/app.js
 msgid "Marquer livré"
-msgstr ""
+msgstr "Jelölje be a kézbesítettnek"
 
 #: assets/app.js
 msgid "Pause"
-msgstr ""
+msgstr "Szünet"
 
 #: assets/app.js
 msgid "Reprendre"
-msgstr ""
+msgstr "Folytatás"
 
 #: assets/app.js
 msgid "Relancer"
-msgstr ""
+msgstr "Újratöltés"
 
 #: assets/app.js
 msgid "Ouvrir le ZIP"
-msgstr ""
+msgstr "A ZIP megnyitása"
 
 #: assets/app.js
 msgid "Analyser la complétude"
-msgstr ""
+msgstr "A teljesség elemzése"
 
 #: assets/app.js
 msgid "service inconnu"
-msgstr ""
+msgstr "ismeretlen szolgáltatás"
 
 #: assets/app.js
 msgid "tentative {n}"
-msgstr ""
+msgstr "kísérlet {n}"
 
 #: assets/app.js
 msgid "Aucune activité enregistrée."
-msgstr ""
+msgstr "Nincs rögzített aktivitás."
 
 #: assets/app.js
 msgid "Impossible de modifier l'état de l'ordonnanceur"
-msgstr ""
+msgstr "Nem sikerült megváltoztatni az ütemező állapotot"
 
 #: assets/app.js
 msgid "Configuration non enregistrée"
-msgstr ""
+msgstr "Nem mentett beállítások"
 
 #: assets/app.js
 msgid "Sélection du dossier impossible"
-msgstr ""
+msgstr "Nem sikerült kiválasztani a mappát"
 
 #: assets/app.js
 msgid "Projet terminé : {done}/{total} tâches faites, 0 restante."
-msgstr ""
+msgstr "A projekt befejeződött: {done} / {total} elvégzett feladatok, 0 maradt."
 
 #: assets/app.js
 msgid "{pending} à faire, {inProgress} en cours, {done} faite(s) sur {total} au total."
-msgstr ""
+msgstr "{pending} a folyamatban lévő {inProgress} {done} összesen {total}."
 
 #: assets/app.js
 msgid "Analyse impossible : {error}"
-msgstr ""
+msgstr "Elemzés sikertelen: {error}"
 
 #: assets/app.js
 msgid "Action impossible : {error}"
-msgstr ""
+msgstr "A művelet sikertelen: {error}"
 
 #: assets/app.js
 msgid "Aucun projet pour l'instant."
-msgstr ""
+msgstr "Még nincs projekt."
 
 #: assets/app.js
 msgid "Créer un projet"
-msgstr ""
+msgstr "Projekt létrehozása"
 
 #: assets/app.js
 msgid "Assignée"
-msgstr ""
+msgstr "Címzett"
 
 #: assets/app.js
 msgid "Terminée"
-msgstr ""
+msgstr "Befejezve"
 
 #: assets/app.js
 msgid "Échouée"
-msgstr ""
+msgstr "Nem sikerült"
 
 #: assets/app.js
 msgid "Lancer"
-msgstr ""
+msgstr "Futás!"
 
 #: assets/app.js
 msgid "Résultat"
-msgstr ""
+msgstr "Eredmény"
 
 #: assets/app.js
 msgid "Aucune tâche."
-msgstr ""
+msgstr "Nincs feladat."
 
 #: assets/app.js
 msgid "Tous les comptes"
-msgstr ""
+msgstr "Összes számla"
 
 #: assets/app.js
 msgid "Comptes autorisés :"
-msgstr ""
+msgstr "Engedélyezett számlák:"
 
 #: assets/app.js
 msgid "{count} tâche(s)"
-msgstr ""
+msgstr "{count} feladat (ek)"
 
 #: assets/app.js
 msgid "Nouvelle tâche"
-msgstr ""
+msgstr "Új feladat"
 
 #: assets/app.js
 msgid "Assigner"
-msgstr ""
+msgstr "Kijelölés"
 
 #: assets/app.js
 msgid "Diagnostic Claude : {error}"
-msgstr ""
+msgstr "Claude diagnózis: {error}"
 
 #: assets/app.js
 msgid "« Continuer »"
-msgstr ""
+msgstr "\"Folytasd\""
 
 #: assets/app.js
 msgid "« Télécharger »"
-msgstr ""
+msgstr "\"Letöltés\""
 
 #: assets/app.js
 msgid "« Nouveau »"
-msgstr ""
+msgstr "\"Új\""
 
 #: assets/app.js
 msgid "zone de chat"
-msgstr ""
+msgstr "chat box"
 
 #: assets/app.js
 msgid "envoi de fichier"
-msgstr ""
+msgstr "fájlfeltöltés"
 
 #: assets/app.js
 msgid "{count} popup(s)"
-msgstr ""
+msgstr "{count} popup (s)"
 
 #: assets/app.js
 msgid "Claude (« {profile} ») : {details}"
-msgstr ""
+msgstr "Claude (\"{profile}\"): {details}"
 
 #: assets/app.js
 msgid "aucun élément détecté"
-msgstr ""
+msgstr "Semmi nem észlelhető"
 
 #: assets/app.js
 msgid "Diagnostic impossible : {error}"
-msgstr ""
+msgstr "Diagnosztikai hiba: {error}"
 
 #: assets/app.js
 msgid "Quota gratuit épuisé jusqu'à {time} pour ce profil."
-msgstr ""
+msgstr "Erre a profilra vonatkozóan a {time} -ig kimerített szabad kvóta."
 
 #: assets/app.js
 msgid "Job Claude échoué : {error}"
-msgstr ""
+msgstr "Claude munkája sikertelen: {error}"
 
 #: assets/app.js
 msgid "Prompt envoyé à Claude via {method} (« {profile} »)"
-msgstr ""
+msgstr "{method} (\"{profile}\")"
 
 #: assets/app.js
 msgid "Job Claude impossible : {error}"
-msgstr ""
+msgstr "Claude nem tudott futni: {error}"
 
 #: assets/app.js
 msgid "Collecte impossible : {error}"
-msgstr ""
+msgstr "A gyűjtés sikertelen: {error}"
 
 #: assets/app.js
 msgid "Réponse collectée : {count} caractères (« {profile} »)"
-msgstr ""
+msgstr "Összegyűjtött válasz: {count} karakter (\"{profile}\")"
 
 #: assets/app.js
 msgid "Aucune réponse trouvée pour le moment."
-msgstr ""
+msgstr "Még nincs válasz."
 
 #: assets/app.js
 msgid "Nom du projet :"
-msgstr ""
+msgstr "A projekt neve:"
 
 #: assets/app.js
 msgid "Projet {n}"
-msgstr ""
+msgstr "Projekt {n}"
 
 #: assets/app.js
 msgid "Projet « {name} » créé"
-msgstr ""
+msgstr "Létrehozott \"{name}\" projekt"
 
 #: assets/app.js
 msgid "Création impossible : {error}"
-msgstr ""
+msgstr "Nem sikerült létrehozni: {error}"
 
 #: assets/app.js
 msgid "Projet supprimé"
-msgstr ""
+msgstr "A projekt törölve"
 
 #: assets/app.js
 msgid "Suppression impossible : {error}"
-msgstr ""
+msgstr "Törlés sikertelen: {error}"
 
 #: assets/app.js
 msgid "Prompt de la tâche :"
-msgstr ""
+msgstr "Feladatkezelő:"
 
 #: assets/app.js
 msgid "Tâche créée dans le projet"
-msgstr ""
+msgstr "A projektben létrehozott feladat"
 
 #: assets/app.js
 msgid "Aucun compte vert disponible pour ce projet."
-msgstr ""
+msgstr "Ehhez a projekthez nem áll rendelkezésre zöld számla."
 
 #: assets/app.js
 msgid "Comptes verts disponibles :"
-msgstr ""
+msgstr "A rendelkezésre álló zöld számlák:"
 
 #: assets/app.js
 msgid "Numéro du compte :"
-msgstr ""
+msgstr "Számlaszám:"
 
 #: assets/app.js
 msgid "Choix invalide"
-msgstr ""
+msgstr "Érvénytelen választás"
 
 #: assets/app.js
 msgid "Aucune tâche dans ce projet."
-msgstr ""
+msgstr "Nincs feladat ebben a projektben."
 
 #: assets/app.js
 msgid "Numéro de la tâche :"
-msgstr ""
+msgstr "Feladatszám:"
 
 #: assets/app.js
 msgid "Tâches du projet :"
-msgstr ""
+msgstr "A projekt feladatai:"
 
 #: assets/app.js
 msgid "Tâche {task} assignée à « {account} »"
-msgstr ""
+msgstr "A \"{account}\" -hez rendelt feladat {task}"
 
 #: assets/app.js
 msgid "Assignation impossible : {error}"
-msgstr ""
+msgstr "Nem sikerült kijelölni: {error}"
 
 #: assets/app.js
 msgid "Lancement de l'automatisation Claude..."
-msgstr ""
+msgstr "A Claude automatizálás elindítása..."
 
 #: assets/app.js
 msgid "Lancement impossible"
-msgstr ""
+msgstr "Nem sikerült elindítani"
 
 #: assets/app.js
 msgid "Tâche lancée — suivi dans le journal d'activité"
-msgstr ""
+msgstr "Elkezdődött a feladat - kövesse a tevékenységnaplóban"
 
 #: assets/app.js
 msgid "Exécution impossible : {error}"
-msgstr ""
+msgstr "A végrehajtás nem sikerült: {error}"
 
 #: assets/app.js
 msgid "Aucun résultat disponible"
-msgstr ""
+msgstr "Nincs elérhető eredmény"
 
 #: assets/app.js
 msgid "Résultat — {task}"
-msgstr ""
+msgstr "Eredmény - {task}"
 
 #: assets/app.js
 msgid "Données de comptes illisibles"
-msgstr ""
+msgstr "Olvashatatlan számlaadatok"
 
 #: assets/app.js
 msgid "La liste de comptes enregistrée est corrompue. Une sauvegarde de {count} compte(s) a été trouvée. La restaurer ?"
-msgstr ""
+msgstr "A mentett számla lista hibás. A {count} számla (ok) mentését találták. Visszaállítani?"
 
 #: assets/app.js
 msgid "La liste de comptes enregistrée est corrompue et aucune sauvegarde n'est disponible. L'application démarre avec une liste vide ; vos données actuelles ne seront pas écrasées tant que vous ne créez ou ne modifiez pas de compte."
-msgstr ""
+msgstr "A mentett fiók lista hibás, és nincs mentés. Az alkalmazás üres listával kezdődik; a jelenlegi adatok nem lesznek felülírva, amíg nem hoz létre vagy nem szerkeszti a fiókot."
 
 #: assets/app.js
 msgid "Ignorer"
-msgstr ""
+msgstr "Figyelmen kívül hagyás"
 
 #: assets/app.js
 msgid "Restaurer la sauvegarde"
-msgstr ""
+msgstr "Erősítés visszaállítása"
 
 #: assets/app.js
 msgid "Comptes restaurés depuis la sauvegarde"
-msgstr ""
+msgstr "A tartalékból visszaállított számlák"
 
 #: assets/app.js
 msgid "Compris"
-msgstr ""
+msgstr "Megvan."
