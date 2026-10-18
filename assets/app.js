@@ -699,6 +699,7 @@
                 <div class="account-email"><span class="account-email-copy" data-action="copy-email" data-acc="${id}" title="${escapeHtml(_('Cliquer pour copier l\'e-mail'))}">${escapeHtml(acc.email)}</span> • ${escapeHtml(acc.profile)}</div>
               </div>
               <div class="account-actions">
+                ${currentSettings && currentSettings.webmailUrl ? `<button class="btn btn--icon" data-action="open-webmail" data-acc="${id}" title="${escapeHtml(_('Ouvrir le webmail (adresse copiée)'))}"><span class="ic" data-icon="envelope"></span></button>` : ''}
                 <button class="btn btn--icon" data-action="edit" data-acc="${id}" title="${escapeHtml(_('Modifier le compte'))}"><span class="ic" data-icon="pen"></span></button>
                 <button class="btn btn--icon" data-action="delete" data-acc="${id}" title="${escapeHtml(_('Supprimer le compte'))}"><span class="ic icon-danger" data-icon="trash"></span></button>
               </div>
@@ -1304,7 +1305,47 @@
         while (used.has('profil_' + n)) n++;
         document.getElementById('inputProfile').value = 'profil_' + n;
       }
+      // Issue #201 : mot de passe de messagerie, masqué ; relu depuis le coffre chiffré.
+      const pass = document.getElementById('inputMailPassword');
+      pass.value = '';
+      afficherMotDePasse(false);
+      if (accId) {
+        const profil = document.getElementById('inputProfile').value;
+        ipcRenderer.invoke('secrets:get', profil).then((v) => {
+          if (typeof v === 'string' && document.getElementById('editId').value === accId) pass.value = v;
+        }).catch(() => {});
+      }
       modal.classList.add('open');
+    }
+
+    function afficherMotDePasse(visible) {
+      const pass = document.getElementById('inputMailPassword');
+      const btn = document.getElementById('btnToggleMailPassword');
+      pass.type = visible ? 'text' : 'password';
+      const titre = visible ? _('Masquer le mot de passe') : _('Afficher le mot de passe');
+      btn.title = titre;
+      btn.setAttribute('aria-label', titre);
+      btn.innerHTML = '<span class="ic" data-icon="' + (visible ? 'eye-slash' : 'eye') + '"></span>';
+      hydrateIcons(btn);
+    }
+    window.toggleMailPassword = function() {
+      afficherMotDePasse(document.getElementById('inputMailPassword').type === 'password');
+    };
+    function motDePasseAleatoire() {
+      return window.iaoComptesSerie.genererMotDePasse((n) => crypto.getRandomValues(new Uint8Array(n)));
+    }
+    window.generateMailPassword = function() {
+      document.getElementById('inputMailPassword').value = motDePasseAleatoire();
+      afficherMotDePasse(true);
+    };
+    // Enregistre le mot de passe dans le coffre ; message si le chiffrement manque.
+    async function enregistrerMotDePasse(profil, valeur) {
+      const r = await ipcRenderer.invoke('secrets:set', profil, valeur).catch(e => ({ ok: false, erreur: e && e.message }));
+      if (r && r.ok) return true;
+      showToast(r && r.erreur === 'chiffrement-indisponible'
+        ? _('Mot de passe non enregistré : le trousseau du système est indisponible')
+        : _('Mot de passe non enregistré'), 'warning');
+      return false;
     }
     window.closeModal = function() { document.getElementById('accountModal').classList.remove('open'); }
 
@@ -1507,7 +1548,62 @@
       }
       saveAccounts(accounts); // écrit + backup de la génération précédente (chantier C)
       renderAccounts();
+      const motDePasse = document.getElementById('inputMailPassword').value;
+      if (motDePasse) enregistrerMotDePasse(profile, motDePasse);
       closeModal();
+    }
+
+    // Issue #201 : création de comptes en série (<préfixe><numéro>@<domaine>).
+    window.openSerieModal = function() {
+      const s = currentSettings || {};
+      if (!s.mailDomain) {
+        showToast(_('Renseignez d\'abord le domaine des adresses e-mail dans les réglages'), 'warning');
+        return openSettingsModal();
+      }
+      const suivant = window.iaoComptesSerie.plusGrandNumero(accounts) + 1;
+      document.getElementById('serieDesc').textContent = _('Premier compte : {nom}, {email}. Un mot de passe de messagerie aléatoire est généré pour chacun.', {
+        nom: String(suivant), email: (s.mailPrefix || '') + suivant + '@' + s.mailDomain
+      });
+      document.getElementById('serieNombre').value = '1';
+      document.getElementById('serieModal').classList.add('open');
+    };
+    window.closeSerieModal = function() { document.getElementById('serieModal').classList.remove('open'); };
+    window.createSerie = async function() {
+      const s = currentSettings || {};
+      const r = window.iaoComptesSerie.comptesEnSerie({
+        comptes: accounts, nombre: Number(document.getElementById('serieNombre').value),
+        prefixe: s.mailPrefix, domaine: s.mailDomain, services: SERVICES.map(x => x.id), maintenant: Date.now()
+      });
+      if (!r.ok) {
+        return showToast(r.erreur === 'nombre'
+          ? _('Nombre de comptes : de 1 à {max}', { max: window.iaoComptesSerie.SERIE_MAX })
+          : _('Renseignez d\'abord le domaine des adresses e-mail dans les réglages'), 'error');
+      }
+      r.comptes.forEach((c) => {
+        accounts.push(Object.assign(c, {
+          color: COLORS[accounts.length % COLORS.length],
+          cooldowns: Object.fromEntries(SERVICES.map(x => [x.id, 0])),
+          automation: { enabled: true, lastUsedAt: 0, lastAutomationAt: 0 }
+        }));
+      });
+      saveAccounts(accounts);
+      renderAccounts();
+      closeSerieModal();
+      let chiffres = 0;
+      for (const c of r.comptes) {
+        if (await enregistrerMotDePasse(c.profile, motDePasseAleatoire())) chiffres++;
+        else break; // trousseau indisponible : inutile d'insister
+      }
+      showToast(_('{n} compte(s) créé(s), {m} mot(s) de passe enregistré(s)', { n: r.comptes.length, m: chiffres }));
+    };
+
+    // Issue #201 : webmail (URL des réglages, ouverte par le process principal) ;
+    // l'adresse du compte est copiée pour la saisir dans Roundcube.
+    function openWebmail(accId) {
+      copyAccountEmail(accId);
+      ipcRenderer.invoke('app:open-webmail').then((ok) => {
+        if (ok !== true) showToast(_('Adresse du webmail non configurée dans les réglages'), 'warning');
+      }).catch(() => showToast(_('Ouverture du webmail impossible'), 'error'));
     }
 
     // Issue #138 : clic sur l'e-mail d'un compte -> presse-papiers + toast.
@@ -1647,6 +1743,7 @@
         case 'delete':          openDeleteModal(accId); break;
         case 'toggle-collapse': toggleCardCollapse(accId); break;
         case 'copy-email':      copyAccountEmail(accId); break;
+        case 'open-webmail':    openWebmail(accId); break;
       }
     });
 
@@ -1944,6 +2041,7 @@
       try {
         var settings = await ipcRenderer.invoke('settings:load');
         applySettings(settings);
+        renderAccounts(); // bouton webmail selon le réglage (issue #201)
         // Remplir les champs du modal
         document.getElementById('settingsEditorFontSize').value = settings.editorFontSize;
         document.getElementById('settingsTheme').value = settings.theme;
@@ -1951,6 +2049,9 @@
         document.getElementById('settingsConfirmBeforeClose').checked = settings.confirmBeforeClose;
         document.getElementById('settingsShowAutomationWindows').checked = settings.showAutomationWindows;
         document.getElementById('settingsStartWithLastSession').checked = settings.startWithLastSession;
+        document.getElementById('settingsMailPrefix').value = settings.mailPrefix || '';
+        document.getElementById('settingsMailDomain').value = settings.mailDomain || '';
+        document.getElementById('settingsWebmailUrl').value = settings.webmailUrl || '';
         loadedLanguage = settings.language || 'auto';
         const langSelect = document.getElementById('settingsLanguage');
         if (langSelect && langSelect.querySelector('option[value="' + loadedLanguage + '"]')) langSelect.value = loadedLanguage;
@@ -1971,12 +2072,16 @@
         confirmBeforeClose: document.getElementById('settingsConfirmBeforeClose').checked,
         showAutomationWindows: document.getElementById('settingsShowAutomationWindows').checked,
         startWithLastSession: document.getElementById('settingsStartWithLastSession').checked,
-        language: (document.getElementById('settingsLanguage') || { value: loadedLanguage }).value
+        language: (document.getElementById('settingsLanguage') || { value: loadedLanguage }).value,
+        mailPrefix: document.getElementById('settingsMailPrefix').value,
+        mailDomain: document.getElementById('settingsMailDomain').value,
+        webmailUrl: document.getElementById('settingsWebmailUrl').value
       };
       try {
         var result = await ipcRenderer.invoke('settings:save', raw);
         if (result && result.ok) {
           applySettings(result.settings);
+          renderAccounts(); // bouton webmail selon le réglage (issue #201)
           const languageChanged = result.settings.language !== loadedLanguage;
           loadedLanguage = result.settings.language;
           showToast(languageChanged
@@ -2491,7 +2596,12 @@ const UI_ACTIONS = {
   'ui-closeHelpModal': 'closeHelpModal',
   'ui-closeSchedulerModal': 'closeSchedulerModal',
   'ui-closeSettingsModal': 'closeSettingsModal',
-  'ui-saveSettings': 'saveSettings'
+  'ui-saveSettings': 'saveSettings',
+  'ui-toggleMailPassword': 'toggleMailPassword',
+  'ui-generateMailPassword': 'generateMailPassword',
+  'ui-openSerieModal': 'openSerieModal',
+  'ui-closeSerieModal': 'closeSerieModal',
+  'ui-createSerie': 'createSerie'
 };
 const INPUT_ACTIONS = {
   'filterPalette': 'filterPalette',

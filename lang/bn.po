@@ -47,6 +47,10 @@ msgid "Ajouter un compte"
 msgstr ""
 
 #: index.html
+msgid "Créer des comptes en série"
+msgstr ""
+
+#: index.html
 msgid "Mode debug actif : traces détaillées dans le journal iao.log"
 msgstr ""
 
@@ -131,11 +135,35 @@ msgid "Nom du Profil"
 msgstr ""
 
 #: index.html
+msgid "Mot de passe de la messagerie"
+msgstr ""
+
+#: index.html
+msgid "Afficher le mot de passe"
+msgstr ""
+
+#: index.html
+msgid "Générer un mot de passe"
+msgstr ""
+
+#: index.html
+msgid "Chiffré par le trousseau du système, jamais enregistré en clair. Laisser vide pour ne pas le modifier."
+msgstr ""
+
+#: index.html
 msgid "Annuler"
 msgstr ""
 
 #: index.html
 msgid "Enregistrer"
+msgstr ""
+
+#: index.html
+msgid "Nombre de comptes"
+msgstr ""
+
+#: index.html
+msgid "Créer"
 msgstr ""
 
 #: index.html
@@ -328,6 +356,34 @@ msgstr ""
 
 #: index.html
 msgid "Restaurer les onglets ouverts au démarrage"
+msgstr ""
+
+#: index.html
+msgid "Préfixe des adresses e-mail"
+msgstr ""
+
+#: index.html
+msgid "docker"
+msgstr ""
+
+#: index.html
+msgid "Domaine des adresses e-mail"
+msgstr ""
+
+#: index.html
+msgid "dmathilde.fr"
+msgstr ""
+
+#: index.html
+msgid "Adresse : préfixe + numéro + @ + domaine (ex. docker239@dmathilde.fr)"
+msgstr ""
+
+#: index.html
+msgid "Adresse du webmail (Roundcube)"
+msgstr ""
+
+#: index.html
+msgid "https://mail.dmathilde.fr"
 msgstr ""
 
 #: assets/app.js
@@ -535,6 +591,10 @@ msgid "Cliquer pour copier l'e-mail"
 msgstr ""
 
 #: assets/app.js
+msgid "Ouvrir le webmail (adresse copiée)"
+msgstr ""
+
+#: assets/app.js
 msgid "Modifier le compte"
 msgstr ""
 
@@ -608,6 +668,18 @@ msgstr ""
 
 #: assets/app.js
 msgid "Fichier trop volumineux pour l'éditeur : {size} Mo (limite : 20 Mo)."
+msgstr ""
+
+#: assets/app.js
+msgid "Masquer le mot de passe"
+msgstr ""
+
+#: assets/app.js
+msgid "Mot de passe non enregistré : le trousseau du système est indisponible"
+msgstr ""
+
+#: assets/app.js
+msgid "Mot de passe non enregistré"
 msgstr ""
 
 #: assets/app.js
@@ -696,6 +768,30 @@ msgstr ""
 
 #: assets/app.js
 msgid "Compte ajouté"
+msgstr ""
+
+#: assets/app.js
+msgid "Renseignez d'abord le domaine des adresses e-mail dans les réglages"
+msgstr ""
+
+#: assets/app.js
+msgid "Premier compte : {nom}, {email}. Un mot de passe de messagerie aléatoire est généré pour chacun."
+msgstr ""
+
+#: assets/app.js
+msgid "Nombre de comptes : de 1 à {max}"
+msgstr ""
+
+#: assets/app.js
+msgid "{n} compte(s) créé(s), {m} mot(s) de passe enregistré(s)"
+msgstr ""
+
+#: assets/app.js
+msgid "Adresse du webmail non configurée dans les réglages"
+msgstr ""
+
+#: assets/app.js
+msgid "Ouverture du webmail impossible"
 msgstr ""
 
 #: assets/app.js

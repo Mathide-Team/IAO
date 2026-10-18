@@ -45,6 +45,7 @@
      deserializeStarredTabs : issue #154 « Onglets étoilés » — extraites vers
      lib/ dès l'écriture (invariant 11) pour être testables par `node --test`. -->
 <script src="lib/starred-tabs.js"></script>
+<script src="lib/comptes-serie.js"></script>
 <!-- filterFiles / flattenFileTree : lot « Recherche dans l'explorateur » du
      18/09/2026 — extraites vers lib/ dès l'écriture (invariant 11) pour être
      testables par `node --test`. -->
@@ -109,6 +110,7 @@
       <button class="btn btn--icon" data-action="ui-exportAccountsToFile" title="Exporter les comptes (JSON)"><span class="ic" data-icon="file-export"></span></button>
       <button class="btn btn--icon" data-action="ui-importAccountsFromFile" title="Importer des comptes (JSON)"><span class="ic" data-icon="file-import"></span></button>
       <button class="btn btn--icon" data-action="ui-openModal" title="Ajouter un compte"><span class="ic" data-icon="plus"></span></button>
+      <button class="btn btn--icon" data-action="ui-openSerieModal" title="Créer des comptes en série"><span class="ic" data-icon="users"></span></button>
     </div>
   </div>
   <div class="accounts-list" id="accountsList"></div>
@@ -186,9 +188,31 @@
     <div class="form-group"><label class="form-label">Nom du compte</label><input class="form-input" id="inputName" type="text"></div>
     <div class="form-group"><label class="form-label">Email</label><input class="form-input" id="inputEmail" type="email"></div>
     <div class="form-group"><label class="form-label">Nom du Profil</label><input class="form-input" id="inputProfile" type="text"></div>
+    <div class="form-group">
+      <label class="form-label" for="inputMailPassword">Mot de passe de la messagerie</label>
+      <div class="form-pass">
+        <input class="form-input" id="inputMailPassword" type="password" autocomplete="new-password" spellcheck="false">
+        <button type="button" class="btn btn--icon" id="btnToggleMailPassword" data-action="ui-toggleMailPassword" title="Afficher le mot de passe"><span class="ic" data-icon="eye"></span></button>
+        <button type="button" class="btn btn--icon" data-action="ui-generateMailPassword" title="Générer un mot de passe"><span class="ic" data-icon="key"></span></button>
+      </div>
+      <span class="settings-hint">Chiffré par le trousseau du système, jamais enregistré en clair. Laisser vide pour ne pas le modifier.</span>
+    </div>
     <div class="modal__actions">
       <button class="btn" data-action="ui-closeModal">Annuler</button>
       <button class="btn btn--primary" data-action="ui-saveAccount">Enregistrer</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Création en série (issue #201) -->
+<div class="modal-overlay" id="serieModal">
+  <div class="modal">
+    <div class="modal__title">Créer des comptes en série</div>
+    <div class="modal__desc" id="serieDesc"></div>
+    <div class="form-group"><label class="form-label" for="serieNombre">Nombre de comptes</label><input class="form-input" id="serieNombre" type="number" min="1" max="50" value="1"></div>
+    <div class="modal__actions">
+      <button class="btn" data-action="ui-closeSerieModal">Annuler</button>
+      <button class="btn btn--primary" data-action="ui-createSerie">Créer</button>
     </div>
   </div>
 </div>
@@ -390,7 +414,23 @@
           <input type="checkbox" id="settingsStartWithLastSession"> Restaurer les onglets ouverts au démarrage
         </label>
       </div>
+
+      <!-- Messagerie des comptes créés en série (issue #201) -->
+      <div>
+        <label class="settings-label" for="settingsMailPrefix">Préfixe des adresses e-mail</label>
+        <input type="text" id="settingsMailPrefix" class="settings-input settings-input--wide" placeholder="docker" spellcheck="false">
+      </div>
+      <div>
+        <label class="settings-label" for="settingsMailDomain">Domaine des adresses e-mail</label>
+        <input type="text" id="settingsMailDomain" class="settings-input settings-input--wide" placeholder="dmathilde.fr" spellcheck="false">
+        <span class="settings-hint">Adresse : préfixe + numéro + @ + domaine (ex. docker239@dmathilde.fr)</span>
+      </div>
+      <div>
+        <label class="settings-label" for="settingsWebmailUrl">Adresse du webmail (Roundcube)</label>
+        <input type="url" id="settingsWebmailUrl" class="settings-input settings-input--wide" placeholder="https://mail.dmathilde.fr" spellcheck="false">
+      </div>
     </div>
+
 
     <div class="modal__actions">
       <button class="btn" data-action="ui-closeSettingsModal">Annuler</button>

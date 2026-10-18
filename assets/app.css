@@ -434,6 +434,10 @@
   .modal__title { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 8px; }
   .form-group { margin-bottom: 16px; }
   .form-label { font-size: 12px; color: var(--fg-muted); display: block; margin-bottom: 8px; font-weight: 500; }
+  /* Issue #201 : mot de passe de messagerie + boutons afficher/générer. */
+  .form-pass { display: flex; gap: 6px; align-items: center; }
+  .form-pass .form-input { flex: 1; min-width: 0; }
+  .form-group .settings-hint { display: block; margin: 6px 0 0; }
   .form-input { width: 100%; padding: 12px 14px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--fg); font-family: 'JetBrains Mono', monospace; font-size: 13px; outline: none; }
   .modal__actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 24px; }
   /* --- Modale d'aide « Comprendre les IA disponibles » ---
@@ -525,6 +529,9 @@
   .settings-body { margin-top: 20px; display: flex; flex-direction: column; gap: 16px; }
   .settings-label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 4px; }
   .settings-input { width: 80px; padding: 6px 8px; background: var(--bg); border: 1px solid var(--border); color: var(--fg); border-radius: 6px; font-size: 13px; }
+  /* Issue #201 : champs de messagerie (adresse, domaine, URL). */
+  .settings-input.settings-input--wide { width: 100%; max-width: 360px; box-sizing: border-box; }
+  .settings-input--wide + .settings-hint { display: block; margin: 4px 0 0; }
   .settings-select { padding: 6px 8px; background: var(--bg); border: 1px solid var(--border); color: var(--fg); border-radius: 6px; font-size: 13px; }
   .settings-hint { font-size: 12px; color: var(--fg-faint); margin-left: 8px; }
   .settings-checkboxes { display: flex; flex-direction: column; gap: 8px; }

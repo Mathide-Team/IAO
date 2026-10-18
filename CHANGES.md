@@ -1,5 +1,37 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issue #201 — comptes en série, côté IAO (18/10/2026)
+
+### Livré
+- **Réglages** : préfixe et domaine des adresses e-mail, adresse du webmail
+  (Roundcube) ; normalisés dans `lib/settings.js` (invalide -> non configuré,
+  URL http/https seulement).
+- **Création en série** (bouton « personnes » de la liste des comptes) : 1 à 50
+  comptes, nom = numéro suivant le plus grand existant (noms numériques et
+  profils `profil_<n>`), profil `profil_<n>`, e-mail `<préfixe><n>@<domaine>`,
+  tous les services ; `lib/comptes-serie.js` (pur, 100 %).
+- **Mot de passe de messagerie** : 20 caractères aléatoires
+  (`crypto.getRandomValues`, tirage sans biais, sans caractères ambigus),
+  généré pour chaque compte de la série ou à la demande (bouton clé) ; masqué
+  dans la fenêtre du compte, bouton œil pour l'afficher. Stocké par
+  `lib/coffre-secrets.js` : chiffré par `safeStorage` (trousseau du système),
+  `<userData>/secrets.json` en 0600, **jamais en clair** ; refusé si le
+  chiffrement n'est pas disponible (Linux sans trousseau : backend `basic_text`),
+  avec un message.
+- **Webmail** : bouton enveloppe sur chaque carte quand l'URL est réglée ;
+  copie l'adresse du compte et ouvre le webmail dans le navigateur. Le process
+  principal n'ouvre **que l'URL des réglages** (`app:open-webmail`, jamais une
+  URL fournie par l'interface).
+- Le clic sur l'e-mail copiait déjà l'adresse (#138).
+- Icônes Font Awesome Free 6.5.0 ajoutées : `eye`, `eye-slash`, `key`,
+  `envelope`, `users`.
+- Tests : `comptes-serie`, `coffre-secrets` (100 %), réglages, harnais Electron
+  C8.1/C8.2 ; traductions anglaises.
+
+### Reste
+- Création des boîtes sur le serveur de messagerie (docker-mailserver, sans
+  API HTTP) : petite API à créer dans un autre dépôt, puis appel depuis IAO.
+
 ## Documentation MkDocs (13/10/2026)
 
 Règle d'équipe Mathide-Team : documentation navigable MkDocs sur le modèle de Netcross.

@@ -27,6 +27,7 @@ Publié ici pour quiconque en a l'usage.
 - **Actions rapides sur un onglet ouvert** : recharger la page, revenir à l'accueil du service, ou se
   déconnecter du profil (purge des cookies/session du compte, avec confirmation — action destructive).
 - **Suivi de quota (« cooldown »)** par service et par compte : un service en cooldown apparaît estompé et se réactive automatiquement à l'expiration (le bouton manuel « Épuiser (24h) » a été retiré, issue #136).
+- **Comptes en série** (bouton « personnes », issue #201) : crée N comptes d'un coup, nommés par numéro à la suite du plus grand existant (`239`, `240`…), profil `profil_<numéro>`, e-mail `<préfixe><numéro>@<domaine>` (préfixe et domaine dans les réglages). Chaque compte reçoit un **mot de passe de messagerie aléatoire**, chiffré par le trousseau du système (`safeStorage`, jamais en clair ; refusé si aucun trousseau n'est disponible), masqué dans la fenêtre du compte avec un bouton pour l'afficher. Si l'adresse du webmail (Roundcube) est réglée, un bouton enveloppe sur chaque carte l'ouvre dans le navigateur et copie l'adresse du compte. La création des boîtes sur le serveur de messagerie n'est pas encore branchée.
 - **Palette rapide (Ctrl+K)** : ouvrir n'importe quel service avec n'importe quel compte au clavier.
 - **Raccourcis d'onglets** : `Ctrl+Tab` / `Ctrl+Maj+Tab` pour circuler entre les onglets, `Alt+1` à `Alt+9` pour aller directement au Nᵉ. (Quand le focus est à l'intérieur d'une page IA, cliquez d'abord hors de celle-ci — Electron ne fait pas remonter les touches depuis une webview.)
 - **Page d'aide intégrée** (bouton `?`) : description et cas d'usage de chaque IA, pour les utilisateurs qui ne les connaissent pas toutes.
@@ -161,6 +162,8 @@ ajout d'une langue et CI : [docs/i18n.md](docs/i18n.md) (issue #51).
 | --- | --- |
 | Linux | `~/.config/ai-manager` |
 | Windows | `%APPDATA%\ai-manager` |
+
+Les mots de passe de messagerie (issue #201) sont dans `secrets.json` de ce dossier, chiffrés par le trousseau du système (DPAPI sous Windows, libsecret/KWallet sous Linux) : ils ne sont pas lisibles sur une autre machine ni par un autre utilisateur.
 
 Ce dossier n'est **pas** supprimé par la désinstallation — effacez-le manuellement pour repartir de zéro.
 

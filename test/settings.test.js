@@ -12,7 +12,7 @@ var settings = require('../lib/settings');
 
 test('DEFAULT_SETTINGS contient toutes les cles attendues', function() {
   var keys = Object.keys(settings.DEFAULT_SETTINGS);
-  var expected = ['editorFontSize', 'editorWordWrap', 'theme', 'confirmBeforeClose', 'showAutomationWindows', 'startWithLastSession', 'language'];
+  var expected = ['editorFontSize', 'editorWordWrap', 'theme', 'confirmBeforeClose', 'showAutomationWindows', 'startWithLastSession', 'language', 'mailPrefix', 'mailDomain', 'webmailUrl'];
   assert.deepStrictEqual(keys.sort(), expected.sort());
 });
 
@@ -187,4 +187,21 @@ test('normalizeLanguage : auto, codes de locale bien formés, repli sur auto', f
   assert.strictEqual(settings.normalizeSettings({ language: 'de' }).language, 'de');
   assert.strictEqual(settings.normalizeSettings({ language: 'x y' }).language, 'auto');
   assert.strictEqual(settings.normalizeSettings({}).language, 'auto');
+});
+
+// --- Issue #201 : messagerie ------------------------------------------------
+
+test('#201 normalizeMailPrefix / normalizeMailDomain / normalizeWebmailUrl', function() {
+  assert.strictEqual(settings.normalizeMailPrefix(' docker '), 'docker');
+  assert.strictEqual(settings.normalizeMailPrefix('a b'), '');
+  assert.strictEqual(settings.normalizeMailPrefix(3), '');
+  assert.strictEqual(settings.normalizeMailDomain(' DMathilde.fr '), 'dmathilde.fr');
+  assert.strictEqual(settings.normalizeMailDomain('localhost'), '');
+  assert.strictEqual(settings.normalizeMailDomain(null), '');
+  assert.strictEqual(settings.normalizeWebmailUrl(' https://mail.dmathilde.fr '), 'https://mail.dmathilde.fr/');
+  assert.strictEqual(settings.normalizeWebmailUrl('http://192.168.1.10:8080/roundcube'), 'http://192.168.1.10:8080/roundcube');
+  assert.strictEqual(settings.normalizeWebmailUrl('javascript:alert(1)'), '');
+  assert.strictEqual(settings.normalizeWebmailUrl('pas une url'), '');
+  var n = settings.normalizeSettings({ mailPrefix: 'docker', mailDomain: 'dmathilde.fr', webmailUrl: 'https://m.fr' });
+  assert.deepStrictEqual([n.mailPrefix, n.mailDomain, n.webmailUrl], ['docker', 'dmathilde.fr', 'https://m.fr/']);
 });
