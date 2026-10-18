@@ -1067,6 +1067,26 @@ msgid "Résultat — {task}"
 msgstr ""
 
 #: assets/app.js
+msgid "Comptes retrouvés"
+msgstr ""
+
+#: assets/app.js
+msgid "Aucun compte n'a été lu au démarrage, mais l'ordonnanceur en connaît {count}. Les restaurer ? Les sessions des services sont conservées ; les adresses e-mail sont à compléter depuis « Modifier le compte »."
+msgstr ""
+
+#: assets/app.js
+msgid "Ignorer"
+msgstr ""
+
+#: assets/app.js
+msgid "Restaurer les comptes"
+msgstr ""
+
+#: assets/app.js
+msgid "{count} compte(s) restauré(s)"
+msgstr ""
+
+#: assets/app.js
 msgid "Données de comptes illisibles"
 msgstr ""
 
@@ -1076,10 +1096,6 @@ msgstr ""
 
 #: assets/app.js
 msgid "La liste de comptes enregistrée est corrompue et aucune sauvegarde n'est disponible. L'application démarre avec une liste vide ; vos données actuelles ne seront pas écrasées tant que vous ne créez ou ne modifiez pas de compte."
-msgstr ""
-
-#: assets/app.js
-msgid "Ignorer"
 msgstr ""
 
 #: assets/app.js

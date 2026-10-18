@@ -4,8 +4,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: IAO\n"
 "Report-Msgid-Bugs-To: https://github.com/Mathide-Team/IAO/issues\n"
-"Last-Translator: IAO (traduction automatique Argos Translate, relecture humaine attendue, issue #188)\n"
-"Language-Team: aucune (relecture humaine attendue)\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14,1089 +12,1100 @@ msgstr ""
 
 #: index.html
 msgid "Rechercher un compte ou une IA..."
-msgstr "계정 또는 AI 검색 ..."
+msgstr ""
 
 #: index.html
 msgid "Comptes actifs"
-msgstr "Active 계정"
+msgstr ""
 
 #: index.html
 msgid "IA Disponibles"
-msgstr "유효한 AIs"
+msgstr ""
 
 #: index.html
 msgid "Rechercher un compte ou une IA (Ctrl+K)"
-msgstr "계정 또는 AI 검색 (Ctrl+K)"
+msgstr ""
 
 #: index.html
 msgid "Comptes enregistrés"
-msgstr "계정 저장"
+msgstr ""
 
 #: index.html
 msgid "Tout replier / Tout déplier"
-msgstr "모든 축소 / 모든 확장"
+msgstr ""
 
 #: index.html
 msgid "Exporter les comptes (JSON)"
-msgstr "수출 계정 (JSON)"
+msgstr ""
 
 #: index.html
 msgid "Importer des comptes (JSON)"
-msgstr "수입 계정 (JSON)"
+msgstr ""
 
 #: index.html
 msgid "Ajouter un compte"
-msgstr "계정 추가"
+msgstr ""
 
 #: index.html
 msgid "Mode debug actif : traces détaillées dans le journal iao.log"
-msgstr "디버그 모드: iao.log 파일에 대한 자세한 추적"
+msgstr ""
 
 #: index.html
 msgid "Masquer les comptes"
-msgstr "계정 숨기기"
+msgstr ""
 
 #: index.html
 msgid "Afficher les comptes"
-msgstr "계정 보기"
+msgstr ""
 
 #: index.html
 msgid "Explorateur"
-msgstr "회사 소개"
+msgstr ""
 
 #: index.html
 msgid "Éditeur"
-msgstr "한국어"
+msgstr ""
 
 #: index.html
 msgid "Outils de développement (Ctrl+Maj+I)"
-msgstr "개발자 도구 (Ctrl+Shift+I)"
+msgstr ""
 
 #: index.html
 msgid "Choisir mes 9 IA à portée de main"
-msgstr "내 9 이동 AI를 선택하십시오."
+msgstr ""
 
 #: index.html
 msgid "Comprendre les IA disponibles"
-msgstr "사용 가능한 AI를 이해"
+msgstr ""
 
 #: index.html
 msgid "Ordonnanceur IA"
-msgstr "AI 스케줄러"
+msgstr ""
 
 #: index.html
 msgid "Réglages"
-msgstr "계정 설정"
+msgstr ""
 
 #: index.html
 msgid "Fichiers"
-msgstr "파일 형식"
+msgstr ""
 
 #: index.html
 msgid "Ouvrir un dossier"
-msgstr "폴더 열기"
+msgstr ""
 
 #: index.html
 msgid "Réduire"
-msgstr "뚱 베어"
+msgstr ""
 
 #: index.html
 msgid "Rechercher un fichier..."
-msgstr "파일 검색..."
+msgstr ""
 
 #: index.html
 msgid "Glisser pour redimensionner"
-msgstr "크기 조정"
+msgstr ""
 
 #: index.html
 msgid "Aucun fichier"
-msgstr "파일 없음"
+msgstr ""
 
 #: index.html
 msgid "Glisser pour redimensionner l'éditeur"
-msgstr "편집을 resize"
+msgstr ""
 
 #: index.html
 msgid "Aucun onglet ouvert — choisissez un service dans la liste des comptes"
-msgstr "열린 탭 없음 — 계정 목록에서 서비스를 선택"
+msgstr ""
 
 #: index.html
 msgid "Le profil permet d'isoler les cookies dans Electron."
-msgstr "프로필은 Electron에 격리 된 쿠키를 유지합니다."
+msgstr ""
 
 #: index.html
 msgid "Nom du compte"
-msgstr "계정 이름"
+msgstr ""
 
 #: index.html
 msgid "Nom du Profil"
-msgstr "프로필 이름"
+msgstr ""
 
 #: index.html
 msgid "Annuler"
-msgstr "이름 *"
+msgstr ""
 
 #: index.html
 msgid "Enregistrer"
-msgstr "제품 정보"
+msgstr ""
 
 #: index.html
 msgid "Supprimer le compte"
-msgstr "계정 삭제"
+msgstr ""
 
 #: index.html
 msgid "Cette action est irréversible."
-msgstr "이것은 undone일 수 없습니다."
+msgstr ""
 
 #: index.html
 msgid "Supprimer"
-msgstr "이름 *"
+msgstr ""
 
 #: index.html
 msgid "Importer des comptes"
-msgstr "수입 계정"
+msgstr ""
 
 #: index.html
 msgid "Remplacer et importer"
-msgstr "대체 및 수입"
+msgstr ""
 
 #: index.html
 msgid "Déconnecter le profil"
-msgstr "자주 묻는 질문"
+msgstr ""
 
 #: index.html
 msgid "Déconnecter"
-msgstr "이름 *"
+msgstr ""
 
 #: index.html
 msgid "À quoi sert chaque service, et quand l'utiliser."
-msgstr "각 서비스는 무엇을 위해, 그리고 그것을 사용할 때."
+msgstr ""
 
 #: index.html
 msgid "Fermer"
-msgstr "이름 *"
+msgstr ""
 
 #: index.html
 msgid "Sélectionnez les 9 services affichés dans l'interface. Les autres restent disponibles dans l'aide."
-msgstr "인터페이스에서 보이는 9개의 서비스를 선택합니다. 다른 사람들은 도움에서 유효합니다."
+msgstr ""
 
 #: index.html
 msgid "Détection des ZIP livrés par les onglets IA, reprise par profil."
-msgstr "AI 탭에 의해 전달된 ZIP 파일을 검색, per-profile 이력서."
+msgstr ""
 
-# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: index.html
 msgid "Arrêté"
-msgstr "중지됨"
+msgstr ""
 
-# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: index.html
 msgid "Démarrer ou arrêter l'ordonnanceur (il ne démarre jamais tout seul)"
-msgstr "스케줄러를 시작하거나 중지합니다(자동으로 시작되지 않음)"
+msgstr ""
 
-# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: index.html
 msgid "Démarrer"
-msgstr "시작"
+msgstr ""
 
 #: index.html
 msgid "Jobs actifs"
-msgstr "활동 작업"
+msgstr ""
 
 #: index.html
 msgid "En attente"
-msgstr "뚱 베어"
+msgstr ""
 
 #: index.html
 msgid "Livrés aujourd'hui"
-msgstr "현재 위치"
+msgstr ""
 
 #: index.html
 msgid "Jobs simultanés max."
-msgstr "최대. 동시 작업"
+msgstr ""
 
 #: index.html
 msgid "Délai min. entre automatisations (min)"
-msgstr "최소. 자동화 사이 지연 (분)"
+msgstr ""
 
 #: index.html
 msgid "Seuil profil « le plus ancien » (h)"
-msgstr "\"Oldest\" 프로파일 임계 값 (h)"
+msgstr ""
 
 #: index.html
 msgid "Dossiers"
-msgstr "뚱 베어"
+msgstr ""
 
 #: index.html
 msgid "Téléchargements…"
-msgstr "다운로드 ..."
+msgstr ""
 
 #: index.html
 msgid "Livraison…"
-msgstr "제품 정보"
+msgstr ""
 
 #: index.html
 msgid "Téléchargements :"
-msgstr "다운로드:"
+msgstr ""
 
 #: index.html
 msgid "(dossier de téléchargements du système)"
-msgstr "(시스템 다운로드 폴더)"
+msgstr ""
 
 #: index.html
 msgid "Livraison :"
-msgstr "납품:"
+msgstr ""
 
 #: index.html
 msgid "(non défini)"
-msgstr "(세트)"
+msgstr ""
 
 #: index.html
 msgid "Projets & tâches"
-msgstr "프로젝트 및 작업"
+msgstr ""
 
 #: index.html
 msgid "Jobs"
-msgstr "한국어"
+msgstr ""
 
 #: index.html
 msgid "Journal d'activité"
-msgstr "활동 로그"
+msgstr ""
 
 #: index.html
 msgid "Confirmation"
-msgstr "이름 *"
+msgstr ""
 
 #: index.html
 msgid "Confirmer"
-msgstr "이름 *"
+msgstr ""
 
 #: index.html
 msgid "Préférences de l'application, sauvegardées localement."
-msgstr "Application preferences, 로컬로 저장."
+msgstr ""
 
 #: index.html
 msgid "Taille de police de l'éditeur (px)"
-msgstr "에디터 글꼴 크기 (px)"
+msgstr ""
 
 #: index.html
 msgid "Thème"
-msgstr "이름 *"
+msgstr ""
 
 #: index.html
 msgid "Thème du bureau (défaut)"
-msgstr "데스크탑 테마 (과태)"
+msgstr ""
 
 #: index.html
 msgid "Clair"
-msgstr "제품 정보"
+msgstr ""
 
 #: index.html
 msgid "Sombre"
-msgstr "한국어"
+msgstr ""
 
 #: index.html
 msgid "Langue"
-msgstr "* 이름"
+msgstr ""
 
 #: index.html
 msgid "Langue du système (défaut)"
-msgstr "시스템 언어 (과태)"
+msgstr ""
 
 #: index.html
 msgid "Appliquée au prochain démarrage"
-msgstr "다음에 적용"
+msgstr ""
 
 #: index.html
 msgid "Retour à la ligne (éditeur)"
-msgstr "워드랩 (editor)"
+msgstr ""
 
 #: index.html
 msgid "Désactivé"
-msgstr "이름 *"
+msgstr ""
 
 #: index.html
 msgid "Activé"
-msgstr "에 의해"
+msgstr ""
 
 #: index.html
 msgid "Colonne fixe"
-msgstr "고정 열"
+msgstr ""
 
 #: index.html
 msgid "Confirmer avant de fermer un onglet"
-msgstr "탭 닫기 전에 확인"
+msgstr ""
 
 #: index.html
 msgid "Afficher les fenêtres d'automatisation"
-msgstr "자동화 창"
+msgstr ""
 
 #: index.html
 msgid "Restaurer les onglets ouverts au démarrage"
-msgstr "시작 탭 복원"
+msgstr ""
 
 #: assets/app.js
 msgid "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."
-msgstr "Anthropic의 대화 조수. 그것은 쓰기에 excels, 긴 문서 분석, 프로그래밍 및 멀티 단계 이유."
+msgstr ""
 
 #: assets/app.js
 msgid "Plutôt pour du code, des textes longs et soignés, ou des questions complexes qui demandent de la rigueur."
-msgstr "코드, 긴 및 광택 된 텍스트, 또는 엄격한 호출 복잡한 질문을위한 최고의."
+msgstr ""
 
 #: assets/app.js
 msgid "L'assistant généraliste d'OpenAI, le plus connu du grand public. Il discute, rédige, résume, génère des images, analyse des fichiers et peut chercher sur le web."
-msgstr "OpenAI의 다목적 조수, 일반 대중에게 가장 잘 알려진. 그것은 채팅, 쓰기, 요약, 이미지를 생성, 분석 파일 및 웹을 검색 할 수 있습니다."
+msgstr ""
 
 #: assets/app.js
 msgid "Le couteau suisse du quotidien : brainstorming, questions générales, petites tâches variées."
-msgstr "일상 스위스 군대 칼 : 뇌 폭풍, 일반적인 질문, 작은 작업을 정렬."
+msgstr ""
 
 #: assets/app.js
 msgid "L'assistant IA de Google. Multimodal (texte, images, audio, vidéo), il s'appuie sur la recherche Google et s'intègre aux outils Google (Docs, Gmail, Drive…)."
-msgstr "Google의 AI 조수. Multimodal (텍스트, 이미지, 오디오, 비디오), 그것은 구글 검색에 구축하고 구글 도구와 통합 (Docs, Gmail, 드라이브...)."
+msgstr ""
 
 #: assets/app.js
 msgid "Plutôt pour analyser des images ou vidéos, ou si vous travaillez déjà dans l'écosystème Google."
-msgstr "이미지 또는 비디오를 분석하거나 Google 생태계에서 이미 일하는 경우."
+msgstr ""
 
 #: assets/app.js
 msgid "Le chat de Z.ai, propulsé par les modèles GLM. Gratuit pour l'essentiel, avec un mode agent capable de chercher sur le web et de produire des fichiers (docx, pdf, xlsx)."
-msgstr "Z.ai의 채팅, GLM 모델에 의해 구동. 웹 및 생성 파일 (docx, pdf, xlsx)를 검색 할 수있는 에이전트 모드와 함께 대부분의 무료."
+msgstr ""
 
 #: assets/app.js
 msgid "Une alternative gratuite solide pour le chat et le code, quand les quotas des autres sont épuisés."
-msgstr "채팅 및 코드에 대한 견고한 무료 대안은 다른 서비스의 인용문이 사용 될 때."
+msgstr ""
 
 #: assets/app.js
 msgid "Un « moteur de réponse » : il cherche sur le web en direct, synthétise plusieurs sources et cite ses références pour chaque affirmation."
-msgstr "\"answer 엔진\": 그것은 웹 라이브를 검색하고, 여러 소스를 합성하고 모든 청구에 대한 참조를 인용합니다."
+msgstr ""
 
 #: assets/app.js
 msgid "Plutôt pour la recherche d'informations à jour, la veille et la vérification de faits avec sources."
-msgstr "최신 정보를 찾고, 주제를 모니터링하고 소스로 확인하는 것이 좋습니다."
+msgstr ""
 
 #: assets/app.js
 msgid "L'assistant de xAI (Elon Musk), connecté au réseau X (ex-Twitter). Ton direct, accès au temps réel de X, génération d'images incluse."
-msgstr "xAI의 조수 (Elon Musk), X 네트워크에 연결 (이전 Twitter). 직접 톤, X에 실시간 액세스, 이미지 생성 포함."
+msgstr ""
 
 #: assets/app.js
 msgid "Plutôt pour suivre l'actualité chaude et les tendances via X, ou pour un ton moins formel."
-msgstr "X를 통해 뉴스 및 동향을 끊거나 덜 공식적인 톤을 위해."
+msgstr ""
 
 #: assets/app.js
 msgid "Une plateforme de génération d'images orientée création : illustrations, concept art, assets de jeu vidéo, avec des contrôles fins (styles, modèles, retouche)."
-msgstr "창의적인 이미지 생성 플랫폼: 삽화, 개념 예술, 정밀한 곡물 통제 (스타일, 모형, retouching)와 더불어 영상 게임 자산."
+msgstr ""
 
 #: assets/app.js
 msgid "Plutôt pour produire des visuels et illustrations de qualité avec un contrôle précis du style."
-msgstr "스타일에 정확한 제어와 품질 시각적 및 일러스트를 생산하는 것이 좋습니다."
+msgstr ""
 
 #: assets/app.js
 msgid "Un générateur de musique : il compose des chansons complètes (instruments, voix, paroles) à partir d'une simple description texte, dans à peu près tous les genres."
-msgstr "음악 생성기 : 거의 모든 장르에서 간단한 텍스트 설명에서 완전한 노래 (instruments, 보컬, lyrics)를 작곡합니다."
+msgstr ""
 
 #: assets/app.js
 msgid "Plutôt pour créer une musique, un jingle ou une chanson à partir d'un texte ou d'une idée."
-msgstr "음악, jingle 또는 텍스트 또는 아이디어에서 노래의 조각을 만드는 가장 좋은."
+msgstr ""
 
 #: assets/app.js
 msgid "Un générateur de modèles 3D : il transforme un texte ou une image en objet 3D texturé, avec rigging/animation automatique et export vers les formats standards (GLB, FBX, STL…)."
-msgstr "3D 모델 생성기 : 표준 형식 (GLB, FBX, STL ...)에 자동 rigging/animation 및 수출과 함께 텍스트 또는 이미지로 전환합니다."
+msgstr ""
 
 #: assets/app.js
 msgid "Plutôt pour créer des assets 3D (jeux, impression 3D, animation) sans savoir modéliser."
-msgstr "모델링 기술없이 3D 자산 (게임, 3D 인쇄, 애니메이션)을 만들기위한 최고의."
+msgstr ""
 
 #: assets/app.js
 msgid "Le Chat de Mistral AI, éditeur européen (français). Modèles open-weights performants, chat, code et analyse de documents."
-msgstr "Le Chat by Mistral AI, 유럽 (프랑스) 공급 업체. 강력한 개방 중량 모델, 채팅, 코드 및 문서 분석."
+msgstr ""
 
 #: assets/app.js
 msgid "Alternative européenne solide pour le chat et le code, avec une bonne maîtrise du français."
-msgstr "채팅 및 코드를위한 견고한 유럽 대안, 프랑스의 좋은 명령."
+msgstr ""
 
 #: assets/app.js
 msgid "DeepSeek : assistant IA chinois spécialisé en raisonnement et programmation, particulièrement performant en Python."
-msgstr "DeepSeek : 중국의 AI 조수는 Python에서 특히 강한 이유 및 프로그래밍에 특화했습니다."
+msgstr ""
 
 #: assets/app.js
 msgid "Pour du code Python, du raisonnement étape par étape, ou une alternative gratuite à ChatGPT."
-msgstr "Python 코드, step-by-step reasoning, 또는 ChatGPT에 무료 대안."
+msgstr ""
 
 #: assets/app.js
 msgid "GitHub Copilot : assistant IA intégré dans VS Code et GitHub. Autocomplétion, chat, génération de tests, explication de code."
-msgstr "GitHub Copilot: VS Code와 GitHub에 내장된 AI 조수. Autocompletion, 채팅, 테스트 생성, 코드 설명."
+msgstr ""
 
 #: assets/app.js
 msgid "Pour programmer plus vite dans VS Code ou sur GitHub, avec un modèle IA qui connaît votre codebase."
-msgstr "VS Code 또는 GitHub에서 더 빨리 프로그램하려면, 코드베이스를 알고 있는 AI 모델이 있습니다."
+msgstr ""
 
 #: assets/app.js
 msgid "Elicit : assistant de recherche scientifique. Trouve des articles, extrait des données, synthétise des études."
-msgstr "Elicit: 과학적인 연구 조수. 종이 찾기, 데이터 추출, 종합 연구."
+msgstr ""
 
 #: assets/app.js
 msgid "Pour la recherche académique, la revue de littérature et l'extraction de données d'articles scientifiques."
-msgstr "학술 연구, 문학 리뷰 및 과학 논문에서 데이터를 추출합니다."
+msgstr ""
 
 #: assets/app.js
 msgid "NotebookLM de Google : interagissez avec vos propres documents (PDF, texte, audio). Résumés, questions, génération de notes."
-msgstr "Google의 NotebookLM : 자체 문서와 상호 작용 (PDF, 텍스트, 오디오). 요약, 질문, 메모 생성."
+msgstr ""
 
 #: assets/app.js
 msgid "Pour interroger vos documents personnels ou professionnels avec une IA qui cite ses sources."
-msgstr "AI로 개인 또는 작업 문서를 쿼리하려면 소스를 인용합니다."
+msgstr ""
 
 #: assets/app.js
 msgid "Wolfram Alpha : moteur de calcul symbolique. Mathématiques, physique, chimie, données factuelles, conversions."
-msgstr "Wolfram Alpha : 상징적 계산 엔진. 수학, 물리학, 화학, 실제 데이터, 변환."
+msgstr ""
 
 #: assets/app.js
 msgid "Pour des calculs exacts (mathématiques symboliques), des données chiffrées ou des conversions d'unités."
-msgstr "정확한 계산 (symbolic mathematics), 수치 데이터 또는 단위 변환."
+msgstr ""
 
 #: assets/app.js
 msgid "DeepL : traduction automatique de haute qualité, plus naturelle que Google Traduction. Texte et documents entiers."
-msgstr "DeepL: 고품질 기계 번역, 구글 번역 보다는 더 자연적인. 텍스트 및 전체 문서."
+msgstr ""
 
 #: assets/app.js
 msgid "Pour traduire du texte ou des documents avec un rendu naturel et cohérent."
-msgstr "텍스트 또는 문서를 자연으로 번역하려면 일관된 결과."
+msgstr ""
 
 #: assets/app.js
 msgid "Ideogram : génération d'images orientée design. Logos, typographies, affiches, avec un excellent rendu du texte."
-msgstr "Ideogram: 디자인 중심 이미지 생성. 로고, 인쇄, 포스터, 우수한 텍스트 렌더링."
+msgstr ""
 
 #: assets/app.js
 msgid "Pour créer des visuels avec du texte lisible (logos, affiches, bannières) ou du design graphique."
-msgstr "가능한 텍스트 (로고, 포스터, 배너) 또는 그래픽 디자인과 시각을 만들려면."
+msgstr ""
 
 #: assets/app.js
 msgid "Kling : générateur de vidéos courtes à partir de texte ou d'images. Animations réalistes, crédits gratuits disponibles."
-msgstr "Kling : 텍스트 또는 이미지에서 짧은 비디오 발전기. 현실적인 애니메이션, 무료 크레딧."
+msgstr ""
 
 #: assets/app.js
 msgid "Pour créer des clips vidéo animés à partir d'une description ou d'une image fixe."
-msgstr "기술 또는 여전히 이미지에서 애니메이션 비디오 클립을 만들려면."
+msgstr ""
 
 #: assets/app.js
 msgid "Runway : suite d'outils IA pour la vidéo. Génération, édition, effets spéciaux, inpainting vidéo."
-msgstr "Runway: AI 비디오 도구의 스위트. 세대, 편집, 특수 효과, 비디오 inpainting."
+msgstr ""
 
 #: assets/app.js
 msgid "Pour le montage et la création vidéo avancée avec des outils IA intégrés."
-msgstr "내장 AI 도구로 고급 비디오 편집 및 제작."
+msgstr ""
 
 #: assets/app.js
 msgid "Pika : générateur de vidéos courtes et créatives. Animation d'images, effets, transformation de styles."
-msgstr "Pika: 짧은, 창조적인 영상의 발전기. 이미지 애니메이션, 효과, 스타일 변환."
+msgstr ""
 
 #: assets/app.js
 msgid "Pour animer des images ou créer des vidéos courtes originales avec des effets IA."
-msgstr "이미지 또는 AI 효과와 원본 짧은 비디오를 만들려면."
+msgstr ""
 
 #: assets/app.js
 msgid "Qwen : assistant IA d'Alibaba. Multimodal (texte, images, code), open-source, disponible en plusieurs tailles."
-msgstr "Qwen: Alibaba의 AI 조수. Multimodal (텍스트, 이미지, 코드), 몇 가지 크기에서 사용할 수있는 오픈 소스."
+msgstr ""
 
 #: assets/app.js
 msgid "Alternative gratuite pour le chat, le code et l'analyse d'images, avec un bon support multilingue."
-msgstr "채팅, 코드 및 이미지 분석을위한 무료 대안, 좋은 다국어 지원."
+msgstr ""
 
 #: assets/app.js
 msgid "Impossible d'enregistrer les comptes (stockage plein ?)"
-msgstr "계정을 저장할 수 없습니다 (전체 저장?)"
+msgstr ""
 
 #: assets/app.js
 msgid "Ctrl+S pour sauvegarder."
-msgstr "Ctrl + S 저장."
+msgstr ""
 
 #: assets/app.js
 msgid "Sélectionnez un fichier pour l'éditer ici."
-msgstr "파일을 선택하여 편집합니다."
+msgstr ""
 
 #: assets/app.js
 msgid "Éditeur simplifié (Monaco indisponible) — Ctrl+S pour sauvegarder"
-msgstr "단순 편집기 (Monaco unavailable) - Ctrl + S 저장"
+msgstr ""
 
 #: assets/app.js
 msgid "Fichier enregistré !"
-msgstr "파일 저장"
+msgstr ""
 
 #: assets/app.js
 msgid "Erreur d'enregistrement."
-msgstr "오류 저장."
+msgstr ""
 
 #: assets/app.js
 msgid "Aucun compte pour l'instant."
-msgstr "아직 계정이 없습니다."
+msgstr ""
 
 #: assets/app.js
 msgid "Créer mon premier compte"
-msgstr "첫 번째 계정 만들기"
+msgstr ""
 
 #: assets/app.js
 msgid "Cliquer pour copier l'e-mail"
-msgstr "자주 묻는 질문"
+msgstr ""
 
 #: assets/app.js
 msgid "Modifier le compte"
-msgstr "계정 만들기"
+msgstr ""
 
 #: assets/app.js
 msgid "{available} service(s) hors cooldown sur {total}"
-msgstr "{available} 의 {total} 서비스(s) 밖의 cooldown"
+msgstr ""
 
 #: assets/app.js
 msgid "Replier / déplier"
-msgstr "축소 / 확장"
+msgstr ""
 
 #: assets/app.js
 msgid "{service} — {account} déjà ouvert"
-msgstr "{service} — {account} 이미 오픈"
+msgstr ""
 
 #: assets/app.js
 msgid "Recharger l'onglet"
-msgstr "Reload 탭"
+msgstr ""
 
 #: assets/app.js
 msgid "Revenir à l'accueil de {service}"
-msgstr "위로 {service} 홈 페이지"
+msgstr ""
 
 #: assets/app.js
 msgid "Se déconnecter du profil « {profile} »"
-msgstr "프로필에서 표시 \"{profile}\""
+msgstr ""
 
 #: assets/app.js
 msgid "{service} ouvert avec {account}"
-msgstr "{service} 오픈 {account}"
+msgstr ""
 
 #: assets/app.js
 msgid "Fermer l'onglet"
-msgstr "닫기 탭"
+msgstr ""
 
 #: assets/app.js
 msgid "Fermer l'onglet « {tab} » ? La session web sera libérée."
-msgstr "탭을 닫다 \"{tab}\"? 웹 세션이 출시됩니다."
+msgstr ""
 
 #: assets/app.js
 msgid "Onglet fermé (mémoire libérée)"
-msgstr "탭 폐쇄 (메모리 출시)"
+msgstr ""
 
 #: assets/app.js
 msgid "Retirer l'étoile"
-msgstr "별 제거"
+msgstr ""
 
 #: assets/app.js
 msgid "Étoiler cet onglet"
-msgstr "이 탭"
+msgstr ""
 
 #: assets/app.js
 msgid "Onglet étoilé"
-msgstr "탭 starred"
+msgstr ""
 
 #: assets/app.js
 msgid "Étoile retirée"
-msgstr "스타 제거"
+msgstr ""
 
 #: assets/app.js
 msgid "Échec de la déconnexion du profil"
-msgstr "프로필에 표시 할 수 없습니다"
+msgstr ""
 
 #: assets/app.js
 msgid "Profil « {profile} » déconnecté — session effacée"
-msgstr "프로필 “{profile}” 서명 — 세션 정리"
+msgstr ""
 
 #: assets/app.js
 msgid "Aucun fichier trouvé."
-msgstr "파일이 없습니다."
+msgstr ""
 
 #: assets/app.js
 msgid "Fichier trop volumineux pour l'éditeur : {size} Mo (limite : 20 Mo)."
-msgstr "편집기에 너무 큰 파일 : {size} MB (한도: 20 MB)."
+msgstr ""
 
 #: assets/app.js
 msgid "C'est quoi ?"
-msgstr "그것은 무엇입니까?"
+msgstr ""
 
 #: assets/app.js
 msgid "Quand l'utiliser ?"
-msgstr "그것을 사용할 때?"
+msgstr ""
 
 #: assets/app.js
 msgid "Description à venir."
-msgstr "곧 설명."
+msgstr ""
 
 #: assets/app.js
 msgid "Maximum {max} services à portée de main"
-msgstr "손에서 가장 {max} 서비스"
+msgstr ""
 
 #: assets/app.js
 msgid "Sélectionnez au moins 1 service"
-msgstr "최소 1 서비스 선택"
+msgstr ""
 
 #: assets/app.js
 msgid "Services mis à jour ({count}/{max})"
-msgstr "서비스 업데이트 ({count}/{max})"
+msgstr ""
 
 #: assets/app.js
 msgid "Supprimer « {name} » ({email}) ? La session restera stockée sur le disque, mais le compte disparaîtra de la liste."
-msgstr "삭제 \"{name}\"({email})? 세션은 디스크에 저장되지만, 계정은 목록에서 사라집니다."
+msgstr ""
 
 #: assets/app.js
 msgid "Échec de l'export (écriture impossible)"
-msgstr "수출 실패 (쓰기 할 수 없습니다)"
+msgstr ""
 
 #: assets/app.js
 msgid "{count} compte(s) exporté(s)"
-msgstr "{count} 수출되는 계정"
+msgstr ""
 
 #: assets/app.js
 msgid "Export impossible"
-msgstr "수출 실패"
+msgstr ""
 
 #: assets/app.js
 msgid "Échec de la lecture du fichier"
-msgstr "파일을 읽을 수 없습니다"
+msgstr ""
 
 #: assets/app.js
 msgid "Fichier JSON invalide"
-msgstr "잘못된 JSON 파일"
+msgstr ""
 
 #: assets/app.js
 msgid "Format invalide : un tableau de comptes est attendu."
-msgstr "잘못된 형식 : 계정의 배열이 예상됩니다."
+msgstr ""
 
 #: assets/app.js
 msgid "Le fichier contient {count} compte(s). L'import REMPLACE entièrement la liste actuelle ({current} compte(s)) — cette action écrase les comptes existants, pas leurs sessions (cookies) déjà enregistrées sur le disque. Continuer ?"
-msgstr "파일에는 {count} 계정이 포함되어 있습니다. COMPLETELY REPLACES의 현재 목록({current} 계정(s))을 불러오고 있습니다. 계속?"
+msgstr ""
 
 #: assets/app.js
 msgid "Import impossible"
-msgstr "수입 실패"
+msgstr ""
 
 #: assets/app.js
 msgid "{count} compte(s) importé(s)"
-msgstr "{count} 계정(s) 수입"
+msgstr ""
 
 #: assets/app.js
 msgid "Échec de l'import : {error}"
-msgstr "수입 실패: {error}"
+msgstr ""
 
 #: assets/app.js
 msgid "Compte supprimé"
-msgstr "계정 삭제"
+msgstr ""
 
 #: assets/app.js
 msgid "Remplissez tous les champs"
-msgstr "모든 분야에서 채우기"
+msgstr ""
 
 #: assets/app.js
 msgid "Ce profil est déjà utilisé par un autre compte (les sessions seraient partagées)."
-msgstr "이 프로필은 이미 다른 계정 (제목은 공유됩니다)에 의해 사용됩니다."
+msgstr ""
 
 #: assets/app.js
 msgid "Compte mis à jour"
-msgstr "계정 업데이트"
+msgstr ""
 
 #: assets/app.js
 msgid "Compte ajouté"
-msgstr "계정 추가"
+msgstr ""
 
 #: assets/app.js
 msgid "Copie impossible dans le presse-papiers"
-msgstr "클립보드에 복사 할 수 없습니다"
+msgstr ""
 
 #: assets/app.js
 msgid "E-mail copié : {email}"
-msgstr "전자 메일 복사 : {email}"
+msgstr ""
 
 #: assets/app.js
 msgid "Cooldown terminé"
-msgstr "쿨다운"
+msgstr ""
 
 #: assets/app.js
 msgid "{account} — {service} est de nouveau disponible."
-msgstr "{account} — {service}는 다시 사용할 수 있습니다."
+msgstr ""
 
 #: assets/app.js
 msgid "{account} — {service} : cooldown terminé"
-msgstr "{account} — {service}: 상속"
+msgstr ""
 
 #: assets/app.js
 msgid "Téléchargement…"
-msgstr "다운로드 ..."
+msgstr ""
 
 #: assets/app.js
 msgid "Téléchargé — à traiter"
-msgstr "다운로드 - 처리 될"
+msgstr ""
 
 #: assets/app.js
 msgid "Aucun profil disponible"
-msgstr "자주 묻는 질문"
+msgstr ""
 
 #: assets/app.js
 msgid "Projet en cours d'analyse"
-msgstr "분석 된 프로젝트"
+msgstr ""
 
 #: assets/app.js
 msgid "En cours"
-msgstr "지원하다"
+msgstr ""
 
 #: assets/app.js
 msgid "En pause"
-msgstr "이용 약관"
+msgstr ""
 
 #: assets/app.js
 msgid "Reprise programmée"
-msgstr "자주 묻는 질문"
+msgstr ""
 
 #: assets/app.js
 msgid "Erreur"
-msgstr "계정 정보"
+msgstr ""
 
 #: assets/app.js
 msgid "Livré"
-msgstr "지원하다"
+msgstr ""
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"
-msgstr "설정을로드 할 수 없습니다"
+msgstr ""
 
 #: assets/app.js
 msgid "Réglages enregistrés — la langue sera appliquée au prochain démarrage"
-msgstr "저장된 설정 — 언어는 다음 시작에 적용됩니다."
+msgstr ""
 
 #: assets/app.js
 msgid "Réglages enregistrés"
-msgstr "설정 저장"
+msgstr ""
 
 #: assets/app.js
 msgid "Erreur lors de la sauvegarde"
-msgstr "오류 저장"
+msgstr ""
 
 #: assets/app.js
 msgid "Erreur lors de la sauvegarde des réglages"
-msgstr "오류 설정 저장"
+msgstr ""
 
-# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: assets/app.js
 msgid "Arrêter"
-msgstr "중지"
+msgstr ""
 
-# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: assets/app.js
 msgid "En marche"
-msgstr "실행 중"
+msgstr ""
 
 #: assets/app.js
 msgid "Aucun job pour l'instant — un ZIP téléchargé depuis un onglet IA (ordonnanceur activé) en créera un automatiquement."
-msgstr "작업이 아직 없습니다 - AI 탭에서 다운로드 한 ZIP (스케쥴러 활성화)는 자동으로 하나를 만들 것입니다."
+msgstr ""
 
 #: assets/app.js
 msgid "Continuer le projet"
-msgstr "프로젝트"
+msgstr ""
 
 #: assets/app.js
 msgid "Marquer livré"
-msgstr "전달되는 표"
+msgstr ""
 
 #: assets/app.js
 msgid "Pause"
-msgstr "팟캐스트"
+msgstr ""
 
 #: assets/app.js
 msgid "Reprendre"
-msgstr "제품 설명"
+msgstr ""
 
 #: assets/app.js
 msgid "Relancer"
-msgstr "이름 *"
+msgstr ""
 
 #: assets/app.js
 msgid "Ouvrir le ZIP"
-msgstr "ZIP 열기"
+msgstr ""
 
 #: assets/app.js
 msgid "Analyser la complétude"
-msgstr "analyse 완전한"
+msgstr ""
 
 #: assets/app.js
 msgid "service inconnu"
-msgstr "알 수없는 서비스"
+msgstr ""
 
 #: assets/app.js
 msgid "tentative {n}"
-msgstr "시도 {n}"
+msgstr ""
 
 #: assets/app.js
 msgid "Aucune activité enregistrée."
-msgstr "활동 없음."
+msgstr ""
 
 #: assets/app.js
 msgid "Impossible de modifier l'état de l'ordonnanceur"
-msgstr "스케줄러 상태를 변경할 수 없습니다."
+msgstr ""
 
 #: assets/app.js
 msgid "Configuration non enregistrée"
-msgstr "저장하지 않는 구성"
+msgstr ""
 
 #: assets/app.js
 msgid "Sélection du dossier impossible"
-msgstr "폴더를 선택할 수 없습니다."
+msgstr ""
 
 #: assets/app.js
 msgid "Projet terminé : {done}/{total} tâches faites, 0 restante."
-msgstr "프로젝트 완료: {done}/{total} 작업 완료, 나머지 0."
+msgstr ""
 
 #: assets/app.js
 msgid "{pending} à faire, {inProgress} en cours, {done} faite(s) sur {total} au total."
-msgstr "{pending} 할, {inProgress} 진행 중, {done} 총 {total}에서 수행."
+msgstr ""
 
 #: assets/app.js
 msgid "Analyse impossible : {error}"
-msgstr "분석 실패: {error}"
+msgstr ""
 
 #: assets/app.js
 msgid "Action impossible : {error}"
-msgstr "동작 실패: {error}"
+msgstr ""
 
 #: assets/app.js
 msgid "Aucun projet pour l'instant."
-msgstr "아직 프로젝트가 없습니다."
+msgstr ""
 
 #: assets/app.js
 msgid "Créer un projet"
-msgstr "프로젝트"
+msgstr ""
 
 #: assets/app.js
 msgid "Assignée"
-msgstr "이름 *"
+msgstr ""
 
 #: assets/app.js
 msgid "Terminée"
-msgstr "한국어"
+msgstr ""
 
 #: assets/app.js
 msgid "Échouée"
-msgstr "실패한"
+msgstr ""
 
 #: assets/app.js
 msgid "Lancer"
-msgstr "지원하다"
+msgstr ""
 
 #: assets/app.js
 msgid "Résultat"
-msgstr "제품정보"
+msgstr ""
 
 #: assets/app.js
 msgid "Aucune tâche."
-msgstr "작업 없음."
+msgstr ""
 
 #: assets/app.js
 msgid "Tous les comptes"
-msgstr "모든 계정"
+msgstr ""
 
 #: assets/app.js
 msgid "Comptes autorisés :"
-msgstr "허용된 계정:"
+msgstr ""
 
 #: assets/app.js
 msgid "{count} tâche(s)"
-msgstr "{count} 작업"
+msgstr ""
 
 #: assets/app.js
 msgid "Nouvelle tâche"
-msgstr "새로운 작업"
+msgstr ""
 
 #: assets/app.js
 msgid "Assigner"
-msgstr "이름 *"
+msgstr ""
 
 #: assets/app.js
 msgid "Diagnostic Claude : {error}"
-msgstr "클로드 진단: {error}"
+msgstr ""
 
 #: assets/app.js
 msgid "« Continuer »"
-msgstr "\"계속\""
+msgstr ""
 
 #: assets/app.js
 msgid "« Télécharger »"
-msgstr "\"다운로드\""
+msgstr ""
 
 #: assets/app.js
 msgid "« Nouveau »"
-msgstr "\"새로운\""
+msgstr ""
 
 #: assets/app.js
 msgid "zone de chat"
-msgstr "채팅 상자"
+msgstr ""
 
 #: assets/app.js
 msgid "envoi de fichier"
-msgstr "파일 업로드"
+msgstr ""
 
 #: assets/app.js
 msgid "{count} popup(s)"
-msgstr "{count} 팝업(s)"
+msgstr ""
 
 #: assets/app.js
 msgid "Claude (« {profile} ») : {details}"
-msgstr "클로드 (“{profile}”): {details}"
+msgstr ""
 
 #: assets/app.js
 msgid "aucun élément détecté"
-msgstr "아무것도 감지"
+msgstr ""
 
 #: assets/app.js
 msgid "Diagnostic impossible : {error}"
-msgstr "진단 실패: {error}"
+msgstr ""
 
 #: assets/app.js
 msgid "Quota gratuit épuisé jusqu'à {time} pour ce profil."
-msgstr "이 프로필에 대한 {time}까지 무료 할당량."
+msgstr ""
 
 #: assets/app.js
 msgid "Job Claude échoué : {error}"
-msgstr "클로드 작업 실패: {error}"
+msgstr ""
 
 #: assets/app.js
 msgid "Prompt envoyé à Claude via {method} (« {profile} »)"
-msgstr "{method} (“{profile}”)를 통해 Claude에 전송"
+msgstr ""
 
 #: assets/app.js
 msgid "Job Claude impossible : {error}"
-msgstr "클로드 작업은 실행 할 수 없습니다 : {error}"
+msgstr ""
 
 #: assets/app.js
 msgid "Collecte impossible : {error}"
-msgstr "컬렉션 실패: {error}"
+msgstr ""
 
 #: assets/app.js
 msgid "Réponse collectée : {count} caractères (« {profile} »)"
-msgstr "응답 수집: {count} 문자 (“{profile}”)"
+msgstr ""
 
 #: assets/app.js
 msgid "Aucune réponse trouvée pour le moment."
-msgstr "아직 응답이 없습니다."
+msgstr ""
 
 #: assets/app.js
 msgid "Nom du projet :"
-msgstr "프로젝트 이름:"
+msgstr ""
 
 #: assets/app.js
 msgid "Projet {n}"
-msgstr "프로젝트 {n}"
+msgstr ""
 
 #: assets/app.js
 msgid "Projet « {name} » créé"
-msgstr "Project “{name}” 생성"
+msgstr ""
 
 #: assets/app.js
 msgid "Création impossible : {error}"
-msgstr "창조 실패: {error}"
+msgstr ""
 
 #: assets/app.js
 msgid "Projet supprimé"
-msgstr "프로젝트 삭제"
+msgstr ""
 
 #: assets/app.js
 msgid "Suppression impossible : {error}"
-msgstr "삭제 실패: {error}"
+msgstr ""
 
 #: assets/app.js
 msgid "Prompt de la tâche :"
-msgstr "작업 프롬프트:"
+msgstr ""
 
 #: assets/app.js
 msgid "Tâche créée dans le projet"
-msgstr "프로젝트에서 만든 작업"
+msgstr ""
 
 #: assets/app.js
 msgid "Aucun compte vert disponible pour ce projet."
-msgstr "이 프로젝트에는 녹색 계정이 없습니다."
+msgstr ""
 
 #: assets/app.js
 msgid "Comptes verts disponibles :"
-msgstr "유효한 녹색 계정:"
+msgstr ""
 
 #: assets/app.js
 msgid "Numéro du compte :"
-msgstr "계정 번호:"
+msgstr ""
 
 #: assets/app.js
 msgid "Choix invalide"
-msgstr "잘못된 선택"
+msgstr ""
 
 #: assets/app.js
 msgid "Aucune tâche dans ce projet."
-msgstr "이 프로젝트에서 작업이 없습니다."
+msgstr ""
 
 #: assets/app.js
 msgid "Numéro de la tâche :"
-msgstr "작업 번호:"
+msgstr ""
 
 #: assets/app.js
 msgid "Tâches du projet :"
-msgstr "프로젝트 작업:"
+msgstr ""
 
 #: assets/app.js
 msgid "Tâche {task} assignée à « {account} »"
-msgstr "작업 {task}에 할당 된 “{account}”"
+msgstr ""
 
 #: assets/app.js
 msgid "Assignation impossible : {error}"
-msgstr "위탁 실패: {error}"
+msgstr ""
 
 #: assets/app.js
 msgid "Lancement de l'automatisation Claude..."
-msgstr "Claude 자동화 시작 ..."
+msgstr ""
 
 #: assets/app.js
 msgid "Lancement impossible"
-msgstr "시작할 수 없습니다."
+msgstr ""
 
 #: assets/app.js
 msgid "Tâche lancée — suivi dans le journal d'activité"
-msgstr "작업 시작 - 활동 로그에 따라"
+msgstr ""
 
 #: assets/app.js
 msgid "Exécution impossible : {error}"
-msgstr "실행 실패: {error}"
+msgstr ""
 
 #: assets/app.js
 msgid "Aucun résultat disponible"
-msgstr "결과 없음"
+msgstr ""
 
 #: assets/app.js
 msgid "Résultat — {task}"
-msgstr "결과 — {task}"
+msgstr ""
 
 #: assets/app.js
-msgid "Données de comptes illisibles"
-msgstr "Unreadable 계정 데이터"
+msgid "Comptes retrouvés"
+msgstr ""
 
 #: assets/app.js
-msgid "La liste de comptes enregistrée est corrompue. Une sauvegarde de {count} compte(s) a été trouvée. La restaurer ?"
-msgstr "저장된 계정 목록은 손상됩니다. {count} 계정의 백업이 발견되었습니다. 그것을 복원?"
-
-#: assets/app.js
-msgid "La liste de comptes enregistrée est corrompue et aucune sauvegarde n'est disponible. L'application démarre avec une liste vide ; vos données actuelles ne seront pas écrasées tant que vous ne créez ou ne modifiez pas de compte."
-msgstr "저장된 계정 목록은 손상되고 백업은 사용할 수 없습니다. 응용 프로그램은 빈 목록으로 시작합니다. 현재 데이터는 계정을 만들거나 편집 할 때까지 overwritten되지 않습니다."
+msgid "Aucun compte n'a été lu au démarrage, mais l'ordonnanceur en connaît {count}. Les restaurer ? Les sessions des services sont conservées ; les adresses e-mail sont à compléter depuis « Modifier le compte »."
+msgstr ""
 
 #: assets/app.js
 msgid "Ignorer"
-msgstr "이름 *"
+msgstr ""
+
+#: assets/app.js
+msgid "Restaurer les comptes"
+msgstr ""
+
+#: assets/app.js
+msgid "{count} compte(s) restauré(s)"
+msgstr ""
+
+#: assets/app.js
+msgid "Données de comptes illisibles"
+msgstr ""
+
+#: assets/app.js
+msgid "La liste de comptes enregistrée est corrompue. Une sauvegarde de {count} compte(s) a été trouvée. La restaurer ?"
+msgstr ""
+
+#: assets/app.js
+msgid "La liste de comptes enregistrée est corrompue et aucune sauvegarde n'est disponible. L'application démarre avec une liste vide ; vos données actuelles ne seront pas écrasées tant que vous ne créez ou ne modifiez pas de compte."
+msgstr ""
 
 #: assets/app.js
 msgid "Restaurer la sauvegarde"
-msgstr "백업 복원"
+msgstr ""
 
 #: assets/app.js
 msgid "Comptes restaurés depuis la sauvegarde"
-msgstr "계정 백업에서 복원"
+msgstr ""
 
 #: assets/app.js
 msgid "Compris"
-msgstr "뚱 베어"
+msgstr ""
