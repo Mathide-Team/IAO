@@ -12,1091 +12,1091 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: index.html:90
+#: index.html
 msgid "Rechercher un compte ou une IA..."
 msgstr "Søg efter en konto eller en AI..."
 
-#: index.html:100
+#: index.html
 msgid "Comptes actifs"
 msgstr "Aktive konti"
 
-#: index.html:101
+#: index.html
 msgid "IA Disponibles"
 msgstr "Tilgængelige AI 'er"
 
-#: index.html:102
+#: index.html
 msgid "Rechercher un compte ou une IA (Ctrl+K)"
 msgstr "Søg efter en konto eller en AI (Ctrl + K)"
 
-#: index.html:106
+#: index.html
 msgid "Comptes enregistrés"
 msgstr "Gemte konti"
 
-#: index.html:108
+#: index.html
 msgid "Tout replier / Tout déplier"
 msgstr "Kollaps alle / Udvid alle"
 
-#: index.html:109
+#: index.html
 msgid "Exporter les comptes (JSON)"
 msgstr "Eksportregnskaber (JSON)"
 
-#: index.html:110
+#: index.html
 msgid "Importer des comptes (JSON)"
 msgstr "Importkonti (JSON)"
 
-#: index.html:111
+#: index.html
 msgid "Ajouter un compte"
 msgstr "Tilføj en konto"
 
-#: index.html:126
+#: index.html
 msgid "Mode debug actif : traces détaillées dans le journal iao.log"
 msgstr "Fejltilstand på: detaljerede spor i iao.log-filen"
 
-#: index.html:128
+#: index.html
 msgid "Masquer les comptes"
 msgstr "Skjul konti"
 
-#: index.html:129
+#: index.html
 msgid "Afficher les comptes"
 msgstr "Vis konti"
 
-#: index.html:130
+#: index.html
 msgid "Explorateur"
 msgstr "Explorer"
 
-#: index.html:131
+#: index.html
 msgid "Éditeur"
 msgstr "Editor"
 
-#: index.html:132
+#: index.html
 msgid "Outils de développement (Ctrl+Maj+I)"
 msgstr "Udvikler værktøjer (Ctrl + Shift + I)"
 
-#: index.html:137
+#: index.html
 msgid "Choisir mes 9 IA à portée de main"
 msgstr "Vælg min 9 go- to AIs"
 
-#: index.html:138
+#: index.html
 msgid "Comprendre les IA disponibles"
 msgstr "Forstå de tilgængelige AI 'er"
 
-#: index.html:140
+#: index.html
 msgid "Ordonnanceur IA"
 msgstr "AI scheduler"
 
-#: index.html:141
+#: index.html
 msgid "Réglages"
 msgstr "Indstillinger"
 
-#: index.html:150
+#: index.html
 msgid "Fichiers"
 msgstr "Filer"
 
-#: index.html:152
+#: index.html
 msgid "Ouvrir un dossier"
 msgstr "Åbn en mappe"
 
-#: index.html:153
+#: index.html
 msgid "Réduire"
 msgstr "Kollaps"
 
-#: index.html:158
+#: index.html
 msgid "Rechercher un fichier..."
 msgstr "Søg efter en fil..."
 
-#: index.html:161
+#: index.html
 msgid "Glisser pour redimensionner"
 msgstr "Træk til at ændre størrelse"
 
-#: index.html:163
+#: index.html
 msgid "Aucun fichier"
 msgstr "Ingen fil"
 
-#: index.html:168
+#: index.html
 msgid "Glisser pour redimensionner l'éditeur"
 msgstr "Træk for at ændre størrelse på editoren"
 
-#: index.html:174
+#: index.html
 msgid "Aucun onglet ouvert — choisissez un service dans la liste des comptes"
 msgstr "Ingen åben fane - vælg en tjeneste i kontolisten"
 
-#: index.html:184
+#: index.html
 msgid "Le profil permet d'isoler les cookies dans Electron."
 msgstr "Profilen holder cookies isoleret i Electron."
 
-#: index.html:186
+#: index.html
 msgid "Nom du compte"
 msgstr "Kontonavn"
 
-#: index.html:188
+#: index.html
 msgid "Nom du Profil"
 msgstr "Profilnavn"
 
-#: index.html:190
+#: index.html
 msgid "Annuler"
 msgstr "Annullér"
 
-#: index.html:191
+#: index.html
 msgid "Enregistrer"
 msgstr "Gem"
 
-#: index.html:199
+#: index.html
 msgid "Supprimer le compte"
 msgstr "Slet kontoen"
 
-#: index.html:200
+#: index.html
 msgid "Cette action est irréversible."
 msgstr "Det kan ikke gøres om."
 
-#: index.html:204
+#: index.html
 msgid "Supprimer"
 msgstr "Slet"
 
-#: index.html:215
+#: index.html
 msgid "Importer des comptes"
 msgstr "Importkonti"
 
-#: index.html:219
+#: index.html
 msgid "Remplacer et importer"
 msgstr "Erstat og import"
 
-#: index.html:232
+#: index.html
 msgid "Déconnecter le profil"
 msgstr "Skriv profilen ud"
 
-#: index.html:236
+#: index.html
 msgid "Déconnecter"
 msgstr "Log ud"
 
-#: index.html:246
+#: index.html
 msgid "À quoi sert chaque service, et quand l'utiliser."
 msgstr "Hvad hver tjeneste er til, og hvornår at bruge den."
 
-#: index.html:249
+#: index.html
 msgid "Fermer"
 msgstr "Luk"
 
-#: index.html:260
+#: index.html
 msgid "Sélectionnez les 9 services affichés dans l'interface. Les autres restent disponibles dans l'aide."
 msgstr "Vælg de 9 tjenester, der vises i grænsefladen. De andre forbliver til rådighed i hjælpen."
 
-#: index.html:277
+#: index.html
 msgid "Détection des ZIP livrés par les onglets IA, reprise par profil."
 msgstr "Detekterer ZIP-filer leveret af AI-faneblade, med per- profil genoptage."
 
 # Traduit à la main (libellé court) ; relecture humaine attendue.
-#: index.html:280
+#: index.html
 msgid "Arrêté"
 msgstr "Stoppet"
 
 # Traduit à la main (libellé court) ; relecture humaine attendue.
-#: index.html:281
+#: index.html
 msgid "Démarrer ou arrêter l'ordonnanceur (il ne démarre jamais tout seul)"
 msgstr "Start eller stop planlæggeren (den starter aldrig af sig selv)"
 
 # Traduit à la main (libellé court) ; relecture humaine attendue.
-#: index.html:281
+#: index.html
 msgid "Démarrer"
 msgstr "Start"
 
-#: index.html:286
+#: index.html
 msgid "Jobs actifs"
 msgstr "Aktive job"
 
-#: index.html:287
+#: index.html
 msgid "En attente"
 msgstr "Afventer"
 
-#: index.html:288
+#: index.html
 msgid "Livrés aujourd'hui"
 msgstr "Leveret i dag"
 
-#: index.html:292
+#: index.html
 msgid "Jobs simultanés max."
 msgstr "Maks. samtidige job"
 
-#: index.html:293
+#: index.html
 msgid "Délai min. entre automatisations (min)"
 msgstr "Min. forsinkelse mellem automatiseringer (min)"
 
-#: index.html:294
+#: index.html
 msgid "Seuil profil « le plus ancien » (h)"
 msgstr "\"ældste\" profiltærskel (h)"
 
-#: index.html:296
+#: index.html
 msgid "Dossiers"
 msgstr "Mapper"
 
-#: index.html:298
+#: index.html
 msgid "Téléchargements…"
 msgstr "Downloads..."
 
-#: index.html:299
+#: index.html
 msgid "Livraison…"
 msgstr "Levering..."
 
-#: index.html:304
+#: index.html
 msgid "Téléchargements :"
 msgstr "Downloads:"
 
-#: index.html:304
+#: index.html
 msgid "(dossier de téléchargements du système)"
 msgstr "(system downloads mappe)"
 
-#: index.html:305
+#: index.html
 msgid "Livraison :"
 msgstr "Levering:"
 
-#: index.html:305
+#: index.html
 msgid "(non défini)"
 msgstr "(ikke indstillet)"
 
-#: index.html:308
+#: index.html
 msgid "Projets & tâches"
 msgstr "Projekter og opgaver"
 
-#: index.html:311
+#: index.html
 msgid "Jobs"
 msgstr "Beskæftigelse"
 
-#: index.html:314
+#: index.html
 msgid "Journal d'activité"
 msgstr "Aktivitetslog"
 
-#: index.html:326
+#: index.html
 msgid "Confirmation"
 msgstr "Bekræftelse"
 
-#: index.html:330
+#: index.html
 msgid "Confirmer"
 msgstr "Bekræft"
 
-#: index.html:340
+#: index.html
 msgid "Préférences de l'application, sauvegardées localement."
 msgstr "Programpræferencer, gemt lokalt."
 
-#: index.html:345
+#: index.html
 msgid "Taille de police de l'éditeur (px)"
 msgstr "Editorskriftstørrelse (px)"
 
-#: index.html:352
+#: index.html
 msgid "Thème"
 msgstr "Tema"
 
-#: index.html:354
+#: index.html
 msgid "Thème du bureau (défaut)"
 msgstr "Desktoptema (standard)"
 
-#: index.html:356
+#: index.html
 msgid "Clair"
 msgstr "Lys"
 
-#: index.html:357
+#: index.html
 msgid "Sombre"
 msgstr "Mørk"
 
-#: index.html:364
+#: index.html
 msgid "Langue"
 msgstr "Sprog"
 
-#: index.html:366
+#: index.html
 msgid "Langue du système (défaut)"
 msgstr "Systemsprog (standard)"
 
-#: index.html:368
+#: index.html
 msgid "Appliquée au prochain démarrage"
 msgstr "Anvendes ved næste start"
 
-#: index.html:373
+#: index.html
 msgid "Retour à la ligne (éditeur)"
 msgstr "Tekstombrydning (editor)"
 
-#: index.html:375
+#: index.html
 msgid "Désactivé"
 msgstr "Fra"
 
-#: index.html:376
+#: index.html
 msgid "Activé"
 msgstr "Til"
 
-#: index.html:377
+#: index.html
 msgid "Colonne fixe"
 msgstr "Fast kolonne"
 
-#: index.html:384
+#: index.html
 msgid "Confirmer avant de fermer un onglet"
 msgstr "Bekræft før du lukker en fane"
 
-#: index.html:387
+#: index.html
 msgid "Afficher les fenêtres d'automatisation"
 msgstr "Vis automatiseringsvinduer"
 
-#: index.html:390
+#: index.html
 msgid "Restaurer les onglets ouverts au démarrage"
 msgstr "Gendan åbne faneblade ved opstart"
 
-#: assets/app.js:237
+#: assets/app.js
 msgid "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."
 msgstr "Anthropics konversationsassistent. Det excellerer til at skrive, analysere lange dokumenter, programmering og multi-trin ræsonnement."
 
-#: assets/app.js:238
+#: assets/app.js
 msgid "Plutôt pour du code, des textes longs et soignés, ou des questions complexes qui demandent de la rigueur."
 msgstr "Bedste for kode, lange og polerede tekster, eller komplekse spørgsmål, der kræver stringens."
 
-#: assets/app.js:241
+#: assets/app.js
 msgid "L'assistant généraliste d'OpenAI, le plus connu du grand public. Il discute, rédige, résume, génère des images, analyse des fichiers et peut chercher sur le web."
 msgstr "OpenAI \"s generelle formål assistent, bedst kendt af offentligheden. Det chatter, skriver, opsummerer, genererer billeder, analyserer filer og kan søge på nettet."
 
-#: assets/app.js:242
+#: assets/app.js
 msgid "Le couteau suisse du quotidien : brainstorming, questions générales, petites tâches variées."
 msgstr "Den daglige schweiziske hær kniv: brainstorming, generelle spørgsmål, assorterede små opgaver."
 
-#: assets/app.js:245
+#: assets/app.js
 msgid "L'assistant IA de Google. Multimodal (texte, images, audio, vidéo), il s'appuie sur la recherche Google et s'intègre aux outils Google (Docs, Gmail, Drive…)."
 msgstr "Googles AI-assistent. Multimodal (tekst, billeder, lyd, video), det bygger på Google Search og integrerer med Google-værktøjer (Docs, Gmail, Drive...)."
 
-#: assets/app.js:246
+#: assets/app.js
 msgid "Plutôt pour analyser des images ou vidéos, ou si vous travaillez déjà dans l'écosystème Google."
 msgstr "Bedste til at analysere billeder eller videoer, eller hvis du allerede arbejder i Google økosystem."
 
-#: assets/app.js:249
+#: assets/app.js
 msgid "Le chat de Z.ai, propulsé par les modèles GLM. Gratuit pour l'essentiel, avec un mode agent capable de chercher sur le web et de produire des fichiers (docx, pdf, xlsx)."
 msgstr "Z.ai 's chat, drevet af GLM modellerne. Mest gratis, med en agent mode, der kan søge på nettet og producere filer (docx, pdf, xlsx)."
 
-#: assets/app.js:250
+#: assets/app.js
 msgid "Une alternative gratuite solide pour le chat et le code, quand les quotas des autres sont épuisés."
 msgstr "Et solidt frit alternativ til chat og kode, når de andre tjenesters kvoter er opbrugt."
 
-#: assets/app.js:253
+#: assets/app.js
 msgid "Un « moteur de réponse » : il cherche sur le web en direct, synthétise plusieurs sources et cite ses références pour chaque affirmation."
 msgstr "En \"svar motor\": det søger på nettet live, syntetiserer flere kilder og citerer sine referencer for hver fordring."
 
-#: assets/app.js:254
+#: assets/app.js
 msgid "Plutôt pour la recherche d'informations à jour, la veille et la vérification de faits avec sources."
 msgstr "Bedste til at finde up-to-date oplysninger, overvågning emner og fact- kontrol med kilder."
 
-#: assets/app.js:257
+#: assets/app.js
 msgid "L'assistant de xAI (Elon Musk), connecté au réseau X (ex-Twitter). Ton direct, accès au temps réel de X, génération d'images incluse."
 msgstr "xAI 's assistent (Elon Musk), forbundet til X-netværket (tidligere Twitter). Direkte tone, realtid adgang til X, billede generation inkluderet."
 
-#: assets/app.js:258
+#: assets/app.js
 msgid "Plutôt pour suivre l'actualité chaude et les tendances via X, ou pour un ton moins formel."
 msgstr "Bedste til at følge breaking nyheder og trends via X, eller for en mindre formel tone."
 
-#: assets/app.js:261
+#: assets/app.js
 msgid "Une plateforme de génération d'images orientée création : illustrations, concept art, assets de jeu vidéo, avec des contrôles fins (styles, modèles, retouche)."
 msgstr "En kreativ image- generation platform: illustrationer, koncept kunst, videospil aktiver, med finkornet kontrol (stilarter, modeller, retouching)."
 
-#: assets/app.js:262
+#: assets/app.js
 msgid "Plutôt pour produire des visuels et illustrations de qualité avec un contrôle précis du style."
 msgstr "Bedste til at producere kvalitet visuals og illustrationer med præcis kontrol over stil."
 
-#: assets/app.js:265
+#: assets/app.js
 msgid "Un générateur de musique : il compose des chansons complètes (instruments, voix, paroles) à partir d'une simple description texte, dans à peu près tous les genres."
 msgstr "En musik generator: det komponerer komplette sange (instrumenter, vokal, tekster) fra en simpel tekst beskrivelse, i næsten enhver genre."
 
-#: assets/app.js:266
+#: assets/app.js
 msgid "Plutôt pour créer une musique, un jingle ou une chanson à partir d'un texte ou d'une idée."
 msgstr "Bedste til at skabe et stykke musik, en jingle eller en sang fra en tekst eller en idé."
 
-#: assets/app.js:269
+#: assets/app.js
 msgid "Un générateur de modèles 3D : il transforme un texte ou une image en objet 3D texturé, avec rigging/animation automatique et export vers les formats standards (GLB, FBX, STL…)."
 msgstr "En 3D model generator: det forvandler en tekst eller et billede til en tekstureret 3D objekt, med automatisk rigning / animation og eksport til standardformater (GLB, FBX, STL...)."
 
-#: assets/app.js:270
+#: assets/app.js
 msgid "Plutôt pour créer des assets 3D (jeux, impression 3D, animation) sans savoir modéliser."
 msgstr "Bedste til at skabe 3D-aktiver (spil, 3D-print, animation) uden modellering færdigheder."
 
-#: assets/app.js:274
+#: assets/app.js
 msgid "Le Chat de Mistral AI, éditeur européen (français). Modèles open-weights performants, chat, code et analyse de documents."
 msgstr "Le Chat af Mistral AI, en europæisk (fransk) leverandør. Stærke open- vægte modeller, chat, kode og dokument analyse."
 
-#: assets/app.js:275
+#: assets/app.js
 msgid "Alternative européenne solide pour le chat et le code, avec une bonne maîtrise du français."
 msgstr "Et solidt europæisk alternativ til chat og kode med en god fransk kommando."
 
-#: assets/app.js:278
+#: assets/app.js
 msgid "DeepSeek : assistant IA chinois spécialisé en raisonnement et programmation, particulièrement performant en Python."
 msgstr "DeepSeek: en kinesisk AI assistent specialiseret i ræsonnement og programmering, især stærk i Python."
 
-#: assets/app.js:279
+#: assets/app.js
 msgid "Pour du code Python, du raisonnement étape par étape, ou une alternative gratuite à ChatGPT."
 msgstr "For Python kode, step-by-step ræsonnement, eller et frit alternativ til ChatGPT."
 
-#: assets/app.js:282
+#: assets/app.js
 msgid "GitHub Copilot : assistant IA intégré dans VS Code et GitHub. Autocomplétion, chat, génération de tests, explication de code."
 msgstr "GitHub Copilot: en AI assistent indbygget i VS Code og GitHub. Autofuldførelse, chat, testgenerering, kodeforklaring."
 
-#: assets/app.js:283
+#: assets/app.js
 msgid "Pour programmer plus vite dans VS Code ou sur GitHub, avec un modèle IA qui connaît votre codebase."
 msgstr "At programmere hurtigere i VS-kode eller på GitHub, med en AI-model, der kender din codebase."
 
-#: assets/app.js:286
+#: assets/app.js
 msgid "Elicit : assistant de recherche scientifique. Trouve des articles, extrait des données, synthétise des études."
 msgstr "Juridisk: en videnskabelig forskningsassistent. Finder papirer, udtrækker data, syntetiserer undersøgelser."
 
-#: assets/app.js:287
+#: assets/app.js
 msgid "Pour la recherche académique, la revue de littérature et l'extraction de données d'articles scientifiques."
 msgstr "For akademisk forskning, litteraturanmeldelser og ekstraktion af data fra videnskabelige papirer."
 
-#: assets/app.js:290
+#: assets/app.js
 msgid "NotebookLM de Google : interagissez avec vos propres documents (PDF, texte, audio). Résumés, questions, génération de notes."
 msgstr "Googles NotebookLM: Interagerer med dine egne dokumenter (PDF, tekst, lyd). Summarier, spørgsmål, note generation."
 
-#: assets/app.js:291
+#: assets/app.js
 msgid "Pour interroger vos documents personnels ou professionnels avec une IA qui cite ses sources."
 msgstr "At forespørge dine personlige eller arbejde dokumenter med en AI, der citerer sine kilder."
 
-#: assets/app.js:294
+#: assets/app.js
 msgid "Wolfram Alpha : moteur de calcul symbolique. Mathématiques, physique, chimie, données factuelles, conversions."
 msgstr "Wolfram Alpha: en symbolsk beregningsmotor. Matematik, fysik, kemi, faktuelle data, konverteringer."
 
-#: assets/app.js:295
+#: assets/app.js
 msgid "Pour des calculs exacts (mathématiques symboliques), des données chiffrées ou des conversions d'unités."
 msgstr "For nøjagtige beregninger (symbolsk matematik), numeriske data eller enhed konverteringer."
 
-#: assets/app.js:298
+#: assets/app.js
 msgid "DeepL : traduction automatique de haute qualité, plus naturelle que Google Traduction. Texte et documents entiers."
 msgstr "DeepL: høj kvalitet maskinoversættelse, mere naturligt end Google Oversæt. Tekst og hele dokumenter."
 
-#: assets/app.js:299
+#: assets/app.js
 msgid "Pour traduire du texte ou des documents avec un rendu naturel et cohérent."
 msgstr "At oversætte tekst eller dokumenter med et naturligt, konsekvent resultat."
 
-#: assets/app.js:302
+#: assets/app.js
 msgid "Ideogram : génération d'images orientée design. Logos, typographies, affiches, avec un excellent rendu du texte."
 msgstr "Ideogram: designorienteret billedgenerering. Logo, typografi, plakater, med fremragende tekst rendering."
 
-#: assets/app.js:303
+#: assets/app.js
 msgid "Pour créer des visuels avec du texte lisible (logos, affiches, bannières) ou du design graphique."
 msgstr "At skabe visuals med læselig tekst (logoer, plakater, bannere) eller grafisk design."
 
-#: assets/app.js:306
+#: assets/app.js
 msgid "Kling : générateur de vidéos courtes à partir de texte ou d'images. Animations réalistes, crédits gratuits disponibles."
 msgstr "Kling: en kortvideogenerator fra tekst eller billeder. Realistiske animationer, gratis kreditter til rådighed."
 
-#: assets/app.js:307
+#: assets/app.js
 msgid "Pour créer des clips vidéo animés à partir d'une description ou d'une image fixe."
 msgstr "At skabe animerede videoklip fra en beskrivelse eller et stillbillede."
 
-#: assets/app.js:310
+#: assets/app.js
 msgid "Runway : suite d'outils IA pour la vidéo. Génération, édition, effets spéciaux, inpainting vidéo."
 msgstr "Runway: en suite af AI videoværktøjer. Generation, redigering, specielle effekter, video inmaling."
 
-#: assets/app.js:311
+#: assets/app.js
 msgid "Pour le montage et la création vidéo avancée avec des outils IA intégrés."
 msgstr "Til avanceret videoredigering og oprettelse med build- in AI værktøjer."
 
-#: assets/app.js:314
+#: assets/app.js
 msgid "Pika : générateur de vidéos courtes et créatives. Animation d'images, effets, transformation de styles."
 msgstr "Pika: en generator af korte, kreative videoer. Billede animation, effekter, stil transformation."
 
-#: assets/app.js:315
+#: assets/app.js
 msgid "Pour animer des images ou créer des vidéos courtes originales avec des effets IA."
 msgstr "At animere billeder eller oprette originale korte videoer med AI-effekter."
 
-#: assets/app.js:318
+#: assets/app.js
 msgid "Qwen : assistant IA d'Alibaba. Multimodal (texte, images, code), open-source, disponible en plusieurs tailles."
 msgstr "Alibabas AI-assistent. Multimodal (tekst, billeder, kode), open source, fås i flere størrelser."
 
-#: assets/app.js:319
+#: assets/app.js
 msgid "Alternative gratuite pour le chat, le code et l'analyse d'images, avec un bon support multilingue."
 msgstr "Et gratis alternativ til chat, kode og billedanalyse, med god flersproget support."
 
-#: assets/app.js:389
+#: assets/app.js
 msgid "Impossible d'enregistrer les comptes (stockage plein ?)"
 msgstr "Kunne ikke gemme konti (fuld opbevaring?)"
 
-#: assets/app.js:525
+#: assets/app.js
 msgid "Ctrl+S pour sauvegarder."
 msgstr "Ctrl + S at gemme."
 
-#: assets/app.js:525 assets/app.js:549
+#: assets/app.js
 msgid "Sélectionnez un fichier pour l'éditer ici."
 msgstr "Vælg en fil til at redigere den her."
 
-#: assets/app.js:545
+#: assets/app.js
 msgid "Éditeur simplifié (Monaco indisponible) — Ctrl+S pour sauvegarder"
 msgstr "Forenklet editor (Monaco ikke tilgængelig) - Ctrl + S for at gemme"
 
-#: assets/app.js:586
+#: assets/app.js
 msgid "Fichier enregistré !"
 msgstr "Fil gemt"
 
-#: assets/app.js:587
+#: assets/app.js
 msgid "Erreur d'enregistrement."
 msgstr "Gem fejl."
 
-#: assets/app.js:646
+#: assets/app.js
 msgid "Aucun compte pour l'instant."
 msgstr "Ingen konti endnu."
 
-#: assets/app.js:647
+#: assets/app.js
 msgid "Créer mon premier compte"
 msgstr "Opret min første konto"
 
-#: assets/app.js:699
+#: assets/app.js
 msgid "Cliquer pour copier l'e-mail"
 msgstr "Klik for at kopiere e- mail- adressen"
 
-#: assets/app.js:702 assets/app.js:1290
+#: assets/app.js
 msgid "Modifier le compte"
 msgstr "Redigér konto"
 
-#: assets/app.js:705
+#: assets/app.js
 msgid "{available} service(s) hors cooldown sur {total}"
 msgstr "{available} af {total} tjenester ud af nedkøling"
 
-#: assets/app.js:706
+#: assets/app.js
 msgid "Replier / déplier"
 msgstr "Kollaps / udvid"
 
-#: assets/app.js:802
+#: assets/app.js
 msgid "{service} — {account} déjà ouvert"
 msgstr "{service} - {account} allerede åben"
 
-#: assets/app.js:821
+#: assets/app.js
 msgid "Recharger l'onglet"
 msgstr "Genindlæs faneblad"
 
-#: assets/app.js:822
+#: assets/app.js
 msgid "Revenir à l'accueil de {service}"
 msgstr "Tilbage til {service} hjemmeside"
 
-#: assets/app.js:823
+#: assets/app.js
 msgid "Se déconnecter du profil « {profile} »"
 msgstr "Log ud af profil \"{profile}\""
 
-#: assets/app.js:860
+#: assets/app.js
 msgid "{service} ouvert avec {account}"
 msgstr "{service} åbnet med {account}"
 
-#: assets/app.js:929
+#: assets/app.js
 msgid "Fermer l'onglet"
 msgstr "Luk faneblad"
 
-#: assets/app.js:930
+#: assets/app.js
 msgid "Fermer l'onglet « {tab} » ? La session web sera libérée."
 msgstr "Luk fanen \"{tab}\"? Websessionen vil blive frigivet."
 
-#: assets/app.js:955
+#: assets/app.js
 msgid "Onglet fermé (mémoire libérée)"
 msgstr "Fanebladet lukket (hukommelse udgivet)"
 
-#: assets/app.js:996
+#: assets/app.js
 msgid "Retirer l'étoile"
 msgstr "Fjern stjerne"
 
-#: assets/app.js:996
+#: assets/app.js
 msgid "Étoiler cet onglet"
 msgstr "Stjerne dette faneblad"
 
-#: assets/app.js:1024
+#: assets/app.js
 msgid "Onglet étoilé"
 msgstr "Faneblad starred"
 
-#: assets/app.js:1024
+#: assets/app.js
 msgid "Étoile retirée"
 msgstr "Stjerne fjernet"
 
-#: assets/app.js:1117
+#: assets/app.js
 msgid "Échec de la déconnexion du profil"
 msgstr "Kunne ikke logge ud af profilen"
 
-#: assets/app.js:1125
+#: assets/app.js
 msgid "Profil « {profile} » déconnecté — session effacée"
 msgstr "Profil \"{profile}\" underskrevet - session ryddet"
 
-#: assets/app.js:1158
+#: assets/app.js
 msgid "Aucun fichier trouvé."
 msgstr "Ingen filer fundet."
 
-#: assets/app.js:1186
+#: assets/app.js
 msgid "Fichier trop volumineux pour l'éditeur : {size} Mo (limite : 20 Mo)."
 msgstr "Fil for stor til editoren: {size} MB (grænse: 20 MB)."
 
-#: assets/app.js:1325
+#: assets/app.js
 msgid "C'est quoi ?"
 msgstr "Hvad er det?"
 
-#: assets/app.js:1326
+#: assets/app.js
 msgid "Quand l'utiliser ?"
 msgstr "Hvornår skal den bruges?"
 
-#: assets/app.js:1327
+#: assets/app.js
 msgid "Description à venir."
 msgstr "Beskrivelsen kommer snart."
 
-#: assets/app.js:1369
+#: assets/app.js
 msgid "Maximum {max} services à portée de main"
 msgstr "Højst {max} tjenester i hånden"
 
-#: assets/app.js:1385
+#: assets/app.js
 msgid "Sélectionnez au moins 1 service"
 msgstr "Vælg mindst 1 tjeneste"
 
-#: assets/app.js:1389
+#: assets/app.js
 msgid "Services mis à jour ({count}/{max})"
 msgstr "Tjenester opdateret ({count} / {max})"
 
-#: assets/app.js:1403
+#: assets/app.js
 msgid "Supprimer « {name} » ({email}) ? La session restera stockée sur le disque, mais le compte disparaîtra de la liste."
 msgstr "Slet \"{name}\" ({email})? Sessionen vil forblive gemt på disken, men kontoen vil forsvinde fra listen."
 
-#: assets/app.js:1417
+#: assets/app.js
 msgid "Échec de l'export (écriture impossible)"
 msgstr "Eksportér mislykkedes (kan ikke skrive)"
 
-#: assets/app.js:1418
+#: assets/app.js
 msgid "{count} compte(s) exporté(s)"
 msgstr "{count} Eksporterede konti"
 
-#: assets/app.js:1421
+#: assets/app.js
 msgid "Export impossible"
 msgstr "Eksportér mislykkedes"
 
-#: assets/app.js:1433
+#: assets/app.js
 msgid "Échec de la lecture du fichier"
 msgstr "Kunne ikke læse filen"
 
-#: assets/app.js:1436
+#: assets/app.js
 msgid "Fichier JSON invalide"
 msgstr "Ugyldig JSON fil"
 
-#: assets/app.js:1437
+#: assets/app.js
 msgid "Format invalide : un tableau de comptes est attendu."
 msgstr "Ugyldigt format: En række konti forventes."
 
-#: assets/app.js:1440
+#: assets/app.js
 msgid "Le fichier contient {count} compte(s). L'import REMPLACE entièrement la liste actuelle ({current} compte(s)) — cette action écrase les comptes existants, pas leurs sessions (cookies) déjà enregistrées sur le disque. Continuer ?"
 msgstr "Filen indeholder {count} konto (er). Importerer den aktuelle liste ({current} konto (er)) - dette overskriver de eksisterende konti, ikke deres sessioner (cookies) allerede gemt på disken. Fortsæt?"
 
-#: assets/app.js:1444
+#: assets/app.js
 msgid "Import impossible"
 msgstr "Import mislykkedes"
 
-#: assets/app.js:1461
+#: assets/app.js
 msgid "{count} compte(s) importé(s)"
 msgstr "{count} konto (er) importeret"
 
-#: assets/app.js:1464
+#: assets/app.js
 msgid "Échec de l'import : {error}"
 msgstr "Import mislykkedes: {error}"
 
-#: assets/app.js:1476
+#: assets/app.js
 msgid "Compte supprimé"
 msgstr "Konto slettet"
 
-#: assets/app.js:1484
+#: assets/app.js
 msgid "Remplissez tous les champs"
 msgstr "Udfyld alle felter"
 
-#: assets/app.js:1490
+#: assets/app.js
 msgid "Ce profil est déjà utilisé par un autre compte (les sessions seraient partagées)."
 msgstr "Denne profil bruges allerede af en anden konto (sessioner vil blive delt)."
 
-#: assets/app.js:1497
+#: assets/app.js
 msgid "Compte mis à jour"
 msgstr "Konto opdateret"
 
-#: assets/app.js:1506
+#: assets/app.js
 msgid "Compte ajouté"
 msgstr "Tilføjet konto"
 
-#: assets/app.js:1520
+#: assets/app.js
 msgid "Copie impossible dans le presse-papiers"
 msgstr "Kunne ikke kopiere til udklipsholderen"
 
-#: assets/app.js:1520
+#: assets/app.js
 msgid "E-mail copié : {email}"
 msgstr "E-mail kopieret: {email}"
 
-#: assets/app.js:1810
+#: assets/app.js
 msgid "Cooldown terminé"
 msgstr "Nedkøling"
 
-#: assets/app.js:1811
+#: assets/app.js
 msgid "{account} — {service} est de nouveau disponible."
 msgstr "{account} - {service} er tilgængelig igen."
 
-#: assets/app.js:1822
+#: assets/app.js
 msgid "{account} — {service} : cooldown terminé"
 msgstr "{account} - {service}: Nedkøling over"
 
-#: assets/app.js:1856
+#: assets/app.js
 msgid "Téléchargement…"
 msgstr "Downloader..."
 
-#: assets/app.js:1856
+#: assets/app.js
 msgid "Téléchargé — à traiter"
 msgstr "Downloadet - skal behandles"
 
-#: assets/app.js:1857
+#: assets/app.js
 msgid "Aucun profil disponible"
 msgstr "Ingen profil tilgængelig"
 
-#: assets/app.js:1857
+#: assets/app.js
 msgid "Projet en cours d'analyse"
 msgstr "Projektet analyseres"
 
-#: assets/app.js:1858 assets/app.js:2167
+#: assets/app.js
 msgid "En cours"
 msgstr "Kører"
 
-#: assets/app.js:1858
+#: assets/app.js
 msgid "En pause"
 msgstr "Pause"
 
-#: assets/app.js:1858
+#: assets/app.js
 msgid "Reprise programmée"
 msgstr "Genoptag skemalagt"
 
-#: assets/app.js:1859
+#: assets/app.js
 msgid "Erreur"
 msgstr "Fejl"
 
-#: assets/app.js:1859
+#: assets/app.js
 msgid "Livré"
 msgstr "Leveret"
 
-#: assets/app.js:1962
+#: assets/app.js
 msgid "Impossible de charger les réglages"
 msgstr "Kunne ikke indlæse indstillingerne"
 
-#: assets/app.js:1983
+#: assets/app.js
 msgid "Réglages enregistrés — la langue sera appliquée au prochain démarrage"
 msgstr "Indstillinger gemt - sproget vil blive anvendt ved næste start"
 
-#: assets/app.js:1984
+#: assets/app.js
 msgid "Réglages enregistrés"
 msgstr "Indstillinger gemt"
 
-#: assets/app.js:1987
+#: assets/app.js
 msgid "Erreur lors de la sauvegarde"
 msgstr "Fejl under gemning"
 
-#: assets/app.js:1990
+#: assets/app.js
 msgid "Erreur lors de la sauvegarde des réglages"
 msgstr "Fejl under gemning af indstillingerne"
 
 # Traduit à la main (libellé court) ; relecture humaine attendue.
-#: assets/app.js:2007
+#: assets/app.js
 msgid "Arrêter"
 msgstr "Stop"
 
 # Traduit à la main (libellé court) ; relecture humaine attendue.
-#: assets/app.js:2011
+#: assets/app.js
 msgid "En marche"
 msgstr "Kører"
 
-#: assets/app.js:2028
+#: assets/app.js
 msgid "Aucun job pour l'instant — un ZIP téléchargé depuis un onglet IA (ordonnanceur activé) en créera un automatiquement."
 msgstr "Ingen job endnu - en ZIP downloades fra en AI fane (med scheduler aktiveret) vil oprette en automatisk."
 
-#: assets/app.js:2035
+#: assets/app.js
 msgid "Continuer le projet"
 msgstr "Fortsætte projektet"
 
-#: assets/app.js:2036
+#: assets/app.js
 msgid "Marquer livré"
 msgstr "Markér som leveret"
 
-#: assets/app.js:2039
+#: assets/app.js
 msgid "Pause"
 msgstr "Pause"
 
-#: assets/app.js:2042
+#: assets/app.js
 msgid "Reprendre"
 msgstr "Genoptag"
 
-#: assets/app.js:2045
+#: assets/app.js
 msgid "Relancer"
 msgstr "Prøv igen"
 
-#: assets/app.js:2048
+#: assets/app.js
 msgid "Ouvrir le ZIP"
 msgstr "Åbn ZIP"
 
-#: assets/app.js:2051
+#: assets/app.js
 msgid "Analyser la complétude"
 msgstr "Analysefuldstændighed"
 
-#: assets/app.js:2058
+#: assets/app.js
 msgid "service inconnu"
 msgstr "ukendt service"
 
-#: assets/app.js:2059
+#: assets/app.js
 msgid "tentative {n}"
 msgstr "forsøg {n}"
 
-#: assets/app.js:2071
+#: assets/app.js
 msgid "Aucune activité enregistrée."
 msgstr "Ingen aktivitet registreret."
 
-#: assets/app.js:2081
+#: assets/app.js
 msgid "Impossible de modifier l'état de l'ordonnanceur"
 msgstr "Kunne ikke ændre scheduler- tilstand"
 
-#: assets/app.js:2091
+#: assets/app.js
 msgid "Configuration non enregistrée"
 msgstr "Indstilling ikke gemt"
 
-#: assets/app.js:2103 assets/app.js:2110
+#: assets/app.js
 msgid "Sélection du dossier impossible"
 msgstr "Kunne ikke vælge mappen"
 
-#: assets/app.js:2129
+#: assets/app.js
 msgid "Projet terminé : {done}/{total} tâches faites, 0 restante."
 msgstr "Projekt afsluttet: {done} / {total} udførte opgaver, 0 resterende."
 
-#: assets/app.js:2130
+#: assets/app.js
 msgid "{pending} à faire, {inProgress} en cours, {done} faite(s) sur {total} au total."
 msgstr "{pending} at gøre {inProgress} i øjeblikket {done} ud af {total} i alt."
 
-#: assets/app.js:2133
+#: assets/app.js
 msgid "Analyse impossible : {error}"
 msgstr "Analyse mislykkedes: {error}"
 
-#: assets/app.js:2150
+#: assets/app.js
 msgid "Action impossible : {error}"
 msgstr "Handling mislykkedes: {error}"
 
-#: assets/app.js:2160
+#: assets/app.js
 msgid "Aucun projet pour l'instant."
 msgstr "Ingen projekter endnu."
 
-#: assets/app.js:2160 assets/app.js:2215
+#: assets/app.js
 msgid "Créer un projet"
 msgstr "Opret et projekt"
 
-#: assets/app.js:2167
+#: assets/app.js
 msgid "Assignée"
 msgstr "Bevillinger"
 
-#: assets/app.js:2168
+#: assets/app.js
 msgid "Terminée"
 msgstr "Færdiggjort"
 
-#: assets/app.js:2168
+#: assets/app.js
 msgid "Échouée"
 msgstr "Mislykkedes"
 
-#: assets/app.js:2177
+#: assets/app.js
 msgid "Lancer"
 msgstr "Kør"
 
-#: assets/app.js:2181
+#: assets/app.js
 msgid "Résultat"
 msgstr "Resultat"
 
-#: assets/app.js:2194
+#: assets/app.js
 msgid "Aucune tâche."
 msgstr "Ingen opgaver."
 
-#: assets/app.js:2200
+#: assets/app.js
 msgid "Tous les comptes"
 msgstr "Alle konti"
 
-#: assets/app.js:2206
+#: assets/app.js
 msgid "Comptes autorisés :"
 msgstr "Tilladte konti:"
 
-#: assets/app.js:2206
+#: assets/app.js
 msgid "{count} tâche(s)"
 msgstr "{count} opgaver"
 
-#: assets/app.js:2208
+#: assets/app.js
 msgid "Nouvelle tâche"
 msgstr "Ny opgave"
 
-#: assets/app.js:2209
+#: assets/app.js
 msgid "Assigner"
 msgstr "Tildel"
 
-#: assets/app.js:2224
+#: assets/app.js
 msgid "Diagnostic Claude : {error}"
 msgstr "Claude diagnostik: {error}"
 
-#: assets/app.js:2227
+#: assets/app.js
 msgid "« Continuer »"
 msgstr "\"Fortsæt\""
 
-#: assets/app.js:2228
+#: assets/app.js
 msgid "« Télécharger »"
 msgstr "\"Download\""
 
-#: assets/app.js:2229
+#: assets/app.js
 msgid "« Nouveau »"
 msgstr "\"Ny\""
 
-#: assets/app.js:2230
+#: assets/app.js
 msgid "zone de chat"
 msgstr "chatboks"
 
-#: assets/app.js:2231
+#: assets/app.js
 msgid "envoi de fichier"
 msgstr "filupload"
 
-#: assets/app.js:2233
+#: assets/app.js
 msgid "{count} popup(s)"
 msgstr "{count} popup (r)"
 
-#: assets/app.js:2234
+#: assets/app.js
 msgid "Claude (« {profile} ») : {details}"
 msgstr "Claude (\"{profile}\"): {details}"
 
-#: assets/app.js:2234
+#: assets/app.js
 msgid "aucun élément détecté"
 msgstr "intet opdaget"
 
-#: assets/app.js:2236
+#: assets/app.js
 msgid "Diagnostic impossible : {error}"
 msgstr "Diagnostisk fejl: {error}"
 
-#: assets/app.js:2244
+#: assets/app.js
 msgid "Quota gratuit épuisé jusqu'à {time} pour ce profil."
 msgstr "Frit kontingent opbrugt indtil {time} for denne profil."
 
-#: assets/app.js:2246
+#: assets/app.js
 msgid "Job Claude échoué : {error}"
 msgstr "Claude job mislykkedes: {error}"
 
-#: assets/app.js:2251
+#: assets/app.js
 msgid "Prompt envoyé à Claude via {method} (« {profile} »)"
 msgstr "Prompt sendt til Claude via {method} (\"{profile}\")"
 
-#: assets/app.js:2253
+#: assets/app.js
 msgid "Job Claude impossible : {error}"
 msgstr "Claude job kunne ikke køre: {error}"
 
-#: assets/app.js:2259 assets/app.js:2266
+#: assets/app.js
 msgid "Collecte impossible : {error}"
 msgstr "Indsamling mislykkedes: {error}"
 
-#: assets/app.js:2261
+#: assets/app.js
 msgid "Réponse collectée : {count} caractères (« {profile} »)"
 msgstr "Svar indsamlet: {count} tegn (\"{profile}\")"
 
-#: assets/app.js:2264
+#: assets/app.js
 msgid "Aucune réponse trouvée pour le moment."
 msgstr "Intet svar fundet endnu."
 
-#: assets/app.js:2271
+#: assets/app.js
 msgid "Nom du projet :"
 msgstr "Projektnavn:"
 
-#: assets/app.js:2271
+#: assets/app.js
 msgid "Projet {n}"
 msgstr "Projekt {n}"
 
-#: assets/app.js:2277
+#: assets/app.js
 msgid "Projet « {name} » créé"
 msgstr "Projekt \"{name}\" oprettet"
 
-#: assets/app.js:2279 assets/app.js:2299
+#: assets/app.js
 msgid "Création impossible : {error}"
 msgstr "Oprettelse mislykkedes: {error}"
 
-#: assets/app.js:2286
+#: assets/app.js
 msgid "Projet supprimé"
 msgstr "Projekt slettet"
 
-#: assets/app.js:2288
+#: assets/app.js
 msgid "Suppression impossible : {error}"
 msgstr "Sletning mislykkedes: {error}"
 
-#: assets/app.js:2292
+#: assets/app.js
 msgid "Prompt de la tâche :"
 msgstr "Opgaveprompt:"
 
-#: assets/app.js:2297
+#: assets/app.js
 msgid "Tâche créée dans le projet"
 msgstr "Opgave oprettet i projektet"
 
-#: assets/app.js:2309
+#: assets/app.js
 msgid "Aucun compte vert disponible pour ce projet."
 msgstr "Ingen grøn konto til rådighed for dette projekt."
 
-#: assets/app.js:2313
+#: assets/app.js
 msgid "Comptes verts disponibles :"
 msgstr "Tilgængelige grønne regnskaber:"
 
-#: assets/app.js:2313
+#: assets/app.js
 msgid "Numéro du compte :"
 msgstr "Kontonummer:"
 
-#: assets/app.js:2316 assets/app.js:2329
+#: assets/app.js
 msgid "Choix invalide"
 msgstr "Ugyldigt valg"
 
-#: assets/app.js:2322
+#: assets/app.js
 msgid "Aucune tâche dans ce projet."
 msgstr "Ingen opgave i dette projekt."
 
-#: assets/app.js:2326
+#: assets/app.js
 msgid "Numéro de la tâche :"
 msgstr "Opgavenr.:"
 
-#: assets/app.js:2326
+#: assets/app.js
 msgid "Tâches du projet :"
 msgstr "Projektopgaver:"
 
-#: assets/app.js:2333
+#: assets/app.js
 msgid "Tâche {task} assignée à « {account} »"
 msgstr "Opgave {task} tildelt \"{account}\""
 
-#: assets/app.js:2335
+#: assets/app.js
 msgid "Assignation impossible : {error}"
 msgstr "Tildeling mislykkedes: {error}"
 
-#: assets/app.js:2341
+#: assets/app.js
 msgid "Lancement de l'automatisation Claude..."
 msgstr "Start Claude automatiseringen..."
 
-#: assets/app.js:2344
+#: assets/app.js
 msgid "Lancement impossible"
 msgstr "Kunne ikke starte"
 
-#: assets/app.js:2345
+#: assets/app.js
 msgid "Tâche lancée — suivi dans le journal d'activité"
 msgstr "Opgaven startede - følg den i aktivitetsloggen"
 
-#: assets/app.js:2347
+#: assets/app.js
 msgid "Exécution impossible : {error}"
 msgstr "Udførelse mislykkedes: {error}"
 
-#: assets/app.js:2356
+#: assets/app.js
 msgid "Aucun résultat disponible"
 msgstr "Intet resultat tilgængelig"
 
-#: assets/app.js:2362
+#: assets/app.js
 msgid "Résultat — {task}"
 msgstr "Resultat - {task}"
 
-#: assets/app.js:2407
+#: assets/app.js
 msgid "Données de comptes illisibles"
 msgstr "Ulæselige kontodata"
 
-#: assets/app.js:2413
+#: assets/app.js
 msgid "La liste de comptes enregistrée est corrompue. Une sauvegarde de {count} compte(s) a été trouvée. La restaurer ?"
 msgstr "Den gemte kontoliste er beskadiget. Der blev fundet en backup af {count} konto (r). Gendanne den?"
 
-#: assets/app.js:2414
+#: assets/app.js
 msgid "La liste de comptes enregistrée est corrompue et aucune sauvegarde n'est disponible. L'application démarre avec une liste vide ; vos données actuelles ne seront pas écrasées tant que vous ne créez ou ne modifiez pas de compte."
 msgstr "Den gemte kontoliste er beskadiget og ingen backup er tilgængelig. Programmet starter med en tom liste; dine aktuelle data vil ikke blive overskrevet, før du opretter eller redigerer en konto."
 
-#: assets/app.js:2423
+#: assets/app.js
 msgid "Ignorer"
 msgstr "Ignorér"
 
-#: assets/app.js:2428
+#: assets/app.js
 msgid "Restaurer la sauvegarde"
 msgstr "Gendan sikkerhedskopi"
 
-#: assets/app.js:2435
+#: assets/app.js
 msgid "Comptes restaurés depuis la sauvegarde"
 msgstr "Konti genoprettet fra backup"
 
-#: assets/app.js:2442
+#: assets/app.js
 msgid "Compris"
 msgstr "Fik det"
