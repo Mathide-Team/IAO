@@ -103,6 +103,8 @@
       if (!debugMode) return;
       const badge = document.getElementById('debugBadge');
       if (badge) badge.classList.remove('hidden');
+      const relaunch = document.getElementById('btnRelaunchDebug');
+      if (relaunch) relaunch.classList.add('hidden'); // #187 : déjà en mode debug
       dbg('demarrage', 'mode debug actif dans l\'interface');
     }).catch(() => { /* canal absent (ancienne version de main.js) : mode normal */ });
 
@@ -425,8 +427,10 @@
     // ai_accounts est corrompu (le cas échéant on propose la restauration plus bas).
     let dataCorrupt = false;
     let accounts = [];
+    let accountsLoadStatus = 'empty'; // issue #186 : signalé à main.js pour iao.log
     (function loadAccounts() {
       const r = readJSON(STORE_KEY);
+      accountsLoadStatus = r.status;
       if (r.status === 'ok' && Array.isArray(r.data)) accounts = r.data;
       else if (r.status === 'corrupt') dataCorrupt = true;
       // 'empty' ou JSON valide non-tableau -> accounts reste []
@@ -764,6 +768,11 @@
       return window.iaoAPI.ipcInvoke('app:toggle-devtools').catch(() => false);
     }
 
+    // Issue #187 : redémarre IAO avec --iao-debug (canal app:relaunch-debug).
+    window.relaunchDebug = function() {
+      return window.iaoAPI.ipcInvoke('app:relaunch-debug').catch(() => false);
+    }
+
     window.toggleExplorer = function() { document.getElementById('fileExplorer').classList.toggle('collapsed'); }
     window.toggleIdePanel = function() {
       const p = document.getElementById('idePanel');
@@ -1082,7 +1091,11 @@
       if (!tab) return;
       const svc = SERVICES.find(s => s.id === tab.svcId);
       const webview = tab.paneEl.querySelector('webview');
-      if (webview && svc) webview.loadURL(svc.url);
+      // Issue #185 : loadURL() rejette sa promesse sur ERR_ABORTED (-3) quand le
+      // site redirige (page de connexion) ; ce n'est pas une erreur.
+      if (webview && svc) {
+        webview.loadURL(svc.url).catch((e) => dbg('onglets', 'retour à l\'accueil interrompu', tabId, e && e.message));
+      }
     }
 
     // Déconnexion : purge la partition Electron du compte (cookies + stockage
@@ -2383,7 +2396,64 @@
     // Pousse un premier instantané des comptes au démarrage : sans ça, main.js
     // n'a aucune info sur les profils tant que l'utilisateur ne modifie pas un
     // compte (saveAccounts n'aurait pas encore été rappelée).
-    try { ipcRenderer.invoke('scheduler:sync-accounts', accounts).catch(() => {}); } catch (_) { /* ignore */ }
+    // Issue #186 : une liste vide au démarrage n'écrase plus l'instantané de
+    // l'ordonnanceur ; c'est lui qui permet de restaurer les comptes perdus.
+    if (accounts.length > 0) {
+      try { ipcRenderer.invoke('scheduler:sync-accounts', accounts).catch(() => {}); } catch (_) { /* ignore */ }
+    }
+
+    // Issue #186 : le nombre de comptes lus est écrit dans iao.log. Si
+    // l'interface n'en a aucun alors que l'ordonnanceur en connaît, on propose
+    // de les restaurer (sessions conservées : partitions persist:<profil>).
+    ipcRenderer.invoke('scheduler:accounts-startup', { status: accountsLoadStatus, count: accounts.length })
+      .then((res) => {
+        if (res && res.offerRestore && Array.isArray(res.accounts) && res.accounts.length > 0 && accounts.length === 0) {
+          showSnapshotRestoreUI(res.accounts);
+        }
+      })
+      .catch(() => { /* canal absent : pas de proposition */ });
+
+    // Modale de restauration depuis l'instantané de l'ordonnanceur (#186).
+    // textContent uniquement : aucune donnée interprétée en HTML (invariant 1).
+    function showSnapshotRestoreUI(restored) {
+      const overlay = document.createElement('div');
+      overlay.className = 'modal-overlay open';
+      overlay.id = 'snapshotRestore';
+      const box = document.createElement('div');
+      box.className = 'modal';
+      const title = document.createElement('div');
+      title.className = 'modal__title';
+      title.textContent = _('Comptes retrouvés');
+      const desc = document.createElement('div');
+      desc.className = 'modal__desc';
+      desc.textContent = _("Aucun compte n'a été lu au démarrage, mais l'ordonnanceur en connaît {count}. Les restaurer ? Les sessions des services sont conservées ; les adresses e-mail sont à compléter depuis « Modifier le compte ».", { count: restored.length });
+      const actions = document.createElement('div');
+      actions.className = 'modal__actions';
+      const close = () => overlay.remove();
+      const cancel = document.createElement('button');
+      cancel.className = 'btn';
+      cancel.textContent = _('Ignorer');
+      cancel.addEventListener('click', close);
+      const restore = document.createElement('button');
+      restore.className = 'btn btn--primary';
+      restore.setAttribute('data-role', 'snapshot-restore');
+      restore.textContent = _('Restaurer les comptes');
+      restore.addEventListener('click', () => {
+        accounts = restored;
+        migrateOldAccounts();   // services et cooldowns
+        saveAccounts(accounts); // resynchronise aussi l'ordonnanceur
+        renderAccounts();
+        close();
+        showToast(_('{count} compte(s) restauré(s)', { count: restored.length }));
+      });
+      actions.appendChild(cancel);
+      actions.appendChild(restore);
+      box.appendChild(title);
+      box.appendChild(desc);
+      box.appendChild(actions);
+      overlay.appendChild(box);
+      document.body.appendChild(overlay);
+    }
 
     // Récupération des données (chantier C) : si ai_accounts était illisible au
     // démarrage, on propose de restaurer la sauvegarde plutôt que de perdre en
@@ -2469,6 +2539,7 @@ const UI_ACTIONS = {
   'ui-toggleExplorer': 'toggleExplorer',
   'ui-toggleIdePanel': 'toggleIdePanel',
   'ui-toggleDevTools': 'toggleDevTools',
+  'ui-relaunchDebug': 'relaunchDebug',
   'ui-openPalette': 'openPalette',
   'ui-openModal': 'openModal',
   'ui-openHelpModal': 'openHelpModal',

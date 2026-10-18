@@ -77,8 +77,9 @@ function findById(root, id) {
 //   diag         : true (lib/startup-diagnostics) | false (absent) | objet perso
 //   body         : false pour simuler un document sans <body> (script chargé très tôt)
 //   hydrateIcons : fonction facultative exposée sur window
-function load({ diag = true, body = true, hydrateIcons } = {}) {
+function load({ diag = true, body = true, hydrateIcons, iaoAPI } = {}) {
   const errors = [];
+  const infos = [];
   const domListeners = [];
   const handlers = [];
   const document = {
@@ -93,13 +94,14 @@ function load({ diag = true, body = true, hydrateIcons } = {}) {
   if (diag === true) window.IAOStartupDiagnostics = diagnostics;
   else if (diag) window.IAOStartupDiagnostics = diag;
   if (hydrateIcons) window.hydrateIcons = hydrateIcons;
-  const sandbox = { window, document, console: { error: (...a) => errors.push(a.join(' ')) } };
+  if (iaoAPI) window.iaoAPI = iaoAPI;
+  const sandbox = { window, document, console: { error: (...a) => errors.push(a.join(' ')), info: (...a) => infos.push(a.join(' ')) } };
   vm.createContext(sandbox);
   SCRIPT.runInContext(sandbox);
 
   const handler = (type) => handlers.find(h => h.type === type);
   return {
-    window, document, errors, domListeners, handlers,
+    window, document, errors, infos, domListeners, handlers,
     report: window.__iaoReportStartupProblem,
     fire(type, ev) { handler(type).fn(ev); },
     banner() { return document.getElementById('bootError'); },
@@ -360,8 +362,88 @@ test('unhandledrejection : la raison est affichée avec le titre « asynchrone �
   assert.equal(env.items()[0].children[1].textContent, 'promesse rompue');
 });
 
+test('unhandledrejection ERR_ABORTED (-3) : pas de bandeau, preventDefault, ligne info (#185)', () => {
+  const env = load();
+  let prevented = false;
+  const reason = new Error("Error invoking remote method 'GUEST_VIEW_MANAGER_CALL': Error: ERR_ABORTED (-3) loading 'https://claude.ai/new'");
+  env.fire('unhandledrejection', { reason, preventDefault() { prevented = true; } });
+  assert.equal(env.banner(), null);
+  assert.equal(prevented, true);
+  assert.equal(env.errors.length, 0);
+  assert.equal(env.infos.length, 1);
+  assert.match(env.infos[0], /navigation remplacée.*ERR_ABORTED \(-3\) loading 'https:\/\/claude\.ai\/new'/);
+});
+
+test('unhandledrejection ERR_ABORTED sans preventDefault : ignoré sans exception (#185)', () => {
+  const env = load();
+  env.fire('unhandledrejection', { reason: 'ERR_ABORTED (-3) loading x' });
+  assert.equal(env.banner(), null);
+  assert.equal(env.infos.length, 1);
+});
+
+test('unhandledrejection ERR_ABORTED avec des diagnostics sans isNavigationAbort : bandeau comme avant', () => {
+  const env = load({ diag: { describeStartupProblem: diagnostics.describeStartupProblem } });
+  env.fire('unhandledrejection', { reason: new Error('ERR_ABORTED (-3) loading x') });
+  assert.notEqual(env.banner(), null);
+});
+
+test('unhandledrejection : vraie erreur réseau (-105) -> bandeau (#185)', () => {
+  const env = load();
+  env.fire('unhandledrejection', { reason: new Error("ERR_NAME_NOT_RESOLVED (-105) loading 'https://chat.z.ai/'"), preventDefault() {} });
+  assert.notEqual(env.banner(), null);
+  assert.equal(env.infos.length, 0);
+});
+
 test('unhandledrejection : événement absent -> « rejet inconnu »', () => {
   const env = load();
   env.fire('unhandledrejection', undefined);
   assert.equal(env.items()[0].children[1].textContent, 'rejet inconnu');
+});
+
+// --- Issue #187 : relance en mode debug depuis le bandeau --------------------
+
+function findByClass(root, cls) {
+  for (const child of root.children) {
+    if (child.hasClass(cls)) return child;
+    const deeper = findByClass(child, cls);
+    if (deeper) return deeper;
+  }
+  return null;
+}
+
+test('#187 : avec le pont du preload, bouton « Relancer en mode debug » et chemin du journal', async () => {
+  const calls = [];
+  const iaoAPI = {
+    ipcInvoke(channel) {
+      calls.push(channel);
+      return channel === 'app:log-path' ? Promise.resolve('/home/m/.config/ai-manager/logs/iao.log') : Promise.resolve(true);
+    }
+  };
+  const env = load({ iaoAPI });
+  env.report('error', 'boum');
+  const btn = findByClass(env.banner(), 'boot-error__debug');
+  assert.ok(btn, 'bouton absent');
+  assert.equal(btn.textContent, 'Relancer en mode debug');
+  await new Promise((r) => setImmediate(r));
+  assert.equal(findByClass(env.banner(), 'boot-error__log').textContent, 'Journal : /home/m/.config/ai-manager/logs/iao.log');
+  btn.click();
+  assert.deepEqual(calls, ['app:log-path', 'app:relaunch-debug']);
+});
+
+test('#187 : canaux absents (rejets) ou chemin vide -> aucun texte, aucune exception', async () => {
+  const env = load({ iaoAPI: { ipcInvoke: () => Promise.reject(new Error('No handler')) } });
+  env.report('error', 'boum');
+  findByClass(env.banner(), 'boot-error__debug').click();
+  await new Promise((r) => setImmediate(r));
+  assert.equal(findByClass(env.banner(), 'boot-error__log').textContent, '');
+  const env2 = load({ iaoAPI: { ipcInvoke: () => Promise.resolve('') } });
+  env2.report('error', 'boum');
+  await new Promise((r) => setImmediate(r));
+  assert.equal(findByClass(env2.banner(), 'boot-error__log').textContent, '');
+});
+
+test('#187 : pont du preload sans ipcInvoke -> pas de bouton', () => {
+  const env = load({ iaoAPI: {} });
+  env.report('error', 'boum');
+  assert.equal(findByClass(env.banner(), 'boot-error__debug'), null);
 });
