@@ -526,6 +526,47 @@ async function run() {
   });
 
   // =========================================================================
+  // C8 — Comptes absents au démarrage, restaurés depuis l'instantané (#186)
+  // =========================================================================
+  console.log('\n--- C8 : Restauration des comptes au démarrage ---');
+
+  await test('C8.1 localStorage vidé : modale « Comptes retrouvés », restauration sans import', async () => {
+    // L'instantané de l'ordonnanceur contient les comptes du seed (synchronisés
+    // au démarrage). On simule la perte du localStorage de l'interface.
+    await ipc('scheduler:sync-accounts', seedAccounts);
+    await exec(`localStorage.removeItem('ai_accounts'); localStorage.removeItem('ai_accounts_backup'); localStorage.removeItem('ai_open_tabs'); 'ok'`);
+    win.webContents.reload();
+    await sleep(300);
+    await waitLoaded();
+    await sleep(300);
+    const before = await exec(`({
+      modal: document.getElementById('snapshotRestore') !== null,
+      cards: document.querySelectorAll('#accountsList .account-card').length
+    })`);
+    assert(before.modal, 'modale de restauration absente');
+    assert(before.cards === 0, 'des comptes sont affichés avant la restauration : ' + before.cards);
+    const after = await exec(`new Promise((resolve) => {
+      document.querySelector('#snapshotRestore [data-role="snapshot-restore"]').click();
+      setTimeout(() => resolve({
+        modal: document.getElementById('snapshotRestore') !== null,
+        cards: document.querySelectorAll('#accountsList .account-card').length,
+        stored: JSON.parse(localStorage.getItem('ai_accounts') || '[]').map((a) => a.profile)
+      }), 200);
+    })`);
+    assert(!after.modal, 'modale toujours ouverte après restauration');
+    assert(after.cards === seedAccounts.length, 'cartes après restauration : ' + after.cards);
+    assert(JSON.stringify(after.stored) === JSON.stringify(seedAccounts.map((a) => a.profile)), 'profils enregistrés : ' + after.stored.join(','));
+  });
+
+  await test('C8.2 comptes présents : aucune modale de restauration', async () => {
+    win.webContents.reload();
+    await sleep(300);
+    await waitLoaded();
+    await sleep(300);
+    assert(await exec(`document.getElementById('snapshotRestore') === null`), 'modale affichée alors que les comptes sont présents');
+  });
+
+  // =========================================================================
   // Nettoyage
   // =========================================================================
   console.log('\n--- Résumé ---');

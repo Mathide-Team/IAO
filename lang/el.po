@@ -4,8 +4,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: IAO\n"
 "Report-Msgid-Bugs-To: https://github.com/Mathide-Team/IAO/issues\n"
-"Last-Translator: IAO (traduction automatique Argos Translate, relecture humaine attendue, issue #188)\n"
-"Language-Team: aucune (relecture humaine attendue)\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14,63 +12,63 @@ msgstr ""
 
 #: index.html
 msgid "Rechercher un compte ou une IA..."
-msgstr "Αναζήτηση λογαριασμού ή τεχνητή νοημοσύνη..."
+msgstr ""
 
 #: index.html
 msgid "Comptes actifs"
-msgstr "Ενεργοί λογαριασμοί"
+msgstr ""
 
 #: index.html
 msgid "IA Disponibles"
-msgstr "Διαθέσιμα AI"
+msgstr ""
 
 #: index.html
 msgid "Rechercher un compte ou une IA (Ctrl+K)"
-msgstr "Αναζήτηση λογαριασμού ή AI (Ctrl+K)"
+msgstr ""
 
 #: index.html
 msgid "Comptes enregistrés"
-msgstr "Αποθηκευμένοι λογαριασμοί"
+msgstr ""
 
 #: index.html
 msgid "Tout replier / Tout déplier"
-msgstr "Κατάρρευση όλων / επέκταση όλων"
+msgstr ""
 
 #: index.html
 msgid "Exporter les comptes (JSON)"
-msgstr "Λογαριασμοί εξαγωγών (JSON)"
+msgstr ""
 
 #: index.html
 msgid "Importer des comptes (JSON)"
-msgstr "Λογαριασμοί εισαγωγής (JSON)"
+msgstr ""
 
 #: index.html
 msgid "Ajouter un compte"
-msgstr "Προσθήκη λογαριασμού"
+msgstr ""
 
 #: index.html
 msgid "Mode debug actif : traces détaillées dans le journal iao.log"
-msgstr "Λειτουργία αποσφαλμάτωσης: λεπτομερή ίχνη στο αρχείο iao.log"
+msgstr ""
 
 #: index.html
 msgid "Masquer les comptes"
-msgstr "Απόκρυψη λογαριασμών"
+msgstr ""
 
 #: index.html
 msgid "Afficher les comptes"
-msgstr "Εμφάνιση λογαριασμών"
+msgstr ""
 
 #: index.html
 msgid "Explorateur"
-msgstr "Εξερευνητής"
+msgstr ""
 
 #: index.html
 msgid "Éditeur"
-msgstr "Επεξεργαστής"
+msgstr ""
 
 #: index.html
 msgid "Outils de développement (Ctrl+Maj+I)"
-msgstr "Εργαλεία προγραμματιστή (Ctrl+Shift+I)"
+msgstr ""
 
 #: index.html
 msgid "Redémarrer en mode debug (journal détaillé)"
@@ -78,1029 +76,1040 @@ msgstr ""
 
 #: index.html
 msgid "Choisir mes 9 IA à portée de main"
-msgstr "Επιλέξτε 9 go-to AI μου"
+msgstr ""
 
 #: index.html
 msgid "Comprendre les IA disponibles"
-msgstr "Κατανόηση των διαθέσιμων ΤΝ"
+msgstr ""
 
 #: index.html
 msgid "Ordonnanceur IA"
-msgstr "Προγραμματιστής AI"
+msgstr ""
 
 #: index.html
 msgid "Réglages"
-msgstr "Settings"
+msgstr ""
 
 #: index.html
 msgid "Fichiers"
-msgstr "Αρχεία"
+msgstr ""
 
 #: index.html
 msgid "Ouvrir un dossier"
-msgstr "Άνοιγμα φακέλου"
+msgstr ""
 
 #: index.html
 msgid "Réduire"
-msgstr "Κατάρρευση"
+msgstr ""
 
 #: index.html
 msgid "Rechercher un fichier..."
-msgstr "Αναζήτηση αρχείου..."
+msgstr ""
 
 #: index.html
 msgid "Glisser pour redimensionner"
-msgstr "Σύρετε για αλλαγή μεγέθους"
+msgstr ""
 
 #: index.html
 msgid "Aucun fichier"
-msgstr "Χωρίς αρχείο"
+msgstr ""
 
 #: index.html
 msgid "Glisser pour redimensionner l'éditeur"
-msgstr "Σύρετε για αλλαγή μεγέθους του επεξεργαστή"
+msgstr ""
 
 #: index.html
 msgid "Aucun onglet ouvert — choisissez un service dans la liste des comptes"
-msgstr "Χωρίς ανοιχτή καρτέλα — επιλέξτε μια υπηρεσία στον κατάλογο λογαριασμών"
+msgstr ""
 
 #: index.html
 msgid "Le profil permet d'isoler les cookies dans Electron."
-msgstr "Το προφίλ κρατά τα cookies απομονωμένα στο Electron."
+msgstr ""
 
 #: index.html
 msgid "Nom du compte"
-msgstr "Όνομα λογαριασμού"
+msgstr ""
 
 #: index.html
 msgid "Nom du Profil"
-msgstr "Όνομα προφίλ"
+msgstr ""
 
 #: index.html
 msgid "Annuler"
-msgstr "Ακύρωση"
+msgstr ""
 
 #: index.html
 msgid "Enregistrer"
-msgstr "Αποθήκευση"
+msgstr ""
 
 #: index.html
 msgid "Supprimer le compte"
-msgstr "Διαγραφή του λογαριασμού"
+msgstr ""
 
 #: index.html
 msgid "Cette action est irréversible."
-msgstr "Αυτό δεν μπορεί να αναιρεθεί."
+msgstr ""
 
 #: index.html
 msgid "Supprimer"
-msgstr "Διαγραφή"
+msgstr ""
 
 #: index.html
 msgid "Importer des comptes"
-msgstr "Λογαριασμοί εισαγωγής"
+msgstr ""
 
 #: index.html
 msgid "Remplacer et importer"
-msgstr "Αντικατάσταση και εισαγωγή"
+msgstr ""
 
 #: index.html
 msgid "Déconnecter le profil"
-msgstr "Υπογραφή του προφίλ"
+msgstr ""
 
 #: index.html
 msgid "Déconnecter"
-msgstr "Υπογραφή"
+msgstr ""
 
 #: index.html
 msgid "À quoi sert chaque service, et quand l'utiliser."
-msgstr "Τι είναι κάθε υπηρεσία για, και πότε να το χρησιμοποιήσετε."
+msgstr ""
 
 #: index.html
 msgid "Fermer"
-msgstr "Κλείσιμο"
+msgstr ""
 
 #: index.html
 msgid "Sélectionnez les 9 services affichés dans l'interface. Les autres restent disponibles dans l'aide."
-msgstr "Επιλέξτε τις 9 υπηρεσίες που εμφανίζονται στη διασύνδεση. Οι άλλοι παραμένουν διαθέσιμοι στη βοήθεια."
+msgstr ""
 
 #: index.html
 msgid "Détection des ZIP livrés par les onglets IA, reprise par profil."
-msgstr "Ανιχνεύει τα αρχεία ZIP που παραδίδονται από καρτέλες AI, με βιογραφικό ανά προφίλ."
+msgstr ""
 
-# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: index.html
 msgid "Arrêté"
-msgstr "Σταματημένο"
+msgstr ""
 
-# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: index.html
 msgid "Démarrer ou arrêter l'ordonnanceur (il ne démarre jamais tout seul)"
-msgstr "Εκκίνηση ή διακοπή του χρονοπρογραμματιστή (δεν ξεκινά ποτέ μόνος του)"
+msgstr ""
 
-# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: index.html
 msgid "Démarrer"
-msgstr "Εκκίνηση"
+msgstr ""
 
 #: index.html
 msgid "Jobs actifs"
-msgstr "Ενεργές θέσεις εργασίας"
+msgstr ""
 
 #: index.html
 msgid "En attente"
-msgstr "Σε αναμονή"
+msgstr ""
 
 #: index.html
 msgid "Livrés aujourd'hui"
-msgstr "Παραδόθηκε σήμερα"
+msgstr ""
 
 #: index.html
 msgid "Jobs simultanés max."
-msgstr "Μέγ. παράλληλες εργασίες"
+msgstr ""
 
 #: index.html
 msgid "Délai min. entre automatisations (min)"
-msgstr "Ελάχιστη καθυστέρηση μεταξύ αυτοματισμών (min)"
+msgstr ""
 
 #: index.html
 msgid "Seuil profil « le plus ancien » (h)"
-msgstr "\" Παλαιότερο\" κατώτατο όριο προφίλ (h)"
+msgstr ""
 
 #: index.html
 msgid "Dossiers"
-msgstr "Φάκελοι"
+msgstr ""
 
 #: index.html
 msgid "Téléchargements…"
-msgstr "Λήψεις..."
+msgstr ""
 
 #: index.html
 msgid "Livraison…"
-msgstr "Παράδοση..."
+msgstr ""
 
 #: index.html
 msgid "Téléchargements :"
-msgstr "λήψεις:"
+msgstr ""
 
 #: index.html
 msgid "(dossier de téléchargements du système)"
-msgstr "(το σύστημα κατεβάζει το φάκελο)"
+msgstr ""
 
 #: index.html
 msgid "Livraison :"
-msgstr "Παράδοση:"
+msgstr ""
 
 #: index.html
 msgid "(non défini)"
-msgstr "(δεν έχει οριστεί)"
+msgstr ""
 
 #: index.html
 msgid "Projets & tâches"
-msgstr "Εργασίες"
+msgstr ""
 
 #: index.html
 msgid "Jobs"
-msgstr "Εργασίες"
+msgstr ""
 
 #: index.html
 msgid "Journal d'activité"
-msgstr "Ημερολόγιο δραστηριότητας"
+msgstr ""
 
 #: index.html
 msgid "Confirmation"
-msgstr "Επιβεβαίωση"
+msgstr ""
 
 #: index.html
 msgid "Confirmer"
-msgstr "Επιβεβαίωση"
+msgstr ""
 
 #: index.html
 msgid "Préférences de l'application, sauvegardées localement."
-msgstr "Προτιμήσεις εφαρμογής, αποθηκευμένες τοπικά."
+msgstr ""
 
 #: index.html
 msgid "Taille de police de l'éditeur (px)"
-msgstr "Μέγεθος γραμματοσειράς επεξεργαστή (px)"
+msgstr ""
 
 #: index.html
 msgid "Thème"
-msgstr "Θέμα"
+msgstr ""
 
 #: index.html
 msgid "Thème du bureau (défaut)"
-msgstr "Θέμα επιφάνειας εργασίας (προκαθορισμένο)"
+msgstr ""
 
 #: index.html
 msgid "Clair"
-msgstr "Φως"
+msgstr ""
 
 #: index.html
 msgid "Sombre"
-msgstr "Σκούρο"
+msgstr ""
 
 #: index.html
 msgid "Langue"
-msgstr "Γλώσσα"
+msgstr ""
 
 #: index.html
 msgid "Langue du système (défaut)"
-msgstr "Γλώσσα συστήματος (προκαθορισμένο)"
+msgstr ""
 
 #: index.html
 msgid "Appliquée au prochain démarrage"
-msgstr "Εφαρμόζεται στην επόμενη αρχή"
+msgstr ""
 
 #: index.html
 msgid "Retour à la ligne (éditeur)"
-msgstr "Τύλιγμα λέξεων (editor)"
+msgstr ""
 
 #: index.html
 msgid "Désactivé"
-msgstr "Κλείσιμο"
+msgstr ""
 
 #: index.html
 msgid "Activé"
-msgstr "Εμπρός"
+msgstr ""
 
 #: index.html
 msgid "Colonne fixe"
-msgstr "Σταθερή στήλη"
+msgstr ""
 
 #: index.html
 msgid "Confirmer avant de fermer un onglet"
-msgstr "Επιβεβαίωση πριν από το κλείσιμο μιας καρτέλας"
+msgstr ""
 
 #: index.html
 msgid "Afficher les fenêtres d'automatisation"
-msgstr "Εμφάνιση παραθύρων αυτοματισμού"
+msgstr ""
 
 #: index.html
 msgid "Restaurer les onglets ouverts au démarrage"
-msgstr "Επαναφορά ανοικτών καρτελών κατά την εκκίνηση"
+msgstr ""
 
 #: assets/app.js
 msgid "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."
-msgstr "Ο βοηθός του Ανθρωπίνου. Υπερέχει στη συγγραφή, ανάλυση μακρών εγγράφων, προγραμματισμού και συλλογισμού πολλαπλών σταδίων."
+msgstr ""
 
 #: assets/app.js
 msgid "Plutôt pour du code, des textes longs et soignés, ou des questions complexes qui demandent de la rigueur."
-msgstr "Το καλύτερο για κώδικα, μακριά και γυαλισμένα κείμενα, ή περίπλοκες ερωτήσεις που απαιτούν αυστηρότητα."
+msgstr ""
 
 #: assets/app.js
 msgid "L'assistant généraliste d'OpenAI, le plus connu du grand public. Il discute, rédige, résume, génère des images, analyse des fichiers et peut chercher sur le web."
-msgstr "Βοηθός γενικού σκοπού του OpenAI, ο πιο γνωστός στο ευρύ κοινό. Συνομιλεί, γράφει, συνοψίζει, δημιουργεί εικόνες, αναλύει αρχεία και μπορεί να αναζητήσει τον ιστό."
+msgstr ""
 
 #: assets/app.js
 msgid "Le couteau suisse du quotidien : brainstorming, questions générales, petites tâches variées."
-msgstr "Το καθημερινό ελβετικό στρατιωτικό μαχαίρι: brainstorming, γενικές ερωτήσεις, διάφορες μικρές εργασίες."
+msgstr ""
 
 #: assets/app.js
 msgid "L'assistant IA de Google. Multimodal (texte, images, audio, vidéo), il s'appuie sur la recherche Google et s'intègre aux outils Google (Docs, Gmail, Drive…)."
-msgstr "Βοηθός τεχνητής νοημοσύνης στο Google. Multimodal (κείμενο, εικόνες, ήχος, βίντεο), βασίζεται στην αναζήτηση Google και ενσωματώνει με εργαλεία Google (Docs, Gmail, Drive...)."
+msgstr ""
 
 #: assets/app.js
 msgid "Plutôt pour analyser des images ou vidéos, ou si vous travaillez déjà dans l'écosystème Google."
-msgstr "Καλύτερα για ανάλυση εικόνων ή βίντεο, ή αν ήδη εργάζεστε στο οικοσύστημα της Google."
+msgstr ""
 
 #: assets/app.js
 msgid "Le chat de Z.ai, propulsé par les modèles GLM. Gratuit pour l'essentiel, avec un mode agent capable de chercher sur le web et de produire des fichiers (docx, pdf, xlsx)."
-msgstr "Η συνομιλία του Z.ai, τροφοδοτείται από τα μοντέλα GLM. Κυρίως δωρεάν, με μια λειτουργία πράκτορα που μπορεί να αναζητήσει τον ιστό και να παράγει αρχεία (docx, pdf, xlsx)."
+msgstr ""
 
 #: assets/app.js
 msgid "Une alternative gratuite solide pour le chat et le code, quand les quotas des autres sont épuisés."
-msgstr "Μια σταθερή ελεύθερη εναλλακτική λύση για συνομιλία και κώδικα όταν εξαντλούνται οι ποσοστώσεις των άλλων υπηρεσιών."
+msgstr ""
 
 #: assets/app.js
 msgid "Un « moteur de réponse » : il cherche sur le web en direct, synthétise plusieurs sources et cite ses références pour chaque affirmation."
-msgstr "Μια \"απάντηση κινητήρα\": ψάχνει το διαδίκτυο ζωντανά, συνθέτει διάφορες πηγές και παραθέτει τις αναφορές του για κάθε ισχυρισμό."
+msgstr ""
 
 #: assets/app.js
 msgid "Plutôt pour la recherche d'informations à jour, la veille et la vérification de faits avec sources."
-msgstr "Καλύτερα για την εύρεση ενημερωμένων πληροφοριών, την παρακολούθηση θεμάτων και τον έλεγχο γεγονότων με πηγές."
+msgstr ""
 
 #: assets/app.js
 msgid "L'assistant de xAI (Elon Musk), connecté au réseau X (ex-Twitter). Ton direct, accès au temps réel de X, génération d'images incluse."
-msgstr "Ο βοηθός του xAI (Elon Musk), συνδεδεμένος με το δίκτυο X (πρώην Twitter). Άμεσος τόνος, πρόσβαση σε πραγματικό χρόνο στο X, συμπεριλαμβανομένης της παραγωγής εικόνας."
+msgstr ""
 
 #: assets/app.js
 msgid "Plutôt pour suivre l'actualité chaude et les tendances via X, ou pour un ton moins formel."
-msgstr "Το καλύτερο για την παρακολούθηση έκτακτων ειδήσεων και τάσεων μέσω X, ή για λιγότερο επίσημο τόνο."
+msgstr ""
 
 #: assets/app.js
 msgid "Une plateforme de génération d'images orientée création : illustrations, concept art, assets de jeu vidéo, avec des contrôles fins (styles, modèles, retouche)."
-msgstr "Μια δημιουργική πλατφόρμα παραγωγής εικόνας: εικονογράφηση, concept art, video game properties, με λεπτοφυείς ελέγχους (στυλ, μοντέλα, retouching)."
+msgstr ""
 
 #: assets/app.js
 msgid "Plutôt pour produire des visuels et illustrations de qualité avec un contrôle précis du style."
-msgstr "Καλύτερο για την παραγωγή ποιοτικών οπτικών και εικονογραφήσεων με ακριβή έλεγχο πάνω στο στυλ."
+msgstr ""
 
 #: assets/app.js
 msgid "Un générateur de musique : il compose des chansons complètes (instruments, voix, paroles) à partir d'une simple description texte, dans à peu près tous les genres."
-msgstr "Μια μουσική γεννήτρια: συνθέτει ολοκληρωμένα τραγούδια (όργανα, φωνητικά, στίχους) από μια απλή περιγραφή κειμένου, σχεδόν σε οποιοδήποτε είδος."
+msgstr ""
 
 #: assets/app.js
 msgid "Plutôt pour créer une musique, un jingle ou une chanson à partir d'un texte ou d'une idée."
-msgstr "Το καλύτερο για τη δημιουργία ενός κομματιού μουσικής, ενός jingle ή ενός τραγουδιού από ένα κείμενο ή μια ιδέα."
+msgstr ""
 
 #: assets/app.js
 msgid "Un générateur de modèles 3D : il transforme un texte ou une image en objet 3D texturé, avec rigging/animation automatique et export vers les formats standards (GLB, FBX, STL…)."
-msgstr "Μια τρισδιάστατη γεννήτρια μοντέλου: μετατρέπει ένα κείμενο ή μια εικόνα σε ένα τρισδιάστατο αντικείμενο, με αυτόματη ρύθμιση/animation και εξαγωγή σε τυποποιημένες μορφές (GLB, FBX, STL...)."
+msgstr ""
 
 #: assets/app.js
 msgid "Plutôt pour créer des assets 3D (jeux, impression 3D, animation) sans savoir modéliser."
-msgstr "Καλύτερο για τη δημιουργία 3D περιουσιακών στοιχείων (παιχνίδια, τρισδιάστατη εκτύπωση, animation) χωρίς δεξιότητες μοντελοποίησης."
+msgstr ""
 
 #: assets/app.js
 msgid "Le Chat de Mistral AI, éditeur européen (français). Modèles open-weights performants, chat, code et analyse de documents."
-msgstr "Le Chat by Mistral AI, ένας Ευρωπαίος (Γαλλικός) πωλητής. Ισχυρά μοντέλα ανοιχτών βαρών, chat, code και ανάλυση εγγράφων."
+msgstr ""
 
 #: assets/app.js
 msgid "Alternative européenne solide pour le chat et le code, avec une bonne maîtrise du français."
-msgstr "Μια σταθερή ευρωπαϊκή εναλλακτική λύση για συνομιλία και κώδικα, με μια καλή διοίκηση των γαλλικών."
+msgstr ""
 
 #: assets/app.js
 msgid "DeepSeek : assistant IA chinois spécialisé en raisonnement et programmation, particulièrement performant en Python."
-msgstr "DeepSeek: ένας Κινέζος βοηθός AI ειδικευμένος στη λογική και τον προγραμματισμό, ιδιαίτερα ισχυρός στην Python."
+msgstr ""
 
 #: assets/app.js
 msgid "Pour du code Python, du raisonnement étape par étape, ou une alternative gratuite à ChatGPT."
-msgstr "Για τον κώδικα Python, βήμα προς βήμα, ή μια ελεύθερη εναλλακτική λύση στο ChatGPT."
+msgstr ""
 
 #: assets/app.js
 msgid "GitHub Copilot : assistant IA intégré dans VS Code et GitHub. Autocomplétion, chat, génération de tests, explication de code."
-msgstr "GitHub Copilot: βοηθός τεχνητής νοημοσύνης ενσωματωμένος σε κώδικα VS και GitHub. Αυτόματη συμπλήρωση, συνομιλία, παραγωγή δοκιμής, εξήγηση κώδικα."
+msgstr ""
 
 #: assets/app.js
 msgid "Pour programmer plus vite dans VS Code ou sur GitHub, avec un modèle IA qui connaît votre codebase."
-msgstr "Για να προγραμματίσετε γρηγορότερα σε κώδικα VS ή σε GitHub, με ένα μοντέλο AI που γνωρίζει codebase σας."
+msgstr ""
 
 #: assets/app.js
 msgid "Elicit : assistant de recherche scientifique. Trouve des articles, extrait des données, synthétise des études."
-msgstr "Elicit: βοηθός επιστημονικής έρευνας. Βρίσκει έγγραφα, αποσπάσματα δεδομένων, συνθέσεις μελετών."
+msgstr ""
 
 #: assets/app.js
 msgid "Pour la recherche académique, la revue de littérature et l'extraction de données d'articles scientifiques."
-msgstr "Για ακαδημαϊκές έρευνες, κριτικές βιβλιογραφίας και εξαγωγή δεδομένων από επιστημονικές εργασίες."
+msgstr ""
 
 #: assets/app.js
 msgid "NotebookLM de Google : interagissez avec vos propres documents (PDF, texte, audio). Résumés, questions, génération de notes."
-msgstr "NotebookLM της Google: αλληλεπιδρούν με τα δικά σας έγγραφα (PDF, κείμενο, ήχος). Περιλήψεις, ερωτήσεις, δημιουργία σημειώσεων."
+msgstr ""
 
 #: assets/app.js
 msgid "Pour interroger vos documents personnels ou professionnels avec une IA qui cite ses sources."
-msgstr "Για να ανακρίνετε τα προσωπικά σας έγγραφα ή έγγραφα εργασίας σας με ένα AI που αναφέρει τις πηγές του."
+msgstr ""
 
 #: assets/app.js
 msgid "Wolfram Alpha : moteur de calcul symbolique. Mathématiques, physique, chimie, données factuelles, conversions."
-msgstr "Wolfram Alpha: συμβολικός υπολογιστικός κινητήρας. Μαθηματικά, φυσική, χημεία, δεδομένα, μετατροπές."
+msgstr ""
 
 #: assets/app.js
 msgid "Pour des calculs exacts (mathématiques symboliques), des données chiffrées ou des conversions d'unités."
-msgstr "Για ακριβείς υπολογισμούς (συμβολικά μαθηματικά), αριθμητικά δεδομένα ή μετατροπές μονάδων."
+msgstr ""
 
 #: assets/app.js
 msgid "DeepL : traduction automatique de haute qualité, plus naturelle que Google Traduction. Texte et documents entiers."
-msgstr "DeepL: μετάφραση μηχανών υψηλής ποιότητας, πιο φυσικό από το Google Translate. Κείμενο και ολόκληρα έγγραφα."
+msgstr ""
 
 #: assets/app.js
 msgid "Pour traduire du texte ou des documents avec un rendu naturel et cohérent."
-msgstr "Για τη μετάφραση κειμένου ή εγγράφων με φυσικό, συνεπές αποτέλεσμα."
+msgstr ""
 
 #: assets/app.js
 msgid "Ideogram : génération d'images orientée design. Logos, typographies, affiches, avec un excellent rendu du texte."
-msgstr "Ιδεόγραμμα: παραγωγή εικόνας προσανατολισμένη στον σχεδιασμό. Λογότυπος, τυπογραφία, αφίσες, με εξαιρετική απόδοση κειμένου."
+msgstr ""
 
 #: assets/app.js
 msgid "Pour créer des visuels avec du texte lisible (logos, affiches, bannières) ou du design graphique."
-msgstr "Για τη δημιουργία οπτικών με ευανάγνωστο κείμενο (λόγιο, αφίσες, πανό) ή γραφιστική σχεδίαση."
+msgstr ""
 
 #: assets/app.js
 msgid "Kling : générateur de vidéos courtes à partir de texte ou d'images. Animations réalistes, crédits gratuits disponibles."
-msgstr "Kling: μια γεννήτρια μικρού βίντεο από κείμενο ή εικόνες. Realαλιστικά κινούμενα σχέδια, δωρεάν πιστώσεις διαθέσιμες."
+msgstr ""
 
 #: assets/app.js
 msgid "Pour créer des clips vidéo animés à partir d'une description ou d'une image fixe."
-msgstr "Για να δημιουργήσετε κινούμενα βίντεο κλιπ από μια περιγραφή ή μια εικόνα ακόμα."
+msgstr ""
 
 #: assets/app.js
 msgid "Runway : suite d'outils IA pour la vidéo. Génération, édition, effets spéciaux, inpainting vidéo."
-msgstr "Διάδρομος: μια σουίτα εργαλείων βίντεο AI. Γενιά, επεξεργασία, ειδικά εφέ, ζωγραφική βίντεο."
+msgstr ""
 
 #: assets/app.js
 msgid "Pour le montage et la création vidéo avancée avec des outils IA intégrés."
-msgstr "Για προηγμένη επεξεργασία βίντεο και δημιουργία με ενσωματωμένα εργαλεία AI."
+msgstr ""
 
 #: assets/app.js
 msgid "Pika : générateur de vidéos courtes et créatives. Animation d'images, effets, transformation de styles."
-msgstr "Pika: μια γεννήτρια σύντομων, δημιουργικών βίντεο. Εικόνα animation, εφέ, μεταμόρφωση στυλ."
+msgstr ""
 
 #: assets/app.js
 msgid "Pour animer des images ou créer des vidéos courtes originales avec des effets IA."
-msgstr "Για να κινήσετε εικόνες ή να δημιουργήσετε πρωτότυπα βίντεο μικρού μήκους με AI εφέ."
+msgstr ""
 
 #: assets/app.js
 msgid "Qwen : assistant IA d'Alibaba. Multimodal (texte, images, code), open-source, disponible en plusieurs tailles."
-msgstr "Qwen: Βοηθός τεχνητής νοημοσύνης της Alibaba. Multimodal (κείμενο, εικόνες, κώδικας), open source, διαθέσιμο σε διάφορα μεγέθη."
+msgstr ""
 
 #: assets/app.js
 msgid "Alternative gratuite pour le chat, le code et l'analyse d'images, avec un bon support multilingue."
-msgstr "Μια δωρεάν εναλλακτική λύση για την ανάλυση συνομιλίας, κώδικα και εικόνας, με καλή πολύγλωσση υποστήριξη."
+msgstr ""
 
 #: assets/app.js
 msgid "Impossible d'enregistrer les comptes (stockage plein ?)"
-msgstr "Αδυναμία αποθήκευσης των λογαριασμών (πλήρης αποθήκευση;)"
+msgstr ""
 
 #: assets/app.js
 msgid "Ctrl+S pour sauvegarder."
-msgstr "Ctrl+S για αποθήκευση."
+msgstr ""
 
 #: assets/app.js
 msgid "Sélectionnez un fichier pour l'éditer ici."
-msgstr "Επιλέξτε ένα αρχείο για την επεξεργασία του εδώ."
+msgstr ""
 
 #: assets/app.js
 msgid "Éditeur simplifié (Monaco indisponible) — Ctrl+S pour sauvegarder"
-msgstr "Απλοποιημένος επεξεργαστής (δεν είναι διαθέσιμος ο Monaco) — Ctrl+S για αποθήκευση"
+msgstr ""
 
 #: assets/app.js
 msgid "Fichier enregistré !"
-msgstr "Αποθήκευση αρχείου"
+msgstr ""
 
 #: assets/app.js
 msgid "Erreur d'enregistrement."
-msgstr "Αποθήκευση σφάλματος."
+msgstr ""
 
 #: assets/app.js
 msgid "Aucun compte pour l'instant."
-msgstr "Δεν υπάρχουν λογαριασμοί ακόμα."
+msgstr ""
 
 #: assets/app.js
 msgid "Créer mon premier compte"
-msgstr "Δημιουργία του πρώτου μου λογαριασμού"
+msgstr ""
 
 #: assets/app.js
 msgid "Cliquer pour copier l'e-mail"
-msgstr "Κάντε κλικ για να αντιγράψετε τη διεύθυνση email"
+msgstr ""
 
 #: assets/app.js
 msgid "Modifier le compte"
-msgstr "Επεξεργασία λογαριασμού"
+msgstr ""
 
 #: assets/app.js
 msgid "{available} service(s) hors cooldown sur {total}"
-msgstr "{available} της(των) υπηρεσίας(ων) {total} εκτός ψύξης"
+msgstr ""
 
 #: assets/app.js
 msgid "Replier / déplier"
-msgstr "Κατάρρευση / επέκταση"
+msgstr ""
 
 #: assets/app.js
 msgid "{service} — {account} déjà ouvert"
-msgstr "{service} — {account} ήδη ανοικτά"
+msgstr ""
 
 #: assets/app.js
 msgid "Recharger l'onglet"
-msgstr "Επαναφόρτωση καρτέλας"
+msgstr ""
 
 #: assets/app.js
 msgid "Revenir à l'accueil de {service}"
-msgstr "Επιστροφή στην αρχική σελίδα {service}"
+msgstr ""
 
 #: assets/app.js
 msgid "Se déconnecter du profil « {profile} »"
-msgstr "Υπογραφή εκτός προφίλ \"{profile}\""
+msgstr ""
 
 #: assets/app.js
 msgid "{service} ouvert avec {account}"
-msgstr "{service} άνοιξε με {account}"
+msgstr ""
 
 #: assets/app.js
 msgid "Fermer l'onglet"
-msgstr "Κλείσιμο καρτέλας"
+msgstr ""
 
 #: assets/app.js
 msgid "Fermer l'onglet « {tab} » ? La session web sera libérée."
-msgstr "Κλείσιμο καρτέλας \"{tab}\"? Η διαδικτυακή συνεδρία θα κυκλοφορήσει."
+msgstr ""
 
 #: assets/app.js
 msgid "Onglet fermé (mémoire libérée)"
-msgstr "Η καρτέλα έκλεισε (η μνήμη κυκλοφόρησε)"
+msgstr ""
 
 #: assets/app.js
 msgid "Retirer l'étoile"
-msgstr "Αφαίρεση αστέρα"
+msgstr ""
 
 #: assets/app.js
 msgid "Étoiler cet onglet"
-msgstr "Αστέρι αυτής της καρτέλας"
+msgstr ""
 
 #: assets/app.js
 msgid "Onglet étoilé"
-msgstr "Πρωταγωνίστησε η καρτέλα"
+msgstr ""
 
 #: assets/app.js
 msgid "Étoile retirée"
-msgstr "Αφαιρέθηκε ο αστέρας"
+msgstr ""
 
 #: assets/app.js
 msgid "Échec de la déconnexion du profil"
-msgstr "Αδυναμία υπογραφής από το προφίλ"
+msgstr ""
 
 #: assets/app.js
 msgid "Profil « {profile} » déconnecté — session effacée"
-msgstr "Το προφίλ “{profile}” υπογράφηκε — η συνεδρία εκκαθαρίστηκε"
+msgstr ""
 
 #: assets/app.js
 msgid "Aucun fichier trouvé."
-msgstr "Δε βρέθηκαν αρχεία."
+msgstr ""
 
 #: assets/app.js
 msgid "Fichier trop volumineux pour l'éditeur : {size} Mo (limite : 20 Mo)."
-msgstr "Αρχείο πολύ μεγάλο για τον συντάκτη: {size} MB (όριο: 20 MB)."
+msgstr ""
 
 #: assets/app.js
 msgid "C'est quoi ?"
-msgstr "Τι είναι;"
+msgstr ""
 
 #: assets/app.js
 msgid "Quand l'utiliser ?"
-msgstr "Πότε να το χρησιμοποιήσεις;"
+msgstr ""
 
 #: assets/app.js
 msgid "Description à venir."
-msgstr "Η περιγραφή έρχεται σύντομα."
+msgstr ""
 
 #: assets/app.js
 msgid "Maximum {max} services à portée de main"
-msgstr "Το πολύ {max} υπηρεσίες"
+msgstr ""
 
 #: assets/app.js
 msgid "Sélectionnez au moins 1 service"
-msgstr "Επιλέξτε τουλάχιστον 1 υπηρεσία"
+msgstr ""
 
 #: assets/app.js
 msgid "Services mis à jour ({count}/{max})"
-msgstr "Ενημέρωση υπηρεσιών ({count}/{max})"
+msgstr ""
 
 #: assets/app.js
 msgid "Supprimer « {name} » ({email}) ? La session restera stockée sur le disque, mais le compte disparaîtra de la liste."
-msgstr "Διαγραφή \"{name}\" ({email})? Η συνεδρία θα παραμείνει αποθηκευμένη στο δίσκο, αλλά ο λογαριασμός θα εξαφανιστεί από τη λίστα."
+msgstr ""
 
 #: assets/app.js
 msgid "Échec de l'export (écriture impossible)"
-msgstr "Η εξαγωγή απέτυχε (δεν είναι δυνατή η εγγραφή)"
+msgstr ""
 
 #: assets/app.js
 msgid "{count} compte(s) exporté(s)"
-msgstr "{count} Εξάγεται λογαριασμός(-οι)"
+msgstr ""
 
 #: assets/app.js
 msgid "Export impossible"
-msgstr "Αποτυχία εξαγωγής"
+msgstr ""
 
 #: assets/app.js
 msgid "Échec de la lecture du fichier"
-msgstr "Αδυναμία ανάγνωσης του αρχείου"
+msgstr ""
 
 #: assets/app.js
 msgid "Fichier JSON invalide"
-msgstr "Μη έγκυρο αρχείο JSON"
+msgstr ""
 
 #: assets/app.js
 msgid "Format invalide : un tableau de comptes est attendu."
-msgstr "Μη έγκυρη μορφή: αναμένεται μια σειρά λογαριασμών."
+msgstr ""
 
 #: assets/app.js
 msgid "Le fichier contient {count} compte(s). L'import REMPLACE entièrement la liste actuelle ({current} compte(s)) — cette action écrase les comptes existants, pas leurs sessions (cookies) déjà enregistrées sur le disque. Continuer ?"
-msgstr "Το αρχείο περιέχει {count} λογαριασμό ή λογαριασμούς. Εισαγωγή ΟΛΟΚΛΗΡΩΣΕΙ την τρέχουσα λίστα ({current} λογαριασμός(ες) — αυτό αντικαθιστά τους υπάρχοντες λογαριασμούς, όχι τις συνεδρίες (cookies) που έχουν ήδη αποθηκευτεί στο δίσκο. Να συνεχίσω;"
+msgstr ""
 
 #: assets/app.js
 msgid "Import impossible"
-msgstr "Αποτυχία εισαγωγής"
+msgstr ""
 
 #: assets/app.js
 msgid "{count} compte(s) importé(s)"
-msgstr "{count} Λογαριασμός(-οί) εισαγωγής"
+msgstr ""
 
 #: assets/app.js
 msgid "Échec de l'import : {error}"
-msgstr "Η εισαγωγή απέτυχε: {error}"
+msgstr ""
 
 #: assets/app.js
 msgid "Compte supprimé"
-msgstr "Διαγραφή λογαριασμού"
+msgstr ""
 
 #: assets/app.js
 msgid "Remplissez tous les champs"
-msgstr "Συμπληρώστε όλα τα πεδία"
+msgstr ""
 
 #: assets/app.js
 msgid "Ce profil est déjà utilisé par un autre compte (les sessions seraient partagées)."
-msgstr "Το προφίλ αυτό χρησιμοποιείται ήδη από έναν άλλο λογαριασμό (οι σύνοδοι θα μοιράζονται)."
+msgstr ""
 
 #: assets/app.js
 msgid "Compte mis à jour"
-msgstr "Ενημέρωση λογαριασμού"
+msgstr ""
 
 #: assets/app.js
 msgid "Compte ajouté"
-msgstr "Προστέθηκε λογαριασμός"
+msgstr ""
 
 #: assets/app.js
 msgid "Copie impossible dans le presse-papiers"
-msgstr "Αδυναμία αντιγραφής στο πρόχειρο"
+msgstr ""
 
 #: assets/app.js
 msgid "E-mail copié : {email}"
-msgstr "Αντίγραφο ηλεκτρονικού ταχυδρομείου: {email}"
+msgstr ""
 
 #: assets/app.js
 msgid "Cooldown terminé"
-msgstr "Ψύξη πάνω"
+msgstr ""
 
 #: assets/app.js
 msgid "{account} — {service} est de nouveau disponible."
-msgstr "{account} — {service} είναι και πάλι διαθέσιμη."
+msgstr ""
 
 #: assets/app.js
 msgid "{account} — {service} : cooldown terminé"
-msgstr "{account} — {service}: ψύξη"
+msgstr ""
 
 #: assets/app.js
 msgid "Téléchargement…"
-msgstr "Λήψη..."
+msgstr ""
 
 #: assets/app.js
 msgid "Téléchargé — à traiter"
-msgstr "Λήψη — προς επεξεργασία"
+msgstr ""
 
 #: assets/app.js
 msgid "Aucun profil disponible"
-msgstr "Δεν υπάρχει διαθέσιμο προφίλ"
+msgstr ""
 
 #: assets/app.js
 msgid "Projet en cours d'analyse"
-msgstr "Αναλύεται το έργο"
+msgstr ""
 
 #: assets/app.js
 msgid "En cours"
-msgstr "Εκτέλεση"
+msgstr ""
 
 #: assets/app.js
 msgid "En pause"
-msgstr "Παύση"
+msgstr ""
 
 #: assets/app.js
 msgid "Reprise programmée"
-msgstr "Συνέχιση προγραμματισμένης"
+msgstr ""
 
 #: assets/app.js
 msgid "Erreur"
-msgstr "Σφάλμα"
+msgstr ""
 
 #: assets/app.js
 msgid "Livré"
-msgstr "Παραδόθηκε"
+msgstr ""
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"
-msgstr "Αδυναμία φόρτωσης των ρυθμίσεων"
+msgstr ""
 
 #: assets/app.js
 msgid "Réglages enregistrés — la langue sera appliquée au prochain démarrage"
-msgstr "Settings αποθηκευμένων — η γλώσσα θα εφαρμοστεί στην επόμενη εκκίνηση"
+msgstr ""
 
 #: assets/app.js
 msgid "Réglages enregistrés"
-msgstr "Αποθήκευση ρυθμίσεων"
+msgstr ""
 
 #: assets/app.js
 msgid "Erreur lors de la sauvegarde"
-msgstr "Σφάλμα κατά την αποθήκευση"
+msgstr ""
 
 #: assets/app.js
 msgid "Erreur lors de la sauvegarde des réglages"
-msgstr "Σφάλμα κατά την αποθήκευση των ρυθμίσεων"
+msgstr ""
 
-# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: assets/app.js
 msgid "Arrêter"
-msgstr "Διακοπή"
+msgstr ""
 
-# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: assets/app.js
 msgid "En marche"
-msgstr "Σε λειτουργία"
+msgstr ""
 
 #: assets/app.js
 msgid "Aucun job pour l'instant — un ZIP téléchargé depuis un onglet IA (ordonnanceur activé) en créera un automatiquement."
-msgstr "Καμία εργασία ακόμα — ένα ZIP που κατεβάστηκε από μια καρτέλα AI (με ενεργοποιημένο τον προγραμματιστή) θα δημιουργήσει μία αυτόματα."
+msgstr ""
 
 #: assets/app.js
 msgid "Continuer le projet"
-msgstr "Συνέχεια του έργου"
+msgstr ""
 
 #: assets/app.js
 msgid "Marquer livré"
-msgstr "Σημείωση όπως παραδίδεται"
+msgstr ""
 
 #: assets/app.js
 msgid "Pause"
-msgstr "Παύση"
+msgstr ""
 
 #: assets/app.js
 msgid "Reprendre"
-msgstr "Συνέχιση"
+msgstr ""
 
 #: assets/app.js
 msgid "Relancer"
-msgstr "Επανάληψη"
+msgstr ""
 
 #: assets/app.js
 msgid "Ouvrir le ZIP"
-msgstr "Άνοιγμα του ZIP"
+msgstr ""
 
 #: assets/app.js
 msgid "Analyser la complétude"
-msgstr "Ανάλυση πληρότητας"
+msgstr ""
 
 #: assets/app.js
 msgid "service inconnu"
-msgstr "άγνωστη υπηρεσία"
+msgstr ""
 
 #: assets/app.js
 msgid "tentative {n}"
-msgstr "απόπειρα {n}"
+msgstr ""
 
 #: assets/app.js
 msgid "Aucune activité enregistrée."
-msgstr "Δεν έχει καταγραφεί δραστηριότητα."
+msgstr ""
 
 #: assets/app.js
 msgid "Impossible de modifier l'état de l'ordonnanceur"
-msgstr "Αδυναμία αλλαγής κατάστασης προγραμματιστή"
+msgstr ""
 
 #: assets/app.js
 msgid "Configuration non enregistrée"
-msgstr "Η ρύθμιση δεν αποθηκεύτηκε"
+msgstr ""
 
 #: assets/app.js
 msgid "Sélection du dossier impossible"
-msgstr "Αδυναμία επιλογής του φακέλου"
+msgstr ""
 
 #: assets/app.js
 msgid "Projet terminé : {done}/{total} tâches faites, 0 restante."
-msgstr "Το έργο ολοκληρώθηκε: {done}/{total} εργασίες που έγιναν, 0 απομένουν."
+msgstr ""
 
 #: assets/app.js
 msgid "{pending} à faire, {inProgress} en cours, {done} faite(s) sur {total} au total."
-msgstr "{pending} να γίνει, {inProgress} σε εξέλιξη, {done} να γίνει από {total} συνολικά."
+msgstr ""
 
 #: assets/app.js
 msgid "Analyse impossible : {error}"
-msgstr "Η ανάλυση απέτυχε: {error}"
+msgstr ""
 
 #: assets/app.js
 msgid "Action impossible : {error}"
-msgstr "Η ενέργεια απέτυχε: {error}"
+msgstr ""
 
 #: assets/app.js
 msgid "Aucun projet pour l'instant."
-msgstr "Δεν υπάρχουν σχέδια ακόμα."
+msgstr ""
 
 #: assets/app.js
 msgid "Créer un projet"
-msgstr "Δημιουργία ενός έργου"
+msgstr ""
 
 #: assets/app.js
 msgid "Assignée"
-msgstr "Ανάθεση"
+msgstr ""
 
 #: assets/app.js
 msgid "Terminée"
-msgstr "Ολοκληρώθηκε"
+msgstr ""
 
 #: assets/app.js
 msgid "Échouée"
-msgstr "Αποτυχία"
+msgstr ""
 
 #: assets/app.js
 msgid "Lancer"
-msgstr "Εκτέλεση"
+msgstr ""
 
 #: assets/app.js
 msgid "Résultat"
-msgstr "Αποτέλεσμα"
+msgstr ""
 
 #: assets/app.js
 msgid "Aucune tâche."
-msgstr "Όχι δουλειές."
+msgstr ""
 
 #: assets/app.js
 msgid "Tous les comptes"
-msgstr "Όλοι οι λογαριασμοί"
+msgstr ""
 
 #: assets/app.js
 msgid "Comptes autorisés :"
-msgstr "Επιτρεπόμενοι λογαριασμοί:"
+msgstr ""
 
 #: assets/app.js
 msgid "{count} tâche(s)"
-msgstr "{count} Καθήκοντα"
+msgstr ""
 
 #: assets/app.js
 msgid "Nouvelle tâche"
-msgstr "Νέα εργασία"
+msgstr ""
 
 #: assets/app.js
 msgid "Assigner"
-msgstr "Ορισμός"
+msgstr ""
 
 #: assets/app.js
 msgid "Diagnostic Claude : {error}"
-msgstr "Claude διαγνωστικός: {error}"
+msgstr ""
 
 #: assets/app.js
 msgid "« Continuer »"
-msgstr "\"Συνέχισε\""
+msgstr ""
 
 #: assets/app.js
 msgid "« Télécharger »"
-msgstr "\"Κατεβάστε\""
+msgstr ""
 
 #: assets/app.js
 msgid "« Nouveau »"
-msgstr "\"Νέο\""
+msgstr ""
 
 #: assets/app.js
 msgid "zone de chat"
-msgstr "Κουτί συνομιλίας"
+msgstr ""
 
 #: assets/app.js
 msgid "envoi de fichier"
-msgstr "αποστολή αρχείου"
+msgstr ""
 
 #: assets/app.js
 msgid "{count} popup(s)"
-msgstr "{count} Αναδυόμενο(-α)"
+msgstr ""
 
 #: assets/app.js
 msgid "Claude (« {profile} ») : {details}"
-msgstr "Κλωντ («{profile}»): {details}"
+msgstr ""
 
 #: assets/app.js
 msgid "aucun élément détecté"
-msgstr "τίποτα ανιχνεύθηκε"
+msgstr ""
 
 #: assets/app.js
 msgid "Diagnostic impossible : {error}"
-msgstr "Διαγνωστική βλάβη: {error}"
+msgstr ""
 
 #: assets/app.js
 msgid "Quota gratuit épuisé jusqu'à {time} pour ce profil."
-msgstr "Για το προφίλ αυτό, έχει εξαντληθεί η δωρεάν ποσόστωση έως {time}."
+msgstr ""
 
 #: assets/app.js
 msgid "Job Claude échoué : {error}"
-msgstr "Η εργασία Claude απέτυχε: {error}"
+msgstr ""
 
 #: assets/app.js
 msgid "Prompt envoyé à Claude via {method} (« {profile} »)"
-msgstr "Προτροπή που αποστέλλεται στον Claude μέσω {method} («{profile}»)"
+msgstr ""
 
 #: assets/app.js
 msgid "Job Claude impossible : {error}"
-msgstr "Η εργασία Claude δεν μπορούσε να εκτελεστεί: {error}"
+msgstr ""
 
 #: assets/app.js
 msgid "Collecte impossible : {error}"
-msgstr "Η συλλογή απέτυχε: {error}"
+msgstr ""
 
 #: assets/app.js
 msgid "Réponse collectée : {count} caractères (« {profile} »)"
-msgstr "Ανταπόκριση που συλλέχθηκε: {count} χαρακτήρες («{profile}»)"
+msgstr ""
 
 #: assets/app.js
 msgid "Aucune réponse trouvée pour le moment."
-msgstr "Δεν βρέθηκε απάντηση ακόμα."
+msgstr ""
 
 #: assets/app.js
 msgid "Nom du projet :"
-msgstr "Όνομα έργου:"
+msgstr ""
 
 #: assets/app.js
 msgid "Projet {n}"
-msgstr "Έργο {n}"
+msgstr ""
 
 #: assets/app.js
 msgid "Projet « {name} » créé"
-msgstr "Έργο “{name}” που δημιουργήθηκε"
+msgstr ""
 
 #: assets/app.js
 msgid "Création impossible : {error}"
-msgstr "Η δημιουργία απέτυχε: {error}"
+msgstr ""
 
 #: assets/app.js
 msgid "Projet supprimé"
-msgstr "Το έργο διαγράφηκε"
+msgstr ""
 
 #: assets/app.js
 msgid "Suppression impossible : {error}"
-msgstr "Η διαγραφή απέτυχε: {error}"
+msgstr ""
 
 #: assets/app.js
 msgid "Prompt de la tâche :"
-msgstr "Προτροπή εργασίας:"
+msgstr ""
 
 #: assets/app.js
 msgid "Tâche créée dans le projet"
-msgstr "Εργασία που δημιουργήθηκε στο έργο"
+msgstr ""
 
 #: assets/app.js
 msgid "Aucun compte vert disponible pour ce projet."
-msgstr "Δεν υπάρχει πράσινος λογαριασμός για αυτό το έργο."
+msgstr ""
 
 #: assets/app.js
 msgid "Comptes verts disponibles :"
-msgstr "Διαθέσιμοι πράσινοι λογαριασμοί:"
+msgstr ""
 
 #: assets/app.js
 msgid "Numéro du compte :"
-msgstr "Αριθμός λογαριασμού:"
+msgstr ""
 
 #: assets/app.js
 msgid "Choix invalide"
-msgstr "Μη έγκυρη επιλογή"
+msgstr ""
 
 #: assets/app.js
 msgid "Aucune tâche dans ce projet."
-msgstr "Καμία εργασία σε αυτό το έργο."
+msgstr ""
 
 #: assets/app.js
 msgid "Numéro de la tâche :"
-msgstr "Αριθμός εργασίας:"
+msgstr ""
 
 #: assets/app.js
 msgid "Tâches du projet :"
-msgstr "Καθήκοντα του έργου:"
+msgstr ""
 
 #: assets/app.js
 msgid "Tâche {task} assignée à « {account} »"
-msgstr "Καθήκοντα {task} που ανατίθενται σε “{account}”"
+msgstr ""
 
 #: assets/app.js
 msgid "Assignation impossible : {error}"
-msgstr "Ο διορισμός απέτυχε: {error}"
+msgstr ""
 
 #: assets/app.js
 msgid "Lancement de l'automatisation Claude..."
-msgstr "Ξεκινώντας τον αυτοματισμό του Κλωντ..."
+msgstr ""
 
 #: assets/app.js
 msgid "Lancement impossible"
-msgstr "Αδυναμία εκκίνησης"
+msgstr ""
 
 #: assets/app.js
 msgid "Tâche lancée — suivi dans le journal d'activité"
-msgstr "Η εργασία ξεκίνησε — ακολουθήστε την στο ημερολόγιο δραστηριότητας"
+msgstr ""
 
 #: assets/app.js
 msgid "Exécution impossible : {error}"
-msgstr "Η εκτέλεση απέτυχε: {error}"
+msgstr ""
 
 #: assets/app.js
 msgid "Aucun résultat disponible"
-msgstr "Δεν υπάρχει διαθέσιμο αποτέλεσμα"
+msgstr ""
 
 #: assets/app.js
 msgid "Résultat — {task}"
-msgstr "Αποτέλεσμα — {task}"
+msgstr ""
 
 #: assets/app.js
-msgid "Données de comptes illisibles"
-msgstr "Μη αναγνώσιμα στοιχεία λογαριασμού"
+msgid "Comptes retrouvés"
+msgstr ""
 
 #: assets/app.js
-msgid "La liste de comptes enregistrée est corrompue. Une sauvegarde de {count} compte(s) a été trouvée. La restaurer ?"
-msgstr "Η αποθηκευμένη λίστα λογαριασμών είναι αλλοιωμένη. Βρέθηκε αντίγραφο ασφαλείας {count} λογαριασμού(-ων). Να το επαναφέρω;"
-
-#: assets/app.js
-msgid "La liste de comptes enregistrée est corrompue et aucune sauvegarde n'est disponible. L'application démarre avec une liste vide ; vos données actuelles ne seront pas écrasées tant que vous ne créez ou ne modifiez pas de compte."
-msgstr "Η αποθηκευμένη λίστα λογαριασμού είναι κατεστραμμένη και δεν υπάρχει διαθέσιμο αντίγραφο ασφαλείας. Η εφαρμογή ξεκινά με μια κενή λίστα: τα τρέχοντα δεδομένα σας δεν θα αντικατασταθούν μέχρι να δημιουργήσετε ή να επεξεργαστείτε ένα λογαριασμό."
+msgid "Aucun compte n'a été lu au démarrage, mais l'ordonnanceur en connaît {count}. Les restaurer ? Les sessions des services sont conservées ; les adresses e-mail sont à compléter depuis « Modifier le compte »."
+msgstr ""
 
 #: assets/app.js
 msgid "Ignorer"
-msgstr "Παράβλεψη"
+msgstr ""
+
+#: assets/app.js
+msgid "Restaurer les comptes"
+msgstr ""
+
+#: assets/app.js
+msgid "{count} compte(s) restauré(s)"
+msgstr ""
+
+#: assets/app.js
+msgid "Données de comptes illisibles"
+msgstr ""
+
+#: assets/app.js
+msgid "La liste de comptes enregistrée est corrompue. Une sauvegarde de {count} compte(s) a été trouvée. La restaurer ?"
+msgstr ""
+
+#: assets/app.js
+msgid "La liste de comptes enregistrée est corrompue et aucune sauvegarde n'est disponible. L'application démarre avec une liste vide ; vos données actuelles ne seront pas écrasées tant que vous ne créez ou ne modifiez pas de compte."
+msgstr ""
 
 #: assets/app.js
 msgid "Restaurer la sauvegarde"
-msgstr "Επαναφορά του αντιγράφου ασφαλείας"
+msgstr ""
 
 #: assets/app.js
 msgid "Comptes restaurés depuis la sauvegarde"
-msgstr "Λογαριασμοί που αποκαταστάθηκαν από το αντίγραφο ασφαλείας"
+msgstr ""
 
 #: assets/app.js
 msgid "Compris"
-msgstr "Το 'πιασα."
+msgstr ""
