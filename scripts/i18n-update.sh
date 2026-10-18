@@ -147,10 +147,18 @@ for loc in "${LOCALES[@]}"; do
   fi
 done
 
-# .po orphelins (locale retirée de LINGUAS)
+# .po orphelins (locale retirée de LINGUAS). Test sans pipeline : avec
+# pipefail, un grep -qx qui sort dès la première correspondance ferme le
+# pipe avant la fin de printf (SIGPIPE) et fait échouer la vérification
+# de façon aléatoire (faux positif « orphelin » vu sur la PR #196).
+appartient_aux_locales() {
+  local loc
+  for loc in "${LOCALES[@]}"; do [[ "$loc" == "$1" ]] && return 0; done
+  return 1
+}
 for po in "$LANG_DIR"/*.po; do
   loc="$(basename "$po" .po)"
-  if ! printf '%s\n' "${LOCALES[@]}" | grep -qx "$loc"; then
+  if ! appartient_aux_locales "$loc"; then
     echo "::error file=$po::$po ne correspond à aucune locale de lang/LINGUAS" >&2; STATUS=1
   fi
 done
