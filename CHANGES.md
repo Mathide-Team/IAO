@@ -1,5 +1,30 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issue #199 — tâches programmables, lot 2 : cœur pur (18/10/2026)
+
+Remplacement prévu de l'ordonnanceur (ZIP, jobs, projets) par des **tâches
+programmables** dans le menu « Ordonnanceur ». Conception validée dans #199.
+
+### Livré
+- `scheduler/taches.js` (fonctions pures, 100 % couvert, `test/scheduler-taches.test.js`) :
+  - registre **modulaire** de fournisseurs (`enregistrerFournisseur`), Claude seul
+    pour commencer (nouvelle session `https://claude.ai/new`) ;
+  - `normaliserTache` : nom, fournisseur, comptes (« tous » ou liste de profils),
+    répartition (« tous » espacés de N ms, ou « rotation » : un compte par exécution
+    à tour de rôle), nouvelle session, prompt, programmation, **inactive à la création** ;
+  - programmation « unique » (date/heure) ou « periodique » (toutes les N
+    minutes/heures/jours/semaines/mois, minimum 5 minutes) ; `prochaineEcheance` :
+    **une** exécution de rattrapage après une absence, jamais de rafale ; mois
+    calendaires (31 janvier + 1 mois → fin février) ;
+  - `comptesEligibles` (service absent, profil introuvable), `planExecution`.
+- Inventaire de couverture (#101) : `scheduler/taches.js` ajouté.
+
+### Reste (lots suivants de #199)
+- lot 1 : désactiver l'ancien flux (détection des ZIP, jobs, projets) dans le panneau ;
+- lot 3 : exécution (minuterie, onglet nouvelle session, envoi du prompt par
+  l'automatisation Claude existante, heures calmes 15 h – 20 h 30, historique) ;
+- lot 4 : interface (liste, édition, « Exécuter maintenant », historique, i18n 29 langues).
+
 ## Documentation MkDocs (13/10/2026)
 
 Règle d'équipe Mathide-Team : documentation navigable MkDocs sur le modèle de Netcross.
