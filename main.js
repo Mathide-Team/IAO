@@ -497,7 +497,7 @@ app.whenReady().then(() => {
   debug('demarrage', debugTrace.describeRuntime(process));
   // Issue #203 (pistes #184/#186) : état du dossier de données à chaque démarrage.
   const donnees = startupStorage.inspecterDonnees(app.getPath('userData'), fs,
-    typeof process.getuid === 'function' ? process.getuid() : null);
+    startupStorage.uidCourant(process));
   log('demarrage', 'info', startupStorage.resumeDonnees(donnees));
   for (const alerte of startupStorage.alertesDonnees(donnees)) log('demarrage', 'warning', alerte);
   // Issue #162 : le journal d'activité de l'ordonnanceur rejoint iao.log, et

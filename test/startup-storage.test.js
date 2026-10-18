@@ -109,6 +109,11 @@ test('inspecterDonnees : les erreurs sont collectées, jamais levées', () => {
   }
 });
 
+test('uidCourant : getuid sous POSIX, null sous Windows', () => {
+  assert.equal(s.uidCourant({ getuid: () => 1000 }), 1000);
+  assert.equal(s.uidCourant({}), null);
+});
+
 test('messageRenderer : portée et niveau bornés, message tronqué', () => {
   assert.deepEqual(s.messageRenderer('comptes', 'warning', 'x'), { portee: 'renderer:comptes', niveau: 'warning', message: 'x' });
   assert.deepEqual(s.messageRenderer('Pas Bon!', 'error', 42), { portee: 'renderer:renderer', niveau: 'info', message: '42' });
