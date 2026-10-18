@@ -286,23 +286,24 @@ async function run() {
     assert(rels.includes('subfolder/nested.js'), 'subfolder/nested.js absent : ' + rels.join(', '));
   });
 
-  // Issue #181 : IAO démarre sans l'ordonnanceur ; l'utilisateur le démarre
-  // et l'arrête avec un bouton.
-  await test('C3.4 Ordonnanceur arrêté au démarrage, bouton Démarrer / Arrêter (#181)', async () => {
+  // Issue #199, lot 1 : l'ancien ordonnanceur (ZIP, jobs, projets) est
+  // désactivé ; le panneau l'annonce, le bouton Démarrer est masqué et un
+  // démarrage par IPC est refusé (le comportement #181 reste testé par
+  // test/scheduler-state-config.test.js avec IAO_ORDONNANCEUR_ANCIEN=1).
+  await test('C3.4 Ancien ordonnanceur désactivé : bandeau, pas de démarrage (#199)', async () => {
     const etat0 = await ipc('scheduler:get-state');
     assert(etat0 && etat0.config && etat0.config.enabled === false, 'ordonnanceur actif au démarrage');
+    assert(etat0.ancienFlux === false, 'ancien flux actif par défaut');
     await exec('window.openSchedulerModal(); "ok"');
     await sleep(300);
-    const libelle = () => exec('document.getElementById("schedStartStopBtn").textContent.trim()');
-    assert((await libelle()) === 'Démarrer', 'libellé initial : ' + (await libelle()));
-    await exec('document.getElementById("schedStartStopBtn").click(); "ok"');
-    await sleep(400);
-    assert((await ipc('scheduler:get-state')).config.enabled === true, 'le clic n\'a pas démarré l\'ordonnanceur');
-    assert((await libelle()) === 'Arrêter', 'libellé après démarrage : ' + (await libelle()));
-    await exec('document.getElementById("schedStartStopBtn").click(); "ok"');
-    await sleep(400);
-    assert((await ipc('scheduler:get-state')).config.enabled === false, 'le second clic n\'a pas arrêté l\'ordonnanceur');
-    assert((await libelle()) === 'Démarrer', 'libellé après arrêt : ' + (await libelle()));
+    const visible = (id) => exec('(function(){var e=document.getElementById("' + id + '");' +
+      'return !!e && !e.hidden && getComputedStyle(e).display !== "none";})()');
+    assert(await visible('schedLegacyOff'), 'bandeau « désactivé » absent');
+    assert(!(await visible('schedLegacy')), 'sections de l\'ancien flux visibles');
+    assert(!(await visible('schedRun')), 'bouton Démarrer visible');
+    assert(await visible('schedLog'), 'journal d\'activité masqué');
+    const cfg = await ipc('scheduler:set-enabled', true);
+    assert(cfg && cfg.enabled === false, 'démarrage par IPC accepté');
     await exec('window.closeSchedulerModal(); "ok"');
   });
 

@@ -1,5 +1,19 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issue #199 — lot 1 : ancien ordonnanceur désactivé (18/10/2026)
+
+### Livré
+- L'ancien flux (détection des ZIP, jobs, projets) est **désactivé par défaut** :
+  `Scheduler.setEnabled(true)` est refusé et journalisé, aucune partition n'est
+  surveillée (`will-download`). Le panneau « Ordonnanceur IA » affiche un bandeau
+  et masque le bouton Démarrer et les sections de l'ancien flux ; le journal
+  d'activité reste visible.
+- `IAO_ORDONNANCEUR_ANCIEN=1` (`true`, `yes`, `on`) le réactive (retour arrière,
+  tests du code conservé). Code, `jobs.json` et `projects.json` sont conservés.
+- `getState()` expose `ancienFlux`. Tests : `test/scheduler-ancien-flux.test.js`,
+  harnais Electron C3.4 réécrit (bandeau, refus par IPC) ; les tests de l'ancien
+  flux le réactivent explicitement.
+
 ## Issue #199 — tâches programmables, lot 2 : cœur pur (18/10/2026)
 
 Remplacement prévu de l'ordonnanceur (ZIP, jobs, projets) par des **tâches
@@ -20,7 +34,6 @@ programmables** dans le menu « Ordonnanceur ». Conception validée dans #199.
 - Inventaire de couverture (#101) : `scheduler/taches.js` ajouté.
 
 ### Reste (lots suivants de #199)
-- lot 1 : désactiver l'ancien flux (détection des ZIP, jobs, projets) dans le panneau ;
 - lot 3 : exécution (minuterie, onglet nouvelle session, envoi du prompt par
   l'automatisation Claude existante, heures calmes 15 h – 20 h 30, historique) ;
 - lot 4 : interface (liste, édition, « Exécuter maintenant », historique, i18n 29 langues).

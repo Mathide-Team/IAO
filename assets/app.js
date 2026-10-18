@@ -2002,6 +2002,11 @@
 
     function renderSchedulerState(state) {
       var cfg = state.config;
+      // Issue #199, lot 1 : ancien flux masqué sauf IAO_ORDONNANCEUR_ANCIEN=1.
+      var ancien = state.ancienFlux !== false;
+      document.getElementById('schedLegacy').hidden = !ancien;
+      document.getElementById('schedRun').hidden = !ancien;
+      document.getElementById('schedLegacyOff').hidden = ancien;
       // Issue #181 : bouton explicite, l'ordonnanceur ne démarre jamais seul.
       var startStop = document.getElementById('schedStartStopBtn');
       startStop.textContent = cfg.enabled ? _('Arrêter') : _('Démarrer');

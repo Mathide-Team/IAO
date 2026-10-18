@@ -36,7 +36,7 @@ semaines/mois ; tous les comptes ou un seul à tour de rôle espacé de N second
 modulaire, Claude seulement au départ).
 
 - [x] **Lot 2 — cœur pur** : `scheduler/taches.js` (18/10/2026).
-- [ ] **Lot 1 — désactivation de l'ancien flux** (ZIP, jobs, projets) dans le panneau.
+- [x] **Lot 1 — désactivation de l'ancien flux** (ZIP, jobs, projets) dans le panneau (18/10/2026) ; `IAO_ORDONNANCEUR_ANCIEN=1` le réactive.
 - [ ] **Lot 3 — exécution** : minuterie, onglet nouvelle session, envoi du prompt, heures calmes, historique.
 - [ ] **Lot 4 — interface** : liste, édition, « Exécuter maintenant », historique, i18n.
 

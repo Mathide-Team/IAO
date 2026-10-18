@@ -276,12 +276,18 @@
         <div class="modal__title modal__title--tight">Ordonnanceur IA</div>
         <div class="sched-subtitle">Détection des ZIP livrés par les onglets IA, reprise par profil.</div>
       </div>
-      <div class="sched-run">
+      <div class="sched-run" id="schedRun">
         <span class="sched-run__state" id="schedRunState">Arrêté</span>
         <button class="btn btn--primary" id="schedStartStopBtn" title="Démarrer ou arrêter l'ordonnanceur (il ne démarre jamais tout seul)">Démarrer</button>
       </div>
     </div>
 
+    <!-- Issue #199, lot 1 : ancien flux désactivé (IAO_ORDONNANCEUR_ANCIEN=1 le réactive). -->
+    <div class="sched-off" id="schedLegacyOff" hidden>
+      <div class="sched-off__title">Ancien ordonnanceur désactivé</div>
+      <div class="sched-off__text">La détection des ZIP, les jobs et les projets sont remplacés par les tâches programmables, en cours de développement.</div>
+    </div>
+    <div id="schedLegacy">
     <div class="sched-stats">
       <div class="stat-card"><div class="stat-card__label">Jobs actifs</div><div class="stat-card__value text-accent" id="statSchedActive">0</div></div>
       <div class="stat-card"><div class="stat-card__label">En attente</div><div class="stat-card__value text-warning" id="statSchedWaiting">0</div></div>
@@ -310,6 +316,8 @@
 
     <div class="sched-section-label">Jobs</div>
     <div class="sched-jobs" id="schedJobsList"></div>
+
+    </div>
 
     <div class="sched-section-label">Journal d'activité</div>
     <div class="sched-log" id="schedLog"></div>

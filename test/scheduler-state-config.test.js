@@ -1,5 +1,9 @@
 'use strict';
 
+// Ce fichier teste l'ancien flux (ZIP, jobs, projets), désactivé par défaut
+// depuis #199 (lot 1) : on le réactive pour tout le fichier.
+process.env.IAO_ORDONNANCEUR_ANCIEN = '1';
+
 // test/scheduler-state-config.test.js — Couverture de scheduler/index.js :
 // getState, syncAccounts, setEnabled, setConfig (issue #82, tâche 55.13).
 // `app`/`session` Electron simulés, userData temporaire, aucun accès réseau.
