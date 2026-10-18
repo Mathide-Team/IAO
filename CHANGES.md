@@ -1,23 +1,21 @@
 # Rapport de modifications — IAO (18/09/2026)
 
-## Issue #203 — traces de démarrage pour le débogage (18/10/2026)
+## Issue #203 — état du dossier de données au démarrage (18/10/2026)
 
-Ciblées sur les bugs déjà signalés avec journal (#184 « Failed to delete the
-database », #186 comptes non chargés). Le journal `<userData>/logs/iao.log`
-existait déjà (#52, #162) ; ces lignes y sont écrites **hors mode debug**.
+Le journal `<userData>/logs/iao.log` existait déjà (#52, #162). Cette ligne y est
+écrite à chaque démarrage, **hors mode debug**, pour les bugs signalés avec
+journal (#184, #186). Elle complète #196 (comptes lus au démarrage) et #197
+(fichiers appartenant à un autre utilisateur) sans les dupliquer.
 
 ### Livré
-- `lib/startup-storage.js` (pur, fs injecté) : dossier de données, Local Storage
-  (fichiers, octets), partitions et partitions avec un dossier `Service Worker`,
-  fichiers appartenant à un autre utilisateur (parcours borné à 5 000 entrées,
-  10 chemins cités) → ligne `info` + avertissements.
-- `lib/startup-accounts.js` (renderer) : « Comptes lus au démarrage : N —
-  ai_accounts : lu/absent/CORROMPU — sauvegarde : présente/absente », en
-  avertissement si les comptes sont illisibles ou à 0 alors qu'une sauvegarde existe.
-- Canal IPC `app:log` (portée `renderer:<nom>`, niveaux info/avertissement, 1 000
-  caractères max) pour ces lignes du renderer.
-- Tests : `test/startup-storage.test.js` (100 %), `main-debug` (#203), harnais
-  Electron C1.1b (lignes présentes dans `iao.log` réel).
+- `lib/startup-storage.js` (pur, fs injecté, 100 %) : dossier utilisé, Local
+  Storage (fichiers, octets), partitions et partitions ayant un dossier
+  `Service Worker` ; erreurs d'inspection en avertissements, jamais levées.
+- Piste #184 : `cleanupServiceWorkerStorage()` ne nettoie que le dossier
+  `Service Worker` de la fenêtre principale ; le compte des partitions qui en
+  ont un dira s'il faut étendre le nettoyage.
+- Tests : `test/startup-storage.test.js`, `main-debug` (#203), harnais Electron
+  C1.1b (ligne présente dans le vrai `iao.log`).
 
 ## Documentation MkDocs (13/10/2026)
 

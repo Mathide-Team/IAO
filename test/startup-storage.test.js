@@ -1,16 +1,15 @@
 'use strict';
 
-// Issue #203 : traces de démarrage sur le stockage (pistes #184 et #186).
+// Issue #203 : état du dossier de données au démarrage (piste #184).
 
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const path = require('path');
 
 const s = require('../lib/startup-storage.js');
-const c = require('../lib/startup-accounts.js');
 
-// Faux système de fichiers : { chemin: { uid, taille } } pour un fichier,
-// { uid, dir: true } pour un dossier ; `casse` : chemin -> opération qui lève.
+// Faux système de fichiers : { chemin: { taille } } (fichier) ou { dir: true } ;
+// `casse` : chemin -> opération qui lève.
 function fauxFs(arbre, casse) {
   const k = casse || {};
   const leve = (op, p) => { if (k[p] === op) throw new Error(op + ' ' + p); };
@@ -22,134 +21,54 @@ function fauxFs(arbre, casse) {
       return Object.keys(arbre).filter(x => x.startsWith(pref) && !x.slice(pref.length).includes(path.sep))
         .map(x => x.slice(pref.length));
     },
-    lstatSync(p) {
-      leve('lstat', p);
-      const e = arbre[p];
-      if (!e) throw new Error('absent ' + p);
-      return { uid: e.uid, size: e.taille || 0, isDirectory: () => !!e.dir };
-    }
+    lstatSync(p) { leve('lstat', p); return { size: arbre[p].taille || 0 }; }
   };
 }
 
 const R = path.join(path.sep, 'home', 'm', '.config', 'ai-manager');
 const j = (...p) => path.join(R, ...p);
+const ARBRE = {
+  [R]: { dir: true },
+  [j('Local Storage')]: { dir: true },
+  [j('Local Storage', 'leveldb')]: { dir: true },
+  [j('Local Storage', 'leveldb', '000003.log')]: { taille: 300 },
+  [j('Local Storage', 'leveldb', 'LOCK')]: {},
+  [j('Partitions')]: { dir: true },
+  [j('Partitions', 'profil_1')]: { dir: true },
+  [j('Partitions', 'profil_1', 'Service Worker')]: { dir: true },
+  [j('Partitions', 'profil_2')]: { dir: true }
+};
 
-function arbreType(uidRacine) {
-  return {
-    [R]: { uid: 1000, dir: true },
-    [j('Local Storage')]: { uid: 1000, dir: true },
-    [j('Local Storage', 'leveldb')]: { uid: 1000, dir: true },
-    [j('Local Storage', 'leveldb', '000003.log')]: { uid: 1000, taille: 300 },
-    [j('Local Storage', 'leveldb', 'LOCK')]: { uid: uidRacine, taille: 0 },
-    [j('Partitions')]: { uid: 1000, dir: true },
-    [j('Partitions', 'profil_1')]: { uid: 1000, dir: true },
-    [j('Partitions', 'profil_1', 'Service Worker')]: { uid: 1000, dir: true },
-    [j('Partitions', 'profil_2')]: { uid: 1000, dir: true }
-  };
-}
-
-test('inspecterDonnees : stockage, partitions, service workers, propriétaires', () => {
-  const info = s.inspecterDonnees(R, fauxFs(arbreType(0)), 1000);
-  assert.equal(info.existe, true);
+test('inspecterDonnees : Local Storage, partitions, dossiers Service Worker', () => {
+  const info = s.inspecterDonnees(R, fauxFs(ARBRE));
   assert.deepEqual(info.localStorage, { existe: true, fichiers: 2, octets: 300 });
   assert.equal(info.partitions, 2);
   assert.equal(info.partitionsServiceWorker, 1);
-  assert.deepEqual(info.etrangers, [j('Local Storage', 'leveldb', 'LOCK')]);
-  assert.equal(info.etrangersTotal, 1);
-  assert.match(s.resumeDonnees(info), /Local Storage : 2 fichier\(s\), 300 octet\(s\) — partitions : 2 \(dont 1 avec un dossier Service Worker\)/);
-  const alertes = s.alertesDonnees(info);
-  assert.equal(alertes.length, 1);
-  assert.match(alertes[0], /1 fichier\(s\) .* autre utilisateur \(lancement avec sudo \?\).*LOCK$/);
-});
-
-test('inspecterDonnees : sans contrôle des propriétaires (Windows) ni anomalie', () => {
-  for (const uid of [null, undefined]) {
-    const info = s.inspecterDonnees(R, fauxFs(arbreType(0)), uid);
-    assert.equal(info.etrangersTotal, 0);
-    assert.deepEqual(s.alertesDonnees(info), []);
-  }
+  assert.equal(s.resumeDonnees(info), 'Dossier de données ' + R +
+    ' — Local Storage : 2 fichier(s), 300 octet(s) — partitions : 2 (dont 1 avec un dossier Service Worker).');
 });
 
 test('inspecterDonnees : dossier absent, puis sans Local Storage ni Partitions', () => {
-  const absent = s.inspecterDonnees(R, fauxFs({}), 1000);
-  assert.equal(absent.existe, false);
-  assert.match(s.resumeDonnees(absent), /absent \(premier lancement \?\)/);
-  const vide = s.inspecterDonnees(R, fauxFs({ [R]: { uid: 1000, dir: true } }), 1000);
-  assert.match(s.resumeDonnees(vide), /Local Storage : absent — partitions : 0/);
+  assert.match(s.resumeDonnees(s.inspecterDonnees(R, fauxFs({}))), /absent \(premier lancement \?\)/);
+  assert.match(s.resumeDonnees(s.inspecterDonnees(R, fauxFs({ [R]: { dir: true } }))),
+    /Local Storage : absent — partitions : 0 \(dont 0/);
 });
 
-test('inspecterDonnees : plus de 10 fichiers étrangers -> liste tronquée', () => {
-  const arbre = { [R]: { uid: 0, dir: true } };
-  for (let i = 0; i < 12; i++) arbre[j('f' + i)] = { uid: 0 };
-  const info = s.inspecterDonnees(R, fauxFs(arbre), 1000);
-  assert.equal(info.etrangersTotal, 13);
-  assert.equal(info.etrangers.length, s.MAX_ETRANGERS);
-  assert.match(s.alertesDonnees(info)[0], /, …$/);
-});
-
-test('inspecterDonnees : parcours borné', () => {
-  const arbre = { [R]: { uid: 1000, dir: true } };
-  for (let i = 0; i < s.MAX_PARCOURS + 10; i++) arbre[j('f' + i)] = { uid: 0 };
-  const info = s.inspecterDonnees(R, fauxFs(arbre), 1000);
-  assert.equal(info.etrangersTotal, s.MAX_PARCOURS - 1);
-});
-
-test('inspecterDonnees : les erreurs sont collectées, jamais levées', () => {
-  const lsDir = j('Local Storage', 'leveldb');
+test('inspecterDonnees : erreurs collectées, jamais levées ; journaliserDonnees', () => {
   const cas = [
     [{ [R]: 'exists' }, /existence/],
-    [{ [lsDir]: 'readdir' }, /Local Storage/],
-    [{ [j('Partitions')]: 'readdir' }, /Partitions/],
-    [{ [j('Partitions', 'profil_2')]: 'lstat' }, /propriétaire/],
-    [{ [j('Partitions', 'profil_2')]: 'readdir' }, /lecture/]
+    [{ [j('Local Storage', 'leveldb')]: 'readdir' }, /Local Storage/],
+    [{ [j('Partitions')]: 'readdir' }, /Partitions/]
   ];
   for (const [casse, motif] of cas) {
-    const info = s.inspecterDonnees(R, fauxFs(arbreType(1000), casse), 1000);
-    assert.match(s.alertesDonnees(info).join(' | '), motif, JSON.stringify(casse));
+    const lignes = [];
+    s.journaliserDonnees(s.inspecterDonnees(R, fauxFs(ARBRE, casse)), (...a) => lignes.push(a));
+    assert.equal(lignes[0][1], 'info');
+    assert.equal(lignes.length, 2);
+    assert.deepEqual(lignes[1].slice(0, 2), ['demarrage', 'warning']);
+    assert.match(lignes[1][2], motif);
   }
-});
-
-test('journaliserDonnees : une ligne info puis les avertissements', () => {
   const lignes = [];
-  s.journaliserDonnees(s.inspecterDonnees(R, fauxFs(arbreType(0)), 1000), (...a) => lignes.push(a));
-  assert.deepEqual(lignes.map(l => l[0] + ' ' + l[1]), ['demarrage info', 'demarrage warning']);
-});
-
-test('uidCourant : getuid sous POSIX, null sous Windows', () => {
-  assert.equal(s.uidCourant({ getuid: () => 1000 }), 1000);
-  assert.equal(s.uidCourant({}), null);
-});
-
-test('messageRenderer : portée et niveau bornés, message tronqué', () => {
-  assert.deepEqual(s.messageRenderer('comptes', 'warning', 'x'), { portee: 'renderer:comptes', niveau: 'warning', message: 'x' });
-  assert.deepEqual(s.messageRenderer('Pas Bon!', 'error', 42), { portee: 'renderer:renderer', niveau: 'info', message: '42' });
-  assert.equal(s.messageRenderer('a', 'info', 'y'.repeat(2000)).message.length, 1000);
-});
-
-test('resumeComptes / niveauComptes', () => {
-  assert.equal(c.resumeComptes({ statut: 'ok', nombre: 70, sauvegarde: true }),
-    'Comptes lus au démarrage : 70 — ai_accounts : lu — sauvegarde ai_accounts_backup : présente.');
-  assert.match(c.resumeComptes({ statut: 'empty', sauvegarde: false }), /: 0 — ai_accounts : absent — .* absente\.$/);
-  assert.match(c.resumeComptes({ statut: 'corrupt', nombre: 0 }), /CORROMPU/);
-  assert.match(c.resumeComptes({ statut: 'invalid', nombre: 0 }), /pas un tableau/);
-  assert.match(c.resumeComptes({ statut: 'autre', nombre: 0 }), /ai_accounts : autre/);
-  assert.equal(c.niveauComptes({ statut: 'ok', nombre: 3, sauvegarde: true }), 'info');
-  assert.equal(c.niveauComptes({ statut: 'empty', nombre: 0, sauvegarde: false }), 'info');
-  assert.equal(c.niveauComptes({ statut: 'empty', nombre: 0, sauvegarde: true }), 'warning');
-  assert.equal(c.niveauComptes({ statut: 'corrupt', nombre: 0 }), 'warning');
-  assert.equal(c.niveauComptes({ statut: 'invalid', nombre: 0 }), 'warning');
-});
-
-test('startup-accounts s\'attache à window dans le renderer', () => {
-  const chemin = require.resolve('../lib/startup-accounts.js');
-  const avant = global.window;
-  global.window = {};
-  try {
-    delete require.cache[chemin];
-    require(chemin);
-    assert.equal(typeof global.window.iaoStartupAccounts.resumeComptes, 'function');
-  } finally {
-    if (avant === undefined) delete global.window; else global.window = avant;
-    delete require.cache[chemin];
-  }
+  s.journaliserDonnees(s.inspecterDonnees(R, fauxFs(ARBRE)), (...a) => lignes.push(a));
+  assert.equal(lignes.length, 1);
 });
