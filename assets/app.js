@@ -774,6 +774,31 @@
 
     // Ouvre un service pour un compte donné : réutilise l'onglet existant s'il
     // y en a déjà un pour ce couple (compte, service), sinon en crée un nouveau.
+    // Issue #199, lot 3 : tâches programmables. Ouvre (ou réutilise) l'onglet
+    // (compte, service) ; `url` : nouvelle session dans un onglet déjà ouvert.
+    function ouvrirOngletTache(profil, svcId, url) {
+      const acc = accounts.find(a => a.profile === profil);
+      if (!acc || !SERVICES.find(s => s.id === svcId)) return false;
+      const avant = tabs.find(t => t.accId === acc.id && t.svcId === svcId);
+      openService(acc.id, svcId);
+      const wv = avant && url && avant.paneEl ? avant.paneEl.querySelector('webview') : null;
+      if (wv) {
+        try { wv.loadURL(url); } catch (e) { dbg('taches', 'nouvelle session impossible', e && e.message); }
+      }
+      return !!tabs.find(t => t.accId === acc.id && t.svcId === svcId);
+    }
+    (function demarrerTachesProgrammables() {
+      const passage = window.iaoTachesRunner.creerMinuterie({
+        invoke: (...args) => ipcRenderer.invoke(...args),
+        comptes: () => accounts.map(a => ({ profile: a.profile, services: Array.isArray(a.services) ? a.services : [] })),
+        ouvrirOnglet: ouvrirOngletTache,
+        attendre: (ms) => new Promise(resolve => setTimeout(resolve, ms))
+      });
+      setInterval(() => {
+        passage().catch(e => console.warn('[taches] passage en échec :', e && e.message));
+      }, window.iaoTachesRunner.INTERVALLE_MS);
+    })();
+
     window.openService = function(accId, svcId) {
       const acc = accounts.find(a => a.id === accId);
       const svc = SERVICES.find(s => s.id === svcId);

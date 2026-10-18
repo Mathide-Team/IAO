@@ -1,5 +1,28 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issue #199 — lot 3 : exécution des tâches programmables (18/10/2026)
+
+### Livré
+- `scheduler/taches-service.js` (process principal, 100 % couvert) : tâches dans
+  `<userData>/scheduler/taches.json` (écriture atomique), historique borné à 200
+  entrées (`taches-historique.json`), création/remplacement/suppression/activation ;
+  `dues(comptes)` remet le plan des tâches dues et les marque **exécutées aussitôt**
+  (jamais deux départs) ; **heures calmes** 15h–20h30 : rien ne part, la tâche
+  reste due ; « Exécuter maintenant » ; comptes exclus notés (service absent,
+  profil introuvable) ; canaux IPC `taches:*`.
+- `lib/taches-runner.js` (renderer, 100 % couvert) : minuterie toutes les 30 s,
+  un plan et un compte à la fois, délais d'espacement, ouverture de l'onglet
+  (nouvelle session `claude.ai/new`, rechargée si l'onglet existait), envoi par
+  l'automatisation Claude existante (`scheduler:run-claude-job` : diagnostic,
+  quota, délai anti-détection), jusqu'à 6 tentatives espacées de 10 s tant que
+  la page n'est pas prête, compte rendu (envoyé, quota, heures calmes, non
+  connecté, erreur).
+- Une tâche ne s'exécute que si IAO est ouvert ; une exécution manquée est
+  rattrapée **une fois** à l'ouverture suivante.
+
+### Reste
+- lot 4 : interface (liste, édition, « Exécuter maintenant », historique, i18n).
+
 ## Issue #199 — lot 1 : ancien ordonnanceur désactivé (18/10/2026)
 
 ### Livré
