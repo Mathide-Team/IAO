@@ -1082,7 +1082,11 @@
       if (!tab) return;
       const svc = SERVICES.find(s => s.id === tab.svcId);
       const webview = tab.paneEl.querySelector('webview');
-      if (webview && svc) webview.loadURL(svc.url);
+      // Issue #185 : loadURL() rejette sa promesse sur ERR_ABORTED (-3) quand le
+      // site redirige (page de connexion) ; ce n'est pas une erreur.
+      if (webview && svc) {
+        webview.loadURL(svc.url).catch((e) => dbg('onglets', 'retour à l\'accueil interrompu', tabId, e && e.message));
+      }
     }
 
     // Déconnexion : purge la partition Electron du compte (cookies + stockage

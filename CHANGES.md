@@ -16,6 +16,28 @@ la perte des comptes de #186.
   des exemples et la commande `sudo chown -R "$USER": <dossier>`.
 - README (section Dépannage, reprise dans la doc MkDocs).
 
+## Issue #185 — pas de bandeau rouge sur une navigation remplacée (17/10/2026)
+
+### Cause
+Sur un service sans compte, le site redirige vers sa page de connexion pendant le
+premier chargement. Chromium interrompt la navigation (`ERR_ABORTED`, code -3) et la
+promesse interne de la `<webview>` est rejetée sans être rattrapée : le bandeau
+« Une opération asynchrone a échoué au démarrage » s'affichait pour une situation normale.
+
+### Livré
+- `lib/startup-diagnostics.js` : `isNavigationAbort(err)` reconnaît `ERR_ABORTED` (-3),
+  et seulement lui (`ERR_NAME_NOT_RESOLVED`, certificat, hors ligne restent signalés).
+- `assets/boot-guard.js` : un rejet `ERR_ABORTED` n'affiche plus de bandeau ; une ligne
+  `console.info` est écrite (recopiée dans `logs/iao.log` en mode debug).
+- `assets/app.js` : le retour à l'accueil d'un onglet rattrape le rejet de `loadURL()`.
+- Tests : unitaires (couverture 100 %), scénario Electron C0.3 (rejet `ERR_ABORTED`
+  sans bandeau, vraie erreur réseau avec bandeau).
+
+### Écart avec l'issue
+L'issue prévoyait une ligne `info` toujours présente dans le journal. `main.js` ne recopie
+le niveau `info` du renderer qu'en mode debug (règle de #162) ; la ligne n'apparaît donc
+dans `iao.log` qu'avec `--iao-debug`. Changer cette règle sortirait du périmètre.
+
 ## Documentation MkDocs (13/10/2026)
 
 Règle d'équipe Mathide-Team : documentation navigable MkDocs sur le modèle de Netcross.
