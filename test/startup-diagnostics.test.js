@@ -50,6 +50,12 @@ test('describeStartupProblem donne titre, détail et piste selon le type', () =>
   assert.match(d.describeStartupProblem('rejection', 'r').title, /asynchrone/);
 });
 
+test('debugRelaunchArgs (#187) : garde les arguments, sans doublon, ajoute --iao-debug', () => {
+  assert.deepEqual(d.debugRelaunchArgs(['/usr/bin/electron', '.', '--no-sandbox']), ['.', '--no-sandbox', '--iao-debug']);
+  assert.deepEqual(d.debugRelaunchArgs(['/opt/iao/IAO', '--iao-debug', '--debug', '--iao-lang=en']), ['--iao-lang=en', '--iao-debug']);
+  assert.deepEqual(d.debugRelaunchArgs(undefined), ['--iao-debug']);
+});
+
 test('isNavigationAbort (#185) : ERR_ABORTED -3 n\'est pas une panne, les vraies erreurs restent signalées', () => {
   const msg = "Error invoking remote method 'GUEST_VIEW_MANAGER_CALL': Error: ERR_ABORTED (-3) loading 'https://claude.ai/new'";
   assert.equal(d.isNavigationAbort(new Error(msg)), true);

@@ -69,6 +69,10 @@ msgid "Outils de développement (Ctrl+Maj+I)"
 msgstr ""
 
 #: index.html
+msgid "Redémarrer en mode debug (journal détaillé)"
+msgstr ""
+
+#: index.html
 msgid "Choisir mes 9 IA à portée de main"
 msgstr ""
 

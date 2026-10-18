@@ -424,6 +424,20 @@ async function run() {
   // =========================================================================
   // C7 — Internationalisation (issue #51)
   // =========================================================================
+  await test('C6.5 Bouton « Redémarrer en mode debug » présent, câblé et visible hors mode debug (#187)', async () => {
+    const r = await exec(`(() => {
+      const b = document.getElementById('btnRelaunchDebug');
+      return { exists: !!b, action: b && b.getAttribute('data-action'), hidden: b ? b.classList.contains('hidden') : null,
+        fn: typeof window.relaunchDebug };
+    })()`);
+    assert(r.exists, 'bouton absent');
+    assert(r.action === 'ui-relaunchDebug', 'data-action : ' + r.action);
+    assert(r.hidden === false, 'bouton masqué hors mode debug');
+    assert(r.fn === 'function', 'window.relaunchDebug absente');
+    const logPath = await ipc('app:log-path');
+    assert(typeof logPath === 'string' && /logs[\\/]iao\.log$/.test(logPath), 'chemin du journal : ' + logPath);
+  });
+
   console.log('\n--- C7 : Internationalisation ---');
 
   await test('C7.1 IAO_LANG=fr : interface en français (langue source)', async () => {
