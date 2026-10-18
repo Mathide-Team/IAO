@@ -79,6 +79,7 @@ function findById(root, id) {
 //   hydrateIcons : fonction facultative exposée sur window
 function load({ diag = true, body = true, hydrateIcons, iaoAPI } = {}) {
   const errors = [];
+  const infos = [];
   const domListeners = [];
   const handlers = [];
   const document = {
@@ -94,13 +95,13 @@ function load({ diag = true, body = true, hydrateIcons, iaoAPI } = {}) {
   else if (diag) window.IAOStartupDiagnostics = diag;
   if (hydrateIcons) window.hydrateIcons = hydrateIcons;
   if (iaoAPI) window.iaoAPI = iaoAPI;
-  const sandbox = { window, document, console: { error: (...a) => errors.push(a.join(' ')) } };
+  const sandbox = { window, document, console: { error: (...a) => errors.push(a.join(' ')), info: (...a) => infos.push(a.join(' ')) } };
   vm.createContext(sandbox);
   SCRIPT.runInContext(sandbox);
 
   const handler = (type) => handlers.find(h => h.type === type);
   return {
-    window, document, errors, domListeners, handlers,
+    window, document, errors, infos, domListeners, handlers,
     report: window.__iaoReportStartupProblem,
     fire(type, ev) { handler(type).fn(ev); },
     banner() { return document.getElementById('bootError'); },
@@ -359,6 +360,38 @@ test('unhandledrejection : la raison est affichée avec le titre « asynchrone �
 
   assert.equal(env.items()[0].children[0].textContent, 'Une opération asynchrone a échoué au démarrage');
   assert.equal(env.items()[0].children[1].textContent, 'promesse rompue');
+});
+
+test('unhandledrejection ERR_ABORTED (-3) : pas de bandeau, preventDefault, ligne info (#185)', () => {
+  const env = load();
+  let prevented = false;
+  const reason = new Error("Error invoking remote method 'GUEST_VIEW_MANAGER_CALL': Error: ERR_ABORTED (-3) loading 'https://claude.ai/new'");
+  env.fire('unhandledrejection', { reason, preventDefault() { prevented = true; } });
+  assert.equal(env.banner(), null);
+  assert.equal(prevented, true);
+  assert.equal(env.errors.length, 0);
+  assert.equal(env.infos.length, 1);
+  assert.match(env.infos[0], /navigation remplacée.*ERR_ABORTED \(-3\) loading 'https:\/\/claude\.ai\/new'/);
+});
+
+test('unhandledrejection ERR_ABORTED sans preventDefault : ignoré sans exception (#185)', () => {
+  const env = load();
+  env.fire('unhandledrejection', { reason: 'ERR_ABORTED (-3) loading x' });
+  assert.equal(env.banner(), null);
+  assert.equal(env.infos.length, 1);
+});
+
+test('unhandledrejection ERR_ABORTED avec des diagnostics sans isNavigationAbort : bandeau comme avant', () => {
+  const env = load({ diag: { describeStartupProblem: diagnostics.describeStartupProblem } });
+  env.fire('unhandledrejection', { reason: new Error('ERR_ABORTED (-3) loading x') });
+  assert.notEqual(env.banner(), null);
+});
+
+test('unhandledrejection : vraie erreur réseau (-105) -> bandeau (#185)', () => {
+  const env = load();
+  env.fire('unhandledrejection', { reason: new Error("ERR_NAME_NOT_RESOLVED (-105) loading 'https://chat.z.ai/'"), preventDefault() {} });
+  assert.notEqual(env.banner(), null);
+  assert.equal(env.infos.length, 0);
 });
 
 test('unhandledrejection : événement absent -> « rejet inconnu »', () => {

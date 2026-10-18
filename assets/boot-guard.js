@@ -137,6 +137,15 @@
   }, true);
 
   window.addEventListener('unhandledrejection', function (ev) {
-    report('rejection', ev ? ev.reason : 'rejet inconnu');
+    var reason = ev ? ev.reason : 'rejet inconnu';
+    // Issue #185 : navigation remplacée (ERR_ABORTED -3, redirection du site
+    // vers sa page de connexion) -> pas de bandeau. Une ligne console.info,
+    // recopiée dans logs/iao.log en mode debug (--iao-debug).
+    if (diag && typeof diag.isNavigationAbort === 'function' && diag.isNavigationAbort(reason)) {
+      if (typeof ev.preventDefault === 'function') ev.preventDefault();
+      console.info('[demarrage] navigation remplacée (ERR_ABORTED -3), sans gravité : ' + diag.errorText(reason));
+      return;
+    }
+    report('rejection', reason);
   });
 })();
