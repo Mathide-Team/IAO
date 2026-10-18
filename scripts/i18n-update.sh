@@ -14,6 +14,15 @@
 # msgunfmt) et Node.js.
 set -euo pipefail
 
+# Retire les numéros de ligne des références de localisation (issue #195) :
+# « #: assets/app.js:12 » devient « #: assets/app.js ». Les catalogues ne
+# changent ainsi plus quand une chaîne bouge dans un fichier — un déplacement
+# de code n'entraîne plus 30 fichiers modifiés. Implémenté par sed et non par
+# « --add-location=file » : cette valeur n'existe pas dans xgettext 0.19
+# (Ubuntu 20.04, runners maison), contrairement à --no-location qui perd aussi
+# le nom de fichier.
+sans_numeros_de_ligne() { sed -E '/^#:/ s/:[0-9]+//g'; }
+
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 LANG_DIR=lang
@@ -73,7 +82,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 HDR
-  msgcat --use-first --no-wrap "${POT_PARTS[@]}" | awk 'BEGIN{h=1} h && /^$/ {h=0; next} !h'
+  msgcat --use-first --no-wrap "${POT_PARTS[@]}" | sans_numeros_de_ligne | awk 'BEGIN{h=1} h && /^$/ {h=0; next} !h'
 } > "$WORK/messages.pot"
 
 # --- 2. msgmerge sur chaque .po, 3. compilation ---------------------------
@@ -108,7 +117,8 @@ for loc in "${LOCALES[@]}"; do
   fi
   # msgmerge conserve les traductions existantes ; nouvelles chaînes : msgstr "".
   msgmerge --quiet --update --backup=none --previous --no-wrap "$WORK/$loc.po" "$WORK/messages.pot"
-  msgattrib --no-obsolete --no-wrap -o "$WORK/$loc.po" "$WORK/$loc.po"
+  msgattrib --no-obsolete --no-wrap "$WORK/$loc.po" | sans_numeros_de_ligne > "$WORK/$loc.po.tmp"
+  mv "$WORK/$loc.po.tmp" "$WORK/$loc.po"
   compiled="non"
   if msgfmt --check --statistics -o "$WORK/$loc.mo" "$WORK/$loc.po" 2>"$WORK/$loc.stats"; then
     compiled="oui"; COMPILED=$((COMPILED + 1))
