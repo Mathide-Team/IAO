@@ -4,6 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: IAO\n"
 "Report-Msgid-Bugs-To: https://github.com/Mathide-Team/IAO/issues\n"
+"Last-Translator: IAO (traduction automatique Argos Translate, relecture humaine attendue, issue #188)\n"
+"Language-Team: aucune (relecture humaine attendue)\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -12,1084 +14,1089 @@ msgstr ""
 
 #: index.html
 msgid "Rechercher un compte ou une IA..."
-msgstr ""
+msgstr "Cari akun atau AI..."
 
 #: index.html
 msgid "Comptes actifs"
-msgstr ""
+msgstr "Akun aktif"
 
 #: index.html
 msgid "IA Disponibles"
-msgstr ""
+msgstr "AIs Tersedia"
 
 #: index.html
 msgid "Rechercher un compte ou une IA (Ctrl+K)"
-msgstr ""
+msgstr "Cari suatu akun atau suatu AI (Ctrl + K)"
 
 #: index.html
 msgid "Comptes enregistrés"
-msgstr ""
+msgstr "Akun tersimpan"
 
 #: index.html
 msgid "Tout replier / Tout déplier"
-msgstr ""
+msgstr "Kecilkan semua / Kembangkan semua"
 
 #: index.html
 msgid "Exporter les comptes (JSON)"
-msgstr ""
+msgstr "Ekspor akun (JSON)"
 
 #: index.html
 msgid "Importer des comptes (JSON)"
-msgstr ""
+msgstr "Impor akun (JSON)"
 
 #: index.html
 msgid "Ajouter un compte"
-msgstr ""
+msgstr "Tambah akun"
 
 #: index.html
 msgid "Mode debug actif : traces détaillées dans le journal iao.log"
-msgstr ""
+msgstr "Mode debug pada: jejak rinci dalam berkas iao.log"
 
 #: index.html
 msgid "Masquer les comptes"
-msgstr ""
+msgstr "Sembunyikan akun"
 
 #: index.html
 msgid "Afficher les comptes"
-msgstr ""
+msgstr "Tampilkan akun"
 
 #: index.html
 msgid "Explorateur"
-msgstr ""
+msgstr "Explorer"
 
 #: index.html
 msgid "Éditeur"
-msgstr ""
+msgstr "Penyunting"
 
 #: index.html
 msgid "Outils de développement (Ctrl+Maj+I)"
-msgstr ""
+msgstr "Perkakas pengembang (Ctrl + Shift + I)"
 
 #: index.html
 msgid "Choisir mes 9 IA à portée de main"
-msgstr ""
+msgstr "Pilih 9 saya pergi -ke AIs"
 
 #: index.html
 msgid "Comprendre les IA disponibles"
-msgstr ""
+msgstr "Pahami pesan yang tersedia"
 
 #: index.html
 msgid "Ordonnanceur IA"
-msgstr ""
+msgstr "Penjadwalan AI"
 
 #: index.html
 msgid "Réglages"
-msgstr ""
+msgstr "Pengaturan"
 
 #: index.html
 msgid "Fichiers"
-msgstr ""
+msgstr "Berkas"
 
 #: index.html
 msgid "Ouvrir un dossier"
-msgstr ""
+msgstr "Buka folder"
 
 #: index.html
 msgid "Réduire"
-msgstr ""
+msgstr "Kolapse"
 
 #: index.html
 msgid "Rechercher un fichier..."
-msgstr ""
+msgstr "Cari sebuah berkas..."
 
 #: index.html
 msgid "Glisser pour redimensionner"
-msgstr ""
+msgstr "Seret untuk mengubah ukuran"
 
 #: index.html
 msgid "Aucun fichier"
-msgstr ""
+msgstr "Tidak ada berkas"
 
 #: index.html
 msgid "Glisser pour redimensionner l'éditeur"
-msgstr ""
+msgstr "Seret untuk mengubah ukuran penyunting"
 
 #: index.html
 msgid "Aucun onglet ouvert — choisissez un service dans la liste des comptes"
-msgstr ""
+msgstr "Tak ada tab terbuka - pilih layanan dalam daftar akun"
 
 #: index.html
 msgid "Le profil permet d'isoler les cookies dans Electron."
-msgstr ""
+msgstr "Profil itu membuat kue terisolasi di Electron."
 
 #: index.html
 msgid "Nom du compte"
-msgstr ""
+msgstr "Nama akun"
 
 #: index.html
 msgid "Nom du Profil"
-msgstr ""
+msgstr "Nama profil"
 
 #: index.html
 msgid "Annuler"
-msgstr ""
+msgstr "Batal"
 
 #: index.html
 msgid "Enregistrer"
-msgstr ""
+msgstr "Simpan"
 
 #: index.html
 msgid "Supprimer le compte"
-msgstr ""
+msgstr "Hapus akun"
 
 #: index.html
 msgid "Cette action est irréversible."
-msgstr ""
+msgstr "Ini tak bisa dibatalkan."
 
 #: index.html
 msgid "Supprimer"
-msgstr ""
+msgstr "Hapus"
 
 #: index.html
 msgid "Importer des comptes"
-msgstr ""
+msgstr "Impor akun"
 
 #: index.html
 msgid "Remplacer et importer"
-msgstr ""
+msgstr "Ganti dan impor"
 
 #: index.html
 msgid "Déconnecter le profil"
-msgstr ""
+msgstr "Tanda tangani profil"
 
 #: index.html
 msgid "Déconnecter"
-msgstr ""
+msgstr "Tanda tangan"
 
 #: index.html
 msgid "À quoi sert chaque service, et quand l'utiliser."
-msgstr ""
+msgstr "Apa yang setiap layanan adalah untuk, dan kapan untuk menggunakannya."
 
 #: index.html
 msgid "Fermer"
-msgstr ""
+msgstr "Tutup"
 
 #: index.html
 msgid "Sélectionnez les 9 services affichés dans l'interface. Les autres restent disponibles dans l'aide."
-msgstr ""
+msgstr "Pilih layanan 9 yang ditampilkan dalam antarmuka. Yang lain tetap tersedia dalam bantuan."
 
 #: index.html
 msgid "Détection des ZIP livrés par les onglets IA, reprise par profil."
-msgstr ""
+msgstr "Mendeteksi berkas ZIP yang dikirim oleh tab AI, dengan resume perprofile."
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: index.html
 msgid "Arrêté"
-msgstr ""
+msgstr "Berhenti"
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: index.html
 msgid "Démarrer ou arrêter l'ordonnanceur (il ne démarre jamais tout seul)"
-msgstr ""
+msgstr "Mulai atau hentikan penjadwal (tidak pernah mulai dengan sendirinya)"
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: index.html
 msgid "Démarrer"
-msgstr ""
+msgstr "Mulai"
 
 #: index.html
 msgid "Jobs actifs"
-msgstr ""
+msgstr "Tugas aktif"
 
 #: index.html
 msgid "En attente"
-msgstr ""
+msgstr "Menunggu"
 
 #: index.html
 msgid "Livrés aujourd'hui"
-msgstr ""
+msgstr "Dikirim hari ini"
 
 #: index.html
 msgid "Jobs simultanés max."
-msgstr ""
+msgstr "Max. pekerjaan concurrent"
 
 #: index.html
 msgid "Délai min. entre automatisations (min)"
-msgstr ""
+msgstr "Min. penundaan antara otomatisasi (min)"
 
 #: index.html
 msgid "Seuil profil « le plus ancien » (h)"
-msgstr ""
+msgstr "\"Tertua\" profile threshold (h)"
 
 #: index.html
 msgid "Dossiers"
-msgstr ""
+msgstr "Folder"
 
 #: index.html
 msgid "Téléchargements…"
-msgstr ""
+msgstr "Unduhan..."
 
 #: index.html
 msgid "Livraison…"
-msgstr ""
+msgstr "Pengiriman..."
 
 #: index.html
 msgid "Téléchargements :"
-msgstr ""
+msgstr "Unduhan:"
 
 #: index.html
 msgid "(dossier de téléchargements du système)"
-msgstr ""
+msgstr "(sistem mengunduh folder)"
 
 #: index.html
 msgid "Livraison :"
-msgstr ""
+msgstr "Pengiriman:"
 
 #: index.html
 msgid "(non défini)"
-msgstr ""
+msgstr "(belum diatur)"
 
 #: index.html
 msgid "Projets & tâches"
-msgstr ""
+msgstr "Proyek & tugas"
 
 #: index.html
 msgid "Jobs"
-msgstr ""
+msgstr "Pekerjaan"
 
 #: index.html
 msgid "Journal d'activité"
-msgstr ""
+msgstr "Log aktivitas"
 
 #: index.html
 msgid "Confirmation"
-msgstr ""
+msgstr "Konfirmasi"
 
 #: index.html
 msgid "Confirmer"
-msgstr ""
+msgstr "Konfirmasi"
 
 #: index.html
 msgid "Préférences de l'application, sauvegardées localement."
-msgstr ""
+msgstr "Aplikasi preferensi, disimpan secara lokal."
 
 #: index.html
 msgid "Taille de police de l'éditeur (px)"
-msgstr ""
+msgstr "Ukuran fonta penyunting (px)"
 
 #: index.html
 msgid "Thème"
-msgstr ""
+msgstr "Tema"
 
 #: index.html
 msgid "Thème du bureau (défaut)"
-msgstr ""
+msgstr "Tema desktop (baku)"
 
 #: index.html
 msgid "Clair"
-msgstr ""
+msgstr "Cahaya"
 
 #: index.html
 msgid "Sombre"
-msgstr ""
+msgstr "Gelap"
 
 #: index.html
 msgid "Langue"
-msgstr ""
+msgstr "Bahasa"
 
 #: index.html
 msgid "Langue du système (défaut)"
-msgstr ""
+msgstr "Bahasa sistem (baku)"
 
 #: index.html
 msgid "Appliquée au prochain démarrage"
-msgstr ""
+msgstr "Terapan di awal berikutnya"
 
 #: index.html
 msgid "Retour à la ligne (éditeur)"
-msgstr ""
+msgstr "Kata wrap (penyunting)"
 
 #: index.html
 msgid "Désactivé"
-msgstr ""
+msgstr "Mati"
 
 #: index.html
 msgid "Activé"
-msgstr ""
+msgstr "Hidup"
 
 #: index.html
 msgid "Colonne fixe"
-msgstr ""
+msgstr "Kolom tetap"
 
 #: index.html
 msgid "Confirmer avant de fermer un onglet"
-msgstr ""
+msgstr "Konfirmasi sebelum menutup tab"
 
 #: index.html
 msgid "Afficher les fenêtres d'automatisation"
-msgstr ""
+msgstr "Tampilkan jendela otomatisasi"
 
 #: index.html
 msgid "Restaurer les onglets ouverts au démarrage"
-msgstr ""
+msgstr "Mengembalikan tab terbuka saat startup"
 
 #: assets/app.js
 msgid "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."
-msgstr ""
+msgstr "Asisten percakapan Anthropic. Ini unggul dalam menulis, menganalisis dokumen panjang, pemrograman dan multi- langkah penalaran."
 
 #: assets/app.js
 msgid "Plutôt pour du code, des textes longs et soignés, ou des questions complexes qui demandent de la rigueur."
-msgstr ""
+msgstr "Terbaik untuk kode, teks panjang dan dipoles, atau pertanyaan kompleks yang meminta kekakuan."
 
 #: assets/app.js
 msgid "L'assistant généraliste d'OpenAI, le plus connu du grand public. Il discute, rédige, résume, génère des images, analyse des fichiers et peut chercher sur le web."
-msgstr ""
+msgstr "Asisten tujuan utama OpenAI, yang paling dikenal oleh masyarakat umum. Ini chatting, menulis, meringkas, menghasilkan gambar, menganalisis file dan dapat mencari web."
 
 #: assets/app.js
 msgid "Le couteau suisse du quotidien : brainstorming, questions générales, petites tâches variées."
-msgstr ""
+msgstr "Pisau tentara Swiss sehari-hari: brainstorming, pertanyaan umum, berbagai macam tugas kecil."
 
 #: assets/app.js
 msgid "L'assistant IA de Google. Multimodal (texte, images, audio, vidéo), il s'appuie sur la recherche Google et s'intègre aux outils Google (Docs, Gmail, Drive…)."
-msgstr ""
+msgstr "Asisten AI Google. Multimodal (teks, gambar, audio, video), itu dibangun di Google Search dan integrasi dengan alat Google (Docs, Gmail, Drive...)."
 
 #: assets/app.js
 msgid "Plutôt pour analyser des images ou vidéos, ou si vous travaillez déjà dans l'écosystème Google."
-msgstr ""
+msgstr "Terbaik untuk menganalisis gambar atau video, atau jika Anda sudah bekerja dalam ekosistem Google."
 
 #: assets/app.js
 msgid "Le chat de Z.ai, propulsé par les modèles GLM. Gratuit pour l'essentiel, avec un mode agent capable de chercher sur le web et de produire des fichiers (docx, pdf, xlsx)."
-msgstr ""
+msgstr "Obrolan Z.ai, didukung oleh model GLM. Sebagian besar bebas, dengan mode agen yang dapat mencari web dan menghasilkan berkas (dox, pdf, xlsx)."
 
 #: assets/app.js
 msgid "Une alternative gratuite solide pour le chat et le code, quand les quotas des autres sont épuisés."
-msgstr ""
+msgstr "Sebuah alternatif bebas solid untuk percakapan dan kode ketika kuota layanan lain 'habis."
 
 #: assets/app.js
 msgid "Un « moteur de réponse » : il cherche sur le web en direct, synthétise plusieurs sources et cite ses références pour chaque affirmation."
-msgstr ""
+msgstr "Sebuah \"mesin jawaban\": ia mencari web secara langsung, mensintesis beberapa sumber dan mengutip referensi untuk setiap klaim."
 
 #: assets/app.js
 msgid "Plutôt pour la recherche d'informations à jour, la veille et la vérification de faits avec sources."
-msgstr ""
+msgstr "Terbaik untuk menemukan up- to-date informasi, topik pemantauan dan fact- memeriksa dengan sumber."
 
 #: assets/app.js
 msgid "L'assistant de xAI (Elon Musk), connecté au réseau X (ex-Twitter). Ton direct, accès au temps réel de X, génération d'images incluse."
-msgstr ""
+msgstr "Asisten XAI (Elon Musk), terhubung ke jaringan X (sebelumnya Twitter). Nada langsung, akses real-time ke X, pembuatan gambar termasuk."
 
 #: assets/app.js
 msgid "Plutôt pour suivre l'actualité chaude et les tendances via X, ou pour un ton moins formel."
-msgstr ""
+msgstr "Terbaik untuk mengikuti breaking news dan tren melalui X, atau untuk nada formal yang kurang."
 
 #: assets/app.js
 msgid "Une plateforme de génération d'images orientée création : illustrations, concept art, assets de jeu vidéo, avec des contrôles fins (styles, modèles, retouche)."
-msgstr ""
+msgstr "Platform generasi kreatif: ilustrasi, konsep seni, aset video game, dengan kontrol yang terukur baik (gaya, model, sentuhan ulang)."
 
 #: assets/app.js
 msgid "Plutôt pour produire des visuels et illustrations de qualité avec un contrôle précis du style."
-msgstr ""
+msgstr "Terbaik untuk memproduksi visual kualitas dan ilustrasi dengan kontrol yang tepat atas gaya."
 
 #: assets/app.js
 msgid "Un générateur de musique : il compose des chansons complètes (instruments, voix, paroles) à partir d'une simple description texte, dans à peu près tous les genres."
-msgstr ""
+msgstr "Generator musik: lagu itu menyusun lagu lengkap (instrumen, vokal, lirik) dari deskripsi teks sederhana, dalam hampir semua genre."
 
 #: assets/app.js
 msgid "Plutôt pour créer une musique, un jingle ou une chanson à partir d'un texte ou d'une idée."
-msgstr ""
+msgstr "Terbaik untuk menciptakan sepotong musik, jingle atau lagu dari teks atau ide."
 
 #: assets/app.js
 msgid "Un générateur de modèles 3D : il transforme un texte ou une image en objet 3D texturé, avec rigging/animation automatique et export vers les formats standards (GLB, FBX, STL…)."
-msgstr ""
+msgstr "Generator model 3D: ternyata teks atau gambar menjadi objek 3D bertekstur, dengan otomatis rigging / animasi dan ekspor ke format standar (GLB, FBX, STL...)."
 
 #: assets/app.js
 msgid "Plutôt pour créer des assets 3D (jeux, impression 3D, animation) sans savoir modéliser."
-msgstr ""
+msgstr "Terbaik untuk menciptakan aset 3D (permainan, pencetakan 3D, animasi) tanpa keterampilan pemodelan."
 
 #: assets/app.js
 msgid "Le Chat de Mistral AI, éditeur européen (français). Modèles open-weights performants, chat, code et analyse de documents."
-msgstr ""
+msgstr "Le Chat by Mistral AI, vendor Eropa (Perancis). Model terbuka kuat, chatting, kode dan analisis dokumen."
 
 #: assets/app.js
 msgid "Alternative européenne solide pour le chat et le code, avec une bonne maîtrise du français."
-msgstr ""
+msgstr "Sebuah alternatif padat Eropa untuk chatting dan kode, dengan perintah yang baik Perancis."
 
 #: assets/app.js
 msgid "DeepSeek : assistant IA chinois spécialisé en raisonnement et programmation, particulièrement performant en Python."
-msgstr ""
+msgstr "DeepSeek: asisten AI Cina mengkhususkan diri dalam penalaran dan pemrograman, khususnya kuat dalam Python."
 
 #: assets/app.js
 msgid "Pour du code Python, du raisonnement étape par étape, ou une alternative gratuite à ChatGPT."
-msgstr ""
+msgstr "Untuk kode Python, penalaran langkah-demi-langkah, atau alternatif bebas ke ChatGPT."
 
 #: assets/app.js
 msgid "GitHub Copilot : assistant IA intégré dans VS Code et GitHub. Autocomplétion, chat, génération de tests, explication de code."
-msgstr ""
+msgstr "GitHub Copilot: asisten AI yang dibangun dalam VS Code dan GitHub. Penyelesaian otomatis, obrolan, pembuatan tes, penjelasan kode."
 
 #: assets/app.js
 msgid "Pour programmer plus vite dans VS Code ou sur GitHub, avec un modèle IA qui connaît votre codebase."
-msgstr ""
+msgstr "Untuk memprogram lebih cepat di VS Code atau di GitHub, dengan model AI yang mengetahui codebase Anda."
 
 #: assets/app.js
 msgid "Elicit : assistant de recherche scientifique. Trouve des articles, extrait des données, synthétise des études."
-msgstr ""
+msgstr "Elisit: asisten peneliti ilmiah. Menemukan makalah, mengekstrak data, mensintesis studi."
 
 #: assets/app.js
 msgid "Pour la recherche académique, la revue de littérature et l'extraction de données d'articles scientifiques."
-msgstr ""
+msgstr "Untuk penelitian akademik, ulasan sastra dan mengambil data dari makalah ilmiah."
 
 #: assets/app.js
 msgid "NotebookLM de Google : interagissez avec vos propres documents (PDF, texte, audio). Résumés, questions, génération de notes."
-msgstr ""
+msgstr "Google 's NotebookLM: berinteraksi dengan dokumen Anda sendiri (PDF, teks, audio). Ringkasan, pertanyaan, generasi catatan."
 
 #: assets/app.js
 msgid "Pour interroger vos documents personnels ou professionnels avec une IA qui cite ses sources."
-msgstr ""
+msgstr "Untuk query dokumen pribadi atau kerja Anda dengan AI yang mengutip sumbernya."
 
 #: assets/app.js
 msgid "Wolfram Alpha : moteur de calcul symbolique. Mathématiques, physique, chimie, données factuelles, conversions."
-msgstr ""
+msgstr "Wolfram Alpha: mesin komputasi simbolis. Matematika, fisika, kimia, data faktual, konversi."
 
 #: assets/app.js
 msgid "Pour des calculs exacts (mathématiques symboliques), des données chiffrées ou des conversions d'unités."
-msgstr ""
+msgstr "Untuk perhitungan yang tepat (matematika simbolis), data numerik atau unit konversi."
 
 #: assets/app.js
 msgid "DeepL : traduction automatique de haute qualité, plus naturelle que Google Traduction. Texte et documents entiers."
-msgstr ""
+msgstr "DeepL: terjemahan mesin berkualitas tinggi, lebih alami dari Google Translate. Teks dan seluruh dokumen."
 
 #: assets/app.js
 msgid "Pour traduire du texte ou des documents avec un rendu naturel et cohérent."
-msgstr ""
+msgstr "Untuk menerjemahkan teks atau dokumen dengan hasil yang alami dan konsisten."
 
 #: assets/app.js
 msgid "Ideogram : génération d'images orientée design. Logos, typographies, affiches, avec un excellent rendu du texte."
-msgstr ""
+msgstr "Ideogram: pembuatan gambar yang ditunjuk. Logo, tipografi, poster, dengan tulisan yang bagus."
 
 #: assets/app.js
 msgid "Pour créer des visuels avec du texte lisible (logos, affiches, bannières) ou du design graphique."
-msgstr ""
+msgstr "Untuk membuat visual dengan teks berwujud (logo, poster, spanduk) atau desain grafis."
 
 #: assets/app.js
 msgid "Kling : générateur de vidéos courtes à partir de texte ou d'images. Animations réalistes, crédits gratuits disponibles."
-msgstr ""
+msgstr "Kling: generator video pendek dari teks atau gambar. Animasi realistik, kredit gratis tersedia."
 
 #: assets/app.js
 msgid "Pour créer des clips vidéo animés à partir d'une description ou d'une image fixe."
-msgstr ""
+msgstr "Untuk membuat klip video animasi dari deskripsi atau gambar yang masih ada."
 
 #: assets/app.js
 msgid "Runway : suite d'outils IA pour la vidéo. Génération, édition, effets spéciaux, inpainting vidéo."
-msgstr ""
+msgstr "Runway: sebuah suite dari alat video AI. Generasi, penyuntingan, efek khusus, video inpainting."
 
 #: assets/app.js
 msgid "Pour le montage et la création vidéo avancée avec des outils IA intégrés."
-msgstr ""
+msgstr "Untuk penyuntingan video canggih dan pembuatan dengan built-in alat AI."
 
 #: assets/app.js
 msgid "Pika : générateur de vidéos courtes et créatives. Animation d'images, effets, transformation de styles."
-msgstr ""
+msgstr "Pika: generator pendek, video kreatif. Animasi gambar, efek, transformasi gaya."
 
 #: assets/app.js
 msgid "Pour animer des images ou créer des vidéos courtes originales avec des effets IA."
-msgstr ""
+msgstr "Untuk menghidupkan gambar atau membuat video pendek asli dengan efek AI."
 
 #: assets/app.js
 msgid "Qwen : assistant IA d'Alibaba. Multimodal (texte, images, code), open-source, disponible en plusieurs tailles."
-msgstr ""
+msgstr "Asisten AI Alibaaba. Multimodal (teks, gambar, kode), open source, tersedia dalam beberapa ukuran."
 
 #: assets/app.js
 msgid "Alternative gratuite pour le chat, le code et l'analyse d'images, avec un bon support multilingue."
-msgstr ""
+msgstr "Alternatif bebas untuk chatting, kode dan analisis gambar, dengan dukungan multibahasa yang baik."
 
 #: assets/app.js
 msgid "Impossible d'enregistrer les comptes (stockage plein ?)"
-msgstr ""
+msgstr "Tidak dapat menyimpan akun (penyimpanan penuh?)"
 
 #: assets/app.js
 msgid "Ctrl+S pour sauvegarder."
-msgstr ""
+msgstr "Ctrl + S untuk disimpan."
 
 #: assets/app.js
 msgid "Sélectionnez un fichier pour l'éditer ici."
-msgstr ""
+msgstr "Pilih berkas untuk disunting di sini."
 
 #: assets/app.js
 msgid "Éditeur simplifié (Monaco indisponible) — Ctrl+S pour sauvegarder"
-msgstr ""
+msgstr "Penyunting sederhana (Monaco tidak tersedia) - Ctrl + S untuk menyimpan"
 
 #: assets/app.js
 msgid "Fichier enregistré !"
-msgstr ""
+msgstr "Berkas disimpan"
 
 #: assets/app.js
 msgid "Erreur d'enregistrement."
-msgstr ""
+msgstr "Simpan kesalahan."
 
 #: assets/app.js
 msgid "Aucun compte pour l'instant."
-msgstr ""
+msgstr "Belum ada rekening."
 
 #: assets/app.js
 msgid "Créer mon premier compte"
-msgstr ""
+msgstr "Buat akun pertama saya"
 
 #: assets/app.js
 msgid "Cliquer pour copier l'e-mail"
-msgstr ""
+msgstr "Klik untuk menyalin alamat surel"
 
 #: assets/app.js
 msgid "Modifier le compte"
-msgstr ""
+msgstr "Sunting akun"
 
 #: assets/app.js
 msgid "{available} service(s) hors cooldown sur {total}"
-msgstr ""
+msgstr "{available} dari layanan {total} keluar dari cooldown"
 
 #: assets/app.js
 msgid "Replier / déplier"
-msgstr ""
+msgstr "Lipat / ekspan"
 
 #: assets/app.js
 msgid "{service} — {account} déjà ouvert"
-msgstr ""
+msgstr "{service} - {account} sudah terbuka"
 
 #: assets/app.js
 msgid "Recharger l'onglet"
-msgstr ""
+msgstr "Muat ulang tab"
 
 #: assets/app.js
 msgid "Revenir à l'accueil de {service}"
-msgstr ""
+msgstr "Kembali ke halaman {service}"
 
 #: assets/app.js
 msgid "Se déconnecter du profil « {profile} »"
-msgstr ""
+msgstr "Tanda tangan dari profil \"{profile}\""
 
 #: assets/app.js
 msgid "{service} ouvert avec {account}"
-msgstr ""
+msgstr "{service} dibuka dengan {account}"
 
 #: assets/app.js
 msgid "Fermer l'onglet"
-msgstr ""
+msgstr "Tutup tab"
 
 #: assets/app.js
 msgid "Fermer l'onglet « {tab} » ? La session web sera libérée."
-msgstr ""
+msgstr "Tutup tab \"{tab}\"? Sesi web akan dirilis."
 
 #: assets/app.js
 msgid "Onglet fermé (mémoire libérée)"
-msgstr ""
+msgstr "Tab ditutup (memori dirilis)"
 
 #: assets/app.js
 msgid "Retirer l'étoile"
-msgstr ""
+msgstr "Hapus bintang"
 
 #: assets/app.js
 msgid "Étoiler cet onglet"
-msgstr ""
+msgstr "Bintang tab ini"
 
 #: assets/app.js
 msgid "Onglet étoilé"
-msgstr ""
+msgstr "Tab dibintangi"
 
 #: assets/app.js
 msgid "Étoile retirée"
-msgstr ""
+msgstr "Bintang dihapus"
 
 #: assets/app.js
 msgid "Échec de la déconnexion du profil"
-msgstr ""
+msgstr "Tidak dapat sign out dari profil"
 
 #: assets/app.js
 msgid "Profil « {profile} » déconnecté — session effacée"
-msgstr ""
+msgstr "Profil \"{profile}\" keluar - sesi dibersihkan"
 
 #: assets/app.js
 msgid "Aucun fichier trouvé."
-msgstr ""
+msgstr "Tak ada berkas yang ditemukan."
 
 #: assets/app.js
 msgid "Fichier trop volumineux pour l'éditeur : {size} Mo (limite : 20 Mo)."
-msgstr ""
+msgstr "Berkas terlalu besar untuk penyunting: {size} MB (batas: 20 MB)."
 
 #: assets/app.js
 msgid "C'est quoi ?"
-msgstr ""
+msgstr "Apa itu?"
 
 #: assets/app.js
 msgid "Quand l'utiliser ?"
-msgstr ""
+msgstr "Kapan menggunakannya?"
 
 #: assets/app.js
 msgid "Description à venir."
-msgstr ""
+msgstr "Deskripsi segera datang."
 
 #: assets/app.js
 msgid "Maximum {max} services à portée de main"
-msgstr ""
+msgstr "Paling banyak {max} layanan di tangan"
 
 #: assets/app.js
 msgid "Sélectionnez au moins 1 service"
-msgstr ""
+msgstr "Pilih paling tidak 1 layanan"
 
 #: assets/app.js
 msgid "Services mis à jour ({count}/{max})"
-msgstr ""
+msgstr "Layanan diperbarui ({count} / {max})"
 
 #: assets/app.js
 msgid "Supprimer « {name} » ({email}) ? La session restera stockée sur le disque, mais le compte disparaîtra de la liste."
-msgstr ""
+msgstr "Hapus \"{name}\" ({email})? Sesi akan tetap disimpan pada disk, tetapi akun akan hilang dari daftar."
 
 #: assets/app.js
 msgid "Échec de l'export (écriture impossible)"
-msgstr ""
+msgstr "Ekspor gagal (tidak dapat menulis)"
 
 #: assets/app.js
 msgid "{count} compte(s) exporté(s)"
-msgstr ""
+msgstr "{count} akun diekspor"
 
 #: assets/app.js
 msgid "Export impossible"
-msgstr ""
+msgstr "Ekspor gagal"
 
 #: assets/app.js
 msgid "Échec de la lecture du fichier"
-msgstr ""
+msgstr "Tak bisa membaca berkas"
 
 #: assets/app.js
 msgid "Fichier JSON invalide"
-msgstr ""
+msgstr "Berkas JSON tidak valid"
 
 #: assets/app.js
 msgid "Format invalide : un tableau de comptes est attendu."
-msgstr ""
+msgstr "Format tidak valid: sebuah array dari akun diduga."
 
 #: assets/app.js
 msgid "Le fichier contient {count} compte(s). L'import REMPLACE entièrement la liste actuelle ({current} compte(s)) — cette action écrase les comptes existants, pas leurs sessions (cookies) déjà enregistrées sur le disque. Continuer ?"
-msgstr ""
+msgstr "Berkas berisi {count} akun. Mengimpor COMPLETLY DITEMUKAN daftar saat ini ({current} akun) - ini menimpa akun yang ada, bukan sesi mereka (cookies) telah disimpan pada disk. Lanjutkan?"
 
 #: assets/app.js
 msgid "Import impossible"
-msgstr ""
+msgstr "Impor gagal"
 
 #: assets/app.js
 msgid "{count} compte(s) importé(s)"
-msgstr ""
+msgstr "{count} akun yang diimpor"
 
 #: assets/app.js
 msgid "Échec de l'import : {error}"
-msgstr ""
+msgstr "Impor gagal: {error}"
 
 #: assets/app.js
 msgid "Compte supprimé"
-msgstr ""
+msgstr "Akun dihapus"
 
 #: assets/app.js
 msgid "Remplissez tous les champs"
-msgstr ""
+msgstr "Isi seluruh bidang"
 
 #: assets/app.js
 msgid "Ce profil est déjà utilisé par un autre compte (les sessions seraient partagées)."
-msgstr ""
+msgstr "Profil ini sudah digunakan oleh akun lain (sesi akan dibagikan)."
 
 #: assets/app.js
 msgid "Compte mis à jour"
-msgstr ""
+msgstr "Akun diperbarui"
 
 #: assets/app.js
 msgid "Compte ajouté"
-msgstr ""
+msgstr "Akun ditambahkan"
 
 #: assets/app.js
 msgid "Copie impossible dans le presse-papiers"
-msgstr ""
+msgstr "Tak bisa menyalin ke papan klip"
 
 #: assets/app.js
 msgid "E-mail copié : {email}"
-msgstr ""
+msgstr "E- mail disalin: {email}"
 
 #: assets/app.js
 msgid "Cooldown terminé"
-msgstr ""
+msgstr "Cooldown over"
 
 #: assets/app.js
 msgid "{account} — {service} est de nouveau disponible."
-msgstr ""
+msgstr "{account} - {service} tersedia lagi."
 
 #: assets/app.js
 msgid "{account} — {service} : cooldown terminé"
-msgstr ""
+msgstr "{account} - {service}: cooldown atas"
 
 #: assets/app.js
 msgid "Téléchargement…"
-msgstr ""
+msgstr "Mengunduh..."
 
 #: assets/app.js
 msgid "Téléchargé — à traiter"
-msgstr ""
+msgstr "Terunduh - untuk diproses"
 
 #: assets/app.js
 msgid "Aucun profil disponible"
-msgstr ""
+msgstr "Tak tersedia profil"
 
 #: assets/app.js
 msgid "Projet en cours d'analyse"
-msgstr ""
+msgstr "Proyek sedang dianalisis"
 
 #: assets/app.js
 msgid "En cours"
-msgstr ""
+msgstr "Berjalan"
 
 #: assets/app.js
 msgid "En pause"
-msgstr ""
+msgstr "Ditahan"
 
 #: assets/app.js
 msgid "Reprise programmée"
-msgstr ""
+msgstr "Lanjutkan jadwal"
 
 #: assets/app.js
 msgid "Erreur"
-msgstr ""
+msgstr "Galat"
 
 #: assets/app.js
 msgid "Livré"
-msgstr ""
+msgstr "Dikirim"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"
-msgstr ""
+msgstr "Tak bisa memuat pengaturan"
 
 #: assets/app.js
 msgid "Réglages enregistrés — la langue sera appliquée au prochain démarrage"
-msgstr ""
+msgstr "Pengaturan disimpan - bahasa akan diterapkan di awal berikutnya"
 
 #: assets/app.js
 msgid "Réglages enregistrés"
-msgstr ""
+msgstr "Pengaturan disimpan"
 
 #: assets/app.js
 msgid "Erreur lors de la sauvegarde"
-msgstr ""
+msgstr "Galat ketika menyimpan"
 
 #: assets/app.js
 msgid "Erreur lors de la sauvegarde des réglages"
-msgstr ""
+msgstr "Galat ketika menyimpan pengaturan"
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: assets/app.js
 msgid "Arrêter"
-msgstr ""
+msgstr "Hentikan"
 
+# Traduit à la main (libellé court) ; relecture humaine attendue.
 #: assets/app.js
 msgid "En marche"
-msgstr ""
+msgstr "Berjalan"
 
 #: assets/app.js
 msgid "Aucun job pour l'instant — un ZIP téléchargé depuis un onglet IA (ordonnanceur activé) en créera un automatiquement."
-msgstr ""
+msgstr "Belum ada pekerjaan - ZIP yang diunduh dari tab AI (dengan penjadwalan diaktifkan) akan membuat satu secara otomatis."
 
 #: assets/app.js
 msgid "Continuer le projet"
-msgstr ""
+msgstr "Lanjutkan proyek"
 
 #: assets/app.js
 msgid "Marquer livré"
-msgstr ""
+msgstr "Tandai sebagai dikirim"
 
 #: assets/app.js
 msgid "Pause"
-msgstr ""
+msgstr "Jeda"
 
 #: assets/app.js
 msgid "Reprendre"
-msgstr ""
+msgstr "Lanjutkan"
 
 #: assets/app.js
 msgid "Relancer"
-msgstr ""
+msgstr "Coba lagi"
 
 #: assets/app.js
 msgid "Ouvrir le ZIP"
-msgstr ""
+msgstr "Buka ZIP"
 
 #: assets/app.js
 msgid "Analyser la complétude"
-msgstr ""
+msgstr "Analisa pelengkap"
 
 #: assets/app.js
 msgid "service inconnu"
-msgstr ""
+msgstr "layanan tidak diketahui"
 
 #: assets/app.js
 msgid "tentative {n}"
-msgstr ""
+msgstr "mencoba {n}"
 
 #: assets/app.js
 msgid "Aucune activité enregistrée."
-msgstr ""
+msgstr "Tidak ada aktivitas yang direkam."
 
 #: assets/app.js
 msgid "Impossible de modifier l'état de l'ordonnanceur"
-msgstr ""
+msgstr "Tidak dapat mengubah keadaan penjadwalan"
 
 #: assets/app.js
 msgid "Configuration non enregistrée"
-msgstr ""
+msgstr "Konfigurasi tidak disimpan"
 
 #: assets/app.js
 msgid "Sélection du dossier impossible"
-msgstr ""
+msgstr "Tidak dapat memilih folder"
 
 #: assets/app.js
 msgid "Projet terminé : {done}/{total} tâches faites, 0 restante."
-msgstr ""
+msgstr "Proyek selesai: {done} / {total} tugas selesai, tersisa 0."
 
 #: assets/app.js
 msgid "{pending} à faire, {inProgress} en cours, {done} faite(s) sur {total} au total."
-msgstr ""
+msgstr "{pending} untuk melakukan, {inProgress} dalam proses, {done} dilakukan dari {total} secara total."
 
 #: assets/app.js
 msgid "Analyse impossible : {error}"
-msgstr ""
+msgstr "Analisis gagal: {error}"
 
 #: assets/app.js
 msgid "Action impossible : {error}"
-msgstr ""
+msgstr "Aksi gagal: {error}"
 
 #: assets/app.js
 msgid "Aucun projet pour l'instant."
-msgstr ""
+msgstr "Belum ada proyek."
 
 #: assets/app.js
 msgid "Créer un projet"
-msgstr ""
+msgstr "Buat proyek"
 
 #: assets/app.js
 msgid "Assignée"
-msgstr ""
+msgstr "Ditugaskan"
 
 #: assets/app.js
 msgid "Terminée"
-msgstr ""
+msgstr "Selesai"
 
 #: assets/app.js
 msgid "Échouée"
-msgstr ""
+msgstr "Gagal"
 
 #: assets/app.js
 msgid "Lancer"
-msgstr ""
+msgstr "Lari"
 
 #: assets/app.js
 msgid "Résultat"
-msgstr ""
+msgstr "Hasil"
 
 #: assets/app.js
 msgid "Aucune tâche."
-msgstr ""
+msgstr "Tidak ada tugas."
 
 #: assets/app.js
 msgid "Tous les comptes"
-msgstr ""
+msgstr "Semua akun"
 
 #: assets/app.js
 msgid "Comptes autorisés :"
-msgstr ""
+msgstr "Akun yang diijinkan:"
 
 #: assets/app.js
 msgid "{count} tâche(s)"
-msgstr ""
+msgstr "{count} tugas [s]"
 
 #: assets/app.js
 msgid "Nouvelle tâche"
-msgstr ""
+msgstr "Tugas baru"
 
 #: assets/app.js
 msgid "Assigner"
-msgstr ""
+msgstr "Atur"
 
 #: assets/app.js
 msgid "Diagnostic Claude : {error}"
-msgstr ""
+msgstr "diagnostik Claude: {error}"
 
 #: assets/app.js
 msgid "« Continuer »"
-msgstr ""
+msgstr "\"Lanjutkan\""
 
 #: assets/app.js
 msgid "« Télécharger »"
-msgstr ""
+msgstr "\"Unduh\""
 
 #: assets/app.js
 msgid "« Nouveau »"
-msgstr ""
+msgstr "\"Baru\""
 
 #: assets/app.js
 msgid "zone de chat"
-msgstr ""
+msgstr "kotak obrolan"
 
 #: assets/app.js
 msgid "envoi de fichier"
-msgstr ""
+msgstr "upload berkas"
 
 #: assets/app.js
 msgid "{count} popup(s)"
-msgstr ""
+msgstr "{count} popup"
 
 #: assets/app.js
 msgid "Claude (« {profile} ») : {details}"
-msgstr ""
+msgstr "Claude (\"{profile}\"): {details}"
 
 #: assets/app.js
 msgid "aucun élément détecté"
-msgstr ""
+msgstr "tidak terdeteksi"
 
 #: assets/app.js
 msgid "Diagnostic impossible : {error}"
-msgstr ""
+msgstr "Diagnostik gagal: {error}"
 
 #: assets/app.js
 msgid "Quota gratuit épuisé jusqu'à {time} pour ce profil."
-msgstr ""
+msgstr "Kuota bebas habis sampai {time} untuk profil ini."
 
 #: assets/app.js
 msgid "Job Claude échoué : {error}"
-msgstr ""
+msgstr "Tugas Claude gagal: {error}"
 
 #: assets/app.js
 msgid "Prompt envoyé à Claude via {method} (« {profile} »)"
-msgstr ""
+msgstr "Prompt dikirim ke Claude melalui {method} (\"{profile}\")"
 
 #: assets/app.js
 msgid "Job Claude impossible : {error}"
-msgstr ""
+msgstr "Claude pekerjaan tidak bisa berjalan: {error}"
 
 #: assets/app.js
 msgid "Collecte impossible : {error}"
-msgstr ""
+msgstr "Koleksi gagal: {error}"
 
 #: assets/app.js
 msgid "Réponse collectée : {count} caractères (« {profile} »)"
-msgstr ""
+msgstr "Respon dikumpulkan: {count} karakter (\"{profile}\")"
 
 #: assets/app.js
 msgid "Aucune réponse trouvée pour le moment."
-msgstr ""
+msgstr "Belum ditemukan respon."
 
 #: assets/app.js
 msgid "Nom du projet :"
-msgstr ""
+msgstr "Nama projek:"
 
 #: assets/app.js
 msgid "Projet {n}"
-msgstr ""
+msgstr "Projek {n}"
 
 #: assets/app.js
 msgid "Projet « {name} » créé"
-msgstr ""
+msgstr "Projek \"{name}\" diciptakan"
 
 #: assets/app.js
 msgid "Création impossible : {error}"
-msgstr ""
+msgstr "Pembuatan gagal: {error}"
 
 #: assets/app.js
 msgid "Projet supprimé"
-msgstr ""
+msgstr "Projek dihapus"
 
 #: assets/app.js
 msgid "Suppression impossible : {error}"
-msgstr ""
+msgstr "Penghapusan gagal: {error}"
 
 #: assets/app.js
 msgid "Prompt de la tâche :"
-msgstr ""
+msgstr "Tugas:"
 
 #: assets/app.js
 msgid "Tâche créée dans le projet"
-msgstr ""
+msgstr "Tugas yang dibuat dalam proyek"
 
 #: assets/app.js
 msgid "Aucun compte vert disponible pour ce projet."
-msgstr ""
+msgstr "Tak tersedia akun hijau bagi proyek ini."
 
 #: assets/app.js
 msgid "Comptes verts disponibles :"
-msgstr ""
+msgstr "Akun hijau tersedia:"
 
 #: assets/app.js
 msgid "Numéro du compte :"
-msgstr ""
+msgstr "Nomor akun:"
 
 #: assets/app.js
 msgid "Choix invalide"
-msgstr ""
+msgstr "Pilihan tidak valid"
 
 #: assets/app.js
 msgid "Aucune tâche dans ce projet."
-msgstr ""
+msgstr "Tidak ada tugas dalam proyek ini."
 
 #: assets/app.js
 msgid "Numéro de la tâche :"
-msgstr ""
+msgstr "Nomor tugas:"
 
 #: assets/app.js
 msgid "Tâches du projet :"
-msgstr ""
+msgstr "Tugas projek:"
 
 #: assets/app.js
 msgid "Tâche {task} assignée à « {account} »"
-msgstr ""
+msgstr "Tugas {task} ditugaskan ke \"{account}\""
 
 #: assets/app.js
 msgid "Assignation impossible : {error}"
-msgstr ""
+msgstr "Penugasan gagal: {error}"
 
 #: assets/app.js
 msgid "Lancement de l'automatisation Claude..."
-msgstr ""
+msgstr "Memulai otomatisasi Claude..."
 
 #: assets/app.js
 msgid "Lancement impossible"
-msgstr ""
+msgstr "Tak bisa dimulai"
 
 #: assets/app.js
 msgid "Tâche lancée — suivi dans le journal d'activité"
-msgstr ""
+msgstr "Tugas dimulai - ikuti dalam log aktivitas"
 
 #: assets/app.js
 msgid "Exécution impossible : {error}"
-msgstr ""
+msgstr "Eksekusi gagal: {error}"
 
 #: assets/app.js
 msgid "Aucun résultat disponible"
-msgstr ""
+msgstr "Tidak ada hasil yang tersedia"
 
 #: assets/app.js
 msgid "Résultat — {task}"
-msgstr ""
+msgstr "Hasil - {task}"
 
 #: assets/app.js
 msgid "Données de comptes illisibles"
-msgstr ""
+msgstr "Data akun tidak dapat dibaca"
 
 #: assets/app.js
 msgid "La liste de comptes enregistrée est corrompue. Une sauvegarde de {count} compte(s) a été trouvée. La restaurer ?"
-msgstr ""
+msgstr "Daftar akun yang disimpan rusak. Sebuah cadangan akun {count} ditemukan. Kembalikan?"
 
 #: assets/app.js
 msgid "La liste de comptes enregistrée est corrompue et aucune sauvegarde n'est disponible. L'application démarre avec une liste vide ; vos données actuelles ne seront pas écrasées tant que vous ne créez ou ne modifiez pas de compte."
-msgstr ""
+msgstr "Daftar akun yang disimpan rusak dan tidak tersedia backup. Aplikasi dimulai dengan daftar kosong; data Anda saat ini tidak akan ditimpa hingga Anda membuat atau menyunting akun."
 
 #: assets/app.js
 msgid "Ignorer"
-msgstr ""
+msgstr "Abaikan"
 
 #: assets/app.js
 msgid "Restaurer la sauvegarde"
-msgstr ""
+msgstr "Kembalikan cadangan"
 
 #: assets/app.js
 msgid "Comptes restaurés depuis la sauvegarde"
-msgstr ""
+msgstr "Akun dikembalikan dari backup"
 
 #: assets/app.js
 msgid "Compris"
-msgstr ""
+msgstr "Mengerti"
