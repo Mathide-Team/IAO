@@ -59,11 +59,36 @@
     list.className = 'boot-error__list';
     banner.appendChild(head);
     banner.appendChild(list);
+    appendDebugActions(banner);
     document.body.insertBefore(banner, document.body.firstChild);
     if (typeof window.hydrateIcons === 'function') {
       try { window.hydrateIcons(banner); } catch (_) { /* icône facultative */ }
     }
     return banner;
+  }
+
+  // Issue #187 : bouton « Relancer en mode debug » et chemin du journal, si le
+  // pont du preload existe (sinon main.js est injoignable : rien à proposer).
+  function appendDebugActions(banner) {
+    var api = window.iaoAPI;
+    if (!api || typeof api.ipcInvoke !== 'function') return;
+    var foot = document.createElement('div');
+    foot.className = 'boot-error__actions';
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'btn boot-error__debug';
+    btn.textContent = 'Relancer en mode debug';
+    btn.addEventListener('click', function () {
+      api.ipcInvoke('app:relaunch-debug').catch(function () { /* canal absent */ });
+    });
+    var where = document.createElement('code');
+    where.className = 'boot-error__log';
+    foot.appendChild(btn);
+    foot.appendChild(where);
+    banner.appendChild(foot);
+    api.ipcInvoke('app:log-path').then(function (p) {
+      if (p) where.textContent = 'Journal : ' + p;
+    }).catch(function () { /* canal absent : pas de chemin affiché */ });
   }
 
   function report(kind, err, source) {
@@ -112,6 +137,15 @@
   }, true);
 
   window.addEventListener('unhandledrejection', function (ev) {
-    report('rejection', ev ? ev.reason : 'rejet inconnu');
+    var reason = ev ? ev.reason : 'rejet inconnu';
+    // Issue #185 : navigation remplacée (ERR_ABORTED -3, redirection du site
+    // vers sa page de connexion) -> pas de bandeau. Une ligne console.info,
+    // recopiée dans logs/iao.log en mode debug (--iao-debug).
+    if (diag && typeof diag.isNavigationAbort === 'function' && diag.isNavigationAbort(reason)) {
+      if (typeof ev.preventDefault === 'function') ev.preventDefault();
+      console.info('[demarrage] navigation remplacée (ERR_ABORTED -3), sans gravité : ' + diag.errorText(reason));
+      return;
+    }
+    report('rejection', reason);
   });
 })();

@@ -72,6 +72,10 @@ msgid "Outils de développement (Ctrl+Maj+I)"
 msgstr "Developer tools (Ctrl+Shift+I)"
 
 #: index.html
+msgid "Redémarrer en mode debug (journal détaillé)"
+msgstr "Restart in debug mode (detailed log)"
+
+#: index.html
 msgid "Choisir mes 9 IA à portée de main"
 msgstr "Choose my 9 go-to AIs"
 
@@ -185,15 +189,15 @@ msgstr "Detects ZIP files delivered by AI tabs, with per-profile resume."
 
 #: index.html
 msgid "Arrêté"
-msgstr ""
+msgstr "Stopped"
 
 #: index.html
 msgid "Démarrer ou arrêter l'ordonnanceur (il ne démarre jamais tout seul)"
-msgstr ""
+msgstr "Start or stop the scheduler (it never starts on its own)"
 
 #: index.html
 msgid "Démarrer"
-msgstr ""
+msgstr "Start"
 
 #: index.html
 msgid "Jobs actifs"
@@ -777,11 +781,11 @@ msgstr "Error while saving the settings"
 
 #: assets/app.js
 msgid "Arrêter"
-msgstr ""
+msgstr "Stop"
 
 #: assets/app.js
 msgid "En marche"
-msgstr ""
+msgstr "Running"
 
 #: assets/app.js
 msgid "Aucun job pour l'instant — un ZIP téléchargé depuis un onglet IA (ordonnanceur activé) en créera un automatiquement."
@@ -1068,6 +1072,26 @@ msgid "Résultat — {task}"
 msgstr "Result — {task}"
 
 #: assets/app.js
+msgid "Comptes retrouvés"
+msgstr "Accounts found"
+
+#: assets/app.js
+msgid "Aucun compte n'a été lu au démarrage, mais l'ordonnanceur en connaît {count}. Les restaurer ? Les sessions des services sont conservées ; les adresses e-mail sont à compléter depuis « Modifier le compte »."
+msgstr "No account was read at startup, but the scheduler knows {count}. Restore them? Service sessions are kept; email addresses can be filled in from “Edit account”."
+
+#: assets/app.js
+msgid "Ignorer"
+msgstr "Ignore"
+
+#: assets/app.js
+msgid "Restaurer les comptes"
+msgstr "Restore accounts"
+
+#: assets/app.js
+msgid "{count} compte(s) restauré(s)"
+msgstr "{count} account(s) restored"
+
+#: assets/app.js
 msgid "Données de comptes illisibles"
 msgstr "Unreadable account data"
 
@@ -1078,10 +1102,6 @@ msgstr "The saved account list is corrupted. A backup of {count} account(s) was 
 #: assets/app.js
 msgid "La liste de comptes enregistrée est corrompue et aucune sauvegarde n'est disponible. L'application démarre avec une liste vide ; vos données actuelles ne seront pas écrasées tant que vous ne créez ou ne modifiez pas de compte."
 msgstr "The saved account list is corrupted and no backup is available. The application starts with an empty list; your current data will not be overwritten until you create or edit an account."
-
-#: assets/app.js
-msgid "Ignorer"
-msgstr "Ignore"
 
 #: assets/app.js
 msgid "Restaurer la sauvegarde"
