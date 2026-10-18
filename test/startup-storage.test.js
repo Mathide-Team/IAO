@@ -109,6 +109,12 @@ test('inspecterDonnees : les erreurs sont collectées, jamais levées', () => {
   }
 });
 
+test('journaliserDonnees : une ligne info puis les avertissements', () => {
+  const lignes = [];
+  s.journaliserDonnees(s.inspecterDonnees(R, fauxFs(arbreType(0)), 1000), (...a) => lignes.push(a));
+  assert.deepEqual(lignes.map(l => l[0] + ' ' + l[1]), ['demarrage info', 'demarrage warning']);
+});
+
 test('uidCourant : getuid sous POSIX, null sous Windows', () => {
   assert.equal(s.uidCourant({ getuid: () => 1000 }), 1000);
   assert.equal(s.uidCourant({}), null);
