@@ -430,6 +430,16 @@
       if (r.status === 'ok' && Array.isArray(r.data)) accounts = r.data;
       else if (r.status === 'corrupt') dataCorrupt = true;
       // 'empty' ou JSON valide non-tableau -> accounts reste []
+      // Issue #203 (#186) : nombre de comptes lus, en clair dans iao.log.
+      try {
+        const etat = {
+          statut: r.status === 'ok' && !Array.isArray(r.data) ? 'invalid' : r.status,
+          nombre: accounts.length,
+          sauvegarde: localStorage.getItem(BACKUP_KEY) != null
+        };
+        ipcRenderer.invoke('app:log', 'comptes', iaoStartupAccounts.niveauComptes(etat),
+          iaoStartupAccounts.resumeComptes(etat)).catch(() => {});
+      } catch (_) { /* journal indisponible : sans effet sur le chargement */ }
     })();
 
     // Issue #154 : charger les onglets étoilés au démarrage.

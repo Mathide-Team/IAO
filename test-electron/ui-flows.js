@@ -201,6 +201,15 @@ async function run() {
     assert(count === 2, 'attendu 2 cartes, trouvé ' + count);
   });
 
+  // Issue #203 (#186) : le renderer journalise les comptes lus au démarrage.
+  await test('C1.1b iao.log contient « Comptes lus au démarrage » et le dossier de données (#203)', async () => {
+    const journal = path.join(tmpRoot, 'ai-manager', 'logs', 'iao.log');
+    const texte = fs.existsSync(journal) ? fs.readFileSync(journal, 'utf-8') : '';
+    assert(/\[renderer:comptes\] (info|warning) Comptes lus au démarrage : \d+/.test(texte),
+      'ligne des comptes absente de ' + journal);
+    assert(/\[demarrage\] info Dossier de données /.test(texte), 'ligne du dossier de données absente');
+  });
+
   await test('C1.2 Le nom du compte est échappé (escapeHtml — pas de <script>)', async () => {
     const r = await exec(`(() => {
       const list = document.getElementById('accountsList');

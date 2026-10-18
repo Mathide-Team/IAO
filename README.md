@@ -187,6 +187,12 @@ Ce dossier n'est **pas** supprimé par la désinstallation — effacez-le manuel
     leur nom d'hôte (une URL de connexion peut contenir des jetons).
 - Le journal d'activité de l'ordonnanceur et ses erreurs sont aussi écrits dans `iao.log`,
   avec ou sans mode debug.
+- À chaque démarrage, avec ou sans mode debug (issue #203) : le **dossier de données**
+  (taille du stockage local, nombre de partitions, partitions ayant un dossier
+  `Service Worker`), un **avertissement** si des fichiers de ce dossier appartiennent à
+  un autre utilisateur (lancement avec `sudo`), et le **nombre de comptes lus** (état de
+  `ai_accounts` et de sa sauvegarde). À joindre à tout signalement de comptes perdus ou
+  d'erreurs `Database IO error`.
 - IAO ne s'ouvre qu'**une fois** : relancer l'application ramène la fenêtre existante au
   premier plan. Deux instances sur le même dossier de données provoquaient des erreurs
   Chromium en rafale (`Failed to delete the database: Database IO error`).

@@ -185,3 +185,17 @@ test('mode normal : app:is-debug renvoie false, aucune trace debug ni console d\
     assert.match(log, /\[scheduler\] info Ordonnanceur arrêté au démarrage/);
   } finally { h.cleanup(); }
 });
+
+// Issue #203 : état du dossier de données au démarrage et canal app:log, hors mode debug.
+test('#203 : dossier de données journalisé au démarrage, app:log écrit dans iao.log', async () => {
+  const h = loadMain({ debug: false });
+  try {
+    await h.ready();
+    assert.equal(await h.invoke('app:log', 'comptes', 'warning', 'Comptes lus au démarrage : 0'), true);
+    await h.invoke('app:log', '../evil', 'error', 'x');
+    const log = h.readLog();
+    assert.match(log, /\[demarrage\] info Dossier de données .*userData — Local Storage : absent — partitions : 0/);
+    assert.match(log, /\[renderer:comptes\] warning Comptes lus au démarrage : 0/);
+    assert.match(log, /\[renderer:renderer\] info x/);
+  } finally { h.cleanup(); }
+});

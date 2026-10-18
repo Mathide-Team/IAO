@@ -28,6 +28,7 @@ app.setName('IAO');
 const diag = require('./lib/startup-diagnostics');
 const DEBUG = diag.isDebugEnabled(process.argv, process.env);
 const debugTrace = require('./lib/debug-trace');
+const startupStorage = require('./lib/startup-storage');
 const LOG_DIR = path.join(app.getPath('userData'), 'logs');
 const LOG_FILE = path.join(LOG_DIR, 'iao.log');
 const LOG_MAX_BYTES = 1024 * 1024;
@@ -267,6 +268,13 @@ function createWindow() {
 // à ce canal (preload non exposé), mais on vérifie l'émetteur par principe.
 // Issue #162 : le renderer adapte ses traces (dbg) et affiche un badge.
 ipc.handle('app:is-debug', () => DEBUG);
+// Issue #203 : quelques lignes du renderer (comptes lus au démarrage…) dans
+// iao.log hors mode debug ; portée/niveau bornés, message tronqué.
+ipc.handle('app:log', (_e, portee, niveau, message) => {
+  const m = startupStorage.messageRenderer(portee, niveau, message);
+  log(m.portee, m.niveau, m.message);
+  return true;
+});
 
 ipc.handle('app:toggle-devtools', (event) => {
   if (!mainWindow || event.sender !== mainWindow.webContents) return false;
@@ -487,6 +495,11 @@ app.whenReady().then(() => {
     ', ' + process.platform + '/' + process.arch + (app.isPackaged ? ', packagé' : ', sources') +
     (DEBUG ? ', mode debug' : '') + '. Données : ' + app.getPath('userData') + ' — journal : ' + LOG_FILE);
   debug('demarrage', debugTrace.describeRuntime(process));
+  // Issue #203 (pistes #184/#186) : état du dossier de données à chaque démarrage.
+  const donnees = startupStorage.inspecterDonnees(app.getPath('userData'), fs,
+    typeof process.getuid === 'function' ? process.getuid() : null);
+  log('demarrage', 'info', startupStorage.resumeDonnees(donnees));
+  for (const alerte of startupStorage.alertesDonnees(donnees)) log('demarrage', 'warning', alerte);
   // Issue #162 : le journal d'activité de l'ordonnanceur rejoint iao.log, et
   // ses traces détaillées sont actives en mode debug.
   scheduler.setLogger(log, DEBUG);
