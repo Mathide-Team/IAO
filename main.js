@@ -5,6 +5,7 @@ const fsPromises = fs.promises;
 
 const { isAllowedPopup } = require('./lib/popup-guard');
 const { Scheduler, registerSchedulerIPC } = require('./scheduler');
+const dataDirCheck = require('./lib/data-dir-check');
 
 // On fixe le dossier de données (comptes + sessions IA) sur "ai-manager" quel que
 // soit le nom du produit. Ainsi la version packagée (.exe) réutilise le profil
@@ -482,6 +483,9 @@ registerSchedulerIPC(ipc, scheduler, () => mainWindow);
 app.whenReady().then(() => {
   // 2e instance (voir « Instance unique ») : ne rien ouvrir, app.quit() est en cours.
   if (!gotSingleInstanceLock) return;
+  // Issue #184 : fichiers du dossier de données appartenant à un autre compte
+  // (lancement en root) -> warning dans iao.log avec la commande de correction.
+  dataDirCheck.reportForeignEntries(app.getPath('userData'), { fs, path, proc: process, log });
   cleanupServiceWorkerStorage();
   log('demarrage', 'info', 'IAO ' + app.getVersion() + ' — Electron ' + process.versions.electron +
     ', ' + process.platform + '/' + process.arch + (app.isPackaged ? ', packagé' : ', sources') +
