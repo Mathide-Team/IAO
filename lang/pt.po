@@ -442,6 +442,18 @@ msgid "90 jours"
 msgstr "90 dias"
 
 #: index.html
+msgid "Remettre à zéro"
+msgstr "Redefinir"
+
+#: index.html
+msgid "Exporter CSV"
+msgstr "Exportar CSV"
+
+#: index.html
+msgid "Exporter JSON"
+msgstr "Exportar JSON"
+
+#: index.html
 msgid "Préférences de l'application, sauvegardées localement."
 msgstr "Preferências da aplicação, guardadas localmente."
 
@@ -1330,6 +1342,18 @@ msgid "D'après l'historique des tâches (200 dernières exécutions)."
 msgstr "Com base no histórico de tarefas (últimas 200 execuções)."
 
 #: assets/app.js
+msgid "{date} : {duree} actif"
+msgstr "{date}: {duree} ativo"
+
+#: assets/app.js
+msgid "{h} h"
+msgstr "{h} h"
+
+#: assets/app.js
+msgid "Évolution du temps actif"
+msgstr "Evolução do tempo ativo"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "Nenhuma sessão neste período. A medição começa com a instalação desta versão."
 
@@ -1360,6 +1384,30 @@ msgstr "Serviço"
 #: assets/app.js
 msgid "Statistiques illisibles : {error}"
 msgstr "Estatísticas ilegíveis: {error}"
+
+#: assets/app.js
+msgid "Export des statistiques impossible : {error}"
+msgstr "Não foi possível exportar as estatísticas: {error}"
+
+#: assets/app.js
+msgid "Statistiques exportées"
+msgstr "Estatísticas exportadas"
+
+#: assets/app.js
+msgid "Remettre les statistiques à zéro ?"
+msgstr "Redefinir as estatísticas?"
+
+#: assets/app.js
+msgid "Toutes les sessions enregistrées sur cet ordinateur seront effacées. L'historique des tâches programmables n'est pas touché. Pensez à exporter avant si besoin."
+msgstr "Todas as sessões registadas neste computador serão apagadas. O histórico de tarefas programadas não é afetado. Exporte antes, se necessário."
+
+#: assets/app.js
+msgid "Remise à zéro impossible : {error}"
+msgstr "Não foi possível redefinir: {error}"
+
+#: assets/app.js
+msgid "Statistiques remises à zéro"
+msgstr "Estatísticas redefinidas"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"

@@ -442,6 +442,18 @@ msgid "90 jours"
 msgstr "90 días"
 
 #: index.html
+msgid "Remettre à zéro"
+msgstr "Restablecer"
+
+#: index.html
+msgid "Exporter CSV"
+msgstr "Exportar CSV"
+
+#: index.html
+msgid "Exporter JSON"
+msgstr "Exportar JSON"
+
+#: index.html
 msgid "Préférences de l'application, sauvegardées localement."
 msgstr "Preferencias de la aplicación, guardadas localmente."
 
@@ -1330,6 +1342,18 @@ msgid "D'après l'historique des tâches (200 dernières exécutions)."
 msgstr "Según el historial de tareas (últimas 200 ejecuciones)."
 
 #: assets/app.js
+msgid "{date} : {duree} actif"
+msgstr "{date}: {duree} activo"
+
+#: assets/app.js
+msgid "{h} h"
+msgstr "{h} h"
+
+#: assets/app.js
+msgid "Évolution du temps actif"
+msgstr "Evolución del tiempo activo"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "Ninguna sesión en este periodo. La medición comienza con la instalación de esta versión."
 
@@ -1360,6 +1384,30 @@ msgstr "Servicio"
 #: assets/app.js
 msgid "Statistiques illisibles : {error}"
 msgstr "Estadísticas ilegibles: {error}"
+
+#: assets/app.js
+msgid "Export des statistiques impossible : {error}"
+msgstr "No se pudieron exportar las estadísticas: {error}"
+
+#: assets/app.js
+msgid "Statistiques exportées"
+msgstr "Estadísticas exportadas"
+
+#: assets/app.js
+msgid "Remettre les statistiques à zéro ?"
+msgstr "¿Restablecer las estadísticas?"
+
+#: assets/app.js
+msgid "Toutes les sessions enregistrées sur cet ordinateur seront effacées. L'historique des tâches programmables n'est pas touché. Pensez à exporter avant si besoin."
+msgstr "Se borrarán todas las sesiones registradas en este ordenador. El historial de tareas programadas no se modifica. Exporte antes si lo necesita."
+
+#: assets/app.js
+msgid "Remise à zéro impossible : {error}"
+msgstr "No se pudo restablecer: {error}"
+
+#: assets/app.js
+msgid "Statistiques remises à zéro"
+msgstr "Estadísticas restablecidas"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"

@@ -165,7 +165,7 @@ ajout d'une langue et CI : [docs/i18n.md](docs/i18n.md) (issue #51).
 
 Les mots de passe de messagerie (issue #201) sont dans `secrets.json` de ce dossier, chiffrés par le trousseau du système (DPAPI sous Windows, libsecret/KWallet sous Linux) : ils ne sont pas lisibles sur une autre machine ni par un autre utilisateur.
 
-Les statistiques d'utilisation (issue #206, bouton « graphique » de la barre du haut) sont dans `stats/` de ce dossier : `sessions.jsonl` (une ligne par session d'onglet : profil, service, début, fin, temps actif ; 90 jours conservés) et `en-cours.json` (onglets ouverts, récupérés au lancement suivant si IAO a été fermé brutalement). Elles ne quittent jamais l'ordinateur ; supprimer `stats/` les remet à zéro.
+Les statistiques d'utilisation (issue #206, bouton « graphique » de la barre du haut) sont dans `stats/` de ce dossier : `sessions.jsonl` (une ligne par session d'onglet : profil, service, début, fin, temps actif ; 90 jours conservés) et `en-cours.json` (onglets ouverts, récupérés au lancement suivant si IAO a été fermé brutalement). Elles ne quittent jamais l'ordinateur ; le bouton « Remettre à zéro » de la page (ou la suppression de `stats/`) les efface, et « Exporter CSV / JSON » les enregistre dans un fichier de votre choix.
 
 Ce dossier n'est **pas** supprimé par la désinstallation — effacez-le manuellement pour repartir de zéro.
 

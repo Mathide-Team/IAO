@@ -270,7 +270,7 @@ test('registerStatsIPC : canaux enregistrés, erreurs renvoyées sans exception'
     sync: async (t, e) => { appels.push([t, e]); return { ok: true }; },
     charger: async () => { throw new Error('disque plein'); }
   });
-  assert.deepEqual([...handlers.keys()], ['stats:sync', 'stats:load']);
+  assert.deepEqual([...handlers.keys()], ['stats:sync', 'stats:load', 'stats:reset', 'stats:export']);
   assert.deepEqual(await handlers.get('stats:sync')({}, [1], [2]), { ok: true });
   assert.deepEqual(appels, [[[1], [2]]]);
   assert.deepEqual(await handlers.get('stats:load')({}), { error: 'disque plein' });

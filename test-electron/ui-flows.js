@@ -1003,6 +1003,65 @@ async function run() {
     assert(!r.deborde, 'débordement horizontal du contenu');
   });
 
+  await test('C11.4 Statistiques lot 3 : évolution SVG, export CSV/JSON, remise à zéro confirmée (#206)', async () => {
+    const { dialog } = require('electron');
+    const origine = dialog.showSaveDialog;
+    const csv = path.join(statsDir, '..', 'export-c11.csv');
+    const json = path.join(statsDir, '..', 'export-c11.json');
+    let cible = csv;
+    const demandes = [];
+    dialog.showSaveDialog = async (_w, opts) => { demandes.push(opts); return { canceled: false, filePath: cible }; };
+    try {
+      const r = await exec(`(async () => {
+        document.querySelector('[data-action="ui-openStatsModal"]').click();
+        await new Promise(res => setTimeout(res, 500));
+        document.querySelector('#statsPeriodes [data-periode="tout"]').click();
+        const evo = document.getElementById('statsEvolution');
+        return {
+          barres: evo ? evo.querySelectorAll('rect').length : 0,
+          hautes: evo ? [...evo.querySelectorAll('rect')].filter(x => parseFloat(x.getAttribute('height')) > 0).length : 0,
+          titre: evo ? evo.querySelector('rect title').textContent : ''
+        };
+      })()`);
+      assert(r.barres === 90 && r.hautes >= 1, 'histogramme 90 jours attendu : ' + JSON.stringify(r));
+      await exec(`document.getElementById('statsExportCsv').click(); 'ok'`);
+      for (let i = 0; i < 30 && !fs.existsSync(csv); i++) await sleep(100);
+      const contenu = fs.readFileSync(csv, 'utf-8');
+      assert(contenu.startsWith('\ufeffid,compte,profil,service,debut,fin,duree_s,actif_s'), 'en-tête CSV : ' + contenu.slice(0, 80));
+      assert(contenu.includes(',Compte Test Un,profil_1,claude,'), 'session de profil_1 (onglet ouvert) absente du CSV');
+      assert(/\.csv$/.test(demandes[0].defaultPath), 'nom proposé : ' + demandes[0].defaultPath);
+      cible = json;
+      await exec(`document.getElementById('statsExportJson').click(); 'ok'`);
+      for (let i = 0; i < 30 && !fs.existsSync(json); i++) await sleep(100);
+      const j = JSON.parse(fs.readFileSync(json, 'utf-8'));
+      assert(j.format === 'iao-stats-1' && j.sessions.length >= 2, 'export JSON : ' + JSON.stringify(j).slice(0, 200));
+      // Remise à zéro : la confirmation passe AU-DESSUS de la page Statistiques.
+      const conf = await exec(`(async () => {
+        document.getElementById('statsReset').click();
+        await new Promise(res => setTimeout(res, 200));
+        const oui = document.getElementById('confirmModalYes');
+        const b = oui.getBoundingClientRect();
+        const dessus = document.elementFromPoint(b.left + b.width / 2, b.top + b.height / 2) === oui;
+        oui.click();
+        await new Promise(res => setTimeout(res, 600));
+        const table = document.querySelector('#statsBody .stats-table');
+        const lignes = table ? [...table.querySelectorAll('tbody tr')].map(tr => tr.textContent) : [];
+        const inutilises = [...document.querySelectorAll('#statsInutilises li')].map(li => li.textContent);
+        document.querySelector('#statsModal [data-action="ui-closeStatsModal"]').click();
+        return { dessus, lignes, inutilises };
+      })()`);
+      assert(conf.dessus, 'confirmation masquée par la page Statistiques');
+      assert(fs.readFileSync(path.join(statsDir, 'sessions.jsonl'), 'utf-8') === '', 'historique non vidé');
+      // Seul l'onglet resté ouvert (profil_1) repart ; le compte fermé passe en « inutilisés ».
+      assert(conf.lignes.length === 1 && conf.lignes[0].includes('Compte Test Un'),
+        'par compte après remise à zéro : ' + JSON.stringify(conf.lignes));
+      assert(conf.inutilises.some(t => t.includes('<script>alert(1)</script>')),
+        'compte fermé attendu dans les inutilisés : ' + JSON.stringify(conf.inutilises));
+    } finally {
+      dialog.showSaveDialog = origine;
+    }
+  });
+
   // =========================================================================
   // C12 — Fermer un onglet chargé n'interrompt pas l'interface
   // (Electron < 43.7.4 : « Invalid guestInstanceId » à la suppression d'une

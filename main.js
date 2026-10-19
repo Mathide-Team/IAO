@@ -531,11 +531,21 @@ registerTachesIPC(ipc, new TachesService({
 // --- Issue #206 : statistiques d'utilisation (local, sans télémétrie) ---
 // <userData>/stats/sessions.jsonl (90 jours) + en-cours.json (sessions ouvertes,
 // récupérées au lancement suivant si IAO a été fermé brutalement).
+// Lot 3 : export CSV/JSON (dialogue d'enregistrement ici), remise à zéro.
 stats.registerStatsIPC(ipc, stats.creerStore({
   dossier: path.join(app.getPath('userData'), 'stats'),
   fs: fsPromises,
   path
-}));
+}), {
+  choisirFichier: async (nomParDefaut, format) => {
+    const r = await dialog.showSaveDialog(mainWindow, {
+      title: 'Exporter les statistiques',
+      defaultPath: nomParDefaut,
+      filters: [format === 'json' ? { name: 'JSON', extensions: ['json'] } : { name: 'CSV', extensions: ['csv'] }]
+    });
+    return r.canceled || !r.filePath ? null : r.filePath;
+  }
+});
 
 app.whenReady().then(() => {
   // 2e instance (voir « Instance unique ») : ne rien ouvrir, app.quit() est en cours.

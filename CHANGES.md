@@ -1,5 +1,24 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issue #206 — statistiques d'utilisation, lot 3 (19/10/2026)
+
+### Livré
+- **Évolution du temps actif** : histogramme SVG maison (sans dépendance) ;
+  24 barres horaires pour « Aujourd'hui », une barre par jour local sinon
+  (7 / 30 / 90). Sessions réparties au prorata entre les tranches ;
+  graduation ronde (1, 2, 5, 10, 15, 30 min, 1 h…). Libellés échappés.
+- **Export CSV / JSON** (historique + onglets ouverts, avec le nom du compte) :
+  dialogue d'enregistrement côté process principal (`stats:export`). CSV
+  RFC 4180 avec BOM UTF-8 (Excel) ; cellules commençant par `= + - @`
+  préfixées d'une apostrophe (pas d'injection de formule). JSON versionné
+  (`format: iao-stats-1`).
+- **Remise à zéro** (`stats:reset`) après confirmation : historique et
+  instantané vidés, onglets ouverts relancés à partir de maintenant
+  (`suivi.recommencer()`). L'historique des tâches n'est pas touché. La
+  confirmation passe désormais au-dessus des autres modales.
+- Tests : `test/stats-lot3.test.js` (100 %), main-harness (`stats:export`),
+  harnais Electron C11.4 ; traductions en/de/es/it/pt.
+
 ## Issue #206 — statistiques d'utilisation, lot 2 (19/10/2026)
 
 ### Livré
