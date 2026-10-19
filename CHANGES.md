@@ -1,5 +1,22 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issue #203 — état du dossier de données au démarrage (18/10/2026)
+
+Le journal `<userData>/logs/iao.log` existait déjà (#52, #162). Cette ligne y est
+écrite à chaque démarrage, **hors mode debug**, pour les bugs signalés avec
+journal (#184, #186). Elle complète #196 (comptes lus au démarrage) et #197
+(fichiers appartenant à un autre utilisateur) sans les dupliquer.
+
+### Livré
+- `lib/startup-storage.js` (pur, fs injecté, 100 %) : dossier utilisé, Local
+  Storage (fichiers, octets), partitions et partitions ayant un dossier
+  `Service Worker` ; erreurs d'inspection en avertissements, jamais levées.
+- Piste #184 : `cleanupServiceWorkerStorage()` ne nettoie que le dossier
+  `Service Worker` de la fenêtre principale ; le compte des partitions qui en
+  ont un dira s'il faut étendre le nettoyage.
+- Tests : `test/startup-storage.test.js`, `main-debug` (#203), harnais Electron
+  C1.1b (ligne présente dans le vrai `iao.log`).
+
 ## Issue #199 — lot 3 : exécution des tâches programmables (18/10/2026)
 
 ### Livré
