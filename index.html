@@ -51,6 +51,8 @@
      Conversions datetime-local <-> ISO et descriptions, testés par node --test
      (test/taches-ui.test.js). -->
 <script src="lib/taches-ui.js"></script>
+<!-- Issue #206 : statistiques d'utilisation (suivi des onglets, agrégation). -->
+<script src="lib/stats.js"></script>
 <!-- filterFiles / flattenFileTree : lot « Recherche dans l'explorateur » du
      18/09/2026 — extraites vers lib/ dès l'écriture (invariant 11) pour être
      testables par `node --test`. -->
@@ -145,6 +147,8 @@
            (toujours visible, même sidebar repliée), à l'écart des boutons de vue. -->
       <button class="btn btn--icon" data-action="ui-openServicesModal" title="Choisir mes 9 IA à portée de main"><span class="ic" data-icon="columns"></span></button>
       <button class="btn btn--icon" data-action="ui-openHelpModal" title="Comprendre les IA disponibles"><span class="ic" data-icon="circle-question"></span></button>
+      <!-- Issue #206 : statistiques d'utilisation (locales, sans télémétrie). -->
+      <button class="btn btn--icon" data-action="ui-openStatsModal" title="Statistiques d'utilisation"><span class="ic" data-icon="chart-simple"></span></button>
       <!-- Ordonnanceur IA (chantier E) : registre de jobs + reprise par profil. -->
       <button class="btn btn--icon" data-action="ui-openSchedulerModal" title="Ordonnanceur IA"><span class="ic" data-icon="robot"></span></button>
       <button class="btn btn--icon" data-action="ui-openSettingsModal" title="Réglages"><span class="ic" data-icon="gear"></span></button>
@@ -454,6 +458,25 @@
     <div class="modal__actions modal__actions--spaced">
       <button class="btn" id="confirmModalNo">Annuler</button>
       <button class="btn btn--danger" id="confirmModalYes">Confirmer</button>
+    </div>
+  </div>
+</div>
+
+<!-- Issue #206 (lot 1) : statistiques d'utilisation. Mesures locales
+     (lib/stats.js, <userData>/stats/), tableaux rendus par assets/app.js. -->
+<div class="modal-overlay" id="statsModal">
+  <div class="modal modal--stats">
+    <div class="modal__title">Statistiques d'utilisation</div>
+    <div class="modal__subtitle">Mesurées sur cet ordinateur et conservées 90 jours. Rien n'est envoyé.</div>
+    <div class="stats-periodes" id="statsPeriodes" role="tablist">
+      <button type="button" class="stats-periode" data-periode="jour">Aujourd'hui</button>
+      <button type="button" class="stats-periode" data-periode="semaine">7 jours</button>
+      <button type="button" class="stats-periode" data-periode="mois">30 jours</button>
+      <button type="button" class="stats-periode" data-periode="tout">90 jours</button>
+    </div>
+    <div class="stats-body" id="statsBody"></div>
+    <div class="modal__actions">
+      <button class="btn" data-action="ui-closeStatsModal">Fermer</button>
     </div>
   </div>
 </div>

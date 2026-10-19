@@ -482,6 +482,21 @@
     let tabs = [];          // { id, accId, svcId, paneEl }
     let activeTabId = null;
     let tabSeq = 0;
+
+    // Issue #206 (lot 1) : statistiques d'utilisation, mesurées localement.
+    // Une session = vie d'un onglet (compte, service) ; temps actif = onglet au
+    // premier plan ET fenêtre IAO au focus. Les sessions terminées et
+    // l'instantané des sessions ouvertes partent par stats:sync (fermeture
+    // d'onglet + toutes les minutes) : un arrêt brutal perd au plus 1 min.
+    const suiviStats = window.iaoStats.creerSuivi({ focus: document.hasFocus() });
+    function synchroniserStats(terminees) {
+      ipcRenderer.invoke('stats:sync', terminees || [], suiviStats.instantane())
+        .then((r) => { if (r && r.error) dbg('stats', 'sync en échec', r.error); })
+        .catch((e) => dbg('stats', 'sync en échec', e && e.message));
+    }
+    window.addEventListener('focus', () => suiviStats.focus(true));
+    window.addEventListener('blur', () => suiviStats.focus(false));
+    setInterval(() => { if (suiviStats.taille()) synchroniserStats([]); }, window.iaoStats.SYNC_INTERVALLE_MS);
     let monacoEditor = null;
     let fallbackTextarea = null;
     let editorMode = 'none'; // 'monaco' | 'textarea' | 'none'
@@ -889,6 +904,7 @@
       // lastFocusAt initialisé ici (puis maintenu par activateTab) : lot
       // 16/09/2026, rappel visuel « onglet inactif depuis 5 min ».
       tabs.push({ id: tabId, accId, svcId, paneEl: pane, lastFocusAt: Date.now() });
+      suiviStats.ouvrir(tabId, acc.profile, svcId); // issue #206
       dbg('onglets', 'ouverture', tabId, 'service=' + svcId, 'compte=' + accId);
       webview.addEventListener('did-fail-load', (ev) => {
         if (ev.isMainFrame) dbg('onglets', 'échec de chargement', tabId, ev.errorCode, ev.errorDescription);
@@ -944,6 +960,7 @@
     function activateTab(tabId) {
       dbg('onglets', 'activation', tabId);
       activeTabId = tabId;
+      suiviStats.activer(tabId); // issue #206 : temps actif
       const tab = tabs.find(t => t.id === tabId);
       if (tab) tab.lastFocusAt = Date.now();
       document.querySelectorAll('.tab-pane').forEach(p => p.classList.toggle('active', p.id === tabId));
@@ -979,6 +996,8 @@
       if (idx === -1) return;
       const [tab] = tabs.splice(idx, 1);
       dbg('onglets', 'fermeture', tabId, 'restants=' + tabs.length);
+      const sessionStats = suiviStats.fermer(tabId); // issue #206
+      synchroniserStats(sessionStats ? [sessionStats] : []);
       tab.paneEl.remove(); // innerHTML/remove détruit la <webview> -> libère la mémoire
 
       if (activeTabId === tabId) {
@@ -2415,6 +2434,98 @@
       ipcRenderer.invoke('scheduler:set-config', plan.schedulerConfigPush).catch(function() {});
     }
 
+    // --- Statistiques d'utilisation (issue #206, lot 1) ---
+    // Historique (stats:load) + sessions en cours, agrégés par lib/stats.js.
+    // Les noms de compte et de service viennent des données locales et passent
+    // par escapeHtml() ; un profil sans compte (supprimé) reste affiché tel quel.
+    let statsPeriode = 'jour';
+    let statsHistorique = [];
+    function dureeStats(ms) {
+      if (ms > 0 && ms < 60000) return _('< 1 min');
+      const d = window.iaoStats.decomposerDuree(ms);
+      return d.heures ? _('{h} h {m} min', { h: d.heures, m: String(d.minutes).padStart(2, '0') })
+        : _('{m} min', { m: d.minutes });
+    }
+    function dateStats(ms) {
+      if (!ms) return '—';
+      try {
+        return new Date(ms).toLocaleString(document.documentElement.lang || undefined,
+          { dateStyle: 'short', timeStyle: 'short' });
+      } catch (_e) { return new Date(ms).toLocaleString(); }
+    }
+    function tableStats(titre, colonne, lignes, nomLigne, avecPart) {
+      if (!lignes.length) return '';
+      const max = Math.max(1, ...lignes.map(l => l.actifMs));
+      const corps = lignes.map(l => {
+        const n = nomLigne(l);
+        return `<tr>
+          <td><div class="stats-nom">${n.point}<span title="${escapeHtml(n.titre)}">${escapeHtml(n.nom)}</span></div>
+            <div class="stats-barre" style="width:${Math.round(100 * l.actifMs / max)}%"></div></td>
+          <td class="num">${escapeHtml(dureeStats(l.actifMs))}</td>
+          <td class="num">${escapeHtml(dureeStats(l.dureeMs))}</td>
+          <td class="num">${l.sessions}</td>
+          <td class="num">${avecPart ? Math.round(100 * l.part) + ' %' : escapeHtml(dateStats(l.dernier))}</td>
+        </tr>`;
+      }).join('');
+      return `<div><div class="stats-titre">${escapeHtml(titre)}</div>
+        <table class="stats-table"><thead><tr>
+          <th>${escapeHtml(colonne)}</th><th class="num">${escapeHtml(_('Temps actif'))}</th>
+          <th class="num">${escapeHtml(_('Durée ouverte'))}</th><th class="num">${escapeHtml(_('Sessions'))}</th>
+          <th class="num">${escapeHtml(avecPart ? _('Part') : _('Dernière utilisation'))}</th>
+        </tr></thead><tbody>${corps}</tbody></table></div>`;
+    }
+    function renderStats() {
+      document.querySelectorAll('#statsPeriodes [data-periode]').forEach(b =>
+        b.classList.toggle('stats-periode--active', b.getAttribute('data-periode') === statsPeriode));
+      const r = window.iaoStats.agreger(statsHistorique.concat(suiviStats.instantane()),
+        { periode: statsPeriode, maintenant: Date.now() });
+      const body = document.getElementById('statsBody');
+      if (!r.totaux.sessions) {
+        body.innerHTML = `<div class="stats-vide">${escapeHtml(_('Aucune session sur cette période. La mesure commence à l\'installation de cette version.'))}</div>`;
+        return;
+      }
+      const carte = (valeur, libelle) => `<div class="stats-carte"><div class="stats-carte__valeur">${escapeHtml(valeur)}</div><div class="stats-carte__libelle">${escapeHtml(libelle)}</div></div>`;
+      body.innerHTML = `<div class="stats-totaux">
+          ${carte(dureeStats(r.totaux.actifMs), _('Temps actif'))}
+          ${carte(dureeStats(r.totaux.dureeMs), _('Durée ouverte'))}
+          ${carte(String(r.totaux.sessions), _('Sessions'))}
+        </div>
+        ${tableStats(_('Par compte'), _('Compte'), r.parCompte, (l) => {
+          const acc = accounts.find(a => a.profile === l.cle);
+          return { nom: acc ? acc.name : l.cle, titre: l.cle, point: '' };
+        }, false)}
+        ${tableStats(_('Par service'), _('Service'), r.parService, (l) => {
+          const svc = SERVICES.find(x => x.id === l.cle);
+          return { nom: svc ? svc.name : l.cle, titre: l.cle,
+            point: svc ? `<span class="stats-point svc-bg-${svc.id}"></span>` : '' };
+        }, true)}`;
+    }
+    window.openStatsModal = async function() {
+      document.getElementById('statsModal').classList.add('open');
+      renderStats();
+      try {
+        const h = await ipcRenderer.invoke('stats:load');
+        statsHistorique = Array.isArray(h) ? h : [];
+        if (h && h.error) showToast(_('Statistiques illisibles : {error}', { error: h.error }), 'error');
+      } catch (e) {
+        statsHistorique = [];
+        dbg('stats', 'chargement en échec', e && e.message);
+      }
+      renderStats();
+    };
+    window.closeStatsModal = function() {
+      document.getElementById('statsModal').classList.remove('open');
+    };
+    document.getElementById('statsModal').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) closeStatsModal();
+    });
+    document.getElementById('statsPeriodes').addEventListener('click', (e) => {
+      const b = e.target.closest('[data-periode]');
+      if (!b) return;
+      statsPeriode = b.getAttribute('data-periode');
+      renderStats();
+    });
+
     window.openSettingsModal = function() {
       document.getElementById('settingsModal').classList.add('open');
       loadSettings();
@@ -3050,6 +3161,8 @@ const UI_ACTIONS = {
   'ui-saveServicesModal': 'saveServicesModal',
   'ui-openSchedulerModal': 'openSchedulerModal',
   'ui-openSettingsModal': 'openSettingsModal',
+  'ui-openStatsModal': 'openStatsModal',
+  'ui-closeStatsModal': 'closeStatsModal',
   'ui-exportAccountsToFile': 'exportAccountsToFile',
   'ui-importAccountsFromFile': 'importAccountsFromFile',
   'ui-selectLocalFolder': 'selectLocalFolder',

@@ -33,6 +33,7 @@ const DEBUG = diag.isDebugEnabled(process.argv, process.env);
 const debugTrace = require('./lib/debug-trace');
 const { CoffreSecrets, registerComptesIPC } = require('./lib/coffre-secrets');
 const startupStorage = require('./lib/startup-storage');
+const stats = require('./lib/stats');
 const LOG_DIR = path.join(app.getPath('userData'), 'logs');
 const LOG_FILE = path.join(LOG_DIR, 'iao.log');
 const LOG_MAX_BYTES = 1024 * 1024;
@@ -523,6 +524,15 @@ registerTachesIPC(ipc, new TachesService({
   dossier: path.join(app.getPath('userData'), 'scheduler'),
   heuresCalmes: schedulerCore.isFrenchQuietHours,
   journal: log.bind(null, 'taches')
+}));
+
+// --- Issue #206 : statistiques d'utilisation (local, sans télémétrie) ---
+// <userData>/stats/sessions.jsonl (90 jours) + en-cours.json (sessions ouvertes,
+// récupérées au lancement suivant si IAO a été fermé brutalement).
+stats.registerStatsIPC(ipc, stats.creerStore({
+  dossier: path.join(app.getPath('userData'), 'stats'),
+  fs: fsPromises,
+  path
 }));
 
 app.whenReady().then(() => {

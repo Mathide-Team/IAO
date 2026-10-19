@@ -452,6 +452,29 @@
   .help-entry__line { font-size: 13px; line-height: 1.55; color: var(--fg); margin-top: 4px; }
   .help-entry__label { color: var(--fg-muted); font-weight: 600; }
 
+  /* --- Statistiques d'utilisation (issue #206) --- */
+  .modal--stats { width: 760px; max-width: calc(100vw - 48px); max-height: calc(100vh - 96px); display: flex; flex-direction: column; padding: 28px; }
+  .stats-periodes { display: flex; gap: 6px; margin: 16px 0 12px; flex-wrap: wrap; }
+  .stats-periode { background: var(--bg-card); color: var(--fg-muted); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 6px 12px; font: inherit; font-size: 12px; cursor: pointer; }
+  .stats-periode:hover { color: var(--fg); }
+  .stats-periode--active { color: var(--fg); border-color: var(--accent); font-weight: 600; }
+  .stats-body { overflow-y: auto; padding-right: 6px; display: flex; flex-direction: column; gap: 18px; }
+  .stats-totaux { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+  .stats-carte { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px; min-width: 0; }
+  .stats-carte__valeur { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; }
+  .stats-carte__libelle { font-size: 12px; color: var(--fg-muted); margin-top: 2px; }
+  .stats-titre { font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+  .stats-table { width: 100%; border-collapse: collapse; font-size: 12px; table-layout: fixed; }
+  .stats-table th { text-align: left; color: var(--fg-muted); font-weight: 500; padding: 6px 8px; border-bottom: 1px solid var(--border); }
+  .stats-table td { padding: 6px 8px; border-bottom: 1px solid var(--border); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .stats-table th.num, .stats-table td.num { text-align: right; }
+  .stats-table th:first-child { width: 34%; }
+  .stats-nom { display: flex; align-items: center; gap: 8px; min-width: 0; }
+  .stats-nom > span:last-child { overflow: hidden; text-overflow: ellipsis; }
+  .stats-point { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .stats-barre { height: 4px; border-radius: 2px; background: var(--accent); margin-top: 4px; }
+  .stats-vide { color: var(--fg-muted); font-size: 13px; padding: 12px 0; }
+
   /* --- Ordonnanceur IA (chantier E) --- même famille visuelle que .modal--help. */
   .modal--scheduler { width: 680px; max-width: calc(100vw - 48px); max-height: calc(100vh - 96px); display: flex; flex-direction: column; padding: 28px; }
   .sched-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }

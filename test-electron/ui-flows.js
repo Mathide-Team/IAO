@@ -902,6 +902,68 @@ async function run() {
   await exec('window.closeSchedulerModal()');
 
   // =========================================================================
+  // C11 — Statistiques d'utilisation (issue #206, lot 1)
+  // =========================================================================
+  console.log('\n--- C11 : Statistiques d\'utilisation ---');
+  const statsDir = path.join(app.getPath('userData'), 'stats');
+
+  await test('C11.1 Fermer un onglet enregistre sa session (sessions.jsonl) et l\'instantané des autres', async () => {
+    // Un onglet qui reste ouvert (profil_1) et un qu'on ferme (profil_2).
+    await exec(`document.querySelector('#accountsList [data-action="open-service"][data-acc="acc_test_1"][data-svc="claude"]').click(); 'ok'`);
+    await sleep(300);
+    await exec(`document.querySelector('#accountsList [data-action="open-service"][data-acc="acc_test_2"][data-svc="claude"]').click(); 'ok'`);
+    await sleep(1500); // laisser la <webview> s'attacher avant de fermer l'onglet
+    await exec(`(() => {
+      const t = [...document.querySelectorAll('#tabsBar .tab')].find(x => x.dataset.acc === 'acc_test_2' && x.dataset.svc === 'claude');
+      closeTab(t.dataset.tab);
+      const oui = document.getElementById('confirmModalYes');
+      if (oui && oui.offsetParent !== null) oui.click();
+      return 'ok';
+    })()`);
+    let lignes = [];
+    for (let i = 0; i < 30 && !lignes.length; i++) {
+      await sleep(100);
+      try { lignes = fs.readFileSync(path.join(statsDir, 'sessions.jsonl'), 'utf-8').split('\n').filter(Boolean); } catch (e) { /* pas encore écrit */ }
+    }
+    const s = JSON.parse(lignes[lignes.length - 1]);
+    assert(s.profil === 'profil_2' && s.service === 'claude', 'session inattendue : ' + lignes[0]);
+    assert(s.fin >= s.debut && s.actifMs <= s.fin - s.debut, 'durées incohérentes : ' + lignes[0]);
+    const enCours = JSON.parse(fs.readFileSync(path.join(statsDir, 'en-cours.json'), 'utf-8'));
+    assert(enCours.some(x => x.profil === 'profil_1' && x.service === 'claude'),
+      'instantané des onglets ouverts attendu : ' + JSON.stringify(enCours));
+  });
+
+  await test('C11.2 La page Statistiques affiche totaux et tableaux, noms échappés, périodes', async () => {
+    const r = await exec(`(async () => {
+      document.querySelector('[data-action="ui-openStatsModal"]').click();
+      await new Promise(res => setTimeout(res, 500));
+      const modal = document.getElementById('statsModal');
+      const body = document.getElementById('statsBody');
+      document.querySelector('#statsPeriodes [data-periode="tout"]').click();
+      const r = {
+        ouvert: modal.classList.contains('open'),
+        cartes: body.querySelectorAll('.stats-carte').length,
+        tables: body.querySelectorAll('.stats-table').length,
+        script: body.querySelectorAll('script').length,
+        texte: body.textContent,
+        active: document.querySelector('#statsPeriodes .stats-periode--active').dataset.periode,
+        icone: !!document.querySelector('[data-action="ui-openStatsModal"] svg'),
+        deborde: body.scrollWidth > body.clientWidth + 1
+      };
+      document.querySelector('#statsModal [data-action="ui-closeStatsModal"]').click();
+      r.ferme = !modal.classList.contains('open');
+      return r;
+    })()`);
+    assert(r.ouvert && r.ferme, 'ouverture/fermeture : ' + JSON.stringify(r));
+    assert(r.cartes === 3 && r.tables === 2, 'attendu 3 cartes et 2 tableaux : ' + JSON.stringify(r));
+    assert(r.script === 0 && r.texte.includes('<script>alert(1)</script>'), 'nom de compte non échappé');
+    assert(r.texte.includes('Compte Test Un') && r.texte.includes('Claude'), 'comptes/services absents : ' + r.texte);
+    assert(r.active === 'tout', 'période active : ' + r.active);
+    assert(r.icone, 'icône chart-simple non hydratée');
+    assert(!r.deborde, 'débordement horizontal du contenu');
+  });
+
+  // =========================================================================
   // C12 — Fermer un onglet chargé n'interrompt pas l'interface
   // (Electron < 43.7.4 : « Invalid guestInstanceId » à la suppression d'une
   // <webview> chargée, electron/electron#54089 ; bandeau rouge de boot-guard)
