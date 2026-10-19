@@ -573,6 +573,15 @@ class Scheduler {
 
     // Exécuter le job Claude
     try {
+      // #206 lot 2a (durcissement) : la mesure ne doit compter que le NOUVEAU
+      // texte généré. La base de comparaison est capturée AVANT l'envoi —
+      // runClaudeJob INJECTE le prompt, et une réponse rapide peut déjà être
+      // présente à la fin de l'injection : une baseline capturée après
+      // l'envoi ignorerait cette réponse jusqu'au délai maximal.
+      // collectClaudeResponse ne lève jamais (erreurs renvoyées en {error}).
+      var baseAvantEnvoi = await this.collectClaudeResponse(job.profile);
+      var reponseAvantEnvoi = (baseAvantEnvoi && baseAvantEnvoi.ok && baseAvantEnvoi.response) ? baseAvantEnvoi.response : '';
+
       var result = await this.runClaudeJob(job.profile, prompt, sourceZipPath);
       if (result && result.error) {
         // Erreur (quota, sélecteur non trouvé, etc.)
@@ -593,8 +602,11 @@ class Scheduler {
       this._logActivity('Job ' + job.id + ' : prompt envoyé à Claude, en attente de la réponse...');
       var envoyeA = Date.now(); // #206 lot 2 : temps de réponse (envoi -> fin)
 
-      // Poller la réponse pendant max 120 secondes (toutes les 5 s)
-      var response = await this._pollClaudeResponse(job.profile, 120000, 5000);
+      // Poller la réponse (délais injectables via la config pour les tests).
+      var response = await this._pollClaudeResponse(job.profile,
+        this.config.responseTimeoutMs ?? 120000,
+        this.config.responsePollIntervalMs ?? 5000,
+        reponseAvantEnvoi);
       if (this.statsStore && response && response.ok && response.response) {
         // #206 lot 2 : mesure locale du temps de réponse (jamais bloquant).
         this.statsStore.noterReponse({ profil: job.profile, service: 'claude', debut: envoyeA, fin: Date.now() }).catch(() => {});
@@ -670,15 +682,27 @@ class Scheduler {
 
   // Poll la réponse de Claude à intervalles réguliers.
   // Renvoie { ok: true, response: string } ou { ok: false } si délai dépassé.
-  async _pollClaudeResponse(profile, timeoutMs, intervalMs) {
+  //
+  // #206 lot 2a (durcissement) — une réponse n'est acceptée que si :
+  //   1. elle diffère de la réponse présente avant l'envoi (`baseline`) :
+  //      la même réponse d'un échange précédent ne compte pas ;
+  //   2. la génération est TERMINÉE : le script de collecte signale
+  //      `streaming` via l'attribut data-is-streaming de Claude.ai (présent
+  //      pendant la génération, retiré à la fin). Le texte d'une génération
+  //      en cours croît à chaque lecture et peut dépasser la troncature à
+  //      5 000 caractères du script de collecte : la stabilité textuelle
+  //      seule ne prouverait pas la fin.
+  // Une réponse partielle ne produit donc jamais de mesure : à l'expiration du
+  // délai, rien n'est noté (pas de « temps de réponse réussi »).
+  async _pollClaudeResponse(profile, timeoutMs, intervalMs, baseline) {
     var self = this;
     var start = Date.now();
     while (Date.now() - start < timeoutMs) {
       await new Promise(function(r) { setTimeout(r, intervalMs); });
       try {
         var resp = await self.collectClaudeResponse(profile);
-        if (resp && resp.ok && resp.response) {
-          return resp;
+        if (resp && resp.ok && resp.response && resp.response !== baseline && !resp.streaming) {
+          return resp; // nouveau texte, génération terminée
         }
       } catch (_) { /* continuer à poller */ }
     }

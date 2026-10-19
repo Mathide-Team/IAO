@@ -1,5 +1,50 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issue #206 — lot 2a : durcissement de la mesure (revue, 20/10/2026)
+
+### Corrigé (2 passes de revue sur le lot 2a fusionné, #231)
+- **La mesure ne compte que le NOUVEAU texte généré, terminé** :
+  - la base de comparaison est capturée AVANT l'envoi (runClaudeJob INJECTE
+    le prompt — une réponse rapide peut déjà être présente à la fin de
+    l'injection, une baseline post-envoi l'ignorerait jusqu'au délai) ;
+  - une réponse est acceptée seulement si (1) différente de la base ET
+    (2) génération TERMINÉE : le script de collecte signale `streaming`
+    via l'attribut data-is-streaming de Claude.ai (présent pendant la
+    génération — même en pause —, retiré à la fin). La stabilité du texte
+    seule ne prouvait rien : le texte est tronqué à 5 000 caractères et un
+    préfixe identique masquerait une suite qui croît ;
+  - une réponse partielle ou un délai dépassé ne produisent jamais de
+    « temps de réponse réussi ».
+- **Périmètre explicite** : la mesure couvre les envois passant par
+  `_executeAutomation` (tâches et relances) ; les appels IPC directs
+  `run-claude-job` et les envois manuels dans la webview ne sont pas
+  instrumentés.
+- **Lecture non destructive** : seule l'absence du fichier (ENOENT) vaut
+  « historique vide » ; toute autre erreur de lecture (EIO…) se PROPAGE —
+  sinon la notation suivante réécrivait le fichier avec le seul nouvel
+  événement et détruisait l'historique (sessions ET événements du lot 2).
+  Test : lecture EIO -> notation rejetée, fichier intact, réessai OK.
+- **Écritures sérialisées** : reponses.jsonl et quotas.jsonl partent de
+  chaînes de promesses distinctes (lecture → réécriture complète) — des
+  notations simultanées ne s'écrasaient plus mutuellement (test : 24
+  événements notés en parallèle, aucun perdu).
+- **Conservation 90 jours tenue** : la purge est PERSISTÉE au chargement
+  (fichier réécrit) — un événement expiré restait physiquement dans le
+  fichier tant qu'aucune notation n'avait lieu.
+- **Quotas : la métrique est un PLAFONNEMENT des détections** (au plus une
+  par compte et par heure glissante — la boucle wait_quota re-diagnostique
+  le même blocage sans envoyer). Ce n'est ni un comptage d'épisodes réels,
+  ni une mesure de durée : `classerComptes` (surchargés) compte des
+  détections plafonnées, pas des blocages.
+- **Récupération réessayable** : un échec de la récupération des sessions
+  (disque plein) n'est plus mémoïsé sur son rejet — sinon tous les appels
+  suivants échouaient jusqu'au redémarrage de l'app.
+- Délais de poll injectables via la config (`responseTimeoutMs`,
+  `responsePollIntervalMs`) : tests rapides et déterministes.
+- 8 tests discriminants (concurrence, EIO non destructive, purge persistée,
+  échec réessayé, réponse rapide post-injection, texte croissant, préfixe
+  5 000 caractères stable, délais dépassés) ; couverture 100 %.
+
 ## Issue #206 — statistiques d'utilisation, lot 2 (19/10/2026)
 
 ### Livré
