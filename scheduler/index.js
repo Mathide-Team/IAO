@@ -46,6 +46,7 @@ const taches = require('./taches.js');
 // fichier et la collecte de réponse. Chargé côté main.js car c'est ici que
 // se fait l'orchestration CDP/executeJavaScript avec les <webview>.
 const claudeAdapter = require('../lib/claude-adapter');
+const accountsRecovery = require('../lib/accounts-recovery');
 
 class Scheduler {
   constructor(electronApp, electronSession) {
@@ -182,6 +183,18 @@ class Scheduler {
   _persistAccounts() {
     try { fs.writeFileSync(this.accountsPath, JSON.stringify(this.accountsSnapshot, null, 2), 'utf-8'); }
     catch (e) { this._error('échec écriture instantané comptes :', e); }
+  }
+
+  // Issue #186 : l'interface signale au démarrage ce qu'elle a lu dans son
+  // localStorage ({ status, count }). La ligne part toujours dans iao.log ; si
+  // l'interface n'a aucun compte alors que l'instantané en contient, les comptes
+  // reconstruits sont renvoyés pour proposer leur restauration.
+  reportStartupAccounts(loaded) {
+    const candidates = accountsRecovery.accountsFromSnapshot(this.accountsSnapshot);
+    const report = accountsRecovery.startupAccountsReport(loaded, candidates.length);
+    if (this._logFn) this._logFn('scheduler', report.level, report.message);
+    else console.log('[scheduler]', report.message);
+    return { offerRestore: report.offerRestore, accounts: report.offerRestore ? candidates : [] };
   }
 
   _logActivity(message) {
@@ -1196,6 +1209,7 @@ function registerSchedulerIPC(ipcMainRef, scheduler, getWin) {
 
   ipcMainRef.handle('scheduler:get-state', safe(() => scheduler.getState()));
   ipcMainRef.handle('scheduler:sync-accounts', safe((accounts) => { scheduler.syncAccounts(accounts); return true; }));
+  ipcMainRef.handle('scheduler:accounts-startup', safe((loaded) => scheduler.reportStartupAccounts(loaded)));
   ipcMainRef.handle('scheduler:set-enabled', safe((enabled) => scheduler.setEnabled(enabled)));
   ipcMainRef.handle('scheduler:set-config', safe((partial) => scheduler.setConfig(partial)));
   ipcMainRef.handle('scheduler:pick-downloads-dir', safe(() => scheduler.pickDownloadsDir(getWin())));

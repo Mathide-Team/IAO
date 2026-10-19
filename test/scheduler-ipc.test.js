@@ -13,6 +13,7 @@ const { registerSchedulerIPC } = require('../scheduler/index');
 const CHANNELS = {
   'scheduler:get-state': ['getState', []],
   'scheduler:sync-accounts': ['syncAccounts', [[{ id: 'a1' }]]],
+  'scheduler:accounts-startup': ['reportStartupAccounts', [{ status: 'empty', count: 0 }]],
   'scheduler:set-enabled': ['setEnabled', [true]],
   'scheduler:set-config': ['setConfig', [{ maxParallel: 2 }]],
   'scheduler:pick-downloads-dir': ['pickDownloadsDir', []],
