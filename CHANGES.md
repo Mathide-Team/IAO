@@ -1,5 +1,22 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issue #51 — contrôle réel des marqueurs {…} (revue #229, 20/10/2026)
+
+### Corrigé (suite à la revue des retouches #229 fusionnées)
+- **Le contrôle des marqueurs {…} des traductions était sans effet** : il
+  comparait le msgid à lui-même. Remplacé par un vrai test permanent
+  (`test/i18n-marqueurs.test.js`) : analyseur .po (msgid/msgstr,
+  continuations multilignes, échappements) + comparaison des ensembles de
+  marqueurs {…} (quantités comprises) sur TOUS les catalogues.
+  Le test s'auto-vérifie : un marqueur renommé, supprimé, dupliqué ou
+  ajouté est détecté (4 cas couverts).
+- **pt : « Converse, redige… » corrigé en « Conversa, redige… »** (la
+  correction précédente cherchait une chaîne commençant par « Converse »
+  alors que le msgstr complet commence par « O assistente generalista… » —
+  le remplacement n'avait pas pris, silencieusement). « Conversa » est la
+  3e personne de « conversar », cohérente avec l'italien et l'espagnol.
+- `lang/pt.po` + `.mo` recompilé.
+
 ## Issue #228 — durcissement du nettoyage Service Worker (revue #223, 20/10/2026)
 
 ### Corrigé (suite à la revue du correctif #228 fusionné)
