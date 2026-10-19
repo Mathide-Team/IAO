@@ -40,6 +40,7 @@ const path = require('path');
 const fs = require('fs');
 
 const core = require('./core');
+const taches = require('./taches.js');
 // Adaptateur Claude.ai (lot 18/09/2026, points 7-8, 10-13) : fonctions pures
 // pour la détection d'éléments de page, l'injection de prompt, l'upload de
 // fichier et la collecte de réponse. Chargé côté main.js car c'est ici que
@@ -51,6 +52,9 @@ class Scheduler {
   constructor(electronApp, electronSession) {
     this._app = electronApp;
     this._session = electronSession;
+    // Issue #199, lot 1 : ancien flux (ZIP, jobs, projets) désactivé par
+    // défaut, remplacé par les tâches programmables (scheduler/taches.js).
+    this.ancienFlux = taches.ancienFluxActif(process.env);
 
     this.dir = path.join(this._app.getPath('userData'), 'scheduler');
     this.jobsPath = path.join(this.dir, 'jobs.json');
@@ -216,6 +220,7 @@ class Scheduler {
     ).length;
     return {
       config: this.config,
+      ancienFlux: this.ancienFlux,
       jobs: [...this.jobs].sort((a, b) => new Date(b.lastActivityAt) - new Date(a.lastActivityAt)),
       projects: [...this.projects].sort((a, b) => new Date(b.lastActivityAt) - new Date(a.lastActivityAt)),
       counters: { active, waiting, deliveredToday },
@@ -264,6 +269,11 @@ class Scheduler {
   // surveillance des téléchargements sur chaque profil connu, arrêter la
   // débranche (aucun écouteur ne reste actif).
   setEnabled(enabled) {
+    if (enabled && !this.ancienFlux) {
+      this._logActivity('Ancien ordonnanceur désactivé (#199) : démarrage refusé. ' +
+        'IAO_ORDONNANCEUR_ANCIEN=1 le réactive.');
+      return this.config;
+    }
     this.config.enabled = !!enabled;
     this._persistConfig();
     if (this.config.enabled) this._watchAllPartitions();

@@ -42,6 +42,9 @@
 // tout passe, 1 sinon (2 en cas de timeout global).
 // ---------------------------------------------------------------------------
 
+// B6/B7 testent le bouton « Continuer le projet » de l'ancien flux, désactivé
+// par défaut depuis #199 (lot 1) : on le réactive pour ce harnais.
+process.env.IAO_ORDONNANCEUR_ANCIEN = '1';
 const { app, BrowserWindow } = require('electron');
 
 // Issue #51, lot 3 : sans demande explicite, l'interface suit la langue du

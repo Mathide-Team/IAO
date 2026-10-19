@@ -250,7 +250,20 @@ function planExecution(tache, eligibles) {
   };
 }
 
+// ---------------------------------------------------------------------------
+// Ancien flux (lot 1 de #199)
+// ---------------------------------------------------------------------------
+
+// L'ancien ordonnanceur (détection des ZIP, jobs, projets) est désactivé par
+// défaut ; IAO_ORDONNANCEUR_ANCIEN=1 (ou true/yes/on) le réactive, pour les
+// tests du code conservé ou un retour arrière.
+function ancienFluxActif(environ) {
+  const v = String((environ || {}).IAO_ORDONNANCEUR_ANCIEN || '').trim().toLowerCase();
+  return ['1', 'true', 'yes', 'on'].includes(v);
+}
+
 module.exports = {
+  ancienFluxActif,
   FOURNISSEURS_PAR_DEFAUT, enregistrerFournisseur,
   UNITES, INTERVALLE_MIN_MS, ESPACEMENT_MAX_MS, PROMPT_MAX, NOM_MAX,
   ajouterMois, prochaineEcheance, tachesDues,
