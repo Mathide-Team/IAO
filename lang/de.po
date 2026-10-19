@@ -1398,8 +1398,8 @@ msgid "Remettre les statistiques à zéro ?"
 msgstr "Statistiken zurücksetzen?"
 
 #: assets/app.js
-msgid "Toutes les sessions enregistrées sur cet ordinateur seront effacées. L'historique des tâches programmables n'est pas touché. Pensez à exporter avant si besoin."
-msgstr "Alle auf diesem Computer gespeicherten Sitzungen werden gelöscht. Der Verlauf der geplanten Aufgaben bleibt erhalten. Bei Bedarf vorher exportieren."
+msgid "Les sessions, temps de réponse et quotas enregistrés sur cet ordinateur seront effacés. L'historique des tâches programmables n'est pas touché. Pensez à exporter avant si besoin."
+msgstr "Auf diesem Computer gespeicherte Sitzungen, Antwortzeiten und Kontingente werden gelöscht. Der Verlauf der geplanten Aufgaben bleibt erhalten. Bei Bedarf vorher exportieren."
 
 #: assets/app.js
 msgid "Remise à zéro impossible : {error}"

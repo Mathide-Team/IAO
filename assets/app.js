@@ -2642,7 +2642,7 @@
     // vidés ; les onglets ouverts repartent de maintenant.
     window.resetStats = function() {
       showConfirmDialog(_('Remettre les statistiques à zéro ?'),
-        _('Toutes les sessions enregistrées sur cet ordinateur seront effacées. L\'historique des tâches programmables n\'est pas touché. Pensez à exporter avant si besoin.'),
+        _('Les sessions, temps de réponse et quotas enregistrés sur cet ordinateur seront effacés. L\'historique des tâches programmables n\'est pas touché. Pensez à exporter avant si besoin.'),
         async () => {
           try {
             const r = await ipcRenderer.invoke('stats:reset');

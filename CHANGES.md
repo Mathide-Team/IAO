@@ -12,8 +12,8 @@
   RFC 4180 avec BOM UTF-8 (Excel) ; cellules commençant par `= + - @`
   préfixées d'une apostrophe (pas d'injection de formule). JSON versionné
   (`format: iao-stats-1`).
-- **Remise à zéro** (`stats:reset`) après confirmation : historique et
-  instantané vidés, onglets ouverts relancés à partir de maintenant
+- **Remise à zéro** (`stats:reset`) après confirmation : sessions,
+  instantané, temps de réponse et quotas (lot 2a, #231) vidés, onglets ouverts relancés à partir de maintenant
   (`suivi.recommencer()`). L'historique des tâches n'est pas touché. La
   confirmation passe désormais au-dessus des autres modales.
 - Tests : `test/stats-lot3.test.js` (100 %), main-harness (`stats:export`),
@@ -32,16 +32,32 @@
   rapportée. Source : l'historique des tâches (`taches:history`, 200 dernières
   exécutions). Depuis le retrait du bouton « Épuiser » (#136), plus rien
   n'alimente `cooldowns` : les quotas ne viennent que de cet historique.
-- **Tri par colonne** de tous les tableaux (clic sur l'en-tête, second clic =
-  sens inverse, `aria-sort`).
+- **Tri par colonne** de tous les tableaux (clic sur l'en-tête, second clic = sens
+  inverse, `aria-sort`).
 - `lib/stats.js` : `heuresDePointe`, `comptesInutilises`, `serieJours`,
   `resultatsTaches`, `trierLignes` (100 %, `test/stats-lot2.test.js`) ;
   harnais C11.3 ; traductions en/de/es/it/pt.
 
-### Reste
-- Temps de réponse des IA : attend la réponse à la question 3 de #206 (script
-  dans les pages IA pour les envois manuels).
-- Lot 3 : graphiques d'évolution, export CSV/JSON, remise à zéro depuis l'interface.
+## Issue #206 — lot 2a : mesure des temps de réponse et des quotas (20/10/2026)
+
+### Livré
+- **La mesure laissée en « reste » par le lot 2** : temps de réponse et quotas.
+  - temps de réponse Claude : envoi du prompt -> fin de la génération,
+    mesuré dans `_executeAutomation` (le poll de réponse existant) ;
+  - quotas atteints : notés quand `runClaudeJob` détecte le quota
+    (cooldown) — couvre jobs ET tâches programmables ;
+  - tout reste local (`<userData>/stats/reponses.jsonl` et
+    `quotas.jsonl`, 90 jours, plafond 130 000 événements par type,
+    jamais bloquants pour l'envoi).
+- `lib/stats.js` (pur, testé) : `normaliserReponse`/`normaliserQuota`,
+  `agregerReponses` (médiane/min/max par compte et service),
+  `agregerQuotas` (répartition par heure de la journée),
+  `classerComptes` (sous-utilisés / **surchargés** — la moitié
+  « surchargés », alimentée par les quotas, est nouvelle) ;
+  `purger` généralisé (champ `fin` ou `date`), `parserJsonl` typé.
+  (`carteHeures` retirée : doublon de `heuresDePointe` du lot 2.)
+- IPC : `stats:noter-reponse`, `stats:noter-quota`, `stats:reponses`,
+  `stats:quotas` ; `scheduler.statsStore` câblé dans `main.js`.
 
 ## Issue #206 — statistiques d'utilisation, lot 1 (19/10/2026)
 

@@ -1393,7 +1393,7 @@ msgid "Remettre les statistiques à zéro ?"
 msgstr ""
 
 #: assets/app.js
-msgid "Toutes les sessions enregistrées sur cet ordinateur seront effacées. L'historique des tâches programmables n'est pas touché. Pensez à exporter avant si besoin."
+msgid "Les sessions, temps de réponse et quotas enregistrés sur cet ordinateur seront effacés. L'historique des tâches programmables n'est pas touché. Pensez à exporter avant si besoin."
 msgstr ""
 
 #: assets/app.js assets/app.js

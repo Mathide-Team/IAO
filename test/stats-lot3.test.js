@@ -137,8 +137,12 @@ test('store : reinitialiser vide l\'historique et l\'instantané ; exporter CSV 
   const cible = path.join(dossier, 'sortie.csv');
   await store.ecrire(cible, csv.contenu);
   assert.equal(fs.readFileSync(cible, 'utf-8'), csv.contenu);
+  await store.noterReponse({ profil: 'p1', service: 'claude', debut: T0 - 2 * MIN, fin: T0 - MIN, source: 'tache' });
+  await store.noterQuota({ profil: 'p1', service: 'claude', date: T0 - MIN });
   assert.deepEqual(await store.reinitialiser(), { ok: true });
   assert.deepEqual(await store.charger(), []);
+  assert.deepEqual(await store.chargerReponses(), [], 'temps de réponse effacés');
+  assert.deepEqual(await store.chargerQuotas(), [], 'quotas effacés');
   assert.equal(fs.readFileSync(store.fichierEnCours, 'utf-8'), '[]');
   // Après la remise à zéro, une session disparue de l'instantané précédent
   // n'est pas reversée dans l'historique.
