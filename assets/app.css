@@ -482,6 +482,20 @@
   .sched-log { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 12px; max-height: 120px; overflow-y: auto; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--fg-muted); }
   .sched-log div { margin-bottom: 4px; }
 
+  /* --- Tâches programmables (issue #199, lot 4) --- */
+  /* La modale est en flex column avec hauteur max : la section des tâches
+     est la zone défilante — le formulaire ouvert ne doit jamais déborder
+     de la carte (boutons Enregistrer/Annuler toujours accessibles). */
+  #schedTaches { overflow-y: auto; min-height: 0; }
+  .sched-taches__head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .tache-card__inactive { color: var(--fg-muted); font-weight: 400; }
+  #tacheForm { border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px; margin-bottom: 12px; }
+  .tache-form__comptes { display: flex; flex-direction: column; gap: 4px; margin-top: 6px; max-height: 120px; overflow-y: auto; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 8px; }
+  .tache-form__compte { font-size: 12px; display: flex; align-items: center; gap: 8px; }
+  .tache-form__tous { width: 90px; display: inline-block; }
+  .tache-form__unite { width: auto; display: inline-block; margin-left: 6px; }
+  .tache-form__erreurs { border: 1px solid var(--danger); border-radius: var(--radius-sm); padding: 8px 10px; margin: 10px 0; font-size: 12px; color: var(--danger); }
+
   .toast-container { position: fixed; top: 20px; right: 20px; z-index: 200; display: flex; flex-direction: column; gap: 10px; }
   .toast { padding: 12px 18px; background: var(--bg-elevated); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: var(--radius-sm); font-size: 13px; box-shadow: 0 8px 32px rgba(0,0,0,0.4); animation: toastIn 0.3s ease; display: flex; align-items: center; gap: 10px; }
   @keyframes toastIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }

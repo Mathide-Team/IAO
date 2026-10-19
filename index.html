@@ -47,6 +47,10 @@
 <script src="lib/starred-tabs.js"></script>
 <script src="lib/comptes-serie.js"></script>
 <script src="lib/taches-runner.js"></script>
+<!-- Helpers purs de l'interface des tâches programmables (issue #199, lot 4).
+     Conversions datetime-local <-> ISO et descriptions, testés par node --test
+     (test/taches-ui.test.js). -->
+<script src="lib/taches-ui.js"></script>
 <!-- filterFiles / flattenFileTree : lot « Recherche dans l'explorateur » du
      18/09/2026 — extraites vers lib/ dès l'écriture (invariant 11) pour être
      testables par `node --test`. -->
@@ -313,6 +317,93 @@
     <div class="sched-off" id="schedLegacyOff" hidden>
       <div class="sched-off__title">Ancien ordonnanceur désactivé</div>
       <div class="sched-off__text">La détection des ZIP, les jobs et les projets sont remplacés par les tâches programmables, en cours de développement.</div>
+    </div>
+
+    <!-- Issue #199, lot 4 : interface des tâches programmables. Affichée quand
+         l'ancien flux est désactivé (complément de #schedLegacyOff : cette
+         section montre que les tâches existent et sont gérables). -->
+    <div id="schedTaches" hidden>
+      <div class="sched-section-label sched-taches__head">
+        <span>Tâches programmables</span>
+        <button class="btn btn--primary" id="tacheNewBtn" data-action="tache-new">Nouvelle tâche</button>
+      </div>
+      <div class="sched-jobs" id="tachesList"></div>
+
+      <!-- Formulaire de création / édition (affiché à la demande ; les
+           données utilisateur sont échappées au rendu, jamais dans le HTML). -->
+      <div id="tacheForm" hidden>
+        <div class="form-group">
+          <label class="form-label" for="tacheFormNom">Nom de la tâche</label>
+          <input class="form-input" id="tacheFormNom" type="text" maxlength="100" placeholder="Ex. : rapport quotidien">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="tacheFormComptesMode">Comptes</label>
+          <select class="form-input" id="tacheFormComptesMode">
+            <option value="tous">Tous les comptes avec Claude</option>
+            <option value="liste">Choisir des comptes…</option>
+          </select>
+          <div id="tacheFormComptesChoix" class="tache-form__comptes" hidden></div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="tacheFormRepartition">Répartition</label>
+          <select class="form-input" id="tacheFormRepartition">
+            <option value="tous">Tous les comptes à chaque exécution</option>
+            <option value="rotation">Un compte à la fois (rotation)</option>
+          </select>
+        </div>
+        <div class="form-group" id="tacheFormEspacementGroupe">
+          <label class="form-label" for="tacheFormEspacement">Espacement entre comptes (secondes)</label>
+          <input class="form-input" id="tacheFormEspacement" type="number" min="0" max="86400" step="1" value="0">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="tacheFormSession">Nouvelle session à chaque exécution</label>
+          <input type="checkbox" id="tacheFormSession" checked>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="tacheFormPrompt">Prompt à envoyer</label>
+          <textarea class="form-input" id="tacheFormPrompt" rows="4" placeholder="Ex. : Résume les actualités de la veille"></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="tacheFormProgType">Programmation</label>
+          <select class="form-input" id="tacheFormProgType">
+            <option value="periodique">Récurrente (tous les N …)</option>
+            <option value="unique">Une seule fois</option>
+          </select>
+        </div>
+        <div class="form-group" id="tacheFormProgUniqueGroupe">
+          <label class="form-label" for="tacheFormProgLe">Le</label>
+          <input class="form-input" id="tacheFormProgLe" type="datetime-local" step="1">
+        </div>
+        <div id="tacheFormProgPeriodiqueGroupe">
+          <div class="form-group">
+            <label class="form-label" for="tacheFormProgTous">Tous les</label>
+            <input class="form-input tache-form__tous" id="tacheFormProgTous" type="number" min="1" step="1" value="1">
+            <select class="form-input tache-form__unite" id="tacheFormProgUnite">
+              <option value="minute">minutes</option>
+              <option value="heure">heures</option>
+              <option value="jour">jours</option>
+              <option value="semaine">semaines</option>
+              <option value="mois">mois</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="tacheFormProgDepuis">À partir du</label>
+            <input class="form-input" id="tacheFormProgDepuis" type="datetime-local" step="1">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="tacheFormActive">Tâche active</label>
+          <input type="checkbox" id="tacheFormActive">
+        </div>
+        <div id="tacheFormErreurs" class="tache-form__erreurs" hidden></div>
+        <div class="modal__actions">
+          <button class="btn" id="tacheFormAnnuler" data-action="tache-form-cancel">Annuler</button>
+          <button class="btn btn--primary" id="tacheFormEnregistrer" data-action="tache-form-save">Enregistrer</button>
+        </div>
+      </div>
+
+      <div class="sched-section-label">Historique</div>
+      <div class="sched-log" id="tachesHistory"></div>
     </div>
     <div id="schedLegacy">
     <div class="sched-stats">

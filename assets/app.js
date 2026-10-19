@@ -797,15 +797,19 @@
       }
       return !!tabs.find(t => t.accId === acc.id && t.svcId === svcId);
     }
+    // Issue #199, lot 4 : le moteur est partagé entre la minuterie et
+    // « Exécuter maintenant » (même chemin d'exécution, même garde — jamais
+    // deux plans en même temps, lib/taches-runner.js creerMoteur).
+    var moteurTaches = null;
     (function demarrerTachesProgrammables() {
-      const passage = window.iaoTachesRunner.creerMinuterie({
+      moteurTaches = window.iaoTachesRunner.creerMoteur({
         invoke: (...args) => ipcRenderer.invoke(...args),
         comptes: () => accounts.map(a => ({ profile: a.profile, services: Array.isArray(a.services) ? a.services : [] })),
         ouvrirOnglet: ouvrirOngletTache,
         attendre: (ms) => new Promise(resolve => setTimeout(resolve, ms))
       });
       setInterval(() => {
-        passage().catch(e => console.warn('[taches] passage en échec :', e && e.message));
+        moteurTaches.passage().catch(e => console.warn('[taches] passage en échec :', e && e.message));
       }, window.iaoTachesRunner.INTERVALLE_MS);
     })();
 
@@ -2014,6 +2018,324 @@
       if (e.target === e.currentTarget) closeSchedulerModal();
     });
 
+    // --- Tâches programmables : interface (issue #199, lot 4) ---
+    // Liste, création/édition, « Exécuter maintenant » (même chemin que la
+    // minuterie via moteurTaches), historique. Helpers purs dans lib/taches-ui.js
+    // (conversions, descripteurs) ; validation finale par le service (taches:save).
+    // Dernier état reçu (pour retrouver une tâche au clic « Modifier »).
+    var tachesEtat = [];
+
+    // Libellés : appels _() LITTÉRAUX pour que xgettext extraie chaque message
+    // complet (invariant 8) — pas de fragments concaténés.
+    function libelleUniteTaches(unite, n) {
+      if (unite === 'minute') return _('tous les {n} minutes', { n: n });
+      if (unite === 'jour') return _('tous les {n} jours', { n: n });
+      if (unite === 'semaine') return _('toutes les {n} semaines', { n: n });
+      if (unite === 'mois') return _('tous les {n} mois', { n: n });
+      return _('toutes les {n} heures', { n: n });
+    }
+    function texteProgrammationTache(tache) {
+      var d = window.iaoTachesUi.decrireProgrammation(tache.programmation);
+      if (d.cle === 'unique') {
+        return _('Le {date}', { date: formatterDateTache(d.iso) });
+      }
+      if (d.cle === 'periodique') {
+        return libelleUniteTaches(d.unite, d.tous) + ' · ' + _('à partir du {date}', { date: formatterDateTache(d.iso) });
+      }
+      return _('programmation inconnue');
+    }
+    function texteComptesTache(tache) {
+      var d = window.iaoTachesUi.decrireComptes(tache.comptes);
+      if (d.cle === 'liste') return _('{n} compte(s) sélectionné(s)', { n: d.n });
+      return _('tous les comptes avec Claude');
+    }
+    function texteRepartitionTache(tache) {
+      var d = window.iaoTachesUi.decrireRepartition(tache.repartition);
+      if (d.cle === 'rotation') return _('rotation (un compte à la fois)');
+      return d.secondes > 0
+        ? _('tous les comptes, espacement de {n} s', { n: d.secondes })
+        : _('tous les comptes en même temps');
+    }
+    function texteResultatTache(evenement) {
+      var cle = window.iaoTachesUi.cleResultat(evenement.resultat);
+      if (cle === 'lancee') return _('lancée');
+      if (cle === 'envoye') return _('envoyée');
+      if (cle === 'quota') return _('quota épuisé');
+      if (cle === 'heures-calmes') return _('heures calmes');
+      if (cle === 'non-connecte') return _('non connecté');
+      if (cle === 'aucun-compte') return _('aucun compte éligible');
+      if (cle === 'erreur') return _('erreur');
+      return String(evenement.resultat || '');
+    }
+    function formatterDateTache(iso) {
+      if (!iso) return '—';
+      var d = new Date(iso);
+      if (isNaN(d.getTime())) return '—';
+      // Langue active de l'application (lib/i18n.js) — pas de français codé
+      // en dur dans le formatage.
+      var langue = (window.IAO_I18N && window.IAO_I18N.locale) || 'fr';
+      return d.toLocaleString(langue, { dateStyle: 'short', timeStyle: 'short' });
+    }
+
+    // Rafraîchit liste + historique. Le formulaire n'est JAMAIS reconstruit
+    // ici : une saisie en cours n'est ni perdue ni écrasée par le polling de
+    // 4 s (le formulaire ne dépend que des clics de l'utilisateur).
+    async function refreshTachesUI() {
+      try {
+        var liste = await ipcRenderer.invoke('taches:list');
+        if (liste && !liste.error) {
+          tachesEtat = Array.isArray(liste) ? liste : [];
+          renderTachesList(tachesEtat);
+        }
+      } catch (e) { console.warn('[taches] liste indisponible :', e && e.message); }
+      try {
+        var historique = await ipcRenderer.invoke('taches:history', 50);
+        if (historique && !historique.error) renderTachesHistory(Array.isArray(historique) ? historique : []);
+      } catch (e) { /* l'historique est secondaire */ }
+    }
+
+    function renderTachesList(taches) {
+      var conteneur = document.getElementById('tachesList');
+      if (!conteneur) return;
+      if (!taches.length) {
+        conteneur.innerHTML = '<div class="sched-empty">' + escapeHtml(_('Aucune tâche programmée pour l\'instant — créez-en une avec « Nouvelle tâche ».')) + '</div>';
+        return;
+      }
+      conteneur.innerHTML = taches.map(function(t) {
+        var prochain = t.prochaine ? _('Prochaine exécution : {date}', { date: formatterDateTache(t.prochaine) }) : _('Plus aucune exécution programmée');
+        return '<div class="sched-job tache-card">' +
+          '<div class="sched-job__dot" data-dot-color="' + (t.active ? 'var(--accent)' : 'var(--fg-muted)') + '"></div>' +
+          '<div class="sched-job__body">' +
+          '<div class="sched-job__title">' + escapeHtml(t.nom || '') + (t.active ? '' : ' <span class="tache-card__inactive">(' + escapeHtml(_('inactive')) + ')</span>') + '</div>' +
+          '<div class="sched-job__meta">' + escapeHtml(texteProgrammationTache(t)) + ' · ' + escapeHtml(texteComptesTache(t)) + ' · ' + escapeHtml(texteRepartitionTache(t)) + '</div>' +
+          '<div class="sched-job__meta">' + escapeHtml(prochain) + '</div>' +
+          '<div class="sched-job__actions">' +
+          '<button class="btn" data-action="tache-toggle" data-id="' + escapeHtml(t.id) + '">' + escapeHtml(t.active ? _('Désactiver') : _('Activer')) + '</button>' +
+          '<button class="btn" data-action="tache-run" data-id="' + escapeHtml(t.id) + '">' + escapeHtml(_('Exécuter maintenant')) + '</button>' +
+          '<button class="btn" data-action="tache-edit" data-id="' + escapeHtml(t.id) + '">' + escapeHtml(_('Modifier')) + '</button>' +
+          '<button class="btn" data-action="tache-delete" data-id="' + escapeHtml(t.id) + '">' + escapeHtml(_('Supprimer')) + '</button>' +
+          '</div></div></div>';
+      }).join('');
+      applyDataColors(conteneur);
+    }
+
+    function renderTachesHistory(evenements) {
+      var conteneur = document.getElementById('tachesHistory');
+      if (!conteneur) return;
+      if (!evenements.length) {
+        conteneur.innerHTML = '<div class="sched-empty-log">' + escapeHtml(_('Aucun événement pour l\'instant.')) + '</div>';
+        return;
+      }
+      conteneur.innerHTML = evenements.map(function(ev) {
+        var ligne = '[' + escapeHtml(formatterDateTache(ev.date)) + '] ' +
+          escapeHtml(ev.nom || '') + (ev.profil ? ' · ' + escapeHtml(ev.profil) : '') +
+          ' — ' + escapeHtml(texteResultatTache(ev));
+        if (ev.detail) ligne += ' (' + escapeHtml(String(ev.detail)) + ')';
+        return '<div>' + ligne + '</div>';
+      }).join('');
+    }
+
+    // Formulaire de création / édition. La valeur du champ « id » (hidden au
+    // sens DOM : stockée dans une propriété) distingue création et édition.
+    var formulaireTacheId = null;
+    function ouvrirFormulaireTache(tache) {
+      var form = document.getElementById('tacheForm');
+      var champs = window.iaoTachesUi.tacheVersForm(tache || {});
+      formulaireTacheId = champs.id;
+      document.getElementById('tacheFormNom').value = champs.nom;
+      document.getElementById('tacheFormComptesMode').value = champs.comptesMode;
+      construireChoixComptes(champs.comptesProfils);
+      document.getElementById('tacheFormRepartition').value = champs.repartitionMode;
+      document.getElementById('tacheFormEspacement').value = champs.espacementSecondes;
+      document.getElementById('tacheFormSession').checked = champs.nouvelleSession;
+      document.getElementById('tacheFormPrompt').value = champs.prompt;
+      document.getElementById('tacheFormProgType').value = champs.programmationType;
+      document.getElementById('tacheFormProgLe').value = champs.programmationLe || '';
+      document.getElementById('tacheFormProgTous').value = champs.programmationTous;
+      document.getElementById('tacheFormProgUnite').value = champs.programmationUnite;
+      document.getElementById('tacheFormProgDepuis').value = champs.programmationDepuis || '';
+      document.getElementById('tacheFormActive').checked = champs.active;
+      document.getElementById('tacheFormErreurs').hidden = true;
+      document.getElementById('tacheFormErreurs').innerHTML = '';
+      basculerChampsFormulaire();
+      form.hidden = false;
+      form.scrollIntoView({ block: 'start' });
+    }
+    function fermerFormulaireTache() {
+      document.getElementById('tacheForm').hidden = true;
+      formulaireTacheId = null;
+    }
+
+    // Cases à cocher des comptes : seuls les comptes AVEC le service Claude
+    // sont proposés (les autres sont listés en clair, non cochables).
+    function construireChoixComptes(profilsSelectionnes) {
+      var conteneur = document.getElementById('tacheFormComptesChoix');
+      var avecClaude = accounts.filter(function(a) {
+        return Array.isArray(a.services) && a.services.indexOf('claude') !== -1;
+      });
+      if (!avecClaude.length) {
+        conteneur.innerHTML = '<div class="sched-empty">' + escapeHtml(_('Aucun compte avec le service Claude — la tâche ne pourra pas s\'exécuter.')) + '</div>';
+        return;
+      }
+      conteneur.innerHTML = avecClaude.map(function(a) {
+        var coche = profilsSelectionnes.indexOf(a.profile) !== -1;
+        return '<label class="tache-form__compte"><input type="checkbox" data-profile="' + escapeHtml(a.profile) + '"' + (coche ? ' checked' : '') + '> ' + escapeHtml(a.profile) + '</label>';
+      }).join('');
+    }
+
+    // Affiche/masque les champs conditionnels du formulaire.
+    function basculerChampsFormulaire() {
+      var modeComptes = document.getElementById('tacheFormComptesMode').value;
+      document.getElementById('tacheFormComptesChoix').hidden = modeComptes !== 'liste';
+      var repartition = document.getElementById('tacheFormRepartition').value;
+      document.getElementById('tacheFormEspacementGroupe').style.display = repartition === 'tous' ? '' : 'none';
+      var progType = document.getElementById('tacheFormProgType').value;
+      document.getElementById('tacheFormProgUniqueGroupe').style.display = progType === 'unique' ? '' : 'none';
+      document.getElementById('tacheFormProgPeriodiqueGroupe').style.display = progType === 'periodique' ? '' : 'none';
+    }
+
+    // Enregistre le formulaire : mapping par les helpers purs (lib/taches-ui.js),
+    // validation finale par le service. Les erreurs (codes du helper ou du
+    // service) sont traduites ici par des appels _() littéraux et affichées
+    // dans le formulaire, sans le fermer.
+    // Msgids marqués par N_() (extraction xgettext à la construction) puis
+    // traduits par _() au moment du rendu — le catalogue charge APRÈS app.js
+    // (motif établi du fichier, cf. N_ plus haut).
+    var MESSAGES_ERREURS_FORMULAIRE = {
+      'nom': N_('Le nom est obligatoire.'),
+      'prompt': N_('Le prompt est obligatoire.'),
+      'comptes-mode': N_('Comptes : choix invalide.'),
+      'comptes-vides': N_('Sélectionnez au moins un compte.'),
+      'repartition-mode': N_('Répartition : choix invalide.'),
+      'espacement': N_('Espacement invalide : entre 0 et 86400 secondes.'),
+      'programmation-type': N_('Programmation : choix invalide.'),
+      'date-le': N_('Date « Le » invalide.'),
+      'date-depuis': N_('Date « À partir du » invalide.'),
+      'tous': N_('« Tous les » doit être un entier supérieur à 0.'),
+      'unite': N_('Unité inconnue.')
+    };
+    function traduireErreursFormulaire(erreurs) {
+      return (erreurs || []).map(function(e) {
+        if (typeof e === 'string' && MESSAGES_ERREURS_FORMULAIRE[e]) return _(MESSAGES_ERREURS_FORMULAIRE[e]);
+        return String(e); // messages du service (déjà en français, côté main)
+      });
+    }
+
+    async function enregistrerFormulaireTache() {
+      var profils = [];
+      document.querySelectorAll('#tacheFormComptesChoix input[type="checkbox"]:checked').forEach(function(cb) {
+        profils.push(cb.getAttribute('data-profile'));
+      });
+      var champs = {
+        id: formulaireTacheId,
+        nom: document.getElementById('tacheFormNom').value,
+        fournisseur: 'claude',
+        comptesMode: document.getElementById('tacheFormComptesMode').value,
+        comptesProfils: profils,
+        repartitionMode: document.getElementById('tacheFormRepartition').value,
+        espacementSecondes: Number(document.getElementById('tacheFormEspacement').value),
+        nouvelleSession: document.getElementById('tacheFormSession').checked,
+        prompt: document.getElementById('tacheFormPrompt').value,
+        programmationType: document.getElementById('tacheFormProgType').value,
+        programmationLe: document.getElementById('tacheFormProgLe').value,
+        programmationDepuis: document.getElementById('tacheFormProgDepuis').value,
+        programmationTous: Number(document.getElementById('tacheFormProgTous').value),
+        programmationUnite: document.getElementById('tacheFormProgUnite').value,
+        active: document.getElementById('tacheFormActive').checked
+      };
+      var conv = window.iaoTachesUi.formVersTache(champs);
+      var erreurs = conv.ok ? [] : conv.erreurs.slice();
+      if (conv.ok) {
+        try {
+          var res = await ipcRenderer.invoke('taches:save', conv.tache);
+          if (res && res.error) erreurs = [res.error];
+          else if (res && res.ok === false && Array.isArray(res.erreurs)) erreurs = traduireErreursFormulaire(res.erreurs);
+        } catch (e) {
+          erreurs = [_('Enregistrement impossible : {erreur}', { erreur: e && e.message ? e.message : String(e) })];
+        }
+      } else {
+        erreurs = traduireErreursFormulaire(erreurs);
+      }
+      if (erreurs.length) {
+        var zone = document.getElementById('tacheFormErreurs');
+        zone.innerHTML = erreurs.map(function(e) { return '<div>' + escapeHtml(String(e)) + '</div>'; }).join('');
+        zone.hidden = false;
+        return;
+      }
+      fermerFormulaireTache();
+      refreshTachesUI();
+    }
+
+    // « Exécuter maintenant » : la garde du moteur est prise AVANT l'appel au
+    // service (taches:run-now marque la tâche côté service) ; le plan est
+    // construit par le service puis exécuté par le moteur partagé — même
+    // chemin que la minuterie. Le résultat arrive par l'historique
+    // (taches:report), jamais fabriqué ici : le message reste neutre.
+    async function executerTacheMaintenant(id) {
+      if (!moteurTaches) { showToast(_('Le moteur de tâches n\'est pas démarré.'), 'error'); return; }
+      try {
+        var r = await moteurTaches.executerTache(id);
+        if (r && r.ok) {
+          showToast(_('Exécution demandée — le résultat apparaîtra dans l\'historique.'), 'success');
+        } else if (r && r.motif === 'occupe') {
+          showToast(_('Une exécution est déjà en cours — réessayez dans un instant.'), 'warning');
+        } else if (r && r.motif === 'erreur-service') {
+          showToast(_('Le service des tâches a refusé l\'exécution.'), 'error');
+        } else {
+          showToast(_('Tâche introuvable.'), 'error');
+        }
+      } catch (e) {
+        showToast(_('Exécution impossible : {erreur}', { erreur: e && e.message ? e.message : String(e) }), 'error');
+      }
+      refreshTachesUI();
+    }
+
+    // Délégation d'événements (invariant 5) : un listener par conteneur, aucune
+    // donnée interpolée dans le HTML généré (les ids sont échappés au rendu).
+    document.getElementById('tachesList').addEventListener('click', async function(e) {
+      var btn = e.target.closest('[data-action]');
+      if (!btn) return;
+      var id = btn.getAttribute('data-id');
+      var action = btn.getAttribute('data-action');
+      if (action === 'tache-toggle') {
+        var t = tachesEtat.find(function(x) { return x.id === id; });
+        try {
+          var res = await ipcRenderer.invoke('taches:set-active', id, !(t && t.active));
+          if (res && res.error) showToast(res.error, 'error');
+        } catch (err) { showToast(_('Action impossible : {erreur}', { erreur: err && err.message }), 'error'); }
+        refreshTachesUI();
+        return;
+      }
+      if (action === 'tache-run') { executerTacheMaintenant(id); return; }
+      if (action === 'tache-edit') {
+        var t2 = tachesEtat.find(function(x) { return x.id === id; });
+        if (t2) ouvrirFormulaireTache(t2);
+        return;
+      }
+      if (action === 'tache-delete') {
+        var t3 = tachesEtat.find(function(x) { return x.id === id; });
+        showConfirmDialog(_('Supprimer la tâche'),
+          _('Supprimer « {nom} » ? L\'historique est conservé.', { nom: (t3 && t3.nom) || id }),
+          async function() {
+            try {
+              var r2 = await ipcRenderer.invoke('taches:delete', id);
+              if (r2 && r2.error) showToast(r2.error, 'error');
+            } catch (err) { showToast(_('Suppression impossible : {erreur}', { erreur: err && err.message }), 'error'); }
+            refreshTachesUI();
+          });
+      }
+    });
+    document.getElementById('tacheForm').addEventListener('click', async function(e) {
+      var btn = e.target.closest('[data-action]');
+      if (!btn) return;
+      if (btn.getAttribute('data-action') === 'tache-form-cancel') fermerFormulaireTache();
+      if (btn.getAttribute('data-action') === 'tache-form-save') enregistrerFormulaireTache();
+    });
+    document.getElementById('tacheNewBtn').addEventListener('click', function() { ouvrirFormulaireTache(null); });
+    document.getElementById('tacheFormComptesMode').addEventListener('change', basculerChampsFormulaire);
+    document.getElementById('tacheFormRepartition').addEventListener('change', basculerChampsFormulaire);
+    document.getElementById('tacheFormProgType').addEventListener('change', basculerChampsFormulaire);
+
     // === Réglages (lot 18/09/2026, FEATURES.md P2) ===
     // Persistance via IPC settings:load/settings:save (main.js), normalisation
     // via lib/settings.js (normalizeSettings, DEFAULT_SETTINGS).
@@ -2136,6 +2458,10 @@
     window.saveSettings = saveSettings;
 
     async function refreshScheduler() {
+      // Issue #199, lot 4 : le suivi des tâches est indépendant de l'état de
+      // l'ancien ordonnanceur — il se rafraîchit même si scheduler:get-state
+      // échoue (le service des tâches est un processus séparé du scheduler).
+      refreshTachesUI();
       let state;
       try { state = await ipcRenderer.invoke('scheduler:get-state'); }
       catch (e) { console.error('[scheduler] état indisponible :', e); return; }
@@ -2149,7 +2475,10 @@
       var ancien = state.ancienFlux !== false;
       document.getElementById('schedLegacy').hidden = !ancien;
       document.getElementById('schedRun').hidden = !ancien;
-      document.getElementById('schedLegacyOff').hidden = ancien;
+      // Issue #199, lot 4 : interface des tâches programmables (remplace le
+      // bandeau « en cours de développement » du lot 1, désormais obsolète).
+      document.getElementById('schedTaches').hidden = ancien;
+      document.getElementById('schedLegacyOff').hidden = true;
       // Issue #181 : bouton explicite, l'ordonnanceur ne démarre jamais seul.
       var startStop = document.getElementById('schedStartStopBtn');
       startStop.textContent = cfg.enabled ? _('Arrêter') : _('Démarrer');
