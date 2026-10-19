@@ -624,6 +624,27 @@ async function run() {
   });
 
   // =========================================================================
+  // C12 — Fermer un onglet chargé n'interrompt pas l'interface
+  // (Electron < 43.7.4 : « Invalid guestInstanceId » à la suppression d'une
+  // <webview> chargée, electron/electron#54089 ; bandeau rouge de boot-guard)
+  // =========================================================================
+  await test('C12.1 Fermer un onglet chargé : aucun bandeau d\'erreur', async () => {
+    await exec(`document.querySelector('#accountsList [data-action="open-service"][data-acc="acc_test_2"][data-svc="gemini"]').click(); 'ok'`);
+    await sleep(1500); // <webview> attachée et chargée
+    await exec(`(() => {
+      const t = [...document.querySelectorAll('#tabsBar .tab')].find(x => x.dataset.acc === 'acc_test_2' && x.dataset.svc === 'gemini');
+      closeTab(t.dataset.tab);
+      const oui = document.getElementById('confirmModalYes');
+      if (oui && oui.offsetParent !== null) oui.click();
+      return 'ok';
+    })()`);
+    await sleep(800);
+    const texte = await exec(`document.body.innerText`);
+    assert(!texte.includes('guestInstanceId') && !texte.includes('IAO a rencontré un problème'),
+      'bandeau d\'erreur affiché après fermeture : ' + (texte.match(/Invalid[^\n]*/) || [''])[0]);
+  });
+
+  // =========================================================================
   // Nettoyage
   // =========================================================================
   console.log('\n--- Résumé ---');
