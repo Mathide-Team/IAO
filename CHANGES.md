@@ -56,20 +56,41 @@
   passe de 43.7.2 à **43.8.0** (même branche majeure).
 - Test de non-régression : harnais Electron C12.1.
 
-## Issue #184 (suite) : nettoyage des Service Worker des partitions (19/10/2026)
+## Issue #184 (suite) : nettoyage des Service Worker des partitions (19/10/2026, durci)
 
 ### Livré
-- **Piste de #184 implémentée** : `cleanupServiceWorkerStorage()` ne nettoyait
-  que le dossier `Service Worker` de la fenêtre principale — chaque partition
-  d'onglet (`persist:<profile>`, `Partitions/<profile>/`) a le sien. Les bases
-  restaient incohérentes et Chromium inondait le journal de « Failed to
-  delete the database: Database IO error » au démarrage.
+- **Piste de #184 mise en œuvre (mesure d'atténuation, cause exacte non
+  démontrée)** : `cleanupServiceWorkerStorage()` ne nettoyait que le dossier
+  `Service Worker` de la fenêtre principale — chaque partition d'onglet
+  (`persist:<profile>`, `Partitions/<profile>/`) a le sien. Les partitions
+  n'étaient pas couvertes par le nettoyage.
 - `dossiersServiceWorkerANettoyer()` (`lib/startup-storage.js`, pur, testé —
-  ne lève jamais) : liste tous les dossiers `Service Worker` existants
-  (fenêtre principale + une entrée par partition). `main.js` les supprime
-  tous AVANT que Chromium ne rouvre ses bases ; journal : une ligne par
-  dossier nettoyé (« fenêtre principale » ou « partition <profile> »).
-- À valider sur la machine de #58/#59 : les rafales doivent disparaître.
+  ne lève jamais) : liste les dossiers `Service Worker` existants (fenêtre
+  principale + une entrée par partition **réelle**). `main.js` les supprime
+  tous AVANT la création de la fenêtre (donc avant l'ouverture des bases
+  Chromium) ; journal : une ligne par dossier nettoyé.
+- **Durcissement (revue)** : une erreur sur un dossier n'interrompt pas les
+  autres (`nettoyerDossiersServiceWorker()`, testé) ; les liens symboliques
+  et entrées illisibles de `Partitions/` sont ignorés (périmètre garanti au
+  dossier de données) ; un dossier `Local Storage`/`Cookies` n'est jamais
+  touché (test sur arborescence réelle).
+- **À valider sur la machine de #58/#59** : les rafales doivent disparaître.
+  Si elles persistent, la cause est ailleurs (droits — voir #197 — ou verrou
+  d'instance) : joindre `logs/iao.log`.
+
+## Issue #51 — i18n : allemand, espagnol, italien, portugais complets (19/10/2026)
+
+### Livré
+- **403/403 messages traduits** dans `lang/de.po` (#224), `lang/es.po`
+  (#225 — espagnol ajouté aux locales, 30e langue), `lang/it.po` (#226) et
+  `lang/pt.po` (#227), lot 4 des tâches (#199) inclus.
+- Traductions produites par l'agent (docker25200), chaîne par chaîne,
+  terminologie UI cohérente, placeholders `{…}` préservés — **relecture
+  humaine attendue** (convention #51, mentionnée dans chaque en-tête de
+  catalogue et chaque PR).
+- Test LINGUAS mis à jour (30 locales). `msgfmt --check` propre,
+  `i18n:check` vert, interface vérifiée dans chaque langue au lancement
+  (`IAO_LANG=de|es|it|pt`).
 
 ## Issue #199 — lot 4 : interface des tâches programmables (19/10/2026)
 
