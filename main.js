@@ -125,18 +125,16 @@ function cleanupServiceWorkerStorage() {
   // de Partitions/ sont ignorés. La cause exacte des rafales #184 n'est pas
   // démontrée : c'est une mesure d'atténuation, à valider sur la machine
   // de #58/#59.
-  try {
-    const resultat = startupStorage.nettoyerDossiersServiceWorker(
-      app.getPath('userData'), fs,
-      (niveau, message) => log('demarrage', niveau, message));
-    for (const dossier of resultat.nettoyés) {
-      const parent = path.basename(path.dirname(dossier));
-      log('demarrage', 'info',
-        'Dossier Service Worker nettoyé au démarrage (atténuation Database IO error) : ' +
-        (parent === path.basename(app.getPath('userData')) ? 'fenêtre principale' : 'partition « ' + parent + ' »') + '.');
-    }
-  } catch (e) {
-    log('demarrage', 'warning', 'Nettoyage Service Worker impossible : ' + e.message);
+  // nettoyerDossiersServiceWorker() ne lève jamais (contrat documenté) :
+  // les erreurs sont traitées dossier par dossier à l'intérieur.
+  const resultat = startupStorage.nettoyerDossiersServiceWorker(
+    app.getPath('userData'), fs,
+    (niveau, message) => log('demarrage', niveau, message));
+  for (const dossier of resultat.nettoyés) {
+    const parent = path.basename(path.dirname(dossier));
+    log('demarrage', 'info',
+      'Dossier Service Worker nettoyé au démarrage (atténuation Database IO error) : ' +
+      (parent === path.basename(app.getPath('userData')) ? 'fenêtre principale' : 'partition « ' + parent + ' »') + '.');
   }
 }
 
