@@ -846,6 +846,59 @@ async function run() {
     await exec('document.getElementById("tacheFormAnnuler").click()');
   });
 
+  await test('C10.9 édition : compte sélectionné devenu indisponible préservé', async () => {
+    // Scénario : la tâche référence profil_1 ET profil_fantome (compte
+    // supprimé). L'édition du seul nom ne doit PAS retirer silencieusement
+    // le profil indisponible de la liste des comptes.
+    const cree = await ipc('taches:save', {
+      nom: 'Deux comptes', fournisseur: 'claude',
+      comptes: { mode: 'liste', profils: ['profil_1', 'profil_fantome'] },
+      repartition: { mode: 'rotation', espacementMs: 0 },
+      nouvelleSession: true, prompt: 'p',
+      programmation: { type: 'periodique', tous: 1, unite: 'jour', depuis: dansDeuxJoursISO() },
+      active: true
+    });
+    assert(cree && cree.ok, 'création IPC échouée : ' + JSON.stringify(cree));
+    const idDeux = cree.tache.id;
+    await sleep(4500); // laisser le polling rafraîchir la liste
+    // Ouvrir le formulaire d'édition de cette tâche.
+    const cliquable = await exec(`
+      (function(){
+        const cartes = [...document.querySelectorAll('#tachesList .tache-card')];
+        const cible = cartes.find(c => c.textContent.indexOf('Deux comptes') !== -1);
+        if (!cible) return 'absente';
+        cible.querySelector('[data-action=tache-edit]').click();
+        return 'cliqué';
+      })()
+    `);
+    assert(cliquable === 'cliqué', 'bouton Modifier introuvable : ' + cliquable);
+    await sleep(200);
+    // Le profil indisponible apparaît : coché, désactivé, signalé.
+    const etat = await exec(`
+      (function(){
+        const cb = document.querySelector('#tacheFormComptesChoix input[data-profile="profil_fantome"]');
+        if (!cb) return 'absent';
+        return JSON.stringify({ coche: cb.checked, desactive: cb.disabled,
+          libelle: cb.closest('label').textContent.trim().slice(0, 60) });
+      })()
+    `);
+    assert(etat !== 'absent', 'le profil_fantome devrait être affiché (coché, désactivé)');
+    assert(/coche":true/.test(etat) && /desactive":true/.test(etat), 'état inattendu : ' + etat);
+    assert(/compte supprimé/.test(etat), 'signal attendu : ' + etat);
+    // Modifier seulement le nom et enregistrer.
+    await exec("document.getElementById('tacheFormNom').value = 'Deux comptes renommée'");
+    await exec('document.getElementById("tacheFormEnregistrer").click()');
+    await sleep(800);
+    // La tâche garde TOUJOURS les deux profils.
+    const apres = await ipc('taches:list');
+    const t = (apres || []).find(x => x.id === idDeux);
+    assert(t, 'tâche ' + idDeux + ' introuvable après édition');
+    const profils = (t.comptes.profils || []).slice().sort();
+    assert(profils.length === 2 && profils[0] === 'profil_1' && profils[1] === 'profil_fantome',
+      'les deux profils doivent être préservés : ' + JSON.stringify(t.comptes));
+    assert(t.nom === 'Deux comptes renommée', 'nom attendu : ' + t.nom);
+  });
+
   await exec('window.closeSchedulerModal()');
 
   // =========================================================================

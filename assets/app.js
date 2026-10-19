@@ -2174,20 +2174,39 @@
     }
 
     // Cases à cocher des comptes : seuls les comptes AVEC le service Claude
-    // sont proposés (les autres sont listés en clair, non cochables).
+    // sont proposés. Les profils SÉLECTIONNÉS mais devenus indisponibles (plus
+    // de service Claude, compte supprimé) restent cochés et signalés — sinon
+    // une édition du seul nom les retirerait silencieusement de la tâche
+    // (l'éligibilité à l'exécution reste contrôlée par le service, qui les
+    // exclut le moment venu).
     function construireChoixComptes(profilsSelectionnes) {
       var conteneur = document.getElementById('tacheFormComptesChoix');
       var avecClaude = accounts.filter(function(a) {
         return Array.isArray(a.services) && a.services.indexOf('claude') !== -1;
       });
-      if (!avecClaude.length) {
+      var connus = new Set(accounts.map(function(a) { return a.profile; }));
+      var selectionnes = new Set(profilsSelectionnes || []);
+      var indisponibles = [...selectionnes].filter(function(p) {
+        return !avecClaude.some(function(a) { return a.profile === p; });
+      });
+      if (!avecClaude.length && !indisponibles.length) {
         conteneur.innerHTML = '<div class="sched-empty">' + escapeHtml(_('Aucun compte avec le service Claude — la tâche ne pourra pas s\'exécuter.')) + '</div>';
         return;
       }
-      conteneur.innerHTML = avecClaude.map(function(a) {
-        var coche = profilsSelectionnes.indexOf(a.profile) !== -1;
+      var lignes = avecClaude.map(function(a) {
+        var coche = selectionnes.has(a.profile);
         return '<label class="tache-form__compte"><input type="checkbox" data-profile="' + escapeHtml(a.profile) + '"' + (coche ? ' checked' : '') + '> ' + escapeHtml(a.profile) + '</label>';
-      }).join('');
+      });
+      for (var i = 0; i < indisponibles.length; i++) {
+        var p = indisponibles[i];
+        var note = connus.has(p)
+          ? _('sans le service Claude')
+          : _('compte supprimé');
+        lignes.push('<label class="tache-form__compte tache-form__compte--indisponible">' +
+          '<input type="checkbox" data-profile="' + escapeHtml(p) + '" checked disabled> ' +
+          escapeHtml(p) + ' <span class="tache-form__note">(' + escapeHtml(note) + ')</span></label>');
+      }
+      conteneur.innerHTML = lignes.join('');
     }
 
     // Affiche/masque les champs conditionnels du formulaire.

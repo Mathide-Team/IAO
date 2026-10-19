@@ -1089,6 +1089,14 @@ msgid "Aucun compte avec le service Claude — la tâche ne pourra pas s'exécut
 msgstr ""
 
 #: assets/app.js
+msgid "sans le service Claude"
+msgstr ""
+
+#: assets/app.js
+msgid "compte supprimé"
+msgstr ""
+
+#: assets/app.js
 msgid "Le nom est obligatoire."
 msgstr ""
 

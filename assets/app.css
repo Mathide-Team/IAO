@@ -492,6 +492,8 @@
   #tacheForm { border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px; margin-bottom: 12px; }
   .tache-form__comptes { display: flex; flex-direction: column; gap: 4px; margin-top: 6px; max-height: 120px; overflow-y: auto; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 8px; }
   .tache-form__compte { font-size: 12px; display: flex; align-items: center; gap: 8px; }
+  .tache-form__compte--indisponible { color: var(--fg-muted); }
+  .tache-form__note { font-size: 11px; color: var(--fg-muted); font-style: italic; }
   .tache-form__tous { width: 90px; display: inline-block; }
   .tache-form__unite { width: auto; display: inline-block; margin-left: 6px; }
   .tache-form__erreurs { border: 1px solid var(--danger); border-radius: var(--radius-sm); padding: 8px 10px; margin: 10px 0; font-size: 12px; color: var(--danger); }
