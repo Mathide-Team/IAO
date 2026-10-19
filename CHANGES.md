@@ -1,5 +1,37 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issue #206 — lot 2a : durcissement de la mesure (revue, 20/10/2026)
+
+### Corrigé (suite à la revue du lot 2a fusionné)
+- **La mesure ne compte que le NOUVEAU texte généré** : la dernière réponse
+  présente avant l'envoi est capturée comme base de comparaison — sans elle,
+  le premier poll renvoyait l'ancienne réponse et la mesure valait l'intervalle
+  de poll, pas la génération. Une réponse n'est acceptée que (1) différente de
+  cette base ET (2) STABLE sur deux lectures consécutives (le texte d'une
+  génération en cours croît à chaque lecture) : une réponse partielle ou un
+  délai dépassé ne produisent jamais de « temps de réponse réussi ».
+- **Périmètre explicite** : la mesure couvre les envois passant par
+  `_executeAutomation` (tâches et relances) ; les appels IPC directs
+  `run-claude-job` et les envois manuels dans la webview ne sont pas
+  instrumentés.
+- **Écritures sérialisées** : reponses.jsonl et quotas.jsonl partent de
+  chaînes de promesses distinctes (lecture → réécriture complète) — des
+  notations simultanées ne s'écrasaient plus mutuellement (test : 24
+  événements notés en parallèle, aucun perdu).
+- **Conservation 90 jours tenue** : la purge est PERSISTÉE au chargement
+  (fichier réécrit) — un événement expiré restait physiquement dans le
+  fichier tant qu'aucune notation n'avait lieu.
+- **Épisodes de quota dédupliqués** : au plus un événement par compte et par
+  heure glissante — la boucle wait_quota re-diagnostique le même blocage sans
+  envoyer ; sans déduplication, un blocage comptait pour chaque re-détection.
+- **Récupération réessayable** : un échec de la récupération des sessions
+  (disque plein) n'est plus mémoïsé sur son rejet — sinon tous les appels
+  suivants échouaient jusqu'au redémarrage de l'app.
+- Délais de poll injectables via la config (`responseTimeoutMs`,
+  `responsePollIntervalMs`) : tests rapides et déterministes.
+- 6 tests discriminants ajoutés (concurrence, déduplication, purge persistée,
+  échec réessayé, texte croissant, délai dépassé) ; couverture 100 %.
+
 ## Issue #206 — statistiques d'utilisation, lot 2 (19/10/2026)
 
 ### Livré
