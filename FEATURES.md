@@ -37,7 +37,7 @@ modulaire, Claude seulement au départ).
 
 - [x] **Lot 2 — cœur pur** : `scheduler/taches.js` (18/10/2026).
 - [x] **Lot 1 — désactivation de l'ancien flux** (ZIP, jobs, projets) dans le panneau (18/10/2026) ; `IAO_ORDONNANCEUR_ANCIEN=1` le réactive.
-- [ ] **Lot 3 — exécution** : minuterie, onglet nouvelle session, envoi du prompt, heures calmes, historique.
+- [x] **Lot 3 — exécution** : minuterie, onglet nouvelle session, envoi du prompt, heures calmes, historique (18/10/2026).
 - [ ] **Lot 4 — interface** : liste, édition, « Exécuter maintenant », historique, i18n.
 
 ### Ordonnanceur IA — proposition externe intégrée au backlog (16/09/2026)
