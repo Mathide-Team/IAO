@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: IAO\n"
 "Report-Msgid-Bugs-To: https://github.com/Mathide-Team/IAO/issues\n"
 "PO-Revision-Date: 2026-10-19 23:50+0000\n"
-"Last-Translator: IAO (tradução assistida cuidada, revisão humana esperada, issue #51)\n"
+"Last-Translator: agente IAO (docker25200) — tradução gerada por IA, revisão humana esperada (issue #51)\n"
 "Language-Team: Mathide-Team <https://github.com/Mathide-Team/IAO>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
@@ -323,7 +323,7 @@ msgstr "Uma única vez"
 
 #: index.html
 msgid "Le"
-msgstr "O"
+msgstr "Dia"
 
 #: index.html
 msgid "Tous les"
@@ -559,7 +559,7 @@ msgid ""
 "Plutôt pour du code, des textes longs et soignés, ou des questions complexes"
 " qui demandent de la rigueur."
 msgstr ""
-"Antes para código, textos longos e cuidados, ou perguntas complexas que "
+"Melhor para código, textos longos e cuidados, ou perguntas complexas que "
 "exigem rigor."
 
 #: assets/app.js
@@ -594,7 +594,7 @@ msgid ""
 "Plutôt pour analyser des images ou vidéos, ou si vous travaillez déjà dans "
 "l'écosystème Google."
 msgstr ""
-"Antes para analisar imagens ou vídeos, ou se já trabalha no ecossistema "
+"Melhor para analisar imagens ou vídeos, ou se já trabalha no ecossistema "
 "Google."
 
 #: assets/app.js
@@ -627,7 +627,7 @@ msgid ""
 "Plutôt pour la recherche d'informations à jour, la veille et la vérification"
 " de faits avec sources."
 msgstr ""
-"Antes para pesquisar informação atualizada, monitorização e verificação de "
+"Melhor para pesquisar informação atualizada, monitorização e verificação de "
 "factos com fontes."
 
 #: assets/app.js
@@ -643,8 +643,8 @@ msgid ""
 "Plutôt pour suivre l'actualité chaude et les tendances via X, ou pour un ton"
 " moins formel."
 msgstr ""
-"Antes para seguir a atualidade quente e as tendências via X, ou para um tom "
-"menos formal."
+"Melhor para seguir a atualidade quente e as tendências via X, ou para um tom"
+" menos formal."
 
 #: assets/app.js
 msgid ""
@@ -661,7 +661,7 @@ msgid ""
 "Plutôt pour produire des visuels et illustrations de qualité avec un "
 "contrôle précis du style."
 msgstr ""
-"Antes para produzir visuais e ilustrações de qualidade com um controlo "
+"Melhor para produzir visuais e ilustrações de qualidade com um controlo "
 "preciso do estilo."
 
 #: assets/app.js
@@ -678,7 +678,7 @@ msgid ""
 "Plutôt pour créer une musique, un jingle ou une chanson à partir d'un texte "
 "ou d'une idée."
 msgstr ""
-"Antes para criar música, um jingle ou uma canção a partir de um texto ou "
+"Melhor para criar música, um jingle ou uma canção a partir de um texto ou "
 "ideia."
 
 #: assets/app.js
@@ -696,7 +696,7 @@ msgid ""
 "Plutôt pour créer des assets 3D (jeux, impression 3D, animation) sans savoir"
 " modéliser."
 msgstr ""
-"Antes para criar assets 3D (jogos, impressão 3D, animação) sem saber "
+"Melhor para criar assets 3D (jogos, impressão 3D, animação) sem saber "
 "modelar."
 
 #: assets/app.js
