@@ -114,9 +114,10 @@ const MAX_EDITABLE_FILE_BYTES = 20 * 1024 * 1024; // 20 Mo
 // incohérent (arrêt brutal, verrous non relâchés). Au démarrage suivant,
 // le service de stockage tente de les supprimer, échoue en boucle et inonde
 // le terminal de « Failed to delete the database: Database IO error ».
-// On supprime le dossier avant que Chromium ne réouvre ses bases : il sera
-// recréé proprement. Les service workers des sites IA se réenregistreront
-// automatiquement à la prochaine visite.
+// On supprime le dossier AVANT createWindow() (aucune ouverture de base
+// plus précoce n'est démontrée) : il sera recréé proprement. Les service
+// workers des sites IA se réenregistreront automatiquement à la prochaine
+// visite.
 function cleanupServiceWorkerStorage() {
   // Piste #184 : chaque partition d'onglet (persist:<profile>) a son propre
   // dossier Service Worker — on les nettoie TOUS, pas seulement celui de la

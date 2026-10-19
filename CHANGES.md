@@ -1,5 +1,25 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issue #228 — durcissement du nettoyage Service Worker (revue #223, 20/10/2026)
+
+### Corrigé (suite à la revue du correctif #228 fusionné)
+- **`Partitions/` LUI-MÊME peut être un lien symbolique** vers un dossier
+  externe : ses enfants sont de vrais répertoires (de la cible) et
+  passaient le contrôle unitaire — le nettoyage serait sorti du dossier de
+  données. Désormais, un `Partitions/` lié ignore TOUT le scan des
+  partitions (seule la fenêtre principale reste couverte).
+- **Test d'arborescence réelle avec témoins** : `Partitions` lié vers un
+  dossier externe ET une partition enfant liée vers un autre dossier, chacun
+  contenant un vrai dossier Service Worker avec fichier témoin — les
+  témoins doivent rester (aucune fuite du périmètre).
+- **Échec sur le PREMIER dossier** : le dossier récalcitrant est désormais
+  testé en TÊTE de liste (fenêtre principale) — preuve que le nettoyage
+  continue après l'erreur, pas seulement quand l'erreur arrive en dernier.
+- **Commentaire honnête** : le nettoyage a lieu « avant createWindow() » ;
+  l'absence d'ouverture de base Chromium plus précoce n'est pas démontrée
+  (l'ancien « avant que Chromium ne réouvre ses bases » était trop fort).
+- 3 tests ajoutés ; couverture 100 %.
+
 ## Issue #206 — lot 2a : durcissement de la mesure (revue, 20/10/2026)
 
 ### Corrigé (2 passes de revue sur le lot 2a fusionné, #231)
