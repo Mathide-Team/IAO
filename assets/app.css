@@ -602,3 +602,6 @@
   .boot-error__item-title { font-weight: 600; margin-bottom: 4px; }
   .boot-error__detail { display: block; white-space: pre-wrap; word-break: break-word; padding: 6px 8px; margin-bottom: 4px; background: var(--danger-dim); border-radius: 4px; font-size: 12px; }
   .boot-error__hint { opacity: 0.85; }
+  /* Issue #187 : « Relancer en mode debug » et chemin du journal. */
+  .boot-error__actions { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); }
+  .boot-error__log { font-size: 12px; opacity: 0.85; word-break: break-all; }

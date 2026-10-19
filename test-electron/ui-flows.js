@@ -184,6 +184,24 @@ async function run() {
     assert(await exec('document.getElementById("bootError") === null'), 'bandeau d\'erreur de démarrage affiché');
   });
 
+  await test('C0.3 ERR_ABORTED (-3) non rattrapé : pas de bandeau ; une vraie erreur réseau en affiche un (#185)', async () => {
+    const r = await exec(`new Promise((resolve) => {
+      Promise.reject(new Error("Error invoking remote method 'GUEST_VIEW_MANAGER_CALL': Error: ERR_ABORTED (-3) loading 'https://claude.ai/new'"));
+      setTimeout(() => {
+        const afterAbort = document.getElementById('bootError') !== null;
+        Promise.reject(new Error("ERR_NAME_NOT_RESOLVED (-105) loading 'https://chat.z.ai/'"));
+        setTimeout(() => {
+          const banner = document.getElementById('bootError');
+          const afterRealError = banner !== null;
+          if (banner) banner.remove(); // la suite du harnais attend une page sans bandeau
+          resolve({ afterAbort, afterRealError });
+        }, 100);
+      }, 100);
+    })`);
+    assert(!r.afterAbort, 'bandeau affiché pour une navigation remplacée (ERR_ABORTED -3)');
+    assert(r.afterRealError, 'aucun bandeau pour une vraie erreur réseau (ERR_NAME_NOT_RESOLVED)');
+  });
+
   await test('C0.2 toutes les icônes statiques sont hydratées (SVG)', async () => {
     const r = await exec(`({ total: document.querySelectorAll('span.ic[data-icon]').length,
       done: document.querySelectorAll('span.ic[data-icon] svg').length })`);
@@ -406,6 +424,20 @@ async function run() {
   // =========================================================================
   // C7 — Internationalisation (issue #51)
   // =========================================================================
+  await test('C6.5 Bouton « Redémarrer en mode debug » présent, câblé et visible hors mode debug (#187)', async () => {
+    const r = await exec(`(() => {
+      const b = document.getElementById('btnRelaunchDebug');
+      return { exists: !!b, action: b && b.getAttribute('data-action'), hidden: b ? b.classList.contains('hidden') : null,
+        fn: typeof window.relaunchDebug };
+    })()`);
+    assert(r.exists, 'bouton absent');
+    assert(r.action === 'ui-relaunchDebug', 'data-action : ' + r.action);
+    assert(r.hidden === false, 'bouton masqué hors mode debug');
+    assert(r.fn === 'function', 'window.relaunchDebug absente');
+    const logPath = await ipc('app:log-path');
+    assert(typeof logPath === 'string' && /logs[\\/]iao\.log$/.test(logPath), 'chemin du journal : ' + logPath);
+  });
+
   console.log('\n--- C7 : Internationalisation ---');
 
   await test('C7.1 IAO_LANG=fr : interface en français (langue source)', async () => {
@@ -494,9 +526,50 @@ async function run() {
   });
 
   // =========================================================================
-  // C8 — Issue #201 : comptes en série, mot de passe masqué, webmail
+  // C8 — Comptes absents au démarrage, restaurés depuis l'instantané (#186)
   // =========================================================================
-  await test('C8.1 Réglages messagerie enregistrés, création de 2 comptes en série numérotés', async () => {
+  console.log('\n--- C8 : Restauration des comptes au démarrage ---');
+
+  await test('C8.1 localStorage vidé : modale « Comptes retrouvés », restauration sans import', async () => {
+    // L'instantané de l'ordonnanceur contient les comptes du seed (synchronisés
+    // au démarrage). On simule la perte du localStorage de l'interface.
+    await ipc('scheduler:sync-accounts', seedAccounts);
+    await exec(`localStorage.removeItem('ai_accounts'); localStorage.removeItem('ai_accounts_backup'); localStorage.removeItem('ai_open_tabs'); 'ok'`);
+    win.webContents.reload();
+    await sleep(300);
+    await waitLoaded();
+    await sleep(300);
+    const before = await exec(`({
+      modal: document.getElementById('snapshotRestore') !== null,
+      cards: document.querySelectorAll('#accountsList .account-card').length
+    })`);
+    assert(before.modal, 'modale de restauration absente');
+    assert(before.cards === 0, 'des comptes sont affichés avant la restauration : ' + before.cards);
+    const after = await exec(`new Promise((resolve) => {
+      document.querySelector('#snapshotRestore [data-role="snapshot-restore"]').click();
+      setTimeout(() => resolve({
+        modal: document.getElementById('snapshotRestore') !== null,
+        cards: document.querySelectorAll('#accountsList .account-card').length,
+        stored: JSON.parse(localStorage.getItem('ai_accounts') || '[]').map((a) => a.profile)
+      }), 200);
+    })`);
+    assert(!after.modal, 'modale toujours ouverte après restauration');
+    assert(after.cards === seedAccounts.length, 'cartes après restauration : ' + after.cards);
+    assert(JSON.stringify(after.stored) === JSON.stringify(seedAccounts.map((a) => a.profile)), 'profils enregistrés : ' + after.stored.join(','));
+  });
+
+  await test('C8.2 comptes présents : aucune modale de restauration', async () => {
+    win.webContents.reload();
+    await sleep(300);
+    await waitLoaded();
+    await sleep(300);
+    assert(await exec(`document.getElementById('snapshotRestore') === null`), 'modale affichée alors que les comptes sont présents');
+  });
+
+  // =========================================================================
+  // C9 — Issue #201 : comptes en série, mot de passe masqué, webmail
+  // =========================================================================
+  await test('C9.1 Réglages messagerie enregistrés, création de 2 comptes en série numérotés', async () => {
     const r = await exec(`(async () => {
       openSettingsModal();
       await new Promise(r => setTimeout(r, 200));
@@ -523,7 +596,7 @@ async function run() {
     assert(r.webmail === r.apres, 'un bouton webmail par carte attendu : ' + r.webmail);
   });
 
-  await test('C8.2 Mot de passe de messagerie : généré, masqué par défaut, bouton œil', async () => {
+  await test('C9.2 Mot de passe de messagerie : généré, masqué par défaut, bouton œil', async () => {
     const r = await exec(`(() => {
       const acc = JSON.parse(localStorage.getItem('ai_accounts')).slice(-1)[0];
       openModal(acc.id);
