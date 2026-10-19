@@ -72,3 +72,36 @@ test('inspecterDonnees : erreurs collectées, jamais levées ; journaliserDonnee
   s.journaliserDonnees(s.inspecterDonnees(R, fauxFs(ARBRE)), (...a) => lignes.push(a));
   assert.equal(lignes.length, 1);
 });
+
+// --- Piste #184 (correctif) : dossiers Service Worker à nettoyer ---
+
+test('dossiersServiceWorkerANettoyer : fenêtre principale + partitions, existants seulement', () => {
+  // Avec ARBRE : Service Worker de la fenêtre principale absent, profil_1 oui, profil_2 non.
+  const dossiers = s.dossiersServiceWorkerANettoyer(R, fauxFs(ARBRE));
+  assert.deepStrictEqual(dossiers, [j('Partitions', 'profil_1', 'Service Worker')]);
+
+  // Avec le dossier de la fenêtre principale présent aussi.
+  const arbre2 = Object.assign({}, ARBRE, { [j('Service Worker')]: { dir: true } });
+  const dossiers2 = s.dossiersServiceWorkerANettoyer(R, fauxFs(arbre2));
+  assert.deepStrictEqual(dossiers2.sort(), [
+    j('Service Worker'),
+    j('Partitions', 'profil_1', 'Service Worker')
+  ].sort());
+});
+
+test('dossiersServiceWorkerANettoyer : ne lève jamais (Partitions illisible, exists qui lève)', () => {
+  // readdir de Partitions qui lève : les partitions sont ignorées, aucune
+  // levée (la fenêtre principale n'existe pas dans ARBRE -> liste vide).
+  const casse = {};
+  casse[j('Partitions')] = 'readdir';
+  assert.deepStrictEqual(s.dossiersServiceWorkerANettoyer(R, fauxFs(ARBRE, casse)), []);
+  // existsSync de la fenêtre principale qui lève : ignoré silencieusement.
+  const casse2 = {};
+  casse2[j('Service Worker')] = 'exists';
+  const dossiers = s.dossiersServiceWorkerANettoyer(R, fauxFs(ARBRE, casse2));
+  assert.ok(Array.isArray(dossiers)); // aucune levée
+});
+
+test('dossiersServiceWorkerANettoyer : dossier de données absent -> liste vide', () => {
+  assert.deepStrictEqual(s.dossiersServiceWorkerANettoyer(path.sep + 'inexistant', fauxFs({})), []);
+});

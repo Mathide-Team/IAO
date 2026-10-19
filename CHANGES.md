@@ -8,6 +8,21 @@
   passe de 43.7.2 à **43.8.0** (même branche majeure).
 - Test de non-régression : harnais Electron C12.1.
 
+## Issue #184 (suite) : nettoyage des Service Worker des partitions (19/10/2026)
+
+### Livré
+- **Piste de #184 implémentée** : `cleanupServiceWorkerStorage()` ne nettoyait
+  que le dossier `Service Worker` de la fenêtre principale — chaque partition
+  d'onglet (`persist:<profile>`, `Partitions/<profile>/`) a le sien. Les bases
+  restaient incohérentes et Chromium inondait le journal de « Failed to
+  delete the database: Database IO error » au démarrage.
+- `dossiersServiceWorkerANettoyer()` (`lib/startup-storage.js`, pur, testé —
+  ne lève jamais) : liste tous les dossiers `Service Worker` existants
+  (fenêtre principale + une entrée par partition). `main.js` les supprime
+  tous AVANT que Chromium ne rouvre ses bases ; journal : une ligne par
+  dossier nettoyé (« fenêtre principale » ou « partition <profile> »).
+- À valider sur la machine de #58/#59 : les rafales doivent disparaître.
+
 ## Issue #199 — lot 4 : interface des tâches programmables (19/10/2026)
 
 ### Livré

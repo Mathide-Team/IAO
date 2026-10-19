@@ -117,11 +117,18 @@ const MAX_EDITABLE_FILE_BYTES = 20 * 1024 * 1024; // 20 Mo
 // recréé proprement. Les service workers des sites IA se réenregistreront
 // automatiquement à la prochaine visite.
 function cleanupServiceWorkerStorage() {
+  // Piste #184 : chaque partition d'onglet (persist:<profile>) a son propre
+  // dossier Service Worker — on les nettoie TOUS, pas seulement celui de la
+  // fenêtre principale, sinon Chromium bombarde le journal de « Failed to
+  // delete the database: Database IO error » au démarrage.
   try {
-    const swDir = path.join(app.getPath('userData'), 'Service Worker');
-    if (fs.existsSync(swDir)) {
-      fs.rmSync(swDir, { recursive: true, force: true });
-      log('demarrage', 'info', 'Dossier Service Worker nettoyé au démarrage (prévention Database IO error).');
+    const dossiers = startupStorage.dossiersServiceWorkerANettoyer(app.getPath('userData'), fs);
+    for (const dossier of dossiers) {
+      fs.rmSync(dossier, { recursive: true, force: true });
+      const parent = path.basename(path.dirname(dossier));
+      log('demarrage', 'info',
+        'Dossier Service Worker nettoyé au démarrage (prévention Database IO error) : ' +
+        (parent === path.basename(app.getPath('userData')) ? 'fenêtre principale' : 'partition « ' + parent + ' »') + '.');
     }
   } catch (e) {
     log('demarrage', 'warning', 'Nettoyage Service Worker impossible : ' + e.message);
