@@ -24,6 +24,14 @@
 ### Reste (lots suivants de #206)
 - Lot 2 : messages envoyés et tâches programmables (lien avec #199).
 - Lot 3 : graphiques d'évolution, export CSV/JSON, remise à zéro depuis l'interface.
+## Fermeture d'onglet : bandeau « Invalid guestInstanceId » (19/10/2026)
+
+- Fermer un onglet IA chargé affichait le bandeau rouge « IAO a rencontré un
+  problème — Invalid guestInstanceId ». Bug d'Electron (suppression d'une
+  `<webview>` chargée, electron/electron#54089), corrigé en 43.7.4 : Electron
+  passe de 43.7.2 à **43.8.0** (même branche majeure).
+- Test de non-régression : harnais Electron C12.1.
+
 ## Issue #199 — lot 4 : interface des tâches programmables (19/10/2026)
 
 ### Livré

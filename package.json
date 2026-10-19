@@ -29,7 +29,7 @@
   "keywords": [],
   "devDependencies": {
     "@electron/packager": "^20.0.3",
-    "electron": "^43.1.1",
+    "electron": "^43.8.0",
     "electron-builder": "^26.15.3"
   },
   "dependencies": {
