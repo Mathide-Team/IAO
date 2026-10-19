@@ -1,5 +1,29 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issue #206 — statistiques d'utilisation, lot 2 (19/10/2026)
+
+### Livré
+- **Heures de pointe** : carte de chaleur jour × heure (heure locale, lundi en
+  premier) du temps actif, réparti au prorata des tranches horaires couvertes.
+- **Série** de jours consécutifs d'utilisation (en cours et record) ; une
+  session à cheval sur minuit compte pour les deux jours.
+- **Comptes inutilisés** sur la période, avec la dernière utilisation connue.
+- **Tâches programmables par compte** (lien avec #199) : envoyées, quotas,
+  erreurs (erreur + non connecté), exécutions, dernier quota et heure de fin
+  rapportée. Source : l'historique des tâches (`taches:history`, 200 dernières
+  exécutions). Depuis le retrait du bouton « Épuiser » (#136), plus rien
+  n'alimente `cooldowns` : les quotas ne viennent que de cet historique.
+- **Tri par colonne** de tous les tableaux (clic sur l'en-tête, second clic =
+  sens inverse, `aria-sort`).
+- `lib/stats.js` : `heuresDePointe`, `comptesInutilises`, `serieJours`,
+  `resultatsTaches`, `trierLignes` (100 %, `test/stats-lot2.test.js`) ;
+  harnais C11.3 ; traductions en/de/es/it/pt.
+
+### Reste
+- Temps de réponse des IA : attend la réponse à la question 3 de #206 (script
+  dans les pages IA pour les envois manuels).
+- Lot 3 : graphiques d'évolution, export CSV/JSON, remise à zéro depuis l'interface.
+
 ## Issue #206 — statistiques d'utilisation, lot 1 (19/10/2026)
 
 ### Livré
