@@ -1246,12 +1246,104 @@ msgid "Part"
 msgstr "Quota"
 
 #: assets/app.js
-msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
-msgstr "Nessuna sessione in questo periodo. La misurazione inizia con l'installazione di questa versione."
+msgid "Dim"
+msgstr "Dom"
+
+#: assets/app.js
+msgid "Jeu"
+msgstr "Gio"
+
+#: assets/app.js
+msgid "Lun"
+msgstr "Lun"
+
+#: assets/app.js
+msgid "Mar"
+msgstr "Mar"
+
+#: assets/app.js
+msgid "Mer"
+msgstr "Mer"
+
+#: assets/app.js
+msgid "Sam"
+msgstr "Sab"
+
+#: assets/app.js
+msgid "Ven"
+msgstr "Ven"
+
+#: assets/app.js
+msgid "{jour} {h} h : {duree}"
+msgstr "{jour} ore {h}: {duree}"
+
+#: assets/app.js
+msgid "Heures de pointe (temps actif)"
+msgstr "Ore di punta (tempo attivo)"
+
+#: assets/app.js
+msgid "dernière utilisation : {date}"
+msgstr "ultimo utilizzo: {date}"
+
+#: assets/app.js
+msgid "jamais utilisé depuis le début de la mesure"
+msgstr "mai usato dall'inizio della misurazione"
+
+#: assets/app.js
+msgid "Comptes inutilisés sur la période"
+msgstr "Account inutilizzati nel periodo"
+
+#: assets/app.js
+msgid "fin {h}"
+msgstr "fine {h}"
+
+#: assets/app.js
+msgid "Tâches programmables par compte"
+msgstr "Attività programmate per account"
 
 #: assets/app.js
 msgid "Compte"
 msgstr "Account"
+
+#: assets/app.js
+msgid "Envoyées"
+msgstr "Inviate"
+
+#: assets/app.js
+msgid "Erreurs"
+msgstr "Errori"
+
+#: assets/app.js
+msgid "Quotas"
+msgstr "Quote"
+
+#: assets/app.js
+msgid "Dernier quota"
+msgstr "Ultima quota"
+
+#: assets/app.js
+msgid "Exécutions"
+msgstr "Esecuzioni"
+
+#: assets/app.js
+msgid "D'après l'historique des tâches (200 dernières exécutions)."
+msgstr "In base alla cronologia delle attività (ultime 200 esecuzioni)."
+
+#: assets/app.js
+msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
+msgstr "Nessuna sessione in questo periodo. La misurazione inizia con l'installazione di questa versione."
+
+#: assets/app.js
+msgid "1 jour"
+msgstr "1 giorno"
+
+#: assets/app.js
+msgid "{n} jours"
+msgstr "{n} giorni"
+
+#: assets/app.js
+msgid "Série en cours (record : {n})"
+msgstr "Serie attuale (record: {n})"
 
 #: assets/app.js
 msgid "Par compte"

@@ -1244,12 +1244,104 @@ msgid "Part"
 msgstr "Share"
 
 #: assets/app.js
-msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
-msgstr "No sessions in this period. Measurement starts when this version is installed."
+msgid "Dim"
+msgstr "Sun"
+
+#: assets/app.js
+msgid "Jeu"
+msgstr "Thu"
+
+#: assets/app.js
+msgid "Lun"
+msgstr "Mon"
+
+#: assets/app.js
+msgid "Mar"
+msgstr "Tue"
+
+#: assets/app.js
+msgid "Mer"
+msgstr "Wed"
+
+#: assets/app.js
+msgid "Sam"
+msgstr "Sat"
+
+#: assets/app.js
+msgid "Ven"
+msgstr "Fri"
+
+#: assets/app.js
+msgid "{jour} {h} h : {duree}"
+msgstr "{jour} {h}:00: {duree}"
+
+#: assets/app.js
+msgid "Heures de pointe (temps actif)"
+msgstr "Peak hours (active time)"
+
+#: assets/app.js
+msgid "dernière utilisation : {date}"
+msgstr "last used: {date}"
+
+#: assets/app.js
+msgid "jamais utilisé depuis le début de la mesure"
+msgstr "never used since tracking began"
+
+#: assets/app.js
+msgid "Comptes inutilisés sur la période"
+msgstr "Unused accounts in this period"
+
+#: assets/app.js
+msgid "fin {h}"
+msgstr "ends {h}"
+
+#: assets/app.js
+msgid "Tâches programmables par compte"
+msgstr "Scheduled tasks by account"
 
 #: assets/app.js
 msgid "Compte"
 msgstr "Account"
+
+#: assets/app.js
+msgid "Envoyées"
+msgstr "Sent"
+
+#: assets/app.js
+msgid "Erreurs"
+msgstr "Errors"
+
+#: assets/app.js
+msgid "Quotas"
+msgstr "Quotas"
+
+#: assets/app.js
+msgid "Dernier quota"
+msgstr "Last quota"
+
+#: assets/app.js
+msgid "Exécutions"
+msgstr "Runs"
+
+#: assets/app.js
+msgid "D'après l'historique des tâches (200 dernières exécutions)."
+msgstr "Based on the task history (last 200 runs)."
+
+#: assets/app.js
+msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
+msgstr "No sessions in this period. Measurement starts when this version is installed."
+
+#: assets/app.js
+msgid "1 jour"
+msgstr "1 day"
+
+#: assets/app.js
+msgid "{n} jours"
+msgstr "{n} days"
+
+#: assets/app.js
+msgid "Série en cours (record : {n})"
+msgstr "Current streak (best: {n})"
 
 #: assets/app.js
 msgid "Par compte"

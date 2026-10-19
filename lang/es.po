@@ -1246,12 +1246,104 @@ msgid "Part"
 msgstr "Cuota"
 
 #: assets/app.js
-msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
-msgstr "Ninguna sesión en este periodo. La medición comienza con la instalación de esta versión."
+msgid "Dim"
+msgstr "Dom"
+
+#: assets/app.js
+msgid "Jeu"
+msgstr "Jue"
+
+#: assets/app.js
+msgid "Lun"
+msgstr "Lun"
+
+#: assets/app.js
+msgid "Mar"
+msgstr "Mar"
+
+#: assets/app.js
+msgid "Mer"
+msgstr "Mié"
+
+#: assets/app.js
+msgid "Sam"
+msgstr "Sáb"
+
+#: assets/app.js
+msgid "Ven"
+msgstr "Vie"
+
+#: assets/app.js
+msgid "{jour} {h} h : {duree}"
+msgstr "{jour} {h} h: {duree}"
+
+#: assets/app.js
+msgid "Heures de pointe (temps actif)"
+msgstr "Horas punta (tiempo activo)"
+
+#: assets/app.js
+msgid "dernière utilisation : {date}"
+msgstr "último uso: {date}"
+
+#: assets/app.js
+msgid "jamais utilisé depuis le début de la mesure"
+msgstr "sin uso desde el inicio de la medición"
+
+#: assets/app.js
+msgid "Comptes inutilisés sur la période"
+msgstr "Cuentas sin uso en el período"
+
+#: assets/app.js
+msgid "fin {h}"
+msgstr "fin {h}"
+
+#: assets/app.js
+msgid "Tâches programmables par compte"
+msgstr "Tareas programadas por cuenta"
 
 #: assets/app.js
 msgid "Compte"
 msgstr "Cuenta"
+
+#: assets/app.js
+msgid "Envoyées"
+msgstr "Enviadas"
+
+#: assets/app.js
+msgid "Erreurs"
+msgstr "Errores"
+
+#: assets/app.js
+msgid "Quotas"
+msgstr "Cuotas"
+
+#: assets/app.js
+msgid "Dernier quota"
+msgstr "Última cuota"
+
+#: assets/app.js
+msgid "Exécutions"
+msgstr "Ejecuciones"
+
+#: assets/app.js
+msgid "D'après l'historique des tâches (200 dernières exécutions)."
+msgstr "Según el historial de tareas (últimas 200 ejecuciones)."
+
+#: assets/app.js
+msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
+msgstr "Ninguna sesión en este periodo. La medición comienza con la instalación de esta versión."
+
+#: assets/app.js
+msgid "1 jour"
+msgstr "1 día"
+
+#: assets/app.js
+msgid "{n} jours"
+msgstr "{n} días"
+
+#: assets/app.js
+msgid "Série en cours (record : {n})"
+msgstr "Racha actual (récord: {n})"
 
 #: assets/app.js
 msgid "Par compte"

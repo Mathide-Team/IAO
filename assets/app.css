@@ -459,7 +459,7 @@
   .stats-periode:hover { color: var(--fg); }
   .stats-periode--active { color: var(--fg); border-color: var(--accent); font-weight: 600; }
   .stats-body { overflow-y: auto; padding-right: 6px; display: flex; flex-direction: column; gap: 18px; }
-  .stats-totaux { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+  .stats-totaux { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
   .stats-carte { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px; min-width: 0; }
   .stats-carte__valeur { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; }
   .stats-carte__libelle { font-size: 12px; color: var(--fg-muted); margin-top: 2px; }
@@ -474,6 +474,17 @@
   .stats-point { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
   .stats-barre { height: 4px; border-radius: 2px; background: var(--accent); margin-top: 4px; }
   .stats-vide { color: var(--fg-muted); font-size: 13px; padding: 12px 0; }
+  /* Lot 2 : tri par colonne, carte de chaleur, comptes inutilisés. */
+  .stats-tri { cursor: pointer; user-select: none; }
+  .stats-tri:hover, .stats-tri--actif { color: var(--fg); }
+  .stats-chaleur { border-collapse: separate; border-spacing: 2px; font-size: 10px; color: var(--fg-muted); width: 100%; table-layout: fixed; }
+  .stats-chaleur th { font-weight: 500; text-align: left; padding: 0; }
+  .stats-chaleur__jour { width: 34px; }
+  .stats-chaleur__case { height: 14px; border-radius: 2px; background: var(--border); box-shadow: inset 0 0 0 999px color-mix(in srgb, var(--accent) calc(var(--niveau) * 100%), transparent); }
+  .stats-inutilises { list-style: none; margin: 0; padding: 0; font-size: 12px; }
+  .stats-inutilises li { display: flex; justify-content: space-between; gap: 12px; padding: 6px 8px; border-bottom: 1px solid var(--border); }
+  .stats-inutilise__date { color: var(--fg-muted); white-space: nowrap; }
+  .stats-note { font-size: 11px; color: var(--fg-muted); margin-top: 6px; }
 
   /* --- Ordonnanceur IA (chantier E) --- même famille visuelle que .modal--help. */
   .modal--scheduler { width: 680px; max-width: calc(100vw - 48px); max-height: calc(100vh - 96px); display: flex; flex-direction: column; padding: 28px; }

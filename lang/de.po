@@ -1246,12 +1246,104 @@ msgid "Part"
 msgstr "Anteil"
 
 #: assets/app.js
-msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
-msgstr "Keine Sitzung in diesem Zeitraum. Die Messung beginnt mit der Installation dieser Version."
+msgid "Dim"
+msgstr "So"
+
+#: assets/app.js
+msgid "Jeu"
+msgstr "Do"
+
+#: assets/app.js
+msgid "Lun"
+msgstr "Mo"
+
+#: assets/app.js
+msgid "Mar"
+msgstr "Di"
+
+#: assets/app.js
+msgid "Mer"
+msgstr "Mi"
+
+#: assets/app.js
+msgid "Sam"
+msgstr "Sa"
+
+#: assets/app.js
+msgid "Ven"
+msgstr "Fr"
+
+#: assets/app.js
+msgid "{jour} {h} h : {duree}"
+msgstr "{jour} {h} Uhr: {duree}"
+
+#: assets/app.js
+msgid "Heures de pointe (temps actif)"
+msgstr "Stoßzeiten (aktive Zeit)"
+
+#: assets/app.js
+msgid "dernière utilisation : {date}"
+msgstr "zuletzt verwendet: {date}"
+
+#: assets/app.js
+msgid "jamais utilisé depuis le début de la mesure"
+msgstr "seit Beginn der Erfassung nie verwendet"
+
+#: assets/app.js
+msgid "Comptes inutilisés sur la période"
+msgstr "Im Zeitraum ungenutzte Konten"
+
+#: assets/app.js
+msgid "fin {h}"
+msgstr "Ende {h}"
+
+#: assets/app.js
+msgid "Tâches programmables par compte"
+msgstr "Geplante Aufgaben nach Konto"
 
 #: assets/app.js
 msgid "Compte"
 msgstr "Konto"
+
+#: assets/app.js
+msgid "Envoyées"
+msgstr "Gesendet"
+
+#: assets/app.js
+msgid "Erreurs"
+msgstr "Fehler"
+
+#: assets/app.js
+msgid "Quotas"
+msgstr "Kontingente"
+
+#: assets/app.js
+msgid "Dernier quota"
+msgstr "Letztes Kontingent"
+
+#: assets/app.js
+msgid "Exécutions"
+msgstr "Ausführungen"
+
+#: assets/app.js
+msgid "D'après l'historique des tâches (200 dernières exécutions)."
+msgstr "Laut Aufgabenverlauf (letzte 200 Ausführungen)."
+
+#: assets/app.js
+msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
+msgstr "Keine Sitzung in diesem Zeitraum. Die Messung beginnt mit der Installation dieser Version."
+
+#: assets/app.js
+msgid "1 jour"
+msgstr "1 Tag"
+
+#: assets/app.js
+msgid "{n} jours"
+msgstr "{n} Tage"
+
+#: assets/app.js
+msgid "Série en cours (record : {n})"
+msgstr "Aktuelle Serie (Rekord: {n})"
 
 #: assets/app.js
 msgid "Par compte"

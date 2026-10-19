@@ -2453,10 +2453,24 @@
           { dateStyle: 'short', timeStyle: 'short' });
       } catch (_e) { return new Date(ms).toLocaleString(); }
     }
-    function tableStats(titre, colonne, lignes, nomLigne, avecPart) {
+    // Tri par colonne (lot 2) : clic sur un en-tête [data-stats-tri] ; un
+    // second clic inverse le sens. État par tableau, conservé à la réouverture.
+    const statsTri = {};
+    function enteteTri(table, col, libelle, num) {
+      const t = statsTri[table];
+      const actif = t && t.col === col;
+      const fleche = actif ? (t.sens === 'asc' ? ' ▲' : ' ▼') : '';
+      return `<th class="stats-tri${num ? ' num' : ''}${actif ? ' stats-tri--actif' : ''}" data-stats-tri="${table}" data-col="${col}"
+        aria-sort="${actif ? (t.sens === 'asc' ? 'ascending' : 'descending') : 'none'}">${escapeHtml(libelle)}${fleche}</th>`;
+    }
+    function trierStats(table, lignes) {
+      const t = statsTri[table];
+      return t ? window.iaoStats.trierLignes(lignes, t.col, t.sens) : lignes;
+    }
+    function tableStats(table, titre, colonne, lignes, nomLigne, avecPart) {
       if (!lignes.length) return '';
       const max = Math.max(1, ...lignes.map(l => l.actifMs));
-      const corps = lignes.map(l => {
+      const corps = trierStats(table, lignes).map(l => {
         const n = nomLigne(l);
         return `<tr>
           <td><div class="stats-nom">${n.point}<span title="${escapeHtml(n.titre)}">${escapeHtml(n.nom)}</span></div>
@@ -2469,37 +2483,94 @@
       }).join('');
       return `<div><div class="stats-titre">${escapeHtml(titre)}</div>
         <table class="stats-table"><thead><tr>
-          <th>${escapeHtml(colonne)}</th><th class="num">${escapeHtml(_('Temps actif'))}</th>
-          <th class="num">${escapeHtml(_('Durée ouverte'))}</th><th class="num">${escapeHtml(_('Sessions'))}</th>
-          <th class="num">${escapeHtml(avecPart ? _('Part') : _('Dernière utilisation'))}</th>
+          ${enteteTri(table, 'cle', colonne, false)}${enteteTri(table, 'actifMs', _('Temps actif'), true)}
+          ${enteteTri(table, 'dureeMs', _('Durée ouverte'), true)}${enteteTri(table, 'sessions', _('Sessions'), true)}
+          ${avecPart ? enteteTri(table, 'part', _('Part'), true) : enteteTri(table, 'dernier', _('Dernière utilisation'), true)}
         </tr></thead><tbody>${corps}</tbody></table></div>`;
     }
+    function nomCompteStats(profil) {
+      const acc = accounts.find(a => a.profile === profil);
+      return acc ? acc.name : profil;
+    }
+    // Carte de chaleur jour × heure (lundi en premier, heures locales).
+    function carteChaleurStats(h) {
+      if (!h.max) return '';
+      const jours = [_('Lun'), _('Mar'), _('Mer'), _('Jeu'), _('Ven'), _('Sam'), _('Dim')];
+      const entete = Array.from({ length: 24 }, (_x, i) => `<th>${i % 3 === 0 ? i : ''}</th>`).join('');
+      const lignes = h.grille.map((ligne, j) => `<tr><th class="stats-chaleur__jour">${escapeHtml(jours[j])}</th>${
+        ligne.map((ms, heure) => {
+          const niveau = ms ? Math.max(0.12, ms / h.max) : 0;
+          const titre = _('{jour} {h} h : {duree}', { jour: jours[j], h: heure, duree: dureeStats(ms) });
+          return `<td class="stats-chaleur__case" style="--niveau:${niveau.toFixed(2)}" title="${escapeHtml(titre)}"></td>`;
+        }).join('')}</tr>`).join('');
+      return `<div><div class="stats-titre">${escapeHtml(_('Heures de pointe (temps actif)'))}</div>
+        <table class="stats-chaleur" id="statsChaleur"><thead><tr><th></th>${entete}</tr></thead><tbody>${lignes}</tbody></table></div>`;
+    }
+    function inutilisesStats(liste) {
+      if (!liste.length) return '';
+      const items = liste.map(l => `<li><span title="${escapeHtml(l.cle)}">${escapeHtml(nomCompteStats(l.cle))}</span>
+        <span class="stats-inutilise__date">${escapeHtml(l.dernier ? _('dernière utilisation : {date}', { date: dateStats(l.dernier) }) : _('jamais utilisé depuis le début de la mesure'))}</span></li>`).join('');
+      return `<div><div class="stats-titre">${escapeHtml(_('Comptes inutilisés sur la période'))}</div>
+        <ul class="stats-inutilises" id="statsInutilises">${items}</ul></div>`;
+    }
+    function tachesStats(lignes) {
+      if (!lignes.length) return '';
+      const corps = trierStats('taches', lignes).map(l => `<tr>
+          <td><span title="${escapeHtml(l.cle)}">${escapeHtml(nomCompteStats(l.cle))}</span></td>
+          <td class="num">${l.envoye}</td><td class="num">${l.quota}</td><td class="num">${l.erreur}</td>
+          <td class="num">${l.total}</td>
+          <td class="num">${escapeHtml(l.dernierQuota ? dateStats(Date.parse(l.dernierQuota)) + (l.heureQuota ? ' (' + _('fin {h}', { h: l.heureQuota }) + ')' : '') : '—')}</td>
+        </tr>`).join('');
+      return `<div><div class="stats-titre">${escapeHtml(_('Tâches programmables par compte'))}</div>
+        <table class="stats-table" id="statsTaches"><thead><tr>
+          ${enteteTri('taches', 'cle', _('Compte'), false)}${enteteTri('taches', 'envoye', _('Envoyées'), true)}
+          ${enteteTri('taches', 'quota', _('Quotas'), true)}${enteteTri('taches', 'erreur', _('Erreurs'), true)}
+          ${enteteTri('taches', 'total', _('Exécutions'), true)}${enteteTri('taches', 'dernierQuota', _('Dernier quota'), true)}
+        </tr></thead><tbody>${corps}</tbody></table>
+        <div class="stats-note">${escapeHtml(_('D\'après l\'historique des tâches (200 dernières exécutions).'))}</div></div>`;
+    }
+    let statsTaches = [];
     function renderStats() {
       document.querySelectorAll('#statsPeriodes [data-periode]').forEach(b =>
         b.classList.toggle('stats-periode--active', b.getAttribute('data-periode') === statsPeriode));
-      const r = window.iaoStats.agreger(statsHistorique.concat(suiviStats.instantane()),
-        { periode: statsPeriode, maintenant: Date.now() });
+      const maintenant = Date.now();
+      const sessions = statsHistorique.concat(suiviStats.instantane());
+      const r = window.iaoStats.agreger(sessions, { periode: statsPeriode, maintenant });
+      const taches = window.iaoStats.resultatsTaches(statsTaches, r.depuis);
       const body = document.getElementById('statsBody');
-      if (!r.totaux.sessions) {
+      if (!r.totaux.sessions && !taches.length) {
         body.innerHTML = `<div class="stats-vide">${escapeHtml(_('Aucune session sur cette période. La mesure commence à l\'installation de cette version.'))}</div>`;
         return;
       }
+      const serie = window.iaoStats.serieJours(sessions, maintenant);
+      const jours = (n) => n === 1 ? _('1 jour') : _('{n} jours', { n });
       const carte = (valeur, libelle) => `<div class="stats-carte"><div class="stats-carte__valeur">${escapeHtml(valeur)}</div><div class="stats-carte__libelle">${escapeHtml(libelle)}</div></div>`;
       body.innerHTML = `<div class="stats-totaux">
           ${carte(dureeStats(r.totaux.actifMs), _('Temps actif'))}
           ${carte(dureeStats(r.totaux.dureeMs), _('Durée ouverte'))}
           ${carte(String(r.totaux.sessions), _('Sessions'))}
+          ${carte(jours(serie.actuelle), _('Série en cours (record : {n})', { n: jours(serie.record) }))}
         </div>
-        ${tableStats(_('Par compte'), _('Compte'), r.parCompte, (l) => {
-          const acc = accounts.find(a => a.profile === l.cle);
-          return { nom: acc ? acc.name : l.cle, titre: l.cle, point: '' };
-        }, false)}
-        ${tableStats(_('Par service'), _('Service'), r.parService, (l) => {
+        ${tableStats('compte', _('Par compte'), _('Compte'), r.parCompte, (l) =>
+          ({ nom: nomCompteStats(l.cle), titre: l.cle, point: '' }), false)}
+        ${tableStats('service', _('Par service'), _('Service'), r.parService, (l) => {
           const svc = SERVICES.find(x => x.id === l.cle);
           return { nom: svc ? svc.name : l.cle, titre: l.cle,
             point: svc ? `<span class="stats-point svc-bg-${svc.id}"></span>` : '' };
-        }, true)}`;
+        }, true)}
+        ${carteChaleurStats(window.iaoStats.heuresDePointe(sessions, r.depuis))}
+        ${inutilisesStats(window.iaoStats.comptesInutilises(sessions, accounts.map(a => a.profile), r.depuis))}
+        ${tachesStats(taches)}`;
     }
+    document.getElementById('statsBody').addEventListener('click', (e) => {
+      const th = e.target.closest('[data-stats-tri]');
+      if (!th) return;
+      const table = th.getAttribute('data-stats-tri');
+      const col = th.getAttribute('data-col');
+      const t = statsTri[table];
+      statsTri[table] = { col, sens: t && t.col === col && t.sens === 'desc' ? 'asc' : 'desc' };
+      renderStats();
+    });
     window.openStatsModal = async function() {
       document.getElementById('statsModal').classList.add('open');
       renderStats();
@@ -2510,6 +2581,15 @@
       } catch (e) {
         statsHistorique = [];
         dbg('stats', 'chargement en échec', e && e.message);
+      }
+      try {
+        // Historique des tâches programmables (lot 2) : secondaire, une panne
+        // n'empêche pas l'affichage des sessions.
+        const t = await ipcRenderer.invoke('taches:history', 200);
+        statsTaches = Array.isArray(t) ? t : [];
+      } catch (e) {
+        statsTaches = [];
+        dbg('stats', 'historique des tâches indisponible', e && e.message);
       }
       renderStats();
     };
