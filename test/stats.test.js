@@ -268,9 +268,19 @@ test('registerStatsIPC : canaux enregistrés, erreurs renvoyées sans exception'
   const appels = [];
   st.registerStatsIPC(ipc, {
     sync: async (t, e) => { appels.push([t, e]); return { ok: true }; },
-    charger: async () => { throw new Error('disque plein'); }
+    charger: async () => { throw new Error('disque plein'); },
+    // Lot 2 : les nouveaux canaux doivent exister (les erreurs sont renvoyées).
+    noterReponse: async () => { throw new Error('reponse'); },
+    noterQuota: async () => { throw new Error('quota'); },
+    chargerReponses: async () => { throw new Error('reponses'); },
+    chargerQuotas: async () => { throw new Error('quotas'); }
   });
-  assert.deepEqual([...handlers.keys()], ['stats:sync', 'stats:load']);
+  assert.deepEqual([...handlers.keys()], ['stats:sync', 'stats:load',
+    'stats:noter-reponse', 'stats:noter-quota', 'stats:reponses', 'stats:quotas']);
+  assert.deepEqual(await handlers.get('stats:noter-reponse')({}, {}), { error: 'reponse' });
+  assert.deepEqual(await handlers.get('stats:noter-quota')({}, {}), { error: 'quota' });
+  assert.deepEqual(await handlers.get('stats:reponses')({}), { error: 'reponses' });
+  assert.deepEqual(await handlers.get('stats:quotas')({}), { error: 'quotas' });
   assert.deepEqual(await handlers.get('stats:sync')({}, [1], [2]), { ok: true });
   assert.deepEqual(appels, [[[1], [2]]]);
   assert.deepEqual(await handlers.get('stats:load')({}), { error: 'disque plein' });
@@ -298,4 +308,236 @@ test('agreger : égalité parfaite -> ordre alphabétique, quel que soit l’ord
   for (const entree of [[x, y], [y, x]]) {
     assert.deepEqual(st.agreger(entree, { periode: 'tout', maintenant: T0 }).parCompte.map(l => l.cle), ['a', 'b']);
   }
+});
+
+// --- Lot 2 : temps de réponse, quotas, heures de pointe, classification -------
+
+function rep(id, profil, service, debut, fin) {
+  return { id, profil, service, debut, fin };
+}
+function quo(id, profil, service, date) {
+  return { id, profil, service, date };
+}
+
+test('normaliserReponse : valides, bornes (24 h) et refus', () => {
+  assert.deepEqual(st.normaliserReponse(rep('a', 'p1', 'claude', T0, T0 + 45000)),
+    rep('a', 'p1', 'claude', T0, T0 + 45000));
+  assert.strictEqual(st.normaliserReponse(rep('a', 'p', 'claude', T0, T0 + 25 * 24 * H)), null); // > 24 h
+  assert.strictEqual(st.normaliserReponse(rep('a', 'p', 'claude', T0, T0)), null); // durée nulle
+  assert.strictEqual(st.normaliserReponse(rep('a', 'p', 'claude', T0, T0 - 1)), null); // fin < début
+  assert.strictEqual(st.normaliserReponse(rep('', 'p', 'claude', T0, T0 + 1)), null);
+  assert.strictEqual(st.normaliserReponse(rep('a', 'p\n', 'claude', T0, T0 + 1)), null);
+  assert.strictEqual(st.normaliserReponse(rep('a', 'p', 'Claude!', T0, T0 + 1)), null);
+  assert.strictEqual(st.normaliserReponse(null), null);
+  assert.strictEqual(st.normaliserReponse(rep('a', 'p', 'claude', NaN, T0 + 1)), null);
+  assert.strictEqual(st.normaliserReponse(rep('a', 'p', 'claude', 0, T0 + 1)), null); // debut <= 0
+  assert.strictEqual(st.normaliserReponse(rep('a', 'p', 'claude', -5, T0 + 1)), null);
+});
+
+test('normaliserQuota : valides et refus', () => {
+  assert.deepEqual(st.normaliserQuota(quo('a', 'p1', 'claude', T0)), quo('a', 'p1', 'claude', T0));
+  assert.strictEqual(st.normaliserQuota(quo('a', 'p', 'claude', 0)), null);
+  assert.strictEqual(st.normaliserQuota(quo('a', 'p', 'claude', -5)), null);
+  assert.strictEqual(st.normaliserQuota(quo('', 'p', 'claude', T0)), null);
+  assert.strictEqual(st.normaliserQuota(quo('a', 'p', 'chatgpt', NaN)), null);
+  assert.strictEqual(st.normaliserQuota(null), null);
+  assert.strictEqual(st.normaliserQuota(quo('a', 4, 'claude', T0)), null); // profil non chaîne
+  assert.strictEqual(st.normaliserQuota(quo('a', 'p\n', 'claude', T0)), null); // profil invalide
+  assert.strictEqual(st.normaliserQuota(quo('a', 'p', 'Claude!', T0)), null); // service invalide
+});
+
+test('mediane : listes impaires, paires, vides', () => {
+  assert.strictEqual(st.mediane([1, 2, 3]), 2);
+  assert.strictEqual(st.mediane([1, 2, 3, 4]), 3); // (2+3)/2 arrondi
+  assert.strictEqual(st.mediane([10]), 10);
+  assert.strictEqual(st.mediane([]), 0);
+});
+
+test('agregerReponses : médiane/min/max par compte et service, période', () => {
+  const rs = [
+    rep('a', 'p1', 'claude', T0, T0 + 10000),
+    rep('b', 'p1', 'claude', T0, T0 + 30000),
+    rep('c', 'p2', 'claude', T0, T0 + 20000),
+    rep('d', 'p2', 'chatgpt', T0, T0 + 5000)
+  ];
+  const r = st.agregerReponses(rs, { maintenant: T0 + 60000 });
+  assert.strictEqual(r.totaux.nombre, 4);
+  assert.strictEqual(r.totaux.minMs, 5000);
+  assert.strictEqual(r.totaux.maxMs, 30000);
+  assert.strictEqual(r.totaux.medianeMs, 15000); // trié : 5,10,20,30 -> (10+20)/2
+  const p1c = r.parCompteService.find(l => l.profil === 'p1' && l.service === 'claude');
+  assert.strictEqual(p1c.nombre, 2);
+  assert.strictEqual(p1c.medianeMs, 20000); // (10+30)/2
+  assert.strictEqual(p1c.minMs, 10000);
+  assert.strictEqual(p1c.maxMs, 30000);
+  // Tri par nombre décroissant (p1-claude et p2 ont... p1-claude a 2,
+  // les autres 1) ; à nombre égal, par profil croissant.
+  assert.strictEqual(r.parCompteService[0].profil, 'p1');
+  assert.strictEqual(r.parCompteService[0].nombre, 2);
+  // Période « jour » : tout est récent -> inclus ; événement ancien exclu.
+  const anciens = st.agregerReponses(
+    [rep('v', 'p', 'claude', T0 - 8 * 24 * H, T0 - 8 * 24 * H + 1000)],
+    { maintenant: T0, periode: 'semaine' });
+  assert.strictEqual(anciens.totaux.nombre, 0);
+  // Entrées non tableau / vides.
+  assert.strictEqual(st.agregerReponses(null).totaux.nombre, 0);
+});
+
+test('agregerQuotas : nombre et répartition par heure locale', () => {
+  const qs = [
+    quo('a', 'p1', 'claude', new Date(2026, 9, 19, 9, 30).getTime()),
+    quo('b', 'p1', 'claude', new Date(2026, 9, 19, 9, 45).getTime()),
+    quo('c', 'p1', 'claude', new Date(2026, 9, 19, 18, 10).getTime()),
+    quo('d', 'p2', 'claude', new Date(2026, 9, 18, 22, 0).getTime())
+  ];
+  const r = st.agregerQuotas(qs, { maintenant: T0 });
+  const p1 = r.parCompteService.find(l => l.profil === 'p1');
+  assert.strictEqual(p1.nombre, 3);
+  assert.strictEqual(p1.parHeure[9], 2);
+  assert.strictEqual(p1.parHeure[18], 1);
+  assert.strictEqual(p1.parHeure.reduce((a, b) => a + b, 0), 3);
+  assert.strictEqual(r.parCompteService.length, 2);
+  // Période : événement trop ancien exclu.
+  const vieux = st.agregerQuotas([quo('v', 'p', 'claude', T0 - 8 * 24 * H)], { maintenant: T0, periode: 'semaine' });
+  assert.strictEqual(vieux.parCompteService.length, 0);
+});
+
+
+test('classerComptes : sous-utilisés et surchargés, seuils', () => {
+  const sessions = [
+    sess('a', 'rare', 'claude', T0 - H, T0, 1000),
+    sess('b', 'souvent', 'claude', T0 - H, T0, 1000),
+    sess('c', 'souvent', 'claude', T0 - H, T0, 1000),
+    sess('d', 'souvent', 'claude', T0 - H, T0, 1000)
+  ];
+  const quotas = [
+    quo('q1', 'souvent', 'claude', T0 - H),
+    quo('q2', 'souvent', 'claude', T0 - H / 2),
+    quo('q3', 'souvent', 'claude', T0 - H / 3)
+  ];
+  const r = st.classerComptes(sessions, quotas, { maintenant: T0 });
+  assert.deepEqual(r.sousUtilises, ['rare']); // <= 2 sessions
+  assert.deepEqual(r.surcharges, ['souvent']); // >= 3 quotas
+  // Seuils personnalisés.
+  // Seuil 0 : aucun profil n'a 0 session -> personne de sous-utilisé ;
+  // seuil quotas 10 : personne de surchargé.
+  const r2 = st.classerComptes(sessions, quotas, { maintenant: T0, seuilSessions: 0, seuilQuotas: 10 });
+  assert.deepEqual(r2.sousUtilises, []);
+  assert.deepEqual(r2.surcharges, []);
+});
+
+test('store lot 2 : noter/charger temps de réponse et quotas, purge, plafond', async () => {
+  const dossier = fs.mkdtempSync(path.join(os.tmpdir(), 'iao-stats2-'));
+  try {
+    const store = st.creerStore({ dossier, fs: fs.promises, path, maintenant: () => T0 });
+    assert.deepEqual(await store.noterReponse({ profil: 'p1', service: 'claude', debut: T0 - 30000, fin: T0 - 5000 }),
+      { ok: true });
+    assert.deepEqual(await store.noterQuota({ profil: 'p1', service: 'claude', date: T0 - 60000 }),
+      { ok: true });
+    // Événement invalide refusé, rien d'écrit.
+    assert.ok((await store.noterReponse({ profil: 'p1', service: 'claude', debut: T0, fin: T0 - 1 })).ok === false);
+    const reponses = await store.chargerReponses();
+    assert.strictEqual(reponses.length, 1);
+    assert.strictEqual(reponses[0].profil, 'p1');
+    assert.ok(/^r[a-z0-9]+-/.test(reponses[0].id), 'id préfixé r : ' + reponses[0].id);
+    const quotas = await store.chargerQuotas();
+    assert.strictEqual(quotas.length, 1);
+    assert.ok(/^q[a-z0-9]+-/.test(quotas[0].id));
+    // Les fichiers sont distincts de sessions.jsonl.
+    assert.strictEqual(fs.existsSync(path.join(dossier, 'reponses.jsonl')), true);
+    assert.strictEqual(fs.existsSync(path.join(dossier, 'quotas.jsonl')), true);
+    // Purge : un événement plus vieux que 90 jours disparaît au chargement.
+    const storeVieux = st.creerStore({ dossier, fs: fs.promises, path,
+      maintenant: () => T0 + 91 * 24 * H });
+    assert.strictEqual((await storeVieux.chargerReponses()).length, 0);
+    assert.strictEqual((await storeVieux.chargerQuotas()).length, 0);
+  } finally {
+    fs.rmSync(dossier, { recursive: true, force: true });
+  }
+});
+
+test('store lot 2 : plafond d’événements (maxEvenements injectable)', async () => {
+  const dossier = fs.mkdtempSync(path.join(os.tmpdir(), 'iao-stats2b-'));
+  try {
+    const store = st.creerStore({ dossier, fs: fs.promises, path, maintenant: () => T0, maxEvenements: 2 });
+    for (let i = 0; i < 4; i++) {
+      await store.noterReponse({ profil: 'p' + i, service: 'claude', debut: T0 - 60000, fin: T0 - 1000 });
+    }
+    const reponses = await store.chargerReponses();
+    assert.strictEqual(reponses.length, 2, 'plafonné à 2 événements');
+    assert.strictEqual(reponses[0].profil, 'p2', 'les plus anciens sont jetés');
+    assert.strictEqual(reponses[1].profil, 'p3');
+  } finally {
+    fs.rmSync(dossier, { recursive: true, force: true });
+  }
+});
+
+test('agregerReponses/agregerQuotas : tri à nombre égal par profil', () => {
+  const rs = [
+    rep('a', 'zoe', 'claude', T0, T0 + 1000),
+    rep('b', 'anne', 'claude', T0, T0 + 2000)
+  ];
+  const r = st.agregerReponses(rs, { maintenant: T0 });
+  assert.strictEqual(r.parCompteService[0].profil, 'anne'); // -1 : anne < zoe
+  assert.strictEqual(r.parCompteService[1].profil, 'zoe');
+  const qs = [quo('a', 'zoe', 'claude', T0), quo('b', 'anne', 'claude', T0)];
+  const rq = st.agregerQuotas(qs, { maintenant: T0 });
+  assert.strictEqual(rq.parCompteService[0].profil, 'anne');
+});
+
+
+test('classerComptes : quotas trop anciens ignorés', () => {
+  const sessions = [sess('a', 'p1', 'claude', T0 - H, T0, 1000)];
+  const quotas = [
+    quo('q1', 'p1', 'claude', T0 - H),
+    quo('q2', 'p1', 'claude', T0 - H / 2),
+    quo('vieux', 'p1', 'claude', T0 - 10 * 24 * H), // hors période semaine : ignoré
+    quo('q3', 'p1', 'claude', T0 - H / 3)
+  ];
+  // 3 quotas RÉCENTS -> surchargé ; le vieux est ignoré (2 + vieux n'aurait
+  // pas dû compter sans la période) — avec seuil 3 il faut les 3 récents.
+  const r = st.classerComptes(sessions, quotas, { maintenant: T0, periode: 'semaine', seuilQuotas: 3 });
+  assert.deepEqual(r.surcharges, ['p1']);
+  // Sans le quota récent q3, 2 < 3 -> pas surchargé.
+  const r2 = st.classerComptes(sessions, quotas.slice(0, 3), { maintenant: T0, periode: 'semaine', seuilQuotas: 3 });
+  assert.deepEqual(r2.surcharges, []);
+});
+
+test('lot 2 : entrées non tableaux et cas limites des agrégats', () => {
+  // Entrées non tableau : listes vides, aucun levée.
+  assert.strictEqual(st.agregerQuotas(null).parCompteService.length, 0);
+  const r = st.classerComptes(null, null);
+  assert.deepEqual(r.sousUtilises, []);
+  // Session hors période ignorée dans classerComptes ; quotas seuls.
+  const ancienne = sess('v', 'p_vieux', 'claude', T0 - 10 * 24 * H, T0 - 10 * 24 * H + H, H / 2);
+  const quotasSeuls = [quo('a', 'p_quotas', 'claude', T0 - H), quo('b', 'p_quotas', 'claude', T0 - H / 2)];
+  const rc = st.classerComptes([ancienne], quotasSeuls, { maintenant: T0, periode: 'semaine' });
+  // p_quotas : 0 session -> sous-utilisé (branche || 0) ; pas surchargé (2 < 3).
+  assert.deepEqual(rc.sousUtilises, ['p_quotas']);
+  assert.deepEqual(rc.surcharges, []);
+});
+
+test('lot 2 : tri à nombre égal, même profil (services différents)', () => {
+  // Deux entrées de même nombre avec le MÊME profil (services différents) :
+  // le tie-break prend la branche « 1 » du comparateur.
+  const rs = [
+    rep('a', 'p1', 'claude', T0, T0 + 1000),
+    rep('b', 'p1', 'chatgpt', T0, T0 + 2000)
+  ];
+  const r = st.agregerReponses(rs, { maintenant: T0 });
+  assert.strictEqual(r.parCompteService.length, 2);
+  assert.ok(r.parCompteService.every(l => l.profil === 'p1'));
+  const qs = [quo('a', 'p1', 'claude', T0), quo('b', 'p1', 'chatgpt', T0)];
+  assert.strictEqual(st.agregerQuotas(qs, { maintenant: T0 }).parCompteService.length, 2);
+});
+
+test('lot 2 : appels sans options (paramètres par défaut, Date.now injecté non requis)', () => {
+  const rs = [rep('a', 'p', 'claude', Date.now() - 5000, Date.now() - 1000)];
+  const qs = [quo('a', 'p', 'claude', Date.now() - 1000)];
+  const ss = [sess('a', 'p', 'claude', Date.now() - 2 * H, Date.now() - H, H / 2)];
+  // Sans options : Date.now() réel, période « tout » — les événements
+  // récents d'il y a quelques secondes restent dans toutes les périodes.
+  assert.ok(st.agregerReponses(rs).totaux.nombre === 1);
+  assert.ok(st.agregerQuotas(qs).parCompteService.length === 1);
+  assert.ok(st.classerComptes(ss, qs).sousUtilises.length === 1);
 });
