@@ -158,12 +158,8 @@ msgid "Générer un mot de passe"
 msgstr "Generar una contraseña"
 
 #: index.html
-msgid ""
-"Chiffré par le trousseau du système, jamais enregistré en clair. Laisser "
-"vide pour ne pas le modifier."
-msgstr ""
-"Cifrada por el llavero del sistema, nunca guardada en claro. Déjelo vacío "
-"para no modificarla."
+msgid "Chiffré par le trousseau du système, jamais enregistré en clair. Laisser vide pour ne pas le modifier."
+msgstr "Cifrada por el llavero del sistema, nunca guardada en claro. Déjelo vacío para no modificarla."
 
 #: index.html
 msgid "Annuler"
@@ -218,17 +214,12 @@ msgid "Fermer"
 msgstr "Cerrar"
 
 #: index.html
-msgid ""
-"Sélectionnez les 9 services affichés dans l'interface. Les autres restent "
-"disponibles dans l'aide."
-msgstr ""
-"Seleccione los 9 servicios mostrados en la interfaz. Los demás siguen "
-"disponibles en la ayuda."
+msgid "Sélectionnez les 9 services affichés dans l'interface. Les autres restent disponibles dans l'aide."
+msgstr "Seleccione los 9 servicios mostrados en la interfaz. Los demás siguen disponibles en la ayuda."
 
 #: index.html
 msgid "Détection des ZIP livrés par les onglets IA, reprise par profil."
-msgstr ""
-"Detección de ZIP entregados por las pestañas de IA, reanudación por perfil."
+msgstr "Detección de ZIP entregados por las pestañas de IA, reanudación por perfil."
 
 #: index.html
 msgid "Arrêté"
@@ -247,12 +238,8 @@ msgid "Ancien ordonnanceur désactivé"
 msgstr "Planificador antiguo desactivado"
 
 #: index.html
-msgid ""
-"La détection des ZIP, les jobs et les projets sont remplacés par les tâches "
-"programmables, en cours de développement."
-msgstr ""
-"La detección de ZIP, los trabajos y los proyectos quedan sustituidos por las"
-" tareas programables, en desarrollo."
+msgid "La détection des ZIP, les jobs et les projets sont remplacés par les tâches programmables, en cours de développement."
+msgstr "La detección de ZIP, los trabajos y los proyectos quedan sustituidos por las tareas programables, en desarrollo."
 
 #: index.html
 msgid "Tâches programmables"
@@ -536,8 +523,7 @@ msgstr "dmathilde.fr"
 
 #: index.html
 msgid "Adresse : préfixe + numéro + @ + domaine (ex. docker239@dmathilde.fr)"
-msgstr ""
-"Dirección: prefijo + número + @ + dominio (ej. docker239@dmathilde.fr)"
+msgstr "Dirección: prefijo + número + @ + dominio (ej. docker239@dmathilde.fr)"
 
 #: index.html
 msgid "Adresse du webmail (Roundcube)"
@@ -548,348 +534,172 @@ msgid "https://mail.dmathilde.fr"
 msgstr "https://mail.dmathilde.fr"
 
 #: assets/app.js
-msgid ""
-"L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse"
-" de longs documents, en programmation et dans les raisonnements qui "
-"demandent plusieurs étapes."
-msgstr ""
-"El asistente conversacional de Anthropic. Destaca en redacción, análisis de "
-"documentos largos, programación y razonamientos de varios pasos."
+msgid "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."
+msgstr "El asistente conversacional de Anthropic. Destaca en redacción, análisis de documentos largos, programación y razonamientos de varios pasos."
 
 #: assets/app.js
-msgid ""
-"Plutôt pour du code, des textes longs et soignés, ou des questions complexes"
-" qui demandent de la rigueur."
-msgstr ""
-"Más bien para código, textos largos y cuidados, o preguntas complejas que "
-"exigen rigor."
+msgid "Plutôt pour du code, des textes longs et soignés, ou des questions complexes qui demandent de la rigueur."
+msgstr "Más bien para código, textos largos y cuidados, o preguntas complejas que exigen rigor."
 
 #: assets/app.js
-msgid ""
-"L'assistant généraliste d'OpenAI, le plus connu du grand public. Il discute,"
-" rédige, résume, génère des images, analyse des fichiers et peut chercher "
-"sur le web."
-msgstr ""
-"El asistente generalista de OpenAI, el más conocido por el público. "
-"Conversa, redacta, resume, genera imágenes, analiza archivos y puede buscar "
-"en la web."
+msgid "L'assistant généraliste d'OpenAI, le plus connu du grand public. Il discute, rédige, résume, génère des images, analyse des fichiers et peut chercher sur le web."
+msgstr "El asistente generalista de OpenAI, el más conocido por el público. Conversa, redacta, resume, genera imágenes, analiza archivos y puede buscar en la web."
 
 #: assets/app.js
-msgid ""
-"Le couteau suisse du quotidien : brainstorming, questions générales, petites"
-" tâches variées."
-msgstr ""
-"La navaja suiza del día a día: lluvia de ideas, preguntas generales, "
-"pequeñas tareas variadas."
+msgid "Le couteau suisse du quotidien : brainstorming, questions générales, petites tâches variées."
+msgstr "La navaja suiza del día a día: lluvia de ideas, preguntas generales, pequeñas tareas variadas."
 
 #: assets/app.js
-msgid ""
-"L'assistant IA de Google. Multimodal (texte, images, audio, vidéo), il "
-"s'appuie sur la recherche Google et s'intègre aux outils Google (Docs, "
-"Gmail, Drive…)."
-msgstr ""
-"El asistente de IA de Google. Multimodal (texto, imágenes, audio, vídeo), se"
-" apoya en la búsqueda de Google y se integra con las herramientas de Google "
-"(Docs, Gmail, Drive…)."
+msgid "L'assistant IA de Google. Multimodal (texte, images, audio, vidéo), il s'appuie sur la recherche Google et s'intègre aux outils Google (Docs, Gmail, Drive…)."
+msgstr "El asistente de IA de Google. Multimodal (texto, imágenes, audio, vídeo), se apoya en la búsqueda de Google y se integra con las herramientas de Google (Docs, Gmail, Drive…)."
 
 #: assets/app.js
-msgid ""
-"Plutôt pour analyser des images ou vidéos, ou si vous travaillez déjà dans "
-"l'écosystème Google."
-msgstr ""
-"Más bien para analizar imágenes o vídeos, o si ya trabaja en el ecosistema "
-"de Google."
+msgid "Plutôt pour analyser des images ou vidéos, ou si vous travaillez déjà dans l'écosystème Google."
+msgstr "Más bien para analizar imágenes o vídeos, o si ya trabaja en el ecosistema de Google."
 
 #: assets/app.js
-msgid ""
-"Le chat de Z.ai, propulsé par les modèles GLM. Gratuit pour l'essentiel, "
-"avec un mode agent capable de chercher sur le web et de produire des "
-"fichiers (docx, pdf, xlsx)."
-msgstr ""
-"El chat de Z.ai, impulsado por los modelos GLM. Gratis en lo esencial, con "
-"un modo agente capaz de buscar en la web y producir archivos (docx, pdf, "
-"xlsx)."
+msgid "Le chat de Z.ai, propulsé par les modèles GLM. Gratuit pour l'essentiel, avec un mode agent capable de chercher sur le web et de produire des fichiers (docx, pdf, xlsx)."
+msgstr "El chat de Z.ai, impulsado por los modelos GLM. Gratis en lo esencial, con un modo agente capaz de buscar en la web y producir archivos (docx, pdf, xlsx)."
 
 #: assets/app.js
-msgid ""
-"Une alternative gratuite solide pour le chat et le code, quand les quotas "
-"des autres sont épuisés."
-msgstr ""
-"Una alternativa gratuita sólida para chat y código, cuando las cuotas de los"
-" demás están agotadas."
+msgid "Une alternative gratuite solide pour le chat et le code, quand les quotas des autres sont épuisés."
+msgstr "Una alternativa gratuita sólida para chat y código, cuando las cuotas de los demás están agotadas."
 
 #: assets/app.js
-msgid ""
-"Un « moteur de réponse » : il cherche sur le web en direct, synthétise "
-"plusieurs sources et cite ses références pour chaque affirmation."
-msgstr ""
-"Un «motor de respuestas»: busca en la web en directo, sintetiza varias "
-"fuentes y cita sus referencias en cada afirmación."
+msgid "Un « moteur de réponse » : il cherche sur le web en direct, synthétise plusieurs sources et cite ses références pour chaque affirmation."
+msgstr "Un «motor de respuestas»: busca en la web en directo, sintetiza varias fuentes y cita sus referencias en cada afirmación."
 
 #: assets/app.js
-msgid ""
-"Plutôt pour la recherche d'informations à jour, la veille et la vérification"
-" de faits avec sources."
-msgstr ""
-"Más bien para buscar información actualizada, seguimiento y verificación de "
-"hechos con fuentes."
+msgid "Plutôt pour la recherche d'informations à jour, la veille et la vérification de faits avec sources."
+msgstr "Más bien para buscar información actualizada, seguimiento y verificación de hechos con fuentes."
 
 #: assets/app.js
-msgid ""
-"L'assistant de xAI (Elon Musk), connecté au réseau X (ex-Twitter). Ton "
-"direct, accès au temps réel de X, génération d'images incluse."
-msgstr ""
-"El asistente de xAI (Elon Musk), conectado a la red X (antes Twitter). Tono "
-"directo, acceso al tiempo real de X, generación de imágenes incluida."
+msgid "L'assistant de xAI (Elon Musk), connecté au réseau X (ex-Twitter). Ton direct, accès au temps réel de X, génération d'images incluse."
+msgstr "El asistente de xAI (Elon Musk), conectado a la red X (antes Twitter). Tono directo, acceso al tiempo real de X, generación de imágenes incluida."
 
 #: assets/app.js
-msgid ""
-"Plutôt pour suivre l'actualité chaude et les tendances via X, ou pour un ton"
-" moins formel."
-msgstr ""
-"Más bien para seguir la actualidad candente y las tendencias vía X, o para "
-"un tono menos formal."
+msgid "Plutôt pour suivre l'actualité chaude et les tendances via X, ou pour un ton moins formel."
+msgstr "Más bien para seguir la actualidad candente y las tendencias vía X, o para un tono menos formal."
 
 #: assets/app.js
-msgid ""
-"Une plateforme de génération d'images orientée création : illustrations, "
-"concept art, assets de jeu vidéo, avec des contrôles fins (styles, modèles, "
-"retouche)."
-msgstr ""
-"Una plataforma de generación de imágenes orientada a la creación: "
-"ilustraciones, concept art, recursos de videojuegos, con controles finos "
-"(estilos, modelos, retoque)."
+msgid "Une plateforme de génération d'images orientée création : illustrations, concept art, assets de jeu vidéo, avec des contrôles fins (styles, modèles, retouche)."
+msgstr "Una plataforma de generación de imágenes orientada a la creación: ilustraciones, concept art, recursos de videojuegos, con controles finos (estilos, modelos, retoque)."
 
 #: assets/app.js
-msgid ""
-"Plutôt pour produire des visuels et illustrations de qualité avec un "
-"contrôle précis du style."
-msgstr ""
-"Más bien para producir visuales e ilustraciones de calidad con un control "
-"preciso del estilo."
+msgid "Plutôt pour produire des visuels et illustrations de qualité avec un contrôle précis du style."
+msgstr "Más bien para producir visuales e ilustraciones de calidad con un control preciso del estilo."
 
 #: assets/app.js
-msgid ""
-"Un générateur de musique : il compose des chansons complètes (instruments, "
-"voix, paroles) à partir d'une simple description texte, dans à peu près tous"
-" les genres."
-msgstr ""
-"Un generador de música: compone canciones completas (instrumentos, voz, "
-"letra) a partir de una simple descripción de texto, en prácticamente todos "
-"los géneros."
+msgid "Un générateur de musique : il compose des chansons complètes (instruments, voix, paroles) à partir d'une simple description texte, dans à peu près tous les genres."
+msgstr "Un generador de música: compone canciones completas (instrumentos, voz, letra) a partir de una simple descripción de texto, en prácticamente todos los géneros."
 
 #: assets/app.js
-msgid ""
-"Plutôt pour créer une musique, un jingle ou une chanson à partir d'un texte "
-"ou d'une idée."
-msgstr ""
-"Más bien para crear música, un jingle o una canción a partir de un texto o "
-"una idea."
+msgid "Plutôt pour créer une musique, un jingle ou une chanson à partir d'un texte ou d'une idée."
+msgstr "Más bien para crear música, un jingle o una canción a partir de un texto o una idea."
 
 #: assets/app.js
-msgid ""
-"Un générateur de modèles 3D : il transforme un texte ou une image en objet "
-"3D texturé, avec rigging/animation automatique et export vers les formats "
-"standards (GLB, FBX, STL…)."
-msgstr ""
-"Un generador de modelos 3D: transforma un texto o una imagen en un objeto 3D"
-" texturizado, con rigging/animación automática y exportación a formatos "
-"estándar (GLB, FBX, STL…)."
+msgid "Un générateur de modèles 3D : il transforme un texte ou une image en objet 3D texturé, avec rigging/animation automatique et export vers les formats standards (GLB, FBX, STL…)."
+msgstr "Un generador de modelos 3D: transforma un texto o una imagen en un objeto 3D texturizado, con rigging/animación automática y exportación a formatos estándar (GLB, FBX, STL…)."
 
 #: assets/app.js
-msgid ""
-"Plutôt pour créer des assets 3D (jeux, impression 3D, animation) sans savoir"
-" modéliser."
-msgstr ""
-"Más bien para crear recursos 3D (juegos, impresión 3D, animación) sin saber "
-"modelar."
+msgid "Plutôt pour créer des assets 3D (jeux, impression 3D, animation) sans savoir modéliser."
+msgstr "Más bien para crear recursos 3D (juegos, impresión 3D, animación) sin saber modelar."
 
 #: assets/app.js
-msgid ""
-"Le Chat de Mistral AI, éditeur européen (français). Modèles open-weights "
-"performants, chat, code et analyse de documents."
-msgstr ""
-"El chat de Mistral AI, editor europeo (francés). Modelos open-weights "
-"potentes, chat, código y análisis de documentos."
+msgid "Le Chat de Mistral AI, éditeur européen (français). Modèles open-weights performants, chat, code et analyse de documents."
+msgstr "El chat de Mistral AI, editor europeo (francés). Modelos open-weights potentes, chat, código y análisis de documentos."
 
 #: assets/app.js
-msgid ""
-"Alternative européenne solide pour le chat et le code, avec une bonne "
-"maîtrise du français."
-msgstr ""
-"Alternativa europea sólida para chat y código, con buen dominio del francés."
+msgid "Alternative européenne solide pour le chat et le code, avec une bonne maîtrise du français."
+msgstr "Alternativa europea sólida para chat y código, con buen dominio del francés."
 
 #: assets/app.js
-msgid ""
-"DeepSeek : assistant IA chinois spécialisé en raisonnement et programmation,"
-" particulièrement performant en Python."
-msgstr ""
-"DeepSeek: asistente de IA chino especializado en razonamiento y "
-"programación, especialmente potente en Python."
+msgid "DeepSeek : assistant IA chinois spécialisé en raisonnement et programmation, particulièrement performant en Python."
+msgstr "DeepSeek: asistente de IA chino especializado en razonamiento y programación, especialmente potente en Python."
 
 #: assets/app.js
-msgid ""
-"Pour du code Python, du raisonnement étape par étape, ou une alternative "
-"gratuite à ChatGPT."
-msgstr ""
-"Para código Python, razonamiento paso a paso o una alternativa gratuita a "
-"ChatGPT."
+msgid "Pour du code Python, du raisonnement étape par étape, ou une alternative gratuite à ChatGPT."
+msgstr "Para código Python, razonamiento paso a paso o una alternativa gratuita a ChatGPT."
 
 #: assets/app.js
-msgid ""
-"GitHub Copilot : assistant IA intégré dans VS Code et GitHub. "
-"Autocomplétion, chat, génération de tests, explication de code."
-msgstr ""
-"GitHub Copilot: asistente de IA integrado en VS Code y GitHub. "
-"Autocompletado, chat, generación de pruebas, explicación de código."
+msgid "GitHub Copilot : assistant IA intégré dans VS Code et GitHub. Autocomplétion, chat, génération de tests, explication de code."
+msgstr "GitHub Copilot: asistente de IA integrado en VS Code y GitHub. Autocompletado, chat, generación de pruebas, explicación de código."
 
 #: assets/app.js
-msgid ""
-"Pour programmer plus vite dans VS Code ou sur GitHub, avec un modèle IA qui "
-"connaît votre codebase."
-msgstr ""
-"Para programar más rápido en VS Code o en GitHub, con un modelo de IA que "
-"conoce su base de código."
+msgid "Pour programmer plus vite dans VS Code ou sur GitHub, avec un modèle IA qui connaît votre codebase."
+msgstr "Para programar más rápido en VS Code o en GitHub, con un modelo de IA que conoce su base de código."
 
 #: assets/app.js
-msgid ""
-"Elicit : assistant de recherche scientifique. Trouve des articles, extrait "
-"des données, synthétise des études."
-msgstr ""
-"Elicit: asistente de investigación científica. Encuentra artículos, extrae "
-"datos, sintetiza estudios."
+msgid "Elicit : assistant de recherche scientifique. Trouve des articles, extrait des données, synthétise des études."
+msgstr "Elicit: asistente de investigación científica. Encuentra artículos, extrae datos, sintetiza estudios."
 
 #: assets/app.js
-msgid ""
-"Pour la recherche académique, la revue de littérature et l'extraction de "
-"données d'articles scientifiques."
-msgstr ""
-"Para investigación académica, revisión de literatura y extracción de datos "
-"de artículos científicos."
+msgid "Pour la recherche académique, la revue de littérature et l'extraction de données d'articles scientifiques."
+msgstr "Para investigación académica, revisión de literatura y extracción de datos de artículos científicos."
 
 #: assets/app.js
-msgid ""
-"NotebookLM de Google : interagissez avec vos propres documents (PDF, texte, "
-"audio). Résumés, questions, génération de notes."
-msgstr ""
-"NotebookLM de Google: interactúe con sus propios documentos (PDF, texto, "
-"audio). Resúmenes, preguntas, generación de notas."
+msgid "NotebookLM de Google : interagissez avec vos propres documents (PDF, texte, audio). Résumés, questions, génération de notes."
+msgstr "NotebookLM de Google: interactúe con sus propios documentos (PDF, texto, audio). Resúmenes, preguntas, generación de notas."
 
 #: assets/app.js
-msgid ""
-"Pour interroger vos documents personnels ou professionnels avec une IA qui "
-"cite ses sources."
-msgstr ""
-"Para consultar sus documentos personales o profesionales con una IA que cita"
-" sus fuentes."
+msgid "Pour interroger vos documents personnels ou professionnels avec une IA qui cite ses sources."
+msgstr "Para consultar sus documentos personales o profesionales con una IA que cita sus fuentes."
 
 #: assets/app.js
-msgid ""
-"Wolfram Alpha : moteur de calcul symbolique. Mathématiques, physique, "
-"chimie, données factuelles, conversions."
-msgstr ""
-"Wolfram Alpha: motor de cálculo simbólico. Matemáticas, física, química, "
-"datos factuales, conversiones."
+msgid "Wolfram Alpha : moteur de calcul symbolique. Mathématiques, physique, chimie, données factuelles, conversions."
+msgstr "Wolfram Alpha: motor de cálculo simbólico. Matemáticas, física, química, datos factuales, conversiones."
 
 #: assets/app.js
-msgid ""
-"Pour des calculs exacts (mathématiques symboliques), des données chiffrées "
-"ou des conversions d'unités."
-msgstr ""
-"Para cálculos exactos (matemática simbólica), datos numéricos o conversiones"
-" de unidades."
+msgid "Pour des calculs exacts (mathématiques symboliques), des données chiffrées ou des conversions d'unités."
+msgstr "Para cálculos exactos (matemática simbólica), datos numéricos o conversiones de unidades."
 
 #: assets/app.js
-msgid ""
-"DeepL : traduction automatique de haute qualité, plus naturelle que Google "
-"Traduction. Texte et documents entiers."
-msgstr ""
-"DeepL: traducción automática de alta calidad, más natural que Google "
-"Translate. Texto y documentos completos."
+msgid "DeepL : traduction automatique de haute qualité, plus naturelle que Google Traduction. Texte et documents entiers."
+msgstr "DeepL: traducción automática de alta calidad, más natural que Google Translate. Texto y documentos completos."
 
 #: assets/app.js
-msgid ""
-"Pour traduire du texte ou des documents avec un rendu naturel et cohérent."
-msgstr ""
-"Para traducir texto o documentos con un resultado natural y coherente."
+msgid "Pour traduire du texte ou des documents avec un rendu naturel et cohérent."
+msgstr "Para traducir texto o documentos con un resultado natural y coherente."
 
 #: assets/app.js
-msgid ""
-"Ideogram : génération d'images orientée design. Logos, typographies, "
-"affiches, avec un excellent rendu du texte."
-msgstr ""
-"Ideogram: generación de imágenes orientada al diseño. Logos, tipografía, "
-"carteles, con una excelente reproducción del texto."
+msgid "Ideogram : génération d'images orientée design. Logos, typographies, affiches, avec un excellent rendu du texte."
+msgstr "Ideogram: generación de imágenes orientada al diseño. Logos, tipografía, carteles, con una excelente reproducción del texto."
 
 #: assets/app.js
-msgid ""
-"Pour créer des visuels avec du texte lisible (logos, affiches, bannières) ou"
-" du design graphique."
-msgstr ""
-"Para crear visuales con texto legible (logos, carteles, banners) o diseño "
-"gráfico."
+msgid "Pour créer des visuels avec du texte lisible (logos, affiches, bannières) ou du design graphique."
+msgstr "Para crear visuales con texto legible (logos, carteles, banners) o diseño gráfico."
 
 #: assets/app.js
-msgid ""
-"Kling : générateur de vidéos courtes à partir de texte ou d'images. "
-"Animations réalistes, crédits gratuits disponibles."
-msgstr ""
-"Kling: generador de vídeos cortos a partir de texto o imágenes. Animaciones "
-"realistas, créditos gratuitos disponibles."
+msgid "Kling : générateur de vidéos courtes à partir de texte ou d'images. Animations réalistes, crédits gratuits disponibles."
+msgstr "Kling: generador de vídeos cortos a partir de texto o imágenes. Animaciones realistas, créditos gratuitos disponibles."
 
 #: assets/app.js
-msgid ""
-"Pour créer des clips vidéo animés à partir d'une description ou d'une image "
-"fixe."
-msgstr ""
-"Para crear clips de vídeo animados a partir de una descripción o una imagen "
-"fija."
+msgid "Pour créer des clips vidéo animés à partir d'une description ou d'une image fixe."
+msgstr "Para crear clips de vídeo animados a partir de una descripción o una imagen fija."
 
 #: assets/app.js
-msgid ""
-"Runway : suite d'outils IA pour la vidéo. Génération, édition, effets "
-"spéciaux, inpainting vidéo."
-msgstr ""
-"Runway: suite de herramientas de IA para vídeo. Generación, edición, efectos"
-" especiales, inpainting de vídeo."
+msgid "Runway : suite d'outils IA pour la vidéo. Génération, édition, effets spéciaux, inpainting vidéo."
+msgstr "Runway: suite de herramientas de IA para vídeo. Generación, edición, efectos especiales, inpainting de vídeo."
 
 #: assets/app.js
-msgid ""
-"Pour le montage et la création vidéo avancée avec des outils IA intégrés."
-msgstr ""
-"Para el montaje y la creación de vídeo avanzada con herramientas de IA "
-"integradas."
+msgid "Pour le montage et la création vidéo avancée avec des outils IA intégrés."
+msgstr "Para el montaje y la creación de vídeo avanzada con herramientas de IA integradas."
 
 #: assets/app.js
-msgid ""
-"Pika : générateur de vidéos courtes et créatives. Animation d'images, "
-"effets, transformation de styles."
-msgstr ""
-"Pika: generador de vídeos cortos y creativos. Animación de imágenes, "
-"efectos, transformación de estilos."
+msgid "Pika : générateur de vidéos courtes et créatives. Animation d'images, effets, transformation de styles."
+msgstr "Pika: generador de vídeos cortos y creativos. Animación de imágenes, efectos, transformación de estilos."
 
 #: assets/app.js
-msgid ""
-"Pour animer des images ou créer des vidéos courtes originales avec des "
-"effets IA."
-msgstr ""
-"Para animar imágenes o crear vídeos cortos originales con efectos de IA."
+msgid "Pour animer des images ou créer des vidéos courtes originales avec des effets IA."
+msgstr "Para animar imágenes o crear vídeos cortos originales con efectos de IA."
 
 #: assets/app.js
-msgid ""
-"Qwen : assistant IA d'Alibaba. Multimodal (texte, images, code), open-"
-"source, disponible en plusieurs tailles."
-msgstr ""
-"Qwen: asistente de IA de Alibaba. Multimodal (texto, imágenes, código), de "
-"código abierto, disponible en varios tamaños."
+msgid "Qwen : assistant IA d'Alibaba. Multimodal (texte, images, code), open-source, disponible en plusieurs tailles."
+msgstr "Qwen: asistente de IA de Alibaba. Multimodal (texto, imágenes, código), de código abierto, disponible en varios tamaños."
 
 #: assets/app.js
-msgid ""
-"Alternative gratuite pour le chat, le code et l'analyse d'images, avec un "
-"bon support multilingue."
-msgstr ""
-"Alternativa gratuita para chat, código y análisis de imágenes, con buen "
-"soporte multilingüe."
+msgid "Alternative gratuite pour le chat, le code et l'analyse d'images, avec un bon support multilingue."
+msgstr "Alternativa gratuita para chat, código y análisis de imágenes, con buen soporte multilingüe."
 
 #: assets/app.js
 msgid "Impossible d'enregistrer les comptes (stockage plein ?)"
@@ -1044,12 +854,8 @@ msgid "Services mis à jour ({count}/{max})"
 msgstr "Servicios actualizados ({count}/{max})"
 
 #: assets/app.js
-msgid ""
-"Supprimer « {name} » ({email}) ? La session restera stockée sur le disque, "
-"mais le compte disparaîtra de la liste."
-msgstr ""
-"¿Eliminar «{name}» ({email})? La sesión seguirá almacenada en el disco, pero"
-" la cuenta desaparecerá de la lista."
+msgid "Supprimer « {name} » ({email}) ? La session restera stockée sur le disque, mais le compte disparaîtra de la liste."
+msgstr "¿Eliminar «{name}» ({email})? La sesión seguirá almacenada en el disco, pero la cuenta desaparecerá de la lista."
 
 #: assets/app.js
 msgid "Échec de l'export (écriture impossible)"
@@ -1076,15 +882,8 @@ msgid "Format invalide : un tableau de comptes est attendu."
 msgstr "Formato no válido: se espera un array de cuentas."
 
 #: assets/app.js
-msgid ""
-"Le fichier contient {count} compte(s). L'import REMPLACE entièrement la "
-"liste actuelle ({current} compte(s)) — cette action écrase les comptes "
-"existants, pas leurs sessions (cookies) déjà enregistrées sur le disque. "
-"Continuer ?"
-msgstr ""
-"El archivo contiene {count} cuenta(s). La importación REEMPLAZA por completo"
-" la lista actual ({current} cuenta(s)) — esta acción sobrescribe las cuentas"
-" existentes, no sus sesiones (cookies) ya guardadas en el disco. ¿Continuar?"
+msgid "Le fichier contient {count} compte(s). L'import REMPLACE entièrement la liste actuelle ({current} compte(s)) — cette action écrase les comptes existants, pas leurs sessions (cookies) déjà enregistrées sur le disque. Continuer ?"
+msgstr "El archivo contiene {count} cuenta(s). La importación REEMPLAZA por completo la lista actual ({current} cuenta(s)) — esta acción sobrescribe las cuentas existentes, no sus sesiones (cookies) ya guardadas en el disco. ¿Continuar?"
 
 #: assets/app.js
 msgid "Import impossible"
@@ -1107,9 +906,7 @@ msgid "Remplissez tous les champs"
 msgstr "Rellene todos los campos"
 
 #: assets/app.js
-msgid ""
-"Ce profil est déjà utilisé par un autre compte (les sessions seraient "
-"partagées)."
+msgid "Ce profil est déjà utilisé par un autre compte (les sessions seraient partagées)."
 msgstr "Este perfil ya lo usa otra cuenta (las sesiones se compartirían)."
 
 #: assets/app.js
@@ -1122,16 +919,11 @@ msgstr "Cuenta añadida"
 
 #: assets/app.js
 msgid "Renseignez d'abord le domaine des adresses e-mail dans les réglages"
-msgstr ""
-"Indique primero el dominio de las direcciones de correo en los ajustes"
+msgstr "Indique primero el dominio de las direcciones de correo en los ajustes"
 
 #: assets/app.js
-msgid ""
-"Premier compte : {nom}, {email}. Un mot de passe de messagerie aléatoire est"
-" généré pour chacun."
-msgstr ""
-"Primera cuenta: {nom}, {email}. Para cada una se genera una contraseña de "
-"correo aleatoria."
+msgid "Premier compte : {nom}, {email}. Un mot de passe de messagerie aléatoire est généré pour chacun."
+msgstr "Primera cuenta: {nom}, {email}. Para cada una se genera una contraseña de correo aleatoria."
 
 #: assets/app.js
 msgid "Nombre de comptes : de 1 à {max}"
@@ -1286,9 +1078,7 @@ msgid "erreur"
 msgstr "error"
 
 #: assets/app.js
-msgid ""
-"Aucune tâche programmée pour l'instant — créez-en une avec « Nouvelle tâche "
-"»."
+msgid "Aucune tâche programmée pour l'instant — créez-en une avec « Nouvelle tâche »."
 msgstr "Todavía no hay tareas programadas — cree una con «Nueva tarea»."
 
 #: assets/app.js
@@ -1324,8 +1114,7 @@ msgid "Aucun événement pour l'instant."
 msgstr "Todavía no hay eventos."
 
 #: assets/app.js
-msgid ""
-"Aucun compte avec le service Claude — la tâche ne pourra pas s'exécuter."
+msgid "Aucun compte avec le service Claude — la tâche ne pourra pas s'exécuter."
 msgstr "Ninguna cuenta con el servicio Claude — la tarea no podrá ejecutarse."
 
 #: assets/app.js
@@ -1541,12 +1330,8 @@ msgid "D'après l'historique des tâches (200 dernières exécutions)."
 msgstr "Según el historial de tareas (últimas 200 ejecuciones)."
 
 #: assets/app.js
-msgid ""
-"Aucune session sur cette période. La mesure commence à l'installation de "
-"cette version."
-msgstr ""
-"Ninguna sesión en este periodo. La medición comienza con la instalación de "
-"esta versión."
+msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
+msgstr "Ninguna sesión en este periodo. La medición comienza con la instalación de esta versión."
 
 #: assets/app.js
 msgid "1 jour"
@@ -1597,12 +1382,8 @@ msgid "Erreur lors de la sauvegarde des réglages"
 msgstr "Error al guardar los ajustes"
 
 #: assets/app.js
-msgid ""
-"Tâches programmables : envoyez un prompt à Claude à date fixe ou "
-"périodiquement."
-msgstr ""
-"Tareas programables: envíe un prompt a Claude en fecha fija o "
-"periódicamente."
+msgid "Tâches programmables : envoyez un prompt à Claude à date fixe ou périodiquement."
+msgstr "Tareas programables: envíe un prompt a Claude en fecha fija o periódicamente."
 
 #: assets/app.js
 msgid "Arrêter"
@@ -1613,12 +1394,8 @@ msgid "En marche"
 msgstr "En marcha"
 
 #: assets/app.js
-msgid ""
-"Aucun job pour l'instant — un ZIP téléchargé depuis un onglet IA "
-"(ordonnanceur activé) en créera un automatiquement."
-msgstr ""
-"Todavía no hay trabajos — un ZIP descargado desde una pestaña de IA "
-"(planificador activado) creará uno automáticamente."
+msgid "Aucun job pour l'instant — un ZIP téléchargé depuis un onglet IA (ordonnanceur activé) en créera un automatiquement."
+msgstr "Todavía no hay trabajos — un ZIP descargado desde una pestaña de IA (planificador activado) creará uno automáticamente."
 
 #: assets/app.js
 msgid "Continuer le projet"
@@ -1677,12 +1454,8 @@ msgid "Projet terminé : {done}/{total} tâches faites, 0 restante."
 msgstr "Proyecto terminado: {done}/{total} tareas hechas, 0 pendiente."
 
 #: assets/app.js
-msgid ""
-"{pending} à faire, {inProgress} en cours, {done} faite(s) sur {total} au "
-"total."
-msgstr ""
-"{pending} pendientes, {inProgress} en curso, {done} hecha(s) de {total} en "
-"total."
+msgid "{pending} à faire, {inProgress} en cours, {done} faite(s) sur {total} au total."
+msgstr "{pending} pendientes, {inProgress} en curso, {done} hecha(s) de {total} en total."
 
 #: assets/app.js
 msgid "Analyse impossible : {error}"
@@ -1905,14 +1678,8 @@ msgid "Comptes retrouvés"
 msgstr "Cuentas encontradas"
 
 #: assets/app.js
-msgid ""
-"Aucun compte n'a été lu au démarrage, mais l'ordonnanceur en connaît "
-"{count}. Les restaurer ? Les sessions des services sont conservées ; les "
-"adresses e-mail sont à compléter depuis « Modifier le compte »."
-msgstr ""
-"Al inicio no se leyó ninguna cuenta, pero el planificador conoce {count}. "
-"¿Restaurarlas? Las sesiones de los servicios se conservan; las direcciones "
-"de correo se completan desde «Editar la cuenta»."
+msgid "Aucun compte n'a été lu au démarrage, mais l'ordonnanceur en connaît {count}. Les restaurer ? Les sessions des services sont conservées ; les adresses e-mail sont à compléter depuis « Modifier le compte »."
+msgstr "Al inicio no se leyó ninguna cuenta, pero el planificador conoce {count}. ¿Restaurarlas? Las sesiones de los servicios se conservan; las direcciones de correo se completan desde «Editar la cuenta»."
 
 #: assets/app.js
 msgid "Ignorer"
@@ -1931,23 +1698,12 @@ msgid "Données de comptes illisibles"
 msgstr "Datos de cuentas ilegibles"
 
 #: assets/app.js
-msgid ""
-"La liste de comptes enregistrée est corrompue. Une sauvegarde de {count} "
-"compte(s) a été trouvée. La restaurer ?"
-msgstr ""
-"La lista de cuentas guardada está dañada. Se encontró una copia de seguridad"
-" con {count} cuenta(s). ¿Restaurarla?"
+msgid "La liste de comptes enregistrée est corrompue. Une sauvegarde de {count} compte(s) a été trouvée. La restaurer ?"
+msgstr "La lista de cuentas guardada está dañada. Se encontró una copia de seguridad con {count} cuenta(s). ¿Restaurarla?"
 
 #: assets/app.js
-msgid ""
-"La liste de comptes enregistrée est corrompue et aucune sauvegarde n'est "
-"disponible. L'application démarre avec une liste vide ; vos données "
-"actuelles ne seront pas écrasées tant que vous ne créez ou ne modifiez pas "
-"de compte."
-msgstr ""
-"La lista de cuentas guardada está dañada y no hay copia de seguridad. La "
-"aplicación se inicia con una lista vacía; sus datos actuales no se "
-"sobrescribirán mientras no cree ni edite una cuenta."
+msgid "La liste de comptes enregistrée est corrompue et aucune sauvegarde n'est disponible. L'application démarre avec une liste vide ; vos données actuelles ne seront pas écrasées tant que vous ne créez ou ne modifiez pas de compte."
+msgstr "La lista de cuentas guardada está dañada y no hay copia de seguridad. La aplicación se inicia con una lista vacía; sus datos actuales no se sobrescribirán mientras no cree ni edite una cuenta."
 
 #: assets/app.js
 msgid "Restaurer la sauvegarde"
