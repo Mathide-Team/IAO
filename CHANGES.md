@@ -1,5 +1,25 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issue #206 — lot 2a : mesure des temps de réponse et des quotas (20/10/2026)
+
+### Livré
+- **Couche de données du lot 2** (l'affichage suivra au lot 2b) :
+  - temps de réponse Claude : envoi du prompt -> fin de la génération,
+    mesuré dans `_executeAutomation` (le poll de réponse existant) ;
+  - quotas atteints : notés quand `runClaudeJob` détecte le quota
+    (cooldown) — couvre jobs ET tâches programmables ;
+  - tout reste local (`<userData>/stats/reponses.jsonl` et
+    `quotas.jsonl`, 90 jours, plafond 130 000 événements par type,
+    jamais bloquants pour l'envoi).
+- `lib/stats.js` (pur, testé) : `normaliserReponse`/`normaliserQuota`,
+  `agregerReponses` (médiane/min/max par compte et service),
+  `agregerQuotas` (répartition par heure de la journée),
+  `carteHeures` (temps actif par jour de semaine × heure, prorata),
+  `classerComptes` (sous-utilisés / surchargés, seuils configurables) ;
+  `purger` généralisé (champ `fin` ou `date`), `parserJsonl` typé.
+- IPC : `stats:noter-reponse`, `stats:noter-quota`, `stats:reponses`,
+  `stats:quotas` ; `scheduler.statsStore` câblé dans `main.js`.
+
 ## Issue #206 — statistiques d'utilisation, lot 1 (19/10/2026)
 
 ### Livré

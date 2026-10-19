@@ -435,3 +435,84 @@ test('_executeAutomation reporte le job pendant les heures calmes (sans RUNNING,
   }));
   cleanup(scheduler);
 });
+
+// --- #206 lot 2 : les événements stats (quota, temps de réponse) sont notés ---
+
+test('runClaudeJob : quota détecté -> événement noté dans statsStore (jamais bloquant)', async () => {
+  var app = createMockApp();
+  var scheduler = new Scheduler(app, {});
+  disableQuietHours(scheduler);
+  var wc = createMockWebContents();
+  scheduler.registerWebview('profil_1', wc);
+  var notations = [];
+  scheduler.statsStore = {
+    noterQuota: async (e) => { notations.push(['quota', e]); return { ok: true }; },
+    noterReponse: async (e) => { notations.push(['reponse', e]); return { ok: true }; }
+  };
+  // Diagnostic de page : quota détecté.
+  wc.executeJavaScript = async function() {
+    return JSON.stringify({
+      chatInput: { found: true }, fileUpload: { found: false },
+      sendButton: { found: true }, quotaMessage: { detected: true, time: '18:30' },
+      popups: { count: 0 }
+    });
+  };
+  var res = await scheduler.runClaudeJob('profil_1', 'Fais un résumé', null);
+  assert.strictEqual(res.error, 'quota_exhausted');
+  assert.strictEqual(res.quotaTime, '18:30');
+  assert.strictEqual(notations.length, 1);
+  assert.strictEqual(notations[0][0], 'quota');
+  assert.strictEqual(notations[0][1].profil, 'profil_1');
+  assert.strictEqual(notations[0][1].service, 'claude');
+  assert.ok(Number.isFinite(notations[0][1].date));
+  // Sans statsStore : aucun levée (le chemin reste couvert).
+  scheduler.statsStore = null;
+  var res2 = await scheduler.runClaudeJob('profil_1', 'Fais un résumé', null);
+  assert.strictEqual(res2.error, 'quota_exhausted');
+  cleanup(scheduler);
+});
+
+test('_executeAutomation : réponse collectée -> temps de réponse noté (statsStore)', async () => {
+  var app = createMockApp();
+  var scheduler = new Scheduler(app, {});
+  disableQuietHours(scheduler);
+  scheduler.setConfig({ enabled: true, maxConcurrentJobs: 2, minDelayBetweenAutomationsMinutes: 0, minDelayMs: 0, maxDelayMs: 0 });
+  var notations = [];
+  scheduler.statsStore = {
+    noterQuota: async () => ({ ok: true }),
+    noterReponse: async (e) => { notations.push(e); return { ok: true }; }
+  };
+  scheduler.createProject('Projet stats', []);
+  var project = scheduler.projects[0];
+  scheduler.createTask(project.id, 'Génère un rapport', null);
+  var task = project.tasks[0];
+  task.assignedProfile = 'profil_1';
+  task.status = 'assigned';
+  var wc = createMockWebContents();
+  scheduler.registerWebview('profil_1', wc);
+  var callCount = 0;
+  wc.executeJavaScript = async function() {
+    callCount++;
+    if (callCount === 1) {
+      return JSON.stringify({
+        chatInput: { found: true }, fileUpload: { found: false },
+        sendButton: { found: true }, quotaMessage: { detected: false },
+        popups: { count: 0 }
+      });
+    }
+    if (callCount === 2) return JSON.stringify({ ok: true, method: 'textarea' });
+    return JSON.stringify({ ok: true, response: 'Résultat de Claude' });
+  };
+  var result = await scheduler.executeTask(project.id, task.id);
+  assert.ok(result.ok);
+  // Attendre le poll de réponse (intervalle 5 s dans _executeAutomation).
+  await new Promise(function(r) { setTimeout(r, 8000); });
+  var job = scheduler.jobs.find(function(j) { return j.id === result.job.id; });
+  assert.strictEqual(job.status, 'DELIVERED');
+  assert.strictEqual(notations.length, 1, 'une mesure de temps de réponse');
+  assert.strictEqual(notations[0].profil, 'profil_1');
+  assert.strictEqual(notations[0].service, 'claude');
+  assert.ok(Number.isFinite(notations[0].debut));
+  assert.ok(notations[0].fin >= notations[0].debut);
+  cleanup(scheduler);
+});

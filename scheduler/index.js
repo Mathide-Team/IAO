@@ -591,9 +591,14 @@ class Scheduler {
       }
       // Succès de l'injection — attendre la réponse de Claude
       this._logActivity('Job ' + job.id + ' : prompt envoyé à Claude, en attente de la réponse...');
+      var envoyeA = Date.now(); // #206 lot 2 : temps de réponse (envoi -> fin)
 
       // Poller la réponse pendant max 120 secondes (toutes les 5 s)
       var response = await this._pollClaudeResponse(job.profile, 120000, 5000);
+      if (this.statsStore && response && response.ok && response.response) {
+        // #206 lot 2 : mesure locale du temps de réponse (jamais bloquant).
+        this.statsStore.noterReponse({ profil: job.profile, service: 'claude', debut: envoyeA, fin: Date.now() }).catch(() => {});
+      }
       if (response && response.ok && response.response) {
         job.response = response.response.slice(0, 10000);
         job.responseCollectedAt = new Date().toISOString();
@@ -943,6 +948,8 @@ class Scheduler {
       // Si quota détecté, ne pas lancer
       if (plan.action === 'wait_quota') {
         this._logActivity('Job Claude annulé : quota gratuit épuisé jusqu\'à ' + plan.quotaTime + ' (« ' + profile + ' »).');
+        // #206 lot 2 : statistiques locales — quota atteint (jamais bloquant).
+        if (this.statsStore) this.statsStore.noterQuota({ profil: profile, service: 'claude', date: Date.now() }).catch(() => {});
         return { error: 'quota_exhausted', quotaTime: plan.quotaTime };
       }
 

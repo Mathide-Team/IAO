@@ -531,11 +531,14 @@ registerTachesIPC(ipc, new TachesService({
 // --- Issue #206 : statistiques d'utilisation (local, sans télémétrie) ---
 // <userData>/stats/sessions.jsonl (90 jours) + en-cours.json (sessions ouvertes,
 // récupérées au lancement suivant si IAO a été fermé brutalement).
-stats.registerStatsIPC(ipc, stats.creerStore({
+const statsStore = stats.creerStore({
   dossier: path.join(app.getPath('userData'), 'stats'),
   fs: fsPromises,
   path
-}));
+});
+stats.registerStatsIPC(ipc, statsStore);
+// #206 lot 2 : le scheduler note les temps de réponse et quotas atteints.
+scheduler.statsStore = statsStore;
 
 app.whenReady().then(() => {
   // 2e instance (voir « Instance unique ») : ne rien ouvrir, app.quit() est en cours.
