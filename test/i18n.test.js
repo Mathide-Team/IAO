@@ -161,9 +161,10 @@ test('parseLinguas : espaces, lignes, commentaires, doublons', () => {
   assert.deepEqual(i18n.parseLinguas(null), []);
 });
 
-test('lang/LINGUAS déclare les 29 locales de l\'issue #51, toutes livrées', () => {
+test('lang/LINGUAS déclare les locales de l\'issue #51 (29 + es), toutes livrées', () => {
   const locales = i18n.parseLinguas(fs.readFileSync(path.join(ROOT, 'lang/LINGUAS'), 'utf8'));
-  assert.equal(locales.length, 29);
+  assert.equal(locales.length, 30);
+  assert.ok(locales.includes('es'));
   assert.ok(locales.includes('fr'));
   for (const l of locales) {
     assert.ok(fs.existsSync(path.join(ROOT, 'lang', l + '.po')), l + '.po manquant');
