@@ -5,6 +5,8 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const path = require('path');
+const fs = require('fs');
+const os = require('os');
 
 const s = require('../lib/startup-storage.js');
 
@@ -21,7 +23,16 @@ function fauxFs(arbre, casse) {
       return Object.keys(arbre).filter(x => x.startsWith(pref) && !x.slice(pref.length).includes(path.sep))
         .map(x => x.slice(pref.length));
     },
-    lstatSync(p) { leve('lstat', p); return { size: arbre[p].taille || 0 }; }
+    lstatSync(p) {
+      leve('lstat', p);
+      const e = arbre[p] || {};
+      return {
+        size: e.taille || 0,
+        isDirectory() { return e.dir === true; },
+        isSymbolicLink() { return e.lien === true; }
+      };
+    },
+    rmSync(p) { leve('rm', p); delete arbre[p]; }
   };
 }
 
@@ -104,4 +115,106 @@ test('dossiersServiceWorkerANettoyer : ne lève jamais (Partitions illisible, ex
 
 test('dossiersServiceWorkerANettoyer : dossier de données absent -> liste vide', () => {
   assert.deepStrictEqual(s.dossiersServiceWorkerANettoyer(path.sep + 'inexistant', fauxFs({})), []);
+});
+
+// --- Passe corrective #223 : liens symboliques, périmètre, isolation des erreurs ---
+
+test('dossiersServiceWorkerANettoyer : un lien symbolique dans Partitions/ est ignoré', () => {
+  // Un lien symbolique vers un dossier EXTERNE ne doit jamais faire sortir le
+  // nettoyage du périmètre du dossier de données.
+  const arbre = {
+    [R]: { dir: true },
+    [j('Partitions')]: { dir: true },
+    [j('Partitions', 'vrai_profil')]: { dir: true },
+    [j('Partitions', 'vrai_profil', 'Service Worker')]: { dir: true },
+    [j('Partitions', 'lien_externe')]: { lien: true }
+  };
+  assert.deepStrictEqual(s.dossiersServiceWorkerANettoyer(R, fauxFs(arbre)),
+    [j('Partitions', 'vrai_profil', 'Service Worker')]);
+});
+
+test('dossiersServiceWorkerANettoyer : une entrée non répertoire (fichier) est ignorée', () => {
+  const arbre = {
+    [R]: { dir: true },
+    [j('Partitions')]: { dir: true },
+    [j('Partitions', 'pas_un_profil')]: { taille: 10 }, // fichier, pas un dossier
+    [j('Partitions', 'propre')]: { dir: true },
+    [j('Partitions', 'propre', 'Service Worker')]: { dir: true }
+  };
+  assert.deepStrictEqual(s.dossiersServiceWorkerANettoyer(R, fauxFs(arbre)),
+    [j('Partitions', 'propre', 'Service Worker')]);
+});
+
+test('nettoyerDossiersServiceWorker : arborescence réelle — seules les cibles sont supprimées', () => {
+  // Vraie arborescence temporaire : le nettoyage doit supprimer uniquement
+  // les dossiers Service Worker, jamais Local Storage ni les cookies.
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'iao-sw-test-'));
+  try {
+    const mk = (...p) => fs.mkdirSync(path.join(tmp, ...p), { recursive: true });
+    const fic = (...p) => fs.writeFileSync(path.join(tmp, ...p), 'x');
+    mk('Service Worker'); fic('Service Worker', 'base');
+    mk('Local Storage', 'leveldb'); fic('Local Storage', 'leveldb', 'LOCK');
+    mk('Cookies'); fic('Cookies', 'db');
+    mk('Partitions', 'p1', 'Service Worker'); fic('Partitions', 'p1', 'Service Worker', 'base');
+    mk('Partitions', 'p1', 'Local Storage'); fic('Partitions', 'p1', 'Local Storage', 'data');
+    mk('Partitions', 'p2', 'Service Worker');
+    mk('Partitions', 'p2', 'Cookies');
+
+    const r = s.nettoyerDossiersServiceWorker(tmp, fs, null);
+    assert.strictEqual(r.total, 3, '3 dossiers Service Worker attendus');
+    assert.strictEqual(r.nettoyés.length, 3);
+    // Les cibles ont disparu…
+    assert.ok(!fs.existsSync(path.join(tmp, 'Service Worker')), 'SW principal supprimé');
+    assert.ok(!fs.existsSync(path.join(tmp, 'Partitions', 'p1', 'Service Worker')), 'SW p1 supprimé');
+    assert.ok(!fs.existsSync(path.join(tmp, 'Partitions', 'p2', 'Service Worker')), 'SW p2 supprimé');
+    // …rien d'autre n'a été touché.
+    assert.ok(fs.existsSync(path.join(tmp, 'Local Storage', 'leveldb', 'LOCK')), 'Local Storage intact');
+    assert.ok(fs.existsSync(path.join(tmp, 'Cookies', 'db')), 'Cookies intacts');
+    assert.ok(fs.existsSync(path.join(tmp, 'Partitions', 'p1', 'Local Storage', 'data')), 'Local Storage partition intact');
+    assert.ok(fs.existsSync(path.join(tmp, 'Partitions', 'p2', 'Cookies')), 'Cookies partition intacts');
+  } finally {
+    fs.rmSync(tmp, { recursive: true, force: true });
+  }
+});
+
+test('nettoyerDossiersServiceWorker : une erreur sur un dossier n’interrompt pas les autres', () => {
+  const arbre = {
+    [R]: { dir: true },
+    [j('Service Worker')]: { dir: true },
+    [j('Partitions')]: { dir: true },
+    [j('Partitions', 'ok')]: { dir: true },
+    [j('Partitions', 'ok', 'Service Worker')]: { dir: true },
+    [j('Partitions', 'bloque')]: { dir: true },
+    [j('Partitions', 'bloque', 'Service Worker')]: { dir: true }
+  };
+  const f = fauxFs(arbre);
+  const rmOrig = f.rmSync;
+  const journal = [];
+  f.rmSync = (p) => {
+    if (p === j('Partitions', 'bloque', 'Service Worker')) {
+      journal.push('échec ' + p);
+      throw new Error('permission refusée (test)');
+    }
+    rmOrig(p);
+    journal.push('ok ' + p);
+  };
+  const r = s.nettoyerDossiersServiceWorker(R, f, (niv, msg) => journal.push(niv + ' : ' + msg));
+  assert.strictEqual(r.total, 3);
+  assert.strictEqual(r.nettoyés.length, 2, 'les 2 autres dossiers doivent être nettoyés');
+  assert.ok(journal.some(x => x.startsWith('warning')), 'l’échec doit être journalisé en warning');
+});
+
+test('dossiersServiceWorkerANettoyer : une partition illisible (lstat) est ignorée sans levée', () => {
+  const casse = {};
+  casse[j('Partitions', 'vrai_profil')] = 'lstat';
+  const arbre = {
+    [R]: { dir: true },
+    [j('Partitions')]: { dir: true },
+    [j('Partitions', 'vrai_profil')]: { dir: true },
+    [j('Partitions', 'vrai_profil', 'Service Worker')]: { dir: true },
+    [j('Partitions', 'autre')]: { dir: true },
+    [j('Partitions', 'autre', 'Service Worker')]: { dir: true }
+  };
+  const dossiers = s.dossiersServiceWorkerANettoyer(R, fauxFs(arbre, casse));
+  assert.deepStrictEqual(dossiers, [j('Partitions', 'autre', 'Service Worker')]);
 });

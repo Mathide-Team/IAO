@@ -120,15 +120,19 @@ const MAX_EDITABLE_FILE_BYTES = 20 * 1024 * 1024; // 20 Mo
 function cleanupServiceWorkerStorage() {
   // Piste #184 : chaque partition d'onglet (persist:<profile>) a son propre
   // dossier Service Worker — on les nettoie TOUS, pas seulement celui de la
-  // fenêtre principale, sinon Chromium bombarde le journal de « Failed to
-  // delete the database: Database IO error » au démarrage.
+  // fenêtre principale. Les erreurs sont traitées dossier par dossier (un
+  // dossier récalcitrant n'empêche pas les autres) et les liens symboliques
+  // de Partitions/ sont ignorés. La cause exacte des rafales #184 n'est pas
+  // démontrée : c'est une mesure d'atténuation, à valider sur la machine
+  // de #58/#59.
   try {
-    const dossiers = startupStorage.dossiersServiceWorkerANettoyer(app.getPath('userData'), fs);
-    for (const dossier of dossiers) {
-      fs.rmSync(dossier, { recursive: true, force: true });
+    const resultat = startupStorage.nettoyerDossiersServiceWorker(
+      app.getPath('userData'), fs,
+      (niveau, message) => log('demarrage', niveau, message));
+    for (const dossier of resultat.nettoyés) {
       const parent = path.basename(path.dirname(dossier));
       log('demarrage', 'info',
-        'Dossier Service Worker nettoyé au démarrage (prévention Database IO error) : ' +
+        'Dossier Service Worker nettoyé au démarrage (atténuation Database IO error) : ' +
         (parent === path.basename(app.getPath('userData')) ? 'fenêtre principale' : 'partition « ' + parent + ' »') + '.');
     }
   } catch (e) {
