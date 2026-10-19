@@ -116,3 +116,134 @@ test('taches-runner s\'attache à window dans le renderer', () => {
     delete require.cache[chemin];
   }
 });
+
+// --- Lot 4 : moteur partagé minuterie / « Exécuter maintenant » ---
+
+test('creerMoteur.executer : plan manuel exécuté par le même chemin que la minuterie', async () => {
+  const d = deps([]);
+  const moteur = r.creerMoteur(d);
+  assert.equal(await moteur.executer(PLAN), true);
+  assert.deepEqual(d.appels[0], ['ouvrir', 'a', 'claude', 'https://claude.ai/new']);
+  assert.deepEqual(d.appels[1], ['scheduler:run-claude-job', 'a', 'p', null]);
+  assert.deepEqual(d.appels[2], ['taches:report', 'tache-1', 'a', { ok: true }]);
+});
+
+test('creerMoteur : garde partagée, refus AVANT tout appel au service', async () => {
+  // Promesse différée explicite : le premier plan reste en vol jusqu'à ce que
+  // le test la résolve. Pendant ce temps, un second appel (minuterie ou
+  // « Exécuter maintenant ») doit être refusé sans toucher au service.
+  let resoudre = null;
+  const enVol = new Promise(r => { resoudre = r; });
+  const appelsService = [];
+  const d = Object.assign(deps([]), {
+    invoke: async (canal, ...args) => {
+      appelsService.push(canal);
+      if (canal === 'taches:dues') return [PLAN];
+      if (canal === 'scheduler:run-claude-job') return enVol; // en vol
+      return true;
+    }
+  });
+  const moteur = r.creerMoteur(d);
+  const passage = moteur.passage();
+  await Promise.resolve();
+  // Pendant l'exécution : la minuterie et le manuel sont refusés, sans
+  // nouvel appel à taches:dues ni à taches:run-now.
+  const nbAvant = appelsService.length;
+  assert.equal(await moteur.passage(), false);
+  assert.deepEqual(await moteur.executerTache('tache-1'), { ok: false, motif: 'occupe' });
+  assert.equal(appelsService.length, nbAvant, 'aucun appel au service pendant la garde');
+  resoudre({ ok: true });
+  assert.equal(await passage, true);
+});
+
+test('creerMoteur.executerTache : plan du service exécuté par le même chemin', async () => {
+  // Même chemin que la minuterie : run-now (service) -> ouvrir l'onglet ->
+  // scheduler:run-claude-job -> taches:report. Les deux tableaux (invoke et
+  // ouverture d'onglet) sont vérifiés séparément — ils sont remplis par des
+  // dépendances distinctes.
+  const appels = [];
+  const ouvertures = [];
+  const d = Object.assign(deps([]), {
+    ouvrirOnglet: (profil, f, url) => { ouvertures.push(['ouvrir', profil, f, url]); return true; },
+    invoke: async (canal, ...args) => {
+      appels.push([canal, ...args]);
+      if (canal === 'taches:run-now') return Object.assign({}, PLAN);
+      if (canal === 'scheduler:run-claude-job') return { ok: true };
+      return true;
+    }
+  });
+  const moteur = r.creerMoteur(d);
+  assert.deepEqual(await moteur.executerTache('tache-1'), { ok: true, motif: 'lancee' });
+  // Le plan de test compte trois étapes (a, b, c) : même chemin pour chacune.
+  assert.deepEqual(appels[0], ['taches:run-now', 'tache-1', [{ profile: 'a', services: ['claude'] }]]);
+  assert.deepEqual(appels[1], ['scheduler:run-claude-job', 'a', 'p', null]);
+  assert.deepEqual(appels[2], ['taches:report', 'tache-1', 'a', { ok: true }]);
+  assert.deepEqual(appels[3], ['scheduler:run-claude-job', 'b', 'p', null]);
+  assert.deepEqual(appels[4], ['taches:report', 'tache-1', 'b', { ok: true }]);
+  assert.deepEqual(appels[5], ['scheduler:run-claude-job', 'c', 'p', null]);
+  assert.deepEqual(appels[6], ['taches:report', 'tache-1', 'c', { ok: true }]);
+  assert.deepEqual(ouvertures, [
+    ['ouvrir', 'a', 'claude', 'https://claude.ai/new'],
+    ['ouvrir', 'b', 'claude', 'https://claude.ai/new'],
+    ['ouvrir', 'c', 'claude', 'https://claude.ai/new']
+  ]);
+});
+
+test('creerMoteur.executerTache : tâche introuvable / erreur du service', async () => {
+  let reponse = null;
+  const d = Object.assign(deps([]), {
+    invoke: async (canal) => {
+      if (canal === 'taches:run-now') return reponse;
+      return true;
+    }
+  });
+  const moteur = r.creerMoteur(d);
+  assert.deepEqual(await moteur.executerTache('absente'), { ok: false, motif: 'introuvable' });
+  reponse = { error: 'boom' };
+  assert.deepEqual(await moteur.executerTache('absente'), { ok: false, motif: 'erreur-service' });
+});
+
+test('creerMoteur : une exception libère la garde', async () => {
+  const d = Object.assign(deps([]), {
+    invoke: async (canal, ...args) => {
+      if (canal === 'taches:dues') throw new Error('boom');
+      return true;
+    }
+  });
+  const moteur = r.creerMoteur(d);
+  await assert.rejects(moteur.passage(), /boom/);
+  assert.equal(await moteur.executer(PLAN), true); // la garde est libérée
+});
+
+// --- Couverture des branches défensives (seuil 100 % de la CI) ---
+
+test('creerMoteur.passage : réponse non tableau et plans nuls ignorés', async () => {
+  let dues = null;
+  const appels = [];
+  const d = Object.assign(deps([]), {
+    invoke: async (canal, ...args) => {
+      appels.push(canal);
+      if (canal === 'taches:dues') return dues;
+      return true;
+    }
+  });
+  const moteur = r.creerMoteur(d);
+  assert.equal(await moteur.passage(), true);
+  dues = [null, undefined];
+  assert.equal(await moteur.passage(), true);
+  assert.deepEqual(appels, ['taches:dues', 'taches:dues'], 'aucun envoi pour des plans nuls');
+});
+
+test('creerMoteur.executer : refusé pendant un plan en vol', async () => {
+  let resoudre = null;
+  const enVol = new Promise(res => { resoudre = res; });
+  const d = Object.assign(deps([]), {
+    invoke: async (canal) => (canal === 'scheduler:run-claude-job' ? enVol : true)
+  });
+  const moteur = r.creerMoteur(d);
+  const premier = moteur.executer(PLAN);
+  await Promise.resolve();
+  assert.equal(await moteur.executer(PLAN), false);
+  resoudre({ ok: true });
+  assert.equal(await premier, true);
+});

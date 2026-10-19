@@ -240,6 +240,132 @@ msgid "La détection des ZIP, les jobs et les projets sont remplacés par les t�
 msgstr "ZIP detection, jobs and projects are being replaced by scheduled tasks, currently in development."
 
 #: index.html
+#, fuzzy
+#| msgid "Reprise programmée"
+msgid "Tâches programmables"
+msgstr "Resume scheduled"
+
+#: index.html
+msgid "Nouvelle tâche"
+msgstr "New task"
+
+#: index.html
+#, fuzzy
+#| msgid "Prompt de la tâche :"
+msgid "Nom de la tâche"
+msgstr "Task prompt:"
+
+#: index.html
+msgid "Ex. : rapport quotidien"
+msgstr ""
+
+#: index.html
+#, fuzzy
+#| msgid "Compris"
+msgid "Comptes"
+msgstr "Got it"
+
+#: index.html
+#, fuzzy
+#| msgid "Tous les comptes"
+msgid "Tous les comptes avec Claude"
+msgstr "All accounts"
+
+#: index.html
+#, fuzzy
+#| msgid "Tous les comptes"
+msgid "Choisir des comptes…"
+msgstr "All accounts"
+
+#: index.html
+msgid "Répartition"
+msgstr ""
+
+#: index.html
+#, fuzzy
+#| msgid "Tous les comptes"
+msgid "Tous les comptes à chaque exécution"
+msgstr "All accounts"
+
+#: index.html
+msgid "Un compte à la fois (rotation)"
+msgstr ""
+
+#: index.html
+msgid "Espacement entre comptes (secondes)"
+msgstr ""
+
+#: index.html
+msgid "Nouvelle session à chaque exécution"
+msgstr ""
+
+#: index.html
+msgid "Prompt à envoyer"
+msgstr ""
+
+#: index.html
+msgid "Ex. : Résume les actualités de la veille"
+msgstr ""
+
+#: index.html
+#, fuzzy
+#| msgid "Confirmation"
+msgid "Programmation"
+msgstr "Confirmation"
+
+#: index.html
+msgid "Récurrente (tous les N …)"
+msgstr ""
+
+#: index.html
+msgid "Une seule fois"
+msgstr ""
+
+#: index.html
+msgid "Le"
+msgstr ""
+
+#: index.html
+#, fuzzy
+#| msgid "Tous les comptes"
+msgid "Tous les"
+msgstr "All accounts"
+
+#: index.html
+msgid "minutes"
+msgstr ""
+
+#: index.html
+msgid "heures"
+msgstr ""
+
+#: index.html
+#, fuzzy
+#| msgid "En cours"
+msgid "jours"
+msgstr "Running"
+
+#: index.html
+msgid "semaines"
+msgstr ""
+
+#: index.html
+msgid "mois"
+msgstr ""
+
+#: index.html
+msgid "À partir du"
+msgstr ""
+
+#: index.html
+msgid "Tâche active"
+msgstr ""
+
+#: index.html
+msgid "Historique"
+msgstr ""
+
+#: index.html
 msgid "Jobs actifs"
 msgstr "Active jobs"
 
@@ -888,6 +1014,266 @@ msgid "Livré"
 msgstr "Delivered"
 
 #: assets/app.js
+#, fuzzy
+#| msgid "Tous les comptes"
+msgid "tous les {n} minutes"
+msgstr "All accounts"
+
+#: assets/app.js
+msgid "tous les {n} jours"
+msgstr ""
+
+#: assets/app.js
+msgid "toutes les {n} semaines"
+msgstr ""
+
+#: assets/app.js
+#, fuzzy
+#| msgid "Tous les comptes"
+msgid "tous les {n} mois"
+msgstr "All accounts"
+
+#: assets/app.js
+msgid "toutes les {n} heures"
+msgstr ""
+
+#: assets/app.js
+msgid "Le {date}"
+msgstr ""
+
+#: assets/app.js
+msgid "à partir du {date}"
+msgstr ""
+
+#: assets/app.js
+msgid "programmation inconnue"
+msgstr ""
+
+#: assets/app.js
+#, fuzzy
+#| msgid "{count} compte(s) exporté(s)"
+msgid "{n} compte(s) sélectionné(s)"
+msgstr "{count} account(s) exported"
+
+#: assets/app.js
+#, fuzzy
+#| msgid "Tous les comptes"
+msgid "tous les comptes avec Claude"
+msgstr "All accounts"
+
+#: assets/app.js
+msgid "rotation (un compte à la fois)"
+msgstr ""
+
+#: assets/app.js
+#, fuzzy
+#| msgid "Tous les comptes"
+msgid "tous les comptes, espacement de {n} s"
+msgstr "All accounts"
+
+#: assets/app.js
+#, fuzzy
+#| msgid "Tous les comptes"
+msgid "tous les comptes en même temps"
+msgstr "All accounts"
+
+#: assets/app.js
+#, fuzzy
+#| msgid "Relancer"
+msgid "lancée"
+msgstr "Retry"
+
+#: assets/app.js
+msgid "envoyée"
+msgstr ""
+
+#: assets/app.js
+msgid "quota épuisé"
+msgstr ""
+
+#: assets/app.js
+#, fuzzy
+#| msgid "Afficher les comptes"
+msgid "heures calmes"
+msgstr "Show accounts"
+
+#: assets/app.js
+msgid "non connecté"
+msgstr ""
+
+#: assets/app.js
+msgid "aucun compte éligible"
+msgstr ""
+
+#: assets/app.js
+#, fuzzy
+#| msgid "Erreur"
+msgid "erreur"
+msgstr "Error"
+
+#: assets/app.js
+msgid "Aucune tâche programmée pour l'instant — créez-en une avec « Nouvelle tâche »."
+msgstr ""
+
+#: assets/app.js
+msgid "Plus aucune exécution programmée"
+msgstr ""
+
+#: assets/app.js
+msgid "Prochaine exécution : {date}"
+msgstr ""
+
+#: assets/app.js
+msgid "inactive"
+msgstr ""
+
+#: assets/app.js
+#, fuzzy
+#| msgid "Activé"
+msgid "Activer"
+msgstr "On"
+
+#: assets/app.js
+#, fuzzy
+#| msgid "Désactivé"
+msgid "Désactiver"
+msgstr "Off"
+
+#: assets/app.js
+msgid "Exécuter maintenant"
+msgstr ""
+
+#: assets/app.js
+#, fuzzy
+#| msgid "Modifier le compte"
+msgid "Modifier"
+msgstr "Edit account"
+
+#: assets/app.js
+#, fuzzy
+#| msgid "Aucun projet pour l'instant."
+msgid "Aucun événement pour l'instant."
+msgstr "No projects yet."
+
+#: assets/app.js
+msgid "Aucun compte avec le service Claude — la tâche ne pourra pas s'exécuter."
+msgstr ""
+
+#: assets/app.js
+#, fuzzy
+#| msgid "Tous les comptes"
+msgid "sans le service Claude"
+msgstr "All accounts"
+
+#: assets/app.js
+#, fuzzy
+#| msgid "Compte supprimé"
+msgid "compte supprimé"
+msgstr "Account deleted"
+
+#: assets/app.js
+msgid "Le nom est obligatoire."
+msgstr ""
+
+#: assets/app.js
+msgid "Le prompt est obligatoire."
+msgstr ""
+
+#: assets/app.js
+#, fuzzy
+#| msgid "Choix invalide"
+msgid "Comptes : choix invalide."
+msgstr "Invalid choice"
+
+#: assets/app.js
+#, fuzzy
+#| msgid "Sélectionnez au moins 1 service"
+msgid "Sélectionnez au moins un compte."
+msgstr "Select at least 1 service"
+
+#: assets/app.js
+msgid "Répartition : choix invalide."
+msgstr ""
+
+#: assets/app.js
+msgid "Espacement invalide : entre 0 et 86400 secondes."
+msgstr ""
+
+#: assets/app.js
+msgid "Programmation : choix invalide."
+msgstr ""
+
+#: assets/app.js
+msgid "Date « Le » invalide."
+msgstr ""
+
+#: assets/app.js
+msgid "Date « À partir du » invalide."
+msgstr ""
+
+#: assets/app.js
+msgid "« Tous les » doit être un entier supérieur à 0."
+msgstr ""
+
+#: assets/app.js
+msgid "Unité inconnue."
+msgstr ""
+
+#: assets/app.js
+#, fuzzy
+#| msgid "Analyse impossible : {error}"
+msgid "Enregistrement impossible : {erreur}"
+msgstr "Analysis failed: {error}"
+
+#: assets/app.js
+msgid "Le moteur de tâches n'est pas démarré."
+msgstr ""
+
+#: assets/app.js
+msgid "Exécution demandée — le résultat apparaîtra dans l'historique."
+msgstr ""
+
+#: assets/app.js
+msgid "Une exécution est déjà en cours — réessayez dans un instant."
+msgstr ""
+
+#: assets/app.js
+msgid "Le service des tâches a refusé l'exécution."
+msgstr ""
+
+#: assets/app.js
+msgid "Tâche introuvable."
+msgstr ""
+
+#: assets/app.js
+#, fuzzy
+#| msgid "Exécution impossible : {error}"
+msgid "Exécution impossible : {erreur}"
+msgstr "Execution failed: {error}"
+
+#: assets/app.js
+#, fuzzy
+#| msgid "Action impossible : {error}"
+msgid "Action impossible : {erreur}"
+msgstr "Action failed: {error}"
+
+#: assets/app.js
+#, fuzzy
+#| msgid "Supprimer le compte"
+msgid "Supprimer la tâche"
+msgstr "Delete the account"
+
+#: assets/app.js
+msgid "Supprimer « {nom} » ? L'historique est conservé."
+msgstr ""
+
+#: assets/app.js
+#, fuzzy
+#| msgid "Suppression impossible : {error}"
+msgid "Suppression impossible : {erreur}"
+msgstr "Deletion failed: {error}"
+
+#: assets/app.js
 msgid "< 1 min"
 msgstr "< 1 min"
 
@@ -962,6 +1348,10 @@ msgstr "Error while saving"
 #: assets/app.js
 msgid "Erreur lors de la sauvegarde des réglages"
 msgstr "Error while saving the settings"
+
+#: assets/app.js
+msgid "Tâches programmables : envoyez un prompt à Claude à date fixe ou périodiquement."
+msgstr ""
 
 #: assets/app.js
 msgid "Arrêter"
@@ -1086,10 +1476,6 @@ msgstr "Allowed accounts:"
 #: assets/app.js
 msgid "{count} tâche(s)"
 msgstr "{count} task(s)"
-
-#: assets/app.js
-msgid "Nouvelle tâche"
-msgstr "New task"
 
 #: assets/app.js
 msgid "Assigner"

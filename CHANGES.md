@@ -24,6 +24,48 @@
 ### Reste (lots suivants de #206)
 - Lot 2 : messages envoyés et tâches programmables (lien avec #199).
 - Lot 3 : graphiques d'évolution, export CSV/JSON, remise à zéro depuis l'interface.
+## Issue #199 — lot 4 : interface des tâches programmables (19/10/2026)
+
+### Livré
+- **Modale ordonnanceur** : l'interface des tâches remplace le bandeau « en
+  cours de développement » du lot 1 — liste des tâches (nom échappé, comptes,
+  répartition, périodicité, prochaine exécution, boutons Activer/Désactiver,
+  Exécuter maintenant, Modifier, Supprimer avec confirmation), historique
+  borné aux 200 derniers événements (libellés traduits : lancée, envoyée,
+  quota, heures calmes, non connecté, aucun compte éligible, erreur).
+- **Formulaire de création/édition** : nom, comptes (tous ou sélection,
+  seuls les comptes avec Claude sont proposés), répartition (tous avec
+  espacement en secondes, ou rotation), nouvelle session, prompt,
+  programmation (unique `datetime-local` ou périodique N unités), actif.
+  Erreurs du service affichées dans le formulaire sans le fermer ; la saisie
+  survit au rafraîchissement de 4 s (le formulaire n'est jamais reconstruit
+  par le polling). L'édition préserve l'état d'exécution (le service garde
+  `derniereExecution`/`indexRotation`) ET les valeurs exactes des champs
+  inchangés : un espacement en ms non rond (90050) ou une date à la
+  milliseconde ne sont ni arrondis ni tronqués (`preserverValeursNonModifiees`,
+  testé). Sous-titre de la modale adapté au flux actif ; dates formatées
+  dans la langue active (`document.documentElement.lang`).
+- `lib/taches-ui.js` (pur, testé par `test/taches-ui.test.js`) : conversions
+  sans perte à la seconde près `datetime-local` <-> ISO (heure locale, jamais
+  `toISOString().slice()`), espacement secondes <-> ms, mapping
+  formulaire <-> tâche, descripteurs de programmation et résultats. Codes
+  d'erreur (pas de français dans le helper) traduits côté app par des
+  appels `N_()`/`_()` littéraux.
+- **« Exécuter maintenant »** : même chemin que la minuterie — la garde du
+  moteur est prise AVANT l'appel au service (`taches:run-now` marque la tâche
+  côté service), plan construit par le service (même forme que
+  `taches:dues`), exécuté par `creerMoteur` (`lib/taches-runner.js`) :
+  minuterie et exécution manuelle partagent la même garde, jamais deux plans
+  en même temps. Le résultat arrive par l'historique (`taches:report`),
+  jamais fabriqué par l'interface (toast neutre).
+- Harnais Electron C10 (8 scénarios) : interface visible, création avec nom
+  HTML (échappé), saisie préservée au polling, édition, bascule d'activation,
+  exécution manuelle avec envoi réel simulé (canal `scheduler:run-claude-job`
+  remplacé côté main, tout le reste réel) jusqu'à l'historique, suppression
+  avec confirmation, erreurs de prévalidation ET du service affichées sans
+  fermer le formulaire.
+- i18n : 79 nouveaux msgid extraits, catalogues régénérés (29 langues,
+  nouvelles chaînes non traduites par défaut — à traduire au fil de l'eau).
 
 ## Issue #201 — comptes en série, côté IAO (18/10/2026)
 
