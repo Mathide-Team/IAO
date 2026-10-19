@@ -1,5 +1,6 @@
 # IAO
 
+<!-- --8<-- [start:intro] -->
 **Un poste de travail de bureau (Windows et Linux) pour utiliser plusieurs services d'IA web avec plusieurs comptes, sans jongler entre navigateurs.** Chaque compte dispose de sessions isolées (cookies séparés), chaque IA s'ouvre dans son propre **onglet** intégré, et un suivi de « cooldown » 24 h par service aide à gérer les quotas gratuits.
 
 Publié ici pour quiconque en a l'usage.
@@ -8,6 +9,7 @@ Publié ici pour quiconque en a l'usage.
 >
 > **Responsabilité d'usage** — Cet outil n'utilise aucune API : il affiche les interfaces web officielles des services dans des onglets intégrés (webviews), où vous vous connectez et interagissez vous-même, comme dans un navigateur. Vous restez seul responsable du respect des conditions d'utilisation de chaque service, notamment de leurs règles sur l'usage de plusieurs comptes.
 
+<!-- --8<-- [end:intro] -->
 ## Aperçu
 
 <!-- À COMPLÉTER : captures d'écran à fournir avant/après publication -->
@@ -16,6 +18,7 @@ Publié ici pour quiconque en a l'usage.
 
 *(Captures à ajouter dans `docs/` — emplacements prévus ci-dessus.)*
 
+<!-- --8<-- [start:fonctionnalites] -->
 ## Fonctionnalités
 
 - **Multi-comptes isolés** : chaque compte utilise une partition Electron dédiée (`persist:<profil>`) — cookies et sessions strictement séparés. L'unicité du profil est imposée par l'app.
@@ -24,14 +27,17 @@ Publié ici pour quiconque en a l'usage.
 - **Actions rapides sur un onglet ouvert** : recharger la page, revenir à l'accueil du service, ou se
   déconnecter du profil (purge des cookies/session du compte, avec confirmation — action destructive).
 - **Suivi de quota (« cooldown »)** par service et par compte : un service en cooldown apparaît estompé et se réactive automatiquement à l'expiration (le bouton manuel « Épuiser (24h) » a été retiré, issue #136).
+- **Comptes en série** (bouton « personnes », issue #201) : crée N comptes d'un coup, nommés par numéro à la suite du plus grand existant (`239`, `240`…), profil `profil_<numéro>`, e-mail `<préfixe><numéro>@<domaine>` (préfixe et domaine dans les réglages). Chaque compte reçoit un **mot de passe de messagerie aléatoire**, chiffré par le trousseau du système (`safeStorage`, jamais en clair ; refusé si aucun trousseau n'est disponible), masqué dans la fenêtre du compte avec un bouton pour l'afficher. Si l'adresse du webmail (Roundcube) est réglée, un bouton enveloppe sur chaque carte l'ouvre dans le navigateur et copie l'adresse du compte. La création des boîtes sur le serveur de messagerie n'est pas encore branchée.
 - **Palette rapide (Ctrl+K)** : ouvrir n'importe quel service avec n'importe quel compte au clavier.
 - **Raccourcis d'onglets** : `Ctrl+Tab` / `Ctrl+Maj+Tab` pour circuler entre les onglets, `Alt+1` à `Alt+9` pour aller directement au Nᵉ. (Quand le focus est à l'intérieur d'une page IA, cliquez d'abord hors de celle-ci — Electron ne fait pas remonter les touches depuis une webview.)
 - **Page d'aide intégrée** (bouton `?`) : description et cas d'usage de chaque IA, pour les utilisateurs qui ne les connaissent pas toutes.
 - **Éditeur de code intégré** (Monaco, celui de VS Code) avec explorateur de fichiers local — chargé paresseusement au premier clic, avec éditeur de secours si Monaco échoue.
 - **Interface 100 % locale** : polices et icônes embarquées, aucun CDN, aucune télémétrie — l'app n'envoie rien à aucun serveur ; seuls les sites des IA sont contactés, dans leurs onglets.
 - **Stockage résilient** : sauvegarde automatique d'une génération des données de comptes, récupération proposée en cas de corruption.
-- **Ordonnanceur IA** (bouton robot, en cours de développement) : détecte automatiquement les fichiers `.zip` livrés par les IA dans les onglets, tient un registre de jobs, et propose de reprendre un projet inachevé sur le profil disponible le plus ancien plutôt que de toujours solliciter le même compte. La partie « upload + envoi du prompt » dans le service IA n'est pas encore automatisée — la reprise se fait aujourd'hui en un clic depuis le panneau.
+- **Ordonnanceur IA** (bouton robot) : **ancien flux désactivé** depuis #199, remplacé par des tâches programmables en cours de développement ; `IAO_ORDONNANCEUR_ANCIEN=1` le réactive. Ancien flux : détecte automatiquement les fichiers `.zip` livrés par les IA dans les onglets, tient un registre de jobs, et propose de reprendre un projet inachevé sur le profil disponible le plus ancien plutôt que de toujours solliciter le même compte. La partie « upload + envoi du prompt » dans le service IA n'est pas encore automatisée — la reprise se fait aujourd'hui en un clic depuis le panneau.
 
+<!-- --8<-- [end:fonctionnalites] -->
+<!-- --8<-- [start:installation] -->
 ## Installation — Linux (Ubuntu et dérivées)
 
 Trois voies, de la plus simple à la plus manuelle. Toutes intègrent l'application au **menu des applications** (recherche GNOME, épinglage au Dock, icône, Alt+Tab).
@@ -107,7 +113,7 @@ npm run start:linux-dev    # electron . --no-sandbox
 
 ### Utilisateur (binaire)
 
-Récupérez le zip de la [dernière release](../../releases), décompressez le dossier **en entier**, lancez `IAO.exe`. Au premier lancement, Windows SmartScreen affiche un avertissement (exécutable non signé) : « Informations complémentaires » → « Exécuter quand même ». Voir `docs/DISTRIBUTION-LISEZ-MOI.txt` pour le détail.
+Récupérez le zip de la [dernière release](https://github.com/Mathide-Team/IAO/releases), décompressez le dossier **en entier**, lancez `IAO.exe`. Au premier lancement, Windows SmartScreen affiche un avertissement (exécutable non signé) : « Informations complémentaires » → « Exécuter quand même ». Voir `docs/DISTRIBUTION-LISEZ-MOI.txt` pour le détail.
 
 ### Depuis les sources
 
@@ -142,18 +148,22 @@ L'exe a besoin du dossier complet — pour distribuer, zippez tout le dossier. L
 
 **Limitation connue (Windows)** : `electron-builder` ne fonctionne pas sans droits administrateur ou Mode développeur Windows (création de liens symboliques) — c'est pourquoi le packaging Windows passe par `@electron/packager` et qu'il n'y a ni installateur ni exe portable mono-fichier côté Windows. Sous Linux, `electron-builder` fonctionne normalement, d'où le `.deb`.
 
+<!-- --8<-- [end:installation] -->
 ## Langue de l'interface
 
 IAO est en français. Les autres langues (29 locales gettext dans `lang/`) se
 choisissent avec `IAO_LANG=en npm start` ou `iao --iao-lang=en`. Traductions,
 ajout d'une langue et CI : [docs/i18n.md](docs/i18n.md) (issue #51).
 
+<!-- --8<-- [start:donnees] -->
 ## Emplacement des données
 
 | Plateforme | Comptes, cooldowns et sessions IA |
 | --- | --- |
 | Linux | `~/.config/ai-manager` |
 | Windows | `%APPDATA%\ai-manager` |
+
+Les mots de passe de messagerie (issue #201) sont dans `secrets.json` de ce dossier, chiffrés par le trousseau du système (DPAPI sous Windows, libsecret/KWallet sous Linux) : ils ne sont pas lisibles sur une autre machine ni par un autre utilisateur.
 
 Ce dossier n'est **pas** supprimé par la désinstallation — effacez-le manuellement pour repartir de zéro.
 
@@ -169,6 +179,9 @@ Ce dossier n'est **pas** supprimé par la désinstallation — effacez-le manuel
   - Lancement : `npm run start:debug` en développement, `iao --iao-debug` après `install.sh`,
     clic droit sur l'icône puis « IAO (mode debug) » (menu GNOME, installé par `install.sh`),
     ou raccourci « IAO (mode debug) » du menu Démarrer (Windows, `install.bat`).
+  - Depuis l'application : bouton **Redémarrer en mode debug** (flèche circulaire) de la barre
+    du workspace, ou bouton **Relancer en mode debug** du bandeau rouge, qui affiche aussi le
+    chemin du journal.
   - Un badge **DEBUG** s'affiche alors à côté du nom de l'application.
   - Sont ajoutés au journal : versions (Electron, Chrome, Node) et options de lancement ;
     chaque appel IPC (canal, durée, succès ou erreur) ; tous les messages de l'interface
@@ -180,12 +193,27 @@ Ce dossier n'est **pas** supprimé par la désinstallation — effacez-le manuel
     leur nom d'hôte (une URL de connexion peut contenir des jetons).
 - Le journal d'activité de l'ordonnanceur et ses erreurs sont aussi écrits dans `iao.log`,
   avec ou sans mode debug.
+- À chaque démarrage, avec ou sans mode debug (issue #203) : l'état du **dossier de
+  données** (Local Storage : nombre de fichiers et taille ; nombre de partitions et de
+  partitions ayant un dossier `Service Worker`). À joindre à tout signalement de comptes
+  perdus ou d'erreurs `Database IO error`.
 - IAO ne s'ouvre qu'**une fois** : relancer l'application ramène la fenêtre existante au
   premier plan. Deux instances sur le même dossier de données provoquaient des erreurs
   Chromium en rafale (`Failed to delete the database: Database IO error`).
+- Si `iao.log` signale des fichiers du dossier de données qui **n'appartiennent pas au compte
+  courant** (souvent après un lancement avec `sudo`), Chromium ne peut plus les modifier :
+  erreurs `Database IO error` / `Could not open the quota database`, comptes ou sessions qui
+  disparaissent. Quitter IAO puis lancer `sudo chown -R "$USER": ~/.config/ai-manager`.
+- **Que joindre à une issue** : la version (`git log -1 --oneline` ou numéro de release), le mode
+  de lancement (`npm start`, `iao` installé, icône), une capture du bandeau rouge s'il y en a un,
+  et le journal `iao.log` d'un lancement en mode debug (relancer, reproduire, puis joindre le
+  fichier). Le journal ne contient ni mots de passe ni contenus de conversation ; vérifiez
+  quand même les noms de profils avant de le publier.
 - Les messages Chromium du type `vaInitialize failed` (accélération vidéo matérielle) sont
   sans incidence sur IAO.
 
+<!-- --8<-- [end:donnees] -->
+<!-- --8<-- [start:developpement] -->
 ## Structure du projet
 
 ```
@@ -247,6 +275,7 @@ Projet maintenu en solo, contributions bienvenues — en particulier :
 
 Règles du projet : JS vanilla sans dépendance nouvelle, toute donnée utilisateur passe par `escapeHtml()`, les écritures de comptes passent par `saveAccounts()`, les listes cliquables utilisent la délégation d'événements. Lisez `CLAUDE.md` (règles de contribution) et `docs/PROJECT_CONTEXT.md` avant une contribution non triviale. Fork → branche → pull request.
 
+<!-- --8<-- [end:developpement] -->
 ## Licence
 
 [MIT](LICENSE). Composants tiers (polices OFL, icônes Font Awesome CC BY 4.0, Monaco MIT) : voir [docs/THIRD-PARTY-NOTICES.md](docs/THIRD-PARTY-NOTICES.md).

@@ -1,5 +1,9 @@
 'use strict';
 
+// Ce fichier teste l'ancien flux (ZIP, jobs, projets), désactivé par défaut
+// depuis #199 (lot 1) : on le réactive pour tout le fichier.
+process.env.IAO_ORDONNANCEUR_ANCIEN = '1';
+
 // test/scheduler-state-config.test.js — Couverture de scheduler/index.js :
 // getState, syncAccounts, setEnabled, setConfig (issue #82, tâche 55.13).
 // `app`/`session` Electron simulés, userData temporaire, aucun accès réseau.
@@ -146,6 +150,7 @@ test('syncAccounts : entrée non tableau -> instantané vide et persisté', () =
 test('syncAccounts : ajout de comptes, valeurs par défaut et surveillance des partitions', () => {
   const ctx = create();
   try {
+    ctx.scheduler.setEnabled(true); // #181 : surveillance seulement ordonnanceur démarré
     ctx.scheduler.syncAccounts([
       { id: 'a1', name: 'Alice', profile: 'profil_1' },
       { id: 'a2', name: 'Bob', profile: 'profil_2', automation: { enabled: false, lastUsedAt: '1700', lastAutomationAt: 900 } },
@@ -191,6 +196,7 @@ test('syncAccounts : valeur précédente non numérique -> 0', () => {
 test('syncAccounts : comptes supprimés retirés de l\'instantané, partitions déjà surveillées non redoublées', () => {
   const ctx = create();
   try {
+    ctx.scheduler.setEnabled(true); // #181 : surveillance seulement ordonnanceur démarré
     ctx.scheduler.syncAccounts([
       { id: 'a1', name: 'Alice', profile: 'profil_1' },
       { id: 'a2', name: 'Bob', profile: 'profil_2' }
@@ -214,13 +220,66 @@ test('setEnabled : bascule on/off, persiste la config et journalise', () => {
     const off = ctx.scheduler.setEnabled(false);
     assert.strictEqual(off.enabled, false);
     assert.strictEqual(readJSON(ctx.scheduler.configPath).enabled, false);
-    assert.strictEqual(ctx.scheduler.log[ctx.scheduler.log.length - 1].message, 'Ordonnanceur mis en pause.');
+    assert.strictEqual(ctx.scheduler.log[ctx.scheduler.log.length - 1].message, 'Ordonnanceur arrêté.');
 
     const on = ctx.scheduler.setEnabled(1);
     assert.strictEqual(on.enabled, true);
     assert.strictEqual(readJSON(ctx.scheduler.configPath).enabled, true);
-    assert.strictEqual(ctx.scheduler.log[ctx.scheduler.log.length - 1].message, 'Ordonnanceur activé.');
+    assert.strictEqual(ctx.scheduler.log[ctx.scheduler.log.length - 1].message, 'Ordonnanceur démarré.');
     assert.strictEqual(ctx.scheduler.getState().config.enabled, true);
+  } finally { cleanup(ctx); }
+});
+
+// --- Démarrage / arrêt manuel (issue #181) -----------------------------------
+
+test('#181 syncAccounts : ordonnanceur arrêté -> aucune partition surveillée', () => {
+  const ctx = create();
+  try {
+    ctx.scheduler.syncAccounts([{ id: 'a1', name: 'Alice', profile: 'profil_1' }]);
+    assert.deepStrictEqual(ctx.session.partitions, []);
+    assert.strictEqual(ctx.scheduler.watchedPartitions.size, 0);
+  } finally { cleanup(ctx); }
+});
+
+test('#181 setEnabled(false) : retire les écouteurs will-download et oublie les profils', () => {
+  const { EventEmitter } = require('events');
+  const app = createMockApp();
+  const sessions = {};
+  const session = { fromPartition(n) { return (sessions[n] = sessions[n] || new EventEmitter()); } };
+  const scheduler = new Scheduler(app, session);
+  try {
+    scheduler.syncAccounts([{ id: 'a1', profile: 'profil_1' }, { id: 'a2', profile: 'profil_2' }]);
+    scheduler.setEnabled(true);
+    assert.strictEqual(sessions['persist:profil_1'].listenerCount('will-download'), 1);
+    scheduler.setEnabled(false);
+    assert.strictEqual(sessions['persist:profil_1'].listenerCount('will-download'), 0);
+    assert.strictEqual(sessions['persist:profil_2'].listenerCount('will-download'), 0);
+    assert.strictEqual(scheduler.watchedPartitions.size, 0);
+    assert.ok(scheduler.log.some(l => l.message === 'Surveillance des téléchargements arrêtée (2 profil(s)).'));
+    // Redémarrer rebranche une seule fois chaque profil.
+    scheduler.setEnabled(true);
+    assert.strictEqual(sessions['persist:profil_1'].listenerCount('will-download'), 1);
+  } finally { cleanup({ app }); }
+});
+
+test('#181 setEnabled(false) : sans profil surveillé, aucun message de surveillance', () => {
+  const ctx = create();
+  try {
+    ctx.scheduler.setEnabled(false);
+    assert.ok(!ctx.scheduler.log.some(l => l.message.startsWith('Surveillance des téléchargements arrêtée')));
+  } finally { cleanup(ctx); }
+});
+
+test('#181 setEnabled(false) : un échec de retrait d\'écouteur est journalisé sans lever', (t) => {
+  const ctx = create(); // session simulée sans removeListener
+  const errors = t.mock.method(console, 'error', () => {});
+  try {
+    ctx.scheduler.syncAccounts([{ id: 'a1', profile: 'profil_1' }]);
+    ctx.scheduler.setEnabled(true);
+    assert.doesNotThrow(() => ctx.scheduler.setEnabled(false));
+    assert.strictEqual(errors.mock.callCount(), 1);
+    assert.match(String(errors.mock.calls[0].arguments[0]), /arrêt de la surveillance du profil/);
+    assert.strictEqual(ctx.scheduler.watchedPartitions.size, 0);
   } finally { cleanup(ctx); }
 });
 
@@ -260,5 +319,34 @@ test('état rechargé : un nouveau Scheduler relit config et instantané persist
     const reloaded = new Scheduler(ctx.app, createMockSession());
     assert.strictEqual(reloaded.config.enabled, false);
     assert.deepStrictEqual(reloaded.accountsSnapshot.map(a => a.id), ['a1']);
+  } finally { cleanup(ctx); }
+});
+
+// --- reportStartupAccounts (issue #186) -------------------------------------
+
+test('reportStartupAccounts : interface vide, instantané non vide -> warning journalisé et comptes renvoyés', () => {
+  const ctx = create();
+  try {
+    ctx.scheduler.syncAccounts([{ id: 'a1', name: 'Alice', profile: 'profil_1' }, { id: 'a2', name: 'Bob', profile: 'profil_2' }]);
+    const lines = [];
+    ctx.scheduler.setLogger((scope, level, message) => lines.push([scope, level, message]), false);
+    const res = ctx.scheduler.reportStartupAccounts({ status: 'empty', count: 0 });
+    assert.strictEqual(res.offerRestore, true);
+    assert.deepStrictEqual(res.accounts.map(a => a.id + ':' + a.profile + ':' + a.email), ['a1:profil_1:', 'a2:profil_2:']);
+    assert.strictEqual(lines.length, 1);
+    assert.strictEqual(lines[0][0], 'scheduler');
+    assert.strictEqual(lines[0][1], 'warning');
+    assert.match(lines[0][2], /Comptes lus au démarrage : 0 .* instantané de l'ordonnanceur : 2 compte\(s\)/);
+  } finally { cleanup(ctx); }
+});
+
+test('reportStartupAccounts : comptes présents -> info sur la console sans logger, aucun compte renvoyé', () => {
+  const ctx = create();
+  try {
+    ctx.scheduler.syncAccounts([{ id: 'a1', name: 'Alice', profile: 'profil_1' }]);
+    const res = ctx.scheduler.reportStartupAccounts({ status: 'ok', count: 1 });
+    assert.deepStrictEqual(res, { offerRestore: false, accounts: [] });
+    const logged = console.log.mock.calls.map(c => c.arguments.join(' '));
+    assert.ok(logged.some(l => /\[scheduler\] Comptes lus au démarrage : 1 \(stockage de l'interface : ok\)/.test(l)));
   } finally { cleanup(ctx); }
 });

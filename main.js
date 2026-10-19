@@ -1,10 +1,13 @@
-const { app, BrowserWindow, ipcMain, dialog, shell, session } = require('electron');
+const { app, BrowserWindow, ipcMain, dialog, shell, session, safeStorage } = require('electron');
 const path = require('path');
 const fs = require('fs');
 const fsPromises = fs.promises;
 
 const { isAllowedPopup } = require('./lib/popup-guard');
 const { Scheduler, registerSchedulerIPC } = require('./scheduler');
+const { TachesService, registerTachesIPC } = require('./scheduler/taches-service');
+const schedulerCore = require('./scheduler/core');
+const dataDirCheck = require('./lib/data-dir-check');
 
 // On fixe le dossier de données (comptes + sessions IA) sur "ai-manager" quel que
 // soit le nom du produit. Ainsi la version packagée (.exe) réutilise le profil
@@ -28,6 +31,8 @@ app.setName('IAO');
 const diag = require('./lib/startup-diagnostics');
 const DEBUG = diag.isDebugEnabled(process.argv, process.env);
 const debugTrace = require('./lib/debug-trace');
+const { CoffreSecrets, registerComptesIPC } = require('./lib/coffre-secrets');
+const startupStorage = require('./lib/startup-storage');
 const LOG_DIR = path.join(app.getPath('userData'), 'logs');
 const LOG_FILE = path.join(LOG_DIR, 'iao.log');
 const LOG_MAX_BYTES = 1024 * 1024;
@@ -268,6 +273,21 @@ function createWindow() {
 // Issue #162 : le renderer adapte ses traces (dbg) et affiche un badge.
 ipc.handle('app:is-debug', () => DEBUG);
 
+// Issue #187 : « Relancer en mode debug » depuis l'application (bandeau
+// d'erreur de démarrage, bouton de la barre du workspace). Réservé à la fenêtre
+// principale, comme app:toggle-devtools. app.relaunch() n'arrête pas l'app :
+// app.exit(0) ensuite (documentation Electron, app.relaunch).
+ipc.handle('app:relaunch-debug', (event) => {
+  if (!mainWindow || event.sender !== mainWindow.webContents) return false;
+  log('demarrage', 'info', 'Relance en mode debug demandée depuis l\'interface.');
+  app.relaunch({ args: diag.debugRelaunchArgs(process.argv) });
+  app.exit(0);
+  return true;
+});
+
+// Issue #187 : chemin du journal, affiché dans le bandeau d'erreur.
+ipc.handle('app:log-path', () => LOG_FILE);
+
 ipc.handle('app:toggle-devtools', (event) => {
   if (!mainWindow || event.sender !== mainWindow.webContents) return false;
   event.sender.toggleDevTools();
@@ -437,6 +457,19 @@ ipc.handle('settings:save', async (event, rawSettings) => {
   }
 });
 
+// --- Issue #201 : mots de passe de messagerie (chiffrés) et webmail ---
+registerComptesIPC(ipc, {
+  coffre: new CoffreSecrets({
+    fichier: path.join(app.getPath('userData'), 'secrets.json'),
+    chiffreur: safeStorage,
+    journal: log.bind(null, 'coffre')
+  }),
+  fichierReglages: settingsPath,
+  normaliser: normalizeSettings,
+  fsPromises,
+  ouvrirExterne: shell.openExternal.bind(shell)
+});
+
 // --- Internationalisation (issue #51) ---
 // Catalogue gettext compilé (lang/<locale>/LC_MESSAGES/iao.mo) de la langue
 // demandée (--iao-lang=xx, IAO_LANG, réglage « Langue », langue du système) ;
@@ -478,15 +511,27 @@ ipc.handle('i18n:catalog', () => {
 
 // --- IPC pour l'ordonnanceur IA (chantier E) ---
 registerSchedulerIPC(ipc, scheduler, () => mainWindow);
+// Issue #199, lot 3 : tâches programmables (minuterie côté renderer).
+registerTachesIPC(ipc, new TachesService({
+  dossier: path.join(app.getPath('userData'), 'scheduler'),
+  heuresCalmes: schedulerCore.isFrenchQuietHours,
+  journal: log.bind(null, 'taches')
+}));
 
 app.whenReady().then(() => {
   // 2e instance (voir « Instance unique ») : ne rien ouvrir, app.quit() est en cours.
   if (!gotSingleInstanceLock) return;
+  // Issue #184 : fichiers du dossier de données appartenant à un autre compte
+  // (lancement en root) -> warning dans iao.log avec la commande de correction.
+  dataDirCheck.reportForeignEntries(app.getPath('userData'), { fs, path, proc: process, log });
   cleanupServiceWorkerStorage();
   log('demarrage', 'info', 'IAO ' + app.getVersion() + ' — Electron ' + process.versions.electron +
     ', ' + process.platform + '/' + process.arch + (app.isPackaged ? ', packagé' : ', sources') +
     (DEBUG ? ', mode debug' : '') + '. Données : ' + app.getPath('userData') + ' — journal : ' + LOG_FILE);
   debug('demarrage', debugTrace.describeRuntime(process));
+  // Issue #203 (piste #184) : état du dossier de données à chaque démarrage.
+  const donnees = startupStorage.inspecterDonnees(app.getPath('userData'), fs);
+  startupStorage.journaliserDonnees(donnees, log);
   // Issue #162 : le journal d'activité de l'ordonnanceur rejoint iao.log, et
   // ses traces détaillées sont actives en mode debug.
   scheduler.setLogger(log, DEBUG);

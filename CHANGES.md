@@ -1,5 +1,220 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issue #201 — comptes en série, côté IAO (18/10/2026)
+
+### Livré
+- **Réglages** : préfixe et domaine des adresses e-mail, adresse du webmail
+  (Roundcube) ; normalisés dans `lib/settings.js` (invalide -> non configuré,
+  URL http/https seulement).
+- **Création en série** (bouton « personnes » de la liste des comptes) : 1 à 50
+  comptes, nom = numéro suivant le plus grand existant (noms numériques et
+  profils `profil_<n>`), profil `profil_<n>`, e-mail `<préfixe><n>@<domaine>`,
+  tous les services ; `lib/comptes-serie.js` (pur, 100 %).
+- **Mot de passe de messagerie** : 20 caractères aléatoires
+  (`crypto.getRandomValues`, tirage sans biais, sans caractères ambigus),
+  généré pour chaque compte de la série ou à la demande (bouton clé) ; masqué
+  dans la fenêtre du compte, bouton œil pour l'afficher. Stocké par
+  `lib/coffre-secrets.js` : chiffré par `safeStorage` (trousseau du système),
+  `<userData>/secrets.json` en 0600, **jamais en clair** ; refusé si le
+  chiffrement n'est pas disponible (Linux sans trousseau : backend `basic_text`),
+  avec un message.
+- **Webmail** : bouton enveloppe sur chaque carte quand l'URL est réglée ;
+  copie l'adresse du compte et ouvre le webmail dans le navigateur. Le process
+  principal n'ouvre **que l'URL des réglages** (`app:open-webmail`, jamais une
+  URL fournie par l'interface).
+- Le clic sur l'e-mail copiait déjà l'adresse (#138).
+- Icônes Font Awesome Free 6.5.0 ajoutées : `eye`, `eye-slash`, `key`,
+  `envelope`, `users`.
+- Tests : `comptes-serie`, `coffre-secrets` (100 %), réglages, harnais Electron
+  C8.1/C8.2 ; traductions anglaises.
+
+### Reste
+- Création des boîtes sur le serveur de messagerie (docker-mailserver, sans
+  API HTTP) : petite API à créer dans un autre dépôt, puis appel depuis IAO.
+
+## Issue #203 — état du dossier de données au démarrage (18/10/2026)
+
+Le journal `<userData>/logs/iao.log` existait déjà (#52, #162). Cette ligne y est
+écrite à chaque démarrage, **hors mode debug**, pour les bugs signalés avec
+journal (#184, #186). Elle complète #196 (comptes lus au démarrage) et #197
+(fichiers appartenant à un autre utilisateur) sans les dupliquer.
+
+### Livré
+- `lib/startup-storage.js` (pur, fs injecté, 100 %) : dossier utilisé, Local
+  Storage (fichiers, octets), partitions et partitions ayant un dossier
+  `Service Worker` ; erreurs d'inspection en avertissements, jamais levées.
+- Piste #184 : `cleanupServiceWorkerStorage()` ne nettoie que le dossier
+  `Service Worker` de la fenêtre principale ; le compte des partitions qui en
+  ont un dira s'il faut étendre le nettoyage.
+- Tests : `test/startup-storage.test.js`, `main-debug` (#203), harnais Electron
+  C1.1b (ligne présente dans le vrai `iao.log`).
+
+## Issue #199 — lot 3 : exécution des tâches programmables (18/10/2026)
+
+### Livré
+- `scheduler/taches-service.js` (process principal, 100 % couvert) : tâches dans
+  `<userData>/scheduler/taches.json` (écriture atomique), historique borné à 200
+  entrées (`taches-historique.json`), création/remplacement/suppression/activation ;
+  `dues(comptes)` remet le plan des tâches dues et les marque **exécutées aussitôt**
+  (jamais deux départs) ; **heures calmes** 15h–20h30 : rien ne part, la tâche
+  reste due ; « Exécuter maintenant » ; comptes exclus notés (service absent,
+  profil introuvable) ; canaux IPC `taches:*`.
+- `lib/taches-runner.js` (renderer, 100 % couvert) : minuterie toutes les 30 s,
+  un plan et un compte à la fois, délais d'espacement, ouverture de l'onglet
+  (nouvelle session `claude.ai/new`, rechargée si l'onglet existait), envoi par
+  l'automatisation Claude existante (`scheduler:run-claude-job` : diagnostic,
+  quota, délai anti-détection), jusqu'à 6 tentatives espacées de 10 s tant que
+  la page n'est pas prête, compte rendu (envoyé, quota, heures calmes, non
+  connecté, erreur).
+- Une tâche ne s'exécute que si IAO est ouvert ; une exécution manquée est
+  rattrapée **une fois** à l'ouverture suivante.
+
+### Reste
+- lot 4 : interface (liste, édition, « Exécuter maintenant », historique, i18n).
+
+## Issue #199 — lot 1 : ancien ordonnanceur désactivé (18/10/2026)
+
+### Livré
+- L'ancien flux (détection des ZIP, jobs, projets) est **désactivé par défaut** :
+  `Scheduler.setEnabled(true)` est refusé et journalisé, aucune partition n'est
+  surveillée (`will-download`). Le panneau « Ordonnanceur IA » affiche un bandeau
+  et masque le bouton Démarrer et les sections de l'ancien flux ; le journal
+  d'activité reste visible.
+- `IAO_ORDONNANCEUR_ANCIEN=1` (`true`, `yes`, `on`) le réactive (retour arrière,
+  tests du code conservé). Code, `jobs.json` et `projects.json` sont conservés.
+- `getState()` expose `ancienFlux`. Tests : `test/scheduler-ancien-flux.test.js`,
+  harnais Electron C3.4 réécrit (bandeau, refus par IPC) ; les tests de l'ancien
+  flux le réactivent explicitement.
+
+## Issue #199 — tâches programmables, lot 2 : cœur pur (18/10/2026)
+
+Remplacement prévu de l'ordonnanceur (ZIP, jobs, projets) par des **tâches
+programmables** dans le menu « Ordonnanceur ». Conception validée dans #199.
+
+### Livré
+- `scheduler/taches.js` (fonctions pures, 100 % couvert, `test/scheduler-taches.test.js`) :
+  - registre **modulaire** de fournisseurs (`enregistrerFournisseur`), Claude seul
+    pour commencer (nouvelle session `https://claude.ai/new`) ;
+  - `normaliserTache` : nom, fournisseur, comptes (« tous » ou liste de profils),
+    répartition (« tous » espacés de N ms, ou « rotation » : un compte par exécution
+    à tour de rôle), nouvelle session, prompt, programmation, **inactive à la création** ;
+  - programmation « unique » (date/heure) ou « periodique » (toutes les N
+    minutes/heures/jours/semaines/mois, minimum 5 minutes) ; `prochaineEcheance` :
+    **une** exécution de rattrapage après une absence, jamais de rafale ; mois
+    calendaires (31 janvier + 1 mois → fin février) ;
+  - `comptesEligibles` (service absent, profil introuvable), `planExecution`.
+- Inventaire de couverture (#101) : `scheduler/taches.js` ajouté.
+
+### Reste (lots suivants de #199)
+- lot 3 : exécution (minuterie, onglet nouvelle session, envoi du prompt par
+  l'automatisation Claude existante, heures calmes 15 h – 20 h 30, historique) ;
+- lot 4 : interface (liste, édition, « Exécuter maintenant », historique, i18n 29 langues).
+
+## Issue #187 — mode debug accessible depuis l'application (17/10/2026)
+
+### Livré
+- Canal `app:relaunch-debug` (fenêtre principale uniquement) : `app.relaunch()` avec les mêmes
+  arguments plus `--iao-debug` (`debugRelaunchArgs()`, `lib/startup-diagnostics.js`), puis
+  `app.exit(0)`. Canal `app:log-path` : chemin du journal.
+- Bandeau d'erreur de démarrage : bouton « Relancer en mode debug » et chemin du journal.
+- Barre du workspace : bouton « Redémarrer en mode debug », masqué quand le mode debug est actif.
+- Documentation (README, section Dépannage reprise par MkDocs) : relance depuis l'application,
+  que joindre à une issue.
+- Tests : unitaires (couverture 100 %), harnais main.js, scénario Electron C6.5.
+
+## Issue #184 — diagnostic du propriétaire des fichiers de données (17/10/2026)
+
+### Hypothèse
+`Failed to delete the database: Database IO error` et `Could not open the quota database,
+resetting` signifient que Chromium ne peut ni supprimer ni rouvrir ses bases. Hors seconde
+instance (déjà empêchée depuis #52), la cause connue est un fichier que le compte courant
+ne peut pas modifier, par exemple créé par un lancement en root. Ce cas expliquerait aussi
+la perte des comptes de #186.
+
+### Livré
+- `lib/data-dir-check.js` (testé, système de fichiers injecté) : parcours borné du dossier de
+  données (20 000 entrées, profondeur 6, caches Chromium ignorés), sans aucune modification.
+- `main.js` : au démarrage, un `warning` dans `iao.log` donne le nombre de fichiers concernés,
+  des exemples et la commande `sudo chown -R "$USER": <dossier>`.
+- README (section Dépannage, reprise dans la doc MkDocs).
+
+## Issue #185 — pas de bandeau rouge sur une navigation remplacée (17/10/2026)
+
+### Cause
+Sur un service sans compte, le site redirige vers sa page de connexion pendant le
+premier chargement. Chromium interrompt la navigation (`ERR_ABORTED`, code -3) et la
+promesse interne de la `<webview>` est rejetée sans être rattrapée : le bandeau
+« Une opération asynchrone a échoué au démarrage » s'affichait pour une situation normale.
+
+### Livré
+- `lib/startup-diagnostics.js` : `isNavigationAbort(err)` reconnaît `ERR_ABORTED` (-3),
+  et seulement lui (`ERR_NAME_NOT_RESOLVED`, certificat, hors ligne restent signalés).
+- `assets/boot-guard.js` : un rejet `ERR_ABORTED` n'affiche plus de bandeau ; une ligne
+  `console.info` est écrite (recopiée dans `logs/iao.log` en mode debug).
+- `assets/app.js` : le retour à l'accueil d'un onglet rattrape le rejet de `loadURL()`.
+- Tests : unitaires (couverture 100 %), scénario Electron C0.3 (rejet `ERR_ABORTED`
+  sans bandeau, vraie erreur réseau avec bandeau).
+
+### Écart avec l'issue
+L'issue prévoyait une ligne `info` toujours présente dans le journal. `main.js` ne recopie
+le niveau `info` du renderer qu'en mode debug (règle de #162) ; la ligne n'apparaît donc
+dans `iao.log` qu'avec `--iao-debug`. Changer cette règle sortirait du périmètre.
+
+## Documentation MkDocs (13/10/2026)
+
+Règle d'équipe Mathide-Team : documentation navigable MkDocs sur le modèle de Netcross.
+
+### Livré
+- `mkdocs.yml` (thème Material, français, navigation explicite, sans `site_url`).
+- Pages sous `docs/` : accueil, installation, données et dépannage, langue,
+  développement, contexte du projet, travaux à faire, historique.
+- Sans copie : les pages incluent des sections du README, `FEATURES.md` et
+  `CHANGES.md` (`pymdownx.snippets`, repères invisibles sur GitHub) ; une section
+  disparue fait échouer la construction.
+- CI : job « Construction (mkdocs build --strict) » sur les runners maison, site
+  publié en artefact.
+- README : lien « dernière release » en URL absolue (valable dans la doc et sur GitHub).
+
+## Issue #186 — comptes absents au démarrage : journal et restauration (17/10/2026)
+
+### Constat
+Journal de #58 (12/10/2026) : au lancement, l'ordonnanceur connaissait ~70 profils
+(`<userData>/scheduler/accounts-snapshot.json`), alors que l'interface n'en lisait aucun
+dans son `localStorage`. Ensuite, l'interface renvoyait sa liste vide à l'ordonnanceur
+et effaçait l'instantané : un import devenait la seule issue. La cause de la perte du
+`localStorage` n'est pas reproduite dans le bac à sable.
+
+### Livré
+- `lib/accounts-recovery.js` (pur, testé) : `accountsFromSnapshot()` reconstruit les
+  comptes (id, nom, profil, automatisation ; doublons de profil écartés) ;
+  `startupAccountsReport()` écrit la ligne de journal et décide de la proposition.
+- Ordonnanceur : `reportStartupAccounts()` et canal `scheduler:accounts-startup`. La ligne
+  « Comptes lus au démarrage : N (stockage de l'interface : …) ; instantané de
+  l'ordonnanceur : M compte(s). » part toujours dans `iao.log` (`warning` si N = 0 et M > 0).
+- Interface : une liste vide au démarrage n'écrase plus l'instantané ; modale « Comptes
+  retrouvés » qui restaure les comptes sans import. Les sessions sont conservées
+  (partitions `persist:<profil>`) ; l'e-mail est à compléter.
+- Tests : unitaires (couverture 100 %), scénarios Electron C8.1 et C8.2.
+
+## Issue #181 — IAO démarre sans l'ordonnanceur (12/10/2026)
+
+### Cause
+`scheduler.init()` branchait la surveillance des téléchargements de tous les profils
+au lancement et reprenait l'état « activé » de la session précédente.
+
+### Livré
+- Au lancement, l'ordonnanceur est toujours **arrêté** (un état « activé » persisté
+  est remis à « arrêté ») et aucune partition n'est surveillée.
+- Fenêtre Ordonnanceur : l'interrupteur est remplacé par un bouton **Démarrer /
+  Arrêter** et un état « Arrêté / En marche ». Démarrer branche la surveillance des
+  profils ; Arrêter retire réellement les écouteurs `will-download`.
+- Tests : unitaires (couverture 100 %), scénario Electron C3.4, fumée du binaire
+  packagé alignée sur le nouveau message.
+- CI sur les runners « maison » : gettext installé s'il manque (`i18n.yml`) ;
+  harnais Electron sans réinstallation si les bibliothèques sont déjà présentes,
+  et `sudo -n` (échec immédiat et message clair au lieu de `sudo: timed out`
+  sur la VM `ubuntu`, où sudo demande un mot de passe).
+
 ## Issue #7 (partie sommes de contrôle) — SHA256SUMS.txt des fichiers publiés (10/10/2026)
 
 ### Cause

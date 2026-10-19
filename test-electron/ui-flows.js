@@ -184,6 +184,24 @@ async function run() {
     assert(await exec('document.getElementById("bootError") === null'), 'bandeau d\'erreur de démarrage affiché');
   });
 
+  await test('C0.3 ERR_ABORTED (-3) non rattrapé : pas de bandeau ; une vraie erreur réseau en affiche un (#185)', async () => {
+    const r = await exec(`new Promise((resolve) => {
+      Promise.reject(new Error("Error invoking remote method 'GUEST_VIEW_MANAGER_CALL': Error: ERR_ABORTED (-3) loading 'https://claude.ai/new'"));
+      setTimeout(() => {
+        const afterAbort = document.getElementById('bootError') !== null;
+        Promise.reject(new Error("ERR_NAME_NOT_RESOLVED (-105) loading 'https://chat.z.ai/'"));
+        setTimeout(() => {
+          const banner = document.getElementById('bootError');
+          const afterRealError = banner !== null;
+          if (banner) banner.remove(); // la suite du harnais attend une page sans bandeau
+          resolve({ afterAbort, afterRealError });
+        }, 100);
+      }, 100);
+    })`);
+    assert(!r.afterAbort, 'bandeau affiché pour une navigation remplacée (ERR_ABORTED -3)');
+    assert(r.afterRealError, 'aucun bandeau pour une vraie erreur réseau (ERR_NAME_NOT_RESOLVED)');
+  });
+
   await test('C0.2 toutes les icônes statiques sont hydratées (SVG)', async () => {
     const r = await exec(`({ total: document.querySelectorAll('span.ic[data-icon]').length,
       done: document.querySelectorAll('span.ic[data-icon] svg').length })`);
@@ -199,6 +217,14 @@ async function run() {
   await test('C1.1 renderAccounts affiche 2 cartes de comptes', async () => {
     const count = await exec('document.querySelectorAll(\'#accountsList .account-card\').length');
     assert(count === 2, 'attendu 2 cartes, trouvé ' + count);
+  });
+
+  // Issue #203 : état du dossier de données dans le vrai iao.log.
+  await test('C1.1b iao.log contient l\'état du dossier de données (#203)', async () => {
+    const journal = path.join(tmpRoot, 'ai-manager', 'logs', 'iao.log');
+    const texte = fs.existsSync(journal) ? fs.readFileSync(journal, 'utf-8') : '';
+    assert(/\[demarrage\] info Dossier de données .* — Local Storage : .* — partitions : \d+ \(dont \d+ avec un dossier Service Worker\)/.test(texte),
+      'ligne du dossier de données absente de ' + journal);
   });
 
   await test('C1.2 Le nom du compte est échappé (escapeHtml — pas de <script>)', async () => {
@@ -284,6 +310,27 @@ async function run() {
     const rels = files.map(f => f.relativePath).sort();
     assert(rels.includes('test-file.txt'), 'test-file.txt absent : ' + rels.join(', '));
     assert(rels.includes('subfolder/nested.js'), 'subfolder/nested.js absent : ' + rels.join(', '));
+  });
+
+  // Issue #199, lot 1 : l'ancien ordonnanceur (ZIP, jobs, projets) est
+  // désactivé ; le panneau l'annonce, le bouton Démarrer est masqué et un
+  // démarrage par IPC est refusé (le comportement #181 reste testé par
+  // test/scheduler-state-config.test.js avec IAO_ORDONNANCEUR_ANCIEN=1).
+  await test('C3.4 Ancien ordonnanceur désactivé : bandeau, pas de démarrage (#199)', async () => {
+    const etat0 = await ipc('scheduler:get-state');
+    assert(etat0 && etat0.config && etat0.config.enabled === false, 'ordonnanceur actif au démarrage');
+    assert(etat0.ancienFlux === false, 'ancien flux actif par défaut');
+    await exec('window.openSchedulerModal(); "ok"');
+    await sleep(300);
+    const visible = (id) => exec('(function(){var e=document.getElementById("' + id + '");' +
+      'return !!e && !e.hidden && getComputedStyle(e).display !== "none";})()');
+    assert(await visible('schedLegacyOff'), 'bandeau « désactivé » absent');
+    assert(!(await visible('schedLegacy')), 'sections de l\'ancien flux visibles');
+    assert(!(await visible('schedRun')), 'bouton Démarrer visible');
+    assert(await visible('schedLog'), 'journal d\'activité masqué');
+    const cfg = await ipc('scheduler:set-enabled', true);
+    assert(cfg && cfg.enabled === false, 'démarrage par IPC accepté');
+    await exec('window.closeSchedulerModal(); "ok"');
   });
 
   // =========================================================================
@@ -386,6 +433,20 @@ async function run() {
   // =========================================================================
   // C7 — Internationalisation (issue #51)
   // =========================================================================
+  await test('C6.5 Bouton « Redémarrer en mode debug » présent, câblé et visible hors mode debug (#187)', async () => {
+    const r = await exec(`(() => {
+      const b = document.getElementById('btnRelaunchDebug');
+      return { exists: !!b, action: b && b.getAttribute('data-action'), hidden: b ? b.classList.contains('hidden') : null,
+        fn: typeof window.relaunchDebug };
+    })()`);
+    assert(r.exists, 'bouton absent');
+    assert(r.action === 'ui-relaunchDebug', 'data-action : ' + r.action);
+    assert(r.hidden === false, 'bouton masqué hors mode debug');
+    assert(r.fn === 'function', 'window.relaunchDebug absente');
+    const logPath = await ipc('app:log-path');
+    assert(typeof logPath === 'string' && /logs[\\/]iao\.log$/.test(logPath), 'chemin du journal : ' + logPath);
+  });
+
   console.log('\n--- C7 : Internationalisation ---');
 
   await test('C7.1 IAO_LANG=fr : interface en français (langue source)', async () => {
@@ -471,6 +532,95 @@ async function run() {
       await sleep(300);
       await waitLoaded();
     }
+  });
+
+  // =========================================================================
+  // C8 — Comptes absents au démarrage, restaurés depuis l'instantané (#186)
+  // =========================================================================
+  console.log('\n--- C8 : Restauration des comptes au démarrage ---');
+
+  await test('C8.1 localStorage vidé : modale « Comptes retrouvés », restauration sans import', async () => {
+    // L'instantané de l'ordonnanceur contient les comptes du seed (synchronisés
+    // au démarrage). On simule la perte du localStorage de l'interface.
+    await ipc('scheduler:sync-accounts', seedAccounts);
+    await exec(`localStorage.removeItem('ai_accounts'); localStorage.removeItem('ai_accounts_backup'); localStorage.removeItem('ai_open_tabs'); 'ok'`);
+    win.webContents.reload();
+    await sleep(300);
+    await waitLoaded();
+    await sleep(300);
+    const before = await exec(`({
+      modal: document.getElementById('snapshotRestore') !== null,
+      cards: document.querySelectorAll('#accountsList .account-card').length
+    })`);
+    assert(before.modal, 'modale de restauration absente');
+    assert(before.cards === 0, 'des comptes sont affichés avant la restauration : ' + before.cards);
+    const after = await exec(`new Promise((resolve) => {
+      document.querySelector('#snapshotRestore [data-role="snapshot-restore"]').click();
+      setTimeout(() => resolve({
+        modal: document.getElementById('snapshotRestore') !== null,
+        cards: document.querySelectorAll('#accountsList .account-card').length,
+        stored: JSON.parse(localStorage.getItem('ai_accounts') || '[]').map((a) => a.profile)
+      }), 200);
+    })`);
+    assert(!after.modal, 'modale toujours ouverte après restauration');
+    assert(after.cards === seedAccounts.length, 'cartes après restauration : ' + after.cards);
+    assert(JSON.stringify(after.stored) === JSON.stringify(seedAccounts.map((a) => a.profile)), 'profils enregistrés : ' + after.stored.join(','));
+  });
+
+  await test('C8.2 comptes présents : aucune modale de restauration', async () => {
+    win.webContents.reload();
+    await sleep(300);
+    await waitLoaded();
+    await sleep(300);
+    assert(await exec(`document.getElementById('snapshotRestore') === null`), 'modale affichée alors que les comptes sont présents');
+  });
+
+  // =========================================================================
+  // C9 — Issue #201 : comptes en série, mot de passe masqué, webmail
+  // =========================================================================
+  await test('C9.1 Réglages messagerie enregistrés, création de 2 comptes en série numérotés', async () => {
+    const r = await exec(`(async () => {
+      openSettingsModal();
+      await new Promise(r => setTimeout(r, 200));
+      document.getElementById('settingsMailPrefix').value = 'docker';
+      document.getElementById('settingsMailDomain').value = 'DMathilde.fr';
+      document.getElementById('settingsWebmailUrl').value = 'https://mail.dmathilde.fr';
+      await saveSettings();
+      openSerieModal();
+      const desc = document.getElementById('serieDesc').textContent;
+      const avant = JSON.parse(localStorage.getItem('ai_accounts')).length;
+      document.getElementById('serieNombre').value = '2';
+      await createSerie();
+      const comptes = JSON.parse(localStorage.getItem('ai_accounts'));
+      return { desc, avant, apres: comptes.length, derniers: comptes.slice(-2).map(c => c.name + ' ' + c.email + ' ' + c.profile),
+        ouvert: document.getElementById('serieModal').classList.contains('open'),
+        webmail: document.querySelectorAll('#accountsList [data-action="open-webmail"]').length };
+    })()`);
+    assert(/docker\d+@dmathilde\.fr/.test(r.desc), 'description : ' + r.desc);
+    assert(r.apres === r.avant + 2, 'attendu 2 comptes de plus : ' + r.avant + ' -> ' + r.apres);
+    const n = Number(r.derniers[0].split(' ')[0]);
+    assert(r.derniers[0] === n + ' docker' + n + '@dmathilde.fr profil_' + n, 'compte 1 : ' + r.derniers[0]);
+    assert(r.derniers[1] === (n + 1) + ' docker' + (n + 1) + '@dmathilde.fr profil_' + (n + 1), 'compte 2 : ' + r.derniers[1]);
+    assert(!r.ouvert, 'la fenêtre de création doit se fermer');
+    assert(r.webmail === r.apres, 'un bouton webmail par carte attendu : ' + r.webmail);
+  });
+
+  await test('C9.2 Mot de passe de messagerie : généré, masqué par défaut, bouton œil', async () => {
+    const r = await exec(`(() => {
+      const acc = JSON.parse(localStorage.getItem('ai_accounts')).slice(-1)[0];
+      openModal(acc.id);
+      const pass = document.getElementById('inputMailPassword');
+      const masque = pass.type;
+      generateMailPassword();
+      const apres = { type: pass.type, longueur: pass.value.length };
+      toggleMailPassword();
+      const r = { masque, apres, final: pass.type, titre: document.getElementById('btnToggleMailPassword').title };
+      closeModal();
+      return r;
+    })()`);
+    assert(r.masque === 'password', 'masqué par défaut attendu, trouvé ' + r.masque);
+    assert(r.apres.type === 'text' && r.apres.longueur === 20, 'mot de passe généré visible de 20 caractères : ' + JSON.stringify(r.apres));
+    assert(r.final === 'password' && r.titre === 'Afficher le mot de passe', 'bouton œil : ' + JSON.stringify(r));
   });
 
   // =========================================================================

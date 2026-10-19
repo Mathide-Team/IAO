@@ -40,16 +40,21 @@ const path = require('path');
 const fs = require('fs');
 
 const core = require('./core');
+const taches = require('./taches.js');
 // Adaptateur Claude.ai (lot 18/09/2026, points 7-8, 10-13) : fonctions pures
 // pour la détection d'éléments de page, l'injection de prompt, l'upload de
 // fichier et la collecte de réponse. Chargé côté main.js car c'est ici que
 // se fait l'orchestration CDP/executeJavaScript avec les <webview>.
 const claudeAdapter = require('../lib/claude-adapter');
+const accountsRecovery = require('../lib/accounts-recovery');
 
 class Scheduler {
   constructor(electronApp, electronSession) {
     this._app = electronApp;
     this._session = electronSession;
+    // Issue #199, lot 1 : ancien flux (ZIP, jobs, projets) désactivé par
+    // défaut, remplacé par les tâches programmables (scheduler/taches.js).
+    this.ancienFlux = taches.ancienFluxActif(process.env);
 
     this.dir = path.join(this._app.getPath('userData'), 'scheduler');
     this.jobsPath = path.join(this.dir, 'jobs.json');
@@ -68,6 +73,7 @@ class Scheduler {
     this.projectSeq = 0;
     this.taskSeq = 0;
     this.watchedPartitions = new Set();
+    this._downloadListeners = new Map(); // profil -> { ses, listener } (issue #181)
     // Référence aux webviews ouvertes (pour l'automatisation Claude) :
     // Map<profile, webContents> mise à jour par le renderer via IPC.
     this._openWebviews = new Map();
@@ -113,9 +119,19 @@ class Scheduler {
     if (this._debugEnabled && this._logFn) this._logFn('scheduler', 'debug', message);
   }
 
+  // Issue #181 : IAO démarre TOUJOURS sans l'ordonnanceur. Un état « activé »
+  // persisté par la session précédente est remis à « arrêté » : seul le
+  // bouton « Démarrer » de la fenêtre Ordonnanceur le lance (setEnabled), et
+  // aucune partition n'est surveillée tant qu'il est arrêté.
   init() {
-    this.accountsSnapshot.forEach(acc => this._watchPartition(acc.profile));
-    this._logActivity('Ordonnanceur démarré (' + (this.config.enabled ? 'activé' : 'désactivé') + ').');
+    const wasEnabled = this.config.enabled === true;
+    if (this.config.enabled !== false) {
+      this.config.enabled = false;
+      this._persistConfig();
+    }
+    this._logActivity('Ordonnanceur arrêté au démarrage' +
+      (wasEnabled ? ' (il était démarré à la fermeture)' : '') +
+      ' : le démarrer avec le bouton « Démarrer » de la fenêtre Ordonnanceur.');
   }
 
   // --- Persistance ---------------------------------------------------------
@@ -169,6 +185,18 @@ class Scheduler {
     catch (e) { this._error('échec écriture instantané comptes :', e); }
   }
 
+  // Issue #186 : l'interface signale au démarrage ce qu'elle a lu dans son
+  // localStorage ({ status, count }). La ligne part toujours dans iao.log ; si
+  // l'interface n'a aucun compte alors que l'instantané en contient, les comptes
+  // reconstruits sont renvoyés pour proposer leur restauration.
+  reportStartupAccounts(loaded) {
+    const candidates = accountsRecovery.accountsFromSnapshot(this.accountsSnapshot);
+    const report = accountsRecovery.startupAccountsReport(loaded, candidates.length);
+    if (this._logFn) this._logFn('scheduler', report.level, report.message);
+    else console.log('[scheduler]', report.message);
+    return { offerRestore: report.offerRestore, accounts: report.offerRestore ? candidates : [] };
+  }
+
   _logActivity(message) {
     this.log.push({ ts: new Date().toISOString(), message });
     if (this.log.length > 500) this.log = this.log.slice(-500);
@@ -192,6 +220,7 @@ class Scheduler {
     ).length;
     return {
       config: this.config,
+      ancienFlux: this.ancienFlux,
       jobs: [...this.jobs].sort((a, b) => new Date(b.lastActivityAt) - new Date(a.lastActivityAt)),
       projects: [...this.projects].sort((a, b) => new Date(b.lastActivityAt) - new Date(a.lastActivityAt)),
       counters: { active, waiting, deliveredToday },
@@ -230,15 +259,26 @@ class Scheduler {
       };
     });
     this._persistAccounts();
-    this.accountsSnapshot.forEach(acc => this._watchPartition(acc.profile));
+    // Issue #181 : pas de surveillance tant que l'ordonnanceur est arrêté.
+    if (this.config.enabled) this._watchAllPartitions();
   }
 
   // --- Configuration ---------------------------------------------------------
 
+  // Bouton « Démarrer / Arrêter » (issue #181) : démarrer branche la
+  // surveillance des téléchargements sur chaque profil connu, arrêter la
+  // débranche (aucun écouteur ne reste actif).
   setEnabled(enabled) {
+    if (enabled && !this.ancienFlux) {
+      this._logActivity('Ancien ordonnanceur désactivé (#199) : démarrage refusé. ' +
+        'IAO_ORDONNANCEUR_ANCIEN=1 le réactive.');
+      return this.config;
+    }
     this.config.enabled = !!enabled;
     this._persistConfig();
-    this._logActivity('Ordonnanceur ' + (this.config.enabled ? 'activé' : 'mis en pause') + '.');
+    if (this.config.enabled) this._watchAllPartitions();
+    else this._unwatchAllPartitions();
+    this._logActivity('Ordonnanceur ' + (this.config.enabled ? 'démarré' : 'arrêté') + '.');
     return this.config;
   }
 
@@ -275,14 +315,34 @@ class Scheduler {
     this.watchedPartitions.add(profile);
     try {
       const ses = this._session.fromPartition('persist:' + profile);
-      ses.on('will-download', (event, item, webContents) => {
+      const listener = (event, item, webContents) => {
         try { this._onWillDownload(profile, item, webContents); }
         catch (e) { this._error('erreur de traitement d\'un téléchargement :', e); }
-      });
+      };
+      ses.on('will-download', listener);
+      this._downloadListeners.set(profile, { ses, listener });
       this._logActivity('Surveillance des téléchargements activée pour le profil « ' + profile + ' ».');
     } catch (e) {
       this._error('échec de la surveillance du profil', profile, e);
     }
+  }
+
+  _watchAllPartitions() {
+    this.accountsSnapshot.forEach(acc => this._watchPartition(acc.profile));
+  }
+
+  // Issue #181 : retire les écouteurs posés par _watchPartition. Un échec de
+  // retrait est journalisé ; le profil est oublié dans tous les cas (le
+  // garde-fou de _onWillDownload ignore de toute façon un ordonnanceur arrêté).
+  _unwatchAllPartitions() {
+    const count = this.watchedPartitions.size;
+    this._downloadListeners.forEach(({ ses, listener }, profile) => {
+      try { ses.removeListener('will-download', listener); }
+      catch (e) { this._error('échec de l\'arrêt de la surveillance du profil', profile, e); }
+    });
+    this._downloadListeners.clear();
+    this.watchedPartitions.clear();
+    if (count) this._logActivity('Surveillance des téléchargements arrêtée (' + count + ' profil(s)).');
   }
 
   _onWillDownload(profile, item, webContents) {
@@ -1149,6 +1209,7 @@ function registerSchedulerIPC(ipcMainRef, scheduler, getWin) {
 
   ipcMainRef.handle('scheduler:get-state', safe(() => scheduler.getState()));
   ipcMainRef.handle('scheduler:sync-accounts', safe((accounts) => { scheduler.syncAccounts(accounts); return true; }));
+  ipcMainRef.handle('scheduler:accounts-startup', safe((loaded) => scheduler.reportStartupAccounts(loaded)));
   ipcMainRef.handle('scheduler:set-enabled', safe((enabled) => scheduler.setEnabled(enabled)));
   ipcMainRef.handle('scheduler:set-config', safe((partial) => scheduler.setConfig(partial)));
   ipcMainRef.handle('scheduler:pick-downloads-dir', safe(() => scheduler.pickDownloadsDir(getWin())));

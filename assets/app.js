@@ -103,6 +103,8 @@
       if (!debugMode) return;
       const badge = document.getElementById('debugBadge');
       if (badge) badge.classList.remove('hidden');
+      const relaunch = document.getElementById('btnRelaunchDebug');
+      if (relaunch) relaunch.classList.add('hidden'); // #187 : déjà en mode debug
       dbg('demarrage', 'mode debug actif dans l\'interface');
     }).catch(() => { /* canal absent (ancienne version de main.js) : mode normal */ });
 
@@ -425,8 +427,10 @@
     // ai_accounts est corrompu (le cas échéant on propose la restauration plus bas).
     let dataCorrupt = false;
     let accounts = [];
+    let accountsLoadStatus = 'empty'; // issue #186 : signalé à main.js pour iao.log
     (function loadAccounts() {
       const r = readJSON(STORE_KEY);
+      accountsLoadStatus = r.status;
       if (r.status === 'ok' && Array.isArray(r.data)) accounts = r.data;
       else if (r.status === 'corrupt') dataCorrupt = true;
       // 'empty' ou JSON valide non-tableau -> accounts reste []
@@ -699,6 +703,7 @@
                 <div class="account-email"><span class="account-email-copy" data-action="copy-email" data-acc="${id}" title="${escapeHtml(_('Cliquer pour copier l\'e-mail'))}">${escapeHtml(acc.email)}</span> • ${escapeHtml(acc.profile)}</div>
               </div>
               <div class="account-actions">
+                ${currentSettings && currentSettings.webmailUrl ? `<button class="btn btn--icon" data-action="open-webmail" data-acc="${id}" title="${escapeHtml(_('Ouvrir le webmail (adresse copiée)'))}"><span class="ic" data-icon="envelope"></span></button>` : ''}
                 <button class="btn btn--icon" data-action="edit" data-acc="${id}" title="${escapeHtml(_('Modifier le compte'))}"><span class="ic" data-icon="pen"></span></button>
                 <button class="btn btn--icon" data-action="delete" data-acc="${id}" title="${escapeHtml(_('Supprimer le compte'))}"><span class="ic icon-danger" data-icon="trash"></span></button>
               </div>
@@ -764,6 +769,11 @@
       return window.iaoAPI.ipcInvoke('app:toggle-devtools').catch(() => false);
     }
 
+    // Issue #187 : redémarre IAO avec --iao-debug (canal app:relaunch-debug).
+    window.relaunchDebug = function() {
+      return window.iaoAPI.ipcInvoke('app:relaunch-debug').catch(() => false);
+    }
+
     window.toggleExplorer = function() { document.getElementById('fileExplorer').classList.toggle('collapsed'); }
     window.toggleIdePanel = function() {
       const p = document.getElementById('idePanel');
@@ -774,6 +784,31 @@
 
     // Ouvre un service pour un compte donné : réutilise l'onglet existant s'il
     // y en a déjà un pour ce couple (compte, service), sinon en crée un nouveau.
+    // Issue #199, lot 3 : tâches programmables. Ouvre (ou réutilise) l'onglet
+    // (compte, service) ; `url` : nouvelle session dans un onglet déjà ouvert.
+    function ouvrirOngletTache(profil, svcId, url) {
+      const acc = accounts.find(a => a.profile === profil);
+      if (!acc || !SERVICES.find(s => s.id === svcId)) return false;
+      const avant = tabs.find(t => t.accId === acc.id && t.svcId === svcId);
+      openService(acc.id, svcId);
+      const wv = avant && url && avant.paneEl ? avant.paneEl.querySelector('webview') : null;
+      if (wv) {
+        try { wv.loadURL(url); } catch (e) { dbg('taches', 'nouvelle session impossible', e && e.message); }
+      }
+      return !!tabs.find(t => t.accId === acc.id && t.svcId === svcId);
+    }
+    (function demarrerTachesProgrammables() {
+      const passage = window.iaoTachesRunner.creerMinuterie({
+        invoke: (...args) => ipcRenderer.invoke(...args),
+        comptes: () => accounts.map(a => ({ profile: a.profile, services: Array.isArray(a.services) ? a.services : [] })),
+        ouvrirOnglet: ouvrirOngletTache,
+        attendre: (ms) => new Promise(resolve => setTimeout(resolve, ms))
+      });
+      setInterval(() => {
+        passage().catch(e => console.warn('[taches] passage en échec :', e && e.message));
+      }, window.iaoTachesRunner.INTERVALLE_MS);
+    })();
+
     window.openService = function(accId, svcId) {
       const acc = accounts.find(a => a.id === accId);
       const svc = SERVICES.find(s => s.id === svcId);
@@ -1082,7 +1117,11 @@
       if (!tab) return;
       const svc = SERVICES.find(s => s.id === tab.svcId);
       const webview = tab.paneEl.querySelector('webview');
-      if (webview && svc) webview.loadURL(svc.url);
+      // Issue #185 : loadURL() rejette sa promesse sur ERR_ABORTED (-3) quand le
+      // site redirige (page de connexion) ; ce n'est pas une erreur.
+      if (webview && svc) {
+        webview.loadURL(svc.url).catch((e) => dbg('onglets', 'retour à l\'accueil interrompu', tabId, e && e.message));
+      }
     }
 
     // Déconnexion : purge la partition Electron du compte (cookies + stockage
@@ -1304,7 +1343,47 @@
         while (used.has('profil_' + n)) n++;
         document.getElementById('inputProfile').value = 'profil_' + n;
       }
+      // Issue #201 : mot de passe de messagerie, masqué ; relu depuis le coffre chiffré.
+      const pass = document.getElementById('inputMailPassword');
+      pass.value = '';
+      afficherMotDePasse(false);
+      if (accId) {
+        const profil = document.getElementById('inputProfile').value;
+        ipcRenderer.invoke('secrets:get', profil).then((v) => {
+          if (typeof v === 'string' && document.getElementById('editId').value === accId) pass.value = v;
+        }).catch(() => {});
+      }
       modal.classList.add('open');
+    }
+
+    function afficherMotDePasse(visible) {
+      const pass = document.getElementById('inputMailPassword');
+      const btn = document.getElementById('btnToggleMailPassword');
+      pass.type = visible ? 'text' : 'password';
+      const titre = visible ? _('Masquer le mot de passe') : _('Afficher le mot de passe');
+      btn.title = titre;
+      btn.setAttribute('aria-label', titre);
+      btn.innerHTML = '<span class="ic" data-icon="' + (visible ? 'eye-slash' : 'eye') + '"></span>';
+      hydrateIcons(btn);
+    }
+    window.toggleMailPassword = function() {
+      afficherMotDePasse(document.getElementById('inputMailPassword').type === 'password');
+    };
+    function motDePasseAleatoire() {
+      return window.iaoComptesSerie.genererMotDePasse((n) => crypto.getRandomValues(new Uint8Array(n)));
+    }
+    window.generateMailPassword = function() {
+      document.getElementById('inputMailPassword').value = motDePasseAleatoire();
+      afficherMotDePasse(true);
+    };
+    // Enregistre le mot de passe dans le coffre ; message si le chiffrement manque.
+    async function enregistrerMotDePasse(profil, valeur) {
+      const r = await ipcRenderer.invoke('secrets:set', profil, valeur).catch(e => ({ ok: false, erreur: e && e.message }));
+      if (r && r.ok) return true;
+      showToast(r && r.erreur === 'chiffrement-indisponible'
+        ? _('Mot de passe non enregistré : le trousseau du système est indisponible')
+        : _('Mot de passe non enregistré'), 'warning');
+      return false;
     }
     window.closeModal = function() { document.getElementById('accountModal').classList.remove('open'); }
 
@@ -1507,7 +1586,62 @@
       }
       saveAccounts(accounts); // écrit + backup de la génération précédente (chantier C)
       renderAccounts();
+      const motDePasse = document.getElementById('inputMailPassword').value;
+      if (motDePasse) enregistrerMotDePasse(profile, motDePasse);
       closeModal();
+    }
+
+    // Issue #201 : création de comptes en série (<préfixe><numéro>@<domaine>).
+    window.openSerieModal = function() {
+      const s = currentSettings || {};
+      if (!s.mailDomain) {
+        showToast(_('Renseignez d\'abord le domaine des adresses e-mail dans les réglages'), 'warning');
+        return openSettingsModal();
+      }
+      const suivant = window.iaoComptesSerie.plusGrandNumero(accounts) + 1;
+      document.getElementById('serieDesc').textContent = _('Premier compte : {nom}, {email}. Un mot de passe de messagerie aléatoire est généré pour chacun.', {
+        nom: String(suivant), email: (s.mailPrefix || '') + suivant + '@' + s.mailDomain
+      });
+      document.getElementById('serieNombre').value = '1';
+      document.getElementById('serieModal').classList.add('open');
+    };
+    window.closeSerieModal = function() { document.getElementById('serieModal').classList.remove('open'); };
+    window.createSerie = async function() {
+      const s = currentSettings || {};
+      const r = window.iaoComptesSerie.comptesEnSerie({
+        comptes: accounts, nombre: Number(document.getElementById('serieNombre').value),
+        prefixe: s.mailPrefix, domaine: s.mailDomain, services: SERVICES.map(x => x.id), maintenant: Date.now()
+      });
+      if (!r.ok) {
+        return showToast(r.erreur === 'nombre'
+          ? _('Nombre de comptes : de 1 à {max}', { max: window.iaoComptesSerie.SERIE_MAX })
+          : _('Renseignez d\'abord le domaine des adresses e-mail dans les réglages'), 'error');
+      }
+      r.comptes.forEach((c) => {
+        accounts.push(Object.assign(c, {
+          color: COLORS[accounts.length % COLORS.length],
+          cooldowns: Object.fromEntries(SERVICES.map(x => [x.id, 0])),
+          automation: { enabled: true, lastUsedAt: 0, lastAutomationAt: 0 }
+        }));
+      });
+      saveAccounts(accounts);
+      renderAccounts();
+      closeSerieModal();
+      let chiffres = 0;
+      for (const c of r.comptes) {
+        if (await enregistrerMotDePasse(c.profile, motDePasseAleatoire())) chiffres++;
+        else break; // trousseau indisponible : inutile d'insister
+      }
+      showToast(_('{n} compte(s) créé(s), {m} mot(s) de passe enregistré(s)', { n: r.comptes.length, m: chiffres }));
+    };
+
+    // Issue #201 : webmail (URL des réglages, ouverte par le process principal) ;
+    // l'adresse du compte est copiée pour la saisir dans Roundcube.
+    function openWebmail(accId) {
+      copyAccountEmail(accId);
+      ipcRenderer.invoke('app:open-webmail').then((ok) => {
+        if (ok !== true) showToast(_('Adresse du webmail non configurée dans les réglages'), 'warning');
+      }).catch(() => showToast(_('Ouverture du webmail impossible'), 'error'));
     }
 
     // Issue #138 : clic sur l'e-mail d'un compte -> presse-papiers + toast.
@@ -1647,6 +1781,7 @@
         case 'delete':          openDeleteModal(accId); break;
         case 'toggle-collapse': toggleCardCollapse(accId); break;
         case 'copy-email':      copyAccountEmail(accId); break;
+        case 'open-webmail':    openWebmail(accId); break;
       }
     });
 
@@ -1944,6 +2079,7 @@
       try {
         var settings = await ipcRenderer.invoke('settings:load');
         applySettings(settings);
+        renderAccounts(); // bouton webmail selon le réglage (issue #201)
         // Remplir les champs du modal
         document.getElementById('settingsEditorFontSize').value = settings.editorFontSize;
         document.getElementById('settingsTheme').value = settings.theme;
@@ -1951,6 +2087,9 @@
         document.getElementById('settingsConfirmBeforeClose').checked = settings.confirmBeforeClose;
         document.getElementById('settingsShowAutomationWindows').checked = settings.showAutomationWindows;
         document.getElementById('settingsStartWithLastSession').checked = settings.startWithLastSession;
+        document.getElementById('settingsMailPrefix').value = settings.mailPrefix || '';
+        document.getElementById('settingsMailDomain').value = settings.mailDomain || '';
+        document.getElementById('settingsWebmailUrl').value = settings.webmailUrl || '';
         loadedLanguage = settings.language || 'auto';
         const langSelect = document.getElementById('settingsLanguage');
         if (langSelect && langSelect.querySelector('option[value="' + loadedLanguage + '"]')) langSelect.value = loadedLanguage;
@@ -1971,12 +2110,16 @@
         confirmBeforeClose: document.getElementById('settingsConfirmBeforeClose').checked,
         showAutomationWindows: document.getElementById('settingsShowAutomationWindows').checked,
         startWithLastSession: document.getElementById('settingsStartWithLastSession').checked,
-        language: (document.getElementById('settingsLanguage') || { value: loadedLanguage }).value
+        language: (document.getElementById('settingsLanguage') || { value: loadedLanguage }).value,
+        mailPrefix: document.getElementById('settingsMailPrefix').value,
+        mailDomain: document.getElementById('settingsMailDomain').value,
+        webmailUrl: document.getElementById('settingsWebmailUrl').value
       };
       try {
         var result = await ipcRenderer.invoke('settings:save', raw);
         if (result && result.ok) {
           applySettings(result.settings);
+          renderAccounts(); // bouton webmail selon le réglage (issue #201)
           const languageChanged = result.settings.language !== loadedLanguage;
           loadedLanguage = result.settings.language;
           showToast(languageChanged
@@ -2002,7 +2145,19 @@
 
     function renderSchedulerState(state) {
       var cfg = state.config;
-      document.getElementById('schedToggleInput').checked = !!cfg.enabled;
+      // Issue #199, lot 1 : ancien flux masqué sauf IAO_ORDONNANCEUR_ANCIEN=1.
+      var ancien = state.ancienFlux !== false;
+      document.getElementById('schedLegacy').hidden = !ancien;
+      document.getElementById('schedRun').hidden = !ancien;
+      document.getElementById('schedLegacyOff').hidden = ancien;
+      // Issue #181 : bouton explicite, l'ordonnanceur ne démarre jamais seul.
+      var startStop = document.getElementById('schedStartStopBtn');
+      startStop.textContent = cfg.enabled ? _('Arrêter') : _('Démarrer');
+      startStop.dataset.enabled = cfg.enabled ? '1' : '0';
+      startStop.classList.toggle('btn--primary', !cfg.enabled);
+      var runState = document.getElementById('schedRunState');
+      runState.textContent = cfg.enabled ? _('En marche') : _('Arrêté');
+      runState.classList.toggle('sched-run__state--on', !!cfg.enabled);
       document.getElementById('statSchedActive').textContent = state.counters.active;
       document.getElementById('statSchedWaiting').textContent = state.counters.waiting;
       document.getElementById('statSchedDelivered').textContent = state.counters.deliveredToday;
@@ -2066,9 +2221,9 @@
       hydrateIcons(document.getElementById('schedulerModal'));
     }
 
-    document.getElementById('schedToggleInput').addEventListener('change', async (e) => {
+    document.getElementById('schedStartStopBtn').addEventListener('click', async (e) => {
       try {
-        const res = await ipcRenderer.invoke('scheduler:set-enabled', e.target.checked);
+        const res = await ipcRenderer.invoke('scheduler:set-enabled', e.currentTarget.dataset.enabled !== '1');
         if (res && res.error) throw new Error(res.error);
         refreshScheduler();
       } catch (err) { showToast(_("Impossible de modifier l'état de l'ordonnanceur"), 'error'); }
@@ -2376,7 +2531,64 @@
     // Pousse un premier instantané des comptes au démarrage : sans ça, main.js
     // n'a aucune info sur les profils tant que l'utilisateur ne modifie pas un
     // compte (saveAccounts n'aurait pas encore été rappelée).
-    try { ipcRenderer.invoke('scheduler:sync-accounts', accounts).catch(() => {}); } catch (_) { /* ignore */ }
+    // Issue #186 : une liste vide au démarrage n'écrase plus l'instantané de
+    // l'ordonnanceur ; c'est lui qui permet de restaurer les comptes perdus.
+    if (accounts.length > 0) {
+      try { ipcRenderer.invoke('scheduler:sync-accounts', accounts).catch(() => {}); } catch (_) { /* ignore */ }
+    }
+
+    // Issue #186 : le nombre de comptes lus est écrit dans iao.log. Si
+    // l'interface n'en a aucun alors que l'ordonnanceur en connaît, on propose
+    // de les restaurer (sessions conservées : partitions persist:<profil>).
+    ipcRenderer.invoke('scheduler:accounts-startup', { status: accountsLoadStatus, count: accounts.length })
+      .then((res) => {
+        if (res && res.offerRestore && Array.isArray(res.accounts) && res.accounts.length > 0 && accounts.length === 0) {
+          showSnapshotRestoreUI(res.accounts);
+        }
+      })
+      .catch(() => { /* canal absent : pas de proposition */ });
+
+    // Modale de restauration depuis l'instantané de l'ordonnanceur (#186).
+    // textContent uniquement : aucune donnée interprétée en HTML (invariant 1).
+    function showSnapshotRestoreUI(restored) {
+      const overlay = document.createElement('div');
+      overlay.className = 'modal-overlay open';
+      overlay.id = 'snapshotRestore';
+      const box = document.createElement('div');
+      box.className = 'modal';
+      const title = document.createElement('div');
+      title.className = 'modal__title';
+      title.textContent = _('Comptes retrouvés');
+      const desc = document.createElement('div');
+      desc.className = 'modal__desc';
+      desc.textContent = _("Aucun compte n'a été lu au démarrage, mais l'ordonnanceur en connaît {count}. Les restaurer ? Les sessions des services sont conservées ; les adresses e-mail sont à compléter depuis « Modifier le compte ».", { count: restored.length });
+      const actions = document.createElement('div');
+      actions.className = 'modal__actions';
+      const close = () => overlay.remove();
+      const cancel = document.createElement('button');
+      cancel.className = 'btn';
+      cancel.textContent = _('Ignorer');
+      cancel.addEventListener('click', close);
+      const restore = document.createElement('button');
+      restore.className = 'btn btn--primary';
+      restore.setAttribute('data-role', 'snapshot-restore');
+      restore.textContent = _('Restaurer les comptes');
+      restore.addEventListener('click', () => {
+        accounts = restored;
+        migrateOldAccounts();   // services et cooldowns
+        saveAccounts(accounts); // resynchronise aussi l'ordonnanceur
+        renderAccounts();
+        close();
+        showToast(_('{count} compte(s) restauré(s)', { count: restored.length }));
+      });
+      actions.appendChild(cancel);
+      actions.appendChild(restore);
+      box.appendChild(title);
+      box.appendChild(desc);
+      box.appendChild(actions);
+      overlay.appendChild(box);
+      document.body.appendChild(overlay);
+    }
 
     // Récupération des données (chantier C) : si ai_accounts était illisible au
     // démarrage, on propose de restaurer la sauvegarde plutôt que de perdre en
@@ -2462,6 +2674,7 @@ const UI_ACTIONS = {
   'ui-toggleExplorer': 'toggleExplorer',
   'ui-toggleIdePanel': 'toggleIdePanel',
   'ui-toggleDevTools': 'toggleDevTools',
+  'ui-relaunchDebug': 'relaunchDebug',
   'ui-openPalette': 'openPalette',
   'ui-openModal': 'openModal',
   'ui-openHelpModal': 'openHelpModal',
@@ -2484,7 +2697,12 @@ const UI_ACTIONS = {
   'ui-closeHelpModal': 'closeHelpModal',
   'ui-closeSchedulerModal': 'closeSchedulerModal',
   'ui-closeSettingsModal': 'closeSettingsModal',
-  'ui-saveSettings': 'saveSettings'
+  'ui-saveSettings': 'saveSettings',
+  'ui-toggleMailPassword': 'toggleMailPassword',
+  'ui-generateMailPassword': 'generateMailPassword',
+  'ui-openSerieModal': 'openSerieModal',
+  'ui-closeSerieModal': 'closeSerieModal',
+  'ui-createSerie': 'createSerie'
 };
 const INPUT_ACTIONS = {
   'filterPalette': 'filterPalette',

@@ -41,9 +41,10 @@ jobs:
       - name: Installation de gettext
         run: |
           SUDO=""
-          if [ "$(id -u)" != "0" ]; then SUDO="sudo"; fi
-          command -v msgfmt >/dev/null || { $SUDO apt-get update && $SUDO apt-get install -y --no-install-recommends gettext; }
-          msgfmt --version | head -1
+          # sudo -n : échoue tout de suite si un mot de passe est demandé (VM `ubuntu`)
+          if [ "$(id -u)" != "0" ]; then SUDO="sudo -n"; fi
+          { command -v msgfmt && command -v xgettext && command -v msgmerge; } >/dev/null || { $SUDO apt-get update && $SUDO apt-get install -y --no-install-recommends gettext; }
+          msgfmt --version | head -1; xgettext --version | head -1
 
       - name: Vérification des catalogues (scripts/i18n-update.sh --check)
         id: check
@@ -76,8 +77,9 @@ jobs:
       - name: Installation de gettext
         run: |
           SUDO=""
-          if [ "$(id -u)" != "0" ]; then SUDO="sudo"; fi
-          command -v msgfmt >/dev/null || { $SUDO apt-get update && $SUDO apt-get install -y --no-install-recommends gettext; }
+          # sudo -n : échoue tout de suite si un mot de passe est demandé (VM `ubuntu`)
+          if [ "$(id -u)" != "0" ]; then SUDO="sudo -n"; fi
+          { command -v msgfmt && command -v xgettext && command -v msgmerge; } >/dev/null || { $SUDO apt-get update && $SUDO apt-get install -y --no-install-recommends gettext; }
 
       - name: Régénération de lang/
         run: scripts/i18n-update.sh

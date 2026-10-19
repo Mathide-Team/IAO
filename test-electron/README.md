@@ -92,7 +92,7 @@ Monaco).
 
 1. Le binaire `dist/IAO-linux-x64/IAO` lancé sous xvfb
    (HOME et XDG_CONFIG_HOME isolés) reste vivant (pas de crash au boot).
-2. `main.js` s'exécute : « Ordonnanceur démarré » journalisé (console et/ou
+2. `main.js` s'exécute : « Ordonnanceur arrêté au démarrage » journalisé (console et/ou
    `activity.json` du userData isolé).
 3. Terminaison propre sur SIGTERM.
 
