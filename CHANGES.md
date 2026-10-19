@@ -16,8 +16,11 @@
   Erreurs du service affichées dans le formulaire sans le fermer ; la saisie
   survit au rafraîchissement de 4 s (le formulaire n'est jamais reconstruit
   par le polling). L'édition préserve l'état d'exécution (le service garde
-  `derniereExecution`/`indexRotation`) et les valeurs à la seconde près
-  (espacement, dates).
+  `derniereExecution`/`indexRotation`) ET les valeurs exactes des champs
+  inchangés : un espacement en ms non rond (90050) ou une date à la
+  milliseconde ne sont ni arrondis ni tronqués (`preserverValeursNonModifiees`,
+  testé). Sous-titre de la modale adapté au flux actif ; dates formatées
+  dans la langue active (`document.documentElement.lang`).
 - `lib/taches-ui.js` (pur, testé par `test/taches-ui.test.js`) : conversions
   sans perte à la seconde près `datetime-local` <-> ISO (heure locale, jamais
   `toISOString().slice()`), espacement secondes <-> ms, mapping

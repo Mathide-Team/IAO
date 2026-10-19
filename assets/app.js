@@ -2071,10 +2071,11 @@
       if (!iso) return '—';
       var d = new Date(iso);
       if (isNaN(d.getTime())) return '—';
-      // Langue active de l'application (lib/i18n.js) — pas de français codé
-      // en dur dans le formatage.
-      var langue = (window.IAO_I18N && window.IAO_I18N.locale) || 'fr';
-      return d.toLocaleString(langue, { dateStyle: 'short', timeStyle: 'short' });
+      // Langue active de l'application : document.documentElement.lang est
+      // mis à jour par le chargeur de catalogue (i18n:catalog -> « fr » reste
+      // la langue source). Pas de français codé en dur dans le formatage.
+      return d.toLocaleString(document.documentElement.lang || 'fr',
+        { dateStyle: 'short', timeStyle: 'short' });
     }
 
     // Rafraîchit liste + historique. Le formulaire n'est JAMAIS reconstruit
@@ -2138,10 +2139,15 @@
     // Formulaire de création / édition. La valeur du champ « id » (hidden au
     // sens DOM : stockée dans une propriété) distingue création et édition.
     var formulaireTacheId = null;
+    var formulaireTacheOriginale = null;
     function ouvrirFormulaireTache(tache) {
       var form = document.getElementById('tacheForm');
       var champs = window.iaoTachesUi.tacheVersForm(tache || {});
       formulaireTacheId = champs.id;
+      // Tâche d'origine (édition) : les valeurs que le formulaire ne peut pas
+      // représenter exactement (ms) sont préservées à l'enregistrement si le
+      // champ correspondant n'a pas été modifié (lib/taches-ui.js).
+      formulaireTacheOriginale = tache || null;
       document.getElementById('tacheFormNom').value = champs.nom;
       document.getElementById('tacheFormComptesMode').value = champs.comptesMode;
       construireChoixComptes(champs.comptesProfils);
@@ -2164,6 +2170,7 @@
     function fermerFormulaireTache() {
       document.getElementById('tacheForm').hidden = true;
       formulaireTacheId = null;
+      formulaireTacheOriginale = null;
     }
 
     // Cases à cocher des comptes : seuls les comptes AVEC le service Claude
@@ -2246,6 +2253,10 @@
       var conv = window.iaoTachesUi.formVersTache(champs);
       var erreurs = conv.ok ? [] : conv.erreurs.slice();
       if (conv.ok) {
+        // Édition : les champs inchangés gardent leur valeur EXACTE du modèle
+        // (ms) plutôt que la conversion arrondie du formulaire.
+        conv.tache = window.iaoTachesUi.preserverValeursNonModifiees(
+          conv.tache, formulaireTacheOriginale, champs);
         try {
           var res = await ipcRenderer.invoke('taches:save', conv.tache);
           if (res && res.error) erreurs = [res.error];
@@ -2479,6 +2490,14 @@
       // bandeau « en cours de développement » du lot 1, désormais obsolète).
       document.getElementById('schedTaches').hidden = ancien;
       document.getElementById('schedLegacyOff').hidden = true;
+      // Sous-titre adapté au flux actif (msgids marqués N_(), traduits au
+      // rendu — le catalogue charge après app.js).
+      var SOUS_TITRES_ORDONNANCEUR = {
+        ancien: N_('Détection des ZIP livrés par les onglets IA, reprise par profil.'),
+        taches: N_('Tâches programmables : envoyez un prompt à Claude à date fixe ou périodiquement.')
+      };
+      document.getElementById('schedSubtitle').textContent =
+        _(ancien ? SOUS_TITRES_ORDONNANCEUR.ancien : SOUS_TITRES_ORDONNANCEUR.taches);
       // Issue #181 : bouton explicite, l'ordonnanceur ne démarre jamais seul.
       var startStop = document.getElementById('schedStartStopBtn');
       startStop.textContent = cfg.enabled ? _('Arrêter') : _('Démarrer');

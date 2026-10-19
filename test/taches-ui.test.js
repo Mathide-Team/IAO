@@ -224,3 +224,62 @@ test('datetime-local : secondes conservées à l’aller-retour', () => {
   assert.ok(iso);
   assert.strictEqual(ui.isoVersDatetimeLocal(iso), '2026-10-19T14:30:25');
 });
+
+// --- Préservation des valeurs non modifiables finement (édition) ---
+
+test('édition : valeurs non rondes préservées quand les champs ne changent pas', () => {
+  // Espacement 90050 ms (pas un multiple de 1000) et date avec millisecondes :
+  // le formulaire ne peut pas les représérer exactement — une édition du seul
+  // nom ne doit NI arrondir l'espacement NI tronquer la date.
+  const originale = {
+    id: 't1', nom: 'Veille', fournisseur: 'claude',
+    comptes: { mode: 'liste', profils: ['alice'] },
+    repartition: { mode: 'tous', espacementMs: 90050 },
+    nouvelleSession: false, prompt: 'p',
+    programmation: { type: 'periodique', tous: 2, unite: 'jour',
+      depuis: '2026-10-20T06:30:00.500Z' },
+    active: true
+  };
+  const form = ui.tacheVersForm(originale);
+  // L'utilisateur ne change QUE le nom.
+  const r = ui.formVersTache(Object.assign({}, form, { nom: 'Renommée' }));
+  assert.ok(r.ok, JSON.stringify(r.erreurs));
+  const preservée = ui.preserverValeursNonModifiees(r.tache, originale, form);
+  assert.strictEqual(preservée.repartition.espacementMs, 90050,
+    'l’espacement de 90050 ms doit rester exact');
+  assert.strictEqual(preservée.programmation.depuis, '2026-10-20T06:30:00.500Z',
+    'la date avec millisecondes doit rester exacte');
+  assert.strictEqual(preservée.nom, 'Renommée');
+});
+
+test('édition : champ réellement modifié -> conversion appliquée', () => {
+  const originale = {
+    id: 't1', nom: 'Veille', fournisseur: 'claude',
+    comptes: { mode: 'liste', profils: ['alice'] },
+    repartition: { mode: 'tous', espacementMs: 90050 },
+    nouvelleSession: false, prompt: 'p',
+    programmation: { type: 'periodique', tous: 2, unite: 'jour',
+      depuis: '2026-10-20T06:30:00.500Z' },
+    active: true
+  };
+  const form = ui.tacheVersForm(originale);
+  // L'utilisateur change l'espacement affiché (90 -> 120 s) et la date.
+  const modifie = Object.assign({}, form, { espacementSecondes: 120 });
+  const r = ui.formVersTache(modifie);
+  assert.ok(r.ok);
+  const preservée = ui.preserverValeursNonModifiees(r.tache, originale, modifie);
+  assert.strictEqual(preservée.repartition.espacementMs, 120000, 'nouvel espacement converti');
+  // La date, elle, n'a pas changé -> ISO d'origine conservé.
+  assert.strictEqual(preservée.programmation.depuis, '2026-10-20T06:30:00.500Z');
+});
+
+test('préservation : création (pas d’originale) -> conversion inchangée', () => {
+  const r = ui.formVersTache({
+    nom: 'N', prompt: 'p', comptesMode: 'tous', repartitionMode: 'tous',
+    espacementSecondes: 10, programmationType: 'unique',
+    programmationLe: '2026-10-21T09:15', active: true
+  });
+  assert.ok(r.ok);
+  const preservée = ui.preserverValeursNonModifiees(r.tache, null, {});
+  assert.strictEqual(preservée.repartition.espacementMs, 10000);
+});

@@ -1199,6 +1199,10 @@ msgid "Erreur lors de la sauvegarde des réglages"
 msgstr ""
 
 #: assets/app.js
+msgid "Tâches programmables : envoyez un prompt à Claude à date fixe ou périodiquement."
+msgstr ""
+
+#: assets/app.js
 msgid "Arrêter"
 msgstr ""
 

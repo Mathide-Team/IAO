@@ -631,6 +631,18 @@ async function run() {
   // =========================================================================
   console.log('\n--- C10 : Tâches programmables (lot 4, issue #199) ---');
 
+  // Dates futures calculées à l'exécution : une date fixe deviendrait passée
+  // et la minuterie pourrait lancer les tâches PENDANT les scénarios (garde
+  // occupée, exécutions concurrentes). +2 jours garantit « pas encore due ».
+  const dansDeuxJoursLocal = () => {
+    const d = new Date(Date.now() + 2 * 86400000);
+    const p = n => String(n).padStart(2, '0');
+    return d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate()) +
+      'T' + p(d.getHours()) + ':' + p(d.getMinutes());
+  };
+  const dansDeuxJoursISO = () => new Date(Date.now() + 2 * 86400000).toISOString();
+
+
   await test('C10.1 modale ordonnanceur : interface des tâches visible, liste vide', async () => {
     await exec('window.openSchedulerModal()');
     await sleep(800);
@@ -653,7 +665,7 @@ async function run() {
       sel.value = 'liste'; sel.dispatchEvent(new Event('change'));
       document.querySelector('#tacheFormComptesChoix input[data-profile="profil_1"]').checked = true;
       document.getElementById('tacheFormPrompt').value = 'Dis bonjour';
-      document.getElementById('tacheFormProgDepuis').value = '2026-10-20T08:00';
+      document.getElementById('tacheFormProgDepuis').value = '${dansDeuxJoursLocal()}';
       document.getElementById('tacheFormProgTous').value = '2';
       document.getElementById('tacheFormProgUnite').value = 'heure';
       document.getElementById('tacheFormActive').checked = true;
@@ -723,17 +735,23 @@ async function run() {
     const { ipcMain } = require('electron');
     // (removeHandler au singulier : version d'Electron du dépôt.)
     ipcMain.removeHandler('scheduler:run-claude-job');
-    ipcMain.handle('scheduler:run-claude-job', async () => ({ ok: true, sent: true }));
-    // Tâche sur un compte éligible (profil_1 a le service Claude).
+    const envoisSimules = [];
+    ipcMain.handle('scheduler:run-claude-job', async (evenement, profil, prompt) => {
+      envoisSimules.push({ profil, prompt });
+      return { ok: true, sent: true };
+    });
+    // Tâche sur un compte éligible (profil_1 a le service Claude) —
+    // échéance future calculée (jamais due pendant le scénario).
     const cree = await ipc('taches:save', {
       nom: 'Avec compte', fournisseur: 'claude',
       comptes: { mode: 'liste', profils: ['profil_1'] },
       repartition: { mode: 'rotation', espacementMs: 0 },
-      nouvelleSession: true, prompt: 'p',
-      programmation: { type: 'periodique', tous: 1, unite: 'jour', depuis: '2026-10-20T08:00:00.000Z' },
+      nouvelleSession: true, prompt: 'prompt manuel C10.6',
+      programmation: { type: 'periodique', tous: 1, unite: 'jour', depuis: dansDeuxJoursISO() },
       active: true
     });
     assert(cree && cree.ok, 'création IPC échouée : ' + JSON.stringify(cree));
+    const idAvecCompte = cree.tache.id;
     await sleep(4500); // laisser le polling rafraîchir la liste
     const cliquable = await exec(`
       (function(){
@@ -746,9 +764,21 @@ async function run() {
     `);
     assert(cliquable === 'cliqué', 'bouton Exécuter maintenant introuvable : ' + cliquable);
     await sleep(1500);
-    const historique = await exec('document.getElementById("tachesHistory").textContent');
-    assert(/lancée/.test(historique), 'l\'historique doit mentionner le lancement : ' + historique.slice(0, 300));
-    assert(/envoyée/.test(historique), 'l\'historique doit mentionner l\'envoi : ' + historique.slice(0, 300));
+    // Un seul envoi, sur le bon compte, avec le bon prompt.
+    assert(envoisSimules.length === 1,
+      'un seul envoi attendu, reçu : ' + JSON.stringify(envoisSimules));
+    assert(envoisSimules[0] && envoisSimules[0].profil === 'profil_1', 'profil reçu inattendu');
+    assert(envoisSimules[0] && envoisSimules[0].prompt === 'prompt manuel C10.6', 'prompt reçu inattendu');
+    // L'événement « envoyée » doit être rattaché à CETTE tâche (id), pas
+    // seulement exister quelque part dans l'historique.
+    const evenements = await ipc('taches:history', 50);
+    const envoye = evenements.filter(e => e && e.resultat === 'envoye'
+      && e.tache === idAvecCompte && e.profil === 'profil_1');
+    assert(envoye.length === 1,
+      'un événement envoye attendu pour la tâche ' + idAvecCompte + ' / profil_1 : ' +
+      JSON.stringify(evenements.slice(0, 6)));
+    const lancee = evenements.filter(e => e && e.resultat === 'lancee' && e.tache === idAvecCompte);
+    assert(lancee.length === 1, 'un événement lancee attendu pour la tâche ' + idAvecCompte);
   });
 
   await test('C10.7 suppression : confirmation puis disparition', async () => {
@@ -801,7 +831,7 @@ async function run() {
       document.getElementById('tacheFormComptesMode').value = 'tous';
       document.getElementById('tacheFormComptesMode').dispatchEvent(new Event('change'));
       document.getElementById('tacheFormPrompt').value = 'p';
-      document.getElementById('tacheFormProgDepuis').value = '2026-10-20T08:00';
+      document.getElementById('tacheFormProgDepuis').value = '${dansDeuxJoursLocal()}';
       document.getElementById('tacheFormProgTous').value = '1';
       document.getElementById('tacheFormProgUnite').value = 'minute';
       'rempli'
