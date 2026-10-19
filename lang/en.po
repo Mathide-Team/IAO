@@ -48,6 +48,10 @@ msgid "Ajouter un compte"
 msgstr "Add an account"
 
 #: index.html
+msgid "Créer des comptes en série"
+msgstr "Create accounts in bulk"
+
+#: index.html
 msgid "Mode debug actif : traces détaillées dans le journal iao.log"
 msgstr "Debug mode on: detailed traces in the iao.log file"
 
@@ -136,12 +140,36 @@ msgid "Nom du Profil"
 msgstr "Profile name"
 
 #: index.html
+msgid "Mot de passe de la messagerie"
+msgstr "Mailbox password"
+
+#: index.html
+msgid "Afficher le mot de passe"
+msgstr "Show the password"
+
+#: index.html
+msgid "Générer un mot de passe"
+msgstr "Generate a password"
+
+#: index.html
+msgid "Chiffré par le trousseau du système, jamais enregistré en clair. Laisser vide pour ne pas le modifier."
+msgstr "Encrypted by the system keyring, never stored in plain text. Leave empty to keep it unchanged."
+
+#: index.html
 msgid "Annuler"
 msgstr "Cancel"
 
 #: index.html
 msgid "Enregistrer"
 msgstr "Save"
+
+#: index.html
+msgid "Nombre de comptes"
+msgstr "Number of accounts"
+
+#: index.html
+msgid "Créer"
+msgstr "Create"
 
 #: index.html
 msgid "Supprimer le compte"
@@ -342,6 +370,34 @@ msgstr "Show automation windows"
 #: index.html
 msgid "Restaurer les onglets ouverts au démarrage"
 msgstr "Restore open tabs at startup"
+
+#: index.html
+msgid "Préfixe des adresses e-mail"
+msgstr "E-mail address prefix"
+
+#: index.html
+msgid "docker"
+msgstr "docker"
+
+#: index.html
+msgid "Domaine des adresses e-mail"
+msgstr "E-mail address domain"
+
+#: index.html
+msgid "dmathilde.fr"
+msgstr "dmathilde.fr"
+
+#: index.html
+msgid "Adresse : préfixe + numéro + @ + domaine (ex. docker239@dmathilde.fr)"
+msgstr "Address: prefix + number + @ + domain (e.g. docker239@dmathilde.fr)"
+
+#: index.html
+msgid "Adresse du webmail (Roundcube)"
+msgstr "Webmail address (Roundcube)"
+
+#: index.html
+msgid "https://mail.dmathilde.fr"
+msgstr "https://mail.dmathilde.fr"
 
 #: assets/app.js
 msgid "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."
@@ -548,6 +604,10 @@ msgid "Cliquer pour copier l'e-mail"
 msgstr "Click to copy the email address"
 
 #: assets/app.js
+msgid "Ouvrir le webmail (adresse copiée)"
+msgstr "Open the webmail (address copied)"
+
+#: assets/app.js
 msgid "Modifier le compte"
 msgstr "Edit account"
 
@@ -622,6 +682,18 @@ msgstr "No files found."
 #: assets/app.js
 msgid "Fichier trop volumineux pour l'éditeur : {size} Mo (limite : 20 Mo)."
 msgstr "File too large for the editor: {size} MB (limit: 20 MB)."
+
+#: assets/app.js
+msgid "Masquer le mot de passe"
+msgstr "Hide the password"
+
+#: assets/app.js
+msgid "Mot de passe non enregistré : le trousseau du système est indisponible"
+msgstr "Password not saved: the system keyring is unavailable"
+
+#: assets/app.js
+msgid "Mot de passe non enregistré"
+msgstr "Password not saved"
 
 #: assets/app.js
 msgid "C'est quoi ?"
@@ -710,6 +782,30 @@ msgstr "Account updated"
 #: assets/app.js
 msgid "Compte ajouté"
 msgstr "Account added"
+
+#: assets/app.js
+msgid "Renseignez d'abord le domaine des adresses e-mail dans les réglages"
+msgstr "First set the e-mail address domain in the settings"
+
+#: assets/app.js
+msgid "Premier compte : {nom}, {email}. Un mot de passe de messagerie aléatoire est généré pour chacun."
+msgstr "First account: {nom}, {email}. A random mailbox password is generated for each one."
+
+#: assets/app.js
+msgid "Nombre de comptes : de 1 à {max}"
+msgstr "Number of accounts: 1 to {max}"
+
+#: assets/app.js
+msgid "{n} compte(s) créé(s), {m} mot(s) de passe enregistré(s)"
+msgstr "{n} account(s) created, {m} password(s) saved"
+
+#: assets/app.js
+msgid "Adresse du webmail non configurée dans les réglages"
+msgstr "Webmail address not set in the settings"
+
+#: assets/app.js
+msgid "Ouverture du webmail impossible"
+msgstr "Could not open the webmail"
 
 #: assets/app.js
 msgid "Copie impossible dans le presse-papiers"

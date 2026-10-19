@@ -576,6 +576,54 @@ async function run() {
   });
 
   // =========================================================================
+  // C9 — Issue #201 : comptes en série, mot de passe masqué, webmail
+  // =========================================================================
+  await test('C9.1 Réglages messagerie enregistrés, création de 2 comptes en série numérotés', async () => {
+    const r = await exec(`(async () => {
+      openSettingsModal();
+      await new Promise(r => setTimeout(r, 200));
+      document.getElementById('settingsMailPrefix').value = 'docker';
+      document.getElementById('settingsMailDomain').value = 'DMathilde.fr';
+      document.getElementById('settingsWebmailUrl').value = 'https://mail.dmathilde.fr';
+      await saveSettings();
+      openSerieModal();
+      const desc = document.getElementById('serieDesc').textContent;
+      const avant = JSON.parse(localStorage.getItem('ai_accounts')).length;
+      document.getElementById('serieNombre').value = '2';
+      await createSerie();
+      const comptes = JSON.parse(localStorage.getItem('ai_accounts'));
+      return { desc, avant, apres: comptes.length, derniers: comptes.slice(-2).map(c => c.name + ' ' + c.email + ' ' + c.profile),
+        ouvert: document.getElementById('serieModal').classList.contains('open'),
+        webmail: document.querySelectorAll('#accountsList [data-action="open-webmail"]').length };
+    })()`);
+    assert(/docker\d+@dmathilde\.fr/.test(r.desc), 'description : ' + r.desc);
+    assert(r.apres === r.avant + 2, 'attendu 2 comptes de plus : ' + r.avant + ' -> ' + r.apres);
+    const n = Number(r.derniers[0].split(' ')[0]);
+    assert(r.derniers[0] === n + ' docker' + n + '@dmathilde.fr profil_' + n, 'compte 1 : ' + r.derniers[0]);
+    assert(r.derniers[1] === (n + 1) + ' docker' + (n + 1) + '@dmathilde.fr profil_' + (n + 1), 'compte 2 : ' + r.derniers[1]);
+    assert(!r.ouvert, 'la fenêtre de création doit se fermer');
+    assert(r.webmail === r.apres, 'un bouton webmail par carte attendu : ' + r.webmail);
+  });
+
+  await test('C9.2 Mot de passe de messagerie : généré, masqué par défaut, bouton œil', async () => {
+    const r = await exec(`(() => {
+      const acc = JSON.parse(localStorage.getItem('ai_accounts')).slice(-1)[0];
+      openModal(acc.id);
+      const pass = document.getElementById('inputMailPassword');
+      const masque = pass.type;
+      generateMailPassword();
+      const apres = { type: pass.type, longueur: pass.value.length };
+      toggleMailPassword();
+      const r = { masque, apres, final: pass.type, titre: document.getElementById('btnToggleMailPassword').title };
+      closeModal();
+      return r;
+    })()`);
+    assert(r.masque === 'password', 'masqué par défaut attendu, trouvé ' + r.masque);
+    assert(r.apres.type === 'text' && r.apres.longueur === 20, 'mot de passe généré visible de 20 caractères : ' + JSON.stringify(r.apres));
+    assert(r.final === 'password' && r.titre === 'Afficher le mot de passe', 'bouton œil : ' + JSON.stringify(r));
+  });
+
+  // =========================================================================
   // Nettoyage
   // =========================================================================
   console.log('\n--- Résumé ---');

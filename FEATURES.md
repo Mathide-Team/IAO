@@ -116,6 +116,13 @@ Objectif : détecter automatiquement les ZIP livrés par les services IA dans le
   quand le bureau change. `resolveTheme()` pure dans `lib/settings.js`. Les réglages déjà
   enregistrés (`iao`, `light`, `dark`) sont conservés. Tests : `test/theme-system.test.js`.
 
+- **Comptes en série, mot de passe de messagerie, webmail (issue #201, 18/10/2026)**
+  `lib/comptes-serie.js` (numéros suivants, adresses, mot de passe aléatoire sans biais),
+  `lib/coffre-secrets.js` (coffre chiffré `safeStorage`, `secrets.json` en 0600, refus sans
+  trousseau, canaux `secrets:*` et `app:open-webmail` limité à l'URL des réglages), réglages
+  `mailPrefix`/`mailDomain`/`webmailUrl` (`lib/settings.js`). Reste : création des boîtes sur
+  le serveur de messagerie (API à créer, autre dépôt).
+
 - **Clic sur l'e-mail d'un compte : copie dans le presse-papiers (issue #138, 30/09/2026)**
   `lib/copy-text.js` (clipboard API, repli `execCommand('copy')`), action `copy-email`
   sur l'e-mail de chaque carte (curseur « copie », soulignement au survol), toast de
