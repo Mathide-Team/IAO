@@ -224,7 +224,12 @@ Les boutons de service d'une carte sont posés dans `.services-grid`, une **gril
 - **Import/export JSON des comptes (17/09/2026)** : deux boutons dans l'en-tête « Comptes enregistrés » (icônes `file-export`/`file-import`). `exportAccountsToFile()` appelle l'IPC `accounts:export` (→ `dialog.showSaveDialog` côté `main.js`, nom de fichier horodaté) puis écrit `exportAccountsJSON()`. `importAccountsFromFile()` appelle l'IPC `accounts:import` (→ `dialog.showOpenDialog`), valide le JSON lu (`JSON.parse` + vérification de tableau), puis ouvre `#importConfirmModal` (calquée sur `#deleteModal`) annonçant le nombre de comptes du fichier avant d'écraser la liste actuelle ; `confirmImport()` appelle alors `importAccountsJSON(text)` (déjà existante, inchangée). `pendingImportContent` porte le contenu en attente de confirmation, remis à `null` à la fermeture (bouton, Échap ou confirmation) pour ne jamais persister au-delà de la modale.
 - **Icônes** : `hydrateIcons(root)` (dans `assets/icons.js`) remplace chaque `<span class="ic" data-icon="NOM">` par son SVG. Appelé au démarrage (HTML statique) et après chaque `innerHTML` dynamique. Ajouter une icône = ajouter une entrée `{vb, p}` dans `window.IAO_ICONS` (viewBox + path).
 
-## 7bis. Ordonnanceur IA (`scheduler/`, panneau « Ordonnanceur IA »)
+## 7bis. Ordonnanceur IA (`scheduler/`, panneau « Ordonnanceur IA ») — ANCIEN FLUX
+
+> **Obsolète depuis le 18/10/2026 (issue #199)** : ce flux est désactivé par défaut
+> (`IAO_ORDONNANCEUR_ANCIEN=1` le réactive) et remplacé par les **tâches programmables**
+> (§7ter). La modale n'affiche plus les jobs/journal ci-dessous quand l'ancien flux est coupé —
+> elle montre l'interface des tâches (§7ter, lot 4).
 
 Ajouté le 16/09/2026 (proposition externe intégrée au backlog, lot E — voir `FEATURES.md`
 « Ordonnanceur »). Objectif : détecter automatiquement les ZIP livrés par les services IA dans les
@@ -339,6 +344,38 @@ tâche depuis l'UI. Les sélecteurs CSS (`lib/claude-adapter.js`) restent à val
 Claude.ai réel — non réalisable dans l'environnement de développement (pas d'affichage, pas d'accès
 réseau aux services IA). Un squelette d'adaptateurs par service est esquissé en commentaire en tête
 de `scheduler/index.js` pour ne pas repartir de zéro.
+
+## 7ter. Tâches programmables (issue #199, `scheduler/taches-service.js` + `lib/taches-runner.js`)
+
+Remplacent l'ancien flux (§7bis) depuis le 18/10/2026. Une tâche envoie un prompt à Claude sur
+les comptes choisis, à une date donnée ou périodiquement (minutes → mois, intervalle minimal
+5 minutes).
+
+- **Modèle** (`scheduler/taches.js`, pur, testé par `test/scheduler-taches.test.js`) :
+  nom, fournisseur (`claude`, registre extensible), comptes (`tous` ou liste de profils),
+  répartition (`tous` avec espacement en ms ≤ 24 h, ou `rotation`), nouvelle session,
+  prompt, programmation (`unique {le}` ou `periodique {tous, unite, depuis}`, dates ISO),
+  active. `derniereExecution`/`indexRotation` ne sont PAS modifiables depuis l'interface :
+  le service les préserve à chaque enregistrement.
+- **Service** (`scheduler/taches-service.js`, process principal, testé par
+  `test/scheduler-taches-service.test.js`) : persistance `<userData>/scheduler/taches.json`
+  (écriture atomique), historique borné à 200 entrées, `dues(comptes)` (plans des tâches dues,
+  marquées exécutées aussitôt, heures calmes 15h-20h30 : rien ne part), `run-now` (plan complet,
+  même forme que `dues`), `report`, `history`. IPC `taches:*`.
+- **Exécution** (`lib/taches-runner.js`, renderer, testé par `test/taches-runner.test.js`) :
+  minuterie 30 s + exécution manuelle via `creerMoteur` — **même chemin** (ouvrir l'onglet,
+  `scheduler:run-claude-job`, `taches:report`), **même garde** (jamais deux plans en même
+  temps, la garde est prise AVANT l'appel au service pour le manuel). Un compte à la fois,
+  délais d'espacement, jusqu'à 6 tentatives espacées de 10 s.
+- **Interface** (lot 4, 19/10/2026 — `index.html` `#schedTaches`, `assets/app.js`,
+  `lib/taches-ui.js` pur testé par `test/taches-ui.test.js`) : liste des tâches (nom échappé,
+  périodicité, prochaine exécution, Activer/Désactiver, Exécuter maintenant, Modifier,
+  Supprimer avec confirmation), formulaire de création/édition (conversions sans perte à la
+  seconde près : `datetime-local` ↔ ISO, espacement en secondes ↔ ms), historique.
+  Le formulaire n'est jamais reconstruit par le polling de 4 s ; les erreurs (codes du helper
+  traduits par `N_()`/`_()`, ou messages du service) s'affichent sans fermer le formulaire.
+  « Exécuter maintenant » passe par le moteur partagé, le résultat n'est jamais fabriqué par
+  l'interface — il arrive par l'historique. Harnais Electron C10 (8 scénarios).
 
 ## 8. UI / Thème (violet / rose)
 
