@@ -214,3 +214,36 @@ test('creerMoteur : une exception libère la garde', async () => {
   await assert.rejects(moteur.passage(), /boom/);
   assert.equal(await moteur.executer(PLAN), true); // la garde est libérée
 });
+
+// --- Couverture des branches défensives (seuil 100 % de la CI) ---
+
+test('creerMoteur.passage : réponse non tableau et plans nuls ignorés', async () => {
+  let dues = null;
+  const appels = [];
+  const d = Object.assign(deps([]), {
+    invoke: async (canal, ...args) => {
+      appels.push(canal);
+      if (canal === 'taches:dues') return dues;
+      return true;
+    }
+  });
+  const moteur = r.creerMoteur(d);
+  assert.equal(await moteur.passage(), true);
+  dues = [null, undefined];
+  assert.equal(await moteur.passage(), true);
+  assert.deepEqual(appels, ['taches:dues', 'taches:dues'], 'aucun envoi pour des plans nuls');
+});
+
+test('creerMoteur.executer : refusé pendant un plan en vol', async () => {
+  let resoudre = null;
+  const enVol = new Promise(res => { resoudre = res; });
+  const d = Object.assign(deps([]), {
+    invoke: async (canal) => (canal === 'scheduler:run-claude-job' ? enVol : true)
+  });
+  const moteur = r.creerMoteur(d);
+  const premier = moteur.executer(PLAN);
+  await Promise.resolve();
+  assert.equal(await moteur.executer(PLAN), false);
+  resoudre({ ok: true });
+  assert.equal(await premier, true);
+});
