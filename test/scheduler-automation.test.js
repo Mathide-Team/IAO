@@ -516,3 +516,67 @@ test('_executeAutomation : réponse collectée -> temps de réponse noté (stats
   assert.ok(notations[0].fin >= notations[0].debut);
   cleanup(scheduler);
 });
+
+test('runClaudeJob : statsStore qui rejette n’empêche rien (catch des hooks)', async () => {
+  var app = createMockApp();
+  var scheduler = new Scheduler(app, {});
+  disableQuietHours(scheduler);
+  var wc = createMockWebContents();
+  scheduler.registerWebview('profil_1', wc);
+  // noterQuota rejette : le .catch(() => {}) du hook avale, aucun impact.
+  scheduler.statsStore = {
+    noterQuota: async () => { throw new Error('disque plein (test)'); },
+    noterReponse: async () => { throw new Error('disque plein (test)'); }
+  };
+  wc.executeJavaScript = async function() {
+    return JSON.stringify({
+      chatInput: { found: true }, fileUpload: { found: false },
+      sendButton: { found: true }, quotaMessage: { detected: true, time: '18:30' },
+      popups: { count: 0 }
+    });
+  };
+  var res = await scheduler.runClaudeJob('profil_1', 'Fais un résumé', null);
+  assert.strictEqual(res.error, 'quota_exhausted');
+  // Unhandled rejection ne fait pas échouer le test : le catch a bien avalé.
+  await new Promise(function(r) { setTimeout(r, 50); });
+  cleanup(scheduler);
+});
+
+test('_executeAutomation : statsStore qui rejette ne bloque pas la livraison', async () => {
+  var app = createMockApp();
+  var scheduler = new Scheduler(app, {});
+  disableQuietHours(scheduler);
+  scheduler.setConfig({ enabled: true, maxConcurrentJobs: 2, minDelayBetweenAutomationsMinutes: 0, minDelayMs: 0, maxDelayMs: 0 });
+  // noterReponse rejette : le .catch(() => {}) du hook avale, la livraison continue.
+  scheduler.statsStore = {
+    noterReponse: async () => { throw new Error('disque plein (test)'); }
+  };
+  scheduler.createProject('Projet stats rejet', []);
+  var project = scheduler.projects[0];
+  scheduler.createTask(project.id, 'Génère un rapport', null);
+  var task = project.tasks[0];
+  task.assignedProfile = 'profil_1';
+  task.status = 'assigned';
+  var wc = createMockWebContents();
+  scheduler.registerWebview('profil_1', wc);
+  var callCount = 0;
+  wc.executeJavaScript = async function() {
+    callCount++;
+    if (callCount === 1) {
+      return JSON.stringify({
+        chatInput: { found: true }, fileUpload: { found: false },
+        sendButton: { found: true }, quotaMessage: { detected: false },
+        popups: { count: 0 }
+      });
+    }
+    if (callCount === 2) return JSON.stringify({ ok: true, method: 'textarea' });
+    return JSON.stringify({ ok: true, response: 'Résultat de Claude' });
+  };
+  var result = await scheduler.executeTask(project.id, task.id);
+  assert.ok(result.ok);
+  await new Promise(function(r) { setTimeout(r, 8000); });
+  var job = scheduler.jobs.find(function(j) { return j.id === result.job.id; });
+  assert.strictEqual(job.status, 'DELIVERED', 'la mesure qui échoue ne bloque pas la livraison');
+  await new Promise(function(r) { setTimeout(r, 50); });
+  cleanup(scheduler);
+});
