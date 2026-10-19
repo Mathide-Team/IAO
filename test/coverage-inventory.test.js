@@ -14,7 +14,8 @@ const path = require('node:path');
 const ROOT = path.join(__dirname, '..');
 const MODULES = [
   ...fs.readdirSync(path.join(ROOT, 'lib')).filter(f => f.endsWith('.js')).sort().map(f => 'lib/' + f),
-  'scheduler/core.js'
+  'scheduler/core.js',
+  'scheduler/taches.js'
 ];
 
 test('#101 : chaque module pur est chargé par la suite de tests', () => {
