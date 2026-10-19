@@ -5,6 +5,8 @@ const fsPromises = fs.promises;
 
 const { isAllowedPopup } = require('./lib/popup-guard');
 const { Scheduler, registerSchedulerIPC } = require('./scheduler');
+const { TachesService, registerTachesIPC } = require('./scheduler/taches-service');
+const schedulerCore = require('./scheduler/core');
 const dataDirCheck = require('./lib/data-dir-check');
 
 // On fixe le dossier de données (comptes + sessions IA) sur "ai-manager" quel que
@@ -508,6 +510,12 @@ ipc.handle('i18n:catalog', () => {
 
 // --- IPC pour l'ordonnanceur IA (chantier E) ---
 registerSchedulerIPC(ipc, scheduler, () => mainWindow);
+// Issue #199, lot 3 : tâches programmables (minuterie côté renderer).
+registerTachesIPC(ipc, new TachesService({
+  dossier: path.join(app.getPath('userData'), 'scheduler'),
+  heuresCalmes: schedulerCore.isFrenchQuietHours,
+  journal: log.bind(null, 'taches')
+}));
 
 app.whenReady().then(() => {
   // 2e instance (voir « Instance unique ») : ne rien ouvrir, app.quit() est en cours.

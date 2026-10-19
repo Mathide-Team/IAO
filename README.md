@@ -34,7 +34,7 @@ Publié ici pour quiconque en a l'usage.
 - **Éditeur de code intégré** (Monaco, celui de VS Code) avec explorateur de fichiers local — chargé paresseusement au premier clic, avec éditeur de secours si Monaco échoue.
 - **Interface 100 % locale** : polices et icônes embarquées, aucun CDN, aucune télémétrie — l'app n'envoie rien à aucun serveur ; seuls les sites des IA sont contactés, dans leurs onglets.
 - **Stockage résilient** : sauvegarde automatique d'une génération des données de comptes, récupération proposée en cas de corruption.
-- **Ordonnanceur IA** (bouton robot, en cours de développement) : détecte automatiquement les fichiers `.zip` livrés par les IA dans les onglets, tient un registre de jobs, et propose de reprendre un projet inachevé sur le profil disponible le plus ancien plutôt que de toujours solliciter le même compte. La partie « upload + envoi du prompt » dans le service IA n'est pas encore automatisée — la reprise se fait aujourd'hui en un clic depuis le panneau.
+- **Ordonnanceur IA** (bouton robot) : **ancien flux désactivé** depuis #199, remplacé par des tâches programmables en cours de développement ; `IAO_ORDONNANCEUR_ANCIEN=1` le réactive. Ancien flux : détecte automatiquement les fichiers `.zip` livrés par les IA dans les onglets, tient un registre de jobs, et propose de reprendre un projet inachevé sur le profil disponible le plus ancien plutôt que de toujours solliciter le même compte. La partie « upload + envoi du prompt » dans le service IA n'est pas encore automatisée — la reprise se fait aujourd'hui en un clic depuis le panneau.
 
 <!-- --8<-- [end:fonctionnalites] -->
 <!-- --8<-- [start:installation] -->

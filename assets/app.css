@@ -521,6 +521,11 @@
 
   /* Ordonnanceur : sous-titres et labels de section */
   .sched-subtitle { color: var(--fg-muted); font-size: 12px; }
+  /* Issue #199, lot 1 : ancien ordonnanceur désactivé */
+  .sched-run[hidden], .sched-off[hidden], #schedLegacy[hidden] { display: none; }
+  .sched-off { border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 8px; padding: 12px 14px; margin-bottom: 14px; }
+  .sched-off__title { font-weight: 600; margin-bottom: 4px; }
+  .sched-off__text { color: var(--fg-muted); font-size: 12px; }
   .sched-dirs { font-size: 11px; color: var(--fg-dim); margin: -6px 0 14px; display: grid; gap: 2px; }
   .sched-section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--fg-muted); margin-bottom: 8px; }
   .sched-jobs--projects { margin-bottom: 12px; }

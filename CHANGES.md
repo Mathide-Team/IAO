@@ -32,6 +32,67 @@
 - Création des boîtes sur le serveur de messagerie (docker-mailserver, sans
   API HTTP) : petite API à créer dans un autre dépôt, puis appel depuis IAO.
 
+## Issue #199 — lot 3 : exécution des tâches programmables (18/10/2026)
+
+### Livré
+- `scheduler/taches-service.js` (process principal, 100 % couvert) : tâches dans
+  `<userData>/scheduler/taches.json` (écriture atomique), historique borné à 200
+  entrées (`taches-historique.json`), création/remplacement/suppression/activation ;
+  `dues(comptes)` remet le plan des tâches dues et les marque **exécutées aussitôt**
+  (jamais deux départs) ; **heures calmes** 15h–20h30 : rien ne part, la tâche
+  reste due ; « Exécuter maintenant » ; comptes exclus notés (service absent,
+  profil introuvable) ; canaux IPC `taches:*`.
+- `lib/taches-runner.js` (renderer, 100 % couvert) : minuterie toutes les 30 s,
+  un plan et un compte à la fois, délais d'espacement, ouverture de l'onglet
+  (nouvelle session `claude.ai/new`, rechargée si l'onglet existait), envoi par
+  l'automatisation Claude existante (`scheduler:run-claude-job` : diagnostic,
+  quota, délai anti-détection), jusqu'à 6 tentatives espacées de 10 s tant que
+  la page n'est pas prête, compte rendu (envoyé, quota, heures calmes, non
+  connecté, erreur).
+- Une tâche ne s'exécute que si IAO est ouvert ; une exécution manquée est
+  rattrapée **une fois** à l'ouverture suivante.
+
+### Reste
+- lot 4 : interface (liste, édition, « Exécuter maintenant », historique, i18n).
+
+## Issue #199 — lot 1 : ancien ordonnanceur désactivé (18/10/2026)
+
+### Livré
+- L'ancien flux (détection des ZIP, jobs, projets) est **désactivé par défaut** :
+  `Scheduler.setEnabled(true)` est refusé et journalisé, aucune partition n'est
+  surveillée (`will-download`). Le panneau « Ordonnanceur IA » affiche un bandeau
+  et masque le bouton Démarrer et les sections de l'ancien flux ; le journal
+  d'activité reste visible.
+- `IAO_ORDONNANCEUR_ANCIEN=1` (`true`, `yes`, `on`) le réactive (retour arrière,
+  tests du code conservé). Code, `jobs.json` et `projects.json` sont conservés.
+- `getState()` expose `ancienFlux`. Tests : `test/scheduler-ancien-flux.test.js`,
+  harnais Electron C3.4 réécrit (bandeau, refus par IPC) ; les tests de l'ancien
+  flux le réactivent explicitement.
+
+## Issue #199 — tâches programmables, lot 2 : cœur pur (18/10/2026)
+
+Remplacement prévu de l'ordonnanceur (ZIP, jobs, projets) par des **tâches
+programmables** dans le menu « Ordonnanceur ». Conception validée dans #199.
+
+### Livré
+- `scheduler/taches.js` (fonctions pures, 100 % couvert, `test/scheduler-taches.test.js`) :
+  - registre **modulaire** de fournisseurs (`enregistrerFournisseur`), Claude seul
+    pour commencer (nouvelle session `https://claude.ai/new`) ;
+  - `normaliserTache` : nom, fournisseur, comptes (« tous » ou liste de profils),
+    répartition (« tous » espacés de N ms, ou « rotation » : un compte par exécution
+    à tour de rôle), nouvelle session, prompt, programmation, **inactive à la création** ;
+  - programmation « unique » (date/heure) ou « periodique » (toutes les N
+    minutes/heures/jours/semaines/mois, minimum 5 minutes) ; `prochaineEcheance` :
+    **une** exécution de rattrapage après une absence, jamais de rafale ; mois
+    calendaires (31 janvier + 1 mois → fin février) ;
+  - `comptesEligibles` (service absent, profil introuvable), `planExecution`.
+- Inventaire de couverture (#101) : `scheduler/taches.js` ajouté.
+
+### Reste (lots suivants de #199)
+- lot 3 : exécution (minuterie, onglet nouvelle session, envoi du prompt par
+  l'automatisation Claude existante, heures calmes 15 h – 20 h 30, historique) ;
+- lot 4 : interface (liste, édition, « Exécuter maintenant », historique, i18n 29 langues).
+
 ## Issue #187 — mode debug accessible depuis l'application (17/10/2026)
 
 ### Livré

@@ -1,5 +1,9 @@
 'use strict';
 
+// Ce fichier teste l'ancien flux (ZIP, jobs, projets), désactivé par défaut
+// depuis #199 (lot 1) : on le réactive pour tout le fichier.
+process.env.IAO_ORDONNANCEUR_ANCIEN = '1';
+
 // test/scheduler-index-persistence.test.js — Couverture de scheduler/index.js :
 // init(), chargement (_loadSync / _readJSONSync) et _persistAccounts (issue #81).
 // `app` et `session` Electron sont simulés ; userData est un dossier temporaire.

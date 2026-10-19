@@ -27,6 +27,19 @@ Priorités : **P0** bloquant / sécurité — **P1** important — **P2** confor
 
 - [x] **Découper `index.html` + migrer les styles inline vers des classes CSS (lot 8 + lot 9, 18/09/2026).** CSS extrait vers `assets/app.css` (lot 8), chargé par `<link>` (sans bundler). `index.html` passe de 768 à 356 lignes. **Lot 9** : tous les attributs `style="..."` inline (50 dans index.html, + dans app.js) migrés vers des classes CSS utilitaires dans `assets/app.css`. Couleurs dynamiques via `data-*-color` + `applyDataColors()`. CSP conserve `style-src 'self' 'unsafe-inline'` car Monaco Editor crée des éléments avec `style="..."` en interne (limitation non contournable). Notre propre code n'utilise plus aucun style inline. Reste au backlog : séparer `app.js` en `accounts.js` / `tabs.js` / `editor.js` / `scheduler-ui.js`.
 
+### Tâches programmables — remplacement de l'ordonnanceur (issue #199, 18/10/2026)
+
+Demande : désactiver l'ordonnanceur actuel et proposer, dans le même menu, des tâches
+programmables (IA choisie, comptes valides pour cette IA, un/plusieurs/tous les comptes,
+nouvelle session, prompt ; programmation unique ou toutes les N minutes/heures/jours/
+semaines/mois ; tous les comptes ou un seul à tour de rôle espacé de N secondes/minutes ;
+modulaire, Claude seulement au départ).
+
+- [x] **Lot 2 — cœur pur** : `scheduler/taches.js` (18/10/2026).
+- [x] **Lot 1 — désactivation de l'ancien flux** (ZIP, jobs, projets) dans le panneau (18/10/2026) ; `IAO_ORDONNANCEUR_ANCIEN=1` le réactive.
+- [x] **Lot 3 — exécution** : minuterie, onglet nouvelle session, envoi du prompt, heures calmes, historique (18/10/2026).
+- [ ] **Lot 4 — interface** : liste, édition, « Exécuter maintenant », historique, i18n.
+
 ### Ordonnanceur IA — proposition externe intégrée au backlog (16/09/2026)
 
 Objectif : détecter automatiquement les ZIP livrés par les services IA dans les onglets, et reprendre un projet inachevé en choisissant le profil le plus ancien plutôt que de sursolliciter toujours le même compte. Le **lot E (fondations)** est fait — voir « Fait » plus bas et `docs/PROJECT\_CONTEXT.md`. Reste à faire :
