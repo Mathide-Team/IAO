@@ -1,5 +1,17 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issue #218 — Invalid guestInstanceId à la fermeture d'onglet (19/10/2026)
+
+### Livré
+- **Electron 43.7.2 → 43.8.0** : le bug (retirer du DOM une `<webview>`
+  chargée détruisait le guest avant le détachement — bandeau rouge
+  « Invalid guestInstanceId ») est corrigé en amont par
+  electron/electron#54089. `npm audit --omit=dev` : 0 vulnérabilité.
+- **Test de non-régression C12.1** (harnais `test-electron/ui-flows.js`) :
+  ouvrir deux onglets (webview attachée), fermer l'un (confirmation
+  gérée), aucun bandeau `#bootError`. Vérifié détecteur : échoue sur
+  43.7.2 avec le bug exact, passe sur 43.8.0 (deux passages).
+
 ## Issue #201 — comptes en série, côté IAO (18/10/2026)
 
 ### Livré
