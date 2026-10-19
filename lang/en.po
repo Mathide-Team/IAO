@@ -88,6 +88,10 @@ msgid "Comprendre les IA disponibles"
 msgstr "Understand the available AIs"
 
 #: index.html
+msgid "Statistiques d'utilisation"
+msgstr "Usage statistics"
+
+#: index.html
 msgid "Ordonnanceur IA"
 msgstr "AI scheduler"
 
@@ -432,6 +436,26 @@ msgstr "Confirmation"
 #: index.html
 msgid "Confirmer"
 msgstr "Confirm"
+
+#: index.html
+msgid "Mesurées sur cet ordinateur et conservées 90 jours. Rien n'est envoyé."
+msgstr "Measured on this computer and kept for 90 days. Nothing is sent."
+
+#: index.html
+msgid "Aujourd'hui"
+msgstr "Today"
+
+#: index.html
+msgid "7 jours"
+msgstr "7 days"
+
+#: index.html
+msgid "30 jours"
+msgstr "30 days"
+
+#: index.html
+msgid "90 jours"
+msgstr "90 days"
 
 #: index.html
 msgid "Préférences de l'application, sauvegardées localement."
@@ -1248,6 +1272,62 @@ msgstr ""
 #| msgid "Suppression impossible : {error}"
 msgid "Suppression impossible : {erreur}"
 msgstr "Deletion failed: {error}"
+
+#: assets/app.js
+msgid "< 1 min"
+msgstr "< 1 min"
+
+#: assets/app.js
+msgid "{h} h {m} min"
+msgstr "{h} h {m} min"
+
+#: assets/app.js
+msgid "{m} min"
+msgstr "{m} min"
+
+#: assets/app.js
+msgid "Temps actif"
+msgstr "Active time"
+
+#: assets/app.js
+msgid "Durée ouverte"
+msgstr "Time open"
+
+#: assets/app.js
+msgid "Sessions"
+msgstr "Sessions"
+
+#: assets/app.js
+msgid "Dernière utilisation"
+msgstr "Last used"
+
+#: assets/app.js
+msgid "Part"
+msgstr "Share"
+
+#: assets/app.js
+msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
+msgstr "No sessions in this period. Measurement starts when this version is installed."
+
+#: assets/app.js
+msgid "Compte"
+msgstr "Account"
+
+#: assets/app.js
+msgid "Par compte"
+msgstr "By account"
+
+#: assets/app.js
+msgid "Par service"
+msgstr "By service"
+
+#: assets/app.js
+msgid "Service"
+msgstr "Service"
+
+#: assets/app.js
+msgid "Statistiques illisibles : {error}"
+msgstr "Unreadable statistics: {error}"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"

@@ -85,6 +85,10 @@ msgid "Comprendre les IA disponibles"
 msgstr ""
 
 #: index.html
+msgid "Statistiques d'utilisation"
+msgstr ""
+
+#: index.html
 msgid "Ordonnanceur IA"
 msgstr ""
 
@@ -410,6 +414,26 @@ msgstr ""
 
 #: index.html
 msgid "Confirmer"
+msgstr ""
+
+#: index.html
+msgid "Mesurées sur cet ordinateur et conservées 90 jours. Rien n'est envoyé."
+msgstr ""
+
+#: index.html
+msgid "Aujourd'hui"
+msgstr ""
+
+#: index.html
+msgid "7 jours"
+msgstr ""
+
+#: index.html
+msgid "30 jours"
+msgstr ""
+
+#: index.html
+msgid "90 jours"
 msgstr ""
 
 #: index.html
@@ -1182,6 +1206,62 @@ msgstr ""
 
 #: assets/app.js
 msgid "Suppression impossible : {erreur}"
+msgstr ""
+
+#: assets/app.js
+msgid "< 1 min"
+msgstr ""
+
+#: assets/app.js
+msgid "{h} h {m} min"
+msgstr ""
+
+#: assets/app.js
+msgid "{m} min"
+msgstr ""
+
+#: assets/app.js assets/app.js
+msgid "Temps actif"
+msgstr ""
+
+#: assets/app.js assets/app.js
+msgid "Durée ouverte"
+msgstr ""
+
+#: assets/app.js assets/app.js
+msgid "Sessions"
+msgstr ""
+
+#: assets/app.js
+msgid "Dernière utilisation"
+msgstr ""
+
+#: assets/app.js
+msgid "Part"
+msgstr ""
+
+#: assets/app.js
+msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
+msgstr ""
+
+#: assets/app.js
+msgid "Compte"
+msgstr ""
+
+#: assets/app.js
+msgid "Par compte"
+msgstr ""
+
+#: assets/app.js
+msgid "Par service"
+msgstr ""
+
+#: assets/app.js
+msgid "Service"
+msgstr ""
+
+#: assets/app.js
+msgid "Statistiques illisibles : {error}"
 msgstr ""
 
 #: assets/app.js
