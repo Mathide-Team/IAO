@@ -7,7 +7,6 @@ const { isAllowedPopup } = require('./lib/popup-guard');
 const { Scheduler, registerSchedulerIPC } = require('./scheduler');
 const { TachesService, registerTachesIPC } = require('./scheduler/taches-service');
 const schedulerCore = require('./scheduler/core');
-
 const dataDirCheck = require('./lib/data-dir-check');
 
 // On fixe le dossier de données (comptes + sessions IA) sur "ai-manager" quel que
