@@ -17,6 +17,56 @@ journal (#184, #186). Elle complète #196 (comptes lus au démarrage) et #197
 - Tests : `test/startup-storage.test.js`, `main-debug` (#203), harnais Electron
   C1.1b (ligne présente dans le vrai `iao.log`).
 
+## Issue #187 — mode debug accessible depuis l'application (17/10/2026)
+
+### Livré
+- Canal `app:relaunch-debug` (fenêtre principale uniquement) : `app.relaunch()` avec les mêmes
+  arguments plus `--iao-debug` (`debugRelaunchArgs()`, `lib/startup-diagnostics.js`), puis
+  `app.exit(0)`. Canal `app:log-path` : chemin du journal.
+- Bandeau d'erreur de démarrage : bouton « Relancer en mode debug » et chemin du journal.
+- Barre du workspace : bouton « Redémarrer en mode debug », masqué quand le mode debug est actif.
+- Documentation (README, section Dépannage reprise par MkDocs) : relance depuis l'application,
+  que joindre à une issue.
+- Tests : unitaires (couverture 100 %), harnais main.js, scénario Electron C6.5.
+
+## Issue #184 — diagnostic du propriétaire des fichiers de données (17/10/2026)
+
+### Hypothèse
+`Failed to delete the database: Database IO error` et `Could not open the quota database,
+resetting` signifient que Chromium ne peut ni supprimer ni rouvrir ses bases. Hors seconde
+instance (déjà empêchée depuis #52), la cause connue est un fichier que le compte courant
+ne peut pas modifier, par exemple créé par un lancement en root. Ce cas expliquerait aussi
+la perte des comptes de #186.
+
+### Livré
+- `lib/data-dir-check.js` (testé, système de fichiers injecté) : parcours borné du dossier de
+  données (20 000 entrées, profondeur 6, caches Chromium ignorés), sans aucune modification.
+- `main.js` : au démarrage, un `warning` dans `iao.log` donne le nombre de fichiers concernés,
+  des exemples et la commande `sudo chown -R "$USER": <dossier>`.
+- README (section Dépannage, reprise dans la doc MkDocs).
+
+## Issue #185 — pas de bandeau rouge sur une navigation remplacée (17/10/2026)
+
+### Cause
+Sur un service sans compte, le site redirige vers sa page de connexion pendant le
+premier chargement. Chromium interrompt la navigation (`ERR_ABORTED`, code -3) et la
+promesse interne de la `<webview>` est rejetée sans être rattrapée : le bandeau
+« Une opération asynchrone a échoué au démarrage » s'affichait pour une situation normale.
+
+### Livré
+- `lib/startup-diagnostics.js` : `isNavigationAbort(err)` reconnaît `ERR_ABORTED` (-3),
+  et seulement lui (`ERR_NAME_NOT_RESOLVED`, certificat, hors ligne restent signalés).
+- `assets/boot-guard.js` : un rejet `ERR_ABORTED` n'affiche plus de bandeau ; une ligne
+  `console.info` est écrite (recopiée dans `logs/iao.log` en mode debug).
+- `assets/app.js` : le retour à l'accueil d'un onglet rattrape le rejet de `loadURL()`.
+- Tests : unitaires (couverture 100 %), scénario Electron C0.3 (rejet `ERR_ABORTED`
+  sans bandeau, vraie erreur réseau avec bandeau).
+
+### Écart avec l'issue
+L'issue prévoyait une ligne `info` toujours présente dans le journal. `main.js` ne recopie
+le niveau `info` du renderer qu'en mode debug (règle de #162) ; la ligne n'apparaît donc
+dans `iao.log` qu'avec `--iao-debug`. Changer cette règle sortirait du périmètre.
+
 ## Documentation MkDocs (13/10/2026)
 
 Règle d'équipe Mathide-Team : documentation navigable MkDocs sur le modèle de Netcross.
@@ -31,6 +81,27 @@ Règle d'équipe Mathide-Team : documentation navigable MkDocs sur le modèle de
 - CI : job « Construction (mkdocs build --strict) » sur les runners maison, site
   publié en artefact.
 - README : lien « dernière release » en URL absolue (valable dans la doc et sur GitHub).
+
+## Issue #186 — comptes absents au démarrage : journal et restauration (17/10/2026)
+
+### Constat
+Journal de #58 (12/10/2026) : au lancement, l'ordonnanceur connaissait ~70 profils
+(`<userData>/scheduler/accounts-snapshot.json`), alors que l'interface n'en lisait aucun
+dans son `localStorage`. Ensuite, l'interface renvoyait sa liste vide à l'ordonnanceur
+et effaçait l'instantané : un import devenait la seule issue. La cause de la perte du
+`localStorage` n'est pas reproduite dans le bac à sable.
+
+### Livré
+- `lib/accounts-recovery.js` (pur, testé) : `accountsFromSnapshot()` reconstruit les
+  comptes (id, nom, profil, automatisation ; doublons de profil écartés) ;
+  `startupAccountsReport()` écrit la ligne de journal et décide de la proposition.
+- Ordonnanceur : `reportStartupAccounts()` et canal `scheduler:accounts-startup`. La ligne
+  « Comptes lus au démarrage : N (stockage de l'interface : …) ; instantané de
+  l'ordonnanceur : M compte(s). » part toujours dans `iao.log` (`warning` si N = 0 et M > 0).
+- Interface : une liste vide au démarrage n'écrase plus l'instantané ; modale « Comptes
+  retrouvés » qui restaure les comptes sans import. Les sessions sont conservées
+  (partitions `persist:<profil>`) ; l'e-mail est à compléter.
+- Tests : unitaires (couverture 100 %), scénarios Electron C8.1 et C8.2.
 
 ## Issue #181 — IAO démarre sans l'ordonnanceur (12/10/2026)
 
