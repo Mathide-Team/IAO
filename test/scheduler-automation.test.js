@@ -299,7 +299,7 @@ test('executeTask crée un job et lance l\'automatisation', async () => {
   var app = createMockApp();
   var scheduler = new Scheduler(app, {});
   disableQuietHours(scheduler);
-  scheduler.setConfig({ enabled: true, maxConcurrentJobs: 2, minDelayBetweenAutomationsMinutes: 0, minDelayMs: 0, maxDelayMs: 0 });
+  scheduler.setConfig({ enabled: true, maxConcurrentJobs: 2, minDelayBetweenAutomationsMinutes: 0, minDelayMs: 0, maxDelayMs: 0, responseTimeoutMs: 5000, responsePollIntervalMs: 150 });
 
   // Créer un projet + tâche
   scheduler.createProject('Projet auto', []);
@@ -329,7 +329,9 @@ test('executeTask crée un job et lance l\'automatisation', async () => {
     if (callCount === 2) {
       return JSON.stringify({ ok: true, method: 'textarea' });
     }
-    // Pour la collecte de réponse
+    // Pour la collecte de réponse : BASELINE (réponse d'avant l'envoi) puis la
+    // nouvelle réponse, stabilisée sur deux lectures.
+    if (callCount === 3) return JSON.stringify({ ok: true, response: 'Ancienne réponse du tour précédent' });
     return JSON.stringify({ ok: true, response: 'Résultat de Claude' });
   };
 
@@ -338,8 +340,8 @@ test('executeTask crée un job et lance l\'automatisation', async () => {
   assert.ok(result.job);
   assert.strictEqual(result.job.status, 'RUNNING');
 
-  // Attendre que l'async se termine (le poll a un intervalle de 5s)
-  await new Promise(function(r) { setTimeout(r, 8000); });
+  // Attendre que l'async se termine (poll rapide : 2 lectures stables)
+  await new Promise(function(r) { setTimeout(r, 2000); });
 
   // Le job devrait être DELIVERED
   var job = scheduler.jobs.find(function(j) { return j.id === result.job.id; });
@@ -476,7 +478,8 @@ test('_executeAutomation : réponse collectée -> temps de réponse noté (stats
   var app = createMockApp();
   var scheduler = new Scheduler(app, {});
   disableQuietHours(scheduler);
-  scheduler.setConfig({ enabled: true, maxConcurrentJobs: 2, minDelayBetweenAutomationsMinutes: 0, minDelayMs: 0, maxDelayMs: 0 });
+  // Délais de poll injectables (config) : tests rapides et déterministes.
+  scheduler.setConfig({ enabled: true, maxConcurrentJobs: 2, minDelayBetweenAutomationsMinutes: 0, minDelayMs: 0, maxDelayMs: 0, responseTimeoutMs: 5000, responsePollIntervalMs: 150 });
   var notations = [];
   scheduler.statsStore = {
     noterQuota: async () => ({ ok: true }),
@@ -501,12 +504,14 @@ test('_executeAutomation : réponse collectée -> temps de réponse noté (stats
       });
     }
     if (callCount === 2) return JSON.stringify({ ok: true, method: 'textarea' });
+    // Lecture de BASELINE (réponse présente avant l'envoi), puis la nouvelle.
+    if (callCount === 3) return JSON.stringify({ ok: true, response: 'Ancienne réponse du tour précédent' });
     return JSON.stringify({ ok: true, response: 'Résultat de Claude' });
   };
   var result = await scheduler.executeTask(project.id, task.id);
   assert.ok(result.ok);
-  // Attendre le poll de réponse (intervalle 5 s dans _executeAutomation).
-  await new Promise(function(r) { setTimeout(r, 8000); });
+  // Le poll accepte la réponse après deux lectures stables (2 x 150 ms).
+  await new Promise(function(r) { setTimeout(r, 1500); });
   var job = scheduler.jobs.find(function(j) { return j.id === result.job.id; });
   assert.strictEqual(job.status, 'DELIVERED');
   assert.strictEqual(notations.length, 1, 'une mesure de temps de réponse');
@@ -514,6 +519,147 @@ test('_executeAutomation : réponse collectée -> temps de réponse noté (stats
   assert.strictEqual(notations[0].service, 'claude');
   assert.ok(Number.isFinite(notations[0].debut));
   assert.ok(notations[0].fin >= notations[0].debut);
+  cleanup(scheduler);
+});
+
+test('_executeAutomation : ancienne réponse + texte qui croît -> une seule mesure, sur le texte final', async () => {
+  var app = createMockApp();
+  var scheduler = new Scheduler(app, {});
+  disableQuietHours(scheduler);
+  scheduler.setConfig({ enabled: true, maxConcurrentJobs: 2, minDelayBetweenAutomationsMinutes: 0, minDelayMs: 0, maxDelayMs: 0, responseTimeoutMs: 5000, responsePollIntervalMs: 150 });
+  var notations = [];
+  scheduler.statsStore = {
+    noterQuota: async () => ({ ok: true }),
+    noterReponse: async (e) => { notations.push(e); return { ok: true }; }
+  };
+  scheduler.createProject('Projet stats', []);
+  var project = scheduler.projects[0];
+  scheduler.createTask(project.id, 'Génère un rapport', null);
+  var task = project.tasks[0];
+  task.assignedProfile = 'profil_1';
+  task.status = 'assigned';
+  var wc = createMockWebContents();
+  scheduler.registerWebview('profil_1', wc);
+  // Séquence : diagnostic, envoi, BASELINE (ancienne réponse), puis un texte
+  // qui CROÎT à chaque lecture (génération en cours) avant de se stabiliser.
+  var lectures = [
+    JSON.stringify({ ok: true, response: 'Ancienne réponse du tour précédent' }),
+    JSON.stringify({ ok: true, response: 'Réponse en cou' }),
+    JSON.stringify({ ok: true, response: 'Réponse en cours (part' }),
+    JSON.stringify({ ok: true, response: 'Résultat complet du nouveau tour.' }),
+    JSON.stringify({ ok: true, response: 'Résultat complet du nouveau tour.' })
+  ];
+  var appel = 0;
+  wc.executeJavaScript = async function() {
+    appel++;
+    if (appel === 1) {
+      return JSON.stringify({
+        chatInput: { found: true }, fileUpload: { found: false },
+        sendButton: { found: true }, quotaMessage: { detected: false },
+        popups: { count: 0 }
+      });
+    }
+    if (appel === 2) return JSON.stringify({ ok: true, method: 'textarea' });
+    return lectures[Math.min(appel - 3, lectures.length - 1)];
+  };
+  var result = await scheduler.executeTask(project.id, task.id);
+  assert.ok(result.ok);
+  await new Promise(function(r) { setTimeout(r, 2000); });
+  var job = scheduler.jobs.find(function(j) { return j.id === result.job.id; });
+  assert.strictEqual(job.status, 'DELIVERED');
+  // Une SEULE mesure, sur le texte final stabilisé — la mesure ne vaut ni
+  // l'ancienne réponse ni le texte partiel.
+  assert.strictEqual(notations.length, 1, 'une seule mesure, sur la réponse stabilisée');
+  assert.strictEqual(job.response, 'Résultat complet du nouveau tour.');
+  assert.ok(notations[0].fin >= notations[0].debut);
+  cleanup(scheduler);
+});
+
+test('_executeAutomation : aucune réponse nouvelle -> délai dépassé, AUCUNE mesure', async () => {
+  var app = createMockApp();
+  var scheduler = new Scheduler(app, {});
+  disableQuietHours(scheduler);
+  scheduler.setConfig({ enabled: true, maxConcurrentJobs: 2, minDelayBetweenAutomationsMinutes: 0, minDelayMs: 0, maxDelayMs: 0, responseTimeoutMs: 600, responsePollIntervalMs: 100 });
+  var notations = [];
+  scheduler.statsStore = {
+    noterQuota: async () => ({ ok: true }),
+    noterReponse: async (e) => { notations.push(e); return { ok: true }; }
+  };
+  scheduler.createProject('Projet stats', []);
+  var project = scheduler.projects[0];
+  scheduler.createTask(project.id, 'Génère un rapport', null);
+  var task = project.tasks[0];
+  task.assignedProfile = 'profil_1';
+  task.status = 'assigned';
+  var wc = createMockWebContents();
+  scheduler.registerWebview('profil_1', wc);
+  var callCount = 0;
+  wc.executeJavaScript = async function() {
+    callCount++;
+    if (callCount === 1) {
+      return JSON.stringify({
+        chatInput: { found: true }, fileUpload: { found: false },
+        sendButton: { found: true }, quotaMessage: { detected: false },
+        popups: { count: 0 }
+      });
+    }
+    if (callCount === 2) return JSON.stringify({ ok: true, method: 'textarea' });
+    // Rien de nouveau : la réponse collectée reste celle d'avant l'envoi.
+    return JSON.stringify({ ok: true, response: 'Ancienne réponse du tour précédent' });
+  };
+  var result = await scheduler.executeTask(project.id, task.id);
+  assert.ok(result.ok);
+  // Timeout court (600 ms) : le poll expire sans nouveau texte.
+  await new Promise(function(r) { setTimeout(r, 1500); });
+  var job = scheduler.jobs.find(function(j) { return j.id === result.job.id; });
+  // Le job est livré (DELIVERED) mais AUCUNE mesure de temps de réponse :
+  // un délai dépassé ne produit jamais un « temps de réponse réussi ».
+  assert.strictEqual(job.status, 'DELIVERED');
+  assert.strictEqual(notations.length, 0, 'aucune mesure quand le délai est dépassé');
+  assert.ok(scheduler.log.some(function(e) {
+    return e.message.indexOf('pas de réponse collectée') !== -1;
+  }));
+  cleanup(scheduler);
+});
+
+test('_executeAutomation : réponse partielle jamais stabilisée -> délai dépassé, aucune mesure', async () => {
+  var app = createMockApp();
+  var scheduler = new Scheduler(app, {});
+  disableQuietHours(scheduler);
+  scheduler.setConfig({ enabled: true, maxConcurrentJobs: 2, minDelayBetweenAutomationsMinutes: 0, minDelayMs: 0, maxDelayMs: 0, responseTimeoutMs: 600, responsePollIntervalMs: 100 });
+  var notations = [];
+  scheduler.statsStore = {
+    noterQuota: async () => ({ ok: true }),
+    noterReponse: async (e) => { notations.push(e); return { ok: true }; }
+  };
+  scheduler.createProject('Projet stats', []);
+  var project = scheduler.projects[0];
+  scheduler.createTask(project.id, 'Génère un rapport', null);
+  var task = project.tasks[0];
+  task.assignedProfile = 'profil_1';
+  task.status = 'assigned';
+  var wc = createMockWebContents();
+  scheduler.registerWebview('profil_1', wc);
+  var callCount = 0;
+  wc.executeJavaScript = async function() {
+    callCount++;
+    if (callCount === 1) {
+      return JSON.stringify({
+        chatInput: { found: true }, fileUpload: { found: false },
+        sendButton: { found: true }, quotaMessage: { detected: false },
+        popups: { count: 0 }
+      });
+    }
+    if (callCount === 2) return JSON.stringify({ ok: true, method: 'textarea' });
+    // Le texte croît à CHAQUE lecture : jamais stable -> jamais mesuré.
+    return JSON.stringify({ ok: true, response: 'Réponse partielle n°' + callCount });
+  };
+  var result = await scheduler.executeTask(project.id, task.id);
+  assert.ok(result.ok);
+  await new Promise(function(r) { setTimeout(r, 1500); });
+  var job = scheduler.jobs.find(function(j) { return j.id === result.job.id; });
+  assert.strictEqual(job.status, 'DELIVERED');
+  assert.strictEqual(notations.length, 0, 'un texte en génération continue n’est jamais mesuré');
   cleanup(scheduler);
 });
 
@@ -546,7 +692,7 @@ test('_executeAutomation : statsStore qui rejette ne bloque pas la livraison', a
   var app = createMockApp();
   var scheduler = new Scheduler(app, {});
   disableQuietHours(scheduler);
-  scheduler.setConfig({ enabled: true, maxConcurrentJobs: 2, minDelayBetweenAutomationsMinutes: 0, minDelayMs: 0, maxDelayMs: 0 });
+  scheduler.setConfig({ enabled: true, maxConcurrentJobs: 2, minDelayBetweenAutomationsMinutes: 0, minDelayMs: 0, maxDelayMs: 0, responseTimeoutMs: 5000, responsePollIntervalMs: 150 });
   // noterReponse rejette : le .catch(() => {}) du hook avale, la livraison continue.
   scheduler.statsStore = {
     noterReponse: async () => { throw new Error('disque plein (test)'); }
@@ -570,11 +716,13 @@ test('_executeAutomation : statsStore qui rejette ne bloque pas la livraison', a
       });
     }
     if (callCount === 2) return JSON.stringify({ ok: true, method: 'textarea' });
+    // Lecture de BASELINE (réponse d'avant l'envoi), puis la nouvelle réponse.
+    if (callCount === 3) return JSON.stringify({ ok: true, response: 'Ancienne réponse du tour précédent' });
     return JSON.stringify({ ok: true, response: 'Résultat de Claude' });
   };
   var result = await scheduler.executeTask(project.id, task.id);
   assert.ok(result.ok);
-  await new Promise(function(r) { setTimeout(r, 8000); });
+  await new Promise(function(r) { setTimeout(r, 2000); });
   var job = scheduler.jobs.find(function(j) { return j.id === result.job.id; });
   assert.strictEqual(job.status, 'DELIVERED', 'la mesure qui échoue ne bloque pas la livraison');
   await new Promise(function(r) { setTimeout(r, 50); });

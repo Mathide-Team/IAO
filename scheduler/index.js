@@ -593,8 +593,19 @@ class Scheduler {
       this._logActivity('Job ' + job.id + ' : prompt envoyé à Claude, en attente de la réponse...');
       var envoyeA = Date.now(); // #206 lot 2 : temps de réponse (envoi -> fin)
 
-      // Poller la réponse pendant max 120 secondes (toutes les 5 s)
-      var response = await this._pollClaudeResponse(job.profile, 120000, 5000);
+      // #206 lot 2a (durcissement) : la mesure ne doit compter que le NOUVEAU
+      // texte généré. On capture la dernière réponse présente AVANT l'envoi
+      // (réponse d'un échange précédent dans le même chat) : sans cette base de
+      // comparaison, le premier poll renverrait l'ancienne réponse et la mesure
+      // vaudrait l'intervalle de poll, pas la génération.
+      var baseAvantEnvoi = await this.collectClaudeResponse(job.profile);
+      var reponseAvantEnvoi = (baseAvantEnvoi && baseAvantEnvoi.ok && baseAvantEnvoi.response) ? baseAvantEnvoi.response : '';
+
+      // Poller la réponse (délais injectables via la config pour les tests).
+      var response = await this._pollClaudeResponse(job.profile,
+        this.config.responseTimeoutMs ?? 120000,
+        this.config.responsePollIntervalMs ?? 5000,
+        reponseAvantEnvoi);
       if (this.statsStore && response && response.ok && response.response) {
         // #206 lot 2 : mesure locale du temps de réponse (jamais bloquant).
         this.statsStore.noterReponse({ profil: job.profile, service: 'claude', debut: envoyeA, fin: Date.now() }).catch(() => {});
@@ -670,15 +681,28 @@ class Scheduler {
 
   // Poll la réponse de Claude à intervalles réguliers.
   // Renvoie { ok: true, response: string } ou { ok: false } si délai dépassé.
-  async _pollClaudeResponse(profile, timeoutMs, intervalMs) {
+  //
+  // #206 lot 2a (durcissement) — une réponse n'est acceptée que si :
+  //   1. elle diffère de la réponse présente avant l'envoi (`baseline`) :
+  //      la même réponse d'un échange précédent ne compte pas ;
+  //   2. elle est STABLE sur deux lectures consécutives : le texte d'une
+  //      génération en cours croît à chaque lecture ; deux lectures
+  //      identiques = génération terminée.
+  // Une réponse partielle ne produit donc jamais de mesure : à l'expiration du
+  // délai, rien n'est noté (pas de « temps de réponse réussi »).
+  async _pollClaudeResponse(profile, timeoutMs, intervalMs, baseline) {
     var self = this;
     var start = Date.now();
+    var stable = null;
     while (Date.now() - start < timeoutMs) {
       await new Promise(function(r) { setTimeout(r, intervalMs); });
       try {
         var resp = await self.collectClaudeResponse(profile);
-        if (resp && resp.ok && resp.response) {
-          return resp;
+        if (resp && resp.ok && resp.response && resp.response !== baseline) {
+          if (stable === resp.response) return resp; // stable -> génération finie
+          stable = resp.response;
+        } else {
+          stable = null; // lecture vide/identique à la base : on repart de zéro
         }
       } catch (_) { /* continuer à poller */ }
     }

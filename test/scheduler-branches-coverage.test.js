@@ -186,7 +186,9 @@ test('_pollClaudeResponse : une collecte qui lève est ignorée, le poll continu
   };
   const res = await scheduler._pollClaudeResponse('profil_1', 1000, 1);
   assert.deepEqual(res, { ok: true, response: 'réponse' });
-  assert.equal(appels, 2);
+  // Une réponse n'est acceptée que STABLE sur deux lectures consécutives
+  // (durcissement #206 lot 2a) : 1 lecture qui lève + 2 lectures identiques.
+  assert.equal(appels, 3);
 });
 
 // --- executeTask : gardes -------------------------------------------------------

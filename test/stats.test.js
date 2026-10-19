@@ -472,6 +472,104 @@ test('store lot 2 : plafond d’événements (maxEvenements injectable)', async 
   }
 });
 
+test('store lot 2 : écritures concurrentes sérialisées — aucun événement perdu', async () => {
+  const dossier = fs.mkdtempSync(path.join(os.tmpdir(), 'iao-stats2c-'));
+  try {
+    const store = st.creerStore({ dossier, fs: fs.promises, path, maintenant: () => T0, maxEvenements: 1000 });
+    // 12 quotas + 12 réponses notés SIMULTANÉMENT : sans sérialisation, des
+    // lectures concurrentes du même historique s'écrasent mutuellement et des
+    // événements disparaissent. (Profils distincts : la déduplication
+    // d'épisodes de quota ne doit pas interférer avec ce test.)
+    const proms = [];
+    for (let i = 0; i < 12; i++) {
+      proms.push(store.noterQuota({ profil: 'p' + i, service: 'claude', date: T0 - i * 1000 }));
+      proms.push(store.noterReponse({ profil: 'p' + i, service: 'claude', debut: T0 - 60000, fin: T0 - i }));
+    }
+    const res = await Promise.all(proms);
+    assert.ok(res.every(r => r && r.ok), 'toutes les notations réussissent');
+    const quotas = await store.chargerQuotas();
+    const reponses = await store.chargerReponses();
+    assert.strictEqual(quotas.length, 12, 'aucun événement quota perdu');
+    assert.strictEqual(reponses.length, 12, 'aucun événement réponse perdu');
+    // Relecture brute du disque : les événements ont réellement survécu.
+    const brutQ = fs.readFileSync(path.join(dossier, 'quotas.jsonl'), 'utf-8').trim().split('\n');
+    const brutR = fs.readFileSync(path.join(dossier, 'reponses.jsonl'), 'utf-8').trim().split('\n');
+    assert.strictEqual(brutQ.length, 12);
+    assert.strictEqual(brutR.length, 12);
+  } finally {
+    fs.rmSync(dossier, { recursive: true, force: true });
+  }
+});
+
+test('store lot 2 : épisodes de quota dédupliqués (1 par compte et par heure)', async () => {
+  const dossier = fs.mkdtempSync(path.join(os.tmpdir(), 'iao-stats2d-'));
+  try {
+    const store = st.creerStore({ dossier, fs: fs.promises, path, maintenant: () => T0 });
+    assert.deepEqual(await store.noterQuota({ profil: 'p1', service: 'claude', date: T0 }), { ok: true });
+    // Re-détection 30 min plus tard : même blocage (boucle wait_quota) -> ignorée.
+    assert.deepEqual(await store.noterQuota({ profil: 'p1', service: 'claude', date: T0 + 30 * 60 * 1000 }),
+      { ok: true, dedup: true });
+    // Un autre compte n'est jamais dédupliqué.
+    assert.deepEqual(await store.noterQuota({ profil: 'p2', service: 'claude', date: T0 + 30 * 60 * 1000 }), { ok: true });
+    // Deux heures plus tard pour le même compte : nouvel épisode, noté.
+    assert.deepEqual(await store.noterQuota({ profil: 'p1', service: 'claude', date: T0 + 2 * H }), { ok: true });
+    const quotas = await store.chargerQuotas();
+    assert.strictEqual(quotas.length, 3, '3 épisodes distincts, la re-détection ne compte pas');
+  } finally {
+    fs.rmSync(dossier, { recursive: true, force: true });
+  }
+});
+
+test('store lot 2 : purge 90 jours PERSISTÉE — le fichier est réécrit', async () => {
+  const dossier = fs.mkdtempSync(path.join(os.tmpdir(), 'iao-stats2e-'));
+  try {
+    fs.mkdirSync(dossier, { recursive: true });
+    // Fichier écrit DIRECTEMENT (la notation purge déjà à l'écriture) : un
+    // événement expiré et un valide.
+    const ligne = (id, profil, date) => JSON.stringify({ id, profil, service: 'claude', date });
+    fs.writeFileSync(path.join(dossier, 'quotas.jsonl'),
+      [ligne('q1', 'p1', T0 - 91 * 24 * H), ligne('q2', 'p2', T0 - 60 * 1000)].join('\n') + '\n');
+    const store = st.creerStore({ dossier, fs: fs.promises, path, maintenant: () => T0 });
+    const quotas = await store.chargerQuotas();
+    assert.strictEqual(quotas.length, 1, 'seul l\'événement non expiré est renvoyé');
+    // L'événement expiré est retiré DU FICHIER (pas seulement du résultat) :
+    // la « conservation 90 jours » tient même sans nouvelle notation.
+    const brut = fs.readFileSync(path.join(dossier, 'quotas.jsonl'), 'utf-8');
+    assert.ok(!brut.includes('"p1"'), 'l\'événement expiré est physiquement purgé');
+    assert.ok(brut.includes('"p2"'), 'l\'événement récent est conservé');
+  } finally {
+    fs.rmSync(dossier, { recursive: true, force: true });
+  }
+});
+
+test('store lot 2 : un échec d\'écriture n\'empoisonne pas la chaîne (réessai)', async () => {
+  const dossier = fs.mkdtempSync(path.join(os.tmpdir(), 'iao-stats2f-'));
+  try {
+    let ecritures = 0;
+    const fsFragile = Object.assign({}, fs.promises, {
+      writeFile: (f, ...r) => {
+        ecritures++;
+        // La première écriture d'en-cours.json (récupération) échoue.
+        if (f.endsWith('en-cours.json') && ecritures === 1) {
+          return Promise.reject(new Error('disque plein (test)'));
+        }
+        return fs.promises.writeFile(f, ...r);
+      }
+    });
+    const store = st.creerStore({ dossier, fs: fsFragile, path, maintenant: () => T0 });
+    // Première notation : la récupération échoue -> la notation est rejetée.
+    await assert.rejects(store.noterReponse({ profil: 'p1', service: 'claude', debut: T0 - 1000, fin: T0 }),
+      /disque plein/);
+    // La chaîne n'est PAS empoisonnée : l'appel suivant réessaie (la
+    // récupération n'est pas mémoïsée sur son rejet) et réussit.
+    assert.deepEqual(await store.noterReponse({ profil: 'p1', service: 'claude', debut: T0 - 1000, fin: T0 }),
+      { ok: true });
+    assert.strictEqual((await store.chargerReponses()).length, 1);
+  } finally {
+    fs.rmSync(dossier, { recursive: true, force: true });
+  }
+});
+
 test('agregerReponses/agregerQuotas : tri à nombre égal par profil', () => {
   const rs = [
     rep('a', 'zoe', 'claude', T0, T0 + 1000),
