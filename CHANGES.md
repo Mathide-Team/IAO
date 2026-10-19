@@ -1,5 +1,13 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Fermeture d'onglet : bandeau « Invalid guestInstanceId » (19/10/2026)
+
+- Fermer un onglet IA chargé affichait le bandeau rouge « IAO a rencontré un
+  problème — Invalid guestInstanceId ». Bug d'Electron (suppression d'une
+  `<webview>` chargée, electron/electron#54089), corrigé en 43.7.4 : Electron
+  passe de 43.7.2 à **43.8.0** (même branche majeure).
+- Test de non-régression : harnais Electron C12.1.
+
 ## Issue #199 — lot 4 : interface des tâches programmables (19/10/2026)
 
 ### Livré
