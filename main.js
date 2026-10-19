@@ -32,6 +32,7 @@ const diag = require('./lib/startup-diagnostics');
 const DEBUG = diag.isDebugEnabled(process.argv, process.env);
 const debugTrace = require('./lib/debug-trace');
 const { CoffreSecrets, registerComptesIPC } = require('./lib/coffre-secrets');
+const startupStorage = require('./lib/startup-storage');
 const LOG_DIR = path.join(app.getPath('userData'), 'logs');
 const LOG_FILE = path.join(LOG_DIR, 'iao.log');
 const LOG_MAX_BYTES = 1024 * 1024;
@@ -528,6 +529,9 @@ app.whenReady().then(() => {
     ', ' + process.platform + '/' + process.arch + (app.isPackaged ? ', packagé' : ', sources') +
     (DEBUG ? ', mode debug' : '') + '. Données : ' + app.getPath('userData') + ' — journal : ' + LOG_FILE);
   debug('demarrage', debugTrace.describeRuntime(process));
+  // Issue #203 (piste #184) : état du dossier de données à chaque démarrage.
+  const donnees = startupStorage.inspecterDonnees(app.getPath('userData'), fs);
+  startupStorage.journaliserDonnees(donnees, log);
   // Issue #162 : le journal d'activité de l'ordonnanceur rejoint iao.log, et
   // ses traces détaillées sont actives en mode debug.
   scheduler.setLogger(log, DEBUG);

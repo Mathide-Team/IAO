@@ -185,3 +185,12 @@ test('mode normal : app:is-debug renvoie false, aucune trace debug ni console d\
     assert.match(log, /\[scheduler\] info Ordonnanceur arrêté au démarrage/);
   } finally { h.cleanup(); }
 });
+
+// Issue #203 : état du dossier de données au démarrage, hors mode debug.
+test('#203 : dossier de données journalisé au démarrage, hors mode debug', async () => {
+  const h = loadMain({ debug: false });
+  try {
+    await h.ready();
+    assert.match(h.readLog(), /\[demarrage\] info Dossier de données .*userData — Local Storage : absent — partitions : 0/);
+  } finally { h.cleanup(); }
+});
