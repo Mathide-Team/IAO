@@ -402,20 +402,6 @@ test('agregerQuotas : nombre et répartition par heure locale', () => {
   assert.strictEqual(vieux.parCompteService.length, 0);
 });
 
-test('carteHeures : temps actif réparti par heure traversée', () => {
-  // Session de 2 h (11:00 -> 13:00), 120 min actives : 60 min en case (jour, 11),
-  // 60 min en case (jour, 12). Le 19/10/2026 est un lundi (getDay() === 1).
-  const s1 = sess('a', 'p', 'claude', new Date(2026, 9, 19, 11).getTime(), new Date(2026, 9, 19, 13).getTime(), 2 * H);
-  const r = st.carteHeures([s1], { maintenant: T0 + H });
-  assert.strictEqual(r.matrice[1][11], H);
-  assert.strictEqual(r.matrice[1][12], H);
-  assert.strictEqual(r.max, H);
-  // Une session avant la période ne compte pas.
-  const vide = st.carteHeures([s1], { maintenant: T0 + 10 * 24 * H, periode: 'semaine' });
-  let somme = 0;
-  for (const l of vide.matrice) for (const v of l) somme += v;
-  assert.strictEqual(somme, 0);
-});
 
 test('classerComptes : sous-utilisés et surchargés, seuils', () => {
   const sessions = [
@@ -499,13 +485,6 @@ test('agregerReponses/agregerQuotas : tri à nombre égal par profil', () => {
   assert.strictEqual(rq.parCompteService[0].profil, 'anne');
 });
 
-test('carteHeures : session de durée nulle ignorée sans erreur', () => {
-  const nulle = sess('n', 'p', 'claude', T0, T0, 0); // debut === fin
-  const r = st.carteHeures([nulle], { maintenant: T0 });
-  let somme = 0;
-  for (const l of r.matrice) for (const v of l) somme += v;
-  assert.strictEqual(somme, 0);
-});
 
 test('classerComptes : quotas trop anciens ignorés', () => {
   const sessions = [sess('a', 'p1', 'claude', T0 - H, T0, 1000)];
@@ -527,7 +506,6 @@ test('classerComptes : quotas trop anciens ignorés', () => {
 test('lot 2 : entrées non tableaux et cas limites des agrégats', () => {
   // Entrées non tableau : listes vides, aucun levée.
   assert.strictEqual(st.agregerQuotas(null).parCompteService.length, 0);
-  assert.strictEqual(st.carteHeures(null).max, 0);
   const r = st.classerComptes(null, null);
   assert.deepEqual(r.sousUtilises, []);
   // Session hors période ignorée dans classerComptes ; quotas seuls.
@@ -561,6 +539,5 @@ test('lot 2 : appels sans options (paramètres par défaut, Date.now injecté no
   // récents d'il y a quelques secondes restent dans toutes les périodes.
   assert.ok(st.agregerReponses(rs).totaux.nombre === 1);
   assert.ok(st.agregerQuotas(qs).parCompteService.length === 1);
-  assert.ok(st.carteHeures(ss).max > 0);
   assert.ok(st.classerComptes(ss, qs).sousUtilises.length === 1);
 });

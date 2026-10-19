@@ -955,11 +955,51 @@ async function run() {
       return r;
     })()`);
     assert(r.ouvert && r.ferme, 'ouverture/fermeture : ' + JSON.stringify(r));
-    assert(r.cartes === 3 && r.tables === 2, 'attendu 3 cartes et 2 tableaux : ' + JSON.stringify(r));
+    // 4 cartes (dont la série, lot 2) ; tableaux compte + service (+ tâches, C11.3).
+    assert(r.cartes === 4 && r.tables >= 2, 'attendu 4 cartes et au moins 2 tableaux : ' + JSON.stringify(r));
     assert(r.script === 0 && r.texte.includes('<script>alert(1)</script>'), 'nom de compte non échappé');
     assert(r.texte.includes('Compte Test Un') && r.texte.includes('Claude'), 'comptes/services absents : ' + r.texte);
     assert(r.active === 'tout', 'période active : ' + r.active);
     assert(r.icone, 'icône chart-simple non hydratée');
+    assert(!r.deborde, 'débordement horizontal du contenu');
+  });
+
+  await test('C11.3 Statistiques lot 2 : heures de pointe, tâches par compte, tri par colonne, inutilisés (#206)', async () => {
+    const r = await exec(`(async () => {
+      document.querySelector('[data-action="ui-openStatsModal"]').click();
+      await new Promise(res => setTimeout(res, 500));
+      document.querySelector('#statsPeriodes [data-periode="tout"]').click();
+      const body = document.getElementById('statsBody');
+      const chaleur = document.getElementById('statsChaleur');
+      const taches = document.getElementById('statsTaches');
+      const r = {
+        lignesChaleur: chaleur ? chaleur.querySelectorAll('tbody tr').length : 0,
+        casesChaleur: chaleur ? chaleur.querySelectorAll('.stats-chaleur__case').length : 0,
+        casesAllumees: chaleur ? [...chaleur.querySelectorAll('.stats-chaleur__case')].filter(c => parseFloat(c.style.getPropertyValue('--niveau')) > 0).length : 0,
+        tachesTexte: taches ? taches.textContent : '',
+        serie: body.textContent.includes('Série en cours'),
+        inutilises: [...document.querySelectorAll('#statsInutilises li')].map(li => li.textContent)
+      };
+      // Tri : premier clic = décroissant, second = croissant, aria-sort à jour.
+      const th = () => body.querySelector('[data-stats-tri="compte"][data-col="cle"]');
+      th().click();
+      r.tri1 = th().getAttribute('aria-sort');
+      th().click();
+      r.tri2 = th().getAttribute('aria-sort');
+      const noms = () => [...body.querySelectorAll('.stats-table')][0].querySelectorAll('tbody tr').length;
+      r.lignesCompte = noms();
+      r.deborde = body.scrollWidth > body.clientWidth + 1;
+      document.querySelector('#statsModal [data-action="ui-closeStatsModal"]').click();
+      return r;
+    })()`);
+    assert(r.lignesChaleur === 7 && r.casesChaleur === 7 * 24, 'carte de chaleur 7 × 24 attendue : ' + JSON.stringify(r));
+    assert(r.casesAllumees >= 1, 'au moins une case de temps actif attendue : ' + JSON.stringify(r));
+    // C10.6 a produit un envoi pour profil_1 : la ligne du compte apparaît.
+    assert(r.tachesTexte.includes('Compte Test Un'), 'tâches par compte absentes : ' + JSON.stringify(r));
+    assert(r.serie, 'carte de série absente');
+    assert(r.tri1 === 'descending' && r.tri2 === 'ascending', 'tri par colonne : ' + JSON.stringify(r));
+    assert(r.lignesCompte >= 2, 'lignes de compte perdues au tri');
+    assert(r.inutilises.every(t => !t.includes('Compte Test Un')), 'compte utilisé listé comme inutilisé : ' + JSON.stringify(r.inutilises));
     assert(!r.deborde, 'débordement horizontal du contenu');
   });
 

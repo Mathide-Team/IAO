@@ -1243,11 +1243,103 @@ msgid "Part"
 msgstr ""
 
 #: assets/app.js
-msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
+msgid "Dim"
+msgstr ""
+
+#: assets/app.js
+msgid "Jeu"
+msgstr ""
+
+#: assets/app.js
+msgid "Lun"
+msgstr ""
+
+#: assets/app.js
+msgid "Mar"
+msgstr ""
+
+#: assets/app.js
+msgid "Mer"
+msgstr ""
+
+#: assets/app.js
+msgid "Sam"
+msgstr ""
+
+#: assets/app.js
+msgid "Ven"
+msgstr ""
+
+#: assets/app.js
+msgid "{jour} {h} h : {duree}"
+msgstr ""
+
+#: assets/app.js
+msgid "Heures de pointe (temps actif)"
+msgstr ""
+
+#: assets/app.js
+msgid "dernière utilisation : {date}"
+msgstr ""
+
+#: assets/app.js
+msgid "jamais utilisé depuis le début de la mesure"
+msgstr ""
+
+#: assets/app.js
+msgid "Comptes inutilisés sur la période"
+msgstr ""
+
+#: assets/app.js
+msgid "fin {h}"
+msgstr ""
+
+#: assets/app.js
+msgid "Tâches programmables par compte"
 msgstr ""
 
 #: assets/app.js
 msgid "Compte"
+msgstr ""
+
+#: assets/app.js
+msgid "Envoyées"
+msgstr ""
+
+#: assets/app.js
+msgid "Erreurs"
+msgstr ""
+
+#: assets/app.js
+msgid "Quotas"
+msgstr ""
+
+#: assets/app.js
+msgid "Dernier quota"
+msgstr ""
+
+#: assets/app.js
+msgid "Exécutions"
+msgstr ""
+
+#: assets/app.js
+msgid "D'après l'historique des tâches (200 dernières exécutions)."
+msgstr ""
+
+#: assets/app.js
+msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
+msgstr ""
+
+#: assets/app.js
+msgid "1 jour"
+msgstr ""
+
+#: assets/app.js
+msgid "{n} jours"
+msgstr ""
+
+#: assets/app.js
+msgid "Série en cours (record : {n})"
 msgstr ""
 
 #: assets/app.js

@@ -1,9 +1,28 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issue #206 — statistiques d'utilisation, lot 2 (19/10/2026)
+
+### Livré
+- **Heures de pointe** : carte de chaleur jour × heure (heure locale, lundi en
+  premier) du temps actif, réparti au prorata des tranches horaires couvertes.
+- **Série** de jours consécutifs d'utilisation (en cours et record) ; une
+  session à cheval sur minuit compte pour les deux jours.
+- **Comptes inutilisés** sur la période, avec la dernière utilisation connue.
+- **Tâches programmables par compte** (lien avec #199) : envoyées, quotas,
+  erreurs (erreur + non connecté), exécutions, dernier quota et heure de fin
+  rapportée. Source : l'historique des tâches (`taches:history`, 200 dernières
+  exécutions). Depuis le retrait du bouton « Épuiser » (#136), plus rien
+  n'alimente `cooldowns` : les quotas ne viennent que de cet historique.
+- **Tri par colonne** de tous les tableaux (clic sur l'en-tête, second clic = sens
+  inverse, `aria-sort`).
+- `lib/stats.js` : `heuresDePointe`, `comptesInutilises`, `serieJours`,
+  `resultatsTaches`, `trierLignes` (100 %, `test/stats-lot2.test.js`) ;
+  harnais C11.3 ; traductions en/de/es/it/pt.
+
 ## Issue #206 — lot 2a : mesure des temps de réponse et des quotas (20/10/2026)
 
 ### Livré
-- **Couche de données du lot 2** (l'affichage suivra au lot 2b) :
+- **La mesure laissée en « reste » par le lot 2** : temps de réponse et quotas.
   - temps de réponse Claude : envoi du prompt -> fin de la génération,
     mesuré dans `_executeAutomation` (le poll de réponse existant) ;
   - quotas atteints : notés quand `runClaudeJob` détecte le quota
@@ -14,9 +33,10 @@
 - `lib/stats.js` (pur, testé) : `normaliserReponse`/`normaliserQuota`,
   `agregerReponses` (médiane/min/max par compte et service),
   `agregerQuotas` (répartition par heure de la journée),
-  `carteHeures` (temps actif par jour de semaine × heure, prorata),
-  `classerComptes` (sous-utilisés / surchargés, seuils configurables) ;
+  `classerComptes` (sous-utilisés / **surchargés** — la moitié
+  « surchargés », alimentée par les quotas, est nouvelle) ;
   `purger` généralisé (champ `fin` ou `date`), `parserJsonl` typé.
+  (`carteHeures` retirée : doublon de `heuresDePointe` du lot 2.)
 - IPC : `stats:noter-reponse`, `stats:noter-quota`, `stats:reponses`,
   `stats:quotas` ; `scheduler.statsStore` câblé dans `main.js`.
 
