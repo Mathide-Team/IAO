@@ -200,6 +200,14 @@ msgid "Démarrer"
 msgstr "Start"
 
 #: index.html
+msgid "Ancien ordonnanceur désactivé"
+msgstr "Legacy scheduler disabled"
+
+#: index.html
+msgid "La détection des ZIP, les jobs et les projets sont remplacés par les tâches programmables, en cours de développement."
+msgstr "ZIP detection, jobs and projects are being replaced by scheduled tasks, currently in development."
+
+#: index.html
 msgid "Jobs actifs"
 msgstr "Active jobs"
 
