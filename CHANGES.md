@@ -1,5 +1,30 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issue #206 — statistiques d'utilisation, lot 1 (19/10/2026)
+
+### Livré
+- **Mesure locale** des sessions d'onglet : durée d'ouverture et **temps actif**
+  (onglet au premier plan ET fenêtre IAO au focus), par compte (profil) et par
+  service. `lib/stats.js` (pur, 100 %) : suivi, agrégation, JSONL, conservation.
+- **Persistance** dans `<userData>/stats/` : `sessions.jsonl` (90 jours, purgé au
+  démarrage, lignes abîmées ignorées une à une) et `en-cours.json` (instantané
+  des onglets ouverts, synchronisé à chaque fermeture d'onglet et toutes les
+  minutes). Fermeture brutale ou page rechargée : les sessions ouvertes sont
+  versées à l'historique, perte maximale d'une minute, sans doublon (par id).
+- **Page Statistiques** (bouton « graphique » de la barre du haut) : périodes
+  Aujourd'hui / 7 / 30 / 90 jours ; totaux (temps actif, durée ouverte,
+  sessions) ; tableaux par compte (dernière utilisation) et par service (part
+  du temps actif). Une session à cheval sur le début de période n'y compte que
+  pour sa partie incluse. Noms échappés (`escapeHtml`).
+- Aucune télémétrie, aucun appel réseau ; canaux IPC `stats:sync` et
+  `stats:load`. Icône Font Awesome Free 6.5.0 `chart-simple`.
+- Tests : `test/stats.test.js` (100 %), harnais Electron C11.1/C11.2 ;
+  traductions anglaises.
+
+### Reste (lots suivants de #206)
+- Lot 2 : messages envoyés et tâches programmables (lien avec #199).
+- Lot 3 : graphiques d'évolution, export CSV/JSON, remise à zéro depuis l'interface.
+
 ## Issue #201 — comptes en série, côté IAO (18/10/2026)
 
 ### Livré
