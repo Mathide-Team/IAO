@@ -324,7 +324,10 @@ async function run() {
     await sleep(300);
     const visible = (id) => exec('(function(){var e=document.getElementById("' + id + '");' +
       'return !!e && !e.hidden && getComputedStyle(e).display !== "none";})()');
-    assert(await visible('schedLegacyOff'), 'bandeau « désactivé » absent');
+    // Lot 4 : l'interface des tâches programmables remplace le bandeau
+    // « en cours de développement » du lot 1 (issue #199).
+    assert(await visible('schedTaches'), 'interface des tâches programmables absente');
+    assert(!(await visible('schedLegacyOff')), 'bandeau obsolète du lot 1 encore affiché');
     assert(!(await visible('schedLegacy')), 'sections de l\'ancien flux visibles');
     assert(!(await visible('schedRun')), 'bouton Démarrer visible');
     assert(await visible('schedLog'), 'journal d\'activité masqué');
@@ -622,6 +625,281 @@ async function run() {
     assert(r.apres.type === 'text' && r.apres.longueur === 20, 'mot de passe généré visible de 20 caractères : ' + JSON.stringify(r.apres));
     assert(r.final === 'password' && r.titre === 'Afficher le mot de passe', 'bouton œil : ' + JSON.stringify(r));
   });
+
+  // =========================================================================
+  // C10 — Tâches programmables (issue #199, lot 4)
+  // =========================================================================
+  console.log('\n--- C10 : Tâches programmables (lot 4, issue #199) ---');
+
+  // Dates futures calculées à l'exécution : une date fixe deviendrait passée
+  // et la minuterie pourrait lancer les tâches PENDANT les scénarios (garde
+  // occupée, exécutions concurrentes). +2 jours garantit « pas encore due ».
+  const dansDeuxJoursLocal = () => {
+    const d = new Date(Date.now() + 2 * 86400000);
+    const p = n => String(n).padStart(2, '0');
+    return d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate()) +
+      'T' + p(d.getHours()) + ':' + p(d.getMinutes());
+  };
+  const dansDeuxJoursISO = () => new Date(Date.now() + 2 * 86400000).toISOString();
+
+
+  await test('C10.1 modale ordonnanceur : interface des tâches visible, liste vide', async () => {
+    await exec('window.openSchedulerModal()');
+    await sleep(800);
+    const visible = await exec('!document.getElementById("schedTaches").hidden');
+    assert(visible, '#schedTaches devrait être visible (flux nouveau par défaut)');
+    const offCache = await exec('document.getElementById("schedLegacyOff").hidden');
+    assert(offCache === true, 'le bandeau « en cours de développement » doit être masqué');
+    const vide = await exec('document.getElementById("tachesList").textContent');
+    assert(/Nouvelle tâche/.test(vide) || /Aucune tâche programmée/.test(vide), 'état vide attendu : ' + vide);
+  });
+
+  await test('C10.2 création via formulaire : carte présente, nom HTML échappé', async () => {
+    await exec('document.getElementById("tacheNewBtn").click()');
+    await sleep(100);
+    const formVisible = await exec('!document.getElementById("tacheForm").hidden');
+    assert(formVisible, 'le formulaire devrait être ouvert');
+    await exec(`
+      document.getElementById('tacheFormNom').value = '<b>Nom & test</b><script>alert(1)<\/script>';
+      const sel = document.getElementById('tacheFormComptesMode');
+      sel.value = 'liste'; sel.dispatchEvent(new Event('change'));
+      document.querySelector('#tacheFormComptesChoix input[data-profile="profil_1"]').checked = true;
+      document.getElementById('tacheFormPrompt').value = 'Dis bonjour';
+      document.getElementById('tacheFormProgDepuis').value = '${dansDeuxJoursLocal()}';
+      document.getElementById('tacheFormProgTous').value = '2';
+      document.getElementById('tacheFormProgUnite').value = 'heure';
+      document.getElementById('tacheFormActive').checked = true;
+      'rempli'
+    `);
+    await exec('document.getElementById("tacheFormEnregistrer").click()');
+    await sleep(800);
+    const nbCartes = await exec('document.querySelectorAll("#tachesList .tache-card").length');
+    assert(nbCartes === 1, 'une carte de tâche attendue, trouvé ' + nbCartes);
+    // Échappement : le nom s'affiche comme TEXTE (pas d'élément <script> ni
+    // <b> injecté dans la carte) — textContent contient le nom brut, c'est
+    // le rendu HTML qui doit l'échapper.
+    const pasDeScript = await exec('document.querySelectorAll("#tachesList .tache-card script, #tachesList .tache-card b").length');
+    assert(pasDeScript === 0, 'aucun élément HTML ne doit être injecté à partir du nom');
+    const titre = await exec('document.querySelector("#tachesList .tache-card .sched-job__title").textContent');
+    assert(titre.indexOf('Nom & test') !== -1, 'le nom doit être affiché : ' + titre);
+    const dotDanger = await exec('(function(){var d=document.querySelector("#tachesList .tache-card .sched-job__dot");return d?d.getAttribute("data-dot-color"):null;})()');
+    assert(dotDanger === 'var(--accent)', 'la tâche active doit avoir le point accent : ' + dotDanger);
+  });
+
+  await test('C10.3 le rafraîchissement (polling 4 s) ne détruit pas la saisie en cours', async () => {
+    await exec('document.querySelector("#tachesList [data-action=tache-edit]").click()');
+    await sleep(100);
+    await exec(`document.getElementById('tacheFormNom').value = 'Saisie en cours non perdue'`);
+    await sleep(4500); // au moins un passage du polling de la modale
+    const valeur = await exec('document.getElementById("tacheFormNom").value');
+    assert(valeur === 'Saisie en cours non perdue',
+      'la saisie doit survivre au rafraîchissement, trouvé : ' + valeur);
+    const encoreOuvert = await exec('!document.getElementById("tacheForm").hidden');
+    assert(encoreOuvert, 'le formulaire doit rester ouvert');
+    await exec('document.getElementById("tacheFormEnregistrer").click()');
+    await sleep(800);
+  });
+
+  await test('C10.4 édition : le nom modifié apparaît', async () => {
+    await exec('document.querySelector("#tachesList [data-action=tache-edit]").click()');
+    await sleep(100);
+    await exec(`document.getElementById('tacheFormNom').value = 'Tâche renommée'`);
+    await exec('document.getElementById("tacheFormEnregistrer").click()');
+    await sleep(800);
+    const titre = await exec('document.querySelector("#tachesList .tache-card .sched-job__title").textContent');
+    assert(titre.indexOf('Tâche renommée') !== -1, 'nom renommé attendu : ' + titre);
+  });
+
+  await test('C10.5 bascule d\'activation : désactiver puis réactiver', async () => {
+    // La tâche est active depuis sa création (C10.2) : un clic la désactive.
+    await exec('document.querySelector("#tachesList [data-action=tache-toggle]").click()');
+    await sleep(800);
+    let bouton = await exec('document.querySelector("#tachesList [data-action=tache-toggle]").textContent');
+    assert(/Activer/.test(bouton), 'le bouton doit proposer « Activer » une fois inactive : ' + bouton);
+    // Un second clic la réactive.
+    await exec('document.querySelector("#tachesList [data-action=tache-toggle]").click()');
+    await sleep(800);
+    bouton = await exec('document.querySelector("#tachesList [data-action=tache-toggle]").textContent');
+    assert(/Désactiver/.test(bouton), 'le bouton doit proposer « Désactiver » une fois active : ' + bouton);
+    const meta = await exec('document.querySelector("#tachesList .tache-card .sched-job__meta").textContent');
+    assert(/toutes les 2 heures/.test(meta), 'la périodicité doit être décrite : ' + meta);
+    assert(/1 compte\(s\)/.test(meta), 'le compte sélectionné doit être décrit : ' + meta);
+  });
+
+  await test('C10.6 « Exécuter maintenant » : envoi réel simulé, résultat dans l\'historique', async () => {
+    // Le réseau est coupé dans le harnais : le canal d'envoi
+    // (scheduler:run-claude-job) est remplacé côté processus principal par
+    // une réponse réussie. Tout le reste est RÉEL : la garde du moteur avant
+    // l'appel au service, le plan du service, l'ouverture de l'onglet,
+    // l'envoi, le compte rendu (taches:report) et l'historique.
+    const { ipcMain } = require('electron');
+    // (removeHandler au singulier : version d'Electron du dépôt.)
+    ipcMain.removeHandler('scheduler:run-claude-job');
+    const envoisSimules = [];
+    ipcMain.handle('scheduler:run-claude-job', async (evenement, profil, prompt) => {
+      envoisSimules.push({ profil, prompt });
+      return { ok: true, sent: true };
+    });
+    // Tâche sur un compte éligible (profil_1 a le service Claude) —
+    // échéance future calculée (jamais due pendant le scénario).
+    const cree = await ipc('taches:save', {
+      nom: 'Avec compte', fournisseur: 'claude',
+      comptes: { mode: 'liste', profils: ['profil_1'] },
+      repartition: { mode: 'rotation', espacementMs: 0 },
+      nouvelleSession: true, prompt: 'prompt manuel C10.6',
+      programmation: { type: 'periodique', tous: 1, unite: 'jour', depuis: dansDeuxJoursISO() },
+      active: true
+    });
+    assert(cree && cree.ok, 'création IPC échouée : ' + JSON.stringify(cree));
+    const idAvecCompte = cree.tache.id;
+    await sleep(4500); // laisser le polling rafraîchir la liste
+    const cliquable = await exec(`
+      (function(){
+        const cartes = [...document.querySelectorAll('#tachesList .tache-card')];
+        const cible = cartes.find(c => c.textContent.indexOf('Avec compte') !== -1);
+        if (!cible) return 'absente';
+        cible.querySelector('[data-action=tache-run]').click();
+        return 'cliqué';
+      })()
+    `);
+    assert(cliquable === 'cliqué', 'bouton Exécuter maintenant introuvable : ' + cliquable);
+    await sleep(1500);
+    // Un seul envoi, sur le bon compte, avec le bon prompt.
+    assert(envoisSimules.length === 1,
+      'un seul envoi attendu, reçu : ' + JSON.stringify(envoisSimules));
+    assert(envoisSimules[0] && envoisSimules[0].profil === 'profil_1', 'profil reçu inattendu');
+    assert(envoisSimules[0] && envoisSimules[0].prompt === 'prompt manuel C10.6', 'prompt reçu inattendu');
+    // L'événement « envoyée » doit être rattaché à CETTE tâche (id), pas
+    // seulement exister quelque part dans l'historique.
+    const evenements = await ipc('taches:history', 50);
+    const envoye = evenements.filter(e => e && e.resultat === 'envoye'
+      && e.tache === idAvecCompte && e.profil === 'profil_1');
+    assert(envoye.length === 1,
+      'un événement envoye attendu pour la tâche ' + idAvecCompte + ' / profil_1 : ' +
+      JSON.stringify(evenements.slice(0, 6)));
+    const lancee = evenements.filter(e => e && e.resultat === 'lancee' && e.tache === idAvecCompte);
+    assert(lancee.length === 1, 'un événement lancee attendu pour la tâche ' + idAvecCompte);
+  });
+
+  await test('C10.7 suppression : confirmation puis disparition', async () => {
+    const cliquable = await exec(`
+      (function(){
+        const cartes = [...document.querySelectorAll('#tachesList .tache-card')];
+        const cible = cartes.find(c => c.textContent.indexOf('Avec compte') !== -1);
+        if (!cible) return 'absente';
+        cible.querySelector('[data-action=tache-delete]').click();
+        return 'cliqué';
+      })()
+    `);
+    assert(cliquable === 'cliqué', 'bouton Supprimer introuvable');
+    await sleep(200);
+    const confirmOuvert = await exec('document.getElementById("confirmModal").classList.contains("open")');
+    assert(confirmOuvert, 'la modale de confirmation devrait être ouverte');
+    await exec('document.getElementById("confirmModalYes").click()');
+    await sleep(800);
+    const restant = await exec('document.querySelectorAll("#tachesList .tache-card").length');
+    assert(restant === 1, 'une seule carte doit rester, trouvé ' + restant);
+    const titre = await exec('document.querySelector("#tachesList .tache-card .sched-job__title").textContent');
+    assert(titre.indexOf('Tâche renommée') !== -1, 'la bonne tâche a été supprimée : ' + titre);
+  });
+
+  await test('C10.8 erreurs affichées dans le formulaire (prévalidation et service)', async () => {
+    // Prévalidation locale : date vide.
+    await exec('document.getElementById("tacheNewBtn").click()');
+    await sleep(100);
+    await exec(`
+      document.getElementById('tacheFormNom').value = 'Invalide';
+      document.getElementById('tacheFormComptesMode').value = 'liste';
+      document.getElementById('tacheFormPrompt').value = 'p';
+      document.getElementById('tacheFormProgDepuis').value = ''; // date vide -> erreur locale
+      document.getElementById('tacheFormProgTous').value = '2';
+      document.getElementById('tacheFormProgUnite').value = 'heure';
+      'rempli'
+    `);
+    await exec('document.getElementById("tacheFormEnregistrer").click()');
+    await sleep(400);
+    let visible = await exec('!document.getElementById("tacheFormErreurs").hidden');
+    assert(visible, 'la zone d\'erreurs devrait être affichée');
+    let contenu = await exec('document.getElementById("tacheFormErreurs").textContent');
+    assert(/date/i.test(contenu), 'l\'erreur de date devrait être mentionnée : ' + contenu);
+    let formOuvert = await exec('!document.getElementById("tacheForm").hidden');
+    assert(formOuvert, 'le formulaire doit rester ouvert après erreur');
+    // Erreur du SERVICE : récurrence d'une minute — le formulaire l'accepte,
+    // le service refuse (intervalle minimal 5 minutes, scheduler/taches.js).
+    await exec(`
+      document.getElementById('tacheFormNom').value = 'Trop fréquente';
+      document.getElementById('tacheFormComptesMode').value = 'tous';
+      document.getElementById('tacheFormComptesMode').dispatchEvent(new Event('change'));
+      document.getElementById('tacheFormPrompt').value = 'p';
+      document.getElementById('tacheFormProgDepuis').value = '${dansDeuxJoursLocal()}';
+      document.getElementById('tacheFormProgTous').value = '1';
+      document.getElementById('tacheFormProgUnite').value = 'minute';
+      'rempli'
+    `);
+    await exec('document.getElementById("tacheFormEnregistrer").click()');
+    await sleep(600);
+    contenu = await exec('document.getElementById("tacheFormErreurs").textContent');
+    assert(/intervalle|5 minutes|minute/i.test(contenu),
+      'le refus du service (intervalle minimal) devrait être affiché : ' + contenu);
+    formOuvert = await exec('!document.getElementById("tacheForm").hidden');
+    assert(formOuvert, 'le formulaire doit rester ouvert après erreur du service');
+    await exec('document.getElementById("tacheFormAnnuler").click()');
+  });
+
+  await test('C10.9 édition : compte sélectionné devenu indisponible préservé', async () => {
+    // Scénario : la tâche référence profil_1 ET profil_fantome (compte
+    // supprimé). L'édition du seul nom ne doit PAS retirer silencieusement
+    // le profil indisponible de la liste des comptes.
+    const cree = await ipc('taches:save', {
+      nom: 'Deux comptes', fournisseur: 'claude',
+      comptes: { mode: 'liste', profils: ['profil_1', 'profil_fantome'] },
+      repartition: { mode: 'rotation', espacementMs: 0 },
+      nouvelleSession: true, prompt: 'p',
+      programmation: { type: 'periodique', tous: 1, unite: 'jour', depuis: dansDeuxJoursISO() },
+      active: true
+    });
+    assert(cree && cree.ok, 'création IPC échouée : ' + JSON.stringify(cree));
+    const idDeux = cree.tache.id;
+    await sleep(4500); // laisser le polling rafraîchir la liste
+    // Ouvrir le formulaire d'édition de cette tâche.
+    const cliquable = await exec(`
+      (function(){
+        const cartes = [...document.querySelectorAll('#tachesList .tache-card')];
+        const cible = cartes.find(c => c.textContent.indexOf('Deux comptes') !== -1);
+        if (!cible) return 'absente';
+        cible.querySelector('[data-action=tache-edit]').click();
+        return 'cliqué';
+      })()
+    `);
+    assert(cliquable === 'cliqué', 'bouton Modifier introuvable : ' + cliquable);
+    await sleep(200);
+    // Le profil indisponible apparaît : coché, désactivé, signalé.
+    const etat = await exec(`
+      (function(){
+        const cb = document.querySelector('#tacheFormComptesChoix input[data-profile="profil_fantome"]');
+        if (!cb) return 'absent';
+        return JSON.stringify({ coche: cb.checked, desactive: cb.disabled,
+          libelle: cb.closest('label').textContent.trim().slice(0, 60) });
+      })()
+    `);
+    assert(etat !== 'absent', 'le profil_fantome devrait être affiché (coché, désactivé)');
+    assert(/coche":true/.test(etat) && /desactive":true/.test(etat), 'état inattendu : ' + etat);
+    assert(/compte supprimé/.test(etat), 'signal attendu : ' + etat);
+    // Modifier seulement le nom et enregistrer.
+    await exec("document.getElementById('tacheFormNom').value = 'Deux comptes renommée'");
+    await exec('document.getElementById("tacheFormEnregistrer").click()');
+    await sleep(800);
+    // La tâche garde TOUJOURS les deux profils.
+    const apres = await ipc('taches:list');
+    const t = (apres || []).find(x => x.id === idDeux);
+    assert(t, 'tâche ' + idDeux + ' introuvable après édition');
+    const profils = (t.comptes.profils || []).slice().sort();
+    assert(profils.length === 2 && profils[0] === 'profil_1' && profils[1] === 'profil_fantome',
+      'les deux profils doivent être préservés : ' + JSON.stringify(t.comptes));
+    assert(t.nom === 'Deux comptes renommée', 'nom attendu : ' + t.nom);
+  });
+
+  await exec('window.closeSchedulerModal()');
 
   // =========================================================================
   // Nettoyage
