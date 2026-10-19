@@ -9,7 +9,7 @@ name: CI
 
 jobs:
   qualite:
-    name: Qualité (tests + couverture + audit npm)
+    name: Qualité (lint, tests)  # nom exigé par la protection de branche dev
     runs-on: ${{ fromJSON(vars.IAO_RUNS_ON_LINUX || '{"group":"maison","labels":["self-hosted","linux"]}') }}
 
     steps:
