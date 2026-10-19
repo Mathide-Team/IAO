@@ -623,6 +623,70 @@ async function run() {
     assert(r.final === 'password' && r.titre === 'Afficher le mot de passe', 'bouton œil : ' + JSON.stringify(r));
   });
 
+  console.log('\n--- C12 : Fermeture d\'onglet sans bandeau d\'erreur (issue #218) ---');
+
+  await test('C12.1 fermer un onglet chargé n\'affiche pas le bandeau « Invalid guestInstanceId »', async () => {
+    // Bug d'Electron 43.7.2 (corrigé en 43.8.0, electron/electron#54089) :
+    // retirer du DOM une <webview> chargée détruisait le guest avant le
+    // détachement — le process principal rejetait l'appel et le renderer
+    // affichait le bandeau « IAO a rencontré un problème ».
+    // Ouvrir un service (webview), laisser le guest s'attacher, fermer
+    // l'onglet : le bandeau #bootError doit rester absent/masqué.
+    // Désactiver la confirmation avant fermeture (réglage utilisateur) : le
+    // clic sur « fermer l'onglet » doit fermer directement — sinon une boîte
+    // de confirmation s'ouvre et l'onglet reste.
+    const reglage = await ipc('settings:save', { confirmBeforeClose: false });
+    assert(reglage && reglage.ok, 'settings:save a échoué : ' + JSON.stringify(reglage));
+    const bandeauAvant = await exec(`(function(){
+      var b = document.getElementById('bootError');
+      return b ? !b.classList.contains('boot-error--hidden') : false;
+    })()`);
+    assert(!bandeauAvant, 'le bandeau d\'erreur ne doit pas être visible avant la fermeture');
+    // Ouvrir un couple pas encore ouvert (C4.4 : rouvrir le même couple
+    // réutilise l'onglet). Couples ouverts lus dans le DOM.
+    const ouverts = await exec(`[...document.querySelectorAll('#tabsBar .tab')]
+      .map(t => t.getAttribute('data-acc') + '/' + t.getAttribute('data-svc'))`);
+    const couples = new Set(ouverts);
+    const candidats = [['acc_test_1', 'claude'], ['acc_test_1', 'gemini'],
+      ['acc_test_1', 'chatgpt'], ['acc_test_2', 'perplexity']];
+    // Ouvrir jusqu'à DEUX couples non ouverts : l'application refuse de fermer
+    // le dernier onglet restant, il en faut donc au moins deux pour pouvoir
+    // en fermer un.
+    const absents = candidats.filter(c => !couples.has(c.join('/'))).slice(0, 2);
+    assert(absents.length >= 1, 'aucun couple à ouvrir : ' + JSON.stringify(ouverts));
+    for (const c of absents) {
+      const bouton = await exec(`(function(){
+        var b = document.querySelector('#accountsList [data-action="open-service"][data-acc="${c[0]}"][data-svc="${c[1]}"]');
+        if (!b) return 'bouton absent';
+        b.click(); return 'cliqué';
+      })()`);
+      assert(bouton === 'cliqué', 'bouton d\'ouverture introuvable pour ' + c.join('/') + ' : ' + bouton);
+      await sleep(700); // laisser la webview s'attacher (guest)
+    }
+    const ouvertsApres = await exec('document.querySelectorAll("#tabsBar .tab").length');
+    assert(ouvertsApres >= 2, 'au moins deux onglets attendus pour fermer l\'un des deux, trouvé ' + ouvertsApres);
+    // Fermer le premier onglet (bouton de fermeture de la barre d'onglets).
+    // Le réglage « confirmer avant fermeture » peut être actif : si la modale
+    // de confirmation s'ouvre, on la confirme (le test vise le bandeau
+    // d'erreur Electron, pas la mécanique de confirmation).
+    await exec(`document.querySelector('#tabsBar [data-action="close-tab"]').click(); 'ok'`);
+    await sleep(200);
+    const confirmation = await exec(`(function(){
+      var m = document.getElementById('confirmModal');
+      if (m && m.classList.contains('open')) { document.getElementById('confirmModalYes').click(); return 'confirmée'; }
+      return 'aucune';
+    })()`);
+    await sleep(900); // la destruction du guest est asynchrone
+    const apres = await exec('document.querySelectorAll("#tabsBar .tab").length');
+    assert(apres === ouvertsApres - 1, 'un onglet devait être fermé (' + (ouvertsApres - 1) + ' attendus, ' + apres + ' trouvés, confirmation=' + confirmation);
+    const bandeau = await exec(`(function(){
+      var b = document.getElementById('bootError');
+      return b ? { visible: !b.classList.contains('boot-error--hidden'), texte: b.textContent.slice(0, 120) } : null;
+    })()`);
+    assert(!bandeau || !bandeau.visible,
+      'le bandeau d\'erreur est apparu après fermeture d\'onglet : ' + JSON.stringify(bandeau));
+  });
+
   // =========================================================================
   // Nettoyage
   // =========================================================================
