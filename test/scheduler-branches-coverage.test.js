@@ -182,12 +182,14 @@ test('_pollClaudeResponse : une collecte qui lève est ignorée, le poll continu
   scheduler.collectClaudeResponse = async () => {
     appels += 1;
     if (appels === 1) throw new Error('page en cours de chargement');
-    return { ok: true, response: 'réponse' };
+    // Génération en cours (data-is-streaming) : ignorée, puis terminée.
+    if (appels === 2) return { ok: true, response: 'réponse', streaming: true };
+    return { ok: true, response: 'réponse', streaming: false };
   };
   const res = await scheduler._pollClaudeResponse('profil_1', 1000, 1);
-  assert.deepEqual(res, { ok: true, response: 'réponse' });
-  // Une réponse n'est acceptée que STABLE sur deux lectures consécutives
-  // (durcissement #206 lot 2a) : 1 lecture qui lève + 2 lectures identiques.
+  assert.deepEqual(res, { ok: true, response: 'réponse', streaming: false });
+  // 1 lecture qui lève + 1 lecture en cours de génération + 1 lecture
+  // terminée (durcissement #206 lot 2a : signal data-is-streaming).
   assert.equal(appels, 3);
 });
 

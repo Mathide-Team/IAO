@@ -570,6 +570,42 @@ test('store lot 2 : un échec d\'écriture n\'empoisonne pas la chaîne (réessa
   }
 });
 
+test('store lot 2 : une erreur de lecture n\'est PAS une absence (pas de perte)', async () => {
+  const dossier = fs.mkdtempSync(path.join(os.tmpdir(), 'iao-stats2g-'));
+  try {
+    // Un événement valide déjà sur disque.
+    fs.mkdirSync(dossier, { recursive: true });
+    fs.writeFileSync(path.join(dossier, 'quotas.jsonl'),
+      JSON.stringify({ id: 'q1', profil: 'p1', service: 'claude', date: T0 - 60000 }) + '\n');
+    let lecturesQuotas = 0;
+    const fsFragile = Object.assign({}, fs.promises, {
+      readFile: (f, ...r) => {
+        if (f.endsWith('quotas.jsonl')) {
+          lecturesQuotas++;
+          // Première lecture de quotas.jsonl : erreur transitoire (EIO).
+          if (lecturesQuotas === 1) {
+            const e = new Error('EIO (test)'); e.code = 'EIO';
+            return Promise.reject(e);
+          }
+        }
+        return fs.promises.readFile(f, ...r);
+      }
+    });
+    const store = st.creerStore({ dossier, fs: fsFragile, path, maintenant: () => T0 });
+    // La notation échoue (lecture impossible) et le fichier reste INTACT :
+    // sans la propagation de l'erreur, une lecture EIO vaudrait « historique
+    // vide » et la réécriture détruirait l'événement existant.
+    await assert.rejects(store.noterQuota({ profil: 'p2', service: 'claude', date: T0 }), /EIO/);
+    const brut = fs.readFileSync(path.join(dossier, 'quotas.jsonl'), 'utf-8');
+    assert.ok(brut.includes('"p1"'), 'le fichier est inchangé après l\'échec de lecture');
+    // Nouvelle tentative : la lecture réussit, les DEUX événements sont là.
+    assert.deepEqual(await store.noterQuota({ profil: 'p2', service: 'claude', date: T0 }), { ok: true });
+    assert.strictEqual((await store.chargerQuotas()).length, 2, 'aucun événement perdu');
+  } finally {
+    fs.rmSync(dossier, { recursive: true, force: true });
+  }
+});
+
 test('agregerReponses/agregerQuotas : tri à nombre égal par profil', () => {
   const rs = [
     rep('a', 'zoe', 'claude', T0, T0 + 1000),

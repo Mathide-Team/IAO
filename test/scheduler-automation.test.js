@@ -315,24 +315,22 @@ test('executeTask crée un job et lance l\'automatisation', async () => {
 
   // Mock: tous les scripts renvoient succès
   var callCount = 0;
+  var callCount = 0;
   wc.executeJavaScript = async function() {
     callCount++;
-    if (callCount === 1) {
+    // BASELINE avant l'envoi (appel 1), puis diagnostic, injection, réponse.
+    if (callCount === 1) return JSON.stringify({ ok: true, response: 'Ancienne réponse du tour précédent', streaming: false });
+    if (callCount === 2) {
       return JSON.stringify({
-        chatInput: { found: true },
-        fileUpload: { found: false },
-        sendButton: { found: true },
-        quotaMessage: { detected: false },
+        chatInput: { found: true }, fileUpload: { found: false },
+        sendButton: { found: true }, quotaMessage: { detected: false },
         popups: { count: 0 }
       });
     }
-    if (callCount === 2) {
+    if (callCount === 3) {
       return JSON.stringify({ ok: true, method: 'textarea' });
     }
-    // Pour la collecte de réponse : BASELINE (réponse d'avant l'envoi) puis la
-    // nouvelle réponse, stabilisée sur deux lectures.
-    if (callCount === 3) return JSON.stringify({ ok: true, response: 'Ancienne réponse du tour précédent' });
-    return JSON.stringify({ ok: true, response: 'Résultat de Claude' });
+    return JSON.stringify({ ok: true, response: 'Résultat de Claude', streaming: false });
   };
 
   var result = await scheduler.executeTask(project.id, task.id);
@@ -496,22 +494,25 @@ test('_executeAutomation : réponse collectée -> temps de réponse noté (stats
   var callCount = 0;
   wc.executeJavaScript = async function() {
     callCount++;
-    if (callCount === 1) {
+    // Appel 1 : BASELINE capturée AVANT l'envoi (réponse du tour précédent,
+    // génération terminée). Puis diagnostic, injection, et la nouvelle réponse
+    // — disponible immédiatement (réponse rapide) : c'est le cas qui
+    // échouerait si la baseline était capturée APRÈS l'envoi.
+    if (callCount === 1) return JSON.stringify({ ok: true, response: 'Ancienne réponse du tour précédent', streaming: false });
+    if (callCount === 2) {
       return JSON.stringify({
         chatInput: { found: true }, fileUpload: { found: false },
         sendButton: { found: true }, quotaMessage: { detected: false },
         popups: { count: 0 }
       });
     }
-    if (callCount === 2) return JSON.stringify({ ok: true, method: 'textarea' });
-    // Lecture de BASELINE (réponse présente avant l'envoi), puis la nouvelle.
-    if (callCount === 3) return JSON.stringify({ ok: true, response: 'Ancienne réponse du tour précédent' });
-    return JSON.stringify({ ok: true, response: 'Résultat de Claude' });
+    if (callCount === 3) return JSON.stringify({ ok: true, method: 'textarea' });
+    return JSON.stringify({ ok: true, response: 'Résultat de Claude', streaming: false });
   };
   var result = await scheduler.executeTask(project.id, task.id);
   assert.ok(result.ok);
-  // Le poll accepte la réponse après deux lectures stables (2 x 150 ms).
-  await new Promise(function(r) { setTimeout(r, 1500); });
+  // Réponse rapide : acceptée dès le premier poll (150 ms) — génération finie.
+  await new Promise(function(r) { setTimeout(r, 1200); });
   var job = scheduler.jobs.find(function(j) { return j.id === result.job.id; });
   assert.strictEqual(job.status, 'DELIVERED');
   assert.strictEqual(notations.length, 1, 'une mesure de temps de réponse');
@@ -540,37 +541,86 @@ test('_executeAutomation : ancienne réponse + texte qui croît -> une seule mes
   task.status = 'assigned';
   var wc = createMockWebContents();
   scheduler.registerWebview('profil_1', wc);
-  // Séquence : diagnostic, envoi, BASELINE (ancienne réponse), puis un texte
-  // qui CROÎT à chaque lecture (génération en cours) avant de se stabiliser.
+  // Séquence : BASELINE (ancienne réponse, appel 1), diagnostic, envoi, puis
+  // un texte qui CROÎT avec data-is-streaming présent (génération en cours —
+  // une PAUSE de génération garde l'attribut), avant la fin signalée.
   var lectures = [
-    JSON.stringify({ ok: true, response: 'Ancienne réponse du tour précédent' }),
-    JSON.stringify({ ok: true, response: 'Réponse en cou' }),
-    JSON.stringify({ ok: true, response: 'Réponse en cours (part' }),
-    JSON.stringify({ ok: true, response: 'Résultat complet du nouveau tour.' }),
-    JSON.stringify({ ok: true, response: 'Résultat complet du nouveau tour.' })
+    JSON.stringify({ ok: true, response: 'Réponse en cou', streaming: true }),
+    JSON.stringify({ ok: true, response: 'Réponse en cours (part', streaming: true }), // pause : texte identique, toujours streaming
+    JSON.stringify({ ok: true, response: 'Réponse en cours (part', streaming: true }),
+    JSON.stringify({ ok: true, response: 'Résultat complet du nouveau tour.', streaming: false })
   ];
   var appel = 0;
   wc.executeJavaScript = async function() {
     appel++;
-    if (appel === 1) {
+    if (appel === 1) return JSON.stringify({ ok: true, response: 'Ancienne réponse du tour précédent', streaming: false });
+    if (appel === 2) {
       return JSON.stringify({
         chatInput: { found: true }, fileUpload: { found: false },
         sendButton: { found: true }, quotaMessage: { detected: false },
         popups: { count: 0 }
       });
     }
-    if (appel === 2) return JSON.stringify({ ok: true, method: 'textarea' });
-    return lectures[Math.min(appel - 3, lectures.length - 1)];
+    if (appel === 3) return JSON.stringify({ ok: true, method: 'textarea' });
+    return lectures[Math.min(appel - 4, lectures.length - 1)];
   };
   var result = await scheduler.executeTask(project.id, task.id);
   assert.ok(result.ok);
   await new Promise(function(r) { setTimeout(r, 2000); });
   var job = scheduler.jobs.find(function(j) { return j.id === result.job.id; });
   assert.strictEqual(job.status, 'DELIVERED');
-  // Une SEULE mesure, sur le texte final stabilisé — la mesure ne vaut ni
-  // l'ancienne réponse ni le texte partiel.
-  assert.strictEqual(notations.length, 1, 'une seule mesure, sur la réponse stabilisée');
+  // Une SEULE mesure, sur le texte final avec génération terminée — ni
+  // l'ancienne réponse ni le texte partiel/pausing ne comptent.
+  assert.strictEqual(notations.length, 1, 'une seule mesure, sur la réponse terminée');
   assert.strictEqual(job.response, 'Résultat complet du nouveau tour.');
+  assert.ok(notations[0].fin >= notations[0].debut);
+  cleanup(scheduler);
+});
+
+test('_executeAutomation : réponse > 5 000 caractères encore en génération -> pas de mesure hâtive', async () => {
+  var app = createMockApp();
+  var scheduler = new Scheduler(app, {});
+  disableQuietHours(scheduler);
+  scheduler.setConfig({ enabled: true, maxConcurrentJobs: 2, minDelayBetweenAutomationsMinutes: 0, minDelayMs: 0, maxDelayMs: 0, responseTimeoutMs: 5000, responsePollIntervalMs: 150 });
+  var notations = [];
+  scheduler.statsStore = {
+    noterQuota: async () => ({ ok: true }),
+    noterReponse: async (e) => { notations.push(e); return { ok: true }; }
+  };
+  scheduler.createProject('Projet stats', []);
+  var project = scheduler.projects[0];
+  scheduler.createTask(project.id, 'Génère un rapport', null);
+  var task = project.tasks[0];
+  task.assignedProfile = 'profil_1';
+  task.status = 'assigned';
+  var wc = createMockWebContents();
+  scheduler.registerWebview('profil_1', wc);
+  // Le préfixe de 5 000 caractères est IDENTIQUE sur deux lectures (la
+  // troncature du script de collecte masquerait la suite) mais la génération
+  // continue : sans le signal streaming, la mesure serait hâtive.
+  var prefixe = new Array(5001).join('a');
+  var appel = 0;
+  wc.executeJavaScript = async function() {
+    appel++;
+    if (appel === 1) return JSON.stringify({ ok: true, response: 'Ancienne réponse du tour précédent', streaming: false });
+    if (appel === 2) {
+      return JSON.stringify({
+        chatInput: { found: true }, fileUpload: { found: false },
+        sendButton: { found: true }, quotaMessage: { detected: false },
+        popups: { count: 0 }
+      });
+    }
+    if (appel === 3) return JSON.stringify({ ok: true, method: 'textarea' });
+    if (appel === 4 || appel === 5) return JSON.stringify({ ok: true, response: prefixe, streaming: true });
+    return JSON.stringify({ ok: true, response: prefixe, streaming: false });
+  };
+  var result = await scheduler.executeTask(project.id, task.id);
+  assert.ok(result.ok);
+  await new Promise(function(r) { setTimeout(r, 2000); });
+  var job = scheduler.jobs.find(function(j) { return j.id === result.job.id; });
+  assert.strictEqual(job.status, 'DELIVERED');
+  // Mesure prise seulement à la fin signalée, pas sur le préfixe stable.
+  assert.strictEqual(notations.length, 1);
   assert.ok(notations[0].fin >= notations[0].debut);
   cleanup(scheduler);
 });
@@ -596,16 +646,17 @@ test('_executeAutomation : aucune réponse nouvelle -> délai dépassé, AUCUNE 
   var callCount = 0;
   wc.executeJavaScript = async function() {
     callCount++;
-    if (callCount === 1) {
+    if (callCount === 1) return JSON.stringify({ ok: true, response: 'Ancienne réponse du tour précédent', streaming: false });
+    if (callCount === 2) {
       return JSON.stringify({
         chatInput: { found: true }, fileUpload: { found: false },
         sendButton: { found: true }, quotaMessage: { detected: false },
         popups: { count: 0 }
       });
     }
-    if (callCount === 2) return JSON.stringify({ ok: true, method: 'textarea' });
+    if (callCount === 3) return JSON.stringify({ ok: true, method: 'textarea' });
     // Rien de nouveau : la réponse collectée reste celle d'avant l'envoi.
-    return JSON.stringify({ ok: true, response: 'Ancienne réponse du tour précédent' });
+    return JSON.stringify({ ok: true, response: 'Ancienne réponse du tour précédent', streaming: false });
   };
   var result = await scheduler.executeTask(project.id, task.id);
   assert.ok(result.ok);
@@ -641,18 +692,21 @@ test('_executeAutomation : réponse partielle jamais stabilisée -> délai dépa
   var wc = createMockWebContents();
   scheduler.registerWebview('profil_1', wc);
   var callCount = 0;
+  var callCount = 0;
   wc.executeJavaScript = async function() {
     callCount++;
-    if (callCount === 1) {
+    // BASELINE avant l'envoi (appel 1), puis diagnostic, injection, et une
+    // génération en cours jusqu'au bout du délai (streaming jamais terminé).
+    if (callCount === 1) return JSON.stringify({ ok: true, response: 'Ancienne réponse du tour précédent', streaming: false });
+    if (callCount === 2) {
       return JSON.stringify({
         chatInput: { found: true }, fileUpload: { found: false },
         sendButton: { found: true }, quotaMessage: { detected: false },
         popups: { count: 0 }
       });
     }
-    if (callCount === 2) return JSON.stringify({ ok: true, method: 'textarea' });
-    // Le texte croît à CHAQUE lecture : jamais stable -> jamais mesuré.
-    return JSON.stringify({ ok: true, response: 'Réponse partielle n°' + callCount });
+    if (callCount === 3) return JSON.stringify({ ok: true, method: 'textarea' });
+    return JSON.stringify({ ok: true, response: 'Réponse partielle n°' + callCount, streaming: true });
   };
   var result = await scheduler.executeTask(project.id, task.id);
   assert.ok(result.ok);
@@ -706,19 +760,20 @@ test('_executeAutomation : statsStore qui rejette ne bloque pas la livraison', a
   var wc = createMockWebContents();
   scheduler.registerWebview('profil_1', wc);
   var callCount = 0;
+  var callCount = 0;
   wc.executeJavaScript = async function() {
     callCount++;
-    if (callCount === 1) {
+    // BASELINE avant l'envoi (appel 1), puis diagnostic, injection, réponse.
+    if (callCount === 1) return JSON.stringify({ ok: true, response: 'Ancienne réponse du tour précédent', streaming: false });
+    if (callCount === 2) {
       return JSON.stringify({
         chatInput: { found: true }, fileUpload: { found: false },
         sendButton: { found: true }, quotaMessage: { detected: false },
         popups: { count: 0 }
       });
     }
-    if (callCount === 2) return JSON.stringify({ ok: true, method: 'textarea' });
-    // Lecture de BASELINE (réponse d'avant l'envoi), puis la nouvelle réponse.
-    if (callCount === 3) return JSON.stringify({ ok: true, response: 'Ancienne réponse du tour précédent' });
-    return JSON.stringify({ ok: true, response: 'Résultat de Claude' });
+    if (callCount === 3) return JSON.stringify({ ok: true, method: 'textarea' });
+    return JSON.stringify({ ok: true, response: 'Résultat de Claude', streaming: false });
   };
   var result = await scheduler.executeTask(project.id, task.id);
   assert.ok(result.ok);
