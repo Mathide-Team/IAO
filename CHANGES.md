@@ -20,6 +20,88 @@
 - Tests : `test/stats-lot3.test.js` (100 %), main-harness (`stats:export`),
   harnais Electron C11.4 ; traductions en/de/es/it/pt.
 
+## Issue #51 — contrôle réel des marqueurs {…} (revue #229, 20/10/2026)
+
+### Corrigé (suite à la revue des retouches #229 fusionnées)
+- **Le contrôle des marqueurs {…} des traductions était sans effet** : il
+  comparait le msgid à lui-même. Remplacé par un vrai test permanent
+  (`test/i18n-marqueurs.test.js`) : analyseur .po (msgid/msgstr,
+  continuations multilignes, échappements) + comparaison des ensembles de
+  marqueurs {…} (quantités comprises) sur TOUS les catalogues.
+  Le test s'auto-vérifie : un marqueur renommé, supprimé, dupliqué ou
+  ajouté est détecté (4 cas couverts).
+- **pt : « Converse, redige… » corrigé en « Conversa, redige… »** (la
+  correction précédente cherchait une chaîne commençant par « Converse »
+  alors que le msgstr complet commence par « O assistente generalista… » —
+  le remplacement n'avait pas pris, silencieusement). « Conversa » est la
+  3e personne de « conversar », cohérente avec l'italien et l'espagnol.
+- `lang/pt.po` + `.mo` recompilé.
+
+## Issue #228 — durcissement du nettoyage Service Worker (revue #223, 20/10/2026)
+
+### Corrigé (suite à la revue du correctif #228 fusionné)
+- **`Partitions/` LUI-MÊME peut être un lien symbolique** vers un dossier
+  externe : ses enfants sont de vrais répertoires (de la cible) et
+  passaient le contrôle unitaire — le nettoyage serait sorti du dossier de
+  données. Désormais, un `Partitions/` lié ignore TOUT le scan des
+  partitions (seule la fenêtre principale reste couverte).
+- **Test d'arborescence réelle avec témoins** : `Partitions` lié vers un
+  dossier externe ET une partition enfant liée vers un autre dossier, chacun
+  contenant un vrai dossier Service Worker avec fichier témoin — les
+  témoins doivent rester (aucune fuite du périmètre).
+- **Échec sur le PREMIER dossier** : le dossier récalcitrant est désormais
+  testé en TÊTE de liste (fenêtre principale) — preuve que le nettoyage
+  continue après l'erreur, pas seulement quand l'erreur arrive en dernier.
+- **Commentaire honnête** : le nettoyage a lieu « avant createWindow() » ;
+  l'absence d'ouverture de base Chromium plus précoce n'est pas démontrée
+  (l'ancien « avant que Chromium ne réouvre ses bases » était trop fort).
+- 3 tests ajoutés ; couverture 100 %.
+
+## Issue #206 — lot 2a : durcissement de la mesure (revue, 20/10/2026)
+
+### Corrigé (2 passes de revue sur le lot 2a fusionné, #231)
+- **La mesure ne compte que le NOUVEAU texte généré, terminé** :
+  - la base de comparaison est capturée AVANT l'envoi (runClaudeJob INJECTE
+    le prompt — une réponse rapide peut déjà être présente à la fin de
+    l'injection, une baseline post-envoi l'ignorerait jusqu'au délai) ;
+  - une réponse est acceptée seulement si (1) différente de la base ET
+    (2) génération TERMINÉE : le script de collecte signale `streaming`
+    via l'attribut data-is-streaming de Claude.ai (présent pendant la
+    génération — même en pause —, retiré à la fin). La stabilité du texte
+    seule ne prouvait rien : le texte est tronqué à 5 000 caractères et un
+    préfixe identique masquerait une suite qui croît ;
+  - une réponse partielle ou un délai dépassé ne produisent jamais de
+    « temps de réponse réussi ».
+- **Périmètre explicite** : la mesure couvre les envois passant par
+  `_executeAutomation` (tâches et relances) ; les appels IPC directs
+  `run-claude-job` et les envois manuels dans la webview ne sont pas
+  instrumentés.
+- **Lecture non destructive** : seule l'absence du fichier (ENOENT) vaut
+  « historique vide » ; toute autre erreur de lecture (EIO…) se PROPAGE —
+  sinon la notation suivante réécrivait le fichier avec le seul nouvel
+  événement et détruisait l'historique (sessions ET événements du lot 2).
+  Test : lecture EIO -> notation rejetée, fichier intact, réessai OK.
+- **Écritures sérialisées** : reponses.jsonl et quotas.jsonl partent de
+  chaînes de promesses distinctes (lecture → réécriture complète) — des
+  notations simultanées ne s'écrasaient plus mutuellement (test : 24
+  événements notés en parallèle, aucun perdu).
+- **Conservation 90 jours tenue** : la purge est PERSISTÉE au chargement
+  (fichier réécrit) — un événement expiré restait physiquement dans le
+  fichier tant qu'aucune notation n'avait lieu.
+- **Quotas : la métrique est un PLAFONNEMENT des détections** (au plus une
+  par compte et par heure glissante — la boucle wait_quota re-diagnostique
+  le même blocage sans envoyer). Ce n'est ni un comptage d'épisodes réels,
+  ni une mesure de durée : `classerComptes` (surchargés) compte des
+  détections plafonnées, pas des blocages.
+- **Récupération réessayable** : un échec de la récupération des sessions
+  (disque plein) n'est plus mémoïsé sur son rejet — sinon tous les appels
+  suivants échouaient jusqu'au redémarrage de l'app.
+- Délais de poll injectables via la config (`responseTimeoutMs`,
+  `responsePollIntervalMs`) : tests rapides et déterministes.
+- 8 tests discriminants (concurrence, EIO non destructive, purge persistée,
+  échec réessayé, réponse rapide post-injection, texte croissant, préfixe
+  5 000 caractères stable, délais dépassés) ; couverture 100 %.
+
 ## Issue #206 — statistiques d'utilisation, lot 2 (19/10/2026)
 
 ### Livré

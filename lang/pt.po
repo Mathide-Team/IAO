@@ -555,7 +555,7 @@ msgstr "Melhor para código, textos longos e cuidados, ou perguntas complexas qu
 
 #: assets/app.js
 msgid "L'assistant généraliste d'OpenAI, le plus connu du grand public. Il discute, rédige, résume, génère des images, analyse des fichiers et peut chercher sur le web."
-msgstr "O assistente generalista da OpenAI, o mais conhecido do público. Converse, redige, resume, gera imagens, analisa ficheiros e pode pesquisar na web."
+msgstr "O assistente generalista da OpenAI, o mais conhecido do público. Conversa, redige, resume, gera imagens, analisa ficheiros e pode pesquisar na web."
 
 #: assets/app.js
 msgid "Le couteau suisse du quotidien : brainstorming, questions générales, petites tâches variées."
