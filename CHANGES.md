@@ -1,5 +1,16 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issue #51 — mise en page de droite à gauche (20/10/2026)
+
+### Ajouté
+- **`dir="rtl"` pour l'arabe, l'hébreu, le persan…** : `lib/i18n.js`
+  expose `textDirection(locale)` (liste `RTL_LANGUAGES` : ar, he, fa, ur,
+  ps, sd, yi, dv, ckb, ug ; sous-tag de région ignoré), appliqué à `<html>`
+  par `assets/app.js` au chargement du catalogue.
+- L'éditeur de code et les champs e-mail/URL restent écrits de gauche à
+  droite (`direction: ltr` sous `[dir="rtl"]`).
+- Tests : `test/i18n.test.js` (sens par locale, valeurs invalides) et
+  harnais C7.4 (`IAO_LANG=ar` → `rtl`, éditeur `ltr`, retour `ltr` en anglais).
 ## Tests — attente des jobs sans délai fixe (20/10/2026)
 
 ### Corrigé

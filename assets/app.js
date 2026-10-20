@@ -169,6 +169,8 @@
         const tr = I18N.createTranslator(catalog);
         window.iaoT = tr.gettext;
         document.documentElement.lang = catalog.locale;
+        // Arabe, hébreu, persan… : mise en page de droite à gauche (issue #51).
+        document.documentElement.dir = I18N.textDirection(catalog.locale);
         applyTranslations(document.body, tr);
         dbg('i18n', 'interface traduite : ' + catalog.locale);
       }).catch((e) => { console.warn('[i18n] catalogue indisponible, interface en français :', e && e.message); });
