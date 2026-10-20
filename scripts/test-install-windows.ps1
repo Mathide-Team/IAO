@@ -36,7 +36,7 @@ function Controle([string]$nom, [bool]$ok, [string]$detail = '') {
 
 function Lancer([string]$arguments) {
   Write-Host "`n>>> install.bat $arguments"
-  & cmd.exe /d /c "`"$bat`" $arguments"
+  & cmd.exe /d /c "`"$bat`" $arguments" | Out-Host
   return $LASTEXITCODE
 }
 
