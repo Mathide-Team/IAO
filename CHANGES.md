@@ -1,5 +1,36 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issue #51 — vérification visuelle RTL dans le harnais (20/10/2026)
+
+### Ajouté
+- **Scénario C7.5 du harnais Electron** (`test-electron/rtl-visuel.js`) :
+  l'interface est rendue en français puis en arabe, et le test vérifie :
+  - que chaque zone (panneau des comptes, espace de travail, zone IA,
+    marque, statistiques, titre, première carte) occupe la position
+    miroir avec la même largeur, à 8 px près ;
+  - que les libellés gardent le même retrait depuis leur bord de départ ;
+  - qu'aucun défilement horizontal ni nouvel élément hors fenêtre
+    n'apparaît ;
+  - que la poignée éditeur ↔ IA, tirée vers la gauche, élargit le panneau
+    en rtl (et le rétrécit en ltr) ;
+  - que le profil de luminance par colonne de la capture arabe, retourné,
+    ressemble à celui du français (corrélation ≥ 0,8 et supérieure au
+    profil non retourné).
+- Captures `ui-fr.png`, `ui-ar.png` et `rtl-rapport.json` écrites dans
+  `IAO_CAPTURES_DIR`, publiées par la CI dans l'artefact `captures-rtl`.
+- Tests unitaires du module de comparaison : `test/rtl-visuel.test.js`.
+
+### Corrigé (défauts trouvés par ce contrôle)
+- En arabe, les **notifications** restaient en haut à droite et masquaient
+  le panneau des comptes : `inset-inline-end`, entrée animée par la gauche.
+- **Bordures, marges et alignements** : passage aux propriétés logiques
+  (`border-inline-end`, `margin-inline-start`, `text-align: start/end`…)
+  pour le panneau des comptes, la marque, l'éditeur, l'explorateur, les
+  tableaux de statistiques, les notifications et les pastilles d'état.
+- **Poignées de redimensionnement inversées en rtl** : le sens du glisser
+  suit désormais la direction du document.
+- Corrélation des captures avant/après correction : 0,418 → 0,944.
+
 ## Issue #51 — mise en page de droite à gauche (20/10/2026)
 
 ### Ajouté
