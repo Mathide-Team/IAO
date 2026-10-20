@@ -1,5 +1,19 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issue #7 — signature GPG des sommes de contrôle (20/10/2026)
+
+### Ajouté
+- **`release.yml`** : si le secret `IAO_GPG_PRIVATE_KEY` (clé privée
+  armurée, `IAO_GPG_PASSPHRASE` facultatif) est défini, `SHA256SUMS.txt` est
+  signé (`SHA256SUMS.txt.asc`) et la clé publique `IAO-signature.asc` est
+  publiée avec la release. Sans secret, l'étape passe sans signer. Trousseau
+  GPG temporaire, supprimé en fin d'étape (runner auto-hébergé intact).
+- Test : `test/release-signature.test.js`.
+
+### Reste
+- Signature Authenticode de `IAO.exe` (SmartScreen) : certificat payant ou
+  Azure Trusted Signing, décision du propriétaire du dépôt.
+
 ## Issues #52, #58, #59 — script de diagnostic de démarrage (20/10/2026)
 
 ### Ajouté

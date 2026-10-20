@@ -141,6 +141,37 @@ jobs:
           sha256sum -c SHA256SUMS.txt
           cat SHA256SUMS.txt
 
+      # Issue #7 : signature GPG des sommes, ACTIVE SEULEMENT si le secret
+      # IAO_GPG_PRIVATE_KEY (clé privée armurée) est défini dans le dépôt ;
+      # IAO_GPG_PASSPHRASE est facultatif. Trousseau temporaire : le runner
+      # auto-hébergé (machine de l'utilisateur) n'est pas modifié.
+      # Publie SHA256SUMS.txt.asc et la clé publique IAO-signature.asc.
+      # Vérification : gpg --import IAO-signature.asc &&
+      #                gpg --verify SHA256SUMS.txt.asc SHA256SUMS.txt
+      - name: Signature GPG des sommes (si la clé est configurée)
+        shell: bash
+        env:
+          IAO_GPG_PRIVATE_KEY: ${{ secrets.IAO_GPG_PRIVATE_KEY }}
+          IAO_GPG_PASSPHRASE: ${{ secrets.IAO_GPG_PASSPHRASE }}
+        run: |
+          if [ -z "$IAO_GPG_PRIVATE_KEY" ]; then
+            echo "::notice::Secret IAO_GPG_PRIVATE_KEY absent : sommes publiées sans signature GPG."
+            exit 0
+          fi
+          command -v gpg >/dev/null || { echo "::error::gpg absent du runner"; exit 1; }
+          export GNUPGHOME="$(mktemp -d)"
+          trap 'gpgconf --kill gpg-agent 2>/dev/null; rm -rf "$GNUPGHOME"' EXIT
+          chmod 700 "$GNUPGHOME"
+          printf '%s\n' "$IAO_GPG_PRIVATE_KEY" | gpg --batch --import
+          fpr="$(gpg --batch --list-secret-keys --with-colons | awk -F: '/^fpr/ {print $10; exit}')"
+          cd release-assets
+          printf '%s' "$IAO_GPG_PASSPHRASE" | gpg --batch --yes --pinentry-mode loopback \
+            --passphrase-fd 0 --local-user "$fpr" --armor --detach-sign \
+            --output SHA256SUMS.txt.asc SHA256SUMS.txt
+          gpg --batch --armor --export "$fpr" > IAO-signature.asc
+          gpg --batch --verify SHA256SUMS.txt.asc SHA256SUMS.txt
+          echo "Empreinte de la clé de signature : $fpr"
+
       - name: Publication de la release
         uses: softprops/action-gh-release@v2
         with:
@@ -163,5 +194,6 @@ jobs:
             - **Linux** : installer le `.deb` avec `dpkg -i` ou utiliser l'AppImage
             - **Windows** : dézipper `IAO-*-win32-x64.zip` et lancer `IAO.exe`
 
-            Vérifier l'intégrité : `sha256sum -c SHA256SUMS.txt --ignore-missing`
+            Vérifier l'intégrité : `sha256sum -c SHA256SUMS.txt --ignore-missing` ; si `SHA256SUMS.txt.asc` est présent,
+            vérifier la signature : `gpg --import IAO-signature.asc && gpg --verify SHA256SUMS.txt.asc SHA256SUMS.txt`.
             (Windows : `Get-FileHash <fichier> -Algorithm SHA256`, à comparer à la ligne correspondante).
