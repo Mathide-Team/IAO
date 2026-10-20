@@ -2531,6 +2531,34 @@
         </tr></thead><tbody>${corps}</tbody></table>
         <div class="stats-note">${escapeHtml(_('D\'après l\'historique des tâches (200 dernières exécutions).'))}</div></div>`;
     }
+    // Histogramme d'évolution du temps actif (lot 3) : SVG maison, sans
+    // dépendance ; géométrie calculée par lib/stats.js, libellés échappés.
+    function heureCourte(ms) {
+      const d = new Date(ms);
+      return statsPeriode === 'jour' ? String(d.getHours()) : d.getDate() + '/' + (d.getMonth() + 1);
+    }
+    function evolutionStats(tranches) {
+      const L = 680, HAUT = 120, G = 44, BAS = 18;
+      const geo = window.iaoStats.geometrieBarres(tranches.map(t => t.actifMs), { largeur: L - G, hauteur: HAUT });
+      if (!tranches.some(t => t.actifMs > 0)) return '';
+      const pasLibelle = Math.ceil(tranches.length / 12);
+      const barres = geo.barres.map((b, i) => {
+        const t = tranches[i];
+        const titre = _('{date} : {duree} actif', { date: statsPeriode === 'jour' ? _('{h} h', { h: heureCourte(t.debut) }) : heureCourte(t.debut), duree: dureeStats(t.actifMs) });
+        return `<rect class="stats-evolution__barre" x="${G + b.x}" y="${b.y}" width="${b.largeur}" height="${b.hauteur}"><title>${escapeHtml(titre)}</title></rect>`;
+      }).join('');
+      const libelles = tranches.map((t, i) => i % pasLibelle ? '' :
+        `<text class="stats-evolution__texte" x="${G + geo.barres[i].x + geo.barres[i].largeur / 2}" y="${HAUT + 13}" text-anchor="middle">${escapeHtml(heureCourte(t.debut))}</text>`).join('');
+      return `<div class="stats-evolution" id="statsEvolution"><div class="stats-titre">${escapeHtml(_('Évolution du temps actif'))}</div>
+        <svg viewBox="0 0 ${L} ${HAUT + BAS}" role="img" aria-label="${escapeHtml(_('Évolution du temps actif'))}">
+          <line class="stats-evolution__axe" x1="${G}" y1="0.5" x2="${L}" y2="0.5"></line>
+          <line class="stats-evolution__axe" x1="${G}" y1="${HAUT / 2}" x2="${L}" y2="${HAUT / 2}"></line>
+          <line class="stats-evolution__axe" x1="${G}" y1="${HAUT}" x2="${L}" y2="${HAUT}"></line>
+          <text class="stats-evolution__texte" x="${G - 6}" y="10" text-anchor="end">${escapeHtml(dureeStats(geo.echelle))}</text>
+          <text class="stats-evolution__texte" x="${G - 6}" y="${HAUT + 3}" text-anchor="end">0</text>
+          ${barres}${libelles}
+        </svg></div>`;
+    }
     let statsTaches = [];
     function renderStats() {
       document.querySelectorAll('#statsPeriodes [data-periode]').forEach(b =>
@@ -2553,6 +2581,7 @@
           ${carte(String(r.totaux.sessions), _('Sessions'))}
           ${carte(jours(serie.actuelle), _('Série en cours (record : {n})', { n: jours(serie.record) }))}
         </div>
+        ${evolutionStats(window.iaoStats.evolution(sessions, { periode: statsPeriode, maintenant }))}
         ${tableStats('compte', _('Par compte'), _('Compte'), r.parCompte, (l) =>
           ({ nom: nomCompteStats(l.cle), titre: l.cle, point: '' }), false)}
         ${tableStats('service', _('Par service'), _('Service'), r.parService, (l) => {
@@ -2594,6 +2623,40 @@
         dbg('stats', 'historique des tâches indisponible', e && e.message);
       }
       renderStats();
+    };
+    // Export (lot 3) : historique + onglets ouverts, noms de compte joints ;
+    // le fichier est choisi et écrit par le process principal (stats:export).
+    async function exporterStats(format) {
+      const noms = {};
+      for (const a of accounts) noms[a.profile] = a.name;
+      try {
+        const r = await ipcRenderer.invoke('stats:export', format, suiviStats.instantane(), noms);
+        if (r && r.canceled) return;
+        if (!r || r.error) { showToast(_('Export des statistiques impossible : {error}', { error: (r && r.error) || '?' }), 'error'); return; }
+        showToast(_('Statistiques exportées'), 'success');
+      } catch (e) {
+        showToast(_('Export des statistiques impossible : {error}', { error: e && e.message }), 'error');
+      }
+    }
+    window.exportStatsCsv = function() { return exporterStats('csv'); };
+    window.exportStatsJson = function() { return exporterStats('json'); };
+    // Remise à zéro (lot 3) : confirmation, puis historique et instantané
+    // vidés ; les onglets ouverts repartent de maintenant.
+    window.resetStats = function() {
+      showConfirmDialog(_('Remettre les statistiques à zéro ?'),
+        _('Les sessions, temps de réponse et quotas enregistrés sur cet ordinateur seront effacés. L\'historique des tâches programmables n\'est pas touché. Pensez à exporter avant si besoin.'),
+        async () => {
+          try {
+            const r = await ipcRenderer.invoke('stats:reset');
+            if (!r || r.error) { showToast(_('Remise à zéro impossible : {error}', { error: (r && r.error) || '?' }), 'error'); return; }
+            suiviStats.recommencer();
+            statsHistorique = [];
+            renderStats();
+            showToast(_('Statistiques remises à zéro'), 'success');
+          } catch (e) {
+            showToast(_('Remise à zéro impossible : {error}', { error: e && e.message }), 'error');
+          }
+        });
     };
     window.closeStatsModal = function() {
       document.getElementById('statsModal').classList.remove('open');
@@ -3245,6 +3308,9 @@ const UI_ACTIONS = {
   'ui-openSettingsModal': 'openSettingsModal',
   'ui-openStatsModal': 'openStatsModal',
   'ui-closeStatsModal': 'closeStatsModal',
+  'ui-exportStatsCsv': 'exportStatsCsv',
+  'ui-exportStatsJson': 'exportStatsJson',
+  'ui-resetStats': 'resetStats',
   'ui-exportAccountsToFile': 'exportAccountsToFile',
   'ui-importAccountsFromFile': 'importAccountsFromFile',
   'ui-selectLocalFolder': 'selectLocalFolder',

@@ -437,6 +437,18 @@ msgid "90 jours"
 msgstr ""
 
 #: index.html
+msgid "Remettre à zéro"
+msgstr ""
+
+#: index.html
+msgid "Exporter CSV"
+msgstr ""
+
+#: index.html
+msgid "Exporter JSON"
+msgstr ""
+
+#: index.html
 msgid "Préférences de l'application, sauvegardées localement."
 msgstr ""
 
@@ -1325,6 +1337,18 @@ msgid "D'après l'historique des tâches (200 dernières exécutions)."
 msgstr ""
 
 #: assets/app.js
+msgid "{date} : {duree} actif"
+msgstr ""
+
+#: assets/app.js
+msgid "{h} h"
+msgstr ""
+
+#: assets/app.js assets/app.js
+msgid "Évolution du temps actif"
+msgstr ""
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr ""
 
@@ -1354,6 +1378,30 @@ msgstr ""
 
 #: assets/app.js
 msgid "Statistiques illisibles : {error}"
+msgstr ""
+
+#: assets/app.js assets/app.js
+msgid "Export des statistiques impossible : {error}"
+msgstr ""
+
+#: assets/app.js
+msgid "Statistiques exportées"
+msgstr ""
+
+#: assets/app.js
+msgid "Remettre les statistiques à zéro ?"
+msgstr ""
+
+#: assets/app.js
+msgid "Les sessions, temps de réponse et quotas enregistrés sur cet ordinateur seront effacés. L'historique des tâches programmables n'est pas touché. Pensez à exporter avant si besoin."
+msgstr ""
+
+#: assets/app.js assets/app.js
+msgid "Remise à zéro impossible : {error}"
+msgstr ""
+
+#: assets/app.js
+msgid "Statistiques remises à zéro"
 msgstr ""
 
 #: assets/app.js

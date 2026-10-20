@@ -442,6 +442,18 @@ msgid "90 jours"
 msgstr "90 วัน"
 
 #: index.html
+msgid "Remettre à zéro"
+msgstr "รีเซ็ต"
+
+#: index.html
+msgid "Exporter CSV"
+msgstr "ส่งออก CSV"
+
+#: index.html
+msgid "Exporter JSON"
+msgstr "ส่งออก JSON"
+
+#: index.html
 msgid "Préférences de l'application, sauvegardées localement."
 msgstr "การตั้งค่าของแอป บันทึกไว้ในเครื่อง"
 
@@ -1330,6 +1342,18 @@ msgid "D'après l'historique des tâches (200 dernières exécutions)."
 msgstr "ตามประวัติงาน (การทำงาน 200 ครั้งล่าสุด)"
 
 #: assets/app.js
+msgid "{date} : {duree} actif"
+msgstr "{date}: ใช้งาน {duree}"
+
+#: assets/app.js
+msgid "{h} h"
+msgstr "{h}:00"
+
+#: assets/app.js
+msgid "Évolution du temps actif"
+msgstr "แนวโน้มเวลาใช้งาน"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "ไม่มีเซสชันในช่วงนี้ การวัดเริ่มตั้งแต่ติดตั้งเวอร์ชันนี้"
 
@@ -1360,6 +1384,30 @@ msgstr "บริการ"
 #: assets/app.js
 msgid "Statistiques illisibles : {error}"
 msgstr "อ่านสถิติไม่ได้: {error}"
+
+#: assets/app.js
+msgid "Export des statistiques impossible : {error}"
+msgstr "ส่งออกสถิติไม่ได้: {error}"
+
+#: assets/app.js
+msgid "Statistiques exportées"
+msgstr "ส่งออกสถิติแล้ว"
+
+#: assets/app.js
+msgid "Remettre les statistiques à zéro ?"
+msgstr "รีเซ็ตสถิติหรือไม่?"
+
+#: assets/app.js
+msgid "Les sessions, temps de réponse et quotas enregistrés sur cet ordinateur seront effacés. L'historique des tâches programmables n'est pas touché. Pensez à exporter avant si besoin."
+msgstr "เซสชัน เวลาตอบสนอง และโควตาที่บันทึกไว้ในคอมพิวเตอร์เครื่องนี้จะถูกลบ ประวัติงานตามกำหนดเวลาจะไม่ได้รับผลกระทบ ส่งออกก่อนหากจำเป็น"
+
+#: assets/app.js
+msgid "Remise à zéro impossible : {error}"
+msgstr "รีเซ็ตไม่ได้: {error}"
+
+#: assets/app.js
+msgid "Statistiques remises à zéro"
+msgstr "รีเซ็ตสถิติแล้ว"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"

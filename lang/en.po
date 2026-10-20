@@ -440,6 +440,18 @@ msgid "90 jours"
 msgstr "90 days"
 
 #: index.html
+msgid "Remettre à zéro"
+msgstr "Reset"
+
+#: index.html
+msgid "Exporter CSV"
+msgstr "Export CSV"
+
+#: index.html
+msgid "Exporter JSON"
+msgstr "Export JSON"
+
+#: index.html
 msgid "Préférences de l'application, sauvegardées localement."
 msgstr "Application preferences, saved locally."
 
@@ -1328,6 +1340,18 @@ msgid "D'après l'historique des tâches (200 dernières exécutions)."
 msgstr "Based on the task history (last 200 runs)."
 
 #: assets/app.js
+msgid "{date} : {duree} actif"
+msgstr "{date}: {duree} active"
+
+#: assets/app.js
+msgid "{h} h"
+msgstr "{h}:00"
+
+#: assets/app.js
+msgid "Évolution du temps actif"
+msgstr "Active time over time"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "No sessions in this period. Measurement starts when this version is installed."
 
@@ -1358,6 +1382,30 @@ msgstr "Service"
 #: assets/app.js
 msgid "Statistiques illisibles : {error}"
 msgstr "Unreadable statistics: {error}"
+
+#: assets/app.js
+msgid "Export des statistiques impossible : {error}"
+msgstr "Could not export statistics: {error}"
+
+#: assets/app.js
+msgid "Statistiques exportées"
+msgstr "Statistics exported"
+
+#: assets/app.js
+msgid "Remettre les statistiques à zéro ?"
+msgstr "Reset statistics?"
+
+#: assets/app.js
+msgid "Les sessions, temps de réponse et quotas enregistrés sur cet ordinateur seront effacés. L'historique des tâches programmables n'est pas touché. Pensez à exporter avant si besoin."
+msgstr "Sessions, response times and quotas recorded on this computer will be deleted. The scheduled task history is not affected. Export first if needed."
+
+#: assets/app.js
+msgid "Remise à zéro impossible : {error}"
+msgstr "Could not reset: {error}"
+
+#: assets/app.js
+msgid "Statistiques remises à zéro"
+msgstr "Statistics reset"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"

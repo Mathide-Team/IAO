@@ -442,6 +442,18 @@ msgid "90 jours"
 msgstr "90 ngày"
 
 #: index.html
+msgid "Remettre à zéro"
+msgstr "Đặt lại"
+
+#: index.html
+msgid "Exporter CSV"
+msgstr "Xuất CSV"
+
+#: index.html
+msgid "Exporter JSON"
+msgstr "Xuất JSON"
+
+#: index.html
 msgid "Préférences de l'application, sauvegardées localement."
 msgstr "Tùy chọn ứng dụng, được lưu cục bộ."
 
@@ -1330,6 +1342,18 @@ msgid "D'après l'historique des tâches (200 dernières exécutions)."
 msgstr "Theo lịch sử tác vụ (200 lần chạy gần nhất)."
 
 #: assets/app.js
+msgid "{date} : {duree} actif"
+msgstr "{date}: hoạt động {duree}"
+
+#: assets/app.js
+msgid "{h} h"
+msgstr "{h}:00"
+
+#: assets/app.js
+msgid "Évolution du temps actif"
+msgstr "Diễn biến thời gian hoạt động"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "Không có phiên nào trong kỳ này. Việc đo bắt đầu khi cài đặt phiên bản này."
 
@@ -1360,6 +1384,30 @@ msgstr "Dịch vụ"
 #: assets/app.js
 msgid "Statistiques illisibles : {error}"
 msgstr "Không đọc được thống kê: {error}"
+
+#: assets/app.js
+msgid "Export des statistiques impossible : {error}"
+msgstr "Không thể xuất thống kê: {error}"
+
+#: assets/app.js
+msgid "Statistiques exportées"
+msgstr "Đã xuất thống kê"
+
+#: assets/app.js
+msgid "Remettre les statistiques à zéro ?"
+msgstr "Đặt lại thống kê?"
+
+#: assets/app.js
+msgid "Les sessions, temps de réponse et quotas enregistrés sur cet ordinateur seront effacés. L'historique des tâches programmables n'est pas touché. Pensez à exporter avant si besoin."
+msgstr "Các phiên, thời gian phản hồi và hạn mức lưu trên máy tính này sẽ bị xóa. Lịch sử tác vụ đã lên lịch không bị ảnh hưởng. Hãy xuất trước nếu cần."
+
+#: assets/app.js
+msgid "Remise à zéro impossible : {error}"
+msgstr "Không thể đặt lại: {error}"
+
+#: assets/app.js
+msgid "Statistiques remises à zéro"
+msgstr "Đã đặt lại thống kê"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"

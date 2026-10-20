@@ -475,7 +475,12 @@
       <button type="button" class="stats-periode" data-periode="tout">90 jours</button>
     </div>
     <div class="stats-body" id="statsBody"></div>
-    <div class="modal__actions">
+    <!-- Lot 3 : export (dialogue d'enregistrement côté main.js) et remise à zéro. -->
+    <div class="modal__actions stats-actions">
+      <button class="btn stats-reset" data-action="ui-resetStats" id="statsReset">Remettre à zéro</button>
+      <span class="stats-actions__espace"></span>
+      <button class="btn" data-action="ui-exportStatsCsv" id="statsExportCsv">Exporter CSV</button>
+      <button class="btn" data-action="ui-exportStatsJson" id="statsExportJson">Exporter JSON</button>
       <button class="btn" data-action="ui-closeStatsModal">Fermer</button>
     </div>
   </div>

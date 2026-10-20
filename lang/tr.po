@@ -442,6 +442,18 @@ msgid "90 jours"
 msgstr "90 gün"
 
 #: index.html
+msgid "Remettre à zéro"
+msgstr "Sıfırla"
+
+#: index.html
+msgid "Exporter CSV"
+msgstr "CSV dışa aktar"
+
+#: index.html
+msgid "Exporter JSON"
+msgstr "JSON dışa aktar"
+
+#: index.html
 msgid "Préférences de l'application, sauvegardées localement."
 msgstr "Uygulama tercihleri, yerel olarak kaydedilir."
 
@@ -1330,6 +1342,18 @@ msgid "D'après l'historique des tâches (200 dernières exécutions)."
 msgstr "Görev geçmişine göre (son 200 çalıştırma)."
 
 #: assets/app.js
+msgid "{date} : {duree} actif"
+msgstr "{date}: {duree} etkin"
+
+#: assets/app.js
+msgid "{h} h"
+msgstr "{h}:00"
+
+#: assets/app.js
+msgid "Évolution du temps actif"
+msgstr "Etkin sürenin gelişimi"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "Bu dönemde oturum yok. Ölçüm bu sürümün kurulumuyla başlar."
 
@@ -1360,6 +1384,30 @@ msgstr "Hizmet"
 #: assets/app.js
 msgid "Statistiques illisibles : {error}"
 msgstr "İstatistikler okunamıyor: {error}"
+
+#: assets/app.js
+msgid "Export des statistiques impossible : {error}"
+msgstr "İstatistikler dışa aktarılamadı: {error}"
+
+#: assets/app.js
+msgid "Statistiques exportées"
+msgstr "İstatistikler dışa aktarıldı"
+
+#: assets/app.js
+msgid "Remettre les statistiques à zéro ?"
+msgstr "İstatistikler sıfırlansın mı?"
+
+#: assets/app.js
+msgid "Les sessions, temps de réponse et quotas enregistrés sur cet ordinateur seront effacés. L'historique des tâches programmables n'est pas touché. Pensez à exporter avant si besoin."
+msgstr "Bu bilgisayarda kayıtlı oturumlar, yanıt süreleri ve kotalar silinecek. Zamanlanmış görevlerin geçmişi etkilenmez. Gerekirse önce dışa aktarın."
+
+#: assets/app.js
+msgid "Remise à zéro impossible : {error}"
+msgstr "Sıfırlanamadı: {error}"
+
+#: assets/app.js
+msgid "Statistiques remises à zéro"
+msgstr "İstatistikler sıfırlandı"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"

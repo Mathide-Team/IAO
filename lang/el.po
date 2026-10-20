@@ -442,6 +442,18 @@ msgid "90 jours"
 msgstr "90 ημέρες"
 
 #: index.html
+msgid "Remettre à zéro"
+msgstr "Μηδενισμός"
+
+#: index.html
+msgid "Exporter CSV"
+msgstr "Εξαγωγή CSV"
+
+#: index.html
+msgid "Exporter JSON"
+msgstr "Εξαγωγή JSON"
+
+#: index.html
 msgid "Préférences de l'application, sauvegardées localement."
 msgstr "Προτιμήσεις εφαρμογής, αποθηκευμένες τοπικά."
 
@@ -1330,6 +1342,18 @@ msgid "D'après l'historique des tâches (200 dernières exécutions)."
 msgstr "Σύμφωνα με το ιστορικό εργασιών (τελευταίες 200 εκτελέσεις)."
 
 #: assets/app.js
+msgid "{date} : {duree} actif"
+msgstr "{date}: {duree} ενεργός"
+
+#: assets/app.js
+msgid "{h} h"
+msgstr "{h}:00"
+
+#: assets/app.js
+msgid "Évolution du temps actif"
+msgstr "Εξέλιξη του ενεργού χρόνου"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "Καμία συνεδρία σε αυτήν την περίοδο. Η μέτρηση ξεκινά με την εγκατάσταση αυτής της έκδοσης."
 
@@ -1360,6 +1384,30 @@ msgstr "Υπηρεσία"
 #: assets/app.js
 msgid "Statistiques illisibles : {error}"
 msgstr "Μη αναγνώσιμα στατιστικά: {error}"
+
+#: assets/app.js
+msgid "Export des statistiques impossible : {error}"
+msgstr "Η εξαγωγή των στατιστικών απέτυχε: {error}"
+
+#: assets/app.js
+msgid "Statistiques exportées"
+msgstr "Τα στατιστικά εξήχθησαν"
+
+#: assets/app.js
+msgid "Remettre les statistiques à zéro ?"
+msgstr "Μηδενισμός των στατιστικών;"
+
+#: assets/app.js
+msgid "Les sessions, temps de réponse et quotas enregistrés sur cet ordinateur seront effacés. L'historique des tâches programmables n'est pas touché. Pensez à exporter avant si besoin."
+msgstr "Οι συνεδρίες, οι χρόνοι απόκρισης και τα όρια που είναι αποθηκευμένα σε αυτόν τον υπολογιστή θα διαγραφούν. Το ιστορικό των προγραμματισμένων εργασιών δεν επηρεάζεται. Κάντε πρώτα εξαγωγή αν χρειάζεται."
+
+#: assets/app.js
+msgid "Remise à zéro impossible : {error}"
+msgstr "Ο μηδενισμός απέτυχε: {error}"
+
+#: assets/app.js
+msgid "Statistiques remises à zéro"
+msgstr "Τα στατιστικά μηδενίστηκαν"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"

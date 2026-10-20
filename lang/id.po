@@ -442,6 +442,18 @@ msgid "90 jours"
 msgstr "90 hari"
 
 #: index.html
+msgid "Remettre à zéro"
+msgstr "Atur ulang"
+
+#: index.html
+msgid "Exporter CSV"
+msgstr "Ekspor CSV"
+
+#: index.html
+msgid "Exporter JSON"
+msgstr "Ekspor JSON"
+
+#: index.html
 msgid "Préférences de l'application, sauvegardées localement."
 msgstr "Preferensi aplikasi, disimpan secara lokal."
 
@@ -1330,6 +1342,18 @@ msgid "D'après l'historique des tâches (200 dernières exécutions)."
 msgstr "Berdasarkan riwayat tugas (200 eksekusi terakhir)."
 
 #: assets/app.js
+msgid "{date} : {duree} actif"
+msgstr "{date}: aktif {duree}"
+
+#: assets/app.js
+msgid "{h} h"
+msgstr "pukul {h}"
+
+#: assets/app.js
+msgid "Évolution du temps actif"
+msgstr "Perkembangan waktu aktif"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "Tidak ada sesi pada periode ini. Pengukuran dimulai saat versi ini dipasang."
 
@@ -1360,6 +1384,30 @@ msgstr "Layanan"
 #: assets/app.js
 msgid "Statistiques illisibles : {error}"
 msgstr "Statistik tidak terbaca: {error}"
+
+#: assets/app.js
+msgid "Export des statistiques impossible : {error}"
+msgstr "Tidak dapat mengekspor statistik: {error}"
+
+#: assets/app.js
+msgid "Statistiques exportées"
+msgstr "Statistik diekspor"
+
+#: assets/app.js
+msgid "Remettre les statistiques à zéro ?"
+msgstr "Atur ulang statistik?"
+
+#: assets/app.js
+msgid "Les sessions, temps de réponse et quotas enregistrés sur cet ordinateur seront effacés. L'historique des tâches programmables n'est pas touché. Pensez à exporter avant si besoin."
+msgstr "Sesi, waktu respons, dan kuota yang tersimpan di komputer ini akan dihapus. Riwayat tugas terjadwal tidak terpengaruh. Ekspor terlebih dahulu jika perlu."
+
+#: assets/app.js
+msgid "Remise à zéro impossible : {error}"
+msgstr "Tidak dapat mengatur ulang: {error}"
+
+#: assets/app.js
+msgid "Statistiques remises à zéro"
+msgstr "Statistik diatur ulang"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"

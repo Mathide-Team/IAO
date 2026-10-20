@@ -442,6 +442,18 @@ msgid "90 jours"
 msgstr "90 يومًا"
 
 #: index.html
+msgid "Remettre à zéro"
+msgstr "إعادة التعيين"
+
+#: index.html
+msgid "Exporter CSV"
+msgstr "تصدير CSV"
+
+#: index.html
+msgid "Exporter JSON"
+msgstr "تصدير JSON"
+
+#: index.html
 msgid "Préférences de l'application, sauvegardées localement."
 msgstr "تفضيلات التطبيق، محفوظة محليًا."
 
@@ -1330,6 +1342,18 @@ msgid "D'après l'historique des tâches (200 dernières exécutions)."
 msgstr "وفقًا لسجل المهام (آخر 200 عملية تنفيذ)."
 
 #: assets/app.js
+msgid "{date} : {duree} actif"
+msgstr "{date}: نشط لمدة {duree}"
+
+#: assets/app.js
+msgid "{h} h"
+msgstr "{h}:00"
+
+#: assets/app.js
+msgid "Évolution du temps actif"
+msgstr "تطور الوقت النشط"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "لا توجد جلسات في هذه الفترة. يبدأ القياس عند تثبيت هذا الإصدار."
 
@@ -1360,6 +1384,30 @@ msgstr "الخدمة"
 #: assets/app.js
 msgid "Statistiques illisibles : {error}"
 msgstr "الإحصاءات غير مقروءة: {error}"
+
+#: assets/app.js
+msgid "Export des statistiques impossible : {error}"
+msgstr "تعذّر تصدير الإحصاءات: {error}"
+
+#: assets/app.js
+msgid "Statistiques exportées"
+msgstr "تم تصدير الإحصاءات"
+
+#: assets/app.js
+msgid "Remettre les statistiques à zéro ?"
+msgstr "إعادة تعيين الإحصاءات؟"
+
+#: assets/app.js
+msgid "Les sessions, temps de réponse et quotas enregistrés sur cet ordinateur seront effacés. L'historique des tâches programmables n'est pas touché. Pensez à exporter avant si besoin."
+msgstr "ستُحذف الجلسات وأوقات الاستجابة والحصص المسجّلة على هذا الحاسوب. لا يتأثر سجل المهام المجدولة. صدّر البيانات أولًا عند الحاجة."
+
+#: assets/app.js
+msgid "Remise à zéro impossible : {error}"
+msgstr "تعذّرت إعادة التعيين: {error}"
+
+#: assets/app.js
+msgid "Statistiques remises à zéro"
+msgstr "تمت إعادة تعيين الإحصاءات"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"

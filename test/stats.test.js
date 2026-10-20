@@ -276,7 +276,7 @@ test('registerStatsIPC : canaux enregistrés, erreurs renvoyées sans exception'
     chargerQuotas: async () => { throw new Error('quotas'); }
   });
   assert.deepEqual([...handlers.keys()], ['stats:sync', 'stats:load',
-    'stats:noter-reponse', 'stats:noter-quota', 'stats:reponses', 'stats:quotas']);
+    'stats:noter-reponse', 'stats:noter-quota', 'stats:reponses', 'stats:quotas', 'stats:reset', 'stats:export']);
   assert.deepEqual(await handlers.get('stats:noter-reponse')({}, {}), { error: 'reponse' });
   assert.deepEqual(await handlers.get('stats:noter-quota')({}, {}), { error: 'quota' });
   assert.deepEqual(await handlers.get('stats:reponses')({}), { error: 'reponses' });

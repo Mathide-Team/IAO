@@ -442,6 +442,18 @@ msgid "90 jours"
 msgstr "۹۰ روز"
 
 #: index.html
+msgid "Remettre à zéro"
+msgstr "بازنشانی"
+
+#: index.html
+msgid "Exporter CSV"
+msgstr "صدور CSV"
+
+#: index.html
+msgid "Exporter JSON"
+msgstr "صدور JSON"
+
+#: index.html
 msgid "Préférences de l'application, sauvegardées localement."
 msgstr "ترجیحات برنامه، به‌صورت محلی ذخیره می‌شوند."
 
@@ -1330,6 +1342,18 @@ msgid "D'après l'historique des tâches (200 dernières exécutions)."
 msgstr "بر اساس تاریخچهٔ وظایف (۲۰۰ اجرای آخر)."
 
 #: assets/app.js
+msgid "{date} : {duree} actif"
+msgstr "{date}: {duree} فعال"
+
+#: assets/app.js
+msgid "{h} h"
+msgstr "{h}:00"
+
+#: assets/app.js
+msgid "Évolution du temps actif"
+msgstr "روند زمان فعال"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "در این بازه نشستی وجود ندارد. اندازه‌گیری از نصب این نسخه آغاز می‌شود."
 
@@ -1360,6 +1384,30 @@ msgstr "سرویس"
 #: assets/app.js
 msgid "Statistiques illisibles : {error}"
 msgstr "آمار خوانا نیست: {error}"
+
+#: assets/app.js
+msgid "Export des statistiques impossible : {error}"
+msgstr "صدور آمار ممکن نیست: {error}"
+
+#: assets/app.js
+msgid "Statistiques exportées"
+msgstr "آمار صادر شد"
+
+#: assets/app.js
+msgid "Remettre les statistiques à zéro ?"
+msgstr "آمار بازنشانی شود؟"
+
+#: assets/app.js
+msgid "Les sessions, temps de réponse et quotas enregistrés sur cet ordinateur seront effacés. L'historique des tâches programmables n'est pas touché. Pensez à exporter avant si besoin."
+msgstr "نشست‌ها، زمان‌های پاسخ و سهمیه‌های ثبت‌شده روی این رایانه پاک می‌شوند. تاریخچهٔ وظایف زمان‌بندی‌شده دست‌نخورده می‌ماند. در صورت نیاز ابتدا صادر کنید."
+
+#: assets/app.js
+msgid "Remise à zéro impossible : {error}"
+msgstr "بازنشانی ممکن نیست: {error}"
+
+#: assets/app.js
+msgid "Statistiques remises à zéro"
+msgstr "آمار بازنشانی شد"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"

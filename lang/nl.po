@@ -442,6 +442,18 @@ msgid "90 jours"
 msgstr "90 dagen"
 
 #: index.html
+msgid "Remettre à zéro"
+msgstr "Op nul zetten"
+
+#: index.html
+msgid "Exporter CSV"
+msgstr "CSV exporteren"
+
+#: index.html
+msgid "Exporter JSON"
+msgstr "JSON exporteren"
+
+#: index.html
 msgid "Préférences de l'application, sauvegardées localement."
 msgstr "Voorkeuren van de toepassing, lokaal opgeslagen."
 
@@ -1330,6 +1342,18 @@ msgid "D'après l'historique des tâches (200 dernières exécutions)."
 msgstr "Volgens de takengeschiedenis (laatste 200 uitvoeringen)."
 
 #: assets/app.js
+msgid "{date} : {duree} actif"
+msgstr "{date}: {duree} actief"
+
+#: assets/app.js
+msgid "{h} h"
+msgstr "{h} u"
+
+#: assets/app.js
+msgid "Évolution du temps actif"
+msgstr "Verloop van de actieve tijd"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "Geen sessies in deze periode. De meting begint bij de installatie van deze versie."
 
@@ -1360,6 +1384,30 @@ msgstr "Dienst"
 #: assets/app.js
 msgid "Statistiques illisibles : {error}"
 msgstr "Statistieken onleesbaar: {error}"
+
+#: assets/app.js
+msgid "Export des statistiques impossible : {error}"
+msgstr "Statistieken exporteren mislukt: {error}"
+
+#: assets/app.js
+msgid "Statistiques exportées"
+msgstr "Statistieken geëxporteerd"
+
+#: assets/app.js
+msgid "Remettre les statistiques à zéro ?"
+msgstr "Statistieken op nul zetten?"
+
+#: assets/app.js
+msgid "Les sessions, temps de réponse et quotas enregistrés sur cet ordinateur seront effacés. L'historique des tâches programmables n'est pas touché. Pensez à exporter avant si besoin."
+msgstr "De sessies, antwoordtijden en quota die op deze computer zijn opgeslagen, worden gewist. De geschiedenis van de geplande taken blijft ongewijzigd. Exporteer eerst indien nodig."
+
+#: assets/app.js
+msgid "Remise à zéro impossible : {error}"
+msgstr "Op nul zetten mislukt: {error}"
+
+#: assets/app.js
+msgid "Statistiques remises à zéro"
+msgstr "Statistieken op nul gezet"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"

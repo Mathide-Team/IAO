@@ -488,6 +488,17 @@
   .stats-inutilises li { display: flex; justify-content: space-between; gap: 12px; padding: 6px 8px; border-bottom: 1px solid var(--border); }
   .stats-inutilise__date { color: var(--fg-muted); white-space: nowrap; }
   .stats-note { font-size: 11px; color: var(--fg-muted); margin-top: 6px; }
+  /* Lot 3 : histogramme d'évolution (SVG maison), export, remise à zéro. */
+  .stats-evolution svg { width: 100%; height: auto; display: block; overflow: visible; }
+  .stats-evolution__barre { fill: var(--accent); }
+  .stats-evolution__barre:hover { fill: color-mix(in srgb, var(--accent) 70%, var(--fg)); }
+  .stats-evolution__axe { stroke: var(--border); stroke-width: 1; }
+  .stats-evolution__texte { fill: var(--fg-muted); font-size: 10px; font-family: inherit; }
+  .stats-actions { align-items: center; flex-wrap: wrap; }
+  .stats-actions__espace { flex: 1; }
+  .stats-reset { color: var(--danger); }
+  /* La confirmation (remise à zéro) passe au-dessus des autres modales. */
+  #confirmModal { z-index: 95; }
 
   /* --- Ordonnanceur IA (chantier E) --- même famille visuelle que .modal--help. */
   .modal--scheduler { width: 680px; max-width: calc(100vw - 48px); max-height: calc(100vh - 96px); display: flex; flex-direction: column; padding: 28px; }

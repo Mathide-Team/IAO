@@ -537,7 +537,17 @@ const statsStore = stats.creerStore({
   fs: fsPromises,
   path
 });
-stats.registerStatsIPC(ipc, statsStore);
+// Lot 3 : export CSV/JSON (dialogue d'enregistrement ici), remise à zéro.
+stats.registerStatsIPC(ipc, statsStore, {
+  choisirFichier: async (nomParDefaut, format) => {
+    const r = await dialog.showSaveDialog(mainWindow, {
+      title: 'Exporter les statistiques',
+      defaultPath: nomParDefaut,
+      filters: [format === 'json' ? { name: 'JSON', extensions: ['json'] } : { name: 'CSV', extensions: ['csv'] }]
+    });
+    return r.canceled || !r.filePath ? null : r.filePath;
+  }
+});
 // #206 lot 2 : le scheduler note les temps de réponse et quotas atteints.
 scheduler.statsStore = statsStore;
 

@@ -104,8 +104,8 @@ const MAIN_CHANNELS = [
   'accounts:disconnect-profile', 'accounts:export', 'accounts:import', 'app:is-debug', 'app:log-path', 'app:open-webmail', 'app:relaunch-debug', 'app:toggle-devtools',
   'i18n:catalog', 'read-directory', 'read-directory-recursive', 'read-file', 'save-file',
   'secrets:available', 'secrets:delete', 'secrets:get', 'secrets:set',
-  'select-folder', 'settings:load', 'settings:save',
-  'stats:load', 'stats:noter-quota', 'stats:noter-reponse', 'stats:quotas', 'stats:reponses', 'stats:sync',
+  'select-folder', 'settings:load', 'settings:save', 'stats:export',
+  'stats:load', 'stats:noter-quota', 'stats:noter-reponse', 'stats:quotas', 'stats:reponses', 'stats:reset', 'stats:sync',
   'taches:delete', 'taches:dues', 'taches:history', 'taches:list', 'taches:report', 'taches:run-now',
   'taches:save', 'taches:set-active'
 ];
@@ -284,6 +284,28 @@ test('cleanupServiceWorkerStorage : erreur de suppression journalisee sans bloqu
       'avertissement journalise : ' + messages.join(' | '));
   } finally {
     console.warn = warn; console.log = log;
+    h.cleanup();
+  }
+});
+
+test('stats:export (#206 lot 3) : dialogue CSV/JSON, annulation, fichier écrit', async () => {
+  const h = loadMain();
+  try {
+    const exp = h.electron.ipcHandlers.get('stats:export');
+    const vus = [];
+    h.electron.dialog.showSaveDialog = async (_w, opts) => { vus.push(opts); return { canceled: true }; };
+    assert.deepEqual(await exp({}, 'csv', [], {}), { canceled: true });
+    assert.match(vus[0].defaultPath, /^iao-statistiques-\d{4}-\d{2}-\d{2}\.csv$/);
+    assert.deepEqual(vus[0].filters[0].extensions, ['csv']);
+    h.electron.dialog.showSaveDialog = async () => ({ canceled: false, filePath: '' });
+    assert.deepEqual(await exp({}, 'json', [], {}), { canceled: true });
+    const cible = path.join(h.electron.app.getPath('userData'), 'export.json');
+    h.electron.dialog.showSaveDialog = async (_w, opts) => { vus.push(opts); return { canceled: false, filePath: cible }; };
+    const r = await exp({}, 'json', [], {});
+    assert.deepEqual(r, { ok: true, chemin: cible });
+    assert.deepEqual(vus[vus.length - 1].filters[0].extensions, ['json']);
+    assert.equal(JSON.parse(fs.readFileSync(cible, 'utf-8')).format, 'iao-stats-1');
+  } finally {
     h.cleanup();
   }
 });

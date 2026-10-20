@@ -442,6 +442,18 @@ msgid "90 jours"
 msgstr "90 दिन"
 
 #: index.html
+msgid "Remettre à zéro"
+msgstr "रीसेट करें"
+
+#: index.html
+msgid "Exporter CSV"
+msgstr "CSV निर्यात करें"
+
+#: index.html
+msgid "Exporter JSON"
+msgstr "JSON निर्यात करें"
+
+#: index.html
 msgid "Préférences de l'application, sauvegardées localement."
 msgstr "ऐप की प्राथमिकताएँ, स्थानीय रूप से सहेजी गई।"
 
@@ -1330,6 +1342,18 @@ msgid "D'après l'historique des tâches (200 dernières exécutions)."
 msgstr "कार्य इतिहास के अनुसार (अंतिम 200 रन)।"
 
 #: assets/app.js
+msgid "{date} : {duree} actif"
+msgstr "{date}: {duree} सक्रिय"
+
+#: assets/app.js
+msgid "{h} h"
+msgstr "{h}:00"
+
+#: assets/app.js
+msgid "Évolution du temps actif"
+msgstr "सक्रिय समय का विकास"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "इस अवधि में कोई सत्र नहीं। माप इस संस्करण की स्थापना से शुरू होता है।"
 
@@ -1360,6 +1384,30 @@ msgstr "सेवा"
 #: assets/app.js
 msgid "Statistiques illisibles : {error}"
 msgstr "आँकड़े पढ़े नहीं जा सकते: {error}"
+
+#: assets/app.js
+msgid "Export des statistiques impossible : {error}"
+msgstr "आँकड़े निर्यात नहीं हो सके: {error}"
+
+#: assets/app.js
+msgid "Statistiques exportées"
+msgstr "आँकड़े निर्यात किए गए"
+
+#: assets/app.js
+msgid "Remettre les statistiques à zéro ?"
+msgstr "आँकड़े रीसेट करें?"
+
+#: assets/app.js
+msgid "Les sessions, temps de réponse et quotas enregistrés sur cet ordinateur seront effacés. L'historique des tâches programmables n'est pas touché. Pensez à exporter avant si besoin."
+msgstr "इस कंप्यूटर पर सहेजे गए सत्र, प्रतिक्रिया समय और कोटा मिटा दिए जाएँगे। शेड्यूल किए कार्यों का इतिहास प्रभावित नहीं होगा। ज़रूरत हो तो पहले निर्यात करें।"
+
+#: assets/app.js
+msgid "Remise à zéro impossible : {error}"
+msgstr "रीसेट संभव नहीं: {error}"
+
+#: assets/app.js
+msgid "Statistiques remises à zéro"
+msgstr "आँकड़े रीसेट किए गए"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"

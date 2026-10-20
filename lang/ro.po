@@ -442,6 +442,18 @@ msgid "90 jours"
 msgstr "90 de zile"
 
 #: index.html
+msgid "Remettre à zéro"
+msgstr "Resetează"
+
+#: index.html
+msgid "Exporter CSV"
+msgstr "Exportă CSV"
+
+#: index.html
+msgid "Exporter JSON"
+msgstr "Exportă JSON"
+
+#: index.html
 msgid "Préférences de l'application, sauvegardées localement."
 msgstr "Preferințele aplicației, salvate local."
 
@@ -1330,6 +1342,18 @@ msgid "D'après l'historique des tâches (200 dernières exécutions)."
 msgstr "Conform istoricului sarcinilor (ultimele 200 de execuții)."
 
 #: assets/app.js
+msgid "{date} : {duree} actif"
+msgstr "{date}: {duree} activ"
+
+#: assets/app.js
+msgid "{h} h"
+msgstr "{h}:00"
+
+#: assets/app.js
+msgid "Évolution du temps actif"
+msgstr "Evoluția timpului activ"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "Nicio sesiune în această perioadă. Măsurarea începe la instalarea acestei versiuni."
 
@@ -1360,6 +1384,30 @@ msgstr "Serviciu"
 #: assets/app.js
 msgid "Statistiques illisibles : {error}"
 msgstr "Statistici ilizibile: {error}"
+
+#: assets/app.js
+msgid "Export des statistiques impossible : {error}"
+msgstr "Exportul statisticilor a eșuat: {error}"
+
+#: assets/app.js
+msgid "Statistiques exportées"
+msgstr "Statistici exportate"
+
+#: assets/app.js
+msgid "Remettre les statistiques à zéro ?"
+msgstr "Resetați statisticile?"
+
+#: assets/app.js
+msgid "Les sessions, temps de réponse et quotas enregistrés sur cet ordinateur seront effacés. L'historique des tâches programmables n'est pas touché. Pensez à exporter avant si besoin."
+msgstr "Sesiunile, timpii de răspuns și cotele înregistrate pe acest computer vor fi șterse. Istoricul sarcinilor programate nu este afectat. Exportați mai întâi dacă este nevoie."
+
+#: assets/app.js
+msgid "Remise à zéro impossible : {error}"
+msgstr "Resetarea a eșuat: {error}"
+
+#: assets/app.js
+msgid "Statistiques remises à zéro"
+msgstr "Statistici resetate"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"

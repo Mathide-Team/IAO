@@ -442,6 +442,18 @@ msgid "90 jours"
 msgstr "90 dagar"
 
 #: index.html
+msgid "Remettre à zéro"
+msgstr "Nollställ"
+
+#: index.html
+msgid "Exporter CSV"
+msgstr "Exportera CSV"
+
+#: index.html
+msgid "Exporter JSON"
+msgstr "Exportera JSON"
+
+#: index.html
 msgid "Préférences de l'application, sauvegardées localement."
 msgstr "Programmets inställningar, sparade lokalt."
 
@@ -1330,6 +1342,18 @@ msgid "D'après l'historique des tâches (200 dernières exécutions)."
 msgstr "Enligt uppgiftshistoriken (de senaste 200 körningarna)."
 
 #: assets/app.js
+msgid "{date} : {duree} actif"
+msgstr "{date}: {duree} aktiv"
+
+#: assets/app.js
+msgid "{h} h"
+msgstr "kl. {h}"
+
+#: assets/app.js
+msgid "Évolution du temps actif"
+msgstr "Utveckling av aktiv tid"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "Inga sessioner under den här perioden. Mätningen börjar när den här versionen installeras."
 
@@ -1360,6 +1384,30 @@ msgstr "Tjänst"
 #: assets/app.js
 msgid "Statistiques illisibles : {error}"
 msgstr "Statistiken är oläslig: {error}"
+
+#: assets/app.js
+msgid "Export des statistiques impossible : {error}"
+msgstr "Kan inte exportera statistiken: {error}"
+
+#: assets/app.js
+msgid "Statistiques exportées"
+msgstr "Statistiken exporterad"
+
+#: assets/app.js
+msgid "Remettre les statistiques à zéro ?"
+msgstr "Nollställa statistiken?"
+
+#: assets/app.js
+msgid "Les sessions, temps de réponse et quotas enregistrés sur cet ordinateur seront effacés. L'historique des tâches programmables n'est pas touché. Pensez à exporter avant si besoin."
+msgstr "Sessioner, svarstider och kvoter som sparats på den här datorn raderas. Historiken för schemalagda uppgifter påverkas inte. Exportera först vid behov."
+
+#: assets/app.js
+msgid "Remise à zéro impossible : {error}"
+msgstr "Kan inte nollställa: {error}"
+
+#: assets/app.js
+msgid "Statistiques remises à zéro"
+msgstr "Statistiken nollställd"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"
