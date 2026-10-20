@@ -115,6 +115,9 @@
     // par ce fichier passeront par window.iaoT() dans les lots suivants.
     const I18N = window.IAO_I18N;
     window.iaoT = (msgid) => msgid;
+    // Pluriels (ngettext) : règle du français tant que le catalogue n'est pas
+    // chargé (0 et 1 au singulier), puis Plural-Forms de la langue.
+    window.iaoN = (msgid, msgidPlural, n) => (Math.abs(Number(n) || 0) > 1 ? msgidPlural : msgid);
     // Libellé traduisible construit en JavaScript (repéré par xgettext, mot-clé
     // « _ ») : window.iaoT est relu à chaque appel, il devient le traducteur
     // une fois le catalogue chargé ; params remplit les marqueurs {nom}.
@@ -125,6 +128,13 @@
     // Marque un libellé à extraire sans le traduire tout de suite (tables
     // construites avant le chargement du catalogue) : _() au moment du rendu.
     const N_ = (msgid) => msgid;
+    // Libellé avec compteur (mot-clé xgettext « _n:1,2 ») : la forme dépend
+    // de n selon la langue (russe : 1 / 2-4 / 5+, arabe : 6 formes…).
+    // params remplit les marqueurs ; {n} n'est pas implicite.
+    const _n = (msgid, msgidPlural, n, params) => {
+      const s = window.iaoN(msgid, msgidPlural, n);
+      return I18N ? I18N.formatMessage(s, params) : s;
+    };
     function applyTranslations(root, tr) {
       const SKIP = new Set(['SCRIPT', 'STYLE', 'TEXTAREA', 'WEBVIEW']);
       const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
@@ -168,6 +178,7 @@
         if (catalog.locale === I18N.SOURCE_LOCALE) return;
         const tr = I18N.createTranslator(catalog);
         window.iaoT = tr.gettext;
+        window.iaoN = tr.ngettext;
         document.documentElement.lang = catalog.locale;
         // Arabe, hébreu, persan… : mise en page de droite à gauche (issue #51).
         document.documentElement.dir = I18N.textDirection(catalog.locale);
@@ -724,7 +735,7 @@
                 <button class="btn btn--icon" data-action="edit" data-acc="${id}" title="${escapeHtml(_('Modifier le compte'))}"><span class="ic" data-icon="pen"></span></button>
                 <button class="btn btn--icon" data-action="delete" data-acc="${id}" title="${escapeHtml(_('Supprimer le compte'))}"><span class="ic icon-danger" data-icon="trash"></span></button>
               </div>
-              <span class="svc-summary ${availCount < acc.services.length ? 'has-cd' : ''}" title="${escapeHtml(_('{available} service(s) hors cooldown sur {total}', { available: availCount, total: acc.services.length }))}">${availCount}/${acc.services.length}</span>
+              <span class="svc-summary ${availCount < acc.services.length ? 'has-cd' : ''}" title="${escapeHtml(_n('{available} service hors cooldown sur {total}', '{available} services hors cooldown sur {total}', availCount, { available: availCount, total: acc.services.length }))}">${availCount}/${acc.services.length}</span>
               <span class="ic collapse-chevron" data-icon="chevron-down" title="${escapeHtml(_('Replier / déplier'))}"></span>
             </div>
             <div class="services-wrap"><div class="services-inner">
@@ -1519,7 +1530,7 @@
         const res = await ipcRenderer.invoke('accounts:export', exportAccountsJSON());
         if (res && res.canceled) return; // l'utilisateur a fermé la boîte de dialogue
         if (res && res.error) { showToast(_('Échec de l\'export (écriture impossible)'), 'error'); return; }
-        showToast(_('{count} compte(s) exporté(s)', { count: accounts.length }));
+        showToast(_n('{count} compte exporté', '{count} comptes exportés', accounts.length, { count: accounts.length }));
       } catch (e) {
         console.error('[import-export] export impossible :', e);
         showToast(_('Export impossible'), 'error');
@@ -1562,7 +1573,7 @@
       if (!content) return;
       try {
         const count = importAccountsJSON(content); // saveAccounts() + renderAccounts() déjà inclus
-        showToast(_('{count} compte(s) importé(s)', { count }));
+        showToast(_n('{count} compte importé', '{count} comptes importés', count, { count }));
       } catch (e) {
         console.error('[import-export] échec de l\'import :', e);
         showToast(_('Échec de l\'import : {error}', { error: e.message || e }), 'error');
@@ -1657,7 +1668,10 @@
         if (await enregistrerMotDePasse(c.profile, motDePasseAleatoire())) chiffres++;
         else break; // trousseau indisponible : inutile d'insister
       }
-      showToast(_('{n} compte(s) créé(s), {m} mot(s) de passe enregistré(s)', { n: r.comptes.length, m: chiffres }));
+      showToast(_('{comptes}, {motsDePasse}', {
+        comptes: _n('{n} compte créé', '{n} comptes créés', r.comptes.length, { n: r.comptes.length }),
+        motsDePasse: _n('{m} mot de passe enregistré', '{m} mots de passe enregistrés', chiffres, { m: chiffres })
+      }));
     };
 
     // Issue #201 : webmail (URL des réglages, ouverte par le process principal) ;
@@ -2052,11 +2066,13 @@
     // Libellés : appels _() LITTÉRAUX pour que xgettext extraie chaque message
     // complet (invariant 8) — pas de fragments concaténés.
     function libelleUniteTaches(unite, n) {
-      if (unite === 'minute') return _('tous les {n} minutes', { n: n });
-      if (unite === 'jour') return _('tous les {n} jours', { n: n });
-      if (unite === 'semaine') return _('toutes les {n} semaines', { n: n });
-      if (unite === 'mois') return _('tous les {n} mois', { n: n });
-      return _('toutes les {n} heures', { n: n });
+      // Pluriels (issue #51) : « chaque minute » pour n = 1 au lieu de
+      // « tous les 1 minutes ».
+      if (unite === 'minute') return _n('chaque minute', 'toutes les {n} minutes', n, { n: n });
+      if (unite === 'jour') return _n('chaque jour', 'tous les {n} jours', n, { n: n });
+      if (unite === 'semaine') return _n('chaque semaine', 'toutes les {n} semaines', n, { n: n });
+      if (unite === 'mois') return _n('chaque mois', 'tous les {n} mois', n, { n: n });
+      return _n('chaque heure', 'toutes les {n} heures', n, { n: n });
     }
     function texteProgrammationTache(tache) {
       var d = window.iaoTachesUi.decrireProgrammation(tache.programmation);
@@ -2070,7 +2086,7 @@
     }
     function texteComptesTache(tache) {
       var d = window.iaoTachesUi.decrireComptes(tache.comptes);
-      if (d.cle === 'liste') return _('{n} compte(s) sélectionné(s)', { n: d.n });
+      if (d.cle === 'liste') return _n('{n} compte sélectionné', '{n} comptes sélectionnés', d.n, { n: d.n });
       return _('tous les comptes avec Claude');
     }
     function texteRepartitionTache(tache) {
@@ -2576,7 +2592,7 @@
         return;
       }
       const serie = window.iaoStats.serieJours(sessions, maintenant);
-      const jours = (n) => n === 1 ? _('1 jour') : _('{n} jours', { n });
+      const jours = (n) => _n('{n} jour', '{n} jours', n, { n });
       const carte = (valeur, libelle) => `<div class="stats-carte"><div class="stats-carte__valeur">${escapeHtml(valeur)}</div><div class="stats-carte__libelle">${escapeHtml(libelle)}</div></div>`;
       body.innerHTML = `<div class="stats-totaux">
           ${carte(dureeStats(r.totaux.actifMs), _('Temps actif'))}
@@ -2977,7 +2993,7 @@
           '<div class="sched-job__body">' +
           '<div class="sched-job__title">' + escapeHtml(p.name) +
           ' <span class="sched-subtitle sched-subtitle--inline">(' + escapeHtml(p.id) + ')</span></div>' +
-          '<div class="sched-job__meta">' + escapeHtml(_('{count} tâche(s)', { count: tasks.length })) + ' · ' + escapeHtml(_('Comptes autorisés :')) + ' ' + allowedText + '</div>' +
+          '<div class="sched-job__meta">' + escapeHtml(_n('{count} tâche', '{count} tâches', tasks.length, { count: tasks.length })) + ' · ' + escapeHtml(_('Comptes autorisés :')) + ' ' + allowedText + '</div>' +
           '<div class="sched-job__actions">' +
           '<button class="btn" data-action="sched-add-task" data-project="' + escapeHtml(p.id) + '">' + escapeHtml(_('Nouvelle tâche')) + '</button>' +
           '<button class="btn" data-action="sched-assign-task" data-project="' + escapeHtml(p.id) + '">' + escapeHtml(_('Assigner')) + '</button>' +
@@ -3004,7 +3020,7 @@
           if (res.chatInput && res.chatInput.found) parts.push(_('zone de chat'));
           if (res.fileUpload && res.fileUpload.found) parts.push(_('envoi de fichier'));
           if (res.quotaMessage && res.quotaMessage.detected) parts.push('QUOTA: ' + res.quotaMessage.time);
-          if (res.popups && res.popups.count > 0) parts.push(_('{count} popup(s)', { count: res.popups.count }));
+          if (res.popups && res.popups.count > 0) parts.push(_n('{count} popup', '{count} popups', res.popups.count, { count: res.popups.count }));
           showToast(_('Claude (« {profile} ») : {details}', { profile, details: parts.length ? parts.join(', ') : _('aucun élément détecté') }));
         }
       } catch (e) { showToast(_('Diagnostic impossible : {error}', { error: e.message }), 'error'); }
@@ -3205,7 +3221,7 @@
         saveAccounts(accounts); // resynchronise aussi l'ordonnanceur
         renderAccounts();
         close();
-        showToast(_('{count} compte(s) restauré(s)', { count: restored.length }));
+        showToast(_n('{count} compte restauré', '{count} comptes restaurés', restored.length, { count: restored.length }));
       });
       actions.appendChild(cancel);
       actions.appendChild(restore);

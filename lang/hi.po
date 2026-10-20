@@ -758,8 +758,10 @@ msgid "Modifier le compte"
 msgstr "खाता संपादित करें"
 
 #: assets/app.js
-msgid "{available} service(s) hors cooldown sur {total}"
-msgstr "कूलडाउन से बाहर सेवाएँ: {available}/{total}"
+msgid "{available} service hors cooldown sur {total}"
+msgid_plural "{available} services hors cooldown sur {total}"
+msgstr[0] "{total} में से {available} सेवा कूलडाउन से बाहर"
+msgstr[1] "{total} में से {available} सेवाएँ कूलडाउन से बाहर"
 
 #: assets/app.js
 msgid "Replier / déplier"
@@ -874,8 +876,10 @@ msgid "Échec de l'export (écriture impossible)"
 msgstr "निर्यात विफल (लिखा नहीं जा सका)"
 
 #: assets/app.js
-msgid "{count} compte(s) exporté(s)"
-msgstr "निर्यात किए गए खाते: {count}"
+msgid "{count} compte exporté"
+msgid_plural "{count} comptes exportés"
+msgstr[0] "{count} खाता निर्यात किया गया"
+msgstr[1] "{count} खाते निर्यात किए गए"
 
 #: assets/app.js
 msgid "Export impossible"
@@ -902,8 +906,10 @@ msgid "Import impossible"
 msgstr "आयात संभव नहीं"
 
 #: assets/app.js
-msgid "{count} compte(s) importé(s)"
-msgstr "आयात किए गए खाते: {count}"
+msgid "{count} compte importé"
+msgid_plural "{count} comptes importés"
+msgstr[0] "{count} खाता आयात किया गया"
+msgstr[1] "{count} खाते आयात किए गए"
 
 #: assets/app.js
 msgid "Échec de l'import : {error}"
@@ -942,8 +948,20 @@ msgid "Nombre de comptes : de 1 à {max}"
 msgstr "खातों की संख्या: 1 से {max} तक"
 
 #: assets/app.js
-msgid "{n} compte(s) créé(s), {m} mot(s) de passe enregistré(s)"
-msgstr "बनाए गए खाते: {n}, सहेजे गए पासवर्ड: {m}"
+msgid "{comptes}, {motsDePasse}"
+msgstr "{comptes}, {motsDePasse}"
+
+#: assets/app.js
+msgid "{n} compte créé"
+msgid_plural "{n} comptes créés"
+msgstr[0] "{n} खाता बनाया गया"
+msgstr[1] "{n} खाते बनाए गए"
+
+#: assets/app.js
+msgid "{m} mot de passe enregistré"
+msgid_plural "{m} mots de passe enregistrés"
+msgstr[0] "{m} पासवर्ड सहेजा गया"
+msgstr[1] "{m} पासवर्ड सहेजे गए"
 
 #: assets/app.js
 msgid "Adresse du webmail non configurée dans les réglages"
@@ -1010,24 +1028,34 @@ msgid "Livré"
 msgstr "वितरित"
 
 #: assets/app.js
-msgid "tous les {n} minutes"
-msgstr "हर {n} मिनट"
+msgid "chaque minute"
+msgid_plural "toutes les {n} minutes"
+msgstr[0] "हर मिनट"
+msgstr[1] "हर {n} मिनट"
 
 #: assets/app.js
-msgid "tous les {n} jours"
-msgstr "हर {n} दिन"
+msgid "chaque jour"
+msgid_plural "tous les {n} jours"
+msgstr[0] "हर दिन"
+msgstr[1] "हर {n} दिन"
 
 #: assets/app.js
-msgid "toutes les {n} semaines"
-msgstr "हर {n} सप्ताह"
+msgid "chaque semaine"
+msgid_plural "toutes les {n} semaines"
+msgstr[0] "हर सप्ताह"
+msgstr[1] "हर {n} सप्ताह"
 
 #: assets/app.js
-msgid "tous les {n} mois"
-msgstr "हर {n} महीने"
+msgid "chaque mois"
+msgid_plural "tous les {n} mois"
+msgstr[0] "हर महीने"
+msgstr[1] "हर {n} महीने"
 
 #: assets/app.js
-msgid "toutes les {n} heures"
-msgstr "हर {n} घंटे"
+msgid "chaque heure"
+msgid_plural "toutes les {n} heures"
+msgstr[0] "हर घंटे"
+msgstr[1] "हर {n} घंटे"
 
 #: assets/app.js
 msgid "Le {date}"
@@ -1042,8 +1070,10 @@ msgid "programmation inconnue"
 msgstr "अज्ञात शेड्यूल"
 
 #: assets/app.js
-msgid "{n} compte(s) sélectionné(s)"
-msgstr "चुने गए खाते: {n}"
+msgid "{n} compte sélectionné"
+msgid_plural "{n} comptes sélectionnés"
+msgstr[0] "{n} खाता चुना गया"
+msgstr[1] "{n} खाते चुने गए"
 
 #: assets/app.js
 msgid "tous les comptes avec Claude"
@@ -1358,12 +1388,10 @@ msgid "Aucune session sur cette période. La mesure commence à l'installation d
 msgstr "इस अवधि में कोई सत्र नहीं। माप इस संस्करण की स्थापना से शुरू होता है।"
 
 #: assets/app.js
-msgid "1 jour"
-msgstr "1 दिन"
-
-#: assets/app.js
-msgid "{n} jours"
-msgstr "दिन: {n}"
+msgid "{n} jour"
+msgid_plural "{n} jours"
+msgstr[0] "{n} दिन"
+msgstr[1] "{n} दिन"
 
 #: assets/app.js
 msgid "Série en cours (record : {n})"
@@ -1554,8 +1582,10 @@ msgid "Comptes autorisés :"
 msgstr "अनुमत खाते:"
 
 #: assets/app.js
-msgid "{count} tâche(s)"
-msgstr "कार्य: {count}"
+msgid "{count} tâche"
+msgid_plural "{count} tâches"
+msgstr[0] "{count} कार्य"
+msgstr[1] "{count} कार्य"
 
 #: assets/app.js
 msgid "Assigner"
@@ -1586,8 +1616,10 @@ msgid "envoi de fichier"
 msgstr "फ़ाइल भेजना"
 
 #: assets/app.js
-msgid "{count} popup(s)"
-msgstr "पॉपअप: {count}"
+msgid "{count} popup"
+msgid_plural "{count} popups"
+msgstr[0] "{count} पॉप-अप"
+msgstr[1] "{count} पॉप-अप"
 
 #: assets/app.js
 msgid "Claude (« {profile} ») : {details}"
@@ -1738,8 +1770,10 @@ msgid "Restaurer les comptes"
 msgstr "खाते बहाल करें"
 
 #: assets/app.js
-msgid "{count} compte(s) restauré(s)"
-msgstr "बहाल किए गए खाते: {count}"
+msgid "{count} compte restauré"
+msgid_plural "{count} comptes restaurés"
+msgstr[0] "{count} खाता पुनर्स्थापित किया गया"
+msgstr[1] "{count} खाते पुनर्स्थापित किए गए"
 
 #: assets/app.js
 msgid "Données de comptes illisibles"

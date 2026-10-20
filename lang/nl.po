@@ -758,8 +758,10 @@ msgid "Modifier le compte"
 msgstr "Account bewerken"
 
 #: assets/app.js
-msgid "{available} service(s) hors cooldown sur {total}"
-msgstr "{available} dienst(en) zonder cooldown van {total}"
+msgid "{available} service hors cooldown sur {total}"
+msgid_plural "{available} services hors cooldown sur {total}"
+msgstr[0] "{available} van {total} dienst zonder cooldown"
+msgstr[1] "{available} van {total} diensten zonder cooldown"
 
 #: assets/app.js
 msgid "Replier / déplier"
@@ -874,8 +876,10 @@ msgid "Échec de l'export (écriture impossible)"
 msgstr "Export mislukt (schrijven onmogelijk)"
 
 #: assets/app.js
-msgid "{count} compte(s) exporté(s)"
-msgstr "{count} account(s) geëxporteerd"
+msgid "{count} compte exporté"
+msgid_plural "{count} comptes exportés"
+msgstr[0] "{count} account geëxporteerd"
+msgstr[1] "{count} accounts geëxporteerd"
 
 #: assets/app.js
 msgid "Export impossible"
@@ -902,8 +906,10 @@ msgid "Import impossible"
 msgstr "Importeren onmogelijk"
 
 #: assets/app.js
-msgid "{count} compte(s) importé(s)"
-msgstr "{count} account(s) geïmporteerd"
+msgid "{count} compte importé"
+msgid_plural "{count} comptes importés"
+msgstr[0] "{count} account geïmporteerd"
+msgstr[1] "{count} accounts geïmporteerd"
 
 #: assets/app.js
 msgid "Échec de l'import : {error}"
@@ -942,8 +948,20 @@ msgid "Nombre de comptes : de 1 à {max}"
 msgstr "Aantal accounts: van 1 tot {max}"
 
 #: assets/app.js
-msgid "{n} compte(s) créé(s), {m} mot(s) de passe enregistré(s)"
-msgstr "{n} account(s) aangemaakt, {m} wachtwoord(en) opgeslagen"
+msgid "{comptes}, {motsDePasse}"
+msgstr "{comptes}, {motsDePasse}"
+
+#: assets/app.js
+msgid "{n} compte créé"
+msgid_plural "{n} comptes créés"
+msgstr[0] "{n} account aangemaakt"
+msgstr[1] "{n} accounts aangemaakt"
+
+#: assets/app.js
+msgid "{m} mot de passe enregistré"
+msgid_plural "{m} mots de passe enregistrés"
+msgstr[0] "{m} wachtwoord opgeslagen"
+msgstr[1] "{m} wachtwoorden opgeslagen"
 
 #: assets/app.js
 msgid "Adresse du webmail non configurée dans les réglages"
@@ -1010,24 +1028,34 @@ msgid "Livré"
 msgstr "Geleverd"
 
 #: assets/app.js
-msgid "tous les {n} minutes"
-msgstr "elke {n} minuten"
+msgid "chaque minute"
+msgid_plural "toutes les {n} minutes"
+msgstr[0] "elke minuut"
+msgstr[1] "elke {n} minuten"
 
 #: assets/app.js
-msgid "tous les {n} jours"
-msgstr "elke {n} dagen"
+msgid "chaque jour"
+msgid_plural "tous les {n} jours"
+msgstr[0] "elke dag"
+msgstr[1] "elke {n} dagen"
 
 #: assets/app.js
-msgid "toutes les {n} semaines"
-msgstr "elke {n} weken"
+msgid "chaque semaine"
+msgid_plural "toutes les {n} semaines"
+msgstr[0] "elke week"
+msgstr[1] "elke {n} weken"
 
 #: assets/app.js
-msgid "tous les {n} mois"
-msgstr "elke {n} maanden"
+msgid "chaque mois"
+msgid_plural "tous les {n} mois"
+msgstr[0] "elke maand"
+msgstr[1] "elke {n} maanden"
 
 #: assets/app.js
-msgid "toutes les {n} heures"
-msgstr "elke {n} uur"
+msgid "chaque heure"
+msgid_plural "toutes les {n} heures"
+msgstr[0] "elk uur"
+msgstr[1] "elke {n} uur"
 
 #: assets/app.js
 msgid "Le {date}"
@@ -1042,8 +1070,10 @@ msgid "programmation inconnue"
 msgstr "onbekende planning"
 
 #: assets/app.js
-msgid "{n} compte(s) sélectionné(s)"
-msgstr "{n} account(s) geselecteerd"
+msgid "{n} compte sélectionné"
+msgid_plural "{n} comptes sélectionnés"
+msgstr[0] "{n} account geselecteerd"
+msgstr[1] "{n} accounts geselecteerd"
 
 #: assets/app.js
 msgid "tous les comptes avec Claude"
@@ -1358,12 +1388,10 @@ msgid "Aucune session sur cette période. La mesure commence à l'installation d
 msgstr "Geen sessies in deze periode. De meting begint bij de installatie van deze versie."
 
 #: assets/app.js
-msgid "1 jour"
-msgstr "1 dag"
-
-#: assets/app.js
-msgid "{n} jours"
-msgstr "{n} dagen"
+msgid "{n} jour"
+msgid_plural "{n} jours"
+msgstr[0] "{n} dag"
+msgstr[1] "{n} dagen"
 
 #: assets/app.js
 msgid "Série en cours (record : {n})"
@@ -1554,8 +1582,10 @@ msgid "Comptes autorisés :"
 msgstr "Toegestane accounts:"
 
 #: assets/app.js
-msgid "{count} tâche(s)"
-msgstr "{count} taak/taken"
+msgid "{count} tâche"
+msgid_plural "{count} tâches"
+msgstr[0] "{count} taak"
+msgstr[1] "{count} taken"
 
 #: assets/app.js
 msgid "Assigner"
@@ -1586,8 +1616,10 @@ msgid "envoi de fichier"
 msgstr "bestand verzenden"
 
 #: assets/app.js
-msgid "{count} popup(s)"
-msgstr "{count} pop-up(s)"
+msgid "{count} popup"
+msgid_plural "{count} popups"
+msgstr[0] "{count} pop-up"
+msgstr[1] "{count} pop-ups"
 
 #: assets/app.js
 msgid "Claude (« {profile} ») : {details}"
@@ -1738,8 +1770,10 @@ msgid "Restaurer les comptes"
 msgstr "Accounts herstellen"
 
 #: assets/app.js
-msgid "{count} compte(s) restauré(s)"
-msgstr "{count} account(s) hersteld"
+msgid "{count} compte restauré"
+msgid_plural "{count} comptes restaurés"
+msgstr[0] "{count} account hersteld"
+msgstr[1] "{count} accounts hersteld"
 
 #: assets/app.js
 msgid "Données de comptes illisibles"

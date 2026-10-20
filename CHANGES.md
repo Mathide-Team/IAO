@@ -1,5 +1,21 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issue #51 — vrais pluriels gettext (20/10/2026)
+
+### Modifié
+- **Compteurs** : les libellés « compte(s) exporté(s) », « tâche(s) »,
+  « popup(s) », « service(s) hors cooldown », « 1 jour / {n} jours »… et les
+  périodicités des tâches passent par `ngettext` (nouvel assistant `_n()`
+  dans `assets/app.js`, mot-clé xgettext `_n:1,2`). Chaque langue applique
+  sa règle `Plural-Forms` : russe 1 / 2-4 / 5+ (« 21 день »), arabe 6
+  formes (« كل دقيقتين »), polonais, tchèque, roumain…
+- « tous les 1 minutes » devient « chaque minute » ; « 1 compte(s) » devient
+  « 1 compte sélectionné ».
+- 15 pluriels traduits dans les 29 langues (formes générées par IA,
+  relecture humaine attendue) ; 0 entrée floue.
+- Test : `test/i18n-pluriels.test.js` (nombre de formes = `nplurals`,
+  marqueurs de la forme générale, formes choisies dans les `.mo` compilés).
+
 ## Issue #7 — signature GPG des sommes de contrôle (20/10/2026)
 
 ### Ajouté

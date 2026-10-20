@@ -758,8 +758,9 @@ msgid "Modifier le compte"
 msgstr "アカウントを編集"
 
 #: assets/app.js
-msgid "{available} service(s) hors cooldown sur {total}"
-msgstr "クールダウン外のサービス：{available} / {total}"
+msgid "{available} service hors cooldown sur {total}"
+msgid_plural "{available} services hors cooldown sur {total}"
+msgstr[0] "{total} 件中 {available} 件のサービスがクールダウン外"
 
 #: assets/app.js
 msgid "Replier / déplier"
@@ -874,8 +875,9 @@ msgid "Échec de l'export (écriture impossible)"
 msgstr "エクスポートに失敗しました（書き込み不可）"
 
 #: assets/app.js
-msgid "{count} compte(s) exporté(s)"
-msgstr "{count} 件のアカウントをエクスポートしました"
+msgid "{count} compte exporté"
+msgid_plural "{count} comptes exportés"
+msgstr[0] "{count} 件のアカウントをエクスポートしました"
 
 #: assets/app.js
 msgid "Export impossible"
@@ -902,8 +904,9 @@ msgid "Import impossible"
 msgstr "インポートできません"
 
 #: assets/app.js
-msgid "{count} compte(s) importé(s)"
-msgstr "{count} 件のアカウントをインポートしました"
+msgid "{count} compte importé"
+msgid_plural "{count} comptes importés"
+msgstr[0] "{count} 件のアカウントをインポートしました"
 
 #: assets/app.js
 msgid "Échec de l'import : {error}"
@@ -942,8 +945,18 @@ msgid "Nombre de comptes : de 1 à {max}"
 msgstr "アカウント数：1〜{max}"
 
 #: assets/app.js
-msgid "{n} compte(s) créé(s), {m} mot(s) de passe enregistré(s)"
-msgstr "{n} 件のアカウントを作成、{m} 件のパスワードを保存しました"
+msgid "{comptes}, {motsDePasse}"
+msgstr "{comptes}、{motsDePasse}"
+
+#: assets/app.js
+msgid "{n} compte créé"
+msgid_plural "{n} comptes créés"
+msgstr[0] "{n} 件のアカウントを作成しました"
+
+#: assets/app.js
+msgid "{m} mot de passe enregistré"
+msgid_plural "{m} mots de passe enregistrés"
+msgstr[0] "{m} 件のパスワードを保存しました"
 
 #: assets/app.js
 msgid "Adresse du webmail non configurée dans les réglages"
@@ -1010,24 +1023,29 @@ msgid "Livré"
 msgstr "納品済み"
 
 #: assets/app.js
-msgid "tous les {n} minutes"
-msgstr "{n} 分ごと"
+msgid "chaque minute"
+msgid_plural "toutes les {n} minutes"
+msgstr[0] "{n} 分ごと"
 
 #: assets/app.js
-msgid "tous les {n} jours"
-msgstr "{n} 日ごと"
+msgid "chaque jour"
+msgid_plural "tous les {n} jours"
+msgstr[0] "{n} 日ごと"
 
 #: assets/app.js
-msgid "toutes les {n} semaines"
-msgstr "{n} 週ごと"
+msgid "chaque semaine"
+msgid_plural "toutes les {n} semaines"
+msgstr[0] "{n} 週間ごと"
 
 #: assets/app.js
-msgid "tous les {n} mois"
-msgstr "{n} か月ごと"
+msgid "chaque mois"
+msgid_plural "tous les {n} mois"
+msgstr[0] "{n} か月ごと"
 
 #: assets/app.js
-msgid "toutes les {n} heures"
-msgstr "{n} 時間ごと"
+msgid "chaque heure"
+msgid_plural "toutes les {n} heures"
+msgstr[0] "{n} 時間ごと"
 
 #: assets/app.js
 msgid "Le {date}"
@@ -1042,8 +1060,9 @@ msgid "programmation inconnue"
 msgstr "不明なスケジュール"
 
 #: assets/app.js
-msgid "{n} compte(s) sélectionné(s)"
-msgstr "{n} 件のアカウントを選択"
+msgid "{n} compte sélectionné"
+msgid_plural "{n} comptes sélectionnés"
+msgstr[0] "{n} 件のアカウントを選択中"
 
 #: assets/app.js
 msgid "tous les comptes avec Claude"
@@ -1358,12 +1377,9 @@ msgid "Aucune session sur cette période. La mesure commence à l'installation d
 msgstr "この期間のセッションはありません。計測はこのバージョンのインストール時から始まります。"
 
 #: assets/app.js
-msgid "1 jour"
-msgstr "1 日"
-
-#: assets/app.js
-msgid "{n} jours"
-msgstr "{n} 日"
+msgid "{n} jour"
+msgid_plural "{n} jours"
+msgstr[0] "{n} 日"
 
 #: assets/app.js
 msgid "Série en cours (record : {n})"
@@ -1554,8 +1570,9 @@ msgid "Comptes autorisés :"
 msgstr "許可されたアカウント："
 
 #: assets/app.js
-msgid "{count} tâche(s)"
-msgstr "{count} 件のタスク"
+msgid "{count} tâche"
+msgid_plural "{count} tâches"
+msgstr[0] "{count} 件のタスク"
 
 #: assets/app.js
 msgid "Assigner"
@@ -1586,8 +1603,9 @@ msgid "envoi de fichier"
 msgstr "ファイル送信"
 
 #: assets/app.js
-msgid "{count} popup(s)"
-msgstr "ポップアップ {count} 件"
+msgid "{count} popup"
+msgid_plural "{count} popups"
+msgstr[0] "{count} 件のポップアップ"
 
 #: assets/app.js
 msgid "Claude (« {profile} ») : {details}"
@@ -1738,8 +1756,9 @@ msgid "Restaurer les comptes"
 msgstr "アカウントを復元"
 
 #: assets/app.js
-msgid "{count} compte(s) restauré(s)"
-msgstr "{count} 件のアカウントを復元しました"
+msgid "{count} compte restauré"
+msgid_plural "{count} comptes restaurés"
+msgstr[0] "{count} 件のアカウントを復元しました"
 
 #: assets/app.js
 msgid "Données de comptes illisibles"

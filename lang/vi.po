@@ -758,8 +758,9 @@ msgid "Modifier le compte"
 msgstr "Sửa tài khoản"
 
 #: assets/app.js
-msgid "{available} service(s) hors cooldown sur {total}"
-msgstr "{available}/{total} dịch vụ không trong thời gian chờ"
+msgid "{available} service hors cooldown sur {total}"
+msgid_plural "{available} services hors cooldown sur {total}"
+msgstr[0] "{available}/{total} dịch vụ không trong thời gian chờ"
 
 #: assets/app.js
 msgid "Replier / déplier"
@@ -874,8 +875,9 @@ msgid "Échec de l'export (écriture impossible)"
 msgstr "Xuất thất bại (không thể ghi)"
 
 #: assets/app.js
-msgid "{count} compte(s) exporté(s)"
-msgstr "Đã xuất {count} tài khoản"
+msgid "{count} compte exporté"
+msgid_plural "{count} comptes exportés"
+msgstr[0] "Đã xuất {count} tài khoản"
 
 #: assets/app.js
 msgid "Export impossible"
@@ -902,8 +904,9 @@ msgid "Import impossible"
 msgstr "Không thể nhập"
 
 #: assets/app.js
-msgid "{count} compte(s) importé(s)"
-msgstr "Đã nhập {count} tài khoản"
+msgid "{count} compte importé"
+msgid_plural "{count} comptes importés"
+msgstr[0] "Đã nhập {count} tài khoản"
 
 #: assets/app.js
 msgid "Échec de l'import : {error}"
@@ -942,8 +945,18 @@ msgid "Nombre de comptes : de 1 à {max}"
 msgstr "Số lượng tài khoản: từ 1 đến {max}"
 
 #: assets/app.js
-msgid "{n} compte(s) créé(s), {m} mot(s) de passe enregistré(s)"
-msgstr "Đã tạo {n} tài khoản, đã lưu {m} mật khẩu"
+msgid "{comptes}, {motsDePasse}"
+msgstr "{comptes}, {motsDePasse}"
+
+#: assets/app.js
+msgid "{n} compte créé"
+msgid_plural "{n} comptes créés"
+msgstr[0] "Đã tạo {n} tài khoản"
+
+#: assets/app.js
+msgid "{m} mot de passe enregistré"
+msgid_plural "{m} mots de passe enregistrés"
+msgstr[0] "đã lưu {m} mật khẩu"
 
 #: assets/app.js
 msgid "Adresse du webmail non configurée dans les réglages"
@@ -1010,24 +1023,29 @@ msgid "Livré"
 msgstr "Đã giao"
 
 #: assets/app.js
-msgid "tous les {n} minutes"
-msgstr "mỗi {n} phút"
+msgid "chaque minute"
+msgid_plural "toutes les {n} minutes"
+msgstr[0] "mỗi {n} phút"
 
 #: assets/app.js
-msgid "tous les {n} jours"
-msgstr "mỗi {n} ngày"
+msgid "chaque jour"
+msgid_plural "tous les {n} jours"
+msgstr[0] "mỗi {n} ngày"
 
 #: assets/app.js
-msgid "toutes les {n} semaines"
-msgstr "mỗi {n} tuần"
+msgid "chaque semaine"
+msgid_plural "toutes les {n} semaines"
+msgstr[0] "mỗi {n} tuần"
 
 #: assets/app.js
-msgid "tous les {n} mois"
-msgstr "mỗi {n} tháng"
+msgid "chaque mois"
+msgid_plural "tous les {n} mois"
+msgstr[0] "mỗi {n} tháng"
 
 #: assets/app.js
-msgid "toutes les {n} heures"
-msgstr "mỗi {n} giờ"
+msgid "chaque heure"
+msgid_plural "toutes les {n} heures"
+msgstr[0] "mỗi {n} giờ"
 
 #: assets/app.js
 msgid "Le {date}"
@@ -1042,8 +1060,9 @@ msgid "programmation inconnue"
 msgstr "lịch không xác định"
 
 #: assets/app.js
-msgid "{n} compte(s) sélectionné(s)"
-msgstr "Đã chọn {n} tài khoản"
+msgid "{n} compte sélectionné"
+msgid_plural "{n} comptes sélectionnés"
+msgstr[0] "Đã chọn {n} tài khoản"
 
 #: assets/app.js
 msgid "tous les comptes avec Claude"
@@ -1358,12 +1377,9 @@ msgid "Aucune session sur cette période. La mesure commence à l'installation d
 msgstr "Không có phiên nào trong kỳ này. Việc đo bắt đầu khi cài đặt phiên bản này."
 
 #: assets/app.js
-msgid "1 jour"
-msgstr "1 ngày"
-
-#: assets/app.js
-msgid "{n} jours"
-msgstr "{n} ngày"
+msgid "{n} jour"
+msgid_plural "{n} jours"
+msgstr[0] "{n} ngày"
 
 #: assets/app.js
 msgid "Série en cours (record : {n})"
@@ -1554,8 +1570,9 @@ msgid "Comptes autorisés :"
 msgstr "Tài khoản được phép:"
 
 #: assets/app.js
-msgid "{count} tâche(s)"
-msgstr "{count} tác vụ"
+msgid "{count} tâche"
+msgid_plural "{count} tâches"
+msgstr[0] "{count} tác vụ"
 
 #: assets/app.js
 msgid "Assigner"
@@ -1586,8 +1603,9 @@ msgid "envoi de fichier"
 msgstr "tải tệp lên"
 
 #: assets/app.js
-msgid "{count} popup(s)"
-msgstr "{count} cửa sổ bật lên"
+msgid "{count} popup"
+msgid_plural "{count} popups"
+msgstr[0] "{count} cửa sổ bật lên"
 
 #: assets/app.js
 msgid "Claude (« {profile} ») : {details}"
@@ -1738,8 +1756,9 @@ msgid "Restaurer les comptes"
 msgstr "Khôi phục tài khoản"
 
 #: assets/app.js
-msgid "{count} compte(s) restauré(s)"
-msgstr "Đã khôi phục {count} tài khoản"
+msgid "{count} compte restauré"
+msgid_plural "{count} comptes restaurés"
+msgstr[0] "Đã khôi phục {count} tài khoản"
 
 #: assets/app.js
 msgid "Données de comptes illisibles"

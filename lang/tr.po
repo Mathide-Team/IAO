@@ -758,8 +758,10 @@ msgid "Modifier le compte"
 msgstr "Hesabı düzenle"
 
 #: assets/app.js
-msgid "{available} service(s) hors cooldown sur {total}"
-msgstr "Bekleme süresi dışındaki hizmetler: {available}/{total}"
+msgid "{available} service hors cooldown sur {total}"
+msgid_plural "{available} services hors cooldown sur {total}"
+msgstr[0] "{total} hizmetten {available} tanesi cooldown dışında"
+msgstr[1] "{total} hizmetten {available} tanesi cooldown dışında"
 
 #: assets/app.js
 msgid "Replier / déplier"
@@ -874,8 +876,10 @@ msgid "Échec de l'export (écriture impossible)"
 msgstr "Dışa aktarma başarısız (yazılamıyor)"
 
 #: assets/app.js
-msgid "{count} compte(s) exporté(s)"
-msgstr "{count} hesap dışa aktarıldı"
+msgid "{count} compte exporté"
+msgid_plural "{count} comptes exportés"
+msgstr[0] "{count} hesap dışa aktarıldı"
+msgstr[1] "{count} hesap dışa aktarıldı"
 
 #: assets/app.js
 msgid "Export impossible"
@@ -902,8 +906,10 @@ msgid "Import impossible"
 msgstr "İçe aktarılamıyor"
 
 #: assets/app.js
-msgid "{count} compte(s) importé(s)"
-msgstr "{count} hesap içe aktarıldı"
+msgid "{count} compte importé"
+msgid_plural "{count} comptes importés"
+msgstr[0] "{count} hesap içe aktarıldı"
+msgstr[1] "{count} hesap içe aktarıldı"
 
 #: assets/app.js
 msgid "Échec de l'import : {error}"
@@ -942,8 +948,20 @@ msgid "Nombre de comptes : de 1 à {max}"
 msgstr "Hesap sayısı: 1 ile {max} arası"
 
 #: assets/app.js
-msgid "{n} compte(s) créé(s), {m} mot(s) de passe enregistré(s)"
-msgstr "{n} hesap oluşturuldu, {m} parola kaydedildi"
+msgid "{comptes}, {motsDePasse}"
+msgstr "{comptes}, {motsDePasse}"
+
+#: assets/app.js
+msgid "{n} compte créé"
+msgid_plural "{n} comptes créés"
+msgstr[0] "{n} hesap oluşturuldu"
+msgstr[1] "{n} hesap oluşturuldu"
+
+#: assets/app.js
+msgid "{m} mot de passe enregistré"
+msgid_plural "{m} mots de passe enregistrés"
+msgstr[0] "{m} parola kaydedildi"
+msgstr[1] "{m} parola kaydedildi"
 
 #: assets/app.js
 msgid "Adresse du webmail non configurée dans les réglages"
@@ -1010,24 +1028,34 @@ msgid "Livré"
 msgstr "Teslim edildi"
 
 #: assets/app.js
-msgid "tous les {n} minutes"
-msgstr "her {n} dakikada bir"
+msgid "chaque minute"
+msgid_plural "toutes les {n} minutes"
+msgstr[0] "her dakika"
+msgstr[1] "her {n} dakikada bir"
 
 #: assets/app.js
-msgid "tous les {n} jours"
-msgstr "her {n} günde bir"
+msgid "chaque jour"
+msgid_plural "tous les {n} jours"
+msgstr[0] "her gün"
+msgstr[1] "her {n} günde bir"
 
 #: assets/app.js
-msgid "toutes les {n} semaines"
-msgstr "her {n} haftada bir"
+msgid "chaque semaine"
+msgid_plural "toutes les {n} semaines"
+msgstr[0] "her hafta"
+msgstr[1] "her {n} haftada bir"
 
 #: assets/app.js
-msgid "tous les {n} mois"
-msgstr "her {n} ayda bir"
+msgid "chaque mois"
+msgid_plural "tous les {n} mois"
+msgstr[0] "her ay"
+msgstr[1] "her {n} ayda bir"
 
 #: assets/app.js
-msgid "toutes les {n} heures"
-msgstr "her {n} saatte bir"
+msgid "chaque heure"
+msgid_plural "toutes les {n} heures"
+msgstr[0] "her saat"
+msgstr[1] "her {n} saatte bir"
 
 #: assets/app.js
 msgid "Le {date}"
@@ -1042,8 +1070,10 @@ msgid "programmation inconnue"
 msgstr "bilinmeyen zamanlama"
 
 #: assets/app.js
-msgid "{n} compte(s) sélectionné(s)"
-msgstr "{n} hesap seçildi"
+msgid "{n} compte sélectionné"
+msgid_plural "{n} comptes sélectionnés"
+msgstr[0] "{n} hesap seçildi"
+msgstr[1] "{n} hesap seçildi"
 
 #: assets/app.js
 msgid "tous les comptes avec Claude"
@@ -1358,12 +1388,10 @@ msgid "Aucune session sur cette période. La mesure commence à l'installation d
 msgstr "Bu dönemde oturum yok. Ölçüm bu sürümün kurulumuyla başlar."
 
 #: assets/app.js
-msgid "1 jour"
-msgstr "1 gün"
-
-#: assets/app.js
-msgid "{n} jours"
-msgstr "{n} gün"
+msgid "{n} jour"
+msgid_plural "{n} jours"
+msgstr[0] "{n} gün"
+msgstr[1] "{n} gün"
 
 #: assets/app.js
 msgid "Série en cours (record : {n})"
@@ -1554,8 +1582,10 @@ msgid "Comptes autorisés :"
 msgstr "İzin verilen hesaplar:"
 
 #: assets/app.js
-msgid "{count} tâche(s)"
-msgstr "{count} görev"
+msgid "{count} tâche"
+msgid_plural "{count} tâches"
+msgstr[0] "{count} görev"
+msgstr[1] "{count} görev"
 
 #: assets/app.js
 msgid "Assigner"
@@ -1586,8 +1616,10 @@ msgid "envoi de fichier"
 msgstr "dosya yükleme"
 
 #: assets/app.js
-msgid "{count} popup(s)"
-msgstr "{count} açılır pencere"
+msgid "{count} popup"
+msgid_plural "{count} popups"
+msgstr[0] "{count} açılır pencere"
+msgstr[1] "{count} açılır pencere"
 
 #: assets/app.js
 msgid "Claude (« {profile} ») : {details}"
@@ -1738,8 +1770,10 @@ msgid "Restaurer les comptes"
 msgstr "Hesapları geri yükle"
 
 #: assets/app.js
-msgid "{count} compte(s) restauré(s)"
-msgstr "{count} hesap geri yüklendi"
+msgid "{count} compte restauré"
+msgid_plural "{count} comptes restaurés"
+msgstr[0] "{count} hesap geri yüklendi"
+msgstr[1] "{count} hesap geri yüklendi"
 
 #: assets/app.js
 msgid "Données de comptes illisibles"

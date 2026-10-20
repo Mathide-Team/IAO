@@ -758,8 +758,10 @@ msgid "Modifier le compte"
 msgstr "Muokkaa tiliä"
 
 #: assets/app.js
-msgid "{available} service(s) hors cooldown sur {total}"
-msgstr "{available}/{total} palvelua ilman jäähdytystä"
+msgid "{available} service hors cooldown sur {total}"
+msgid_plural "{available} services hors cooldown sur {total}"
+msgstr[0] "{available}/{total} palvelu ilman cooldownia"
+msgstr[1] "{available}/{total} palvelua ilman cooldownia"
 
 #: assets/app.js
 msgid "Replier / déplier"
@@ -874,8 +876,10 @@ msgid "Échec de l'export (écriture impossible)"
 msgstr "Vienti epäonnistui (kirjoittaminen ei onnistu)"
 
 #: assets/app.js
-msgid "{count} compte(s) exporté(s)"
-msgstr "Tilejä viety: {count}"
+msgid "{count} compte exporté"
+msgid_plural "{count} comptes exportés"
+msgstr[0] "{count} tili viety"
+msgstr[1] "{count} tiliä viety"
 
 #: assets/app.js
 msgid "Export impossible"
@@ -902,8 +906,10 @@ msgid "Import impossible"
 msgstr "Tuonti ei onnistu"
 
 #: assets/app.js
-msgid "{count} compte(s) importé(s)"
-msgstr "Tilejä tuotu: {count}"
+msgid "{count} compte importé"
+msgid_plural "{count} comptes importés"
+msgstr[0] "{count} tili tuotu"
+msgstr[1] "{count} tiliä tuotu"
 
 #: assets/app.js
 msgid "Échec de l'import : {error}"
@@ -942,8 +948,20 @@ msgid "Nombre de comptes : de 1 à {max}"
 msgstr "Tilien määrä: 1–{max}"
 
 #: assets/app.js
-msgid "{n} compte(s) créé(s), {m} mot(s) de passe enregistré(s)"
-msgstr "Tilejä luotu: {n}, salasanoja tallennettu: {m}"
+msgid "{comptes}, {motsDePasse}"
+msgstr "{comptes}, {motsDePasse}"
+
+#: assets/app.js
+msgid "{n} compte créé"
+msgid_plural "{n} comptes créés"
+msgstr[0] "{n} tili luotu"
+msgstr[1] "{n} tiliä luotu"
+
+#: assets/app.js
+msgid "{m} mot de passe enregistré"
+msgid_plural "{m} mots de passe enregistrés"
+msgstr[0] "{m} salasana tallennettu"
+msgstr[1] "{m} salasanaa tallennettu"
 
 #: assets/app.js
 msgid "Adresse du webmail non configurée dans les réglages"
@@ -1010,24 +1028,34 @@ msgid "Livré"
 msgstr "Toimitettu"
 
 #: assets/app.js
-msgid "tous les {n} minutes"
-msgstr "{n} minuutin välein"
+msgid "chaque minute"
+msgid_plural "toutes les {n} minutes"
+msgstr[0] "joka minuutti"
+msgstr[1] "{n} minuutin välein"
 
 #: assets/app.js
-msgid "tous les {n} jours"
-msgstr "{n} päivän välein"
+msgid "chaque jour"
+msgid_plural "tous les {n} jours"
+msgstr[0] "joka päivä"
+msgstr[1] "{n} päivän välein"
 
 #: assets/app.js
-msgid "toutes les {n} semaines"
-msgstr "{n} viikon välein"
+msgid "chaque semaine"
+msgid_plural "toutes les {n} semaines"
+msgstr[0] "joka viikko"
+msgstr[1] "{n} viikon välein"
 
 #: assets/app.js
-msgid "tous les {n} mois"
-msgstr "{n} kuukauden välein"
+msgid "chaque mois"
+msgid_plural "tous les {n} mois"
+msgstr[0] "joka kuukausi"
+msgstr[1] "{n} kuukauden välein"
 
 #: assets/app.js
-msgid "toutes les {n} heures"
-msgstr "{n} tunnin välein"
+msgid "chaque heure"
+msgid_plural "toutes les {n} heures"
+msgstr[0] "joka tunti"
+msgstr[1] "{n} tunnin välein"
 
 #: assets/app.js
 msgid "Le {date}"
@@ -1042,8 +1070,10 @@ msgid "programmation inconnue"
 msgstr "tuntematon ajastus"
 
 #: assets/app.js
-msgid "{n} compte(s) sélectionné(s)"
-msgstr "Tilejä valittu: {n}"
+msgid "{n} compte sélectionné"
+msgid_plural "{n} comptes sélectionnés"
+msgstr[0] "{n} tili valittu"
+msgstr[1] "{n} tiliä valittu"
 
 #: assets/app.js
 msgid "tous les comptes avec Claude"
@@ -1358,12 +1388,10 @@ msgid "Aucune session sur cette période. La mesure commence à l'installation d
 msgstr "Ei istuntoja tällä jaksolla. Mittaus alkaa tämän version asennuksesta."
 
 #: assets/app.js
-msgid "1 jour"
-msgstr "1 päivä"
-
-#: assets/app.js
-msgid "{n} jours"
-msgstr "{n} päivää"
+msgid "{n} jour"
+msgid_plural "{n} jours"
+msgstr[0] "{n} päivä"
+msgstr[1] "{n} päivää"
 
 #: assets/app.js
 msgid "Série en cours (record : {n})"
@@ -1554,8 +1582,10 @@ msgid "Comptes autorisés :"
 msgstr "Sallitut tilit:"
 
 #: assets/app.js
-msgid "{count} tâche(s)"
-msgstr "Tehtäviä: {count}"
+msgid "{count} tâche"
+msgid_plural "{count} tâches"
+msgstr[0] "{count} tehtävä"
+msgstr[1] "{count} tehtävää"
 
 #: assets/app.js
 msgid "Assigner"
@@ -1586,8 +1616,10 @@ msgid "envoi de fichier"
 msgstr "tiedoston lähetys"
 
 #: assets/app.js
-msgid "{count} popup(s)"
-msgstr "Ponnahdusikkunoita: {count}"
+msgid "{count} popup"
+msgid_plural "{count} popups"
+msgstr[0] "{count} ponnahdusikkuna"
+msgstr[1] "{count} ponnahdusikkunaa"
 
 #: assets/app.js
 msgid "Claude (« {profile} ») : {details}"
@@ -1738,8 +1770,10 @@ msgid "Restaurer les comptes"
 msgstr "Palauta tilit"
 
 #: assets/app.js
-msgid "{count} compte(s) restauré(s)"
-msgstr "Tilejä palautettu: {count}"
+msgid "{count} compte restauré"
+msgid_plural "{count} comptes restaurés"
+msgstr[0] "{count} tili palautettu"
+msgstr[1] "{count} tiliä palautettu"
 
 #: assets/app.js
 msgid "Données de comptes illisibles"

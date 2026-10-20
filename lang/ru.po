@@ -758,8 +758,11 @@ msgid "Modifier le compte"
 msgstr "Изменить аккаунт"
 
 #: assets/app.js
-msgid "{available} service(s) hors cooldown sur {total}"
-msgstr "Сервисов без cooldown: {available} из {total}"
+msgid "{available} service hors cooldown sur {total}"
+msgid_plural "{available} services hors cooldown sur {total}"
+msgstr[0] "{available} из {total} сервисов без cooldown"
+msgstr[1] "{available} из {total} сервисов без cooldown"
+msgstr[2] "{available} из {total} сервисов без cooldown"
 
 #: assets/app.js
 msgid "Replier / déplier"
@@ -874,8 +877,11 @@ msgid "Échec de l'export (écriture impossible)"
 msgstr "Экспорт не удался (запись невозможна)"
 
 #: assets/app.js
-msgid "{count} compte(s) exporté(s)"
-msgstr "Экспортировано аккаунтов: {count}"
+msgid "{count} compte exporté"
+msgid_plural "{count} comptes exportés"
+msgstr[0] "Экспортирован {count} аккаунт"
+msgstr[1] "Экспортировано {count} аккаунта"
+msgstr[2] "Экспортировано {count} аккаунтов"
 
 #: assets/app.js
 msgid "Export impossible"
@@ -902,8 +908,11 @@ msgid "Import impossible"
 msgstr "Импорт невозможен"
 
 #: assets/app.js
-msgid "{count} compte(s) importé(s)"
-msgstr "Импортировано аккаунтов: {count}"
+msgid "{count} compte importé"
+msgid_plural "{count} comptes importés"
+msgstr[0] "Импортирован {count} аккаунт"
+msgstr[1] "Импортировано {count} аккаунта"
+msgstr[2] "Импортировано {count} аккаунтов"
 
 #: assets/app.js
 msgid "Échec de l'import : {error}"
@@ -942,8 +951,22 @@ msgid "Nombre de comptes : de 1 à {max}"
 msgstr "Количество аккаунтов: от 1 до {max}"
 
 #: assets/app.js
-msgid "{n} compte(s) créé(s), {m} mot(s) de passe enregistré(s)"
-msgstr "Создано аккаунтов: {n}, сохранено паролей: {m}"
+msgid "{comptes}, {motsDePasse}"
+msgstr "{comptes}, {motsDePasse}"
+
+#: assets/app.js
+msgid "{n} compte créé"
+msgid_plural "{n} comptes créés"
+msgstr[0] "Создан {n} аккаунт"
+msgstr[1] "Создано {n} аккаунта"
+msgstr[2] "Создано {n} аккаунтов"
+
+#: assets/app.js
+msgid "{m} mot de passe enregistré"
+msgid_plural "{m} mots de passe enregistrés"
+msgstr[0] "сохранён {m} пароль"
+msgstr[1] "сохранено {m} пароля"
+msgstr[2] "сохранено {m} паролей"
 
 #: assets/app.js
 msgid "Adresse du webmail non configurée dans les réglages"
@@ -1010,24 +1033,39 @@ msgid "Livré"
 msgstr "Доставлено"
 
 #: assets/app.js
-msgid "tous les {n} minutes"
-msgstr "каждые {n} мин"
+msgid "chaque minute"
+msgid_plural "toutes les {n} minutes"
+msgstr[0] "каждую {n} минуту"
+msgstr[1] "каждые {n} минуты"
+msgstr[2] "каждые {n} минут"
 
 #: assets/app.js
-msgid "tous les {n} jours"
-msgstr "каждые {n} дн."
+msgid "chaque jour"
+msgid_plural "tous les {n} jours"
+msgstr[0] "каждый {n} день"
+msgstr[1] "каждые {n} дня"
+msgstr[2] "каждые {n} дней"
 
 #: assets/app.js
-msgid "toutes les {n} semaines"
-msgstr "каждые {n} нед."
+msgid "chaque semaine"
+msgid_plural "toutes les {n} semaines"
+msgstr[0] "каждую {n} неделю"
+msgstr[1] "каждые {n} недели"
+msgstr[2] "каждые {n} недель"
 
 #: assets/app.js
-msgid "tous les {n} mois"
-msgstr "каждые {n} мес."
+msgid "chaque mois"
+msgid_plural "tous les {n} mois"
+msgstr[0] "каждый {n} месяц"
+msgstr[1] "каждые {n} месяца"
+msgstr[2] "каждые {n} месяцев"
 
 #: assets/app.js
-msgid "toutes les {n} heures"
-msgstr "каждые {n} ч"
+msgid "chaque heure"
+msgid_plural "toutes les {n} heures"
+msgstr[0] "каждый {n} час"
+msgstr[1] "каждые {n} часа"
+msgstr[2] "каждые {n} часов"
 
 #: assets/app.js
 msgid "Le {date}"
@@ -1042,8 +1080,11 @@ msgid "programmation inconnue"
 msgstr "неизвестное расписание"
 
 #: assets/app.js
-msgid "{n} compte(s) sélectionné(s)"
-msgstr "Выбрано аккаунтов: {n}"
+msgid "{n} compte sélectionné"
+msgid_plural "{n} comptes sélectionnés"
+msgstr[0] "Выбран {n} аккаунт"
+msgstr[1] "Выбрано {n} аккаунта"
+msgstr[2] "Выбрано {n} аккаунтов"
 
 #: assets/app.js
 msgid "tous les comptes avec Claude"
@@ -1358,12 +1399,11 @@ msgid "Aucune session sur cette période. La mesure commence à l'installation d
 msgstr "Нет сессий за этот период. Измерение начинается с установки этой версии."
 
 #: assets/app.js
-msgid "1 jour"
-msgstr "1 день"
-
-#: assets/app.js
-msgid "{n} jours"
-msgstr "Дней: {n}"
+msgid "{n} jour"
+msgid_plural "{n} jours"
+msgstr[0] "{n} день"
+msgstr[1] "{n} дня"
+msgstr[2] "{n} дней"
 
 #: assets/app.js
 msgid "Série en cours (record : {n})"
@@ -1554,8 +1594,11 @@ msgid "Comptes autorisés :"
 msgstr "Разрешённые аккаунты:"
 
 #: assets/app.js
-msgid "{count} tâche(s)"
-msgstr "Задач: {count}"
+msgid "{count} tâche"
+msgid_plural "{count} tâches"
+msgstr[0] "{count} задача"
+msgstr[1] "{count} задачи"
+msgstr[2] "{count} задач"
 
 #: assets/app.js
 msgid "Assigner"
@@ -1586,8 +1629,11 @@ msgid "envoi de fichier"
 msgstr "отправка файла"
 
 #: assets/app.js
-msgid "{count} popup(s)"
-msgstr "Всплывающих окон: {count}"
+msgid "{count} popup"
+msgid_plural "{count} popups"
+msgstr[0] "{count} всплывающее окно"
+msgstr[1] "{count} всплывающих окна"
+msgstr[2] "{count} всплывающих окон"
 
 #: assets/app.js
 msgid "Claude (« {profile} ») : {details}"
@@ -1738,8 +1784,11 @@ msgid "Restaurer les comptes"
 msgstr "Восстановить аккаунты"
 
 #: assets/app.js
-msgid "{count} compte(s) restauré(s)"
-msgstr "Восстановлено аккаунтов: {count}"
+msgid "{count} compte restauré"
+msgid_plural "{count} comptes restaurés"
+msgstr[0] "Восстановлен {count} аккаунт"
+msgstr[1] "Восстановлено {count} аккаунта"
+msgstr[2] "Восстановлено {count} аккаунтов"
 
 #: assets/app.js
 msgid "Données de comptes illisibles"
