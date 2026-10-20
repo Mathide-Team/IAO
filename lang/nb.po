@@ -758,8 +758,10 @@ msgid "Modifier le compte"
 msgstr "Rediger kontoen"
 
 #: assets/app.js
-msgid "{available} service(s) hors cooldown sur {total}"
-msgstr "{available} tjeneste(r) uten nedkjøling av {total}"
+msgid "{available} service hors cooldown sur {total}"
+msgid_plural "{available} services hors cooldown sur {total}"
+msgstr[0] "{available} av {total} tjeneste uten cooldown"
+msgstr[1] "{available} av {total} tjenester uten cooldown"
 
 #: assets/app.js
 msgid "Replier / déplier"
@@ -874,8 +876,10 @@ msgid "Échec de l'export (écriture impossible)"
 msgstr "Eksporten mislyktes (kan ikke skrive)"
 
 #: assets/app.js
-msgid "{count} compte(s) exporté(s)"
-msgstr "{count} konto(er) eksportert"
+msgid "{count} compte exporté"
+msgid_plural "{count} comptes exportés"
+msgstr[0] "{count} konto eksportert"
+msgstr[1] "{count} kontoer eksportert"
 
 #: assets/app.js
 msgid "Export impossible"
@@ -902,8 +906,10 @@ msgid "Import impossible"
 msgstr "Kan ikke importere"
 
 #: assets/app.js
-msgid "{count} compte(s) importé(s)"
-msgstr "{count} konto(er) importert"
+msgid "{count} compte importé"
+msgid_plural "{count} comptes importés"
+msgstr[0] "{count} konto importert"
+msgstr[1] "{count} kontoer importert"
 
 #: assets/app.js
 msgid "Échec de l'import : {error}"
@@ -942,8 +948,20 @@ msgid "Nombre de comptes : de 1 à {max}"
 msgstr "Antall kontoer: fra 1 til {max}"
 
 #: assets/app.js
-msgid "{n} compte(s) créé(s), {m} mot(s) de passe enregistré(s)"
-msgstr "{n} konto(er) opprettet, {m} passord lagret"
+msgid "{comptes}, {motsDePasse}"
+msgstr "{comptes}, {motsDePasse}"
+
+#: assets/app.js
+msgid "{n} compte créé"
+msgid_plural "{n} comptes créés"
+msgstr[0] "{n} konto opprettet"
+msgstr[1] "{n} kontoer opprettet"
+
+#: assets/app.js
+msgid "{m} mot de passe enregistré"
+msgid_plural "{m} mots de passe enregistrés"
+msgstr[0] "{m} passord lagret"
+msgstr[1] "{m} passord lagret"
 
 #: assets/app.js
 msgid "Adresse du webmail non configurée dans les réglages"
@@ -1010,24 +1028,34 @@ msgid "Livré"
 msgstr "Levert"
 
 #: assets/app.js
-msgid "tous les {n} minutes"
-msgstr "hvert {n}. minutt"
+msgid "chaque minute"
+msgid_plural "toutes les {n} minutes"
+msgstr[0] "hvert minutt"
+msgstr[1] "hvert {n}. minutt"
 
 #: assets/app.js
-msgid "tous les {n} jours"
-msgstr "hver {n}. dag"
+msgid "chaque jour"
+msgid_plural "tous les {n} jours"
+msgstr[0] "hver dag"
+msgstr[1] "hver {n}. dag"
 
 #: assets/app.js
-msgid "toutes les {n} semaines"
-msgstr "hver {n}. uke"
+msgid "chaque semaine"
+msgid_plural "toutes les {n} semaines"
+msgstr[0] "hver uke"
+msgstr[1] "hver {n}. uke"
 
 #: assets/app.js
-msgid "tous les {n} mois"
-msgstr "hver {n}. måned"
+msgid "chaque mois"
+msgid_plural "tous les {n} mois"
+msgstr[0] "hver måned"
+msgstr[1] "hver {n}. måned"
 
 #: assets/app.js
-msgid "toutes les {n} heures"
-msgstr "hver {n}. time"
+msgid "chaque heure"
+msgid_plural "toutes les {n} heures"
+msgstr[0] "hver time"
+msgstr[1] "hver {n}. time"
 
 #: assets/app.js
 msgid "Le {date}"
@@ -1042,8 +1070,10 @@ msgid "programmation inconnue"
 msgstr "ukjent planlegging"
 
 #: assets/app.js
-msgid "{n} compte(s) sélectionné(s)"
-msgstr "{n} konto(er) valgt"
+msgid "{n} compte sélectionné"
+msgid_plural "{n} comptes sélectionnés"
+msgstr[0] "{n} konto valgt"
+msgstr[1] "{n} kontoer valgt"
 
 #: assets/app.js
 msgid "tous les comptes avec Claude"
@@ -1358,12 +1388,10 @@ msgid "Aucune session sur cette période. La mesure commence à l'installation d
 msgstr "Ingen økter i denne perioden. Målingen starter når denne versjonen installeres."
 
 #: assets/app.js
-msgid "1 jour"
-msgstr "1 dag"
-
-#: assets/app.js
-msgid "{n} jours"
-msgstr "{n} dager"
+msgid "{n} jour"
+msgid_plural "{n} jours"
+msgstr[0] "{n} dag"
+msgstr[1] "{n} dager"
 
 #: assets/app.js
 msgid "Série en cours (record : {n})"
@@ -1554,8 +1582,10 @@ msgid "Comptes autorisés :"
 msgstr "Tillatte kontoer:"
 
 #: assets/app.js
-msgid "{count} tâche(s)"
-msgstr "{count} oppgave(r)"
+msgid "{count} tâche"
+msgid_plural "{count} tâches"
+msgstr[0] "{count} oppgave"
+msgstr[1] "{count} oppgaver"
 
 #: assets/app.js
 msgid "Assigner"
@@ -1586,8 +1616,10 @@ msgid "envoi de fichier"
 msgstr "filopplasting"
 
 #: assets/app.js
-msgid "{count} popup(s)"
-msgstr "{count} popup(er)"
+msgid "{count} popup"
+msgid_plural "{count} popups"
+msgstr[0] "{count} popup-vindu"
+msgstr[1] "{count} popup-vinduer"
 
 #: assets/app.js
 msgid "Claude (« {profile} ») : {details}"
@@ -1738,8 +1770,10 @@ msgid "Restaurer les comptes"
 msgstr "Gjenopprett kontoene"
 
 #: assets/app.js
-msgid "{count} compte(s) restauré(s)"
-msgstr "{count} konto(er) gjenopprettet"
+msgid "{count} compte restauré"
+msgid_plural "{count} comptes restaurés"
+msgstr[0] "{count} konto gjenopprettet"
+msgstr[1] "{count} kontoer gjenopprettet"
 
 #: assets/app.js
 msgid "Données de comptes illisibles"

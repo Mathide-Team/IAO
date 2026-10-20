@@ -758,8 +758,10 @@ msgid "Modifier le compte"
 msgstr "עריכת החשבון"
 
 #: assets/app.js
-msgid "{available} service(s) hors cooldown sur {total}"
-msgstr "שירותים זמינים (ללא השהיה): {available} מתוך {total}"
+msgid "{available} service hors cooldown sur {total}"
+msgid_plural "{available} services hors cooldown sur {total}"
+msgstr[0] "{available} מתוך {total} שירות ללא cooldown"
+msgstr[1] "{available} מתוך {total} שירותים ללא cooldown"
 
 #: assets/app.js
 msgid "Replier / déplier"
@@ -874,8 +876,10 @@ msgid "Échec de l'export (écriture impossible)"
 msgstr "הייצוא נכשל (לא ניתן לכתוב)"
 
 #: assets/app.js
-msgid "{count} compte(s) exporté(s)"
-msgstr "חשבונות שיוצאו: {count}"
+msgid "{count} compte exporté"
+msgid_plural "{count} comptes exportés"
+msgstr[0] "{count} חשבון יוצא"
+msgstr[1] "{count} חשבונות יוצאו"
 
 #: assets/app.js
 msgid "Export impossible"
@@ -902,8 +906,10 @@ msgid "Import impossible"
 msgstr "לא ניתן לייבא"
 
 #: assets/app.js
-msgid "{count} compte(s) importé(s)"
-msgstr "חשבונות שיובאו: {count}"
+msgid "{count} compte importé"
+msgid_plural "{count} comptes importés"
+msgstr[0] "{count} חשבון יובא"
+msgstr[1] "{count} חשבונות יובאו"
 
 #: assets/app.js
 msgid "Échec de l'import : {error}"
@@ -942,8 +948,20 @@ msgid "Nombre de comptes : de 1 à {max}"
 msgstr "מספר החשבונות: מ-1 עד {max}"
 
 #: assets/app.js
-msgid "{n} compte(s) créé(s), {m} mot(s) de passe enregistré(s)"
-msgstr "חשבונות שנוצרו: {n}, סיסמאות שנשמרו: {m}"
+msgid "{comptes}, {motsDePasse}"
+msgstr "{comptes}, {motsDePasse}"
+
+#: assets/app.js
+msgid "{n} compte créé"
+msgid_plural "{n} comptes créés"
+msgstr[0] "{n} חשבון נוצר"
+msgstr[1] "{n} חשבונות נוצרו"
+
+#: assets/app.js
+msgid "{m} mot de passe enregistré"
+msgid_plural "{m} mots de passe enregistrés"
+msgstr[0] "{m} סיסמה נשמרה"
+msgstr[1] "{m} סיסמאות נשמרו"
 
 #: assets/app.js
 msgid "Adresse du webmail non configurée dans les réglages"
@@ -1010,24 +1028,34 @@ msgid "Livré"
 msgstr "נמסר"
 
 #: assets/app.js
-msgid "tous les {n} minutes"
-msgstr "כל {n} דקות"
+msgid "chaque minute"
+msgid_plural "toutes les {n} minutes"
+msgstr[0] "כל דקה"
+msgstr[1] "כל {n} דקות"
 
 #: assets/app.js
-msgid "tous les {n} jours"
-msgstr "כל {n} ימים"
+msgid "chaque jour"
+msgid_plural "tous les {n} jours"
+msgstr[0] "כל יום"
+msgstr[1] "כל {n} ימים"
 
 #: assets/app.js
-msgid "toutes les {n} semaines"
-msgstr "כל {n} שבועות"
+msgid "chaque semaine"
+msgid_plural "toutes les {n} semaines"
+msgstr[0] "כל שבוע"
+msgstr[1] "כל {n} שבועות"
 
 #: assets/app.js
-msgid "tous les {n} mois"
-msgstr "כל {n} חודשים"
+msgid "chaque mois"
+msgid_plural "tous les {n} mois"
+msgstr[0] "כל חודש"
+msgstr[1] "כל {n} חודשים"
 
 #: assets/app.js
-msgid "toutes les {n} heures"
-msgstr "כל {n} שעות"
+msgid "chaque heure"
+msgid_plural "toutes les {n} heures"
+msgstr[0] "כל שעה"
+msgstr[1] "כל {n} שעות"
 
 #: assets/app.js
 msgid "Le {date}"
@@ -1042,8 +1070,10 @@ msgid "programmation inconnue"
 msgstr "תזמון לא ידוע"
 
 #: assets/app.js
-msgid "{n} compte(s) sélectionné(s)"
-msgstr "חשבונות שנבחרו: {n}"
+msgid "{n} compte sélectionné"
+msgid_plural "{n} comptes sélectionnés"
+msgstr[0] "{n} חשבון נבחר"
+msgstr[1] "{n} חשבונות נבחרו"
 
 #: assets/app.js
 msgid "tous les comptes avec Claude"
@@ -1358,12 +1388,10 @@ msgid "Aucune session sur cette période. La mesure commence à l'installation d
 msgstr "אין שיחות בתקופה זו. המדידה מתחילה עם התקנת גרסה זו."
 
 #: assets/app.js
-msgid "1 jour"
-msgstr "יום אחד"
-
-#: assets/app.js
-msgid "{n} jours"
-msgstr "ימים: {n}"
+msgid "{n} jour"
+msgid_plural "{n} jours"
+msgstr[0] "{n} יום"
+msgstr[1] "{n} ימים"
 
 #: assets/app.js
 msgid "Série en cours (record : {n})"
@@ -1554,8 +1582,10 @@ msgid "Comptes autorisés :"
 msgstr "חשבונות מורשים:"
 
 #: assets/app.js
-msgid "{count} tâche(s)"
-msgstr "משימות: {count}"
+msgid "{count} tâche"
+msgid_plural "{count} tâches"
+msgstr[0] "{count} משימה"
+msgstr[1] "{count} משימות"
 
 #: assets/app.js
 msgid "Assigner"
@@ -1586,8 +1616,10 @@ msgid "envoi de fichier"
 msgstr "שליחת קובץ"
 
 #: assets/app.js
-msgid "{count} popup(s)"
-msgstr "חלונות קופצים: {count}"
+msgid "{count} popup"
+msgid_plural "{count} popups"
+msgstr[0] "{count} חלון קופץ"
+msgstr[1] "{count} חלונות קופצים"
 
 #: assets/app.js
 msgid "Claude (« {profile} ») : {details}"
@@ -1738,8 +1770,10 @@ msgid "Restaurer les comptes"
 msgstr "שחזור החשבונות"
 
 #: assets/app.js
-msgid "{count} compte(s) restauré(s)"
-msgstr "חשבונות ששוחזרו: {count}"
+msgid "{count} compte restauré"
+msgid_plural "{count} comptes restaurés"
+msgstr[0] "{count} חשבון שוחזר"
+msgstr[1] "{count} חשבונות שוחזרו"
 
 #: assets/app.js
 msgid "Données de comptes illisibles"

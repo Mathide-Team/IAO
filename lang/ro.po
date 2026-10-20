@@ -758,8 +758,11 @@ msgid "Modifier le compte"
 msgstr "Modifică contul"
 
 #: assets/app.js
-msgid "{available} service(s) hors cooldown sur {total}"
-msgstr "Servicii fără cooldown: {available} din {total}"
+msgid "{available} service hors cooldown sur {total}"
+msgid_plural "{available} services hors cooldown sur {total}"
+msgstr[0] "{available} din {total} servicii fără cooldown"
+msgstr[1] "{available} din {total} servicii fără cooldown"
+msgstr[2] "{available} din {total} servicii fără cooldown"
 
 #: assets/app.js
 msgid "Replier / déplier"
@@ -874,8 +877,11 @@ msgid "Échec de l'export (écriture impossible)"
 msgstr "Exportul a eșuat (scriere imposibilă)"
 
 #: assets/app.js
-msgid "{count} compte(s) exporté(s)"
-msgstr "Conturi exportate: {count}"
+msgid "{count} compte exporté"
+msgid_plural "{count} comptes exportés"
+msgstr[0] "{count} cont exportat"
+msgstr[1] "{count} conturi exportate"
+msgstr[2] "{count} de conturi exportate"
 
 #: assets/app.js
 msgid "Export impossible"
@@ -902,8 +908,11 @@ msgid "Import impossible"
 msgstr "Import imposibil"
 
 #: assets/app.js
-msgid "{count} compte(s) importé(s)"
-msgstr "Conturi importate: {count}"
+msgid "{count} compte importé"
+msgid_plural "{count} comptes importés"
+msgstr[0] "{count} cont importat"
+msgstr[1] "{count} conturi importate"
+msgstr[2] "{count} de conturi importate"
 
 #: assets/app.js
 msgid "Échec de l'import : {error}"
@@ -942,8 +951,22 @@ msgid "Nombre de comptes : de 1 à {max}"
 msgstr "Număr de conturi: de la 1 la {max}"
 
 #: assets/app.js
-msgid "{n} compte(s) créé(s), {m} mot(s) de passe enregistré(s)"
-msgstr "Conturi create: {n}, parole salvate: {m}"
+msgid "{comptes}, {motsDePasse}"
+msgstr "{comptes}, {motsDePasse}"
+
+#: assets/app.js
+msgid "{n} compte créé"
+msgid_plural "{n} comptes créés"
+msgstr[0] "{n} cont creat"
+msgstr[1] "{n} conturi create"
+msgstr[2] "{n} de conturi create"
+
+#: assets/app.js
+msgid "{m} mot de passe enregistré"
+msgid_plural "{m} mots de passe enregistrés"
+msgstr[0] "{m} parolă salvată"
+msgstr[1] "{m} parole salvate"
+msgstr[2] "{m} de parole salvate"
 
 #: assets/app.js
 msgid "Adresse du webmail non configurée dans les réglages"
@@ -1010,24 +1033,39 @@ msgid "Livré"
 msgstr "Livrat"
 
 #: assets/app.js
-msgid "tous les {n} minutes"
-msgstr "la fiecare {n} minute"
+msgid "chaque minute"
+msgid_plural "toutes les {n} minutes"
+msgstr[0] "în fiecare minut"
+msgstr[1] "la fiecare {n} minute"
+msgstr[2] "la fiecare {n} de minute"
 
 #: assets/app.js
-msgid "tous les {n} jours"
-msgstr "la fiecare {n} zile"
+msgid "chaque jour"
+msgid_plural "tous les {n} jours"
+msgstr[0] "în fiecare zi"
+msgstr[1] "la fiecare {n} zile"
+msgstr[2] "la fiecare {n} de zile"
 
 #: assets/app.js
-msgid "toutes les {n} semaines"
-msgstr "la fiecare {n} săptămâni"
+msgid "chaque semaine"
+msgid_plural "toutes les {n} semaines"
+msgstr[0] "în fiecare săptămână"
+msgstr[1] "la fiecare {n} săptămâni"
+msgstr[2] "la fiecare {n} de săptămâni"
 
 #: assets/app.js
-msgid "tous les {n} mois"
-msgstr "la fiecare {n} luni"
+msgid "chaque mois"
+msgid_plural "tous les {n} mois"
+msgstr[0] "în fiecare lună"
+msgstr[1] "la fiecare {n} luni"
+msgstr[2] "la fiecare {n} de luni"
 
 #: assets/app.js
-msgid "toutes les {n} heures"
-msgstr "la fiecare {n} ore"
+msgid "chaque heure"
+msgid_plural "toutes les {n} heures"
+msgstr[0] "în fiecare oră"
+msgstr[1] "la fiecare {n} ore"
+msgstr[2] "la fiecare {n} de ore"
 
 #: assets/app.js
 msgid "Le {date}"
@@ -1042,8 +1080,11 @@ msgid "programmation inconnue"
 msgstr "programare necunoscută"
 
 #: assets/app.js
-msgid "{n} compte(s) sélectionné(s)"
-msgstr "Conturi selectate: {n}"
+msgid "{n} compte sélectionné"
+msgid_plural "{n} comptes sélectionnés"
+msgstr[0] "{n} cont selectat"
+msgstr[1] "{n} conturi selectate"
+msgstr[2] "{n} de conturi selectate"
 
 #: assets/app.js
 msgid "tous les comptes avec Claude"
@@ -1358,12 +1399,11 @@ msgid "Aucune session sur cette période. La mesure commence à l'installation d
 msgstr "Nicio sesiune în această perioadă. Măsurarea începe la instalarea acestei versiuni."
 
 #: assets/app.js
-msgid "1 jour"
-msgstr "1 zi"
-
-#: assets/app.js
-msgid "{n} jours"
-msgstr "Zile: {n}"
+msgid "{n} jour"
+msgid_plural "{n} jours"
+msgstr[0] "{n} zi"
+msgstr[1] "{n} zile"
+msgstr[2] "{n} de zile"
 
 #: assets/app.js
 msgid "Série en cours (record : {n})"
@@ -1554,8 +1594,11 @@ msgid "Comptes autorisés :"
 msgstr "Conturi autorizate:"
 
 #: assets/app.js
-msgid "{count} tâche(s)"
-msgstr "Sarcini: {count}"
+msgid "{count} tâche"
+msgid_plural "{count} tâches"
+msgstr[0] "{count} sarcină"
+msgstr[1] "{count} sarcini"
+msgstr[2] "{count} de sarcini"
 
 #: assets/app.js
 msgid "Assigner"
@@ -1586,8 +1629,11 @@ msgid "envoi de fichier"
 msgstr "trimitere de fișier"
 
 #: assets/app.js
-msgid "{count} popup(s)"
-msgstr "Ferestre pop-up: {count}"
+msgid "{count} popup"
+msgid_plural "{count} popups"
+msgstr[0] "{count} fereastră pop-up"
+msgstr[1] "{count} ferestre pop-up"
+msgstr[2] "{count} de ferestre pop-up"
 
 #: assets/app.js
 msgid "Claude (« {profile} ») : {details}"
@@ -1738,8 +1784,11 @@ msgid "Restaurer les comptes"
 msgstr "Restaurează conturile"
 
 #: assets/app.js
-msgid "{count} compte(s) restauré(s)"
-msgstr "Conturi restaurate: {count}"
+msgid "{count} compte restauré"
+msgid_plural "{count} comptes restaurés"
+msgstr[0] "{count} cont restaurat"
+msgstr[1] "{count} conturi restaurate"
+msgstr[2] "{count} de conturi restaurate"
 
 #: assets/app.js
 msgid "Données de comptes illisibles"

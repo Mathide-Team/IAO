@@ -758,8 +758,9 @@ msgid "Modifier le compte"
 msgstr "编辑账户"
 
 #: assets/app.js
-msgid "{available} service(s) hors cooldown sur {total}"
-msgstr "不在冷却中的服务：{available} / {total}"
+msgid "{available} service hors cooldown sur {total}"
+msgid_plural "{available} services hors cooldown sur {total}"
+msgstr[0] "{total} 个服务中有 {available} 个不在冷却中"
 
 #: assets/app.js
 msgid "Replier / déplier"
@@ -874,8 +875,9 @@ msgid "Échec de l'export (écriture impossible)"
 msgstr "导出失败（无法写入）"
 
 #: assets/app.js
-msgid "{count} compte(s) exporté(s)"
-msgstr "已导出 {count} 个账户"
+msgid "{count} compte exporté"
+msgid_plural "{count} comptes exportés"
+msgstr[0] "已导出 {count} 个账户"
 
 #: assets/app.js
 msgid "Export impossible"
@@ -902,8 +904,9 @@ msgid "Import impossible"
 msgstr "无法导入"
 
 #: assets/app.js
-msgid "{count} compte(s) importé(s)"
-msgstr "已导入 {count} 个账户"
+msgid "{count} compte importé"
+msgid_plural "{count} comptes importés"
+msgstr[0] "已导入 {count} 个账户"
 
 #: assets/app.js
 msgid "Échec de l'import : {error}"
@@ -942,8 +945,18 @@ msgid "Nombre de comptes : de 1 à {max}"
 msgstr "账户数量：1 到 {max}"
 
 #: assets/app.js
-msgid "{n} compte(s) créé(s), {m} mot(s) de passe enregistré(s)"
-msgstr "已创建 {n} 个账户，已保存 {m} 个密码"
+msgid "{comptes}, {motsDePasse}"
+msgstr "{comptes}，{motsDePasse}"
+
+#: assets/app.js
+msgid "{n} compte créé"
+msgid_plural "{n} comptes créés"
+msgstr[0] "已创建 {n} 个账户"
+
+#: assets/app.js
+msgid "{m} mot de passe enregistré"
+msgid_plural "{m} mots de passe enregistrés"
+msgstr[0] "已保存 {m} 个密码"
 
 #: assets/app.js
 msgid "Adresse du webmail non configurée dans les réglages"
@@ -1010,24 +1023,29 @@ msgid "Livré"
 msgstr "已交付"
 
 #: assets/app.js
-msgid "tous les {n} minutes"
-msgstr "每 {n} 分钟"
+msgid "chaque minute"
+msgid_plural "toutes les {n} minutes"
+msgstr[0] "每 {n} 分钟"
 
 #: assets/app.js
-msgid "tous les {n} jours"
-msgstr "每 {n} 天"
+msgid "chaque jour"
+msgid_plural "tous les {n} jours"
+msgstr[0] "每 {n} 天"
 
 #: assets/app.js
-msgid "toutes les {n} semaines"
-msgstr "每 {n} 周"
+msgid "chaque semaine"
+msgid_plural "toutes les {n} semaines"
+msgstr[0] "每 {n} 周"
 
 #: assets/app.js
-msgid "tous les {n} mois"
-msgstr "每 {n} 个月"
+msgid "chaque mois"
+msgid_plural "tous les {n} mois"
+msgstr[0] "每 {n} 个月"
 
 #: assets/app.js
-msgid "toutes les {n} heures"
-msgstr "每 {n} 小时"
+msgid "chaque heure"
+msgid_plural "toutes les {n} heures"
+msgstr[0] "每 {n} 小时"
 
 #: assets/app.js
 msgid "Le {date}"
@@ -1042,8 +1060,9 @@ msgid "programmation inconnue"
 msgstr "未知计划"
 
 #: assets/app.js
-msgid "{n} compte(s) sélectionné(s)"
-msgstr "已选择 {n} 个账户"
+msgid "{n} compte sélectionné"
+msgid_plural "{n} comptes sélectionnés"
+msgstr[0] "已选择 {n} 个账户"
 
 #: assets/app.js
 msgid "tous les comptes avec Claude"
@@ -1358,12 +1377,9 @@ msgid "Aucune session sur cette période. La mesure commence à l'installation d
 msgstr "此期间没有会话。统计从安装此版本时开始。"
 
 #: assets/app.js
-msgid "1 jour"
-msgstr "1 天"
-
-#: assets/app.js
-msgid "{n} jours"
-msgstr "{n} 天"
+msgid "{n} jour"
+msgid_plural "{n} jours"
+msgstr[0] "{n} 天"
 
 #: assets/app.js
 msgid "Série en cours (record : {n})"
@@ -1554,8 +1570,9 @@ msgid "Comptes autorisés :"
 msgstr "允许的账户："
 
 #: assets/app.js
-msgid "{count} tâche(s)"
-msgstr "{count} 项任务"
+msgid "{count} tâche"
+msgid_plural "{count} tâches"
+msgstr[0] "{count} 个任务"
 
 #: assets/app.js
 msgid "Assigner"
@@ -1586,8 +1603,9 @@ msgid "envoi de fichier"
 msgstr "文件上传"
 
 #: assets/app.js
-msgid "{count} popup(s)"
-msgstr "{count} 个弹窗"
+msgid "{count} popup"
+msgid_plural "{count} popups"
+msgstr[0] "{count} 个弹出窗口"
 
 #: assets/app.js
 msgid "Claude (« {profile} ») : {details}"
@@ -1738,8 +1756,9 @@ msgid "Restaurer les comptes"
 msgstr "恢复账户"
 
 #: assets/app.js
-msgid "{count} compte(s) restauré(s)"
-msgstr "已恢复 {count} 个账户"
+msgid "{count} compte restauré"
+msgid_plural "{count} comptes restaurés"
+msgstr[0] "已恢复 {count} 个账户"
 
 #: assets/app.js
 msgid "Données de comptes illisibles"

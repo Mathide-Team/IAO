@@ -777,7 +777,8 @@ async function run() {
     assert(/Désactiver/.test(bouton), 'le bouton doit proposer « Désactiver » une fois active : ' + bouton);
     const meta = await exec('document.querySelector("#tachesList .tache-card .sched-job__meta").textContent');
     assert(/toutes les 2 heures/.test(meta), 'la périodicité doit être décrite : ' + meta);
-    assert(/1 compte\(s\)/.test(meta), 'le compte sélectionné doit être décrit : ' + meta);
+    // Pluriel gettext (issue #51) : « 1 compte sélectionné », plus « compte(s) ».
+    assert(/1 compte sélectionné/.test(meta), 'le compte sélectionné doit être décrit : ' + meta);
   });
 
   await test('C10.6 « Exécuter maintenant » : envoi réel simulé, résultat dans l\'historique', async () => {
