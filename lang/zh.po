@@ -443,15 +443,15 @@ msgstr "90 天"
 
 #: index.html
 msgid "Remettre à zéro"
-msgstr ""
+msgstr "重置"
 
 #: index.html
 msgid "Exporter CSV"
-msgstr ""
+msgstr "导出 CSV"
 
 #: index.html
 msgid "Exporter JSON"
-msgstr ""
+msgstr "导出 JSON"
 
 #: index.html
 msgid "Préférences de l'application, sauvegardées localement."
@@ -1343,15 +1343,15 @@ msgstr "依据任务历史（最近 200 次执行）。"
 
 #: assets/app.js
 msgid "{date} : {duree} actif"
-msgstr ""
+msgstr "{date}：活跃 {duree}"
 
 #: assets/app.js
 msgid "{h} h"
-msgstr ""
+msgstr "{h} 时"
 
 #: assets/app.js
 msgid "Évolution du temps actif"
-msgstr ""
+msgstr "活跃时间趋势"
 
 #: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
@@ -1387,27 +1387,27 @@ msgstr "统计数据无法读取：{error}"
 
 #: assets/app.js
 msgid "Export des statistiques impossible : {error}"
-msgstr ""
+msgstr "无法导出统计：{error}"
 
 #: assets/app.js
 msgid "Statistiques exportées"
-msgstr ""
+msgstr "统计已导出"
 
 #: assets/app.js
 msgid "Remettre les statistiques à zéro ?"
-msgstr ""
+msgstr "要重置统计吗？"
 
 #: assets/app.js
 msgid "Les sessions, temps de réponse et quotas enregistrés sur cet ordinateur seront effacés. L'historique des tâches programmables n'est pas touché. Pensez à exporter avant si besoin."
-msgstr ""
+msgstr "此电脑上保存的会话、响应时间和配额将被清除。计划任务的历史记录不受影响。如有需要，请先导出。"
 
 #: assets/app.js
 msgid "Remise à zéro impossible : {error}"
-msgstr ""
+msgstr "无法重置：{error}"
 
 #: assets/app.js
 msgid "Statistiques remises à zéro"
-msgstr ""
+msgstr "统计已重置"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"

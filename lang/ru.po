@@ -443,15 +443,15 @@ msgstr "90 дней"
 
 #: index.html
 msgid "Remettre à zéro"
-msgstr ""
+msgstr "Сбросить"
 
 #: index.html
 msgid "Exporter CSV"
-msgstr ""
+msgstr "Экспорт CSV"
 
 #: index.html
 msgid "Exporter JSON"
-msgstr ""
+msgstr "Экспорт JSON"
 
 #: index.html
 msgid "Préférences de l'application, sauvegardées localement."
@@ -1343,15 +1343,15 @@ msgstr "По истории задач (последние 200 запусков)
 
 #: assets/app.js
 msgid "{date} : {duree} actif"
-msgstr ""
+msgstr "{date}: активно {duree}"
 
 #: assets/app.js
 msgid "{h} h"
-msgstr ""
+msgstr "{h} ч"
 
 #: assets/app.js
 msgid "Évolution du temps actif"
-msgstr ""
+msgstr "Динамика активного времени"
 
 #: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
@@ -1387,27 +1387,27 @@ msgstr "Статистика не читается: {error}"
 
 #: assets/app.js
 msgid "Export des statistiques impossible : {error}"
-msgstr ""
+msgstr "Не удалось экспортировать статистику: {error}"
 
 #: assets/app.js
 msgid "Statistiques exportées"
-msgstr ""
+msgstr "Статистика экспортирована"
 
 #: assets/app.js
 msgid "Remettre les statistiques à zéro ?"
-msgstr ""
+msgstr "Сбросить статистику?"
 
 #: assets/app.js
 msgid "Les sessions, temps de réponse et quotas enregistrés sur cet ordinateur seront effacés. L'historique des tâches programmables n'est pas touché. Pensez à exporter avant si besoin."
-msgstr ""
+msgstr "Сеансы, время ответа и квоты, сохранённые на этом компьютере, будут удалены. История запланированных задач не затрагивается. При необходимости сначала сделайте экспорт."
 
 #: assets/app.js
 msgid "Remise à zéro impossible : {error}"
-msgstr ""
+msgstr "Не удалось сбросить: {error}"
 
 #: assets/app.js
 msgid "Statistiques remises à zéro"
-msgstr ""
+msgstr "Статистика сброшена"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"

@@ -443,15 +443,15 @@ msgstr "90 日間"
 
 #: index.html
 msgid "Remettre à zéro"
-msgstr ""
+msgstr "リセット"
 
 #: index.html
 msgid "Exporter CSV"
-msgstr ""
+msgstr "CSV をエクスポート"
 
 #: index.html
 msgid "Exporter JSON"
-msgstr ""
+msgstr "JSON をエクスポート"
 
 #: index.html
 msgid "Préférences de l'application, sauvegardées localement."
@@ -1343,15 +1343,15 @@ msgstr "タスク履歴に基づく（直近 200 回の実行）。"
 
 #: assets/app.js
 msgid "{date} : {duree} actif"
-msgstr ""
+msgstr "{date}: アクティブ {duree}"
 
 #: assets/app.js
 msgid "{h} h"
-msgstr ""
+msgstr "{h} 時"
 
 #: assets/app.js
 msgid "Évolution du temps actif"
-msgstr ""
+msgstr "アクティブ時間の推移"
 
 #: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
@@ -1387,27 +1387,27 @@ msgstr "統計を読み込めません：{error}"
 
 #: assets/app.js
 msgid "Export des statistiques impossible : {error}"
-msgstr ""
+msgstr "統計をエクスポートできません: {error}"
 
 #: assets/app.js
 msgid "Statistiques exportées"
-msgstr ""
+msgstr "統計をエクスポートしました"
 
 #: assets/app.js
 msgid "Remettre les statistiques à zéro ?"
-msgstr ""
+msgstr "統計をリセットしますか？"
 
 #: assets/app.js
 msgid "Les sessions, temps de réponse et quotas enregistrés sur cet ordinateur seront effacés. L'historique des tâches programmables n'est pas touché. Pensez à exporter avant si besoin."
-msgstr ""
+msgstr "このコンピューターに保存されたセッション、応答時間、クォータが削除されます。スケジュールタスクの履歴は変更されません。必要に応じて先にエクスポートしてください。"
 
 #: assets/app.js
 msgid "Remise à zéro impossible : {error}"
-msgstr ""
+msgstr "リセットできません: {error}"
 
 #: assets/app.js
 msgid "Statistiques remises à zéro"
-msgstr ""
+msgstr "統計をリセットしました"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"
