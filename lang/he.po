@@ -443,15 +443,15 @@ msgstr "90 יום"
 
 #: index.html
 msgid "Remettre à zéro"
-msgstr ""
+msgstr "איפוס"
 
 #: index.html
 msgid "Exporter CSV"
-msgstr ""
+msgstr "ייצוא CSV"
 
 #: index.html
 msgid "Exporter JSON"
-msgstr ""
+msgstr "ייצוא JSON"
 
 #: index.html
 msgid "Préférences de l'application, sauvegardées localement."
@@ -1343,15 +1343,15 @@ msgstr "לפי היסטוריית המשימות (200 ההרצות האחרונ�
 
 #: assets/app.js
 msgid "{date} : {duree} actif"
-msgstr ""
+msgstr "{date}: פעיל {duree}"
 
 #: assets/app.js
 msgid "{h} h"
-msgstr ""
+msgstr "{h}:00"
 
 #: assets/app.js
 msgid "Évolution du temps actif"
-msgstr ""
+msgstr "התפתחות הזמן הפעיל"
 
 #: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
@@ -1387,27 +1387,27 @@ msgstr "הסטטיסטיקות אינן קריאות: {error}"
 
 #: assets/app.js
 msgid "Export des statistiques impossible : {error}"
-msgstr ""
+msgstr "ייצוא הסטטיסטיקות נכשל: {error}"
 
 #: assets/app.js
 msgid "Statistiques exportées"
-msgstr ""
+msgstr "הסטטיסטיקות יוצאו"
 
 #: assets/app.js
 msgid "Remettre les statistiques à zéro ?"
-msgstr ""
+msgstr "לאפס את הסטטיסטיקות?"
 
 #: assets/app.js
 msgid "Les sessions, temps de réponse et quotas enregistrés sur cet ordinateur seront effacés. L'historique des tâches programmables n'est pas touché. Pensez à exporter avant si besoin."
-msgstr ""
+msgstr "השיחות, זמני התגובה והמכסות השמורים במחשב זה יימחקו. היסטוריית המשימות המתוזמנות לא תושפע. ייצאו קודם במידת הצורך."
 
 #: assets/app.js
 msgid "Remise à zéro impossible : {error}"
-msgstr ""
+msgstr "האיפוס נכשל: {error}"
 
 #: assets/app.js
 msgid "Statistiques remises à zéro"
-msgstr ""
+msgstr "הסטטיסטיקות אופסו"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"
