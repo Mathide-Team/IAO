@@ -4,6 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: IAO\n"
 "Report-Msgid-Bugs-To: https://github.com/Mathide-Team/IAO/issues\n"
+"PO-Revision-Date: 2026-10-20 06:45+0000\n"
+"Last-Translator: agent IAO (docker24006) — traduction générée par IA, relecture humaine attendue (issue #51)\n"
+"Language-Team: Mathide-Team <https://github.com/Mathide-Team/IAO>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -12,1704 +15,1704 @@ msgstr ""
 
 #: index.html
 msgid "Rechercher un compte ou une IA..."
-msgstr ""
+msgstr "アカウントまたは AI を検索..."
 
 #: index.html
 msgid "Comptes actifs"
-msgstr ""
+msgstr "アクティブなアカウント"
 
 #: index.html
 msgid "IA Disponibles"
-msgstr ""
+msgstr "利用可能な AI"
 
 #: index.html
 msgid "Rechercher un compte ou une IA (Ctrl+K)"
-msgstr ""
+msgstr "アカウントまたは AI を検索 (Ctrl+K)"
 
 #: index.html
 msgid "Comptes enregistrés"
-msgstr ""
+msgstr "保存済みアカウント"
 
 #: index.html
 msgid "Tout replier / Tout déplier"
-msgstr ""
+msgstr "すべて折りたたむ / すべて展開"
 
 #: index.html
 msgid "Exporter les comptes (JSON)"
-msgstr ""
+msgstr "アカウントをエクスポート (JSON)"
 
 #: index.html
 msgid "Importer des comptes (JSON)"
-msgstr ""
+msgstr "アカウントをインポート (JSON)"
 
 #: index.html
 msgid "Ajouter un compte"
-msgstr ""
+msgstr "アカウントを追加"
 
 #: index.html
 msgid "Créer des comptes en série"
-msgstr ""
+msgstr "アカウントを一括作成"
 
 #: index.html
 msgid "Mode debug actif : traces détaillées dans le journal iao.log"
-msgstr ""
+msgstr "デバッグモード有効：詳細なトレースを iao.log に記録"
 
 #: index.html
 msgid "Masquer les comptes"
-msgstr ""
+msgstr "アカウントを隠す"
 
 #: index.html
 msgid "Afficher les comptes"
-msgstr ""
+msgstr "アカウントを表示"
 
 #: index.html
 msgid "Explorateur"
-msgstr ""
+msgstr "エクスプローラー"
 
 #: index.html
 msgid "Éditeur"
-msgstr ""
+msgstr "エディター"
 
 #: index.html
 msgid "Outils de développement (Ctrl+Maj+I)"
-msgstr ""
+msgstr "開発者ツール (Ctrl+Shift+I)"
 
 #: index.html
 msgid "Redémarrer en mode debug (journal détaillé)"
-msgstr ""
+msgstr "デバッグモードで再起動（詳細ログ）"
 
 #: index.html
 msgid "Choisir mes 9 IA à portée de main"
-msgstr ""
+msgstr "手元に置く 9 つの AI を選ぶ"
 
 #: index.html
 msgid "Comprendre les IA disponibles"
-msgstr ""
+msgstr "利用可能な AI について"
 
 #: index.html
 msgid "Statistiques d'utilisation"
-msgstr ""
+msgstr "利用統計"
 
 #: index.html
 msgid "Ordonnanceur IA"
-msgstr ""
+msgstr "AI スケジューラー"
 
 #: index.html
 msgid "Réglages"
-msgstr ""
+msgstr "設定"
 
 #: index.html
 msgid "Fichiers"
-msgstr ""
+msgstr "ファイル"
 
 #: index.html
 msgid "Ouvrir un dossier"
-msgstr ""
+msgstr "フォルダーを開く"
 
 #: index.html
 msgid "Réduire"
-msgstr ""
+msgstr "縮小"
 
 #: index.html
 msgid "Rechercher un fichier..."
-msgstr ""
+msgstr "ファイルを検索..."
 
 #: index.html
 msgid "Glisser pour redimensionner"
-msgstr ""
+msgstr "ドラッグしてサイズ変更"
 
 #: index.html
 msgid "Aucun fichier"
-msgstr ""
+msgstr "ファイルがありません"
 
 #: index.html
 msgid "Glisser pour redimensionner l'éditeur"
-msgstr ""
+msgstr "ドラッグしてエディターのサイズを変更"
 
 #: index.html
 msgid "Aucun onglet ouvert — choisissez un service dans la liste des comptes"
-msgstr ""
+msgstr "開いているタブはありません — アカウント一覧からサービスを選んでください"
 
 #: index.html
 msgid "Le profil permet d'isoler les cookies dans Electron."
-msgstr ""
+msgstr "プロファイルにより Electron の Cookie が分離されます。"
 
 #: index.html
 msgid "Nom du compte"
-msgstr ""
+msgstr "アカウント名"
 
 #: index.html
 msgid "Nom du Profil"
-msgstr ""
+msgstr "プロファイル名"
 
 #: index.html
 msgid "Mot de passe de la messagerie"
-msgstr ""
+msgstr "メールのパスワード"
 
 #: index.html
 msgid "Afficher le mot de passe"
-msgstr ""
+msgstr "パスワードを表示"
 
 #: index.html
 msgid "Générer un mot de passe"
-msgstr ""
+msgstr "パスワードを生成"
 
 #: index.html
 msgid "Chiffré par le trousseau du système, jamais enregistré en clair. Laisser vide pour ne pas le modifier."
-msgstr ""
+msgstr "システムのキーチェーンで暗号化され、平文で保存されることはありません。変更しない場合は空のままにしてください。"
 
 #: index.html
 msgid "Annuler"
-msgstr ""
+msgstr "キャンセル"
 
 #: index.html
 msgid "Enregistrer"
-msgstr ""
+msgstr "保存"
 
 #: index.html
 msgid "Nombre de comptes"
-msgstr ""
+msgstr "アカウント数"
 
 #: index.html
 msgid "Créer"
-msgstr ""
+msgstr "作成"
 
 #: index.html
 msgid "Supprimer le compte"
-msgstr ""
+msgstr "アカウントを削除"
 
 #: index.html
 msgid "Cette action est irréversible."
-msgstr ""
+msgstr "この操作は元に戻せません。"
 
 #: index.html
 msgid "Supprimer"
-msgstr ""
+msgstr "削除"
 
 #: index.html
 msgid "Importer des comptes"
-msgstr ""
+msgstr "アカウントのインポート"
 
 #: index.html
 msgid "Remplacer et importer"
-msgstr ""
+msgstr "置き換えてインポート"
 
 #: index.html
 msgid "Déconnecter le profil"
-msgstr ""
+msgstr "プロファイルからログアウト"
 
 #: index.html
 msgid "Déconnecter"
-msgstr ""
+msgstr "ログアウト"
 
 #: index.html
 msgid "À quoi sert chaque service, et quand l'utiliser."
-msgstr ""
+msgstr "各サービスの用途と使いどころ。"
 
 #: index.html
 msgid "Fermer"
-msgstr ""
+msgstr "閉じる"
 
 #: index.html
 msgid "Sélectionnez les 9 services affichés dans l'interface. Les autres restent disponibles dans l'aide."
-msgstr ""
+msgstr "画面に表示する 9 つのサービスを選んでください。その他はヘルプから利用できます。"
 
 #: index.html
 msgid "Détection des ZIP livrés par les onglets IA, reprise par profil."
-msgstr ""
+msgstr "AI タブから届く ZIP を検出し、プロファイルごとに引き継ぎます。"
 
 #: index.html
 msgid "Arrêté"
-msgstr ""
+msgstr "停止中"
 
 #: index.html
 msgid "Démarrer ou arrêter l'ordonnanceur (il ne démarre jamais tout seul)"
-msgstr ""
+msgstr "スケジューラーを開始または停止（自動では開始しません）"
 
 #: index.html
 msgid "Démarrer"
-msgstr ""
+msgstr "開始"
 
 #: index.html
 msgid "Ancien ordonnanceur désactivé"
-msgstr ""
+msgstr "旧スケジューラーは無効です"
 
 #: index.html
 msgid "La détection des ZIP, les jobs et les projets sont remplacés par les tâches programmables, en cours de développement."
-msgstr ""
+msgstr "ZIP 検出・ジョブ・プロジェクトは、開発中のプログラム可能なタスクに置き換えられます。"
 
 #: index.html
 msgid "Tâches programmables"
-msgstr ""
+msgstr "プログラム可能なタスク"
 
 #: index.html
 msgid "Nouvelle tâche"
-msgstr ""
+msgstr "新しいタスク"
 
 #: index.html
 msgid "Nom de la tâche"
-msgstr ""
+msgstr "タスク名"
 
 #: index.html
 msgid "Ex. : rapport quotidien"
-msgstr ""
+msgstr "例：日次レポート"
 
 #: index.html
 msgid "Comptes"
-msgstr ""
+msgstr "アカウント"
 
 #: index.html
 msgid "Tous les comptes avec Claude"
-msgstr ""
+msgstr "Claude を持つすべてのアカウント"
 
 #: index.html
 msgid "Choisir des comptes…"
-msgstr ""
+msgstr "アカウントを選択…"
 
 #: index.html
 msgid "Répartition"
-msgstr ""
+msgstr "割り振り"
 
 #: index.html
 msgid "Tous les comptes à chaque exécution"
-msgstr ""
+msgstr "実行ごとにすべてのアカウント"
 
 #: index.html
 msgid "Un compte à la fois (rotation)"
-msgstr ""
+msgstr "一度に 1 アカウント（ローテーション）"
 
 #: index.html
 msgid "Espacement entre comptes (secondes)"
-msgstr ""
+msgstr "アカウント間の間隔（秒）"
 
 #: index.html
 msgid "Nouvelle session à chaque exécution"
-msgstr ""
+msgstr "実行ごとに新しいセッション"
 
 #: index.html
 msgid "Prompt à envoyer"
-msgstr ""
+msgstr "送信するプロンプト"
 
 #: index.html
 msgid "Ex. : Résume les actualités de la veille"
-msgstr ""
+msgstr "例：昨日のニュースを要約して"
 
 #: index.html
 msgid "Programmation"
-msgstr ""
+msgstr "スケジュール"
 
 #: index.html
 msgid "Récurrente (tous les N …)"
-msgstr ""
+msgstr "繰り返し（N ごと …）"
 
 #: index.html
 msgid "Une seule fois"
-msgstr ""
+msgstr "1 回のみ"
 
 #: index.html
 msgid "Le"
-msgstr ""
+msgstr "日時"
 
 #: index.html
 msgid "Tous les"
-msgstr ""
+msgstr "間隔"
 
 #: index.html
 msgid "minutes"
-msgstr ""
+msgstr "分"
 
 #: index.html
 msgid "heures"
-msgstr ""
+msgstr "時間"
 
 #: index.html
 msgid "jours"
-msgstr ""
+msgstr "日"
 
 #: index.html
 msgid "semaines"
-msgstr ""
+msgstr "週"
 
 #: index.html
 msgid "mois"
-msgstr ""
+msgstr "か月"
 
 #: index.html
 msgid "À partir du"
-msgstr ""
+msgstr "開始日"
 
 #: index.html
 msgid "Tâche active"
-msgstr ""
+msgstr "タスク有効"
 
 #: index.html
 msgid "Historique"
-msgstr ""
+msgstr "履歴"
 
 #: index.html
 msgid "Jobs actifs"
-msgstr ""
+msgstr "実行中のジョブ"
 
 #: index.html
 msgid "En attente"
-msgstr ""
+msgstr "待機中"
 
 #: index.html
 msgid "Livrés aujourd'hui"
-msgstr ""
+msgstr "本日の納品"
 
 #: index.html
 msgid "Jobs simultanés max."
-msgstr ""
+msgstr "同時ジョブの上限"
 
 #: index.html
 msgid "Délai min. entre automatisations (min)"
-msgstr ""
+msgstr "自動化の最小間隔（分）"
 
 #: index.html
 msgid "Seuil profil « le plus ancien » (h)"
-msgstr ""
+msgstr "「最も古い」プロファイルのしきい値（時間）"
 
 #: index.html
 msgid "Dossiers"
-msgstr ""
+msgstr "フォルダー"
 
 #: index.html
 msgid "Téléchargements…"
-msgstr ""
+msgstr "ダウンロード…"
 
 #: index.html
 msgid "Livraison…"
-msgstr ""
+msgstr "納品…"
 
 #: index.html
 msgid "Téléchargements :"
-msgstr ""
+msgstr "ダウンロード："
 
 #: index.html
 msgid "(dossier de téléchargements du système)"
-msgstr ""
+msgstr "（システムのダウンロードフォルダー）"
 
 #: index.html
 msgid "Livraison :"
-msgstr ""
+msgstr "納品："
 
 #: index.html
 msgid "(non défini)"
-msgstr ""
+msgstr "（未設定）"
 
 #: index.html
 msgid "Projets & tâches"
-msgstr ""
+msgstr "プロジェクトとタスク"
 
 #: index.html
 msgid "Jobs"
-msgstr ""
+msgstr "ジョブ"
 
 #: index.html
 msgid "Journal d'activité"
-msgstr ""
+msgstr "アクティビティログ"
 
 #: index.html
 msgid "Confirmation"
-msgstr ""
+msgstr "確認"
 
 #: index.html
 msgid "Confirmer"
-msgstr ""
+msgstr "確認する"
 
 #: index.html
 msgid "Mesurées sur cet ordinateur et conservées 90 jours. Rien n'est envoyé."
-msgstr ""
+msgstr "このコンピューターで計測し、90 日間保存します。外部には送信されません。"
 
 #: index.html
 msgid "Aujourd'hui"
-msgstr ""
+msgstr "今日"
 
 #: index.html
 msgid "7 jours"
-msgstr ""
+msgstr "7 日間"
 
 #: index.html
 msgid "30 jours"
-msgstr ""
+msgstr "30 日間"
 
 #: index.html
 msgid "90 jours"
-msgstr ""
+msgstr "90 日間"
 
 #: index.html
 msgid "Préférences de l'application, sauvegardées localement."
-msgstr ""
+msgstr "アプリの設定（ローカルに保存）。"
 
 #: index.html
 msgid "Taille de police de l'éditeur (px)"
-msgstr ""
+msgstr "エディターのフォントサイズ (px)"
 
 #: index.html
 msgid "Thème"
-msgstr ""
+msgstr "テーマ"
 
 #: index.html
 msgid "Thème du bureau (défaut)"
-msgstr ""
+msgstr "デスクトップのテーマ（既定）"
 
 #: index.html
 msgid "Clair"
-msgstr ""
+msgstr "ライト"
 
 #: index.html
 msgid "Sombre"
-msgstr ""
+msgstr "ダーク"
 
 #: index.html
 msgid "Langue"
-msgstr ""
+msgstr "言語"
 
 #: index.html
 msgid "Langue du système (défaut)"
-msgstr ""
+msgstr "システムの言語（既定）"
 
 #: index.html
 msgid "Appliquée au prochain démarrage"
-msgstr ""
+msgstr "次回起動時に適用"
 
 #: index.html
 msgid "Retour à la ligne (éditeur)"
-msgstr ""
+msgstr "折り返し（エディター）"
 
 #: index.html
 msgid "Désactivé"
-msgstr ""
+msgstr "無効"
 
 #: index.html
 msgid "Activé"
-msgstr ""
+msgstr "有効"
 
 #: index.html
 msgid "Colonne fixe"
-msgstr ""
+msgstr "固定列"
 
 #: index.html
 msgid "Confirmer avant de fermer un onglet"
-msgstr ""
+msgstr "タブを閉じる前に確認する"
 
 #: index.html
 msgid "Afficher les fenêtres d'automatisation"
-msgstr ""
+msgstr "自動化ウィンドウを表示する"
 
 #: index.html
 msgid "Restaurer les onglets ouverts au démarrage"
-msgstr ""
+msgstr "起動時に開いていたタブを復元する"
 
 #: index.html
 msgid "Préfixe des adresses e-mail"
-msgstr ""
+msgstr "メールアドレスのプレフィックス"
 
 #: index.html
 msgid "docker"
-msgstr ""
+msgstr "docker"
 
 #: index.html
 msgid "Domaine des adresses e-mail"
-msgstr ""
+msgstr "メールアドレスのドメイン"
 
 #: index.html
 msgid "dmathilde.fr"
-msgstr ""
+msgstr "dmathilde.fr"
 
 #: index.html
 msgid "Adresse : préfixe + numéro + @ + domaine (ex. docker239@dmathilde.fr)"
-msgstr ""
+msgstr "アドレス：プレフィックス + 番号 + @ + ドメイン（例：docker239@dmathilde.fr）"
 
 #: index.html
 msgid "Adresse du webmail (Roundcube)"
-msgstr ""
+msgstr "Web メールのアドレス (Roundcube)"
 
 #: index.html
 msgid "https://mail.dmathilde.fr"
-msgstr ""
+msgstr "https://mail.dmathilde.fr"
 
 #: assets/app.js
 msgid "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."
-msgstr ""
+msgstr "Anthropic の対話型アシスタント。文章作成、長い文書の分析、プログラミング、複数ステップの推論に優れています。"
 
 #: assets/app.js
 msgid "Plutôt pour du code, des textes longs et soignés, ou des questions complexes qui demandent de la rigueur."
-msgstr ""
+msgstr "コード、長く丁寧な文章、厳密さが求められる複雑な質問に向いています。"
 
 #: assets/app.js
 msgid "L'assistant généraliste d'OpenAI, le plus connu du grand public. Il discute, rédige, résume, génère des images, analyse des fichiers et peut chercher sur le web."
-msgstr ""
+msgstr "OpenAI の汎用アシスタントで、一般に最もよく知られています。会話、執筆、要約、画像生成、ファイル分析、Web 検索ができます。"
 
 #: assets/app.js
 msgid "Le couteau suisse du quotidien : brainstorming, questions générales, petites tâches variées."
-msgstr ""
+msgstr "日常の万能ツール：ブレインストーミング、一般的な質問、さまざまな小さな作業。"
 
 #: assets/app.js
 msgid "L'assistant IA de Google. Multimodal (texte, images, audio, vidéo), il s'appuie sur la recherche Google et s'intègre aux outils Google (Docs, Gmail, Drive…)."
-msgstr ""
+msgstr "Google の AI アシスタント。マルチモーダル（テキスト、画像、音声、動画）で、Google 検索を活用し、Google のツール（Docs、Gmail、Drive…）と連携します。"
 
 #: assets/app.js
 msgid "Plutôt pour analyser des images ou vidéos, ou si vous travaillez déjà dans l'écosystème Google."
-msgstr ""
+msgstr "画像や動画の分析、またはすでに Google のエコシステムで作業している場合に向いています。"
 
 #: assets/app.js
 msgid "Le chat de Z.ai, propulsé par les modèles GLM. Gratuit pour l'essentiel, avec un mode agent capable de chercher sur le web et de produire des fichiers (docx, pdf, xlsx)."
-msgstr ""
+msgstr "GLM モデルを搭載した Z.ai のチャット。ほぼ無料で、Web 検索やファイル作成（docx、pdf、xlsx）ができるエージェントモード付き。"
 
 #: assets/app.js
 msgid "Une alternative gratuite solide pour le chat et le code, quand les quotas des autres sont épuisés."
-msgstr ""
+msgstr "他のサービスの上限に達したときの、チャットとコード向けの頼れる無料の代替手段。"
 
 #: assets/app.js
 msgid "Un « moteur de réponse » : il cherche sur le web en direct, synthétise plusieurs sources et cite ses références pour chaque affirmation."
-msgstr ""
+msgstr "「回答エンジン」：Web をリアルタイムで検索し、複数の情報源をまとめ、主張ごとに出典を示します。"
 
 #: assets/app.js
 msgid "Plutôt pour la recherche d'informations à jour, la veille et la vérification de faits avec sources."
-msgstr ""
+msgstr "最新情報の調査、情報収集、出典付きのファクトチェックに向いています。"
 
 #: assets/app.js
 msgid "L'assistant de xAI (Elon Musk), connecté au réseau X (ex-Twitter). Ton direct, accès au temps réel de X, génération d'images incluse."
-msgstr ""
+msgstr "xAI（イーロン・マスク）のアシスタントで、X（旧 Twitter）とつながっています。率直な口調、X のリアルタイム情報、画像生成付き。"
 
 #: assets/app.js
 msgid "Plutôt pour suivre l'actualité chaude et les tendances via X, ou pour un ton moins formel."
-msgstr ""
+msgstr "X を通じて最新ニュースやトレンドを追いたいとき、またはくだけた口調が欲しいときに。"
 
 #: assets/app.js
 msgid "Une plateforme de génération d'images orientée création : illustrations, concept art, assets de jeu vidéo, avec des contrôles fins (styles, modèles, retouche)."
-msgstr ""
+msgstr "創作向けの画像生成プラットフォーム：イラスト、コンセプトアート、ゲーム素材。スタイル・モデル・レタッチを細かく調整できます。"
 
 #: assets/app.js
 msgid "Plutôt pour produire des visuels et illustrations de qualité avec un contrôle précis du style."
-msgstr ""
+msgstr "スタイルを細かく制御しながら、高品質なビジュアルやイラストを作るのに向いています。"
 
 #: assets/app.js
 msgid "Un générateur de musique : il compose des chansons complètes (instruments, voix, paroles) à partir d'une simple description texte, dans à peu près tous les genres."
-msgstr ""
+msgstr "音楽生成ツール：簡単なテキストの説明から、ほぼあらゆるジャンルで完全な楽曲（楽器、ボーカル、歌詞）を作曲します。"
 
 #: assets/app.js
 msgid "Plutôt pour créer une musique, un jingle ou une chanson à partir d'un texte ou d'une idée."
-msgstr ""
+msgstr "テキストやアイデアから音楽、ジングル、歌を作るのに向いています。"
 
 #: assets/app.js
 msgid "Un générateur de modèles 3D : il transforme un texte ou une image en objet 3D texturé, avec rigging/animation automatique et export vers les formats standards (GLB, FBX, STL…)."
-msgstr ""
+msgstr "3D モデル生成ツール：テキストや画像をテクスチャ付きの 3D オブジェクトに変換し、自動リギング／アニメーションと標準形式（GLB、FBX、STL…）への書き出しに対応。"
 
 #: assets/app.js
 msgid "Plutôt pour créer des assets 3D (jeux, impression 3D, animation) sans savoir modéliser."
-msgstr ""
+msgstr "モデリングの知識なしで 3D 素材（ゲーム、3D プリント、アニメーション）を作るのに向いています。"
 
 #: assets/app.js
 msgid "Le Chat de Mistral AI, éditeur européen (français). Modèles open-weights performants, chat, code et analyse de documents."
-msgstr ""
+msgstr "欧州（フランス）の Mistral AI による Le Chat。高性能なオープンウェイトモデル、チャット、コード、文書分析。"
 
 #: assets/app.js
 msgid "Alternative européenne solide pour le chat et le code, avec une bonne maîtrise du français."
-msgstr ""
+msgstr "フランス語に強い、チャットとコード向けの頼れる欧州の代替手段。"
 
 #: assets/app.js
 msgid "DeepSeek : assistant IA chinois spécialisé en raisonnement et programmation, particulièrement performant en Python."
-msgstr ""
+msgstr "DeepSeek：推論とプログラミングに特化した中国の AI アシスタント。特に Python に強い。"
 
 #: assets/app.js
 msgid "Pour du code Python, du raisonnement étape par étape, ou une alternative gratuite à ChatGPT."
-msgstr ""
+msgstr "Python のコード、段階的な推論、または ChatGPT の無料の代替として。"
 
 #: assets/app.js
 msgid "GitHub Copilot : assistant IA intégré dans VS Code et GitHub. Autocomplétion, chat, génération de tests, explication de code."
-msgstr ""
+msgstr "GitHub Copilot：VS Code と GitHub に統合された AI アシスタント。自動補完、チャット、テスト生成、コード解説。"
 
 #: assets/app.js
 msgid "Pour programmer plus vite dans VS Code ou sur GitHub, avec un modèle IA qui connaît votre codebase."
-msgstr ""
+msgstr "コードベースを理解した AI モデルで、VS Code や GitHub でより速くプログラミングするために。"
 
 #: assets/app.js
 msgid "Elicit : assistant de recherche scientifique. Trouve des articles, extrait des données, synthétise des études."
-msgstr ""
+msgstr "Elicit：科学研究アシスタント。論文を探し、データを抽出し、研究を要約します。"
 
 #: assets/app.js
 msgid "Pour la recherche académique, la revue de littérature et l'extraction de données d'articles scientifiques."
-msgstr ""
+msgstr "学術研究、文献レビュー、科学論文からのデータ抽出に。"
 
 #: assets/app.js
 msgid "NotebookLM de Google : interagissez avec vos propres documents (PDF, texte, audio). Résumés, questions, génération de notes."
-msgstr ""
+msgstr "Google の NotebookLM：自分の文書（PDF、テキスト、音声）を活用。要約、質問、ノート作成。"
 
 #: assets/app.js
 msgid "Pour interroger vos documents personnels ou professionnels avec une IA qui cite ses sources."
-msgstr ""
+msgstr "出典を示す AI で、個人や仕事の文書に質問するために。"
 
 #: assets/app.js
 msgid "Wolfram Alpha : moteur de calcul symbolique. Mathématiques, physique, chimie, données factuelles, conversions."
-msgstr ""
+msgstr "Wolfram Alpha：記号計算エンジン。数学、物理、化学、事実データ、単位換算。"
 
 #: assets/app.js
 msgid "Pour des calculs exacts (mathématiques symboliques), des données chiffrées ou des conversions d'unités."
-msgstr ""
+msgstr "厳密な計算（記号数学）、数値データ、単位換算に。"
 
 #: assets/app.js
 msgid "DeepL : traduction automatique de haute qualité, plus naturelle que Google Traduction. Texte et documents entiers."
-msgstr ""
+msgstr "DeepL：Google 翻訳より自然な高品質の機械翻訳。テキストと文書全体に対応。"
 
 #: assets/app.js
 msgid "Pour traduire du texte ou des documents avec un rendu naturel et cohérent."
-msgstr ""
+msgstr "自然で一貫した訳文でテキストや文書を翻訳するために。"
 
 #: assets/app.js
 msgid "Ideogram : génération d'images orientée design. Logos, typographies, affiches, avec un excellent rendu du texte."
-msgstr ""
+msgstr "Ideogram：デザイン向けの画像生成。ロゴ、タイポグラフィ、ポスター。文字の描画に優れています。"
 
 #: assets/app.js
 msgid "Pour créer des visuels avec du texte lisible (logos, affiches, bannières) ou du design graphique."
-msgstr ""
+msgstr "読みやすい文字入りのビジュアル（ロゴ、ポスター、バナー）やグラフィックデザインに。"
 
 #: assets/app.js
 msgid "Kling : générateur de vidéos courtes à partir de texte ou d'images. Animations réalistes, crédits gratuits disponibles."
-msgstr ""
+msgstr "Kling：テキストや画像から短い動画を生成。リアルなアニメーション、無料クレジットあり。"
 
 #: assets/app.js
 msgid "Pour créer des clips vidéo animés à partir d'une description ou d'une image fixe."
-msgstr ""
+msgstr "説明文や静止画からアニメーション動画クリップを作るために。"
 
 #: assets/app.js
 msgid "Runway : suite d'outils IA pour la vidéo. Génération, édition, effets spéciaux, inpainting vidéo."
-msgstr ""
+msgstr "Runway：動画向け AI ツール群。生成、編集、特殊効果、動画インペインティング。"
 
 #: assets/app.js
 msgid "Pour le montage et la création vidéo avancée avec des outils IA intégrés."
-msgstr ""
+msgstr "AI ツールを組み込んだ高度な動画編集・制作に。"
 
 #: assets/app.js
 msgid "Pika : générateur de vidéos courtes et créatives. Animation d'images, effets, transformation de styles."
-msgstr ""
+msgstr "Pika：短くクリエイティブな動画の生成。画像のアニメーション化、エフェクト、スタイル変換。"
 
 #: assets/app.js
 msgid "Pour animer des images ou créer des vidéos courtes originales avec des effets IA."
-msgstr ""
+msgstr "画像を動かしたり、AI エフェクトでオリジナルの短い動画を作ったりするために。"
 
 #: assets/app.js
 msgid "Qwen : assistant IA d'Alibaba. Multimodal (texte, images, code), open-source, disponible en plusieurs tailles."
-msgstr ""
+msgstr "Qwen：Alibaba の AI アシスタント。マルチモーダル（テキスト、画像、コード）、オープンソース、複数のサイズあり。"
 
 #: assets/app.js
 msgid "Alternative gratuite pour le chat, le code et l'analyse d'images, avec un bon support multilingue."
-msgstr ""
+msgstr "多言語対応に優れた、チャット・コード・画像分析向けの無料の代替手段。"
 
 #: assets/app.js
 msgid "Impossible d'enregistrer les comptes (stockage plein ?)"
-msgstr ""
+msgstr "アカウントを保存できません（ストレージがいっぱい？）"
 
 #: assets/app.js
 msgid "Ctrl+S pour sauvegarder."
-msgstr ""
+msgstr "Ctrl+S で保存。"
 
 #: assets/app.js
 msgid "Sélectionnez un fichier pour l'éditer ici."
-msgstr ""
+msgstr "ここで編集するファイルを選択してください。"
 
 #: assets/app.js
 msgid "Éditeur simplifié (Monaco indisponible) — Ctrl+S pour sauvegarder"
-msgstr ""
+msgstr "簡易エディター（Monaco は利用不可）— Ctrl+S で保存"
 
 #: assets/app.js
 msgid "Fichier enregistré !"
-msgstr ""
+msgstr "ファイルを保存しました！"
 
 #: assets/app.js
 msgid "Erreur d'enregistrement."
-msgstr ""
+msgstr "保存エラー。"
 
 #: assets/app.js
 msgid "Aucun compte pour l'instant."
-msgstr ""
+msgstr "まだアカウントがありません。"
 
 #: assets/app.js
 msgid "Créer mon premier compte"
-msgstr ""
+msgstr "最初のアカウントを作成"
 
 #: assets/app.js
 msgid "Cliquer pour copier l'e-mail"
-msgstr ""
+msgstr "クリックしてメールアドレスをコピー"
 
 #: assets/app.js
 msgid "Ouvrir le webmail (adresse copiée)"
-msgstr ""
+msgstr "Web メールを開く（アドレスをコピー済み）"
 
 #: assets/app.js
 msgid "Modifier le compte"
-msgstr ""
+msgstr "アカウントを編集"
 
 #: assets/app.js
 msgid "{available} service(s) hors cooldown sur {total}"
-msgstr ""
+msgstr "クールダウン外のサービス：{available} / {total}"
 
 #: assets/app.js
 msgid "Replier / déplier"
-msgstr ""
+msgstr "折りたたむ / 展開"
 
 #: assets/app.js
 msgid "{service} — {account} déjà ouvert"
-msgstr ""
+msgstr "{service} — {account} はすでに開いています"
 
 #: assets/app.js
 msgid "Recharger l'onglet"
-msgstr ""
+msgstr "タブを再読み込み"
 
 #: assets/app.js
 msgid "Revenir à l'accueil de {service}"
-msgstr ""
+msgstr "{service} のホームに戻る"
 
 #: assets/app.js
 msgid "Se déconnecter du profil « {profile} »"
-msgstr ""
+msgstr "プロファイル「{profile}」からログアウト"
 
 #: assets/app.js
 msgid "{service} ouvert avec {account}"
-msgstr ""
+msgstr "{service} を {account} で開きました"
 
 #: assets/app.js
 msgid "Fermer l'onglet"
-msgstr ""
+msgstr "タブを閉じる"
 
 #: assets/app.js
 msgid "Fermer l'onglet « {tab} » ? La session web sera libérée."
-msgstr ""
+msgstr "タブ「{tab}」を閉じますか？ Web セッションは解放されます。"
 
 #: assets/app.js
 msgid "Onglet fermé (mémoire libérée)"
-msgstr ""
+msgstr "タブを閉じました（メモリを解放）"
 
 #: assets/app.js
 msgid "Retirer l'étoile"
-msgstr ""
+msgstr "スターを外す"
 
 #: assets/app.js
 msgid "Étoiler cet onglet"
-msgstr ""
+msgstr "このタブにスターを付ける"
 
 #: assets/app.js
 msgid "Onglet étoilé"
-msgstr ""
+msgstr "タブにスターを付けました"
 
 #: assets/app.js
 msgid "Étoile retirée"
-msgstr ""
+msgstr "スターを外しました"
 
 #: assets/app.js
 msgid "Échec de la déconnexion du profil"
-msgstr ""
+msgstr "プロファイルのログアウトに失敗しました"
 
 #: assets/app.js
 msgid "Profil « {profile} » déconnecté — session effacée"
-msgstr ""
+msgstr "プロファイル「{profile}」からログアウトしました — セッションを消去"
 
 #: assets/app.js
 msgid "Aucun fichier trouvé."
-msgstr ""
+msgstr "ファイルが見つかりません。"
 
 #: assets/app.js
 msgid "Fichier trop volumineux pour l'éditeur : {size} Mo (limite : 20 Mo)."
-msgstr ""
+msgstr "エディターには大きすぎるファイルです：{size} MB（上限：20 MB）。"
 
 #: assets/app.js
 msgid "Masquer le mot de passe"
-msgstr ""
+msgstr "パスワードを隠す"
 
 #: assets/app.js
 msgid "Mot de passe non enregistré : le trousseau du système est indisponible"
-msgstr ""
+msgstr "パスワードは保存されませんでした：システムのキーチェーンが利用できません"
 
 #: assets/app.js
 msgid "Mot de passe non enregistré"
-msgstr ""
+msgstr "パスワードは保存されませんでした"
 
 #: assets/app.js
 msgid "C'est quoi ?"
-msgstr ""
+msgstr "これは何？"
 
 #: assets/app.js
 msgid "Quand l'utiliser ?"
-msgstr ""
+msgstr "いつ使う？"
 
 #: assets/app.js
 msgid "Description à venir."
-msgstr ""
+msgstr "説明は準備中です。"
 
 #: assets/app.js
 msgid "Maximum {max} services à portée de main"
-msgstr ""
+msgstr "手元に置けるサービスは最大 {max} 個です"
 
 #: assets/app.js
 msgid "Sélectionnez au moins 1 service"
-msgstr ""
+msgstr "サービスを 1 つ以上選んでください"
 
 #: assets/app.js
 msgid "Services mis à jour ({count}/{max})"
-msgstr ""
+msgstr "サービスを更新しました（{count}/{max}）"
 
 #: assets/app.js
 msgid "Supprimer « {name} » ({email}) ? La session restera stockée sur le disque, mais le compte disparaîtra de la liste."
-msgstr ""
+msgstr "「{name}」（{email}）を削除しますか？ セッションはディスクに残りますが、アカウントは一覧から消えます。"
 
 #: assets/app.js
 msgid "Échec de l'export (écriture impossible)"
-msgstr ""
+msgstr "エクスポートに失敗しました（書き込み不可）"
 
 #: assets/app.js
 msgid "{count} compte(s) exporté(s)"
-msgstr ""
+msgstr "{count} 件のアカウントをエクスポートしました"
 
 #: assets/app.js
 msgid "Export impossible"
-msgstr ""
+msgstr "エクスポートできません"
 
 #: assets/app.js
 msgid "Échec de la lecture du fichier"
-msgstr ""
+msgstr "ファイルの読み込みに失敗しました"
 
 #: assets/app.js
 msgid "Fichier JSON invalide"
-msgstr ""
+msgstr "無効な JSON ファイル"
 
 #: assets/app.js
 msgid "Format invalide : un tableau de comptes est attendu."
-msgstr ""
+msgstr "無効な形式：アカウントの配列が必要です。"
 
 #: assets/app.js
 msgid "Le fichier contient {count} compte(s). L'import REMPLACE entièrement la liste actuelle ({current} compte(s)) — cette action écrase les comptes existants, pas leurs sessions (cookies) déjà enregistrées sur le disque. Continuer ?"
-msgstr ""
+msgstr "ファイルには {count} 件のアカウントがあります。インポートは現在の一覧（{current} 件）を完全に置き換えます — 既存のアカウントは上書きされますが、ディスクに保存済みのセッション（Cookie）は残ります。続行しますか？"
 
 #: assets/app.js
 msgid "Import impossible"
-msgstr ""
+msgstr "インポートできません"
 
 #: assets/app.js
 msgid "{count} compte(s) importé(s)"
-msgstr ""
+msgstr "{count} 件のアカウントをインポートしました"
 
 #: assets/app.js
 msgid "Échec de l'import : {error}"
-msgstr ""
+msgstr "インポートに失敗しました：{error}"
 
 #: assets/app.js
 msgid "Compte supprimé"
-msgstr ""
+msgstr "アカウントを削除しました"
 
 #: assets/app.js
 msgid "Remplissez tous les champs"
-msgstr ""
+msgstr "すべての項目を入力してください"
 
 #: assets/app.js
 msgid "Ce profil est déjà utilisé par un autre compte (les sessions seraient partagées)."
-msgstr ""
+msgstr "このプロファイルは別のアカウントで使用中です（セッションが共有されてしまいます）。"
 
 #: assets/app.js
 msgid "Compte mis à jour"
-msgstr ""
+msgstr "アカウントを更新しました"
 
 #: assets/app.js
 msgid "Compte ajouté"
-msgstr ""
+msgstr "アカウントを追加しました"
 
 #: assets/app.js
 msgid "Renseignez d'abord le domaine des adresses e-mail dans les réglages"
-msgstr ""
+msgstr "先に設定でメールアドレスのドメインを入力してください"
 
 #: assets/app.js
 msgid "Premier compte : {nom}, {email}. Un mot de passe de messagerie aléatoire est généré pour chacun."
-msgstr ""
+msgstr "最初のアカウント：{nom}、{email}。それぞれにランダムなメールのパスワードを生成します。"
 
 #: assets/app.js
 msgid "Nombre de comptes : de 1 à {max}"
-msgstr ""
+msgstr "アカウント数：1〜{max}"
 
 #: assets/app.js
 msgid "{n} compte(s) créé(s), {m} mot(s) de passe enregistré(s)"
-msgstr ""
+msgstr "{n} 件のアカウントを作成、{m} 件のパスワードを保存しました"
 
 #: assets/app.js
 msgid "Adresse du webmail non configurée dans les réglages"
-msgstr ""
+msgstr "Web メールのアドレスが設定されていません"
 
 #: assets/app.js
 msgid "Ouverture du webmail impossible"
-msgstr ""
+msgstr "Web メールを開けません"
 
 #: assets/app.js
 msgid "Copie impossible dans le presse-papiers"
-msgstr ""
+msgstr "クリップボードにコピーできません"
 
 #: assets/app.js
 msgid "E-mail copié : {email}"
-msgstr ""
+msgstr "メールアドレスをコピーしました：{email}"
 
 #: assets/app.js
 msgid "Cooldown terminé"
-msgstr ""
+msgstr "クールダウン終了"
 
 #: assets/app.js
 msgid "{account} — {service} est de nouveau disponible."
-msgstr ""
+msgstr "{account} — {service} が再び利用できます。"
 
 #: assets/app.js
 msgid "{account} — {service} : cooldown terminé"
-msgstr ""
+msgstr "{account} — {service}：クールダウン終了"
 
 #: assets/app.js
 msgid "Téléchargement…"
-msgstr ""
+msgstr "ダウンロード中…"
 
 #: assets/app.js
 msgid "Téléchargé — à traiter"
-msgstr ""
+msgstr "ダウンロード済み — 処理待ち"
 
 #: assets/app.js
 msgid "Aucun profil disponible"
-msgstr ""
+msgstr "利用可能なプロファイルがありません"
 
 #: assets/app.js
 msgid "Projet en cours d'analyse"
-msgstr ""
+msgstr "プロジェクトを分析中"
 
 #: assets/app.js
 msgid "En cours"
-msgstr ""
+msgstr "実行中"
 
 #: assets/app.js
 msgid "En pause"
-msgstr ""
+msgstr "一時停止中"
 
 #: assets/app.js
 msgid "Reprise programmée"
-msgstr ""
+msgstr "再開を予定"
 
 #: assets/app.js
 msgid "Erreur"
-msgstr ""
+msgstr "エラー"
 
 #: assets/app.js
 msgid "Livré"
-msgstr ""
+msgstr "納品済み"
 
 #: assets/app.js
 msgid "tous les {n} minutes"
-msgstr ""
+msgstr "{n} 分ごと"
 
 #: assets/app.js
 msgid "tous les {n} jours"
-msgstr ""
+msgstr "{n} 日ごと"
 
 #: assets/app.js
 msgid "toutes les {n} semaines"
-msgstr ""
+msgstr "{n} 週ごと"
 
 #: assets/app.js
 msgid "tous les {n} mois"
-msgstr ""
+msgstr "{n} か月ごと"
 
 #: assets/app.js
 msgid "toutes les {n} heures"
-msgstr ""
+msgstr "{n} 時間ごと"
 
 #: assets/app.js
 msgid "Le {date}"
-msgstr ""
+msgstr "{date}"
 
 #: assets/app.js
 msgid "à partir du {date}"
-msgstr ""
+msgstr "{date} から"
 
 #: assets/app.js
 msgid "programmation inconnue"
-msgstr ""
+msgstr "不明なスケジュール"
 
 #: assets/app.js
 msgid "{n} compte(s) sélectionné(s)"
-msgstr ""
+msgstr "{n} 件のアカウントを選択"
 
 #: assets/app.js
 msgid "tous les comptes avec Claude"
-msgstr ""
+msgstr "Claude を持つすべてのアカウント"
 
 #: assets/app.js
 msgid "rotation (un compte à la fois)"
-msgstr ""
+msgstr "ローテーション（一度に 1 アカウント）"
 
 #: assets/app.js
 msgid "tous les comptes, espacement de {n} s"
-msgstr ""
+msgstr "すべてのアカウント、間隔 {n} 秒"
 
 #: assets/app.js
 msgid "tous les comptes en même temps"
-msgstr ""
+msgstr "すべてのアカウントを同時に"
 
 #: assets/app.js
 msgid "lancée"
-msgstr ""
+msgstr "開始"
 
 #: assets/app.js
 msgid "envoyée"
-msgstr ""
+msgstr "送信済み"
 
 #: assets/app.js
 msgid "quota épuisé"
-msgstr ""
+msgstr "上限到達"
 
 #: assets/app.js
 msgid "heures calmes"
-msgstr ""
+msgstr "静かな時間帯"
 
 #: assets/app.js
 msgid "non connecté"
-msgstr ""
+msgstr "未ログイン"
 
 #: assets/app.js
 msgid "aucun compte éligible"
-msgstr ""
+msgstr "対象のアカウントなし"
 
 #: assets/app.js
 msgid "erreur"
-msgstr ""
+msgstr "エラー"
 
 #: assets/app.js
 msgid "Aucune tâche programmée pour l'instant — créez-en une avec « Nouvelle tâche »."
-msgstr ""
+msgstr "予定されたタスクはまだありません —「新しいタスク」で作成してください。"
 
 #: assets/app.js
 msgid "Plus aucune exécution programmée"
-msgstr ""
+msgstr "予定された実行はもうありません"
 
 #: assets/app.js
 msgid "Prochaine exécution : {date}"
-msgstr ""
+msgstr "次回の実行：{date}"
 
 #: assets/app.js
 msgid "inactive"
-msgstr ""
+msgstr "無効"
 
 #: assets/app.js
 msgid "Activer"
-msgstr ""
+msgstr "有効にする"
 
 #: assets/app.js
 msgid "Désactiver"
-msgstr ""
+msgstr "無効にする"
 
 #: assets/app.js
 msgid "Exécuter maintenant"
-msgstr ""
+msgstr "今すぐ実行"
 
 #: assets/app.js
 msgid "Modifier"
-msgstr ""
+msgstr "編集"
 
 #: assets/app.js
 msgid "Aucun événement pour l'instant."
-msgstr ""
+msgstr "イベントはまだありません。"
 
 #: assets/app.js
 msgid "Aucun compte avec le service Claude — la tâche ne pourra pas s'exécuter."
-msgstr ""
+msgstr "Claude サービスを持つアカウントがありません — タスクを実行できません。"
 
 #: assets/app.js
 msgid "sans le service Claude"
-msgstr ""
+msgstr "Claude サービスなし"
 
 #: assets/app.js
 msgid "compte supprimé"
-msgstr ""
+msgstr "アカウント削除済み"
 
 #: assets/app.js
 msgid "Le nom est obligatoire."
-msgstr ""
+msgstr "名前は必須です。"
 
 #: assets/app.js
 msgid "Le prompt est obligatoire."
-msgstr ""
+msgstr "プロンプトは必須です。"
 
 #: assets/app.js
 msgid "Comptes : choix invalide."
-msgstr ""
+msgstr "アカウント：無効な選択です。"
 
 #: assets/app.js
 msgid "Sélectionnez au moins un compte."
-msgstr ""
+msgstr "アカウントを 1 つ以上選んでください。"
 
 #: assets/app.js
 msgid "Répartition : choix invalide."
-msgstr ""
+msgstr "割り振り：無効な選択です。"
 
 #: assets/app.js
 msgid "Espacement invalide : entre 0 et 86400 secondes."
-msgstr ""
+msgstr "無効な間隔：0〜86400 秒の範囲で指定してください。"
 
 #: assets/app.js
 msgid "Programmation : choix invalide."
-msgstr ""
+msgstr "スケジュール：無効な選択です。"
 
 #: assets/app.js
 msgid "Date « Le » invalide."
-msgstr ""
+msgstr "「日時」の日付が無効です。"
 
 #: assets/app.js
 msgid "Date « À partir du » invalide."
-msgstr ""
+msgstr "「開始日」の日付が無効です。"
 
 #: assets/app.js
 msgid "« Tous les » doit être un entier supérieur à 0."
-msgstr ""
+msgstr "「間隔」は 0 より大きい整数である必要があります。"
 
 #: assets/app.js
 msgid "Unité inconnue."
-msgstr ""
+msgstr "不明な単位です。"
 
 #: assets/app.js
 msgid "Enregistrement impossible : {erreur}"
-msgstr ""
+msgstr "保存できません：{erreur}"
 
 #: assets/app.js
 msgid "Le moteur de tâches n'est pas démarré."
-msgstr ""
+msgstr "タスクエンジンが起動していません。"
 
 #: assets/app.js
 msgid "Exécution demandée — le résultat apparaîtra dans l'historique."
-msgstr ""
+msgstr "実行を要求しました — 結果は履歴に表示されます。"
 
 #: assets/app.js
 msgid "Une exécution est déjà en cours — réessayez dans un instant."
-msgstr ""
+msgstr "すでに実行中です — しばらくしてからもう一度お試しください。"
 
 #: assets/app.js
 msgid "Le service des tâches a refusé l'exécution."
-msgstr ""
+msgstr "タスクサービスが実行を拒否しました。"
 
 #: assets/app.js
 msgid "Tâche introuvable."
-msgstr ""
+msgstr "タスクが見つかりません。"
 
 #: assets/app.js
 msgid "Exécution impossible : {erreur}"
-msgstr ""
+msgstr "実行できません：{erreur}"
 
 #: assets/app.js
 msgid "Action impossible : {erreur}"
-msgstr ""
+msgstr "操作できません：{erreur}"
 
 #: assets/app.js
 msgid "Supprimer la tâche"
-msgstr ""
+msgstr "タスクを削除"
 
 #: assets/app.js
 msgid "Supprimer « {nom} » ? L'historique est conservé."
-msgstr ""
+msgstr "「{nom}」を削除しますか？ 履歴は保持されます。"
 
 #: assets/app.js
 msgid "Suppression impossible : {erreur}"
-msgstr ""
+msgstr "削除できません：{erreur}"
 
 #: assets/app.js
 msgid "< 1 min"
-msgstr ""
+msgstr "< 1 分"
 
 #: assets/app.js
 msgid "{h} h {m} min"
-msgstr ""
+msgstr "{h} 時間 {m} 分"
 
 #: assets/app.js
 msgid "{m} min"
-msgstr ""
+msgstr "{m} 分"
 
 #: assets/app.js
 msgid "Temps actif"
-msgstr ""
+msgstr "アクティブ時間"
 
 #: assets/app.js
 msgid "Durée ouverte"
-msgstr ""
+msgstr "開いていた時間"
 
 #: assets/app.js
 msgid "Sessions"
-msgstr ""
+msgstr "セッション"
 
 #: assets/app.js
 msgid "Dernière utilisation"
-msgstr ""
+msgstr "最終使用"
 
 #: assets/app.js
 msgid "Part"
-msgstr ""
+msgstr "割合"
 
 #: assets/app.js
 msgid "Dim"
-msgstr ""
+msgstr "日"
 
 #: assets/app.js
 msgid "Jeu"
-msgstr ""
+msgstr "木"
 
 #: assets/app.js
 msgid "Lun"
-msgstr ""
+msgstr "月"
 
 #: assets/app.js
 msgid "Mar"
-msgstr ""
+msgstr "火"
 
 #: assets/app.js
 msgid "Mer"
-msgstr ""
+msgstr "水"
 
 #: assets/app.js
 msgid "Sam"
-msgstr ""
+msgstr "土"
 
 #: assets/app.js
 msgid "Ven"
-msgstr ""
+msgstr "金"
 
 #: assets/app.js
 msgid "{jour} {h} h : {duree}"
-msgstr ""
+msgstr "{jour} {h} 時：{duree}"
 
 #: assets/app.js
 msgid "Heures de pointe (temps actif)"
-msgstr ""
+msgstr "ピーク時間帯（アクティブ時間）"
 
 #: assets/app.js
 msgid "dernière utilisation : {date}"
-msgstr ""
+msgstr "最終使用：{date}"
 
 #: assets/app.js
 msgid "jamais utilisé depuis le début de la mesure"
-msgstr ""
+msgstr "計測開始以来未使用"
 
 #: assets/app.js
 msgid "Comptes inutilisés sur la période"
-msgstr ""
+msgstr "期間中に未使用のアカウント"
 
 #: assets/app.js
 msgid "fin {h}"
-msgstr ""
+msgstr "終了 {h}"
 
 #: assets/app.js
 msgid "Tâches programmables par compte"
-msgstr ""
+msgstr "アカウント別のプログラム可能なタスク"
 
 #: assets/app.js
 msgid "Compte"
-msgstr ""
+msgstr "アカウント"
 
 #: assets/app.js
 msgid "Envoyées"
-msgstr ""
+msgstr "送信"
 
 #: assets/app.js
 msgid "Erreurs"
-msgstr ""
+msgstr "エラー"
 
 #: assets/app.js
 msgid "Quotas"
-msgstr ""
+msgstr "上限"
 
 #: assets/app.js
 msgid "Dernier quota"
-msgstr ""
+msgstr "最後の上限到達"
 
 #: assets/app.js
 msgid "Exécutions"
-msgstr ""
+msgstr "実行回数"
 
 #: assets/app.js
 msgid "D'après l'historique des tâches (200 dernières exécutions)."
-msgstr ""
+msgstr "タスク履歴に基づく（直近 200 回の実行）。"
 
 #: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
-msgstr ""
+msgstr "この期間のセッションはありません。計測はこのバージョンのインストール時から始まります。"
 
 #: assets/app.js
 msgid "1 jour"
-msgstr ""
+msgstr "1 日"
 
 #: assets/app.js
 msgid "{n} jours"
-msgstr ""
+msgstr "{n} 日"
 
 #: assets/app.js
 msgid "Série en cours (record : {n})"
-msgstr ""
+msgstr "連続記録（最高：{n}）"
 
 #: assets/app.js
 msgid "Par compte"
-msgstr ""
+msgstr "アカウント別"
 
 #: assets/app.js
 msgid "Par service"
-msgstr ""
+msgstr "サービス別"
 
 #: assets/app.js
 msgid "Service"
-msgstr ""
+msgstr "サービス"
 
 #: assets/app.js
 msgid "Statistiques illisibles : {error}"
-msgstr ""
+msgstr "統計を読み込めません：{error}"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"
-msgstr ""
+msgstr "設定を読み込めません"
 
 #: assets/app.js
 msgid "Réglages enregistrés — la langue sera appliquée au prochain démarrage"
-msgstr ""
+msgstr "設定を保存しました — 言語は次回起動時に適用されます"
 
 #: assets/app.js
 msgid "Réglages enregistrés"
-msgstr ""
+msgstr "設定を保存しました"
 
 #: assets/app.js
 msgid "Erreur lors de la sauvegarde"
-msgstr ""
+msgstr "保存中にエラーが発生しました"
 
 #: assets/app.js
 msgid "Erreur lors de la sauvegarde des réglages"
-msgstr ""
+msgstr "設定の保存中にエラーが発生しました"
 
 #: assets/app.js
 msgid "Tâches programmables : envoyez un prompt à Claude à date fixe ou périodiquement."
-msgstr ""
+msgstr "プログラム可能なタスク：指定日時または定期的に Claude へプロンプトを送信します。"
 
 #: assets/app.js
 msgid "Arrêter"
-msgstr ""
+msgstr "停止"
 
 #: assets/app.js
 msgid "En marche"
-msgstr ""
+msgstr "稼働中"
 
 #: assets/app.js
 msgid "Aucun job pour l'instant — un ZIP téléchargé depuis un onglet IA (ordonnanceur activé) en créera un automatiquement."
-msgstr ""
+msgstr "ジョブはまだありません — AI タブから ZIP をダウンロードすると（スケジューラー有効時）自動で作成されます。"
 
 #: assets/app.js
 msgid "Continuer le projet"
-msgstr ""
+msgstr "プロジェクトを続ける"
 
 #: assets/app.js
 msgid "Marquer livré"
-msgstr ""
+msgstr "納品済みにする"
 
 #: assets/app.js
 msgid "Pause"
-msgstr ""
+msgstr "一時停止"
 
 #: assets/app.js
 msgid "Reprendre"
-msgstr ""
+msgstr "再開"
 
 #: assets/app.js
 msgid "Relancer"
-msgstr ""
+msgstr "再実行"
 
 #: assets/app.js
 msgid "Ouvrir le ZIP"
-msgstr ""
+msgstr "ZIP を開く"
 
 #: assets/app.js
 msgid "Analyser la complétude"
-msgstr ""
+msgstr "完成度を分析"
 
 #: assets/app.js
 msgid "service inconnu"
-msgstr ""
+msgstr "不明なサービス"
 
 #: assets/app.js
 msgid "tentative {n}"
-msgstr ""
+msgstr "試行 {n}"
 
 #: assets/app.js
 msgid "Aucune activité enregistrée."
-msgstr ""
+msgstr "記録されたアクティビティはありません。"
 
 #: assets/app.js
 msgid "Impossible de modifier l'état de l'ordonnanceur"
-msgstr ""
+msgstr "スケジューラーの状態を変更できません"
 
 #: assets/app.js
 msgid "Configuration non enregistrée"
-msgstr ""
+msgstr "設定は保存されませんでした"
 
 #: assets/app.js
 msgid "Sélection du dossier impossible"
-msgstr ""
+msgstr "フォルダーを選択できません"
 
 #: assets/app.js
 msgid "Projet terminé : {done}/{total} tâches faites, 0 restante."
-msgstr ""
+msgstr "プロジェクト完了：{done}/{total} タスク完了、残り 0。"
 
 #: assets/app.js
 msgid "{pending} à faire, {inProgress} en cours, {done} faite(s) sur {total} au total."
-msgstr ""
+msgstr "未着手 {pending}、進行中 {inProgress}、完了 {done}（全 {total}）。"
 
 #: assets/app.js
 msgid "Analyse impossible : {error}"
-msgstr ""
+msgstr "分析できません：{error}"
 
 #: assets/app.js
 msgid "Action impossible : {error}"
-msgstr ""
+msgstr "操作できません：{error}"
 
 #: assets/app.js
 msgid "Aucun projet pour l'instant."
-msgstr ""
+msgstr "プロジェクトはまだありません。"
 
 #: assets/app.js
 msgid "Créer un projet"
-msgstr ""
+msgstr "プロジェクトを作成"
 
 #: assets/app.js
 msgid "Assignée"
-msgstr ""
+msgstr "割り当て済み"
 
 #: assets/app.js
 msgid "Terminée"
-msgstr ""
+msgstr "完了"
 
 #: assets/app.js
 msgid "Échouée"
-msgstr ""
+msgstr "失敗"
 
 #: assets/app.js
 msgid "Lancer"
-msgstr ""
+msgstr "開始"
 
 #: assets/app.js
 msgid "Résultat"
-msgstr ""
+msgstr "結果"
 
 #: assets/app.js
 msgid "Aucune tâche."
-msgstr ""
+msgstr "タスクはありません。"
 
 #: assets/app.js
 msgid "Tous les comptes"
-msgstr ""
+msgstr "すべてのアカウント"
 
 #: assets/app.js
 msgid "Comptes autorisés :"
-msgstr ""
+msgstr "許可されたアカウント："
 
 #: assets/app.js
 msgid "{count} tâche(s)"
-msgstr ""
+msgstr "{count} 件のタスク"
 
 #: assets/app.js
 msgid "Assigner"
-msgstr ""
+msgstr "割り当て"
 
 #: assets/app.js
 msgid "Diagnostic Claude : {error}"
-msgstr ""
+msgstr "Claude の診断：{error}"
 
 #: assets/app.js
 msgid "« Continuer »"
-msgstr ""
+msgstr "「続ける」"
 
 #: assets/app.js
 msgid "« Télécharger »"
-msgstr ""
+msgstr "「ダウンロード」"
 
 #: assets/app.js
 msgid "« Nouveau »"
-msgstr ""
+msgstr "「新規」"
 
 #: assets/app.js
 msgid "zone de chat"
-msgstr ""
+msgstr "チャット欄"
 
 #: assets/app.js
 msgid "envoi de fichier"
-msgstr ""
+msgstr "ファイル送信"
 
 #: assets/app.js
 msgid "{count} popup(s)"
-msgstr ""
+msgstr "ポップアップ {count} 件"
 
 #: assets/app.js
 msgid "Claude (« {profile} ») : {details}"
-msgstr ""
+msgstr "Claude（「{profile}」）：{details}"
 
 #: assets/app.js
 msgid "aucun élément détecté"
-msgstr ""
+msgstr "要素は検出されませんでした"
 
 #: assets/app.js
 msgid "Diagnostic impossible : {error}"
-msgstr ""
+msgstr "診断できません：{error}"
 
 #: assets/app.js
 msgid "Quota gratuit épuisé jusqu'à {time} pour ce profil."
-msgstr ""
+msgstr "このプロファイルの無料枠は {time} まで上限に達しています。"
 
 #: assets/app.js
 msgid "Job Claude échoué : {error}"
-msgstr ""
+msgstr "Claude ジョブに失敗しました：{error}"
 
 #: assets/app.js
 msgid "Prompt envoyé à Claude via {method} (« {profile} »)"
-msgstr ""
+msgstr "{method} で Claude にプロンプトを送信しました（「{profile}」）"
 
 #: assets/app.js
 msgid "Job Claude impossible : {error}"
-msgstr ""
+msgstr "Claude ジョブを実行できません：{error}"
 
 #: assets/app.js
 msgid "Collecte impossible : {error}"
-msgstr ""
+msgstr "収集できません：{error}"
 
 #: assets/app.js
 msgid "Réponse collectée : {count} caractères (« {profile} »)"
-msgstr ""
+msgstr "回答を収集しました：{count} 文字（「{profile}」）"
 
 #: assets/app.js
 msgid "Aucune réponse trouvée pour le moment."
-msgstr ""
+msgstr "まだ回答は見つかりません。"
 
 #: assets/app.js
 msgid "Nom du projet :"
-msgstr ""
+msgstr "プロジェクト名："
 
 #: assets/app.js
 msgid "Projet {n}"
-msgstr ""
+msgstr "プロジェクト {n}"
 
 #: assets/app.js
 msgid "Projet « {name} » créé"
-msgstr ""
+msgstr "プロジェクト「{name}」を作成しました"
 
 #: assets/app.js
 msgid "Création impossible : {error}"
-msgstr ""
+msgstr "作成できません：{error}"
 
 #: assets/app.js
 msgid "Projet supprimé"
-msgstr ""
+msgstr "プロジェクトを削除しました"
 
 #: assets/app.js
 msgid "Suppression impossible : {error}"
-msgstr ""
+msgstr "削除できません：{error}"
 
 #: assets/app.js
 msgid "Prompt de la tâche :"
-msgstr ""
+msgstr "タスクのプロンプト："
 
 #: assets/app.js
 msgid "Tâche créée dans le projet"
-msgstr ""
+msgstr "プロジェクトにタスクを作成しました"
 
 #: assets/app.js
 msgid "Aucun compte vert disponible pour ce projet."
-msgstr ""
+msgstr "このプロジェクトで利用できる緑のアカウントがありません。"
 
 #: assets/app.js
 msgid "Comptes verts disponibles :"
-msgstr ""
+msgstr "利用可能な緑のアカウント："
 
 #: assets/app.js
 msgid "Numéro du compte :"
-msgstr ""
+msgstr "アカウント番号："
 
 #: assets/app.js
 msgid "Choix invalide"
-msgstr ""
+msgstr "無効な選択"
 
 #: assets/app.js
 msgid "Aucune tâche dans ce projet."
-msgstr ""
+msgstr "このプロジェクトにタスクはありません。"
 
 #: assets/app.js
 msgid "Numéro de la tâche :"
-msgstr ""
+msgstr "タスク番号："
 
 #: assets/app.js
 msgid "Tâches du projet :"
-msgstr ""
+msgstr "プロジェクトのタスク："
 
 #: assets/app.js
 msgid "Tâche {task} assignée à « {account} »"
-msgstr ""
+msgstr "タスク {task} を「{account}」に割り当てました"
 
 #: assets/app.js
 msgid "Assignation impossible : {error}"
-msgstr ""
+msgstr "割り当てできません：{error}"
 
 #: assets/app.js
 msgid "Lancement de l'automatisation Claude..."
-msgstr ""
+msgstr "Claude の自動化を開始しています..."
 
 #: assets/app.js
 msgid "Lancement impossible"
-msgstr ""
+msgstr "開始できません"
 
 #: assets/app.js
 msgid "Tâche lancée — suivi dans le journal d'activité"
-msgstr ""
+msgstr "タスクを開始しました — アクティビティログで確認できます"
 
 #: assets/app.js
 msgid "Exécution impossible : {error}"
-msgstr ""
+msgstr "実行できません：{error}"
 
 #: assets/app.js
 msgid "Aucun résultat disponible"
-msgstr ""
+msgstr "利用可能な結果はありません"
 
 #: assets/app.js
 msgid "Résultat — {task}"
-msgstr ""
+msgstr "結果 — {task}"
 
 #: assets/app.js
 msgid "Comptes retrouvés"
-msgstr ""
+msgstr "アカウントが見つかりました"
 
 #: assets/app.js
 msgid "Aucun compte n'a été lu au démarrage, mais l'ordonnanceur en connaît {count}. Les restaurer ? Les sessions des services sont conservées ; les adresses e-mail sont à compléter depuis « Modifier le compte »."
-msgstr ""
+msgstr "起動時にアカウントが読み込まれませんでしたが、スケジューラーは {count} 件を把握しています。復元しますか？ 各サービスのセッションは保持されます。メールアドレスは「アカウントを編集」から補ってください。"
 
 #: assets/app.js
 msgid "Ignorer"
-msgstr ""
+msgstr "無視"
 
 #: assets/app.js
 msgid "Restaurer les comptes"
-msgstr ""
+msgstr "アカウントを復元"
 
 #: assets/app.js
 msgid "{count} compte(s) restauré(s)"
-msgstr ""
+msgstr "{count} 件のアカウントを復元しました"
 
 #: assets/app.js
 msgid "Données de comptes illisibles"
-msgstr ""
+msgstr "アカウントデータを読み込めません"
 
 #: assets/app.js
 msgid "La liste de comptes enregistrée est corrompue. Une sauvegarde de {count} compte(s) a été trouvée. La restaurer ?"
-msgstr ""
+msgstr "保存されたアカウント一覧が破損しています。{count} 件のアカウントのバックアップが見つかりました。復元しますか？"
 
 #: assets/app.js
 msgid "La liste de comptes enregistrée est corrompue et aucune sauvegarde n'est disponible. L'application démarre avec une liste vide ; vos données actuelles ne seront pas écrasées tant que vous ne créez ou ne modifiez pas de compte."
-msgstr ""
+msgstr "保存されたアカウント一覧が破損しており、バックアップもありません。アプリは空の一覧で起動します。アカウントを作成または変更しない限り、現在のデータは上書きされません。"
 
 #: assets/app.js
 msgid "Restaurer la sauvegarde"
-msgstr ""
+msgstr "バックアップを復元"
 
 #: assets/app.js
 msgid "Comptes restaurés depuis la sauvegarde"
-msgstr ""
+msgstr "バックアップからアカウントを復元しました"
 
 #: assets/app.js
 msgid "Compris"
-msgstr ""
+msgstr "了解"
