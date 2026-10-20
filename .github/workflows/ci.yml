@@ -73,7 +73,8 @@ jobs:
       - name: Installation de Python 3.14 (uv)
         # Python système trop ancien sur certains runners maison : venv uv.
         run: |
-          uv venv --python 3.14 --seed "$RUNNER_TEMP/venv"
+          # --clear : un job interrompu peut laisser le venv dans _temp (runner maison).
+          uv venv --clear --python 3.14 --seed "$RUNNER_TEMP/venv"
           echo "$RUNNER_TEMP/venv/bin" >> "$GITHUB_PATH"
 
       - name: Installation de mkdocs-material
