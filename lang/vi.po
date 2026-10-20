@@ -1361,16 +1361,16 @@ msgid "D'après l'historique des tâches (200 dernières exécutions)."
 msgstr "Theo lịch sử tác vụ (200 lần chạy gần nhất)."
 
 #: assets/app.js
-msgid "{date} : {duree} actif"
-msgstr "{date}: hoạt động {duree}"
-
-#: assets/app.js
 msgid "{h} h"
 msgstr "{h}:00"
 
 #: assets/app.js
 msgid "Évolution du temps actif"
 msgstr "Diễn biến thời gian hoạt động"
+
+#: assets/app.js
+msgid "{date} : {duree} actif"
+msgstr "{date}: hoạt động {duree}"
 
 #: assets/app.js
 msgid "{s} s"
@@ -1417,6 +1417,28 @@ msgid "Heure habituelle"
 msgstr "Giờ thường gặp"
 
 #: assets/app.js
+msgid "Évolution du temps de réponse médian"
+msgstr "Diễn biến thời gian phản hồi trung vị"
+
+#: assets/app.js
+msgid "{date} : médiane {duree}, {n} réponse"
+msgid_plural "{date} : médiane {duree}, {n} réponses"
+msgstr[0] "{date}: trung vị {duree}, {n} câu trả lời"
+
+#: assets/app.js
+msgid "{n} quota atteint"
+msgid_plural "{n} quotas atteints"
+msgstr[0] "{n} lần chạm hạn mức"
+
+#: assets/app.js
+msgid "Comptes à privilégier pour répartir l'usage : {comptes}"
+msgstr "Tài khoản nên ưu tiên để phân bổ việc sử dụng: {comptes}"
+
+#: assets/app.js
+msgid "Comptes souvent bloqués par un quota"
+msgstr "Tài khoản thường bị chặn bởi hạn mức"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "Không có phiên nào trong kỳ này. Việc đo bắt đầu khi cài đặt phiên bản này."
 
@@ -1428,6 +1450,10 @@ msgstr[0] "{n} ngày"
 #: assets/app.js
 msgid "Série en cours (record : {n})"
 msgstr "Chuỗi hiện tại (kỷ lục: {n})"
+
+#: assets/app.js
+msgid "Temps de réponse médian"
+msgstr "Thời gian phản hồi trung vị"
 
 #: assets/app.js
 msgid "Par compte"

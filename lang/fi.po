@@ -1372,16 +1372,16 @@ msgid "D'après l'historique des tâches (200 dernières exécutions)."
 msgstr "Tehtävähistorian mukaan (viimeiset 200 suoritusta)."
 
 #: assets/app.js
-msgid "{date} : {duree} actif"
-msgstr "{date}: aktiivinen {duree}"
-
-#: assets/app.js
 msgid "{h} h"
 msgstr "klo {h}"
 
 #: assets/app.js
 msgid "Évolution du temps actif"
 msgstr "Aktiivisen ajan kehitys"
+
+#: assets/app.js
+msgid "{date} : {duree} actif"
+msgstr "{date}: aktiivinen {duree}"
 
 #: assets/app.js
 msgid "{s} s"
@@ -1428,6 +1428,30 @@ msgid "Heure habituelle"
 msgstr "Tavallinen kellonaika"
 
 #: assets/app.js
+msgid "Évolution du temps de réponse médian"
+msgstr "Vastausajan mediaanin kehitys"
+
+#: assets/app.js
+msgid "{date} : médiane {duree}, {n} réponse"
+msgid_plural "{date} : médiane {duree}, {n} réponses"
+msgstr[0] "{date}: mediaani {duree}, {n} vastaus"
+msgstr[1] "{date}: mediaani {duree}, {n} vastausta"
+
+#: assets/app.js
+msgid "{n} quota atteint"
+msgid_plural "{n} quotas atteints"
+msgstr[0] "{n} kiintiö täynnä"
+msgstr[1] "{n} kiintiötä täynnä"
+
+#: assets/app.js
+msgid "Comptes à privilégier pour répartir l'usage : {comptes}"
+msgstr "Käytön jakamiseen suositeltavat tilit: {comptes}"
+
+#: assets/app.js
+msgid "Comptes souvent bloqués par un quota"
+msgstr "Usein kiintiön estämät tilit"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "Ei istuntoja tällä jaksolla. Mittaus alkaa tämän version asennuksesta."
 
@@ -1440,6 +1464,10 @@ msgstr[1] "{n} päivää"
 #: assets/app.js
 msgid "Série en cours (record : {n})"
 msgstr "Meneillään oleva putki (ennätys: {n})"
+
+#: assets/app.js
+msgid "Temps de réponse médian"
+msgstr "Vastausajan mediaani"
 
 #: assets/app.js
 msgid "Par compte"

@@ -2588,27 +2588,34 @@
       const d = new Date(ms);
       return statsPeriode === 'jour' ? String(d.getHours()) : d.getDate() + '/' + (d.getMonth() + 1);
     }
-    function evolutionStats(tranches) {
+    // Histogramme générique : `valeur(t)` donne la hauteur, `format` le texte
+    // de l'échelle et `infobulle(t, date)` le titre de chaque barre.
+    function histogrammeStats(id, titre, tranches, valeur, format, infobulle, secondes) {
       const L = 680, HAUT = 120, G = 44, BAS = 18;
-      const geo = window.iaoStats.geometrieBarres(tranches.map(t => t.actifMs), { largeur: L - G, hauteur: HAUT });
-      if (!tranches.some(t => t.actifMs > 0)) return '';
+      const valeurs = tranches.map(valeur);
+      if (!valeurs.some(v => v > 0)) return '';
+      const geo = window.iaoStats.geometrieBarres(valeurs, { largeur: L - G, hauteur: HAUT, secondes });
       const pasLibelle = Math.ceil(tranches.length / 12);
       const barres = geo.barres.map((b, i) => {
         const t = tranches[i];
-        const titre = _('{date} : {duree} actif', { date: statsPeriode === 'jour' ? _('{h} h', { h: heureCourte(t.debut) }) : heureCourte(t.debut), duree: dureeStats(t.actifMs) });
-        return `<rect class="stats-evolution__barre" x="${G + b.x}" y="${b.y}" width="${b.largeur}" height="${b.hauteur}"><title>${escapeHtml(titre)}</title></rect>`;
+        const date = statsPeriode === 'jour' ? _('{h} h', { h: heureCourte(t.debut) }) : heureCourte(t.debut);
+        return `<rect class="stats-evolution__barre" x="${G + b.x}" y="${b.y}" width="${b.largeur}" height="${b.hauteur}"><title>${escapeHtml(infobulle(t, date))}</title></rect>`;
       }).join('');
       const libelles = tranches.map((t, i) => i % pasLibelle ? '' :
         `<text class="stats-evolution__texte" x="${G + geo.barres[i].x + geo.barres[i].largeur / 2}" y="${HAUT + 13}" text-anchor="middle">${escapeHtml(heureCourte(t.debut))}</text>`).join('');
-      return `<div class="stats-evolution" id="statsEvolution"><div class="stats-titre">${escapeHtml(_('Évolution du temps actif'))}</div>
-        <svg viewBox="0 0 ${L} ${HAUT + BAS}" role="img" aria-label="${escapeHtml(_('Évolution du temps actif'))}">
+      return `<div class="stats-evolution" id="${id}"><div class="stats-titre">${escapeHtml(titre)}</div>
+        <svg viewBox="0 0 ${L} ${HAUT + BAS}" role="img" aria-label="${escapeHtml(titre)}">
           <line class="stats-evolution__axe" x1="${G}" y1="0.5" x2="${L}" y2="0.5"></line>
           <line class="stats-evolution__axe" x1="${G}" y1="${HAUT / 2}" x2="${L}" y2="${HAUT / 2}"></line>
           <line class="stats-evolution__axe" x1="${G}" y1="${HAUT}" x2="${L}" y2="${HAUT}"></line>
-          <text class="stats-evolution__texte" x="${G - 6}" y="10" text-anchor="end">${escapeHtml(dureeStats(geo.echelle))}</text>
+          <text class="stats-evolution__texte" x="${G - 6}" y="10" text-anchor="end">${escapeHtml(format(geo.echelle))}</text>
           <text class="stats-evolution__texte" x="${G - 6}" y="${HAUT + 3}" text-anchor="end">0</text>
           ${barres}${libelles}
         </svg></div>`;
+    }
+    function evolutionStats(tranches) {
+      return histogrammeStats('statsEvolution', _('Évolution du temps actif'), tranches, t => t.actifMs, dureeStats,
+        (t, date) => _('{date} : {duree} actif', { date, duree: dureeStats(t.actifMs) }));
     }
     // Temps de réponse et quotas atteints (lot 2b) : mesurés sur les tâches
     // programmables et sur les messages envoyés à la main (lib/mesure-reponse.js).
@@ -2659,6 +2666,22 @@
           ${enteteTri('quotas', 'nombre', _('Fois'), true)}${enteteTri('quotas', 'heure', _('Heure habituelle'), true)}
         </tr></thead><tbody>${corps}</tbody></table></div>`;
     }
+    // Lot 4 : évolution du temps de réponse médian et comptes surchargés.
+    function evolutionReponsesStats(tranches) {
+      return histogrammeStats('statsEvolutionReponses', _('Évolution du temps de réponse médian'), tranches,
+        t => t.medianeMs, delaiStats,
+        (t, date) => _n('{date} : médiane {duree}, {n} réponse', '{date} : médiane {duree}, {n} réponses', t.nombre,
+          { date, duree: delaiStats(t.medianeMs), n: t.nombre }), true);
+    }
+    function surchargesStats(r) {
+      if (!r.surcharges.length) return '';
+      const items = r.surcharges.map(l => `<li><span title="${escapeHtml(l.profil)}">${escapeHtml(nomCompteStats(l.profil))}</span>
+        <span class="stats-inutilise__date">${escapeHtml(_n('{n} quota atteint', '{n} quotas atteints', l.quotas, { n: l.quotas }))}</span></li>`).join('');
+      const relais = r.relais.length ? `<div class="stats-note">${escapeHtml(_('Comptes à privilégier pour répartir l\'usage : {comptes}',
+        { comptes: r.relais.map(nomCompteStats).join(', ') }))}</div>` : '';
+      return `<div><div class="stats-titre">${escapeHtml(_('Comptes souvent bloqués par un quota'))}</div>
+        <ul class="stats-inutilises" id="statsSurcharges">${items}</ul>${relais}</div>`;
+    }
     let statsTaches = [];
     function renderStats() {
       document.querySelectorAll('#statsPeriodes [data-periode]').forEach(b =>
@@ -2682,8 +2705,11 @@
           ${carte(dureeStats(r.totaux.dureeMs), _('Durée ouverte'))}
           ${carte(String(r.totaux.sessions), _('Sessions'))}
           ${carte(jours(serie.actuelle), _('Série en cours (record : {n})', { n: jours(serie.record) }))}
+          ${carte(String(reponses.totaux.nombre), _('Réponses'))}
+          ${carte(reponses.totaux.nombre ? delaiStats(reponses.totaux.medianeMs) : '—', _('Temps de réponse médian'))}
         </div>
         ${evolutionStats(window.iaoStats.evolution(sessions, { periode: statsPeriode, maintenant }))}
+        ${evolutionReponsesStats(window.iaoStats.evolutionReponses(statsReponses, { periode: statsPeriode, maintenant }))}
         ${tableStats('compte', _('Par compte'), _('Compte'), r.parCompte, (l) =>
           ({ nom: nomCompteStats(l.cle), titre: l.cle, point: '' }), false)}
         ${tableStats('service', _('Par service'), _('Service'), r.parService, (l) => {
@@ -2695,6 +2721,7 @@
         ${inutilisesStats(window.iaoStats.comptesInutilises(sessions, accounts.map(a => a.profile), r.depuis))}
         ${reponsesStats(reponses)}
         ${quotasStats(quotas)}
+        ${surchargesStats(window.iaoStats.comptesSurcharges(sessions, statsQuotas, accounts.map(a => a.profile), r.depuis))}
         ${tachesStats(taches)}`;
     }
     document.getElementById('statsBody').addEventListener('click', (e) => {

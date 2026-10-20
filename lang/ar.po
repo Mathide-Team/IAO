@@ -1416,16 +1416,16 @@ msgid "D'après l'historique des tâches (200 dernières exécutions)."
 msgstr "وفقًا لسجل المهام (آخر 200 عملية تنفيذ)."
 
 #: assets/app.js
-msgid "{date} : {duree} actif"
-msgstr "{date}: نشط لمدة {duree}"
-
-#: assets/app.js
 msgid "{h} h"
 msgstr "{h}:00"
 
 #: assets/app.js
 msgid "Évolution du temps actif"
 msgstr "تطور الوقت النشط"
+
+#: assets/app.js
+msgid "{date} : {duree} actif"
+msgstr "{date}: نشط لمدة {duree}"
 
 #: assets/app.js
 msgid "{s} s"
@@ -1472,6 +1472,38 @@ msgid "Heure habituelle"
 msgstr "الساعة المعتادة"
 
 #: assets/app.js
+msgid "Évolution du temps de réponse médian"
+msgstr "تطور الزمن الوسيط للاستجابة"
+
+#: assets/app.js
+msgid "{date} : médiane {duree}, {n} réponse"
+msgid_plural "{date} : médiane {duree}, {n} réponses"
+msgstr[0] "{date}: الوسيط {duree}، {n} رد"
+msgstr[1] "{date}: الوسيط {duree}، رد واحد ({n})"
+msgstr[2] "{date}: الوسيط {duree}، ردان ({n})"
+msgstr[3] "{date}: الوسيط {duree}، {n} ردود"
+msgstr[4] "{date}: الوسيط {duree}، {n} ردًا"
+msgstr[5] "{date}: الوسيط {duree}، {n} رد"
+
+#: assets/app.js
+msgid "{n} quota atteint"
+msgid_plural "{n} quotas atteints"
+msgstr[0] "{n} حصة مستنفدة"
+msgstr[1] "حصة واحدة مستنفدة ({n})"
+msgstr[2] "حصتان مستنفدتان ({n})"
+msgstr[3] "{n} حصص مستنفدة"
+msgstr[4] "{n} حصة مستنفدة"
+msgstr[5] "{n} حصة مستنفدة"
+
+#: assets/app.js
+msgid "Comptes à privilégier pour répartir l'usage : {comptes}"
+msgstr "حسابات يُفضَّل استخدامها لتوزيع الاستخدام: {comptes}"
+
+#: assets/app.js
+msgid "Comptes souvent bloqués par un quota"
+msgstr "حسابات تحجبها الحصة كثيرًا"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "لا توجد جلسات في هذه الفترة. يبدأ القياس عند تثبيت هذا الإصدار."
 
@@ -1488,6 +1520,10 @@ msgstr[5] "{n} يوم"
 #: assets/app.js
 msgid "Série en cours (record : {n})"
 msgstr "السلسلة الحالية (الرقم القياسي: {n})"
+
+#: assets/app.js
+msgid "Temps de réponse médian"
+msgstr "الزمن الوسيط للاستجابة"
 
 #: assets/app.js
 msgid "Par compte"

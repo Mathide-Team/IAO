@@ -1372,16 +1372,16 @@ msgid "D'après l'historique des tâches (200 dernières exécutions)."
 msgstr "Laut Aufgabenverlauf (letzte 200 Ausführungen)."
 
 #: assets/app.js
-msgid "{date} : {duree} actif"
-msgstr "{date}: {duree} aktiv"
-
-#: assets/app.js
 msgid "{h} h"
 msgstr "{h} Uhr"
 
 #: assets/app.js
 msgid "Évolution du temps actif"
 msgstr "Verlauf der aktiven Zeit"
+
+#: assets/app.js
+msgid "{date} : {duree} actif"
+msgstr "{date}: {duree} aktiv"
 
 #: assets/app.js
 msgid "{s} s"
@@ -1428,6 +1428,30 @@ msgid "Heure habituelle"
 msgstr "Übliche Uhrzeit"
 
 #: assets/app.js
+msgid "Évolution du temps de réponse médian"
+msgstr "Verlauf der mittleren Antwortzeit"
+
+#: assets/app.js
+msgid "{date} : médiane {duree}, {n} réponse"
+msgid_plural "{date} : médiane {duree}, {n} réponses"
+msgstr[0] "{date}: Median {duree}, {n} Antwort"
+msgstr[1] "{date}: Median {duree}, {n} Antworten"
+
+#: assets/app.js
+msgid "{n} quota atteint"
+msgid_plural "{n} quotas atteints"
+msgstr[0] "{n} Kontingent erreicht"
+msgstr[1] "{n} Kontingente erreicht"
+
+#: assets/app.js
+msgid "Comptes à privilégier pour répartir l'usage : {comptes}"
+msgstr "Konten, die zur Lastverteilung bevorzugt werden sollten: {comptes}"
+
+#: assets/app.js
+msgid "Comptes souvent bloqués par un quota"
+msgstr "Häufig durch ein Kontingent blockierte Konten"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "Keine Sitzung in diesem Zeitraum. Die Messung beginnt mit der Installation dieser Version."
 
@@ -1440,6 +1464,10 @@ msgstr[1] "{n} Tage"
 #: assets/app.js
 msgid "Série en cours (record : {n})"
 msgstr "Aktuelle Serie (Rekord: {n})"
+
+#: assets/app.js
+msgid "Temps de réponse médian"
+msgstr "Mittlere Antwortzeit"
 
 #: assets/app.js
 msgid "Par compte"

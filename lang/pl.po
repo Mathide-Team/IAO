@@ -1383,16 +1383,16 @@ msgid "D'après l'historique des tâches (200 dernières exécutions)."
 msgstr "Na podstawie historii zadań (ostatnie 200 uruchomień)."
 
 #: assets/app.js
-msgid "{date} : {duree} actif"
-msgstr "{date}: aktywność {duree}"
-
-#: assets/app.js
 msgid "{h} h"
 msgstr "{h} godz."
 
 #: assets/app.js
 msgid "Évolution du temps actif"
 msgstr "Zmiana czasu aktywności"
+
+#: assets/app.js
+msgid "{date} : {duree} actif"
+msgstr "{date}: aktywność {duree}"
 
 #: assets/app.js
 msgid "{s} s"
@@ -1439,6 +1439,32 @@ msgid "Heure habituelle"
 msgstr "Typowa godzina"
 
 #: assets/app.js
+msgid "Évolution du temps de réponse médian"
+msgstr "Zmiany mediany czasu odpowiedzi"
+
+#: assets/app.js
+msgid "{date} : médiane {duree}, {n} réponse"
+msgid_plural "{date} : médiane {duree}, {n} réponses"
+msgstr[0] "{date}: mediana {duree}, {n} odpowiedź"
+msgstr[1] "{date}: mediana {duree}, {n} odpowiedzi"
+msgstr[2] "{date}: mediana {duree}, {n} odpowiedzi"
+
+#: assets/app.js
+msgid "{n} quota atteint"
+msgid_plural "{n} quotas atteints"
+msgstr[0] "{n} osiągnięty limit"
+msgstr[1] "{n} osiągnięte limity"
+msgstr[2] "{n} osiągniętych limitów"
+
+#: assets/app.js
+msgid "Comptes à privilégier pour répartir l'usage : {comptes}"
+msgstr "Konta, które warto wybierać, aby rozłożyć użycie: {comptes}"
+
+#: assets/app.js
+msgid "Comptes souvent bloqués par un quota"
+msgstr "Konta często blokowane przez limit"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "Brak sesji w tym okresie. Pomiar zaczyna się od instalacji tej wersji."
 
@@ -1452,6 +1478,10 @@ msgstr[2] "{n} dni"
 #: assets/app.js
 msgid "Série en cours (record : {n})"
 msgstr "Bieżąca seria (rekord: {n})"
+
+#: assets/app.js
+msgid "Temps de réponse médian"
+msgstr "Mediana czasu odpowiedzi"
 
 #: assets/app.js
 msgid "Par compte"

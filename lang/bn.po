@@ -1372,16 +1372,16 @@ msgid "D'après l'historique des tâches (200 dernières exécutions)."
 msgstr "কাজের ইতিহাস অনুযায়ী (শেষ ২০০টি চালানো)।"
 
 #: assets/app.js
-msgid "{date} : {duree} actif"
-msgstr "{date}: {duree} সক্রিয়"
-
-#: assets/app.js
 msgid "{h} h"
 msgstr "{h}:00"
 
 #: assets/app.js
 msgid "Évolution du temps actif"
 msgstr "সক্রিয় সময়ের পরিবর্তন"
+
+#: assets/app.js
+msgid "{date} : {duree} actif"
+msgstr "{date}: {duree} সক্রিয়"
 
 #: assets/app.js
 msgid "{s} s"
@@ -1428,6 +1428,30 @@ msgid "Heure habituelle"
 msgstr "সাধারণ সময়"
 
 #: assets/app.js
+msgid "Évolution du temps de réponse médian"
+msgstr "মধ্যমা উত্তরের সময়ের পরিবর্তন"
+
+#: assets/app.js
+msgid "{date} : médiane {duree}, {n} réponse"
+msgid_plural "{date} : médiane {duree}, {n} réponses"
+msgstr[0] "{date}: মধ্যমা {duree}, {n}টি উত্তর"
+msgstr[1] "{date}: মধ্যমা {duree}, {n}টি উত্তর"
+
+#: assets/app.js
+msgid "{n} quota atteint"
+msgid_plural "{n} quotas atteints"
+msgstr[0] "{n}টি কোটা পূর্ণ"
+msgstr[1] "{n}টি কোটা পূর্ণ"
+
+#: assets/app.js
+msgid "Comptes à privilégier pour répartir l'usage : {comptes}"
+msgstr "ব্যবহার ভাগ করতে অগ্রাধিকার দেওয়ার অ্যাকাউন্ট: {comptes}"
+
+#: assets/app.js
+msgid "Comptes souvent bloqués par un quota"
+msgstr "যে অ্যাকাউন্ট প্রায়ই কোটায় আটকে যায়"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "এই সময়ে কোনো সেশন নেই। এই সংস্করণ ইনস্টলের সময় থেকে পরিমাপ শুরু হয়।"
 
@@ -1440,6 +1464,10 @@ msgstr[1] "{n} দিন"
 #: assets/app.js
 msgid "Série en cours (record : {n})"
 msgstr "চলমান ধারা (রেকর্ড: {n})"
+
+#: assets/app.js
+msgid "Temps de réponse médian"
+msgstr "মধ্যমা উত্তরের সময়"
 
 #: assets/app.js
 msgid "Par compte"

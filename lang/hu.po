@@ -1372,16 +1372,16 @@ msgid "D'après l'historique des tâches (200 dernières exécutions)."
 msgstr "A feladatelőzmények alapján (utolsó 200 futtatás)."
 
 #: assets/app.js
-msgid "{date} : {duree} actif"
-msgstr "{date}: {duree} aktív"
-
-#: assets/app.js
 msgid "{h} h"
 msgstr "{h}:00"
 
 #: assets/app.js
 msgid "Évolution du temps actif"
 msgstr "Az aktív idő alakulása"
+
+#: assets/app.js
+msgid "{date} : {duree} actif"
+msgstr "{date}: {duree} aktív"
 
 #: assets/app.js
 msgid "{s} s"
@@ -1428,6 +1428,30 @@ msgid "Heure habituelle"
 msgstr "Szokásos időpont"
 
 #: assets/app.js
+msgid "Évolution du temps de réponse médian"
+msgstr "A medián válaszidő alakulása"
+
+#: assets/app.js
+msgid "{date} : médiane {duree}, {n} réponse"
+msgid_plural "{date} : médiane {duree}, {n} réponses"
+msgstr[0] "{date}: medián {duree}, {n} válasz"
+msgstr[1] "{date}: medián {duree}, {n} válasz"
+
+#: assets/app.js
+msgid "{n} quota atteint"
+msgid_plural "{n} quotas atteints"
+msgstr[0] "{n} elért kvóta"
+msgstr[1] "{n} elért kvóta"
+
+#: assets/app.js
+msgid "Comptes à privilégier pour répartir l'usage : {comptes}"
+msgstr "A terhelés elosztásához ajánlott fiókok: {comptes}"
+
+#: assets/app.js
+msgid "Comptes souvent bloqués par un quota"
+msgstr "Kvóta miatt gyakran letiltott fiókok"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "Ebben az időszakban nincs munkamenet. A mérés ennek a verziónak a telepítésével kezdődik."
 
@@ -1440,6 +1464,10 @@ msgstr[1] "{n} nap"
 #: assets/app.js
 msgid "Série en cours (record : {n})"
 msgstr "Jelenlegi sorozat (rekord: {n})"
+
+#: assets/app.js
+msgid "Temps de réponse médian"
+msgstr "Medián válaszidő"
 
 #: assets/app.js
 msgid "Par compte"

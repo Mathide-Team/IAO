@@ -1383,16 +1383,16 @@ msgid "D'après l'historique des tâches (200 dernières exécutions)."
 msgstr "Podle historie úkolů (posledních 200 spuštění)."
 
 #: assets/app.js
-msgid "{date} : {duree} actif"
-msgstr "{date}: aktivní {duree}"
-
-#: assets/app.js
 msgid "{h} h"
 msgstr "{h}:00"
 
 #: assets/app.js
 msgid "Évolution du temps actif"
 msgstr "Vývoj aktivního času"
+
+#: assets/app.js
+msgid "{date} : {duree} actif"
+msgstr "{date}: aktivní {duree}"
 
 #: assets/app.js
 msgid "{s} s"
@@ -1439,6 +1439,32 @@ msgid "Heure habituelle"
 msgstr "Obvyklá hodina"
 
 #: assets/app.js
+msgid "Évolution du temps de réponse médian"
+msgstr "Vývoj mediánu doby odezvy"
+
+#: assets/app.js
+msgid "{date} : médiane {duree}, {n} réponse"
+msgid_plural "{date} : médiane {duree}, {n} réponses"
+msgstr[0] "{date}: medián {duree}, {n} odpověď"
+msgstr[1] "{date}: medián {duree}, {n} odpovědi"
+msgstr[2] "{date}: medián {duree}, {n} odpovědí"
+
+#: assets/app.js
+msgid "{n} quota atteint"
+msgid_plural "{n} quotas atteints"
+msgstr[0] "{n} dosažený limit"
+msgstr[1] "{n} dosažené limity"
+msgstr[2] "{n} dosažených limitů"
+
+#: assets/app.js
+msgid "Comptes à privilégier pour répartir l'usage : {comptes}"
+msgstr "Účty, kterým dát přednost pro rozložení využití: {comptes}"
+
+#: assets/app.js
+msgid "Comptes souvent bloqués par un quota"
+msgstr "Účty často blokované limitem"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "V tomto období žádné relace. Měření začíná instalací této verze."
 
@@ -1452,6 +1478,10 @@ msgstr[2] "{n} dní"
 #: assets/app.js
 msgid "Série en cours (record : {n})"
 msgstr "Aktuální série (rekord: {n})"
+
+#: assets/app.js
+msgid "Temps de réponse médian"
+msgstr "Medián doby odezvy"
 
 #: assets/app.js
 msgid "Par compte"

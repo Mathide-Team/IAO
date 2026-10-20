@@ -1372,16 +1372,16 @@ msgid "D'après l'historique des tâches (200 dernières exécutions)."
 msgstr "कार्य इतिहास के अनुसार (अंतिम 200 रन)।"
 
 #: assets/app.js
-msgid "{date} : {duree} actif"
-msgstr "{date}: {duree} सक्रिय"
-
-#: assets/app.js
 msgid "{h} h"
 msgstr "{h}:00"
 
 #: assets/app.js
 msgid "Évolution du temps actif"
 msgstr "सक्रिय समय का विकास"
+
+#: assets/app.js
+msgid "{date} : {duree} actif"
+msgstr "{date}: {duree} सक्रिय"
 
 #: assets/app.js
 msgid "{s} s"
@@ -1428,6 +1428,30 @@ msgid "Heure habituelle"
 msgstr "सामान्य समय"
 
 #: assets/app.js
+msgid "Évolution du temps de réponse médian"
+msgstr "माध्यिका प्रतिक्रिया समय में बदलाव"
+
+#: assets/app.js
+msgid "{date} : médiane {duree}, {n} réponse"
+msgid_plural "{date} : médiane {duree}, {n} réponses"
+msgstr[0] "{date}: माध्यिका {duree}, {n} उत्तर"
+msgstr[1] "{date}: माध्यिका {duree}, {n} उत्तर"
+
+#: assets/app.js
+msgid "{n} quota atteint"
+msgid_plural "{n} quotas atteints"
+msgstr[0] "{n} कोटा पूरा हुआ"
+msgstr[1] "{n} कोटा पूरे हुए"
+
+#: assets/app.js
+msgid "Comptes à privilégier pour répartir l'usage : {comptes}"
+msgstr "उपयोग बाँटने के लिए प्राथमिकता वाले खाते: {comptes}"
+
+#: assets/app.js
+msgid "Comptes souvent bloqués par un quota"
+msgstr "खाते जो अक्सर कोटा से रुक जाते हैं"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "इस अवधि में कोई सत्र नहीं। माप इस संस्करण की स्थापना से शुरू होता है।"
 
@@ -1440,6 +1464,10 @@ msgstr[1] "{n} दिन"
 #: assets/app.js
 msgid "Série en cours (record : {n})"
 msgstr "वर्तमान लगातार क्रम (रिकॉर्ड: {n})"
+
+#: assets/app.js
+msgid "Temps de réponse médian"
+msgstr "माध्यिका प्रतिक्रिया समय"
 
 #: assets/app.js
 msgid "Par compte"

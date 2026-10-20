@@ -1361,16 +1361,16 @@ msgid "D'après l'historique des tâches (200 dernières exécutions)."
 msgstr "작업 기록 기준 (최근 200회 실행)."
 
 #: assets/app.js
-msgid "{date} : {duree} actif"
-msgstr "{date}: 활성 {duree}"
-
-#: assets/app.js
 msgid "{h} h"
 msgstr "{h}시"
 
 #: assets/app.js
 msgid "Évolution du temps actif"
 msgstr "활성 시간 추이"
+
+#: assets/app.js
+msgid "{date} : {duree} actif"
+msgstr "{date}: 활성 {duree}"
 
 #: assets/app.js
 msgid "{s} s"
@@ -1417,6 +1417,28 @@ msgid "Heure habituelle"
 msgstr "주로 발생하는 시각"
 
 #: assets/app.js
+msgid "Évolution du temps de réponse médian"
+msgstr "응답 시간 중앙값 추이"
+
+#: assets/app.js
+msgid "{date} : médiane {duree}, {n} réponse"
+msgid_plural "{date} : médiane {duree}, {n} réponses"
+msgstr[0] "{date}: 중앙값 {duree}, 응답 {n}개"
+
+#: assets/app.js
+msgid "{n} quota atteint"
+msgid_plural "{n} quotas atteints"
+msgstr[0] "한도 도달 {n}회"
+
+#: assets/app.js
+msgid "Comptes à privilégier pour répartir l'usage : {comptes}"
+msgstr "사용량 분산을 위해 우선 사용할 계정: {comptes}"
+
+#: assets/app.js
+msgid "Comptes souvent bloqués par un quota"
+msgstr "한도로 자주 차단되는 계정"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "이 기간에 세션이 없습니다. 측정은 이 버전을 설치한 시점부터 시작됩니다."
 
@@ -1428,6 +1450,10 @@ msgstr[0] "{n}일"
 #: assets/app.js
 msgid "Série en cours (record : {n})"
 msgstr "현재 연속 기록 (최고: {n})"
+
+#: assets/app.js
+msgid "Temps de réponse médian"
+msgstr "응답 시간 중앙값"
 
 #: assets/app.js
 msgid "Par compte"

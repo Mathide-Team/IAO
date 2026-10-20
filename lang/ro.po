@@ -1383,16 +1383,16 @@ msgid "D'après l'historique des tâches (200 dernières exécutions)."
 msgstr "Conform istoricului sarcinilor (ultimele 200 de execuții)."
 
 #: assets/app.js
-msgid "{date} : {duree} actif"
-msgstr "{date}: {duree} activ"
-
-#: assets/app.js
 msgid "{h} h"
 msgstr "{h}:00"
 
 #: assets/app.js
 msgid "Évolution du temps actif"
 msgstr "Evoluția timpului activ"
+
+#: assets/app.js
+msgid "{date} : {duree} actif"
+msgstr "{date}: {duree} activ"
 
 #: assets/app.js
 msgid "{s} s"
@@ -1439,6 +1439,32 @@ msgid "Heure habituelle"
 msgstr "Ora obișnuită"
 
 #: assets/app.js
+msgid "Évolution du temps de réponse médian"
+msgstr "Evoluția timpului median de răspuns"
+
+#: assets/app.js
+msgid "{date} : médiane {duree}, {n} réponse"
+msgid_plural "{date} : médiane {duree}, {n} réponses"
+msgstr[0] "{date}: mediană {duree}, {n} răspuns"
+msgstr[1] "{date}: mediană {duree}, {n} răspunsuri"
+msgstr[2] "{date}: mediană {duree}, {n} de răspunsuri"
+
+#: assets/app.js
+msgid "{n} quota atteint"
+msgid_plural "{n} quotas atteints"
+msgstr[0] "{n} cotă atinsă"
+msgstr[1] "{n} cote atinse"
+msgstr[2] "{n} de cote atinse"
+
+#: assets/app.js
+msgid "Comptes à privilégier pour répartir l'usage : {comptes}"
+msgstr "Conturi de preferat pentru a distribui utilizarea: {comptes}"
+
+#: assets/app.js
+msgid "Comptes souvent bloqués par un quota"
+msgstr "Conturi blocate des de o cotă"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "Nicio sesiune în această perioadă. Măsurarea începe la instalarea acestei versiuni."
 
@@ -1452,6 +1478,10 @@ msgstr[2] "{n} de zile"
 #: assets/app.js
 msgid "Série en cours (record : {n})"
 msgstr "Serie în curs (record: {n})"
+
+#: assets/app.js
+msgid "Temps de réponse médian"
+msgstr "Timp median de răspuns"
 
 #: assets/app.js
 msgid "Par compte"

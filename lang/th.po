@@ -1361,16 +1361,16 @@ msgid "D'après l'historique des tâches (200 dernières exécutions)."
 msgstr "ตามประวัติงาน (การทำงาน 200 ครั้งล่าสุด)"
 
 #: assets/app.js
-msgid "{date} : {duree} actif"
-msgstr "{date}: ใช้งาน {duree}"
-
-#: assets/app.js
 msgid "{h} h"
 msgstr "{h}:00"
 
 #: assets/app.js
 msgid "Évolution du temps actif"
 msgstr "แนวโน้มเวลาใช้งาน"
+
+#: assets/app.js
+msgid "{date} : {duree} actif"
+msgstr "{date}: ใช้งาน {duree}"
 
 #: assets/app.js
 msgid "{s} s"
@@ -1417,6 +1417,28 @@ msgid "Heure habituelle"
 msgstr "เวลาที่มักเกิด"
 
 #: assets/app.js
+msgid "Évolution du temps de réponse médian"
+msgstr "แนวโน้มเวลาตอบกลับมัธยฐาน"
+
+#: assets/app.js
+msgid "{date} : médiane {duree}, {n} réponse"
+msgid_plural "{date} : médiane {duree}, {n} réponses"
+msgstr[0] "{date}: มัธยฐาน {duree}, {n} คำตอบ"
+
+#: assets/app.js
+msgid "{n} quota atteint"
+msgid_plural "{n} quotas atteints"
+msgstr[0] "ถึงโควตา {n} ครั้ง"
+
+#: assets/app.js
+msgid "Comptes à privilégier pour répartir l'usage : {comptes}"
+msgstr "บัญชีที่ควรใช้ก่อนเพื่อกระจายการใช้งาน: {comptes}"
+
+#: assets/app.js
+msgid "Comptes souvent bloqués par un quota"
+msgstr "บัญชีที่มักติดโควตา"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "ไม่มีเซสชันในช่วงนี้ การวัดเริ่มตั้งแต่ติดตั้งเวอร์ชันนี้"
 
@@ -1428,6 +1450,10 @@ msgstr[0] "{n} วัน"
 #: assets/app.js
 msgid "Série en cours (record : {n})"
 msgstr "ต่อเนื่องปัจจุบัน (สถิติ: {n})"
+
+#: assets/app.js
+msgid "Temps de réponse médian"
+msgstr "เวลาตอบกลับมัธยฐาน"
 
 #: assets/app.js
 msgid "Par compte"

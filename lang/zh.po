@@ -1361,16 +1361,16 @@ msgid "D'après l'historique des tâches (200 dernières exécutions)."
 msgstr "依据任务历史（最近 200 次执行）。"
 
 #: assets/app.js
-msgid "{date} : {duree} actif"
-msgstr "{date}：活跃 {duree}"
-
-#: assets/app.js
 msgid "{h} h"
 msgstr "{h} 时"
 
 #: assets/app.js
 msgid "Évolution du temps actif"
 msgstr "活跃时间趋势"
+
+#: assets/app.js
+msgid "{date} : {duree} actif"
+msgstr "{date}：活跃 {duree}"
 
 #: assets/app.js
 msgid "{s} s"
@@ -1417,6 +1417,28 @@ msgid "Heure habituelle"
 msgstr "常见时段"
 
 #: assets/app.js
+msgid "Évolution du temps de réponse médian"
+msgstr "响应时间中位数的变化"
+
+#: assets/app.js
+msgid "{date} : médiane {duree}, {n} réponse"
+msgid_plural "{date} : médiane {duree}, {n} réponses"
+msgstr[0] "{date}：中位数 {duree}，{n} 条回复"
+
+#: assets/app.js
+msgid "{n} quota atteint"
+msgid_plural "{n} quotas atteints"
+msgstr[0] "已达配额 {n} 次"
+
+#: assets/app.js
+msgid "Comptes à privilégier pour répartir l'usage : {comptes}"
+msgstr "建议优先使用以分散负载的账户：{comptes}"
+
+#: assets/app.js
+msgid "Comptes souvent bloqués par un quota"
+msgstr "经常因配额受阻的账户"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "此期间没有会话。统计从安装此版本时开始。"
 
@@ -1428,6 +1450,10 @@ msgstr[0] "{n} 天"
 #: assets/app.js
 msgid "Série en cours (record : {n})"
 msgstr "当前连续天数（纪录：{n}）"
+
+#: assets/app.js
+msgid "Temps de réponse médian"
+msgstr "响应时间中位数"
 
 #: assets/app.js
 msgid "Par compte"
