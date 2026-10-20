@@ -535,6 +535,34 @@ async function run() {
     }
   });
 
+  await test('C7.5 Vérification visuelle RTL : miroir de la mise en page, poignées, aucun débordement, captures', async () => {
+    const rtl = require('./rtl-visuel');
+    const dossier = rtl.dossierCaptures(process.env.IAO_CAPTURES_DIR);
+    const mesurer = async (lang) => {
+      process.env.IAO_LANG = lang;
+      win.webContents.reload();
+      await sleep(300);
+      await waitLoaded();
+      await sleep(400); // icônes, polices et cartes de comptes rendues
+      const m = await exec(rtl.SCRIPT_MESURE);
+      const img = await win.webContents.capturePage();
+      m.glisser = await exec(rtl.SCRIPT_GLISSER);
+      fs.writeFileSync(path.join(dossier, 'ui-' + lang + '.png'), img.toPNG());
+      m.png = img;
+      return m;
+    };
+    try {
+      const fr = await mesurer('fr');
+      const ar = await mesurer('ar');
+      const ecarts = rtl.comparer(fr, ar);
+      fs.writeFileSync(path.join(dossier, 'rtl-rapport.json'),
+        JSON.stringify({ fr: rtl.sansImage(fr), ar: rtl.sansImage(ar), ecarts }, null, 2));
+      assert(ecarts.length === 0, 'mise en page RTL incorrecte (captures dans ' + dossier + ') :\n  - ' + ecarts.join('\n  - '));
+    } finally {
+      process.env.IAO_LANG = 'fr';
+    }
+  });
+
   await test('C7.3 Sans IAO_LANG ni réglage : langue du système, sélecteur rempli', async () => {
     const i18n = require('../lib/i18n');
     delete process.env.IAO_LANG;

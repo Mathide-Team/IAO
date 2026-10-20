@@ -185,7 +185,7 @@
   /* Layout Principal */
   .dashboard {
     width: 380px; min-width: 380px; height: 100vh;
-    border-right: 1px solid var(--border);
+    border-inline-end: 1px solid var(--border);
     display: flex; flex-direction: column;
     background: var(--bg-panel);
     backdrop-filter: blur(16px); z-index: 2;
@@ -203,7 +203,7 @@
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
 
   /* Nom de l'app dans la barre du workspace (issue #149, ex-en-tête de la barre latérale) */
-  .app-brand { display: flex; align-items: center; gap: 10px; padding-right: 8px; margin-right: 4px; border-right: 1px solid var(--border); flex-shrink: 0; }
+  .app-brand { display: flex; align-items: center; gap: 10px; padding-inline-end: 8px; margin-inline-end: 4px; border-inline-end: 1px solid var(--border); flex-shrink: 0; }
   .app-brand__icon { width: 30px; height: 30px; border-radius: 9px; background: linear-gradient(135deg, var(--rose), var(--accent)); display: flex; align-items: center; justify-content: center; font-size: 14px; color: #fff; box-shadow: 0 0 18px var(--accent-glow); animation: logoGlow 4.5s ease-in-out infinite; }
   /* Pulsation douce du halo du logo (CSS pur, léger) — ambiance communauté */
   @keyframes logoGlow {
@@ -254,7 +254,7 @@
      (aucune lecture de contenu de service IA). */
   /* Issue #137 : puce de statut sur chaque bouton d'IA (coin supérieur droit). */
   .svc-btn { position: relative; }
-  .status-dot { position: absolute; right: 3px; top: 3px; width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid var(--bg-elevated); pointer-events: none; }
+  .status-dot { position: absolute; inset-inline-end: 3px; top: 3px; width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid var(--bg-elevated); pointer-events: none; }
   .status-dot--open { background: var(--status-open); box-shadow: 0 0 6px var(--status-open); }
   .status-dot--recent { background: var(--danger); }
   .status-dot--idle { background: var(--status-idle); }
@@ -323,14 +323,14 @@
   .workspace-body { flex: 1; display: flex; overflow: hidden; }
   
   /* Éditeur & Explorateur */
-  .ide-panel { display: flex; width: 500px; min-width: 300px; max-width: 800px; border-right: 1px solid var(--border); }
+  .ide-panel { display: flex; width: 500px; min-width: 300px; max-width: 800px; border-inline-end: 1px solid var(--border); }
   .ide-panel.collapsed { flex: 0 0 0 !important; width: 0 !important; min-width: 0 !important; border: none; overflow: hidden; }
-  .file-explorer { width: 240px; min-width: 240px; border-right: 1px solid var(--border); padding: 16px; overflow-y: auto; }
+  .file-explorer { width: 240px; min-width: 240px; border-inline-end: 1px solid var(--border); padding: 16px; overflow-y: auto; }
   .file-explorer.collapsed { flex: 0 0 0 !important; width: 0 !important; min-width: 0 !important; border: none; overflow: hidden; padding: 0; }
   .file-item { padding: 8px 12px; border-radius: 6px; font-size: 13px; color: var(--fg-muted); cursor: pointer; display: flex; align-items: center; gap: 10px; }
   .file-item:hover { background: var(--bg-card-hover); color: var(--fg); }
   .file-item.active { background: var(--accent-dim); color: var(--accent); }
-  .file-item__relpath { font-size: 11px; color: var(--fg-dim); margin-left: auto; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 120px; }
+  .file-item__relpath { font-size: 11px; color: var(--fg-dim); margin-inline-start: auto; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 120px; }
   .file-search-input { width: 100%; margin-bottom: 8px; padding: 6px 10px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--fg); font-size: 12px; font-family: 'Inter', sans-serif; }
   .file-search-input:focus { outline: none; border-color: var(--accent); }
   .file-search-input::placeholder { color: var(--fg-dim); }
@@ -388,7 +388,7 @@
   .ctx-menu__sep { height: 1px; background: var(--border); margin: 4px 0; }
 
   /* Indicateur étoile sur les boutons de service (liste des comptes). */
-  .svc-btn__star { display: inline-flex; align-items: center; margin-left: 4px; color: var(--warning, #ffb347); font-size: 10px; vertical-align: middle; }
+  .svc-btn__star { display: inline-flex; align-items: center; margin-inline-start: 4px; color: var(--warning, #ffb347); font-size: 10px; vertical-align: middle; }
 
   .tabs-content { flex: 1; position: relative; overflow: hidden; min-width: 0; }
   .tab-pane { position: absolute; inset: 0; display: none; flex-direction: column; min-width: 0; overflow: hidden; }
@@ -448,7 +448,7 @@
      seule la LISTE scrolle -> lisible avec 9 services, et toujours correct si un
      10e est ajouté (aucune hauteur fixe). */
   .modal--help { width: 620px; max-width: calc(100vw - 48px); max-height: calc(100vh - 96px); display: flex; flex-direction: column; padding: 28px; }
-  .help-list { overflow-y: auto; margin-top: 18px; display: flex; flex-direction: column; gap: 12px; padding-right: 6px; }
+  .help-list { overflow-y: auto; margin-top: 18px; display: flex; flex-direction: column; gap: 12px; padding-inline-end: 6px; }
   .help-entry { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px 16px; }
   .help-entry__name { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
   .help-entry__dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
@@ -461,16 +461,16 @@
   .stats-periode { background: var(--bg-card); color: var(--fg-muted); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 6px 12px; font: inherit; font-size: 12px; cursor: pointer; }
   .stats-periode:hover { color: var(--fg); }
   .stats-periode--active { color: var(--fg); border-color: var(--accent); font-weight: 600; }
-  .stats-body { overflow-y: auto; padding-right: 6px; display: flex; flex-direction: column; gap: 18px; }
+  .stats-body { overflow-y: auto; padding-inline-end: 6px; display: flex; flex-direction: column; gap: 18px; }
   .stats-totaux { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
   .stats-carte { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px; min-width: 0; }
   .stats-carte__valeur { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; }
   .stats-carte__libelle { font-size: 12px; color: var(--fg-muted); margin-top: 2px; }
   .stats-titre { font-size: 13px; font-weight: 600; margin-bottom: 8px; }
   .stats-table { width: 100%; border-collapse: collapse; font-size: 12px; table-layout: fixed; }
-  .stats-table th { text-align: left; color: var(--fg-muted); font-weight: 500; padding: 6px 8px; border-bottom: 1px solid var(--border); }
+  .stats-table th { text-align: start; color: var(--fg-muted); font-weight: 500; padding: 6px 8px; border-bottom: 1px solid var(--border); }
   .stats-table td { padding: 6px 8px; border-bottom: 1px solid var(--border); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .stats-table th.num, .stats-table td.num { text-align: right; }
+  .stats-table th.num, .stats-table td.num { text-align: end; }
   .stats-table th:first-child { width: 34%; }
   .stats-nom { display: flex; align-items: center; gap: 8px; min-width: 0; }
   .stats-nom > span:last-child { overflow: hidden; text-overflow: ellipsis; }
@@ -481,7 +481,7 @@
   .stats-tri { cursor: pointer; user-select: none; }
   .stats-tri:hover, .stats-tri--actif { color: var(--fg); }
   .stats-chaleur { border-collapse: separate; border-spacing: 2px; font-size: 10px; color: var(--fg-muted); width: 100%; table-layout: fixed; }
-  .stats-chaleur th { font-weight: 500; text-align: left; padding: 0; }
+  .stats-chaleur th { font-weight: 500; text-align: start; padding: 0; }
   .stats-chaleur__jour { width: 34px; }
   .stats-chaleur__case { height: 14px; border-radius: 2px; background: var(--border); box-shadow: inset 0 0 0 999px color-mix(in srgb, var(--accent) calc(var(--niveau) * 100%), transparent); }
   .stats-inutilises { list-style: none; margin: 0; padding: 0; font-size: 12px; }
@@ -543,12 +543,15 @@
   .tache-form__compte--indisponible { color: var(--fg-muted); }
   .tache-form__note { font-size: 11px; color: var(--fg-muted); font-style: italic; }
   .tache-form__tous { width: 90px; display: inline-block; }
-  .tache-form__unite { width: auto; display: inline-block; margin-left: 6px; }
+  .tache-form__unite { width: auto; display: inline-block; margin-inline-start: 6px; }
   .tache-form__erreurs { border: 1px solid var(--danger); border-radius: var(--radius-sm); padding: 8px 10px; margin: 10px 0; font-size: 12px; color: var(--danger); }
 
-  .toast-container { position: fixed; top: 20px; right: 20px; z-index: 200; display: flex; flex-direction: column; gap: 10px; }
-  .toast { padding: 12px 18px; background: var(--bg-elevated); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: var(--radius-sm); font-size: 13px; box-shadow: 0 8px 32px rgba(0,0,0,0.4); animation: toastIn 0.3s ease; display: flex; align-items: center; gap: 10px; }
+  .toast-container { position: fixed; top: 20px; inset-inline-end: 20px; z-index: 200; display: flex; flex-direction: column; gap: 10px; }
+  .toast { padding: 12px 18px; background: var(--bg-elevated); border: 1px solid var(--border); border-inline-start: 3px solid var(--accent); border-radius: var(--radius-sm); font-size: 13px; box-shadow: 0 8px 32px rgba(0,0,0,0.4); animation: toastIn 0.3s ease; display: flex; align-items: center; gap: 10px; }
   @keyframes toastIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+  /* Issue #51 : en rtl, les notifications sont à gauche et entrent par la gauche. */
+  @keyframes toastInRtl { from { transform: translateX(-100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+  [dir="rtl"] .toast { animation-name: toastInRtl; }
 
   /* ===== Classes utilitaires (lot 9, 18/09/2026) : remplacement des styles inline ===== */
   .text-accent { color: var(--accent); }
@@ -587,7 +590,7 @@
   .sched-subtitle { color: var(--fg-muted); font-size: 12px; }
   /* Issue #199, lot 1 : ancien ordonnanceur désactivé */
   .sched-run[hidden], .sched-off[hidden], #schedLegacy[hidden] { display: none; }
-  .sched-off { border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 8px; padding: 12px 14px; margin-bottom: 14px; }
+  .sched-off { border: 1px solid var(--border); border-inline-start: 3px solid var(--accent); border-radius: 8px; padding: 12px 14px; margin-bottom: 14px; }
   .sched-off__title { font-weight: 600; margin-bottom: 4px; }
   .sched-off__text { color: var(--fg-muted); font-size: 12px; }
   .sched-dirs { font-size: 11px; color: var(--fg-dim); margin: -6px 0 14px; display: grid; gap: 2px; }
@@ -602,7 +605,7 @@
   .settings-input.settings-input--wide { width: 100%; max-width: 360px; box-sizing: border-box; }
   .settings-input--wide + .settings-hint { display: block; margin: 4px 0 0; }
   .settings-select { padding: 6px 8px; background: var(--bg); border: 1px solid var(--border); color: var(--fg); border-radius: 6px; font-size: 13px; }
-  .settings-hint { font-size: 12px; color: var(--fg-faint); margin-left: 8px; }
+  .settings-hint { font-size: 12px; color: var(--fg-faint); margin-inline-start: 8px; }
   .settings-checkboxes { display: flex; flex-direction: column; gap: 8px; }
   .settings-checkbox-label { display: flex; align-items: center; gap: 8px; font-size: 13px; cursor: pointer; }
   /* ===== Classes pour styles dynamiques (lot 9, 18/09/2026) ===== */
@@ -621,8 +624,8 @@
   .sched-task-empty { padding: 6px 12px; color: var(--fg-dim); font-size: 11px; }
   .sched-job--task { padding: 6px 12px; }
   .sched-project-actions { padding: 8px 12px; }
-  .sched-create-btn { margin-left: 8px; padding: 2px 8px; font-size: 11px; }
-  .sched-task-btn { margin-left: 6px; padding: 2px 8px; font-size: 11px; }
+  .sched-create-btn { margin-inline-start: 8px; padding: 2px 8px; font-size: 11px; }
+  .sched-task-btn { margin-inline-start: 6px; padding: 2px 8px; font-size: 11px; }
   .sched-result-pre { white-space: pre-wrap; word-wrap: break-word; max-height: 400px; overflow-y: auto; font-size: 12px; padding: 8px; background: var(--bg-card); border-radius: 6px; }
   .icon-danger { color: var(--danger); }
   /* Service-specific background colors (lot 9) */
