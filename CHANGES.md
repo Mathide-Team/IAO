@@ -1,5 +1,16 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issues #52, #58, #59 — script de diagnostic de démarrage (20/10/2026)
+
+### Ajouté
+- **`scripts/diagnostic-demarrage.sh`** : rapport Markdown à coller dans
+  l'issue (système, versions, commit, fichiers du dossier de données
+  n'appartenant pas au compte courant, lancement contrôlé avec comptage des
+  « Failed to delete the database », test de la seconde instance, extrait de
+  `iao.log`). Option `--sans-lancer` pour analyser le journal existant. Ne
+  modifie rien dans `~/.config/ai-manager`.
+- Test : `test/diagnostic-demarrage.test.js`.
+
 ## Issue #3 — recette d'install.bat sur Windows en CI (20/10/2026)
 
 ### Ajouté
