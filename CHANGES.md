@@ -14,6 +14,36 @@
 - Signature Authenticode de `IAO.exe` (SmartScreen) : certificat payant ou
   Azure Trusted Signing, décision du propriétaire du dépôt.
 
+## Issues #52, #58, #59 — script de diagnostic de démarrage (20/10/2026)
+
+### Ajouté
+- **`scripts/diagnostic-demarrage.sh`** : rapport Markdown à coller dans
+  l'issue (système, versions, commit, fichiers du dossier de données
+  n'appartenant pas au compte courant, lancement contrôlé avec comptage des
+  « Failed to delete the database », test de la seconde instance, extrait de
+  `iao.log`). Option `--sans-lancer` pour analyser le journal existant. Ne
+  modifie rien dans `~/.config/ai-manager`.
+- Test : `test/diagnostic-demarrage.test.js`.
+
+## Issue #3 — recette d'install.bat sur Windows en CI (20/10/2026)
+
+### Ajouté
+- **Workflow `install-windows.yml`** (runner `windows-latest`, VM GitHub
+  vierge) : exécute `scripts/test-install-windows.ps1`, qui enchaîne
+  auto-build, installation utilisateur, lancement réel du binaire installé,
+  `/desktop`, réinstallation, `/system`, `/uninstall` (données
+  `%APPDATA%\ai-manager` préservées), `/uninstall /system`, `/help` et
+  option inconnue. Tableau des contrôles dans le résumé du job.
+- `test-electron/smoke-packaged.js` fonctionne aussi sous Windows (journal
+  lu dans `%APPDATA%\ai-manager`, arrêt par `TerminateProcess` toléré).
+
+### Corrigé
+- **PATH utilisateur** : `setx PATH "%PATH%;…"` recopiait le PATH système
+  dans le PATH utilisateur et le tronquait à 1024 caractères. Le PATH
+  utilisateur est désormais lu et écrit dans le registre (sans doublon), et
+  `/uninstall` retire l'entrée IAO.
+- **Bureau redirigé (OneDrive)** : `/uninstall` supprime aussi le raccourci
+  dans le vrai dossier Bureau de l'utilisateur.
 ## Issue #51 — vérification visuelle RTL dans le harnais (20/10/2026)
 
 ### Ajouté
