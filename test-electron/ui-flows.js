@@ -509,6 +509,32 @@ async function run() {
     }
   });
 
+  await test('C7.4 IAO_LANG=ar : mise en page de droite à gauche, éditeur en gauche à droite', async () => {
+    process.env.IAO_LANG = 'ar';
+    try {
+      win.webContents.reload();
+      await sleep(300);
+      await waitLoaded();
+      const r = await exec(`({
+        lang: document.documentElement.lang,
+        dir: document.documentElement.dir,
+        body: getComputedStyle(document.body).direction,
+        editor: getComputedStyle(document.getElementById('monacoContainer')).direction
+      })`);
+      assert(r.lang === 'ar', 'lang attendu ar, trouvé ' + r.lang);
+      assert(r.dir === 'rtl' && r.body === 'rtl', 'sens attendu rtl, trouvé ' + r.dir + '/' + r.body);
+      assert(r.editor === 'ltr', 'l\'éditeur doit rester ltr, trouvé ' + r.editor);
+      process.env.IAO_LANG = 'en';
+      win.webContents.reload();
+      await sleep(300);
+      await waitLoaded();
+      const en = await exec(`document.documentElement.dir`);
+      assert(en === 'ltr', 'en anglais, dir attendu ltr, trouvé ' + en);
+    } finally {
+      process.env.IAO_LANG = 'fr';
+    }
+  });
+
   await test('C7.3 Sans IAO_LANG ni réglage : langue du système, sélecteur rempli', async () => {
     const i18n = require('../lib/i18n');
     delete process.env.IAO_LANG;

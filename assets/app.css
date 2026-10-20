@@ -337,6 +337,9 @@
   .editor-container { flex: 1; display: flex; flex-direction: column; min-width: 0; overflow: hidden; }
   .editor-tabs { height: 36px; border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 10px; background: var(--bg-elevated); font-size: 12px; color: var(--fg-muted); gap: 10px; }
   #monacoContainer { flex: 1; min-width: 0; overflow: hidden; }
+  /* Issue #51 : en arabe, hébreu ou persan (dir="rtl"), le code et les
+     adresses restent écrits de gauche à droite. */
+  [dir="rtl"] #monacoContainer, [dir="rtl"] .monaco-loading, [dir="rtl"] input[type="email"], [dir="rtl"] input[type="url"] { direction: ltr; }
 
   /* Zone IA : onglets + contenu (remplace l'ancienne vue scindée à 2 panneaux) */
   .ai-area { flex: 1; display: flex; flex-direction: column; min-width: 0; overflow: hidden; }

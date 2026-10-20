@@ -374,3 +374,10 @@ test('blankTemplateText : commentaires, chaînes et expressions régulières int
   // accolades ordinaires hors gabarit
   assert.equal(b('f() { return {a: 1}; }'), 'f() { return {a: 1}; }');
 });
+
+test('textDirection : langues de droite à gauche, sous-tags de région, valeurs invalides', () => {
+  const d = i18n.textDirection;
+  for (const l of ['ar', 'he', 'fa', 'ur', 'AR', 'ar-MA', 'fa_IR', 'he-IL', 'ckb']) assert.equal(d(l), 'rtl', l);
+  for (const l of ['fr', 'en', 'en-US', 'ja', 'zh_CN', 'hi', 'bn', 'th', 'arn', '', null, undefined, 42]) assert.equal(d(l), 'ltr', String(l));
+  for (const l of ['ar', 'he', 'fa']) assert.ok(i18n.RTL_LANGUAGES.includes(l), l);
+});
