@@ -1384,6 +1384,50 @@ msgid "Évolution du temps actif"
 msgstr "सक्रिय समय का विकास"
 
 #: assets/app.js
+msgid "{s} s"
+msgstr "{s} से."
+
+#: assets/app.js
+msgid "Temps de réponse"
+msgstr "प्रतिक्रिया समय"
+
+#: assets/app.js
+msgid "Service"
+msgstr "सेवा"
+
+#: assets/app.js
+msgid "Médiane"
+msgstr "माध्यिका"
+
+#: assets/app.js
+msgid "Réponses"
+msgstr "उत्तर"
+
+#: assets/app.js
+msgid "Plus lente"
+msgstr "सबसे धीमा"
+
+#: assets/app.js
+msgid "Plus rapide"
+msgstr "सबसे तेज़"
+
+#: assets/app.js
+msgid "Du message envoyé à la fin de la réponse, pour les tâches programmables et les messages envoyés à la main."
+msgstr "संदेश भेजने से उत्तर के अंत तक, निर्धारित कार्यों और हाथ से भेजे गए संदेशों के लिए।"
+
+#: assets/app.js
+msgid "Quotas atteints"
+msgstr "पूरे हुए कोटा"
+
+#: assets/app.js
+msgid "Fois"
+msgstr "बार"
+
+#: assets/app.js
+msgid "Heure habituelle"
+msgstr "सामान्य समय"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "इस अवधि में कोई सत्र नहीं। माप इस संस्करण की स्थापना से शुरू होता है।"
 
@@ -1404,10 +1448,6 @@ msgstr "खाते के अनुसार"
 #: assets/app.js
 msgid "Par service"
 msgstr "सेवा के अनुसार"
-
-#: assets/app.js
-msgid "Service"
-msgstr "सेवा"
 
 #: assets/app.js
 msgid "Statistiques illisibles : {error}"

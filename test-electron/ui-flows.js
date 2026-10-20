@@ -1117,6 +1117,43 @@ async function run() {
     }
   });
 
+  await test('C11.5 Statistiques lot 2b : temps de réponse et quotas atteints par compte (#206)', async () => {
+    const t0 = Date.now() - 3600 * 1000;
+    const rep = [
+      { profil: 'profil_1', service: 'claude', debut: t0, fin: t0 + 4000 },
+      { profil: 'profil_1', service: 'claude', debut: t0 + 10000, fin: t0 + 16000 },
+      { profil: 'profil_1', service: 'claude', debut: t0 + 20000, fin: t0 + 110000 },
+      { profil: 'profil_<b>x</b>', service: 'chatgpt', debut: t0, fin: t0 + 2000 }
+    ];
+    fs.writeFileSync(path.join(statsDir, 'reponses.jsonl'), rep.map((r, i) => JSON.stringify(Object.assign({ id: 'c115-r' + i }, r))).join('\n') + '\n');
+    const hq = new Date(Date.now() - 24 * 3600 * 1000); hq.setHours(14, 10, 0, 0);
+    fs.writeFileSync(path.join(statsDir, 'quotas.jsonl'),
+      [hq.getTime(), hq.getTime() + 60000].map((d, i) => JSON.stringify({ id: 'c115-q' + i, profil: 'profil_2', service: 'claude', date: d })).join('\n') + '\n');
+    const r = await exec(`(async () => {
+      const ouvert = document.getElementById('statsModal').classList.contains('open');
+      if (!ouvert) document.querySelector('[data-action="ui-openStatsModal"]').click();
+      else await openStatsModal();
+      await new Promise(res => setTimeout(res, 500));
+      document.querySelector('#statsPeriodes [data-periode="tout"]').click();
+      const lignes = (id) => [...document.querySelectorAll('#' + id + ' tbody tr')].map(tr => [...tr.cells].map(c => c.textContent.trim()));
+      const avant = lignes('statsReponses');
+      document.querySelector('#statsReponses [data-col="nombre"]').click();
+      const tri = document.querySelector('#statsReponses [data-col="nombre"]').getAttribute('aria-sort');
+      const res = { reponses: avant, quotas: lignes('statsQuotas'), tri, html: document.getElementById('statsReponses').innerHTML.includes('<b>') };
+      document.querySelector('#statsModal [data-action="ui-closeStatsModal"]').click();
+      return res;
+    })()`);
+    const claude = r.reponses.find(l => l[1] === 'Claude');
+    assert(claude, 'ligne Claude absente : ' + JSON.stringify(r.reponses));
+    assert(claude[2] === '3' && claude[3] === '6 s' && claude[4] === '4 s' && claude[5] === '1 min',
+      'médiane / plus rapide / plus lente inattendues : ' + JSON.stringify(claude));
+    assert(r.reponses.some(l => l[0] === 'profil_<b>x</b>'), 'profil sans compte affiché tel quel, échappé');
+    assert(!r.html, 'nom de profil non échappé');
+    assert(r.tri === 'descending', 'tri par nombre attendu : ' + r.tri);
+    assert(r.quotas.length === 1 && r.quotas[0][2] === '2' && r.quotas[0][3] === '14 h',
+      'quotas inattendus : ' + JSON.stringify(r.quotas));
+  });
+
   // =========================================================================
   // C12 — Fermer un onglet chargé n'interrompt pas l'interface
   // (Electron < 43.7.4 : « Invalid guestInstanceId » à la suppression d'une

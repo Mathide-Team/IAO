@@ -1384,6 +1384,50 @@ msgid "Évolution du temps actif"
 msgstr "সক্রিয় সময়ের পরিবর্তন"
 
 #: assets/app.js
+msgid "{s} s"
+msgstr "{s} সে."
+
+#: assets/app.js
+msgid "Temps de réponse"
+msgstr "উত্তরের সময়"
+
+#: assets/app.js
+msgid "Service"
+msgstr "পরিষেবা"
+
+#: assets/app.js
+msgid "Médiane"
+msgstr "মধ্যমা"
+
+#: assets/app.js
+msgid "Réponses"
+msgstr "উত্তর"
+
+#: assets/app.js
+msgid "Plus lente"
+msgstr "ধীরতম"
+
+#: assets/app.js
+msgid "Plus rapide"
+msgstr "দ্রুততম"
+
+#: assets/app.js
+msgid "Du message envoyé à la fin de la réponse, pour les tâches programmables et les messages envoyés à la main."
+msgstr "বার্তা পাঠানো থেকে উত্তরের শেষ পর্যন্ত, নির্ধারিত কাজ ও হাতে পাঠানো বার্তার জন্য।"
+
+#: assets/app.js
+msgid "Quotas atteints"
+msgstr "পূর্ণ হওয়া কোটা"
+
+#: assets/app.js
+msgid "Fois"
+msgstr "বার"
+
+#: assets/app.js
+msgid "Heure habituelle"
+msgstr "সাধারণ সময়"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "এই সময়ে কোনো সেশন নেই। এই সংস্করণ ইনস্টলের সময় থেকে পরিমাপ শুরু হয়।"
 
@@ -1404,10 +1448,6 @@ msgstr "অ্যাকাউন্ট অনুযায়ী"
 #: assets/app.js
 msgid "Par service"
 msgstr "পরিষেবা অনুযায়ী"
-
-#: assets/app.js
-msgid "Service"
-msgstr "পরিষেবা"
 
 #: assets/app.js
 msgid "Statistiques illisibles : {error}"

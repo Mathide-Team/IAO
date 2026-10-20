@@ -1373,6 +1373,50 @@ msgid "Évolution du temps actif"
 msgstr "Perkembangan waktu aktif"
 
 #: assets/app.js
+msgid "{s} s"
+msgstr "{s} dtk"
+
+#: assets/app.js
+msgid "Temps de réponse"
+msgstr "Waktu respons"
+
+#: assets/app.js
+msgid "Service"
+msgstr "Layanan"
+
+#: assets/app.js
+msgid "Médiane"
+msgstr "Median"
+
+#: assets/app.js
+msgid "Réponses"
+msgstr "Respons"
+
+#: assets/app.js
+msgid "Plus lente"
+msgstr "Terlambat"
+
+#: assets/app.js
+msgid "Plus rapide"
+msgstr "Tercepat"
+
+#: assets/app.js
+msgid "Du message envoyé à la fin de la réponse, pour les tâches programmables et les messages envoyés à la main."
+msgstr "Dari pesan dikirim hingga akhir jawaban, untuk tugas terjadwal dan pesan yang dikirim manual."
+
+#: assets/app.js
+msgid "Quotas atteints"
+msgstr "Kuota tercapai"
+
+#: assets/app.js
+msgid "Fois"
+msgstr "Kali"
+
+#: assets/app.js
+msgid "Heure habituelle"
+msgstr "Jam biasa"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "Tidak ada sesi pada periode ini. Pengukuran dimulai saat versi ini dipasang."
 
@@ -1392,10 +1436,6 @@ msgstr "Per akun"
 #: assets/app.js
 msgid "Par service"
 msgstr "Per layanan"
-
-#: assets/app.js
-msgid "Service"
-msgstr "Layanan"
 
 #: assets/app.js
 msgid "Statistiques illisibles : {error}"

@@ -1,5 +1,18 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issue #206 — temps de réponse et quotas dans la page Statistiques (20/10/2026)
+
+### Ajouté
+- **Tableau « Temps de réponse »** par compte et service : nombre de
+  réponses, médiane, plus rapide, plus lente (tâches programmables et
+  messages envoyés à la main). Colonnes triables.
+- **Tableau « Quotas atteints »** par compte et service : nombre de fois et
+  heure habituelle (heure locale la plus fréquente).
+- Les deux suivent la période choisie (jour, semaine, mois, tout) et sont
+  vidés par la remise à zéro.
+- 10 libellés traduits dans les 29 langues (générés par IA, relecture
+  humaine attendue) ; 0 entrée floue.
+- Test : scénario Electron C11.5.
 ## Issue #206 — temps de réponse des messages envoyés à la main (20/10/2026)
 
 ### Ajouté

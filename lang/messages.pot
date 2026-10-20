@@ -1338,7 +1338,7 @@ msgstr ""
 msgid "Tâches programmables par compte"
 msgstr ""
 
-#: assets/app.js assets/app.js
+#: assets/app.js assets/app.js assets/app.js assets/app.js
 msgid "Compte"
 msgstr ""
 
@@ -1370,12 +1370,56 @@ msgstr ""
 msgid "{date} : {duree} actif"
 msgstr ""
 
-#: assets/app.js
+#: assets/app.js assets/app.js
 msgid "{h} h"
 msgstr ""
 
 #: assets/app.js assets/app.js
 msgid "Évolution du temps actif"
+msgstr ""
+
+#: assets/app.js
+msgid "{s} s"
+msgstr ""
+
+#: assets/app.js
+msgid "Temps de réponse"
+msgstr ""
+
+#: assets/app.js assets/app.js assets/app.js
+msgid "Service"
+msgstr ""
+
+#: assets/app.js
+msgid "Médiane"
+msgstr ""
+
+#: assets/app.js
+msgid "Réponses"
+msgstr ""
+
+#: assets/app.js
+msgid "Plus lente"
+msgstr ""
+
+#: assets/app.js
+msgid "Plus rapide"
+msgstr ""
+
+#: assets/app.js
+msgid "Du message envoyé à la fin de la réponse, pour les tâches programmables et les messages envoyés à la main."
+msgstr ""
+
+#: assets/app.js
+msgid "Quotas atteints"
+msgstr ""
+
+#: assets/app.js
+msgid "Fois"
+msgstr ""
+
+#: assets/app.js
+msgid "Heure habituelle"
 msgstr ""
 
 #: assets/app.js
@@ -1398,10 +1442,6 @@ msgstr ""
 
 #: assets/app.js
 msgid "Par service"
-msgstr ""
-
-#: assets/app.js
-msgid "Service"
 msgstr ""
 
 #: assets/app.js

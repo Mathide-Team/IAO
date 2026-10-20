@@ -1395,6 +1395,50 @@ msgid "Évolution du temps actif"
 msgstr "Динамика активного времени"
 
 #: assets/app.js
+msgid "{s} s"
+msgstr "{s} с"
+
+#: assets/app.js
+msgid "Temps de réponse"
+msgstr "Время ответа"
+
+#: assets/app.js
+msgid "Service"
+msgstr "Сервис"
+
+#: assets/app.js
+msgid "Médiane"
+msgstr "Медиана"
+
+#: assets/app.js
+msgid "Réponses"
+msgstr "Ответы"
+
+#: assets/app.js
+msgid "Plus lente"
+msgstr "Самый медленный"
+
+#: assets/app.js
+msgid "Plus rapide"
+msgstr "Самый быстрый"
+
+#: assets/app.js
+msgid "Du message envoyé à la fin de la réponse, pour les tâches programmables et les messages envoyés à la main."
+msgstr "От отправки сообщения до конца ответа, для запланированных задач и сообщений, отправленных вручную."
+
+#: assets/app.js
+msgid "Quotas atteints"
+msgstr "Достигнутые лимиты"
+
+#: assets/app.js
+msgid "Fois"
+msgstr "Раз"
+
+#: assets/app.js
+msgid "Heure habituelle"
+msgstr "Обычное время"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "Нет сессий за этот период. Измерение начинается с установки этой версии."
 
@@ -1416,10 +1460,6 @@ msgstr "По аккаунтам"
 #: assets/app.js
 msgid "Par service"
 msgstr "По сервисам"
-
-#: assets/app.js
-msgid "Service"
-msgstr "Сервис"
 
 #: assets/app.js
 msgid "Statistiques illisibles : {error}"

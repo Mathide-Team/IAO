@@ -1395,6 +1395,50 @@ msgid "Évolution du temps actif"
 msgstr "Evoluția timpului activ"
 
 #: assets/app.js
+msgid "{s} s"
+msgstr "{s} s"
+
+#: assets/app.js
+msgid "Temps de réponse"
+msgstr "Timp de răspuns"
+
+#: assets/app.js
+msgid "Service"
+msgstr "Serviciu"
+
+#: assets/app.js
+msgid "Médiane"
+msgstr "Mediană"
+
+#: assets/app.js
+msgid "Réponses"
+msgstr "Răspunsuri"
+
+#: assets/app.js
+msgid "Plus lente"
+msgstr "Cel mai lent"
+
+#: assets/app.js
+msgid "Plus rapide"
+msgstr "Cel mai rapid"
+
+#: assets/app.js
+msgid "Du message envoyé à la fin de la réponse, pour les tâches programmables et les messages envoyés à la main."
+msgstr "De la trimiterea mesajului până la sfârșitul răspunsului, pentru sarcinile programate și mesajele trimise manual."
+
+#: assets/app.js
+msgid "Quotas atteints"
+msgstr "Cote atinse"
+
+#: assets/app.js
+msgid "Fois"
+msgstr "Ori"
+
+#: assets/app.js
+msgid "Heure habituelle"
+msgstr "Ora obișnuită"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "Nicio sesiune în această perioadă. Măsurarea începe la instalarea acestei versiuni."
 
@@ -1416,10 +1460,6 @@ msgstr "Pe cont"
 #: assets/app.js
 msgid "Par service"
 msgstr "Pe serviciu"
-
-#: assets/app.js
-msgid "Service"
-msgstr "Serviciu"
 
 #: assets/app.js
 msgid "Statistiques illisibles : {error}"

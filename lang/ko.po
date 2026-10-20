@@ -1373,6 +1373,50 @@ msgid "Évolution du temps actif"
 msgstr "활성 시간 추이"
 
 #: assets/app.js
+msgid "{s} s"
+msgstr "{s}초"
+
+#: assets/app.js
+msgid "Temps de réponse"
+msgstr "응답 시간"
+
+#: assets/app.js
+msgid "Service"
+msgstr "서비스"
+
+#: assets/app.js
+msgid "Médiane"
+msgstr "중앙값"
+
+#: assets/app.js
+msgid "Réponses"
+msgstr "응답"
+
+#: assets/app.js
+msgid "Plus lente"
+msgstr "가장 느림"
+
+#: assets/app.js
+msgid "Plus rapide"
+msgstr "가장 빠름"
+
+#: assets/app.js
+msgid "Du message envoyé à la fin de la réponse, pour les tâches programmables et les messages envoyés à la main."
+msgstr "메시지 전송부터 응답 완료까지이며, 예약 작업과 직접 보낸 메시지가 대상입니다."
+
+#: assets/app.js
+msgid "Quotas atteints"
+msgstr "도달한 한도"
+
+#: assets/app.js
+msgid "Fois"
+msgstr "횟수"
+
+#: assets/app.js
+msgid "Heure habituelle"
+msgstr "주로 발생하는 시각"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "이 기간에 세션이 없습니다. 측정은 이 버전을 설치한 시점부터 시작됩니다."
 
@@ -1392,10 +1436,6 @@ msgstr "계정별"
 #: assets/app.js
 msgid "Par service"
 msgstr "서비스별"
-
-#: assets/app.js
-msgid "Service"
-msgstr "서비스"
 
 #: assets/app.js
 msgid "Statistiques illisibles : {error}"

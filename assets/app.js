@@ -2610,6 +2610,55 @@
           ${barres}${libelles}
         </svg></div>`;
     }
+    // Temps de réponse et quotas atteints (lot 2b) : mesurés sur les tâches
+    // programmables et sur les messages envoyés à la main (lib/mesure-reponse.js).
+    let statsReponses = [];
+    let statsQuotas = [];
+    function delaiStats(ms) {
+      if (ms < 60000) return _('{s} s', { s: Math.max(0, Math.round(ms / 1000)) });
+      return dureeStats(ms);
+    }
+    function nomServiceStats(id) {
+      const svc = SERVICES.find(x => x.id === id);
+      return svc ? svc.name : id;
+    }
+    function reponsesStats(agr) {
+      const lignes = agr.parCompteService.map(l => Object.assign({ cle: l.profil + '|' + l.service }, l));
+      if (!lignes.length) return '';
+      const corps = trierStats('reponses', lignes).map(l => `<tr>
+          <td><span title="${escapeHtml(l.profil)}">${escapeHtml(nomCompteStats(l.profil))}</span></td>
+          <td>${escapeHtml(nomServiceStats(l.service))}</td>
+          <td class="num">${l.nombre}</td>
+          <td class="num">${escapeHtml(delaiStats(l.medianeMs))}</td>
+          <td class="num">${escapeHtml(delaiStats(l.minMs))}</td>
+          <td class="num">${escapeHtml(delaiStats(l.maxMs))}</td>
+        </tr>`).join('');
+      return `<div><div class="stats-titre">${escapeHtml(_('Temps de réponse'))}</div>
+        <table class="stats-table" id="statsReponses"><thead><tr>
+          ${enteteTri('reponses', 'cle', _('Compte'), false)}${enteteTri('reponses', 'service', _('Service'), false)}
+          ${enteteTri('reponses', 'nombre', _('Réponses'), true)}${enteteTri('reponses', 'medianeMs', _('Médiane'), true)}
+          ${enteteTri('reponses', 'minMs', _('Plus rapide'), true)}${enteteTri('reponses', 'maxMs', _('Plus lente'), true)}
+        </tr></thead><tbody>${corps}</tbody></table>
+        <div class="stats-note">${escapeHtml(_('Du message envoyé à la fin de la réponse, pour les tâches programmables et les messages envoyés à la main.'))}</div></div>`;
+    }
+    function quotasStats(agr) {
+      const lignes = agr.parCompteService.map(l => Object.assign({
+        cle: l.profil + '|' + l.service,
+        heure: l.parHeure.indexOf(Math.max(...l.parHeure))
+      }, l));
+      if (!lignes.length) return '';
+      const corps = trierStats('quotas', lignes).map(l => `<tr>
+          <td><span title="${escapeHtml(l.profil)}">${escapeHtml(nomCompteStats(l.profil))}</span></td>
+          <td>${escapeHtml(nomServiceStats(l.service))}</td>
+          <td class="num">${l.nombre}</td>
+          <td class="num">${escapeHtml(_('{h} h', { h: l.heure }))}</td>
+        </tr>`).join('');
+      return `<div><div class="stats-titre">${escapeHtml(_('Quotas atteints'))}</div>
+        <table class="stats-table" id="statsQuotas"><thead><tr>
+          ${enteteTri('quotas', 'cle', _('Compte'), false)}${enteteTri('quotas', 'service', _('Service'), false)}
+          ${enteteTri('quotas', 'nombre', _('Fois'), true)}${enteteTri('quotas', 'heure', _('Heure habituelle'), true)}
+        </tr></thead><tbody>${corps}</tbody></table></div>`;
+    }
     let statsTaches = [];
     function renderStats() {
       document.querySelectorAll('#statsPeriodes [data-periode]').forEach(b =>
@@ -2618,8 +2667,10 @@
       const sessions = statsHistorique.concat(suiviStats.instantane());
       const r = window.iaoStats.agreger(sessions, { periode: statsPeriode, maintenant });
       const taches = window.iaoStats.resultatsTaches(statsTaches, r.depuis);
+      const reponses = window.iaoStats.agregerReponses(statsReponses, { periode: statsPeriode, maintenant });
+      const quotas = window.iaoStats.agregerQuotas(statsQuotas, { periode: statsPeriode, maintenant });
       const body = document.getElementById('statsBody');
-      if (!r.totaux.sessions && !taches.length) {
+      if (!r.totaux.sessions && !taches.length && !reponses.totaux.nombre && !quotas.parCompteService.length) {
         body.innerHTML = `<div class="stats-vide">${escapeHtml(_('Aucune session sur cette période. La mesure commence à l\'installation de cette version.'))}</div>`;
         return;
       }
@@ -2642,6 +2693,8 @@
         }, true)}
         ${carteChaleurStats(window.iaoStats.heuresDePointe(sessions, r.depuis))}
         ${inutilisesStats(window.iaoStats.comptesInutilises(sessions, accounts.map(a => a.profile), r.depuis))}
+        ${reponsesStats(reponses)}
+        ${quotasStats(quotas)}
         ${tachesStats(taches)}`;
     }
     document.getElementById('statsBody').addEventListener('click', (e) => {
@@ -2673,6 +2726,16 @@
         statsTaches = [];
         dbg('stats', 'historique des tâches indisponible', e && e.message);
       }
+      try {
+        // Temps de réponse et quotas (lot 2b) : secondaires eux aussi.
+        const [rep, quo] = await Promise.all([ipcRenderer.invoke('stats:reponses'), ipcRenderer.invoke('stats:quotas')]);
+        statsReponses = Array.isArray(rep) ? rep : [];
+        statsQuotas = Array.isArray(quo) ? quo : [];
+      } catch (e) {
+        statsReponses = [];
+        statsQuotas = [];
+        dbg('stats', 'temps de réponse et quotas indisponibles', e && e.message);
+      }
       renderStats();
     };
     // Export (lot 3) : historique + onglets ouverts, noms de compte joints ;
@@ -2702,6 +2765,8 @@
             if (!r || r.error) { showToast(_('Remise à zéro impossible : {error}', { error: (r && r.error) || '?' }), 'error'); return; }
             suiviStats.recommencer();
             statsHistorique = [];
+            statsReponses = [];
+            statsQuotas = [];
             renderStats();
             showToast(_('Statistiques remises à zéro'), 'success');
           } catch (e) {
