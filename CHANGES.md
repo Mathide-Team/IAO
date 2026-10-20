@@ -9,7 +9,8 @@
   graduation ronde (1, 2, 5, 10, 15, 30 min, 1 h…). Libellés échappés.
 - **Export CSV / JSON** (historique + onglets ouverts, avec le nom du compte) :
   dialogue d'enregistrement côté process principal (`stats:export`). CSV
-  RFC 4180 avec BOM UTF-8 (Excel) ; cellules commençant par `= + - @`
+  séparé par des points-virgules (Excel en français), guillemets RFC 4180,
+  BOM UTF-8 ; cellules commençant par `= + - @`
   préfixées d'une apostrophe (pas d'injection de formule). JSON versionné
   (`format: iao-stats-1`).
 - **Remise à zéro** (`stats:reset`) après confirmation : sessions,

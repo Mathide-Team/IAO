@@ -1027,8 +1027,8 @@ async function run() {
       await exec(`document.getElementById('statsExportCsv').click(); 'ok'`);
       for (let i = 0; i < 30 && !fs.existsSync(csv); i++) await sleep(100);
       const contenu = fs.readFileSync(csv, 'utf-8');
-      assert(contenu.startsWith('\ufeffid,compte,profil,service,debut,fin,duree_s,actif_s'), 'en-tête CSV : ' + contenu.slice(0, 80));
-      assert(contenu.includes(',Compte Test Un,profil_1,claude,'), 'session de profil_1 (onglet ouvert) absente du CSV');
+      assert(contenu.startsWith('\ufeffid;compte;profil;service;debut;fin;duree_s;actif_s'), 'en-tête CSV : ' + contenu.slice(0, 80));
+      assert(contenu.includes(';Compte Test Un;profil_1;claude;'), 'session de profil_1 (onglet ouvert) absente du CSV');
       assert(/\.csv$/.test(demandes[0].defaultPath), 'nom proposé : ' + demandes[0].defaultPath);
       cible = json;
       await exec(`document.getElementById('statsExportJson').click(); 'ok'`);

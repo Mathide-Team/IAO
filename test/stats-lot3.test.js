@@ -76,6 +76,7 @@ test('celluleCsv : guillemets, virgules, retours ligne, formules neutralisées',
   assert.equal(st.celluleCsv(undefined), '');
   assert.equal(st.celluleCsv(42), '42');
   assert.equal(st.celluleCsv('a,b'), '"a,b"');
+  assert.equal(st.celluleCsv('a;b'), '"a;b"');
   assert.equal(st.celluleCsv('dit "oui"'), '"dit ""oui"""');
   assert.equal(st.celluleCsv('l1\nl2'), '"l1\nl2"');
   assert.equal(st.celluleCsv('=HYPERLINK("x")'), '"\'=HYPERLINK(""x"")"');
@@ -84,18 +85,18 @@ test('celluleCsv : guillemets, virgules, retours ligne, formules neutralisées',
   assert.equal(st.celluleCsv('@a'), "'@a");
 });
 
-test('versCsv : BOM, en-tête, tri chronologique, nom du compte, invalides ignorées', () => {
+test('versCsv : point-virgule, BOM, en-tête, tri chronologique, nom du compte, invalides ignorées', () => {
   const csv = st.versCsv([
     ses('b', 'p2', T0 + H, T0 + 2 * H, 30 * MIN, 'gemini'),
     ses('a', 'p1', T0, T0 + 90 * 1000, 61 * 1000),
     { id: 'invalide' }
   ], { p1: 'Compte, Un', p2: 42 });
-  assert.ok(csv.startsWith('\ufeffid,compte,profil,service,debut,fin,duree_s,actif_s\r\n'));
+  assert.ok(csv.startsWith('\ufeffid;compte;profil;service;debut;fin;duree_s;actif_s\r\n'));
   const lignes = csv.slice(1).trim().split('\r\n');
   assert.equal(lignes.length, 3);
-  assert.equal(lignes[1], `a,"Compte, Un",p1,claude,${new Date(T0).toISOString()},${new Date(T0 + 90000).toISOString()},90,61`);
-  assert.ok(lignes[2].startsWith('b,p2,p2,gemini,'), 'nom non textuel -> profil');
-  assert.equal(st.versCsv(null, null), '\ufeffid,compte,profil,service,debut,fin,duree_s,actif_s\r\n');
+  assert.equal(lignes[1], `a;"Compte, Un";p1;claude;${new Date(T0).toISOString()};${new Date(T0 + 90000).toISOString()};90;61`);
+  assert.ok(lignes[2].startsWith('b;p2;p2;gemini;'), 'nom non textuel -> profil');
+  assert.equal(st.versCsv(null, null), '\ufeffid;compte;profil;service;debut;fin;duree_s;actif_s\r\n');
 });
 
 test('versJsonExport : enveloppe versionnée, sessions lisibles', () => {
@@ -130,7 +131,7 @@ test('store : reinitialiser vide l\'historique et l\'instantané ; exporter CSV 
   const csv = await store.exporter('csv', [ses('c', 'p2', T0 - MIN, T0, 0)], { p1: 'Un' });
   assert.equal(csv.nom, 'iao-statistiques-' + new Date(T0).toISOString().slice(0, 10) + '.csv');
   assert.equal(csv.contenu.trim().split('\r\n').length, 3, 'en-tête + historique + en cours');
-  assert.ok(csv.contenu.includes(',Un,p1,'));
+  assert.ok(csv.contenu.includes(';Un;p1;'));
   const json = await store.exporter('json', null, null);
   assert.ok(json.nom.endsWith('.json'));
   assert.equal(JSON.parse(json.contenu).sessions.length, 1);
