@@ -1384,6 +1384,50 @@ msgid "Évolution du temps actif"
 msgstr "Verloop van de actieve tijd"
 
 #: assets/app.js
+msgid "{s} s"
+msgstr "{s} s"
+
+#: assets/app.js
+msgid "Temps de réponse"
+msgstr "Reactietijd"
+
+#: assets/app.js
+msgid "Service"
+msgstr "Dienst"
+
+#: assets/app.js
+msgid "Médiane"
+msgstr "Mediaan"
+
+#: assets/app.js
+msgid "Réponses"
+msgstr "Antwoorden"
+
+#: assets/app.js
+msgid "Plus lente"
+msgstr "Traagste"
+
+#: assets/app.js
+msgid "Plus rapide"
+msgstr "Snelste"
+
+#: assets/app.js
+msgid "Du message envoyé à la fin de la réponse, pour les tâches programmables et les messages envoyés à la main."
+msgstr "Van het verzenden van het bericht tot het einde van het antwoord, voor geplande taken en handmatig verzonden berichten."
+
+#: assets/app.js
+msgid "Quotas atteints"
+msgstr "Bereikte quota"
+
+#: assets/app.js
+msgid "Fois"
+msgstr "Keren"
+
+#: assets/app.js
+msgid "Heure habituelle"
+msgstr "Gebruikelijk uur"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "Geen sessies in deze periode. De meting begint bij de installatie van deze versie."
 
@@ -1404,10 +1448,6 @@ msgstr "Per account"
 #: assets/app.js
 msgid "Par service"
 msgstr "Per dienst"
-
-#: assets/app.js
-msgid "Service"
-msgstr "Dienst"
 
 #: assets/app.js
 msgid "Statistiques illisibles : {error}"

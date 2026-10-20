@@ -1373,6 +1373,50 @@ msgid "Évolution du temps actif"
 msgstr "アクティブ時間の推移"
 
 #: assets/app.js
+msgid "{s} s"
+msgstr "{s} 秒"
+
+#: assets/app.js
+msgid "Temps de réponse"
+msgstr "応答時間"
+
+#: assets/app.js
+msgid "Service"
+msgstr "サービス"
+
+#: assets/app.js
+msgid "Médiane"
+msgstr "中央値"
+
+#: assets/app.js
+msgid "Réponses"
+msgstr "応答数"
+
+#: assets/app.js
+msgid "Plus lente"
+msgstr "最遅"
+
+#: assets/app.js
+msgid "Plus rapide"
+msgstr "最速"
+
+#: assets/app.js
+msgid "Du message envoyé à la fin de la réponse, pour les tâches programmables et les messages envoyés à la main."
+msgstr "メッセージ送信から応答完了まで。予約タスクと手動で送信したメッセージが対象です。"
+
+#: assets/app.js
+msgid "Quotas atteints"
+msgstr "上限到達"
+
+#: assets/app.js
+msgid "Fois"
+msgstr "回数"
+
+#: assets/app.js
+msgid "Heure habituelle"
+msgstr "よくある時刻"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "この期間のセッションはありません。計測はこのバージョンのインストール時から始まります。"
 
@@ -1392,10 +1436,6 @@ msgstr "アカウント別"
 #: assets/app.js
 msgid "Par service"
 msgstr "サービス別"
-
-#: assets/app.js
-msgid "Service"
-msgstr "サービス"
 
 #: assets/app.js
 msgid "Statistiques illisibles : {error}"

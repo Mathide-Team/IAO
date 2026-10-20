@@ -1384,6 +1384,50 @@ msgid "Évolution du temps actif"
 msgstr "Az aktív idő alakulása"
 
 #: assets/app.js
+msgid "{s} s"
+msgstr "{s} mp"
+
+#: assets/app.js
+msgid "Temps de réponse"
+msgstr "Válaszidő"
+
+#: assets/app.js
+msgid "Service"
+msgstr "Szolgáltatás"
+
+#: assets/app.js
+msgid "Médiane"
+msgstr "Medián"
+
+#: assets/app.js
+msgid "Réponses"
+msgstr "Válaszok"
+
+#: assets/app.js
+msgid "Plus lente"
+msgstr "Leglassabb"
+
+#: assets/app.js
+msgid "Plus rapide"
+msgstr "Leggyorsabb"
+
+#: assets/app.js
+msgid "Du message envoyé à la fin de la réponse, pour les tâches programmables et les messages envoyés à la main."
+msgstr "Az üzenet elküldésétől a válasz végéig, ütemezett feladatoknál és kézzel küldött üzeneteknél."
+
+#: assets/app.js
+msgid "Quotas atteints"
+msgstr "Elért kvóták"
+
+#: assets/app.js
+msgid "Fois"
+msgstr "Alkalom"
+
+#: assets/app.js
+msgid "Heure habituelle"
+msgstr "Szokásos időpont"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "Ebben az időszakban nincs munkamenet. A mérés ennek a verziónak a telepítésével kezdődik."
 
@@ -1404,10 +1448,6 @@ msgstr "Fiókonként"
 #: assets/app.js
 msgid "Par service"
 msgstr "Szolgáltatásonként"
-
-#: assets/app.js
-msgid "Service"
-msgstr "Szolgáltatás"
 
 #: assets/app.js
 msgid "Statistiques illisibles : {error}"

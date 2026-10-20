@@ -1373,6 +1373,50 @@ msgid "Évolution du temps actif"
 msgstr "Diễn biến thời gian hoạt động"
 
 #: assets/app.js
+msgid "{s} s"
+msgstr "{s} giây"
+
+#: assets/app.js
+msgid "Temps de réponse"
+msgstr "Thời gian phản hồi"
+
+#: assets/app.js
+msgid "Service"
+msgstr "Dịch vụ"
+
+#: assets/app.js
+msgid "Médiane"
+msgstr "Trung vị"
+
+#: assets/app.js
+msgid "Réponses"
+msgstr "Câu trả lời"
+
+#: assets/app.js
+msgid "Plus lente"
+msgstr "Chậm nhất"
+
+#: assets/app.js
+msgid "Plus rapide"
+msgstr "Nhanh nhất"
+
+#: assets/app.js
+msgid "Du message envoyé à la fin de la réponse, pour les tâches programmables et les messages envoyés à la main."
+msgstr "Từ lúc gửi tin nhắn đến khi kết thúc câu trả lời, cho các tác vụ đã lên lịch và tin nhắn gửi thủ công."
+
+#: assets/app.js
+msgid "Quotas atteints"
+msgstr "Hạn mức đã chạm"
+
+#: assets/app.js
+msgid "Fois"
+msgstr "Lần"
+
+#: assets/app.js
+msgid "Heure habituelle"
+msgstr "Giờ thường gặp"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "Không có phiên nào trong kỳ này. Việc đo bắt đầu khi cài đặt phiên bản này."
 
@@ -1392,10 +1436,6 @@ msgstr "Theo tài khoản"
 #: assets/app.js
 msgid "Par service"
 msgstr "Theo dịch vụ"
-
-#: assets/app.js
-msgid "Service"
-msgstr "Dịch vụ"
 
 #: assets/app.js
 msgid "Statistiques illisibles : {error}"
