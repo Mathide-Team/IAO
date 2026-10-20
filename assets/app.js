@@ -1744,13 +1744,16 @@
           e.preventDefault();
           const startX = e.clientX;
           const startSize = opts.getStart();
+          // Issue #51 : en rtl, les panneaux s'ouvrent depuis la droite ; tirer
+          // vers la gauche élargit donc le panneau (sens du glisser inversé).
+          const sens = getComputedStyle(document.documentElement).direction === 'rtl' ? -1 : 1;
           resizer.classList.add('dragging');
           overlay.classList.add('active');
           document.body.style.userSelect = 'none';
 
           function move(ev) {
             const max = typeof opts.max === 'function' ? opts.max() : opts.max;
-            let next = startSize + (ev.clientX - startX);
+            let next = startSize + sens * (ev.clientX - startX);
             next = Math.max(opts.min, Math.min(max, next));
             opts.apply(next);
           }

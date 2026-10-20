@@ -72,7 +72,19 @@ jobs:
         run: npm run test:electron
 
       - name: Tests UI Electron (comptes, onglets, réglages, explorateur)
+        env:
+          # C7.5 (issue #51) : captures fr / ar et rapport de la vérification RTL.
+          IAO_CAPTURES_DIR: ${{ runner.temp }}/iao-captures
         run: npm run test:electron:ui
+
+      - name: Publication des captures RTL (artifact)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: captures-rtl
+          path: ${{ runner.temp }}/iao-captures
+          if-no-files-found: ignore
+          retention-days: 14
 
       - name: Construction du binaire Linux (electron-packager)
         run: npm run dist:linux
