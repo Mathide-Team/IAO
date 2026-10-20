@@ -4,6 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: IAO\n"
 "Report-Msgid-Bugs-To: https://github.com/Mathide-Team/IAO/issues\n"
+"PO-Revision-Date: 2026-10-20 07:04+0000\n"
+"Last-Translator: agent IAO (docker24006) — traduction générée par IA, relecture humaine attendue (issue #51)\n"
+"Language-Team: Mathide-Team <https://github.com/Mathide-Team/IAO>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -12,1752 +15,1752 @@ msgstr ""
 
 #: index.html
 msgid "Rechercher un compte ou une IA..."
-msgstr ""
+msgstr "Hesap veya yapay zekâ ara..."
 
 #: index.html
 msgid "Comptes actifs"
-msgstr ""
+msgstr "Etkin hesaplar"
 
 #: index.html
 msgid "IA Disponibles"
-msgstr ""
+msgstr "Kullanılabilir yapay zekâlar"
 
 #: index.html
 msgid "Rechercher un compte ou une IA (Ctrl+K)"
-msgstr ""
+msgstr "Hesap veya yapay zekâ ara (Ctrl+K)"
 
 #: index.html
 msgid "Comptes enregistrés"
-msgstr ""
+msgstr "Kayıtlı hesaplar"
 
 #: index.html
 msgid "Tout replier / Tout déplier"
-msgstr ""
+msgstr "Tümünü daralt / Tümünü genişlet"
 
 #: index.html
 msgid "Exporter les comptes (JSON)"
-msgstr ""
+msgstr "Hesapları dışa aktar (JSON)"
 
 #: index.html
 msgid "Importer des comptes (JSON)"
-msgstr ""
+msgstr "Hesapları içe aktar (JSON)"
 
 #: index.html
 msgid "Ajouter un compte"
-msgstr ""
+msgstr "Hesap ekle"
 
 #: index.html
 msgid "Créer des comptes en série"
-msgstr ""
+msgstr "Toplu hesap oluştur"
 
 #: index.html
 msgid "Mode debug actif : traces détaillées dans le journal iao.log"
-msgstr ""
+msgstr "Hata ayıklama modu etkin: iao.log günlüğünde ayrıntılı izler"
 
 #: index.html
 msgid "Masquer les comptes"
-msgstr ""
+msgstr "Hesapları gizle"
 
 #: index.html
 msgid "Afficher les comptes"
-msgstr ""
+msgstr "Hesapları göster"
 
 #: index.html
 msgid "Explorateur"
-msgstr ""
+msgstr "Gezgin"
 
 #: index.html
 msgid "Éditeur"
-msgstr ""
+msgstr "Düzenleyici"
 
 #: index.html
 msgid "Outils de développement (Ctrl+Maj+I)"
-msgstr ""
+msgstr "Geliştirici araçları (Ctrl+Shift+I)"
 
 #: index.html
 msgid "Redémarrer en mode debug (journal détaillé)"
-msgstr ""
+msgstr "Hata ayıklama modunda yeniden başlat (ayrıntılı günlük)"
 
 #: index.html
 msgid "Choisir mes 9 IA à portée de main"
-msgstr ""
+msgstr "Elimin altındaki 9 yapay zekâyı seç"
 
 #: index.html
 msgid "Comprendre les IA disponibles"
-msgstr ""
+msgstr "Kullanılabilir yapay zekâları tanı"
 
 #: index.html
 msgid "Statistiques d'utilisation"
-msgstr ""
+msgstr "Kullanım istatistikleri"
 
 #: index.html
 msgid "Ordonnanceur IA"
-msgstr ""
+msgstr "Yapay zekâ zamanlayıcısı"
 
 #: index.html
 msgid "Réglages"
-msgstr ""
+msgstr "Ayarlar"
 
 #: index.html
 msgid "Fichiers"
-msgstr ""
+msgstr "Dosyalar"
 
 #: index.html
 msgid "Ouvrir un dossier"
-msgstr ""
+msgstr "Klasör aç"
 
 #: index.html
 msgid "Réduire"
-msgstr ""
+msgstr "Küçült"
 
 #: index.html
 msgid "Rechercher un fichier..."
-msgstr ""
+msgstr "Dosya ara..."
 
 #: index.html
 msgid "Glisser pour redimensionner"
-msgstr ""
+msgstr "Yeniden boyutlandırmak için sürükleyin"
 
 #: index.html
 msgid "Aucun fichier"
-msgstr ""
+msgstr "Dosya yok"
 
 #: index.html
 msgid "Glisser pour redimensionner l'éditeur"
-msgstr ""
+msgstr "Düzenleyiciyi yeniden boyutlandırmak için sürükleyin"
 
 #: index.html
 msgid "Aucun onglet ouvert — choisissez un service dans la liste des comptes"
-msgstr ""
+msgstr "Açık sekme yok — hesap listesinden bir hizmet seçin"
 
 #: index.html
 msgid "Le profil permet d'isoler les cookies dans Electron."
-msgstr ""
+msgstr "Profil, Electron'da çerezleri yalıtmayı sağlar."
 
 #: index.html
 msgid "Nom du compte"
-msgstr ""
+msgstr "Hesap adı"
 
 #: index.html
 msgid "Nom du Profil"
-msgstr ""
+msgstr "Profil adı"
 
 #: index.html
 msgid "Mot de passe de la messagerie"
-msgstr ""
+msgstr "E-posta parolası"
 
 #: index.html
 msgid "Afficher le mot de passe"
-msgstr ""
+msgstr "Parolayı göster"
 
 #: index.html
 msgid "Générer un mot de passe"
-msgstr ""
+msgstr "Parola oluştur"
 
 #: index.html
 msgid "Chiffré par le trousseau du système, jamais enregistré en clair. Laisser vide pour ne pas le modifier."
-msgstr ""
+msgstr "Sistem anahtarlığıyla şifrelenir, asla düz metin olarak kaydedilmez. Değiştirmemek için boş bırakın."
 
 #: index.html
 msgid "Annuler"
-msgstr ""
+msgstr "İptal"
 
 #: index.html
 msgid "Enregistrer"
-msgstr ""
+msgstr "Kaydet"
 
 #: index.html
 msgid "Nombre de comptes"
-msgstr ""
+msgstr "Hesap sayısı"
 
 #: index.html
 msgid "Créer"
-msgstr ""
+msgstr "Oluştur"
 
 #: index.html
 msgid "Supprimer le compte"
-msgstr ""
+msgstr "Hesabı sil"
 
 #: index.html
 msgid "Cette action est irréversible."
-msgstr ""
+msgstr "Bu işlem geri alınamaz."
 
 #: index.html
 msgid "Supprimer"
-msgstr ""
+msgstr "Sil"
 
 #: index.html
 msgid "Importer des comptes"
-msgstr ""
+msgstr "Hesapları içe aktar"
 
 #: index.html
 msgid "Remplacer et importer"
-msgstr ""
+msgstr "Değiştir ve içe aktar"
 
 #: index.html
 msgid "Déconnecter le profil"
-msgstr ""
+msgstr "Profilin oturumunu kapat"
 
 #: index.html
 msgid "Déconnecter"
-msgstr ""
+msgstr "Oturumu kapat"
 
 #: index.html
 msgid "À quoi sert chaque service, et quand l'utiliser."
-msgstr ""
+msgstr "Her hizmet ne işe yarar ve ne zaman kullanılır."
 
 #: index.html
 msgid "Fermer"
-msgstr ""
+msgstr "Kapat"
 
 #: index.html
 msgid "Sélectionnez les 9 services affichés dans l'interface. Les autres restent disponibles dans l'aide."
-msgstr ""
+msgstr "Arayüzde gösterilecek 9 hizmeti seçin. Diğerleri yardımda kullanılabilir kalır."
 
 #: index.html
 msgid "Détection des ZIP livrés par les onglets IA, reprise par profil."
-msgstr ""
+msgstr "Yapay zekâ sekmelerinin teslim ettiği ZIP'lerin algılanması, profile göre devam."
 
 #: index.html
 msgid "Arrêté"
-msgstr ""
+msgstr "Durduruldu"
 
 #: index.html
 msgid "Démarrer ou arrêter l'ordonnanceur (il ne démarre jamais tout seul)"
-msgstr ""
+msgstr "Zamanlayıcıyı başlat veya durdur (asla kendiliğinden başlamaz)"
 
 #: index.html
 msgid "Démarrer"
-msgstr ""
+msgstr "Başlat"
 
 #: index.html
 msgid "Ancien ordonnanceur désactivé"
-msgstr ""
+msgstr "Eski zamanlayıcı devre dışı"
 
 #: index.html
 msgid "La détection des ZIP, les jobs et les projets sont remplacés par les tâches programmables, en cours de développement."
-msgstr ""
+msgstr "ZIP algılama, işler ve projeler yerini geliştirme aşamasındaki zamanlanmış görevlere bırakıyor."
 
 #: index.html
 msgid "Tâches programmables"
-msgstr ""
+msgstr "Zamanlanmış görevler"
 
 #: index.html
 msgid "Nouvelle tâche"
-msgstr ""
+msgstr "Yeni görev"
 
 #: index.html
 msgid "Nom de la tâche"
-msgstr ""
+msgstr "Görev adı"
 
 #: index.html
 msgid "Ex. : rapport quotidien"
-msgstr ""
+msgstr "Örn.: günlük rapor"
 
 #: index.html
 msgid "Comptes"
-msgstr ""
+msgstr "Hesaplar"
 
 #: index.html
 msgid "Tous les comptes avec Claude"
-msgstr ""
+msgstr "Claude'lu tüm hesaplar"
 
 #: index.html
 msgid "Choisir des comptes…"
-msgstr ""
+msgstr "Hesap seç…"
 
 #: index.html
 msgid "Répartition"
-msgstr ""
+msgstr "Dağıtım"
 
 #: index.html
 msgid "Tous les comptes à chaque exécution"
-msgstr ""
+msgstr "Her çalıştırmada tüm hesaplar"
 
 #: index.html
 msgid "Un compte à la fois (rotation)"
-msgstr ""
+msgstr "Her seferinde bir hesap (sıra ile)"
 
 #: index.html
 msgid "Espacement entre comptes (secondes)"
-msgstr ""
+msgstr "Hesaplar arası aralık (saniye)"
 
 #: index.html
 msgid "Nouvelle session à chaque exécution"
-msgstr ""
+msgstr "Her çalıştırmada yeni oturum"
 
 #: index.html
 msgid "Prompt à envoyer"
-msgstr ""
+msgstr "Gönderilecek istem"
 
 #: index.html
 msgid "Ex. : Résume les actualités de la veille"
-msgstr ""
+msgstr "Örn.: Dünkü haberleri özetle"
 
 #: index.html
 msgid "Programmation"
-msgstr ""
+msgstr "Zamanlama"
 
 #: index.html
 msgid "Récurrente (tous les N …)"
-msgstr ""
+msgstr "Yinelenen (her N …)"
 
 #: index.html
 msgid "Une seule fois"
-msgstr ""
+msgstr "Yalnızca bir kez"
 
 #: index.html
 msgid "Le"
-msgstr ""
+msgstr "Tarih"
 
 #: index.html
 msgid "Tous les"
-msgstr ""
+msgstr "Her"
 
 #: index.html
 msgid "minutes"
-msgstr ""
+msgstr "dakika"
 
 #: index.html
 msgid "heures"
-msgstr ""
+msgstr "saat"
 
 #: index.html
 msgid "jours"
-msgstr ""
+msgstr "gün"
 
 #: index.html
 msgid "semaines"
-msgstr ""
+msgstr "hafta"
 
 #: index.html
 msgid "mois"
-msgstr ""
+msgstr "ay"
 
 #: index.html
 msgid "À partir du"
-msgstr ""
+msgstr "Başlangıç"
 
 #: index.html
 msgid "Tâche active"
-msgstr ""
+msgstr "Görev etkin"
 
 #: index.html
 msgid "Historique"
-msgstr ""
+msgstr "Geçmiş"
 
 #: index.html
 msgid "Jobs actifs"
-msgstr ""
+msgstr "Etkin işler"
 
 #: index.html
 msgid "En attente"
-msgstr ""
+msgstr "Beklemede"
 
 #: index.html
 msgid "Livrés aujourd'hui"
-msgstr ""
+msgstr "Bugün teslim edilen"
 
 #: index.html
 msgid "Jobs simultanés max."
-msgstr ""
+msgstr "Azami eşzamanlı iş"
 
 #: index.html
 msgid "Délai min. entre automatisations (min)"
-msgstr ""
+msgstr "Otomasyonlar arası asgari gecikme (dk)"
 
 #: index.html
 msgid "Seuil profil « le plus ancien » (h)"
-msgstr ""
+msgstr "«En eski» profil eşiği (sa)"
 
 #: index.html
 msgid "Dossiers"
-msgstr ""
+msgstr "Klasörler"
 
 #: index.html
 msgid "Téléchargements…"
-msgstr ""
+msgstr "İndirilenler…"
 
 #: index.html
 msgid "Livraison…"
-msgstr ""
+msgstr "Teslim…"
 
 #: index.html
 msgid "Téléchargements :"
-msgstr ""
+msgstr "İndirilenler:"
 
 #: index.html
 msgid "(dossier de téléchargements du système)"
-msgstr ""
+msgstr "(sistemin indirme klasörü)"
 
 #: index.html
 msgid "Livraison :"
-msgstr ""
+msgstr "Teslim:"
 
 #: index.html
 msgid "(non défini)"
-msgstr ""
+msgstr "(tanımlanmadı)"
 
 #: index.html
 msgid "Projets & tâches"
-msgstr ""
+msgstr "Projeler ve görevler"
 
 #: index.html
 msgid "Jobs"
-msgstr ""
+msgstr "İşler"
 
 #: index.html
 msgid "Journal d'activité"
-msgstr ""
+msgstr "Etkinlik günlüğü"
 
 #: index.html
 msgid "Confirmation"
-msgstr ""
+msgstr "Onay"
 
 #: index.html
 msgid "Confirmer"
-msgstr ""
+msgstr "Onayla"
 
 #: index.html
 msgid "Mesurées sur cet ordinateur et conservées 90 jours. Rien n'est envoyé."
-msgstr ""
+msgstr "Bu bilgisayarda ölçülür ve 90 gün saklanır. Hiçbir şey gönderilmez."
 
 #: index.html
 msgid "Aujourd'hui"
-msgstr ""
+msgstr "Bugün"
 
 #: index.html
 msgid "7 jours"
-msgstr ""
+msgstr "7 gün"
 
 #: index.html
 msgid "30 jours"
-msgstr ""
+msgstr "30 gün"
 
 #: index.html
 msgid "90 jours"
-msgstr ""
+msgstr "90 gün"
 
 #: index.html
 msgid "Remettre à zéro"
-msgstr ""
+msgstr "Sıfırla"
 
 #: index.html
 msgid "Exporter CSV"
-msgstr ""
+msgstr "CSV dışa aktar"
 
 #: index.html
 msgid "Exporter JSON"
-msgstr ""
+msgstr "JSON dışa aktar"
 
 #: index.html
 msgid "Préférences de l'application, sauvegardées localement."
-msgstr ""
+msgstr "Uygulama tercihleri, yerel olarak kaydedilir."
 
 #: index.html
 msgid "Taille de police de l'éditeur (px)"
-msgstr ""
+msgstr "Düzenleyici yazı tipi boyutu (px)"
 
 #: index.html
 msgid "Thème"
-msgstr ""
+msgstr "Tema"
 
 #: index.html
 msgid "Thème du bureau (défaut)"
-msgstr ""
+msgstr "Masaüstü teması (varsayılan)"
 
 #: index.html
 msgid "Clair"
-msgstr ""
+msgstr "Açık"
 
 #: index.html
 msgid "Sombre"
-msgstr ""
+msgstr "Koyu"
 
 #: index.html
 msgid "Langue"
-msgstr ""
+msgstr "Dil"
 
 #: index.html
 msgid "Langue du système (défaut)"
-msgstr ""
+msgstr "Sistem dili (varsayılan)"
 
 #: index.html
 msgid "Appliquée au prochain démarrage"
-msgstr ""
+msgstr "Bir sonraki başlatmada uygulanır"
 
 #: index.html
 msgid "Retour à la ligne (éditeur)"
-msgstr ""
+msgstr "Satır kaydırma (düzenleyici)"
 
 #: index.html
 msgid "Désactivé"
-msgstr ""
+msgstr "Kapalı"
 
 #: index.html
 msgid "Activé"
-msgstr ""
+msgstr "Açık"
 
 #: index.html
 msgid "Colonne fixe"
-msgstr ""
+msgstr "Sabit sütun"
 
 #: index.html
 msgid "Confirmer avant de fermer un onglet"
-msgstr ""
+msgstr "Sekmeyi kapatmadan önce onayla"
 
 #: index.html
 msgid "Afficher les fenêtres d'automatisation"
-msgstr ""
+msgstr "Otomasyon pencerelerini göster"
 
 #: index.html
 msgid "Restaurer les onglets ouverts au démarrage"
-msgstr ""
+msgstr "Başlangıçta açık sekmeleri geri yükle"
 
 #: index.html
 msgid "Préfixe des adresses e-mail"
-msgstr ""
+msgstr "E-posta adresi öneki"
 
 #: index.html
 msgid "docker"
-msgstr ""
+msgstr "docker"
 
 #: index.html
 msgid "Domaine des adresses e-mail"
-msgstr ""
+msgstr "E-posta adresi alan adı"
 
 #: index.html
 msgid "dmathilde.fr"
-msgstr ""
+msgstr "dmathilde.fr"
 
 #: index.html
 msgid "Adresse : préfixe + numéro + @ + domaine (ex. docker239@dmathilde.fr)"
-msgstr ""
+msgstr "Adres: önek + numara + @ + alan adı (örn. docker239@dmathilde.fr)"
 
 #: index.html
 msgid "Adresse du webmail (Roundcube)"
-msgstr ""
+msgstr "Web posta adresi (Roundcube)"
 
 #: index.html
 msgid "https://mail.dmathilde.fr"
-msgstr ""
+msgstr "https://mail.dmathilde.fr"
 
 #: assets/app.js
 msgid "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."
-msgstr ""
+msgstr "Anthropic'in sohbet asistanı. Yazma, uzun belge analizi, programlama ve birkaç adım gerektiren akıl yürütmede çok başarılıdır."
 
 #: assets/app.js
 msgid "Plutôt pour du code, des textes longs et soignés, ou des questions complexes qui demandent de la rigueur."
-msgstr ""
+msgstr "Daha çok kod, uzun ve özenli metinler ya da titizlik gerektiren karmaşık sorular için."
 
 #: assets/app.js
 msgid "L'assistant généraliste d'OpenAI, le plus connu du grand public. Il discute, rédige, résume, génère des images, analyse des fichiers et peut chercher sur le web."
-msgstr ""
+msgstr "OpenAI'ın genel amaçlı asistanı, halk arasında en bilineni. Sohbet eder, yazar, özetler, görsel üretir, dosya analiz eder ve web'de arama yapabilir."
 
 #: assets/app.js
 msgid "Le couteau suisse du quotidien : brainstorming, questions générales, petites tâches variées."
-msgstr ""
+msgstr "Günlük hayatın İsviçre çakısı: beyin fırtınası, genel sorular, çeşitli küçük işler."
 
 #: assets/app.js
 msgid "L'assistant IA de Google. Multimodal (texte, images, audio, vidéo), il s'appuie sur la recherche Google et s'intègre aux outils Google (Docs, Gmail, Drive…)."
-msgstr ""
+msgstr "Google'ın yapay zekâ asistanı. Çok kipli (metin, görsel, ses, video), Google Arama'ya dayanır ve Google araçlarıyla (Docs, Gmail, Drive…) bütünleşir."
 
 #: assets/app.js
 msgid "Plutôt pour analyser des images ou vidéos, ou si vous travaillez déjà dans l'écosystème Google."
-msgstr ""
+msgstr "Daha çok görsel veya video analizi için ya da zaten Google ekosisteminde çalışıyorsanız."
 
 #: assets/app.js
 msgid "Le chat de Z.ai, propulsé par les modèles GLM. Gratuit pour l'essentiel, avec un mode agent capable de chercher sur le web et de produire des fichiers (docx, pdf, xlsx)."
-msgstr ""
+msgstr "GLM modelleriyle çalışan Z.ai sohbeti. Büyük ölçüde ücretsiz; web'de arama yapıp dosya (docx, pdf, xlsx) üretebilen bir ajan modu var."
 
 #: assets/app.js
 msgid "Une alternative gratuite solide pour le chat et le code, quand les quotas des autres sont épuisés."
-msgstr ""
+msgstr "Diğerlerinin kotaları bittiğinde sohbet ve kod için sağlam bir ücretsiz alternatif."
 
 #: assets/app.js
 msgid "Un « moteur de réponse » : il cherche sur le web en direct, synthétise plusieurs sources et cite ses références pour chaque affirmation."
-msgstr ""
+msgstr "Bir «yanıt motoru»: web'de canlı arama yapar, birden çok kaynağı sentezler ve her iddia için kaynak gösterir."
 
 #: assets/app.js
 msgid "Plutôt pour la recherche d'informations à jour, la veille et la vérification de faits avec sources."
-msgstr ""
+msgstr "Daha çok güncel bilgi arama, gelişmeleri takip ve kaynaklı doğruluk kontrolü için."
 
 #: assets/app.js
 msgid "L'assistant de xAI (Elon Musk), connecté au réseau X (ex-Twitter). Ton direct, accès au temps réel de X, génération d'images incluse."
-msgstr ""
+msgstr "xAI'ın (Elon Musk) asistanı, X ağına (eski Twitter) bağlı. Doğrudan bir üslup, X'e gerçek zamanlı erişim, görsel üretimi dahil."
 
 #: assets/app.js
 msgid "Plutôt pour suivre l'actualité chaude et les tendances via X, ou pour un ton moins formel."
-msgstr ""
+msgstr "Daha çok X üzerinden sıcak haberleri ve trendleri takip etmek ya da daha az resmî bir üslup için."
 
 #: assets/app.js
 msgid "Une plateforme de génération d'images orientée création : illustrations, concept art, assets de jeu vidéo, avec des contrôles fins (styles, modèles, retouche)."
-msgstr ""
+msgstr "Yaratıcılığa yönelik bir görsel üretim platformu: illüstrasyonlar, konsept sanat, oyun varlıkları; ince ayarlı denetimlerle (stiller, modeller, rötuş)."
 
 #: assets/app.js
 msgid "Plutôt pour produire des visuels et illustrations de qualité avec un contrôle précis du style."
-msgstr ""
+msgstr "Daha çok stili hassas biçimde denetleyerek kaliteli görseller ve illüstrasyonlar üretmek için."
 
 #: assets/app.js
 msgid "Un générateur de musique : il compose des chansons complètes (instruments, voix, paroles) à partir d'une simple description texte, dans à peu près tous les genres."
-msgstr ""
+msgstr "Bir müzik üreticisi: basit bir metin açıklamasından neredeyse her türde eksiksiz şarkılar (enstrümanlar, vokal, söz) besteler."
 
 #: assets/app.js
 msgid "Plutôt pour créer une musique, un jingle ou une chanson à partir d'un texte ou d'une idée."
-msgstr ""
+msgstr "Daha çok bir metinden veya fikirden müzik, cıngıl ya da şarkı oluşturmak için."
 
 #: assets/app.js
 msgid "Un générateur de modèles 3D : il transforme un texte ou une image en objet 3D texturé, avec rigging/animation automatique et export vers les formats standards (GLB, FBX, STL…)."
-msgstr ""
+msgstr "Bir 3B model üreticisi: metni veya görseli dokulu bir 3B nesneye dönüştürür; otomatik rigging/animasyon ve standart biçimlere (GLB, FBX, STL…) dışa aktarma sunar."
 
 #: assets/app.js
 msgid "Plutôt pour créer des assets 3D (jeux, impression 3D, animation) sans savoir modéliser."
-msgstr ""
+msgstr "Daha çok modelleme bilmeden 3B varlıklar (oyun, 3B baskı, animasyon) oluşturmak için."
 
 #: assets/app.js
 msgid "Le Chat de Mistral AI, éditeur européen (français). Modèles open-weights performants, chat, code et analyse de documents."
-msgstr ""
+msgstr "Avrupalı (Fransız) şirket Mistral AI'ın Le Chat'i. Güçlü açık ağırlıklı modeller, sohbet, kod ve belge analizi."
 
 #: assets/app.js
 msgid "Alternative européenne solide pour le chat et le code, avec une bonne maîtrise du français."
-msgstr ""
+msgstr "Fransızcaya iyi hâkim, sohbet ve kod için sağlam bir Avrupa alternatifi."
 
 #: assets/app.js
 msgid "DeepSeek : assistant IA chinois spécialisé en raisonnement et programmation, particulièrement performant en Python."
-msgstr ""
+msgstr "DeepSeek: akıl yürütme ve programlamada uzmanlaşmış, özellikle Python'da güçlü bir Çin yapay zekâ asistanı."
 
 #: assets/app.js
 msgid "Pour du code Python, du raisonnement étape par étape, ou une alternative gratuite à ChatGPT."
-msgstr ""
+msgstr "Python kodu, adım adım akıl yürütme ya da ChatGPT'ye ücretsiz bir alternatif için."
 
 #: assets/app.js
 msgid "GitHub Copilot : assistant IA intégré dans VS Code et GitHub. Autocomplétion, chat, génération de tests, explication de code."
-msgstr ""
+msgstr "GitHub Copilot: VS Code ve GitHub'a entegre yapay zekâ asistanı. Otomatik tamamlama, sohbet, test üretimi, kod açıklama."
 
 #: assets/app.js
 msgid "Pour programmer plus vite dans VS Code ou sur GitHub, avec un modèle IA qui connaît votre codebase."
-msgstr ""
+msgstr "Kod tabanınızı tanıyan bir yapay zekâ modeliyle VS Code'da veya GitHub'da daha hızlı programlamak için."
 
 #: assets/app.js
 msgid "Elicit : assistant de recherche scientifique. Trouve des articles, extrait des données, synthétise des études."
-msgstr ""
+msgstr "Elicit: bilimsel araştırma asistanı. Makale bulur, veri çıkarır, çalışmaları sentezler."
 
 #: assets/app.js
 msgid "Pour la recherche académique, la revue de littérature et l'extraction de données d'articles scientifiques."
-msgstr ""
+msgstr "Akademik araştırma, literatür taraması ve bilimsel makalelerden veri çıkarma için."
 
 #: assets/app.js
 msgid "NotebookLM de Google : interagissez avec vos propres documents (PDF, texte, audio). Résumés, questions, génération de notes."
-msgstr ""
+msgstr "Google'ın NotebookLM'i: kendi belgelerinizle (PDF, metin, ses) etkileşim kurun. Özetler, sorular, not üretimi."
 
 #: assets/app.js
 msgid "Pour interroger vos documents personnels ou professionnels avec une IA qui cite ses sources."
-msgstr ""
+msgstr "Kaynaklarını gösteren bir yapay zekâyla kişisel veya iş belgelerinizi sorgulamak için."
 
 #: assets/app.js
 msgid "Wolfram Alpha : moteur de calcul symbolique. Mathématiques, physique, chimie, données factuelles, conversions."
-msgstr ""
+msgstr "Wolfram Alpha: sembolik hesaplama motoru. Matematik, fizik, kimya, olgusal veriler, dönüşümler."
 
 #: assets/app.js
 msgid "Pour des calculs exacts (mathématiques symboliques), des données chiffrées ou des conversions d'unités."
-msgstr ""
+msgstr "Kesin hesaplamalar (sembolik matematik), sayısal veriler veya birim dönüşümleri için."
 
 #: assets/app.js
 msgid "DeepL : traduction automatique de haute qualité, plus naturelle que Google Traduction. Texte et documents entiers."
-msgstr ""
+msgstr "DeepL: Google Çeviri'den daha doğal, yüksek kaliteli makine çevirisi. Metin ve belgelerin tamamı."
 
 #: assets/app.js
 msgid "Pour traduire du texte ou des documents avec un rendu naturel et cohérent."
-msgstr ""
+msgstr "Metin veya belgeleri doğal ve tutarlı bir sonuçla çevirmek için."
 
 #: assets/app.js
 msgid "Ideogram : génération d'images orientée design. Logos, typographies, affiches, avec un excellent rendu du texte."
-msgstr ""
+msgstr "Ideogram: tasarım odaklı görsel üretimi. Logolar, tipografi, afişler; mükemmel metin işleme ile."
 
 #: assets/app.js
 msgid "Pour créer des visuels avec du texte lisible (logos, affiches, bannières) ou du design graphique."
-msgstr ""
+msgstr "Okunaklı metin içeren görseller (logo, afiş, banner) veya grafik tasarım oluşturmak için."
 
 #: assets/app.js
 msgid "Kling : générateur de vidéos courtes à partir de texte ou d'images. Animations réalistes, crédits gratuits disponibles."
-msgstr ""
+msgstr "Kling: metin veya görsellerden kısa video üreticisi. Gerçekçi animasyonlar, ücretsiz krediler mevcut."
 
 #: assets/app.js
 msgid "Pour créer des clips vidéo animés à partir d'une description ou d'une image fixe."
-msgstr ""
+msgstr "Bir açıklamadan veya durağan bir görselden animasyonlu video klipler oluşturmak için."
 
 #: assets/app.js
 msgid "Runway : suite d'outils IA pour la vidéo. Génération, édition, effets spéciaux, inpainting vidéo."
-msgstr ""
+msgstr "Runway: video için yapay zekâ araçları paketi. Üretim, düzenleme, özel efektler, video inpainting."
 
 #: assets/app.js
 msgid "Pour le montage et la création vidéo avancée avec des outils IA intégrés."
-msgstr ""
+msgstr "Entegre yapay zekâ araçlarıyla gelişmiş video kurgu ve üretimi için."
 
 #: assets/app.js
 msgid "Pika : générateur de vidéos courtes et créatives. Animation d'images, effets, transformation de styles."
-msgstr ""
+msgstr "Pika: kısa ve yaratıcı video üreticisi. Görsel animasyonu, efektler, stil dönüşümü."
 
 #: assets/app.js
 msgid "Pour animer des images ou créer des vidéos courtes originales avec des effets IA."
-msgstr ""
+msgstr "Görselleri canlandırmak veya yapay zekâ efektleriyle özgün kısa videolar oluşturmak için."
 
 #: assets/app.js
 msgid "Qwen : assistant IA d'Alibaba. Multimodal (texte, images, code), open-source, disponible en plusieurs tailles."
-msgstr ""
+msgstr "Qwen: Alibaba'nın yapay zekâ asistanı. Çok kipli (metin, görsel, kod), açık kaynak, birkaç boyutta mevcut."
 
 #: assets/app.js
 msgid "Alternative gratuite pour le chat, le code et l'analyse d'images, avec un bon support multilingue."
-msgstr ""
+msgstr "İyi çok dilli desteğe sahip, sohbet, kod ve görsel analizi için ücretsiz alternatif."
 
 #: assets/app.js
 msgid "Impossible d'enregistrer les comptes (stockage plein ?)"
-msgstr ""
+msgstr "Hesaplar kaydedilemiyor (depolama dolu mu?)"
 
 #: assets/app.js
 msgid "Ctrl+S pour sauvegarder."
-msgstr ""
+msgstr "Kaydetmek için Ctrl+S."
 
 #: assets/app.js
 msgid "Sélectionnez un fichier pour l'éditer ici."
-msgstr ""
+msgstr "Burada düzenlemek için bir dosya seçin."
 
 #: assets/app.js
 msgid "Éditeur simplifié (Monaco indisponible) — Ctrl+S pour sauvegarder"
-msgstr ""
+msgstr "Basit düzenleyici (Monaco kullanılamıyor) — kaydetmek için Ctrl+S"
 
 #: assets/app.js
 msgid "Fichier enregistré !"
-msgstr ""
+msgstr "Dosya kaydedildi"
 
 #: assets/app.js
 msgid "Erreur d'enregistrement."
-msgstr ""
+msgstr "Kaydetme hatası."
 
 #: assets/app.js
 msgid "Aucun compte pour l'instant."
-msgstr ""
+msgstr "Henüz hesap yok."
 
 #: assets/app.js
 msgid "Créer mon premier compte"
-msgstr ""
+msgstr "İlk hesabımı oluştur"
 
 #: assets/app.js
 msgid "Cliquer pour copier l'e-mail"
-msgstr ""
+msgstr "E-postayı kopyalamak için tıklayın"
 
 #: assets/app.js
 msgid "Ouvrir le webmail (adresse copiée)"
-msgstr ""
+msgstr "Web postayı aç (adres kopyalandı)"
 
 #: assets/app.js
 msgid "Modifier le compte"
-msgstr ""
+msgstr "Hesabı düzenle"
 
 #: assets/app.js
 msgid "{available} service(s) hors cooldown sur {total}"
-msgstr ""
+msgstr "Bekleme süresi dışındaki hizmetler: {available}/{total}"
 
 #: assets/app.js
 msgid "Replier / déplier"
-msgstr ""
+msgstr "Daralt / genişlet"
 
 #: assets/app.js
 msgid "{service} — {account} déjà ouvert"
-msgstr ""
+msgstr "{service} — {account} zaten açık"
 
 #: assets/app.js
 msgid "Recharger l'onglet"
-msgstr ""
+msgstr "Sekmeyi yeniden yükle"
 
 #: assets/app.js
 msgid "Revenir à l'accueil de {service}"
-msgstr ""
+msgstr "{service} ana sayfasına dön"
 
 #: assets/app.js
 msgid "Se déconnecter du profil « {profile} »"
-msgstr ""
+msgstr "«{profile}» profilinin oturumunu kapat"
 
 #: assets/app.js
 msgid "{service} ouvert avec {account}"
-msgstr ""
+msgstr "{service}, {account} ile açıldı"
 
 #: assets/app.js
 msgid "Fermer l'onglet"
-msgstr ""
+msgstr "Sekmeyi kapat"
 
 #: assets/app.js
 msgid "Fermer l'onglet « {tab} » ? La session web sera libérée."
-msgstr ""
+msgstr "«{tab}» sekmesi kapatılsın mı? Web oturumu serbest bırakılacak."
 
 #: assets/app.js
 msgid "Onglet fermé (mémoire libérée)"
-msgstr ""
+msgstr "Sekme kapatıldı (bellek boşaltıldı)"
 
 #: assets/app.js
 msgid "Retirer l'étoile"
-msgstr ""
+msgstr "Yıldızı kaldır"
 
 #: assets/app.js
 msgid "Étoiler cet onglet"
-msgstr ""
+msgstr "Bu sekmeyi yıldızla"
 
 #: assets/app.js
 msgid "Onglet étoilé"
-msgstr ""
+msgstr "Sekme yıldızlandı"
 
 #: assets/app.js
 msgid "Étoile retirée"
-msgstr ""
+msgstr "Yıldız kaldırıldı"
 
 #: assets/app.js
 msgid "Échec de la déconnexion du profil"
-msgstr ""
+msgstr "Profilin oturumu kapatılamadı"
 
 #: assets/app.js
 msgid "Profil « {profile} » déconnecté — session effacée"
-msgstr ""
+msgstr "«{profile}» profilinin oturumu kapatıldı — oturum silindi"
 
 #: assets/app.js
 msgid "Aucun fichier trouvé."
-msgstr ""
+msgstr "Dosya bulunamadı."
 
 #: assets/app.js
 msgid "Fichier trop volumineux pour l'éditeur : {size} Mo (limite : 20 Mo)."
-msgstr ""
+msgstr "Dosya düzenleyici için çok büyük: {size} MB (sınır: 20 MB)."
 
 #: assets/app.js
 msgid "Masquer le mot de passe"
-msgstr ""
+msgstr "Parolayı gizle"
 
 #: assets/app.js
 msgid "Mot de passe non enregistré : le trousseau du système est indisponible"
-msgstr ""
+msgstr "Parola kaydedilmedi: sistem anahtarlığı kullanılamıyor"
 
 #: assets/app.js
 msgid "Mot de passe non enregistré"
-msgstr ""
+msgstr "Parola kaydedilmedi"
 
 #: assets/app.js
 msgid "C'est quoi ?"
-msgstr ""
+msgstr "Bu nedir?"
 
 #: assets/app.js
 msgid "Quand l'utiliser ?"
-msgstr ""
+msgstr "Ne zaman kullanılır?"
 
 #: assets/app.js
 msgid "Description à venir."
-msgstr ""
+msgstr "Açıklama yakında."
 
 #: assets/app.js
 msgid "Maximum {max} services à portée de main"
-msgstr ""
+msgstr "Elinizin altında en fazla {max} hizmet"
 
 #: assets/app.js
 msgid "Sélectionnez au moins 1 service"
-msgstr ""
+msgstr "En az 1 hizmet seçin"
 
 #: assets/app.js
 msgid "Services mis à jour ({count}/{max})"
-msgstr ""
+msgstr "Hizmetler güncellendi ({count}/{max})"
 
 #: assets/app.js
 msgid "Supprimer « {name} » ({email}) ? La session restera stockée sur le disque, mais le compte disparaîtra de la liste."
-msgstr ""
+msgstr "«{name}» ({email}) silinsin mi? Oturum diskte kalır, ancak hesap listeden kaybolur."
 
 #: assets/app.js
 msgid "Échec de l'export (écriture impossible)"
-msgstr ""
+msgstr "Dışa aktarma başarısız (yazılamıyor)"
 
 #: assets/app.js
 msgid "{count} compte(s) exporté(s)"
-msgstr ""
+msgstr "{count} hesap dışa aktarıldı"
 
 #: assets/app.js
 msgid "Export impossible"
-msgstr ""
+msgstr "Dışa aktarılamıyor"
 
 #: assets/app.js
 msgid "Échec de la lecture du fichier"
-msgstr ""
+msgstr "Dosya okunamadı"
 
 #: assets/app.js
 msgid "Fichier JSON invalide"
-msgstr ""
+msgstr "Geçersiz JSON dosyası"
 
 #: assets/app.js
 msgid "Format invalide : un tableau de comptes est attendu."
-msgstr ""
+msgstr "Geçersiz biçim: bir hesap dizisi bekleniyor."
 
 #: assets/app.js
 msgid "Le fichier contient {count} compte(s). L'import REMPLACE entièrement la liste actuelle ({current} compte(s)) — cette action écrase les comptes existants, pas leurs sessions (cookies) déjà enregistrées sur le disque. Continuer ?"
-msgstr ""
+msgstr "Dosyada {count} hesap var. İçe aktarma mevcut listenin TAMAMINI ({current} hesap) DEĞİŞTİRİR — bu işlem mevcut hesapların üzerine yazar, ancak diskte kayıtlı oturumlarına (çerezler) dokunmaz. Devam edilsin mi?"
 
 #: assets/app.js
 msgid "Import impossible"
-msgstr ""
+msgstr "İçe aktarılamıyor"
 
 #: assets/app.js
 msgid "{count} compte(s) importé(s)"
-msgstr ""
+msgstr "{count} hesap içe aktarıldı"
 
 #: assets/app.js
 msgid "Échec de l'import : {error}"
-msgstr ""
+msgstr "İçe aktarma başarısız: {error}"
 
 #: assets/app.js
 msgid "Compte supprimé"
-msgstr ""
+msgstr "Hesap silindi"
 
 #: assets/app.js
 msgid "Remplissez tous les champs"
-msgstr ""
+msgstr "Tüm alanları doldurun"
 
 #: assets/app.js
 msgid "Ce profil est déjà utilisé par un autre compte (les sessions seraient partagées)."
-msgstr ""
+msgstr "Bu profil zaten başka bir hesap tarafından kullanılıyor (oturumlar paylaşılırdı)."
 
 #: assets/app.js
 msgid "Compte mis à jour"
-msgstr ""
+msgstr "Hesap güncellendi"
 
 #: assets/app.js
 msgid "Compte ajouté"
-msgstr ""
+msgstr "Hesap eklendi"
 
 #: assets/app.js
 msgid "Renseignez d'abord le domaine des adresses e-mail dans les réglages"
-msgstr ""
+msgstr "Önce ayarlarda e-posta adresi alan adını girin"
 
 #: assets/app.js
 msgid "Premier compte : {nom}, {email}. Un mot de passe de messagerie aléatoire est généré pour chacun."
-msgstr ""
+msgstr "İlk hesap: {nom}, {email}. Her biri için rastgele bir e-posta parolası oluşturulur."
 
 #: assets/app.js
 msgid "Nombre de comptes : de 1 à {max}"
-msgstr ""
+msgstr "Hesap sayısı: 1 ile {max} arası"
 
 #: assets/app.js
 msgid "{n} compte(s) créé(s), {m} mot(s) de passe enregistré(s)"
-msgstr ""
+msgstr "{n} hesap oluşturuldu, {m} parola kaydedildi"
 
 #: assets/app.js
 msgid "Adresse du webmail non configurée dans les réglages"
-msgstr ""
+msgstr "Web posta adresi ayarlarda yapılandırılmamış"
 
 #: assets/app.js
 msgid "Ouverture du webmail impossible"
-msgstr ""
+msgstr "Web posta açılamıyor"
 
 #: assets/app.js
 msgid "Copie impossible dans le presse-papiers"
-msgstr ""
+msgstr "Panoya kopyalanamıyor"
 
 #: assets/app.js
 msgid "E-mail copié : {email}"
-msgstr ""
+msgstr "E-posta kopyalandı: {email}"
 
 #: assets/app.js
 msgid "Cooldown terminé"
-msgstr ""
+msgstr "Bekleme süresi bitti"
 
 #: assets/app.js
 msgid "{account} — {service} est de nouveau disponible."
-msgstr ""
+msgstr "{account} — {service} yeniden kullanılabilir."
 
 #: assets/app.js
 msgid "{account} — {service} : cooldown terminé"
-msgstr ""
+msgstr "{account} — {service}: bekleme süresi bitti"
 
 #: assets/app.js
 msgid "Téléchargement…"
-msgstr ""
+msgstr "İndiriliyor…"
 
 #: assets/app.js
 msgid "Téléchargé — à traiter"
-msgstr ""
+msgstr "İndirildi — işlenecek"
 
 #: assets/app.js
 msgid "Aucun profil disponible"
-msgstr ""
+msgstr "Kullanılabilir profil yok"
 
 #: assets/app.js
 msgid "Projet en cours d'analyse"
-msgstr ""
+msgstr "Proje analiz ediliyor"
 
 #: assets/app.js
 msgid "En cours"
-msgstr ""
+msgstr "Sürüyor"
 
 #: assets/app.js
 msgid "En pause"
-msgstr ""
+msgstr "Duraklatıldı"
 
 #: assets/app.js
 msgid "Reprise programmée"
-msgstr ""
+msgstr "Devam zamanlandı"
 
 #: assets/app.js
 msgid "Erreur"
-msgstr ""
+msgstr "Hata"
 
 #: assets/app.js
 msgid "Livré"
-msgstr ""
+msgstr "Teslim edildi"
 
 #: assets/app.js
 msgid "tous les {n} minutes"
-msgstr ""
+msgstr "her {n} dakikada bir"
 
 #: assets/app.js
 msgid "tous les {n} jours"
-msgstr ""
+msgstr "her {n} günde bir"
 
 #: assets/app.js
 msgid "toutes les {n} semaines"
-msgstr ""
+msgstr "her {n} haftada bir"
 
 #: assets/app.js
 msgid "tous les {n} mois"
-msgstr ""
+msgstr "her {n} ayda bir"
 
 #: assets/app.js
 msgid "toutes les {n} heures"
-msgstr ""
+msgstr "her {n} saatte bir"
 
 #: assets/app.js
 msgid "Le {date}"
-msgstr ""
+msgstr "{date}"
 
 #: assets/app.js
 msgid "à partir du {date}"
-msgstr ""
+msgstr "{date} tarihinden itibaren"
 
 #: assets/app.js
 msgid "programmation inconnue"
-msgstr ""
+msgstr "bilinmeyen zamanlama"
 
 #: assets/app.js
 msgid "{n} compte(s) sélectionné(s)"
-msgstr ""
+msgstr "{n} hesap seçildi"
 
 #: assets/app.js
 msgid "tous les comptes avec Claude"
-msgstr ""
+msgstr "Claude'lu tüm hesaplar"
 
 #: assets/app.js
 msgid "rotation (un compte à la fois)"
-msgstr ""
+msgstr "sıra ile (her seferinde bir hesap)"
 
 #: assets/app.js
 msgid "tous les comptes, espacement de {n} s"
-msgstr ""
+msgstr "tüm hesaplar, {n} sn aralıkla"
 
 #: assets/app.js
 msgid "tous les comptes en même temps"
-msgstr ""
+msgstr "tüm hesaplar aynı anda"
 
 #: assets/app.js
 msgid "lancée"
-msgstr ""
+msgstr "başlatıldı"
 
 #: assets/app.js
 msgid "envoyée"
-msgstr ""
+msgstr "gönderildi"
 
 #: assets/app.js
 msgid "quota épuisé"
-msgstr ""
+msgstr "kota doldu"
 
 #: assets/app.js
 msgid "heures calmes"
-msgstr ""
+msgstr "sessiz saatler"
 
 #: assets/app.js
 msgid "non connecté"
-msgstr ""
+msgstr "oturum açılmamış"
 
 #: assets/app.js
 msgid "aucun compte éligible"
-msgstr ""
+msgstr "uygun hesap yok"
 
 #: assets/app.js
 msgid "erreur"
-msgstr ""
+msgstr "hata"
 
 #: assets/app.js
 msgid "Aucune tâche programmée pour l'instant — créez-en une avec « Nouvelle tâche »."
-msgstr ""
+msgstr "Henüz zamanlanmış görev yok — «Yeni görev» ile bir tane oluşturun."
 
 #: assets/app.js
 msgid "Plus aucune exécution programmée"
-msgstr ""
+msgstr "Zamanlanmış başka çalıştırma yok"
 
 #: assets/app.js
 msgid "Prochaine exécution : {date}"
-msgstr ""
+msgstr "Sonraki çalıştırma: {date}"
 
 #: assets/app.js
 msgid "inactive"
-msgstr ""
+msgstr "etkin değil"
 
 #: assets/app.js
 msgid "Activer"
-msgstr ""
+msgstr "Etkinleştir"
 
 #: assets/app.js
 msgid "Désactiver"
-msgstr ""
+msgstr "Devre dışı bırak"
 
 #: assets/app.js
 msgid "Exécuter maintenant"
-msgstr ""
+msgstr "Şimdi çalıştır"
 
 #: assets/app.js
 msgid "Modifier"
-msgstr ""
+msgstr "Düzenle"
 
 #: assets/app.js
 msgid "Aucun événement pour l'instant."
-msgstr ""
+msgstr "Henüz olay yok."
 
 #: assets/app.js
 msgid "Aucun compte avec le service Claude — la tâche ne pourra pas s'exécuter."
-msgstr ""
+msgstr "Claude hizmetine sahip hesap yok — görev çalıştırılamaz."
 
 #: assets/app.js
 msgid "sans le service Claude"
-msgstr ""
+msgstr "Claude hizmeti olmadan"
 
 #: assets/app.js
 msgid "compte supprimé"
-msgstr ""
+msgstr "silinmiş hesap"
 
 #: assets/app.js
 msgid "Le nom est obligatoire."
-msgstr ""
+msgstr "Ad zorunludur."
 
 #: assets/app.js
 msgid "Le prompt est obligatoire."
-msgstr ""
+msgstr "İstem zorunludur."
 
 #: assets/app.js
 msgid "Comptes : choix invalide."
-msgstr ""
+msgstr "Hesaplar: geçersiz seçim."
 
 #: assets/app.js
 msgid "Sélectionnez au moins un compte."
-msgstr ""
+msgstr "En az bir hesap seçin."
 
 #: assets/app.js
 msgid "Répartition : choix invalide."
-msgstr ""
+msgstr "Dağıtım: geçersiz seçim."
 
 #: assets/app.js
 msgid "Espacement invalide : entre 0 et 86400 secondes."
-msgstr ""
+msgstr "Geçersiz aralık: 0 ile 86400 saniye arası."
 
 #: assets/app.js
 msgid "Programmation : choix invalide."
-msgstr ""
+msgstr "Zamanlama: geçersiz seçim."
 
 #: assets/app.js
 msgid "Date « Le » invalide."
-msgstr ""
+msgstr "Geçersiz «Tarih»."
 
 #: assets/app.js
 msgid "Date « À partir du » invalide."
-msgstr ""
+msgstr "Geçersiz «Başlangıç» tarihi."
 
 #: assets/app.js
 msgid "« Tous les » doit être un entier supérieur à 0."
-msgstr ""
+msgstr "«Her» 0'dan büyük bir tam sayı olmalıdır."
 
 #: assets/app.js
 msgid "Unité inconnue."
-msgstr ""
+msgstr "Bilinmeyen birim."
 
 #: assets/app.js
 msgid "Enregistrement impossible : {erreur}"
-msgstr ""
+msgstr "Kaydedilemiyor: {erreur}"
 
 #: assets/app.js
 msgid "Le moteur de tâches n'est pas démarré."
-msgstr ""
+msgstr "Görev motoru başlatılmadı."
 
 #: assets/app.js
 msgid "Exécution demandée — le résultat apparaîtra dans l'historique."
-msgstr ""
+msgstr "Çalıştırma istendi — sonuç geçmişte görünecek."
 
 #: assets/app.js
 msgid "Une exécution est déjà en cours — réessayez dans un instant."
-msgstr ""
+msgstr "Bir çalıştırma zaten sürüyor — biraz sonra yeniden deneyin."
 
 #: assets/app.js
 msgid "Le service des tâches a refusé l'exécution."
-msgstr ""
+msgstr "Görev hizmeti çalıştırmayı reddetti."
 
 #: assets/app.js
 msgid "Tâche introuvable."
-msgstr ""
+msgstr "Görev bulunamadı."
 
 #: assets/app.js
 msgid "Exécution impossible : {erreur}"
-msgstr ""
+msgstr "Çalıştırılamıyor: {erreur}"
 
 #: assets/app.js
 msgid "Action impossible : {erreur}"
-msgstr ""
+msgstr "İşlem yapılamıyor: {erreur}"
 
 #: assets/app.js
 msgid "Supprimer la tâche"
-msgstr ""
+msgstr "Görevi sil"
 
 #: assets/app.js
 msgid "Supprimer « {nom} » ? L'historique est conservé."
-msgstr ""
+msgstr "«{nom}» silinsin mi? Geçmiş korunur."
 
 #: assets/app.js
 msgid "Suppression impossible : {erreur}"
-msgstr ""
+msgstr "Silinemiyor: {erreur}"
 
 #: assets/app.js
 msgid "< 1 min"
-msgstr ""
+msgstr "< 1 dk"
 
 #: assets/app.js
 msgid "{h} h {m} min"
-msgstr ""
+msgstr "{h} sa {m} dk"
 
 #: assets/app.js
 msgid "{m} min"
-msgstr ""
+msgstr "{m} dk"
 
 #: assets/app.js
 msgid "Temps actif"
-msgstr ""
+msgstr "Etkin süre"
 
 #: assets/app.js
 msgid "Durée ouverte"
-msgstr ""
+msgstr "Açık kalma süresi"
 
 #: assets/app.js
 msgid "Sessions"
-msgstr ""
+msgstr "Oturumlar"
 
 #: assets/app.js
 msgid "Dernière utilisation"
-msgstr ""
+msgstr "Son kullanım"
 
 #: assets/app.js
 msgid "Part"
-msgstr ""
+msgstr "Pay"
 
 #: assets/app.js
 msgid "Dim"
-msgstr ""
+msgstr "Paz"
 
 #: assets/app.js
 msgid "Jeu"
-msgstr ""
+msgstr "Per"
 
 #: assets/app.js
 msgid "Lun"
-msgstr ""
+msgstr "Pzt"
 
 #: assets/app.js
 msgid "Mar"
-msgstr ""
+msgstr "Sal"
 
 #: assets/app.js
 msgid "Mer"
-msgstr ""
+msgstr "Çar"
 
 #: assets/app.js
 msgid "Sam"
-msgstr ""
+msgstr "Cmt"
 
 #: assets/app.js
 msgid "Ven"
-msgstr ""
+msgstr "Cum"
 
 #: assets/app.js
 msgid "{jour} {h} h : {duree}"
-msgstr ""
+msgstr "{jour} {h}:00: {duree}"
 
 #: assets/app.js
 msgid "Heures de pointe (temps actif)"
-msgstr ""
+msgstr "Yoğun saatler (etkin süre)"
 
 #: assets/app.js
 msgid "dernière utilisation : {date}"
-msgstr ""
+msgstr "son kullanım: {date}"
 
 #: assets/app.js
 msgid "jamais utilisé depuis le début de la mesure"
-msgstr ""
+msgstr "ölçüm başladığından beri hiç kullanılmadı"
 
 #: assets/app.js
 msgid "Comptes inutilisés sur la période"
-msgstr ""
+msgstr "Dönem içinde kullanılmayan hesaplar"
 
 #: assets/app.js
 msgid "fin {h}"
-msgstr ""
+msgstr "bitiş {h}"
 
 #: assets/app.js
 msgid "Tâches programmables par compte"
-msgstr ""
+msgstr "Hesaba göre zamanlanmış görevler"
 
 #: assets/app.js
 msgid "Compte"
-msgstr ""
+msgstr "Hesap"
 
 #: assets/app.js
 msgid "Envoyées"
-msgstr ""
+msgstr "Gönderilen"
 
 #: assets/app.js
 msgid "Erreurs"
-msgstr ""
+msgstr "Hatalar"
 
 #: assets/app.js
 msgid "Quotas"
-msgstr ""
+msgstr "Kotalar"
 
 #: assets/app.js
 msgid "Dernier quota"
-msgstr ""
+msgstr "Son kota"
 
 #: assets/app.js
 msgid "Exécutions"
-msgstr ""
+msgstr "Çalıştırmalar"
 
 #: assets/app.js
 msgid "D'après l'historique des tâches (200 dernières exécutions)."
-msgstr ""
+msgstr "Görev geçmişine göre (son 200 çalıştırma)."
 
 #: assets/app.js
 msgid "{date} : {duree} actif"
-msgstr ""
+msgstr "{date}: {duree} etkin"
 
 #: assets/app.js
 msgid "{h} h"
-msgstr ""
+msgstr "{h}:00"
 
 #: assets/app.js
 msgid "Évolution du temps actif"
-msgstr ""
+msgstr "Etkin sürenin gelişimi"
 
 #: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
-msgstr ""
+msgstr "Bu dönemde oturum yok. Ölçüm bu sürümün kurulumuyla başlar."
 
 #: assets/app.js
 msgid "1 jour"
-msgstr ""
+msgstr "1 gün"
 
 #: assets/app.js
 msgid "{n} jours"
-msgstr ""
+msgstr "{n} gün"
 
 #: assets/app.js
 msgid "Série en cours (record : {n})"
-msgstr ""
+msgstr "Süren seri (rekor: {n})"
 
 #: assets/app.js
 msgid "Par compte"
-msgstr ""
+msgstr "Hesaba göre"
 
 #: assets/app.js
 msgid "Par service"
-msgstr ""
+msgstr "Hizmete göre"
 
 #: assets/app.js
 msgid "Service"
-msgstr ""
+msgstr "Hizmet"
 
 #: assets/app.js
 msgid "Statistiques illisibles : {error}"
-msgstr ""
+msgstr "İstatistikler okunamıyor: {error}"
 
 #: assets/app.js
 msgid "Export des statistiques impossible : {error}"
-msgstr ""
+msgstr "İstatistikler dışa aktarılamadı: {error}"
 
 #: assets/app.js
 msgid "Statistiques exportées"
-msgstr ""
+msgstr "İstatistikler dışa aktarıldı"
 
 #: assets/app.js
 msgid "Remettre les statistiques à zéro ?"
-msgstr ""
+msgstr "İstatistikler sıfırlansın mı?"
 
 #: assets/app.js
 msgid "Les sessions, temps de réponse et quotas enregistrés sur cet ordinateur seront effacés. L'historique des tâches programmables n'est pas touché. Pensez à exporter avant si besoin."
-msgstr ""
+msgstr "Bu bilgisayarda kayıtlı oturumlar, yanıt süreleri ve kotalar silinecek. Zamanlanmış görevlerin geçmişi etkilenmez. Gerekirse önce dışa aktarın."
 
 #: assets/app.js
 msgid "Remise à zéro impossible : {error}"
-msgstr ""
+msgstr "Sıfırlanamadı: {error}"
 
 #: assets/app.js
 msgid "Statistiques remises à zéro"
-msgstr ""
+msgstr "İstatistikler sıfırlandı"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"
-msgstr ""
+msgstr "Ayarlar yüklenemiyor"
 
 #: assets/app.js
 msgid "Réglages enregistrés — la langue sera appliquée au prochain démarrage"
-msgstr ""
+msgstr "Ayarlar kaydedildi — dil bir sonraki başlatmada uygulanacak"
 
 #: assets/app.js
 msgid "Réglages enregistrés"
-msgstr ""
+msgstr "Ayarlar kaydedildi"
 
 #: assets/app.js
 msgid "Erreur lors de la sauvegarde"
-msgstr ""
+msgstr "Kaydetme hatası"
 
 #: assets/app.js
 msgid "Erreur lors de la sauvegarde des réglages"
-msgstr ""
+msgstr "Ayarlar kaydedilirken hata"
 
 #: assets/app.js
 msgid "Tâches programmables : envoyez un prompt à Claude à date fixe ou périodiquement."
-msgstr ""
+msgstr "Zamanlanmış görevler: Claude'a belirli bir tarihte veya düzenli aralıklarla istem gönderin."
 
 #: assets/app.js
 msgid "Arrêter"
-msgstr ""
+msgstr "Durdur"
 
 #: assets/app.js
 msgid "En marche"
-msgstr ""
+msgstr "Çalışıyor"
 
 #: assets/app.js
 msgid "Aucun job pour l'instant — un ZIP téléchargé depuis un onglet IA (ordonnanceur activé) en créera un automatiquement."
-msgstr ""
+msgstr "Henüz iş yok — bir yapay zekâ sekmesinden indirilen ZIP (zamanlayıcı etkinken) otomatik olarak bir iş oluşturur."
 
 #: assets/app.js
 msgid "Continuer le projet"
-msgstr ""
+msgstr "Projeye devam et"
 
 #: assets/app.js
 msgid "Marquer livré"
-msgstr ""
+msgstr "Teslim edildi olarak işaretle"
 
 #: assets/app.js
 msgid "Pause"
-msgstr ""
+msgstr "Duraklat"
 
 #: assets/app.js
 msgid "Reprendre"
-msgstr ""
+msgstr "Sürdür"
 
 #: assets/app.js
 msgid "Relancer"
-msgstr ""
+msgstr "Yeniden çalıştır"
 
 #: assets/app.js
 msgid "Ouvrir le ZIP"
-msgstr ""
+msgstr "ZIP'i aç"
 
 #: assets/app.js
 msgid "Analyser la complétude"
-msgstr ""
+msgstr "Bütünlüğü analiz et"
 
 #: assets/app.js
 msgid "service inconnu"
-msgstr ""
+msgstr "bilinmeyen hizmet"
 
 #: assets/app.js
 msgid "tentative {n}"
-msgstr ""
+msgstr "deneme {n}"
 
 #: assets/app.js
 msgid "Aucune activité enregistrée."
-msgstr ""
+msgstr "Kayıtlı etkinlik yok."
 
 #: assets/app.js
 msgid "Impossible de modifier l'état de l'ordonnanceur"
-msgstr ""
+msgstr "Zamanlayıcının durumu değiştirilemiyor"
 
 #: assets/app.js
 msgid "Configuration non enregistrée"
-msgstr ""
+msgstr "Yapılandırma kaydedilmedi"
 
 #: assets/app.js
 msgid "Sélection du dossier impossible"
-msgstr ""
+msgstr "Klasör seçilemiyor"
 
 #: assets/app.js
 msgid "Projet terminé : {done}/{total} tâches faites, 0 restante."
-msgstr ""
+msgstr "Proje tamamlandı: {done}/{total} görev yapıldı, 0 kaldı."
 
 #: assets/app.js
 msgid "{pending} à faire, {inProgress} en cours, {done} faite(s) sur {total} au total."
-msgstr ""
+msgstr "{pending} yapılacak, {inProgress} sürüyor, toplam {total} görevin {done} tanesi yapıldı."
 
 #: assets/app.js
 msgid "Analyse impossible : {error}"
-msgstr ""
+msgstr "Analiz edilemiyor: {error}"
 
 #: assets/app.js
 msgid "Action impossible : {error}"
-msgstr ""
+msgstr "İşlem yapılamıyor: {error}"
 
 #: assets/app.js
 msgid "Aucun projet pour l'instant."
-msgstr ""
+msgstr "Henüz proje yok."
 
 #: assets/app.js
 msgid "Créer un projet"
-msgstr ""
+msgstr "Proje oluştur"
 
 #: assets/app.js
 msgid "Assignée"
-msgstr ""
+msgstr "Atandı"
 
 #: assets/app.js
 msgid "Terminée"
-msgstr ""
+msgstr "Tamamlandı"
 
 #: assets/app.js
 msgid "Échouée"
-msgstr ""
+msgstr "Başarısız"
 
 #: assets/app.js
 msgid "Lancer"
-msgstr ""
+msgstr "Başlat"
 
 #: assets/app.js
 msgid "Résultat"
-msgstr ""
+msgstr "Sonuç"
 
 #: assets/app.js
 msgid "Aucune tâche."
-msgstr ""
+msgstr "Görev yok."
 
 #: assets/app.js
 msgid "Tous les comptes"
-msgstr ""
+msgstr "Tüm hesaplar"
 
 #: assets/app.js
 msgid "Comptes autorisés :"
-msgstr ""
+msgstr "İzin verilen hesaplar:"
 
 #: assets/app.js
 msgid "{count} tâche(s)"
-msgstr ""
+msgstr "{count} görev"
 
 #: assets/app.js
 msgid "Assigner"
-msgstr ""
+msgstr "Ata"
 
 #: assets/app.js
 msgid "Diagnostic Claude : {error}"
-msgstr ""
+msgstr "Claude tanılaması: {error}"
 
 #: assets/app.js
 msgid "« Continuer »"
-msgstr ""
+msgstr "«Devam»"
 
 #: assets/app.js
 msgid "« Télécharger »"
-msgstr ""
+msgstr "«İndir»"
 
 #: assets/app.js
 msgid "« Nouveau »"
-msgstr ""
+msgstr "«Yeni»"
 
 #: assets/app.js
 msgid "zone de chat"
-msgstr ""
+msgstr "sohbet alanı"
 
 #: assets/app.js
 msgid "envoi de fichier"
-msgstr ""
+msgstr "dosya yükleme"
 
 #: assets/app.js
 msgid "{count} popup(s)"
-msgstr ""
+msgstr "{count} açılır pencere"
 
 #: assets/app.js
 msgid "Claude (« {profile} ») : {details}"
-msgstr ""
+msgstr "Claude («{profile}»): {details}"
 
 #: assets/app.js
 msgid "aucun élément détecté"
-msgstr ""
+msgstr "hiçbir öğe algılanmadı"
 
 #: assets/app.js
 msgid "Diagnostic impossible : {error}"
-msgstr ""
+msgstr "Tanılama yapılamıyor: {error}"
 
 #: assets/app.js
 msgid "Quota gratuit épuisé jusqu'à {time} pour ce profil."
-msgstr ""
+msgstr "Bu profilin ücretsiz kotası {time} saatine kadar doldu."
 
 #: assets/app.js
 msgid "Job Claude échoué : {error}"
-msgstr ""
+msgstr "Claude işi başarısız: {error}"
 
 #: assets/app.js
 msgid "Prompt envoyé à Claude via {method} (« {profile} »)"
-msgstr ""
+msgstr "İstem {method} ile Claude'a gönderildi («{profile}»)"
 
 #: assets/app.js
 msgid "Job Claude impossible : {error}"
-msgstr ""
+msgstr "Claude işi yapılamıyor: {error}"
 
 #: assets/app.js
 msgid "Collecte impossible : {error}"
-msgstr ""
+msgstr "Toplanamıyor: {error}"
 
 #: assets/app.js
 msgid "Réponse collectée : {count} caractères (« {profile} »)"
-msgstr ""
+msgstr "Yanıt toplandı: {count} karakter («{profile}»)"
 
 #: assets/app.js
 msgid "Aucune réponse trouvée pour le moment."
-msgstr ""
+msgstr "Henüz yanıt bulunamadı."
 
 #: assets/app.js
 msgid "Nom du projet :"
-msgstr ""
+msgstr "Proje adı:"
 
 #: assets/app.js
 msgid "Projet {n}"
-msgstr ""
+msgstr "Proje {n}"
 
 #: assets/app.js
 msgid "Projet « {name} » créé"
-msgstr ""
+msgstr "«{name}» projesi oluşturuldu"
 
 #: assets/app.js
 msgid "Création impossible : {error}"
-msgstr ""
+msgstr "Oluşturulamıyor: {error}"
 
 #: assets/app.js
 msgid "Projet supprimé"
-msgstr ""
+msgstr "Proje silindi"
 
 #: assets/app.js
 msgid "Suppression impossible : {error}"
-msgstr ""
+msgstr "Silinemiyor: {error}"
 
 #: assets/app.js
 msgid "Prompt de la tâche :"
-msgstr ""
+msgstr "Görev istemi:"
 
 #: assets/app.js
 msgid "Tâche créée dans le projet"
-msgstr ""
+msgstr "Görev projede oluşturuldu"
 
 #: assets/app.js
 msgid "Aucun compte vert disponible pour ce projet."
-msgstr ""
+msgstr "Bu proje için kullanılabilir yeşil hesap yok."
 
 #: assets/app.js
 msgid "Comptes verts disponibles :"
-msgstr ""
+msgstr "Kullanılabilir yeşil hesaplar:"
 
 #: assets/app.js
 msgid "Numéro du compte :"
-msgstr ""
+msgstr "Hesap numarası:"
 
 #: assets/app.js
 msgid "Choix invalide"
-msgstr ""
+msgstr "Geçersiz seçim"
 
 #: assets/app.js
 msgid "Aucune tâche dans ce projet."
-msgstr ""
+msgstr "Bu projede görev yok."
 
 #: assets/app.js
 msgid "Numéro de la tâche :"
-msgstr ""
+msgstr "Görev numarası:"
 
 #: assets/app.js
 msgid "Tâches du projet :"
-msgstr ""
+msgstr "Proje görevleri:"
 
 #: assets/app.js
 msgid "Tâche {task} assignée à « {account} »"
-msgstr ""
+msgstr "{task} görevi «{account}» hesabına atandı"
 
 #: assets/app.js
 msgid "Assignation impossible : {error}"
-msgstr ""
+msgstr "Atanamıyor: {error}"
 
 #: assets/app.js
 msgid "Lancement de l'automatisation Claude..."
-msgstr ""
+msgstr "Claude otomasyonu başlatılıyor..."
 
 #: assets/app.js
 msgid "Lancement impossible"
-msgstr ""
+msgstr "Başlatılamıyor"
 
 #: assets/app.js
 msgid "Tâche lancée — suivi dans le journal d'activité"
-msgstr ""
+msgstr "Görev başlatıldı — etkinlik günlüğünden izleyin"
 
 #: assets/app.js
 msgid "Exécution impossible : {error}"
-msgstr ""
+msgstr "Çalıştırılamıyor: {error}"
 
 #: assets/app.js
 msgid "Aucun résultat disponible"
-msgstr ""
+msgstr "Kullanılabilir sonuç yok"
 
 #: assets/app.js
 msgid "Résultat — {task}"
-msgstr ""
+msgstr "Sonuç — {task}"
 
 #: assets/app.js
 msgid "Comptes retrouvés"
-msgstr ""
+msgstr "Hesaplar bulundu"
 
 #: assets/app.js
 msgid "Aucun compte n'a été lu au démarrage, mais l'ordonnanceur en connaît {count}. Les restaurer ? Les sessions des services sont conservées ; les adresses e-mail sont à compléter depuis « Modifier le compte »."
-msgstr ""
+msgstr "Başlangıçta hiçbir hesap okunamadı, ancak zamanlayıcı {count} hesap biliyor. Geri yüklensin mi? Hizmet oturumları korunur; e-posta adresleri «Hesabı düzenle» üzerinden tamamlanmalıdır."
 
 #: assets/app.js
 msgid "Ignorer"
-msgstr ""
+msgstr "Yoksay"
 
 #: assets/app.js
 msgid "Restaurer les comptes"
-msgstr ""
+msgstr "Hesapları geri yükle"
 
 #: assets/app.js
 msgid "{count} compte(s) restauré(s)"
-msgstr ""
+msgstr "{count} hesap geri yüklendi"
 
 #: assets/app.js
 msgid "Données de comptes illisibles"
-msgstr ""
+msgstr "Hesap verileri okunamıyor"
 
 #: assets/app.js
 msgid "La liste de comptes enregistrée est corrompue. Une sauvegarde de {count} compte(s) a été trouvée. La restaurer ?"
-msgstr ""
+msgstr "Kayıtlı hesap listesi bozuk. {count} hesaplık bir yedek bulundu. Geri yüklensin mi?"
 
 #: assets/app.js
 msgid "La liste de comptes enregistrée est corrompue et aucune sauvegarde n'est disponible. L'application démarre avec une liste vide ; vos données actuelles ne seront pas écrasées tant que vous ne créez ou ne modifiez pas de compte."
-msgstr ""
+msgstr "Kayıtlı hesap listesi bozuk ve kullanılabilir yedek yok. Uygulama boş bir listeyle başlar; bir hesap oluşturmadığınız veya değiştirmediğiniz sürece mevcut verilerinizin üzerine yazılmaz."
 
 #: assets/app.js
 msgid "Restaurer la sauvegarde"
-msgstr ""
+msgstr "Yedeği geri yükle"
 
 #: assets/app.js
 msgid "Comptes restaurés depuis la sauvegarde"
-msgstr ""
+msgstr "Hesaplar yedekten geri yüklendi"
 
 #: assets/app.js
 msgid "Compris"
-msgstr ""
+msgstr "Anladım"

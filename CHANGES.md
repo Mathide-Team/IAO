@@ -1,5 +1,14 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Tests — attente des jobs sans délai fixe (20/10/2026)
+
+### Corrigé
+- **Test instable en CI** : `test/scheduler-automation.test.js` attendait
+  2 s fixes la fin d'un job ; sur des runners chargés, le job était encore
+  `RUNNING` (échec vu sur la PR #247, sans rapport avec son contenu). Les 7
+  attentes fixes sont remplacées par `attendreFinJob()` : interrogation
+  toutes les 25 ms jusqu'à la sortie de `RUNNING`, bornée à 15 s. Les tests
+  sont aussi plus rapides quand la machine est libre.
 ## Issue #206 — statistiques d'utilisation, lot 3 (19/10/2026)
 
 ### Livré

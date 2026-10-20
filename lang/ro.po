@@ -4,6 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: IAO\n"
 "Report-Msgid-Bugs-To: https://github.com/Mathide-Team/IAO/issues\n"
+"PO-Revision-Date: 2026-10-20 07:07+0000\n"
+"Last-Translator: agent IAO (docker24006) — traduction générée par IA, relecture humaine attendue (issue #51)\n"
+"Language-Team: Mathide-Team <https://github.com/Mathide-Team/IAO>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -12,1752 +15,1752 @@ msgstr ""
 
 #: index.html
 msgid "Rechercher un compte ou une IA..."
-msgstr ""
+msgstr "Căutați un cont sau o IA..."
 
 #: index.html
 msgid "Comptes actifs"
-msgstr ""
+msgstr "Conturi active"
 
 #: index.html
 msgid "IA Disponibles"
-msgstr ""
+msgstr "IA disponibile"
 
 #: index.html
 msgid "Rechercher un compte ou une IA (Ctrl+K)"
-msgstr ""
+msgstr "Căutați un cont sau o IA (Ctrl+K)"
 
 #: index.html
 msgid "Comptes enregistrés"
-msgstr ""
+msgstr "Conturi înregistrate"
 
 #: index.html
 msgid "Tout replier / Tout déplier"
-msgstr ""
+msgstr "Restrânge tot / Extinde tot"
 
 #: index.html
 msgid "Exporter les comptes (JSON)"
-msgstr ""
+msgstr "Exportă conturile (JSON)"
 
 #: index.html
 msgid "Importer des comptes (JSON)"
-msgstr ""
+msgstr "Importă conturi (JSON)"
 
 #: index.html
 msgid "Ajouter un compte"
-msgstr ""
+msgstr "Adaugă un cont"
 
 #: index.html
 msgid "Créer des comptes en série"
-msgstr ""
+msgstr "Creează conturi în serie"
 
 #: index.html
 msgid "Mode debug actif : traces détaillées dans le journal iao.log"
-msgstr ""
+msgstr "Mod depanare activ: urme detaliate în jurnalul iao.log"
 
 #: index.html
 msgid "Masquer les comptes"
-msgstr ""
+msgstr "Ascunde conturile"
 
 #: index.html
 msgid "Afficher les comptes"
-msgstr ""
+msgstr "Afișează conturile"
 
 #: index.html
 msgid "Explorateur"
-msgstr ""
+msgstr "Explorator"
 
 #: index.html
 msgid "Éditeur"
-msgstr ""
+msgstr "Editor"
 
 #: index.html
 msgid "Outils de développement (Ctrl+Maj+I)"
-msgstr ""
+msgstr "Instrumente pentru dezvoltatori (Ctrl+Shift+I)"
 
 #: index.html
 msgid "Redémarrer en mode debug (journal détaillé)"
-msgstr ""
+msgstr "Repornește în modul depanare (jurnal detaliat)"
 
 #: index.html
 msgid "Choisir mes 9 IA à portée de main"
-msgstr ""
+msgstr "Alege cele 9 IA la îndemână"
 
 #: index.html
 msgid "Comprendre les IA disponibles"
-msgstr ""
+msgstr "Înțelege IA disponibile"
 
 #: index.html
 msgid "Statistiques d'utilisation"
-msgstr ""
+msgstr "Statistici de utilizare"
 
 #: index.html
 msgid "Ordonnanceur IA"
-msgstr ""
+msgstr "Planificator IA"
 
 #: index.html
 msgid "Réglages"
-msgstr ""
+msgstr "Setări"
 
 #: index.html
 msgid "Fichiers"
-msgstr ""
+msgstr "Fișiere"
 
 #: index.html
 msgid "Ouvrir un dossier"
-msgstr ""
+msgstr "Deschide un dosar"
 
 #: index.html
 msgid "Réduire"
-msgstr ""
+msgstr "Minimizează"
 
 #: index.html
 msgid "Rechercher un fichier..."
-msgstr ""
+msgstr "Căutați un fișier..."
 
 #: index.html
 msgid "Glisser pour redimensionner"
-msgstr ""
+msgstr "Trageți pentru a redimensiona"
 
 #: index.html
 msgid "Aucun fichier"
-msgstr ""
+msgstr "Niciun fișier"
 
 #: index.html
 msgid "Glisser pour redimensionner l'éditeur"
-msgstr ""
+msgstr "Trageți pentru a redimensiona editorul"
 
 #: index.html
 msgid "Aucun onglet ouvert — choisissez un service dans la liste des comptes"
-msgstr ""
+msgstr "Nicio filă deschisă — alegeți un serviciu din lista de conturi"
 
 #: index.html
 msgid "Le profil permet d'isoler les cookies dans Electron."
-msgstr ""
+msgstr "Profilul permite izolarea cookie-urilor în Electron."
 
 #: index.html
 msgid "Nom du compte"
-msgstr ""
+msgstr "Numele contului"
 
 #: index.html
 msgid "Nom du Profil"
-msgstr ""
+msgstr "Numele profilului"
 
 #: index.html
 msgid "Mot de passe de la messagerie"
-msgstr ""
+msgstr "Parola e-mailului"
 
 #: index.html
 msgid "Afficher le mot de passe"
-msgstr ""
+msgstr "Afișează parola"
 
 #: index.html
 msgid "Générer un mot de passe"
-msgstr ""
+msgstr "Generează o parolă"
 
 #: index.html
 msgid "Chiffré par le trousseau du système, jamais enregistré en clair. Laisser vide pour ne pas le modifier."
-msgstr ""
+msgstr "Criptată de breloc-ul sistemului, nu este salvată niciodată în clar. Lăsați gol pentru a nu o modifica."
 
 #: index.html
 msgid "Annuler"
-msgstr ""
+msgstr "Anulează"
 
 #: index.html
 msgid "Enregistrer"
-msgstr ""
+msgstr "Salvează"
 
 #: index.html
 msgid "Nombre de comptes"
-msgstr ""
+msgstr "Număr de conturi"
 
 #: index.html
 msgid "Créer"
-msgstr ""
+msgstr "Creează"
 
 #: index.html
 msgid "Supprimer le compte"
-msgstr ""
+msgstr "Șterge contul"
 
 #: index.html
 msgid "Cette action est irréversible."
-msgstr ""
+msgstr "Această acțiune este ireversibilă."
 
 #: index.html
 msgid "Supprimer"
-msgstr ""
+msgstr "Șterge"
 
 #: index.html
 msgid "Importer des comptes"
-msgstr ""
+msgstr "Importă conturi"
 
 #: index.html
 msgid "Remplacer et importer"
-msgstr ""
+msgstr "Înlocuiește și importă"
 
 #: index.html
 msgid "Déconnecter le profil"
-msgstr ""
+msgstr "Deconectează profilul"
 
 #: index.html
 msgid "Déconnecter"
-msgstr ""
+msgstr "Deconectează"
 
 #: index.html
 msgid "À quoi sert chaque service, et quand l'utiliser."
-msgstr ""
+msgstr "La ce folosește fiecare serviciu și când să-l folosiți."
 
 #: index.html
 msgid "Fermer"
-msgstr ""
+msgstr "Închide"
 
 #: index.html
 msgid "Sélectionnez les 9 services affichés dans l'interface. Les autres restent disponibles dans l'aide."
-msgstr ""
+msgstr "Selectați cele 9 servicii afișate în interfață. Celelalte rămân disponibile în ajutor."
 
 #: index.html
 msgid "Détection des ZIP livrés par les onglets IA, reprise par profil."
-msgstr ""
+msgstr "Detectarea fișierelor ZIP livrate de filele IA, reluare pe profil."
 
 #: index.html
 msgid "Arrêté"
-msgstr ""
+msgstr "Oprit"
 
 #: index.html
 msgid "Démarrer ou arrêter l'ordonnanceur (il ne démarre jamais tout seul)"
-msgstr ""
+msgstr "Pornește sau oprește planificatorul (nu pornește niciodată singur)"
 
 #: index.html
 msgid "Démarrer"
-msgstr ""
+msgstr "Pornește"
 
 #: index.html
 msgid "Ancien ordonnanceur désactivé"
-msgstr ""
+msgstr "Planificator vechi dezactivat"
 
 #: index.html
 msgid "La détection des ZIP, les jobs et les projets sont remplacés par les tâches programmables, en cours de développement."
-msgstr ""
+msgstr "Detectarea ZIP, joburile și proiectele sunt înlocuite de sarcinile programate, aflate în dezvoltare."
 
 #: index.html
 msgid "Tâches programmables"
-msgstr ""
+msgstr "Sarcini programate"
 
 #: index.html
 msgid "Nouvelle tâche"
-msgstr ""
+msgstr "Sarcină nouă"
 
 #: index.html
 msgid "Nom de la tâche"
-msgstr ""
+msgstr "Numele sarcinii"
 
 #: index.html
 msgid "Ex. : rapport quotidien"
-msgstr ""
+msgstr "Ex.: raport zilnic"
 
 #: index.html
 msgid "Comptes"
-msgstr ""
+msgstr "Conturi"
 
 #: index.html
 msgid "Tous les comptes avec Claude"
-msgstr ""
+msgstr "Toate conturile cu Claude"
 
 #: index.html
 msgid "Choisir des comptes…"
-msgstr ""
+msgstr "Alegeți conturi…"
 
 #: index.html
 msgid "Répartition"
-msgstr ""
+msgstr "Distribuție"
 
 #: index.html
 msgid "Tous les comptes à chaque exécution"
-msgstr ""
+msgstr "Toate conturile la fiecare execuție"
 
 #: index.html
 msgid "Un compte à la fois (rotation)"
-msgstr ""
+msgstr "Câte un cont pe rând (rotație)"
 
 #: index.html
 msgid "Espacement entre comptes (secondes)"
-msgstr ""
+msgstr "Interval între conturi (secunde)"
 
 #: index.html
 msgid "Nouvelle session à chaque exécution"
-msgstr ""
+msgstr "Sesiune nouă la fiecare execuție"
 
 #: index.html
 msgid "Prompt à envoyer"
-msgstr ""
+msgstr "Prompt de trimis"
 
 #: index.html
 msgid "Ex. : Résume les actualités de la veille"
-msgstr ""
+msgstr "Ex.: Rezumă știrile de ieri"
 
 #: index.html
 msgid "Programmation"
-msgstr ""
+msgstr "Programare"
 
 #: index.html
 msgid "Récurrente (tous les N …)"
-msgstr ""
+msgstr "Recurentă (la fiecare N …)"
 
 #: index.html
 msgid "Une seule fois"
-msgstr ""
+msgstr "O singură dată"
 
 #: index.html
 msgid "Le"
-msgstr ""
+msgstr "Pe"
 
 #: index.html
 msgid "Tous les"
-msgstr ""
+msgstr "La fiecare"
 
 #: index.html
 msgid "minutes"
-msgstr ""
+msgstr "minute"
 
 #: index.html
 msgid "heures"
-msgstr ""
+msgstr "ore"
 
 #: index.html
 msgid "jours"
-msgstr ""
+msgstr "zile"
 
 #: index.html
 msgid "semaines"
-msgstr ""
+msgstr "săptămâni"
 
 #: index.html
 msgid "mois"
-msgstr ""
+msgstr "luni"
 
 #: index.html
 msgid "À partir du"
-msgstr ""
+msgstr "Începând cu"
 
 #: index.html
 msgid "Tâche active"
-msgstr ""
+msgstr "Sarcină activă"
 
 #: index.html
 msgid "Historique"
-msgstr ""
+msgstr "Istoric"
 
 #: index.html
 msgid "Jobs actifs"
-msgstr ""
+msgstr "Joburi active"
 
 #: index.html
 msgid "En attente"
-msgstr ""
+msgstr "În așteptare"
 
 #: index.html
 msgid "Livrés aujourd'hui"
-msgstr ""
+msgstr "Livrate azi"
 
 #: index.html
 msgid "Jobs simultanés max."
-msgstr ""
+msgstr "Joburi simultane max."
 
 #: index.html
 msgid "Délai min. entre automatisations (min)"
-msgstr ""
+msgstr "Întârziere min. între automatizări (min)"
 
 #: index.html
 msgid "Seuil profil « le plus ancien » (h)"
-msgstr ""
+msgstr "Prag profil „cel mai vechi” (h)"
 
 #: index.html
 msgid "Dossiers"
-msgstr ""
+msgstr "Dosare"
 
 #: index.html
 msgid "Téléchargements…"
-msgstr ""
+msgstr "Descărcări…"
 
 #: index.html
 msgid "Livraison…"
-msgstr ""
+msgstr "Livrare…"
 
 #: index.html
 msgid "Téléchargements :"
-msgstr ""
+msgstr "Descărcări:"
 
 #: index.html
 msgid "(dossier de téléchargements du système)"
-msgstr ""
+msgstr "(dosarul de descărcări al sistemului)"
 
 #: index.html
 msgid "Livraison :"
-msgstr ""
+msgstr "Livrare:"
 
 #: index.html
 msgid "(non défini)"
-msgstr ""
+msgstr "(nedefinit)"
 
 #: index.html
 msgid "Projets & tâches"
-msgstr ""
+msgstr "Proiecte și sarcini"
 
 #: index.html
 msgid "Jobs"
-msgstr ""
+msgstr "Joburi"
 
 #: index.html
 msgid "Journal d'activité"
-msgstr ""
+msgstr "Jurnal de activitate"
 
 #: index.html
 msgid "Confirmation"
-msgstr ""
+msgstr "Confirmare"
 
 #: index.html
 msgid "Confirmer"
-msgstr ""
+msgstr "Confirmă"
 
 #: index.html
 msgid "Mesurées sur cet ordinateur et conservées 90 jours. Rien n'est envoyé."
-msgstr ""
+msgstr "Măsurate pe acest computer și păstrate 90 de zile. Nu se trimite nimic."
 
 #: index.html
 msgid "Aujourd'hui"
-msgstr ""
+msgstr "Azi"
 
 #: index.html
 msgid "7 jours"
-msgstr ""
+msgstr "7 zile"
 
 #: index.html
 msgid "30 jours"
-msgstr ""
+msgstr "30 de zile"
 
 #: index.html
 msgid "90 jours"
-msgstr ""
+msgstr "90 de zile"
 
 #: index.html
 msgid "Remettre à zéro"
-msgstr ""
+msgstr "Resetează"
 
 #: index.html
 msgid "Exporter CSV"
-msgstr ""
+msgstr "Exportă CSV"
 
 #: index.html
 msgid "Exporter JSON"
-msgstr ""
+msgstr "Exportă JSON"
 
 #: index.html
 msgid "Préférences de l'application, sauvegardées localement."
-msgstr ""
+msgstr "Preferințele aplicației, salvate local."
 
 #: index.html
 msgid "Taille de police de l'éditeur (px)"
-msgstr ""
+msgstr "Dimensiunea fontului editorului (px)"
 
 #: index.html
 msgid "Thème"
-msgstr ""
+msgstr "Temă"
 
 #: index.html
 msgid "Thème du bureau (défaut)"
-msgstr ""
+msgstr "Tema desktopului (implicit)"
 
 #: index.html
 msgid "Clair"
-msgstr ""
+msgstr "Luminoasă"
 
 #: index.html
 msgid "Sombre"
-msgstr ""
+msgstr "Întunecată"
 
 #: index.html
 msgid "Langue"
-msgstr ""
+msgstr "Limbă"
 
 #: index.html
 msgid "Langue du système (défaut)"
-msgstr ""
+msgstr "Limba sistemului (implicit)"
 
 #: index.html
 msgid "Appliquée au prochain démarrage"
-msgstr ""
+msgstr "Se aplică la următoarea pornire"
 
 #: index.html
 msgid "Retour à la ligne (éditeur)"
-msgstr ""
+msgstr "Încadrare rânduri (editor)"
 
 #: index.html
 msgid "Désactivé"
-msgstr ""
+msgstr "Dezactivat"
 
 #: index.html
 msgid "Activé"
-msgstr ""
+msgstr "Activat"
 
 #: index.html
 msgid "Colonne fixe"
-msgstr ""
+msgstr "Coloană fixă"
 
 #: index.html
 msgid "Confirmer avant de fermer un onglet"
-msgstr ""
+msgstr "Confirmă înainte de a închide o filă"
 
 #: index.html
 msgid "Afficher les fenêtres d'automatisation"
-msgstr ""
+msgstr "Afișează ferestrele de automatizare"
 
 #: index.html
 msgid "Restaurer les onglets ouverts au démarrage"
-msgstr ""
+msgstr "Restaurează filele deschise la pornire"
 
 #: index.html
 msgid "Préfixe des adresses e-mail"
-msgstr ""
+msgstr "Prefixul adreselor de e-mail"
 
 #: index.html
 msgid "docker"
-msgstr ""
+msgstr "docker"
 
 #: index.html
 msgid "Domaine des adresses e-mail"
-msgstr ""
+msgstr "Domeniul adreselor de e-mail"
 
 #: index.html
 msgid "dmathilde.fr"
-msgstr ""
+msgstr "dmathilde.fr"
 
 #: index.html
 msgid "Adresse : préfixe + numéro + @ + domaine (ex. docker239@dmathilde.fr)"
-msgstr ""
+msgstr "Adresă: prefix + număr + @ + domeniu (ex. docker239@dmathilde.fr)"
 
 #: index.html
 msgid "Adresse du webmail (Roundcube)"
-msgstr ""
+msgstr "Adresa webmailului (Roundcube)"
 
 #: index.html
 msgid "https://mail.dmathilde.fr"
-msgstr ""
+msgstr "https://mail.dmathilde.fr"
 
 #: assets/app.js
 msgid "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."
-msgstr ""
+msgstr "Asistentul conversațional de la Anthropic. Excelează la redactare, analiza documentelor lungi, programare și raționamente care cer mai mulți pași."
 
 #: assets/app.js
 msgid "Plutôt pour du code, des textes longs et soignés, ou des questions complexes qui demandent de la rigueur."
-msgstr ""
+msgstr "Mai degrabă pentru cod, texte lungi și îngrijite sau întrebări complexe care cer rigoare."
 
 #: assets/app.js
 msgid "L'assistant généraliste d'OpenAI, le plus connu du grand public. Il discute, rédige, résume, génère des images, analyse des fichiers et peut chercher sur le web."
-msgstr ""
+msgstr "Asistentul generalist de la OpenAI, cel mai cunoscut de public. Conversează, redactează, rezumă, generează imagini, analizează fișiere și poate căuta pe web."
 
 #: assets/app.js
 msgid "Le couteau suisse du quotidien : brainstorming, questions générales, petites tâches variées."
-msgstr ""
+msgstr "Briceagul elvețian de zi cu zi: brainstorming, întrebări generale, sarcini mici variate."
 
 #: assets/app.js
 msgid "L'assistant IA de Google. Multimodal (texte, images, audio, vidéo), il s'appuie sur la recherche Google et s'intègre aux outils Google (Docs, Gmail, Drive…)."
-msgstr ""
+msgstr "Asistentul IA de la Google. Multimodal (text, imagini, audio, video), se bazează pe căutarea Google și se integrează cu instrumentele Google (Docs, Gmail, Drive…)."
 
 #: assets/app.js
 msgid "Plutôt pour analyser des images ou vidéos, ou si vous travaillez déjà dans l'écosystème Google."
-msgstr ""
+msgstr "Mai degrabă pentru analiza imaginilor sau a videoclipurilor, ori dacă lucrați deja în ecosistemul Google."
 
 #: assets/app.js
 msgid "Le chat de Z.ai, propulsé par les modèles GLM. Gratuit pour l'essentiel, avec un mode agent capable de chercher sur le web et de produire des fichiers (docx, pdf, xlsx)."
-msgstr ""
+msgstr "Chatul Z.ai, bazat pe modelele GLM. În mare parte gratuit, cu un mod agent capabil să caute pe web și să producă fișiere (docx, pdf, xlsx)."
 
 #: assets/app.js
 msgid "Une alternative gratuite solide pour le chat et le code, quand les quotas des autres sont épuisés."
-msgstr ""
+msgstr "O alternativă gratuită solidă pentru chat și cod, când cotele celorlalte sunt epuizate."
 
 #: assets/app.js
 msgid "Un « moteur de réponse » : il cherche sur le web en direct, synthétise plusieurs sources et cite ses références pour chaque affirmation."
-msgstr ""
+msgstr "Un „motor de răspuns”: caută pe web în timp real, sintetizează mai multe surse și își citează referințele pentru fiecare afirmație."
 
 #: assets/app.js
 msgid "Plutôt pour la recherche d'informations à jour, la veille et la vérification de faits avec sources."
-msgstr ""
+msgstr "Mai degrabă pentru căutarea de informații actuale, monitorizare și verificarea faptelor cu surse."
 
 #: assets/app.js
 msgid "L'assistant de xAI (Elon Musk), connecté au réseau X (ex-Twitter). Ton direct, accès au temps réel de X, génération d'images incluse."
-msgstr ""
+msgstr "Asistentul xAI (Elon Musk), conectat la rețeaua X (fost Twitter). Ton direct, acces în timp real la X, generare de imagini inclusă."
 
 #: assets/app.js
 msgid "Plutôt pour suivre l'actualité chaude et les tendances via X, ou pour un ton moins formel."
-msgstr ""
+msgstr "Mai degrabă pentru a urmări știrile fierbinți și tendințele prin X, sau pentru un ton mai puțin formal."
 
 #: assets/app.js
 msgid "Une plateforme de génération d'images orientée création : illustrations, concept art, assets de jeu vidéo, avec des contrôles fins (styles, modèles, retouche)."
-msgstr ""
+msgstr "O platformă de generare de imagini orientată spre creație: ilustrații, concept art, resurse pentru jocuri video, cu controale fine (stiluri, modele, retușare)."
 
 #: assets/app.js
 msgid "Plutôt pour produire des visuels et illustrations de qualité avec un contrôle précis du style."
-msgstr ""
+msgstr "Mai degrabă pentru a produce imagini și ilustrații de calitate, cu un control precis al stilului."
 
 #: assets/app.js
 msgid "Un générateur de musique : il compose des chansons complètes (instruments, voix, paroles) à partir d'une simple description texte, dans à peu près tous les genres."
-msgstr ""
+msgstr "Un generator de muzică: compune cântece complete (instrumente, voce, versuri) pornind de la o simplă descriere text, în aproape orice gen."
 
 #: assets/app.js
 msgid "Plutôt pour créer une musique, un jingle ou une chanson à partir d'un texte ou d'une idée."
-msgstr ""
+msgstr "Mai degrabă pentru a crea o muzică, un jingle sau un cântec pornind de la un text sau o idee."
 
 #: assets/app.js
 msgid "Un générateur de modèles 3D : il transforme un texte ou une image en objet 3D texturé, avec rigging/animation automatique et export vers les formats standards (GLB, FBX, STL…)."
-msgstr ""
+msgstr "Un generator de modele 3D: transformă un text sau o imagine într-un obiect 3D texturat, cu rigging/animație automată și export în formatele standard (GLB, FBX, STL…)."
 
 #: assets/app.js
 msgid "Plutôt pour créer des assets 3D (jeux, impression 3D, animation) sans savoir modéliser."
-msgstr ""
+msgstr "Mai degrabă pentru a crea resurse 3D (jocuri, imprimare 3D, animație) fără a ști să modelați."
 
 #: assets/app.js
 msgid "Le Chat de Mistral AI, éditeur européen (français). Modèles open-weights performants, chat, code et analyse de documents."
-msgstr ""
+msgstr "Le Chat de la Mistral AI, companie europeană (franceză). Modele open-weights performante, chat, cod și analiză de documente."
 
 #: assets/app.js
 msgid "Alternative européenne solide pour le chat et le code, avec une bonne maîtrise du français."
-msgstr ""
+msgstr "Alternativă europeană solidă pentru chat și cod, cu o bună stăpânire a limbii franceze."
 
 #: assets/app.js
 msgid "DeepSeek : assistant IA chinois spécialisé en raisonnement et programmation, particulièrement performant en Python."
-msgstr ""
+msgstr "DeepSeek: asistent IA chinezesc specializat în raționament și programare, deosebit de performant în Python."
 
 #: assets/app.js
 msgid "Pour du code Python, du raisonnement étape par étape, ou une alternative gratuite à ChatGPT."
-msgstr ""
+msgstr "Pentru cod Python, raționament pas cu pas sau o alternativă gratuită la ChatGPT."
 
 #: assets/app.js
 msgid "GitHub Copilot : assistant IA intégré dans VS Code et GitHub. Autocomplétion, chat, génération de tests, explication de code."
-msgstr ""
+msgstr "GitHub Copilot: asistent IA integrat în VS Code și GitHub. Completare automată, chat, generare de teste, explicarea codului."
 
 #: assets/app.js
 msgid "Pour programmer plus vite dans VS Code ou sur GitHub, avec un modèle IA qui connaît votre codebase."
-msgstr ""
+msgstr "Pentru a programa mai repede în VS Code sau pe GitHub, cu un model IA care vă cunoaște codul."
 
 #: assets/app.js
 msgid "Elicit : assistant de recherche scientifique. Trouve des articles, extrait des données, synthétise des études."
-msgstr ""
+msgstr "Elicit: asistent de cercetare științifică. Găsește articole, extrage date, sintetizează studii."
 
 #: assets/app.js
 msgid "Pour la recherche académique, la revue de littérature et l'extraction de données d'articles scientifiques."
-msgstr ""
+msgstr "Pentru cercetare academică, analiza literaturii și extragerea datelor din articole științifice."
 
 #: assets/app.js
 msgid "NotebookLM de Google : interagissez avec vos propres documents (PDF, texte, audio). Résumés, questions, génération de notes."
-msgstr ""
+msgstr "NotebookLM de la Google: interacționați cu propriile documente (PDF, text, audio). Rezumate, întrebări, generare de notițe."
 
 #: assets/app.js
 msgid "Pour interroger vos documents personnels ou professionnels avec une IA qui cite ses sources."
-msgstr ""
+msgstr "Pentru a interoga documentele personale sau profesionale cu o IA care își citează sursele."
 
 #: assets/app.js
 msgid "Wolfram Alpha : moteur de calcul symbolique. Mathématiques, physique, chimie, données factuelles, conversions."
-msgstr ""
+msgstr "Wolfram Alpha: motor de calcul simbolic. Matematică, fizică, chimie, date factuale, conversii."
 
 #: assets/app.js
 msgid "Pour des calculs exacts (mathématiques symboliques), des données chiffrées ou des conversions d'unités."
-msgstr ""
+msgstr "Pentru calcule exacte (matematică simbolică), date numerice sau conversii de unități."
 
 #: assets/app.js
 msgid "DeepL : traduction automatique de haute qualité, plus naturelle que Google Traduction. Texte et documents entiers."
-msgstr ""
+msgstr "DeepL: traducere automată de înaltă calitate, mai naturală decât Google Traducere. Text și documente întregi."
 
 #: assets/app.js
 msgid "Pour traduire du texte ou des documents avec un rendu naturel et cohérent."
-msgstr ""
+msgstr "Pentru a traduce text sau documente cu un rezultat natural și coerent."
 
 #: assets/app.js
 msgid "Ideogram : génération d'images orientée design. Logos, typographies, affiches, avec un excellent rendu du texte."
-msgstr ""
+msgstr "Ideogram: generare de imagini orientată spre design. Logouri, tipografie, afișe, cu o redare excelentă a textului."
 
 #: assets/app.js
 msgid "Pour créer des visuels avec du texte lisible (logos, affiches, bannières) ou du design graphique."
-msgstr ""
+msgstr "Pentru a crea imagini cu text lizibil (logouri, afișe, bannere) sau design grafic."
 
 #: assets/app.js
 msgid "Kling : générateur de vidéos courtes à partir de texte ou d'images. Animations réalistes, crédits gratuits disponibles."
-msgstr ""
+msgstr "Kling: generator de videoclipuri scurte din text sau imagini. Animații realiste, credite gratuite disponibile."
 
 #: assets/app.js
 msgid "Pour créer des clips vidéo animés à partir d'une description ou d'une image fixe."
-msgstr ""
+msgstr "Pentru a crea clipuri video animate dintr-o descriere sau o imagine statică."
 
 #: assets/app.js
 msgid "Runway : suite d'outils IA pour la vidéo. Génération, édition, effets spéciaux, inpainting vidéo."
-msgstr ""
+msgstr "Runway: suită de instrumente IA pentru video. Generare, editare, efecte speciale, inpainting video."
 
 #: assets/app.js
 msgid "Pour le montage et la création vidéo avancée avec des outils IA intégrés."
-msgstr ""
+msgstr "Pentru montaj și creație video avansată cu instrumente IA integrate."
 
 #: assets/app.js
 msgid "Pika : générateur de vidéos courtes et créatives. Animation d'images, effets, transformation de styles."
-msgstr ""
+msgstr "Pika: generator de videoclipuri scurte și creative. Animarea imaginilor, efecte, transformarea stilurilor."
 
 #: assets/app.js
 msgid "Pour animer des images ou créer des vidéos courtes originales avec des effets IA."
-msgstr ""
+msgstr "Pentru a anima imagini sau a crea videoclipuri scurte originale cu efecte IA."
 
 #: assets/app.js
 msgid "Qwen : assistant IA d'Alibaba. Multimodal (texte, images, code), open-source, disponible en plusieurs tailles."
-msgstr ""
+msgstr "Qwen: asistent IA de la Alibaba. Multimodal (text, imagini, cod), open-source, disponibil în mai multe dimensiuni."
 
 #: assets/app.js
 msgid "Alternative gratuite pour le chat, le code et l'analyse d'images, avec un bon support multilingue."
-msgstr ""
+msgstr "Alternativă gratuită pentru chat, cod și analiza imaginilor, cu un bun suport multilingv."
 
 #: assets/app.js
 msgid "Impossible d'enregistrer les comptes (stockage plein ?)"
-msgstr ""
+msgstr "Conturile nu pot fi salvate (spațiu plin?)"
 
 #: assets/app.js
 msgid "Ctrl+S pour sauvegarder."
-msgstr ""
+msgstr "Ctrl+S pentru a salva."
 
 #: assets/app.js
 msgid "Sélectionnez un fichier pour l'éditer ici."
-msgstr ""
+msgstr "Selectați un fișier pentru a-l edita aici."
 
 #: assets/app.js
 msgid "Éditeur simplifié (Monaco indisponible) — Ctrl+S pour sauvegarder"
-msgstr ""
+msgstr "Editor simplificat (Monaco indisponibil) — Ctrl+S pentru a salva"
 
 #: assets/app.js
 msgid "Fichier enregistré !"
-msgstr ""
+msgstr "Fișier salvat"
 
 #: assets/app.js
 msgid "Erreur d'enregistrement."
-msgstr ""
+msgstr "Eroare la salvare."
 
 #: assets/app.js
 msgid "Aucun compte pour l'instant."
-msgstr ""
+msgstr "Niciun cont deocamdată."
 
 #: assets/app.js
 msgid "Créer mon premier compte"
-msgstr ""
+msgstr "Creează primul meu cont"
 
 #: assets/app.js
 msgid "Cliquer pour copier l'e-mail"
-msgstr ""
+msgstr "Clic pentru a copia e-mailul"
 
 #: assets/app.js
 msgid "Ouvrir le webmail (adresse copiée)"
-msgstr ""
+msgstr "Deschide webmailul (adresă copiată)"
 
 #: assets/app.js
 msgid "Modifier le compte"
-msgstr ""
+msgstr "Modifică contul"
 
 #: assets/app.js
 msgid "{available} service(s) hors cooldown sur {total}"
-msgstr ""
+msgstr "Servicii fără cooldown: {available} din {total}"
 
 #: assets/app.js
 msgid "Replier / déplier"
-msgstr ""
+msgstr "Restrânge / extinde"
 
 #: assets/app.js
 msgid "{service} — {account} déjà ouvert"
-msgstr ""
+msgstr "{service} — {account} deja deschis"
 
 #: assets/app.js
 msgid "Recharger l'onglet"
-msgstr ""
+msgstr "Reîncarcă fila"
 
 #: assets/app.js
 msgid "Revenir à l'accueil de {service}"
-msgstr ""
+msgstr "Înapoi la pagina principală {service}"
 
 #: assets/app.js
 msgid "Se déconnecter du profil « {profile} »"
-msgstr ""
+msgstr "Deconectare de la profilul „{profile}”"
 
 #: assets/app.js
 msgid "{service} ouvert avec {account}"
-msgstr ""
+msgstr "{service} deschis cu {account}"
 
 #: assets/app.js
 msgid "Fermer l'onglet"
-msgstr ""
+msgstr "Închide fila"
 
 #: assets/app.js
 msgid "Fermer l'onglet « {tab} » ? La session web sera libérée."
-msgstr ""
+msgstr "Închideți fila „{tab}”? Sesiunea web va fi eliberată."
 
 #: assets/app.js
 msgid "Onglet fermé (mémoire libérée)"
-msgstr ""
+msgstr "Filă închisă (memorie eliberată)"
 
 #: assets/app.js
 msgid "Retirer l'étoile"
-msgstr ""
+msgstr "Elimină steaua"
 
 #: assets/app.js
 msgid "Étoiler cet onglet"
-msgstr ""
+msgstr "Marchează această filă cu stea"
 
 #: assets/app.js
 msgid "Onglet étoilé"
-msgstr ""
+msgstr "Filă marcată cu stea"
 
 #: assets/app.js
 msgid "Étoile retirée"
-msgstr ""
+msgstr "Stea eliminată"
 
 #: assets/app.js
 msgid "Échec de la déconnexion du profil"
-msgstr ""
+msgstr "Deconectarea profilului a eșuat"
 
 #: assets/app.js
 msgid "Profil « {profile} » déconnecté — session effacée"
-msgstr ""
+msgstr "Profilul „{profile}” deconectat — sesiune ștearsă"
 
 #: assets/app.js
 msgid "Aucun fichier trouvé."
-msgstr ""
+msgstr "Niciun fișier găsit."
 
 #: assets/app.js
 msgid "Fichier trop volumineux pour l'éditeur : {size} Mo (limite : 20 Mo)."
-msgstr ""
+msgstr "Fișier prea mare pentru editor: {size} MB (limită: 20 MB)."
 
 #: assets/app.js
 msgid "Masquer le mot de passe"
-msgstr ""
+msgstr "Ascunde parola"
 
 #: assets/app.js
 msgid "Mot de passe non enregistré : le trousseau du système est indisponible"
-msgstr ""
+msgstr "Parolă nesalvată: breloc-ul sistemului nu este disponibil"
 
 #: assets/app.js
 msgid "Mot de passe non enregistré"
-msgstr ""
+msgstr "Parolă nesalvată"
 
 #: assets/app.js
 msgid "C'est quoi ?"
-msgstr ""
+msgstr "Ce este?"
 
 #: assets/app.js
 msgid "Quand l'utiliser ?"
-msgstr ""
+msgstr "Când se folosește?"
 
 #: assets/app.js
 msgid "Description à venir."
-msgstr ""
+msgstr "Descriere în curând."
 
 #: assets/app.js
 msgid "Maximum {max} services à portée de main"
-msgstr ""
+msgstr "Maximum {max} servicii la îndemână"
 
 #: assets/app.js
 msgid "Sélectionnez au moins 1 service"
-msgstr ""
+msgstr "Selectați cel puțin 1 serviciu"
 
 #: assets/app.js
 msgid "Services mis à jour ({count}/{max})"
-msgstr ""
+msgstr "Servicii actualizate ({count}/{max})"
 
 #: assets/app.js
 msgid "Supprimer « {name} » ({email}) ? La session restera stockée sur le disque, mais le compte disparaîtra de la liste."
-msgstr ""
+msgstr "Ștergeți „{name}” ({email})? Sesiunea rămâne stocată pe disc, dar contul dispare din listă."
 
 #: assets/app.js
 msgid "Échec de l'export (écriture impossible)"
-msgstr ""
+msgstr "Exportul a eșuat (scriere imposibilă)"
 
 #: assets/app.js
 msgid "{count} compte(s) exporté(s)"
-msgstr ""
+msgstr "Conturi exportate: {count}"
 
 #: assets/app.js
 msgid "Export impossible"
-msgstr ""
+msgstr "Export imposibil"
 
 #: assets/app.js
 msgid "Échec de la lecture du fichier"
-msgstr ""
+msgstr "Citirea fișierului a eșuat"
 
 #: assets/app.js
 msgid "Fichier JSON invalide"
-msgstr ""
+msgstr "Fișier JSON invalid"
 
 #: assets/app.js
 msgid "Format invalide : un tableau de comptes est attendu."
-msgstr ""
+msgstr "Format invalid: se așteaptă o listă de conturi."
 
 #: assets/app.js
 msgid "Le fichier contient {count} compte(s). L'import REMPLACE entièrement la liste actuelle ({current} compte(s)) — cette action écrase les comptes existants, pas leurs sessions (cookies) déjà enregistrées sur le disque. Continuer ?"
-msgstr ""
+msgstr "Fișierul conține conturi: {count}. Importul ÎNLOCUIEȘTE complet lista actuală (conturi: {current}) — această acțiune suprascrie conturile existente, nu și sesiunile lor (cookie-uri) deja salvate pe disc. Continuați?"
 
 #: assets/app.js
 msgid "Import impossible"
-msgstr ""
+msgstr "Import imposibil"
 
 #: assets/app.js
 msgid "{count} compte(s) importé(s)"
-msgstr ""
+msgstr "Conturi importate: {count}"
 
 #: assets/app.js
 msgid "Échec de l'import : {error}"
-msgstr ""
+msgstr "Importul a eșuat: {error}"
 
 #: assets/app.js
 msgid "Compte supprimé"
-msgstr ""
+msgstr "Cont șters"
 
 #: assets/app.js
 msgid "Remplissez tous les champs"
-msgstr ""
+msgstr "Completați toate câmpurile"
 
 #: assets/app.js
 msgid "Ce profil est déjà utilisé par un autre compte (les sessions seraient partagées)."
-msgstr ""
+msgstr "Acest profil este deja folosit de alt cont (sesiunile ar fi partajate)."
 
 #: assets/app.js
 msgid "Compte mis à jour"
-msgstr ""
+msgstr "Cont actualizat"
 
 #: assets/app.js
 msgid "Compte ajouté"
-msgstr ""
+msgstr "Cont adăugat"
 
 #: assets/app.js
 msgid "Renseignez d'abord le domaine des adresses e-mail dans les réglages"
-msgstr ""
+msgstr "Completați mai întâi domeniul adreselor de e-mail în setări"
 
 #: assets/app.js
 msgid "Premier compte : {nom}, {email}. Un mot de passe de messagerie aléatoire est généré pour chacun."
-msgstr ""
+msgstr "Primul cont: {nom}, {email}. Pentru fiecare se generează o parolă de e-mail aleatorie."
 
 #: assets/app.js
 msgid "Nombre de comptes : de 1 à {max}"
-msgstr ""
+msgstr "Număr de conturi: de la 1 la {max}"
 
 #: assets/app.js
 msgid "{n} compte(s) créé(s), {m} mot(s) de passe enregistré(s)"
-msgstr ""
+msgstr "Conturi create: {n}, parole salvate: {m}"
 
 #: assets/app.js
 msgid "Adresse du webmail non configurée dans les réglages"
-msgstr ""
+msgstr "Adresa webmailului nu este configurată în setări"
 
 #: assets/app.js
 msgid "Ouverture du webmail impossible"
-msgstr ""
+msgstr "Webmailul nu poate fi deschis"
 
 #: assets/app.js
 msgid "Copie impossible dans le presse-papiers"
-msgstr ""
+msgstr "Copierea în clipboard a eșuat"
 
 #: assets/app.js
 msgid "E-mail copié : {email}"
-msgstr ""
+msgstr "E-mail copiat: {email}"
 
 #: assets/app.js
 msgid "Cooldown terminé"
-msgstr ""
+msgstr "Cooldown încheiat"
 
 #: assets/app.js
 msgid "{account} — {service} est de nouveau disponible."
-msgstr ""
+msgstr "{account} — {service} este din nou disponibil."
 
 #: assets/app.js
 msgid "{account} — {service} : cooldown terminé"
-msgstr ""
+msgstr "{account} — {service}: cooldown încheiat"
 
 #: assets/app.js
 msgid "Téléchargement…"
-msgstr ""
+msgstr "Se descarcă…"
 
 #: assets/app.js
 msgid "Téléchargé — à traiter"
-msgstr ""
+msgstr "Descărcat — de procesat"
 
 #: assets/app.js
 msgid "Aucun profil disponible"
-msgstr ""
+msgstr "Niciun profil disponibil"
 
 #: assets/app.js
 msgid "Projet en cours d'analyse"
-msgstr ""
+msgstr "Proiect în curs de analiză"
 
 #: assets/app.js
 msgid "En cours"
-msgstr ""
+msgstr "În curs"
 
 #: assets/app.js
 msgid "En pause"
-msgstr ""
+msgstr "În pauză"
 
 #: assets/app.js
 msgid "Reprise programmée"
-msgstr ""
+msgstr "Reluare programată"
 
 #: assets/app.js
 msgid "Erreur"
-msgstr ""
+msgstr "Eroare"
 
 #: assets/app.js
 msgid "Livré"
-msgstr ""
+msgstr "Livrat"
 
 #: assets/app.js
 msgid "tous les {n} minutes"
-msgstr ""
+msgstr "la fiecare {n} minute"
 
 #: assets/app.js
 msgid "tous les {n} jours"
-msgstr ""
+msgstr "la fiecare {n} zile"
 
 #: assets/app.js
 msgid "toutes les {n} semaines"
-msgstr ""
+msgstr "la fiecare {n} săptămâni"
 
 #: assets/app.js
 msgid "tous les {n} mois"
-msgstr ""
+msgstr "la fiecare {n} luni"
 
 #: assets/app.js
 msgid "toutes les {n} heures"
-msgstr ""
+msgstr "la fiecare {n} ore"
 
 #: assets/app.js
 msgid "Le {date}"
-msgstr ""
+msgstr "Pe {date}"
 
 #: assets/app.js
 msgid "à partir du {date}"
-msgstr ""
+msgstr "începând cu {date}"
 
 #: assets/app.js
 msgid "programmation inconnue"
-msgstr ""
+msgstr "programare necunoscută"
 
 #: assets/app.js
 msgid "{n} compte(s) sélectionné(s)"
-msgstr ""
+msgstr "Conturi selectate: {n}"
 
 #: assets/app.js
 msgid "tous les comptes avec Claude"
-msgstr ""
+msgstr "toate conturile cu Claude"
 
 #: assets/app.js
 msgid "rotation (un compte à la fois)"
-msgstr ""
+msgstr "rotație (câte un cont pe rând)"
 
 #: assets/app.js
 msgid "tous les comptes, espacement de {n} s"
-msgstr ""
+msgstr "toate conturile, interval de {n} s"
 
 #: assets/app.js
 msgid "tous les comptes en même temps"
-msgstr ""
+msgstr "toate conturile în același timp"
 
 #: assets/app.js
 msgid "lancée"
-msgstr ""
+msgstr "lansată"
 
 #: assets/app.js
 msgid "envoyée"
-msgstr ""
+msgstr "trimisă"
 
 #: assets/app.js
 msgid "quota épuisé"
-msgstr ""
+msgstr "cotă epuizată"
 
 #: assets/app.js
 msgid "heures calmes"
-msgstr ""
+msgstr "ore liniștite"
 
 #: assets/app.js
 msgid "non connecté"
-msgstr ""
+msgstr "neconectat"
 
 #: assets/app.js
 msgid "aucun compte éligible"
-msgstr ""
+msgstr "niciun cont eligibil"
 
 #: assets/app.js
 msgid "erreur"
-msgstr ""
+msgstr "eroare"
 
 #: assets/app.js
 msgid "Aucune tâche programmée pour l'instant — créez-en une avec « Nouvelle tâche »."
-msgstr ""
+msgstr "Nicio sarcină programată deocamdată — creați una cu „Sarcină nouă”."
 
 #: assets/app.js
 msgid "Plus aucune exécution programmée"
-msgstr ""
+msgstr "Nicio altă execuție programată"
 
 #: assets/app.js
 msgid "Prochaine exécution : {date}"
-msgstr ""
+msgstr "Următoarea execuție: {date}"
 
 #: assets/app.js
 msgid "inactive"
-msgstr ""
+msgstr "inactivă"
 
 #: assets/app.js
 msgid "Activer"
-msgstr ""
+msgstr "Activează"
 
 #: assets/app.js
 msgid "Désactiver"
-msgstr ""
+msgstr "Dezactivează"
 
 #: assets/app.js
 msgid "Exécuter maintenant"
-msgstr ""
+msgstr "Execută acum"
 
 #: assets/app.js
 msgid "Modifier"
-msgstr ""
+msgstr "Modifică"
 
 #: assets/app.js
 msgid "Aucun événement pour l'instant."
-msgstr ""
+msgstr "Niciun eveniment deocamdată."
 
 #: assets/app.js
 msgid "Aucun compte avec le service Claude — la tâche ne pourra pas s'exécuter."
-msgstr ""
+msgstr "Niciun cont cu serviciul Claude — sarcina nu va putea rula."
 
 #: assets/app.js
 msgid "sans le service Claude"
-msgstr ""
+msgstr "fără serviciul Claude"
 
 #: assets/app.js
 msgid "compte supprimé"
-msgstr ""
+msgstr "cont șters"
 
 #: assets/app.js
 msgid "Le nom est obligatoire."
-msgstr ""
+msgstr "Numele este obligatoriu."
 
 #: assets/app.js
 msgid "Le prompt est obligatoire."
-msgstr ""
+msgstr "Promptul este obligatoriu."
 
 #: assets/app.js
 msgid "Comptes : choix invalide."
-msgstr ""
+msgstr "Conturi: alegere invalidă."
 
 #: assets/app.js
 msgid "Sélectionnez au moins un compte."
-msgstr ""
+msgstr "Selectați cel puțin un cont."
 
 #: assets/app.js
 msgid "Répartition : choix invalide."
-msgstr ""
+msgstr "Distribuție: alegere invalidă."
 
 #: assets/app.js
 msgid "Espacement invalide : entre 0 et 86400 secondes."
-msgstr ""
+msgstr "Interval invalid: între 0 și 86400 de secunde."
 
 #: assets/app.js
 msgid "Programmation : choix invalide."
-msgstr ""
+msgstr "Programare: alegere invalidă."
 
 #: assets/app.js
 msgid "Date « Le » invalide."
-msgstr ""
+msgstr "Dată „Pe” invalidă."
 
 #: assets/app.js
 msgid "Date « À partir du » invalide."
-msgstr ""
+msgstr "Dată „Începând cu” invalidă."
 
 #: assets/app.js
 msgid "« Tous les » doit être un entier supérieur à 0."
-msgstr ""
+msgstr "„La fiecare” trebuie să fie un număr întreg mai mare decât 0."
 
 #: assets/app.js
 msgid "Unité inconnue."
-msgstr ""
+msgstr "Unitate necunoscută."
 
 #: assets/app.js
 msgid "Enregistrement impossible : {erreur}"
-msgstr ""
+msgstr "Salvare imposibilă: {erreur}"
 
 #: assets/app.js
 msgid "Le moteur de tâches n'est pas démarré."
-msgstr ""
+msgstr "Motorul de sarcini nu este pornit."
 
 #: assets/app.js
 msgid "Exécution demandée — le résultat apparaîtra dans l'historique."
-msgstr ""
+msgstr "Execuție cerută — rezultatul va apărea în istoric."
 
 #: assets/app.js
 msgid "Une exécution est déjà en cours — réessayez dans un instant."
-msgstr ""
+msgstr "O execuție este deja în curs — reîncercați peste câteva momente."
 
 #: assets/app.js
 msgid "Le service des tâches a refusé l'exécution."
-msgstr ""
+msgstr "Serviciul de sarcini a refuzat execuția."
 
 #: assets/app.js
 msgid "Tâche introuvable."
-msgstr ""
+msgstr "Sarcină negăsită."
 
 #: assets/app.js
 msgid "Exécution impossible : {erreur}"
-msgstr ""
+msgstr "Execuție imposibilă: {erreur}"
 
 #: assets/app.js
 msgid "Action impossible : {erreur}"
-msgstr ""
+msgstr "Acțiune imposibilă: {erreur}"
 
 #: assets/app.js
 msgid "Supprimer la tâche"
-msgstr ""
+msgstr "Șterge sarcina"
 
 #: assets/app.js
 msgid "Supprimer « {nom} » ? L'historique est conservé."
-msgstr ""
+msgstr "Ștergeți „{nom}”? Istoricul este păstrat."
 
 #: assets/app.js
 msgid "Suppression impossible : {erreur}"
-msgstr ""
+msgstr "Ștergere imposibilă: {erreur}"
 
 #: assets/app.js
 msgid "< 1 min"
-msgstr ""
+msgstr "< 1 min"
 
 #: assets/app.js
 msgid "{h} h {m} min"
-msgstr ""
+msgstr "{h} h {m} min"
 
 #: assets/app.js
 msgid "{m} min"
-msgstr ""
+msgstr "{m} min"
 
 #: assets/app.js
 msgid "Temps actif"
-msgstr ""
+msgstr "Timp activ"
 
 #: assets/app.js
 msgid "Durée ouverte"
-msgstr ""
+msgstr "Durată deschisă"
 
 #: assets/app.js
 msgid "Sessions"
-msgstr ""
+msgstr "Sesiuni"
 
 #: assets/app.js
 msgid "Dernière utilisation"
-msgstr ""
+msgstr "Ultima utilizare"
 
 #: assets/app.js
 msgid "Part"
-msgstr ""
+msgstr "Pondere"
 
 #: assets/app.js
 msgid "Dim"
-msgstr ""
+msgstr "Dum"
 
 #: assets/app.js
 msgid "Jeu"
-msgstr ""
+msgstr "Joi"
 
 #: assets/app.js
 msgid "Lun"
-msgstr ""
+msgstr "Lun"
 
 #: assets/app.js
 msgid "Mar"
-msgstr ""
+msgstr "Mar"
 
 #: assets/app.js
 msgid "Mer"
-msgstr ""
+msgstr "Mie"
 
 #: assets/app.js
 msgid "Sam"
-msgstr ""
+msgstr "Sâm"
 
 #: assets/app.js
 msgid "Ven"
-msgstr ""
+msgstr "Vin"
 
 #: assets/app.js
 msgid "{jour} {h} h : {duree}"
-msgstr ""
+msgstr "{jour} ora {h}: {duree}"
 
 #: assets/app.js
 msgid "Heures de pointe (temps actif)"
-msgstr ""
+msgstr "Ore de vârf (timp activ)"
 
 #: assets/app.js
 msgid "dernière utilisation : {date}"
-msgstr ""
+msgstr "ultima utilizare: {date}"
 
 #: assets/app.js
 msgid "jamais utilisé depuis le début de la mesure"
-msgstr ""
+msgstr "nefolosit de la începutul măsurării"
 
 #: assets/app.js
 msgid "Comptes inutilisés sur la période"
-msgstr ""
+msgstr "Conturi nefolosite în perioadă"
 
 #: assets/app.js
 msgid "fin {h}"
-msgstr ""
+msgstr "sfârșit {h}"
 
 #: assets/app.js
 msgid "Tâches programmables par compte"
-msgstr ""
+msgstr "Sarcini programate pe cont"
 
 #: assets/app.js
 msgid "Compte"
-msgstr ""
+msgstr "Cont"
 
 #: assets/app.js
 msgid "Envoyées"
-msgstr ""
+msgstr "Trimise"
 
 #: assets/app.js
 msgid "Erreurs"
-msgstr ""
+msgstr "Erori"
 
 #: assets/app.js
 msgid "Quotas"
-msgstr ""
+msgstr "Cote"
 
 #: assets/app.js
 msgid "Dernier quota"
-msgstr ""
+msgstr "Ultima cotă"
 
 #: assets/app.js
 msgid "Exécutions"
-msgstr ""
+msgstr "Execuții"
 
 #: assets/app.js
 msgid "D'après l'historique des tâches (200 dernières exécutions)."
-msgstr ""
+msgstr "Conform istoricului sarcinilor (ultimele 200 de execuții)."
 
 #: assets/app.js
 msgid "{date} : {duree} actif"
-msgstr ""
+msgstr "{date}: {duree} activ"
 
 #: assets/app.js
 msgid "{h} h"
-msgstr ""
+msgstr "{h}:00"
 
 #: assets/app.js
 msgid "Évolution du temps actif"
-msgstr ""
+msgstr "Evoluția timpului activ"
 
 #: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
-msgstr ""
+msgstr "Nicio sesiune în această perioadă. Măsurarea începe la instalarea acestei versiuni."
 
 #: assets/app.js
 msgid "1 jour"
-msgstr ""
+msgstr "1 zi"
 
 #: assets/app.js
 msgid "{n} jours"
-msgstr ""
+msgstr "Zile: {n}"
 
 #: assets/app.js
 msgid "Série en cours (record : {n})"
-msgstr ""
+msgstr "Serie în curs (record: {n})"
 
 #: assets/app.js
 msgid "Par compte"
-msgstr ""
+msgstr "Pe cont"
 
 #: assets/app.js
 msgid "Par service"
-msgstr ""
+msgstr "Pe serviciu"
 
 #: assets/app.js
 msgid "Service"
-msgstr ""
+msgstr "Serviciu"
 
 #: assets/app.js
 msgid "Statistiques illisibles : {error}"
-msgstr ""
+msgstr "Statistici ilizibile: {error}"
 
 #: assets/app.js
 msgid "Export des statistiques impossible : {error}"
-msgstr ""
+msgstr "Exportul statisticilor a eșuat: {error}"
 
 #: assets/app.js
 msgid "Statistiques exportées"
-msgstr ""
+msgstr "Statistici exportate"
 
 #: assets/app.js
 msgid "Remettre les statistiques à zéro ?"
-msgstr ""
+msgstr "Resetați statisticile?"
 
 #: assets/app.js
 msgid "Les sessions, temps de réponse et quotas enregistrés sur cet ordinateur seront effacés. L'historique des tâches programmables n'est pas touché. Pensez à exporter avant si besoin."
-msgstr ""
+msgstr "Sesiunile, timpii de răspuns și cotele înregistrate pe acest computer vor fi șterse. Istoricul sarcinilor programate nu este afectat. Exportați mai întâi dacă este nevoie."
 
 #: assets/app.js
 msgid "Remise à zéro impossible : {error}"
-msgstr ""
+msgstr "Resetarea a eșuat: {error}"
 
 #: assets/app.js
 msgid "Statistiques remises à zéro"
-msgstr ""
+msgstr "Statistici resetate"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"
-msgstr ""
+msgstr "Setările nu pot fi încărcate"
 
 #: assets/app.js
 msgid "Réglages enregistrés — la langue sera appliquée au prochain démarrage"
-msgstr ""
+msgstr "Setări salvate — limba va fi aplicată la următoarea pornire"
 
 #: assets/app.js
 msgid "Réglages enregistrés"
-msgstr ""
+msgstr "Setări salvate"
 
 #: assets/app.js
 msgid "Erreur lors de la sauvegarde"
-msgstr ""
+msgstr "Eroare la salvare"
 
 #: assets/app.js
 msgid "Erreur lors de la sauvegarde des réglages"
-msgstr ""
+msgstr "Eroare la salvarea setărilor"
 
 #: assets/app.js
 msgid "Tâches programmables : envoyez un prompt à Claude à date fixe ou périodiquement."
-msgstr ""
+msgstr "Sarcini programate: trimiteți un prompt lui Claude la o dată fixă sau periodic."
 
 #: assets/app.js
 msgid "Arrêter"
-msgstr ""
+msgstr "Oprește"
 
 #: assets/app.js
 msgid "En marche"
-msgstr ""
+msgstr "Pornit"
 
 #: assets/app.js
 msgid "Aucun job pour l'instant — un ZIP téléchargé depuis un onglet IA (ordonnanceur activé) en créera un automatiquement."
-msgstr ""
+msgstr "Niciun job deocamdată — un ZIP descărcat dintr-o filă IA (cu planificatorul activat) va crea unul automat."
 
 #: assets/app.js
 msgid "Continuer le projet"
-msgstr ""
+msgstr "Continuă proiectul"
 
 #: assets/app.js
 msgid "Marquer livré"
-msgstr ""
+msgstr "Marchează ca livrat"
 
 #: assets/app.js
 msgid "Pause"
-msgstr ""
+msgstr "Pauză"
 
 #: assets/app.js
 msgid "Reprendre"
-msgstr ""
+msgstr "Reia"
 
 #: assets/app.js
 msgid "Relancer"
-msgstr ""
+msgstr "Relansează"
 
 #: assets/app.js
 msgid "Ouvrir le ZIP"
-msgstr ""
+msgstr "Deschide ZIP-ul"
 
 #: assets/app.js
 msgid "Analyser la complétude"
-msgstr ""
+msgstr "Analizează completitudinea"
 
 #: assets/app.js
 msgid "service inconnu"
-msgstr ""
+msgstr "serviciu necunoscut"
 
 #: assets/app.js
 msgid "tentative {n}"
-msgstr ""
+msgstr "încercarea {n}"
 
 #: assets/app.js
 msgid "Aucune activité enregistrée."
-msgstr ""
+msgstr "Nicio activitate înregistrată."
 
 #: assets/app.js
 msgid "Impossible de modifier l'état de l'ordonnanceur"
-msgstr ""
+msgstr "Starea planificatorului nu poate fi modificată"
 
 #: assets/app.js
 msgid "Configuration non enregistrée"
-msgstr ""
+msgstr "Configurație nesalvată"
 
 #: assets/app.js
 msgid "Sélection du dossier impossible"
-msgstr ""
+msgstr "Selectarea dosarului este imposibilă"
 
 #: assets/app.js
 msgid "Projet terminé : {done}/{total} tâches faites, 0 restante."
-msgstr ""
+msgstr "Proiect terminat: {done}/{total} sarcini făcute, 0 rămase."
 
 #: assets/app.js
 msgid "{pending} à faire, {inProgress} en cours, {done} faite(s) sur {total} au total."
-msgstr ""
+msgstr "De făcut: {pending}, în curs: {inProgress}, făcute: {done}, din {total} în total."
 
 #: assets/app.js
 msgid "Analyse impossible : {error}"
-msgstr ""
+msgstr "Analiză imposibilă: {error}"
 
 #: assets/app.js
 msgid "Action impossible : {error}"
-msgstr ""
+msgstr "Acțiune imposibilă: {error}"
 
 #: assets/app.js
 msgid "Aucun projet pour l'instant."
-msgstr ""
+msgstr "Niciun proiect deocamdată."
 
 #: assets/app.js
 msgid "Créer un projet"
-msgstr ""
+msgstr "Creează un proiect"
 
 #: assets/app.js
 msgid "Assignée"
-msgstr ""
+msgstr "Atribuită"
 
 #: assets/app.js
 msgid "Terminée"
-msgstr ""
+msgstr "Terminată"
 
 #: assets/app.js
 msgid "Échouée"
-msgstr ""
+msgstr "Eșuată"
 
 #: assets/app.js
 msgid "Lancer"
-msgstr ""
+msgstr "Lansează"
 
 #: assets/app.js
 msgid "Résultat"
-msgstr ""
+msgstr "Rezultat"
 
 #: assets/app.js
 msgid "Aucune tâche."
-msgstr ""
+msgstr "Nicio sarcină."
 
 #: assets/app.js
 msgid "Tous les comptes"
-msgstr ""
+msgstr "Toate conturile"
 
 #: assets/app.js
 msgid "Comptes autorisés :"
-msgstr ""
+msgstr "Conturi autorizate:"
 
 #: assets/app.js
 msgid "{count} tâche(s)"
-msgstr ""
+msgstr "Sarcini: {count}"
 
 #: assets/app.js
 msgid "Assigner"
-msgstr ""
+msgstr "Atribuie"
 
 #: assets/app.js
 msgid "Diagnostic Claude : {error}"
-msgstr ""
+msgstr "Diagnostic Claude: {error}"
 
 #: assets/app.js
 msgid "« Continuer »"
-msgstr ""
+msgstr "„Continuă”"
 
 #: assets/app.js
 msgid "« Télécharger »"
-msgstr ""
+msgstr "„Descarcă”"
 
 #: assets/app.js
 msgid "« Nouveau »"
-msgstr ""
+msgstr "„Nou”"
 
 #: assets/app.js
 msgid "zone de chat"
-msgstr ""
+msgstr "zonă de chat"
 
 #: assets/app.js
 msgid "envoi de fichier"
-msgstr ""
+msgstr "trimitere de fișier"
 
 #: assets/app.js
 msgid "{count} popup(s)"
-msgstr ""
+msgstr "Ferestre pop-up: {count}"
 
 #: assets/app.js
 msgid "Claude (« {profile} ») : {details}"
-msgstr ""
+msgstr "Claude („{profile}”): {details}"
 
 #: assets/app.js
 msgid "aucun élément détecté"
-msgstr ""
+msgstr "niciun element detectat"
 
 #: assets/app.js
 msgid "Diagnostic impossible : {error}"
-msgstr ""
+msgstr "Diagnostic imposibil: {error}"
 
 #: assets/app.js
 msgid "Quota gratuit épuisé jusqu'à {time} pour ce profil."
-msgstr ""
+msgstr "Cota gratuită epuizată până la {time} pentru acest profil."
 
 #: assets/app.js
 msgid "Job Claude échoué : {error}"
-msgstr ""
+msgstr "Jobul Claude a eșuat: {error}"
 
 #: assets/app.js
 msgid "Prompt envoyé à Claude via {method} (« {profile} »)"
-msgstr ""
+msgstr "Prompt trimis lui Claude prin {method} („{profile}”)"
 
 #: assets/app.js
 msgid "Job Claude impossible : {error}"
-msgstr ""
+msgstr "Job Claude imposibil: {error}"
 
 #: assets/app.js
 msgid "Collecte impossible : {error}"
-msgstr ""
+msgstr "Colectare imposibilă: {error}"
 
 #: assets/app.js
 msgid "Réponse collectée : {count} caractères (« {profile} »)"
-msgstr ""
+msgstr "Răspuns colectat: caractere: {count} („{profile}”)"
 
 #: assets/app.js
 msgid "Aucune réponse trouvée pour le moment."
-msgstr ""
+msgstr "Niciun răspuns găsit deocamdată."
 
 #: assets/app.js
 msgid "Nom du projet :"
-msgstr ""
+msgstr "Numele proiectului:"
 
 #: assets/app.js
 msgid "Projet {n}"
-msgstr ""
+msgstr "Proiect {n}"
 
 #: assets/app.js
 msgid "Projet « {name} » créé"
-msgstr ""
+msgstr "Proiectul „{name}” creat"
 
 #: assets/app.js
 msgid "Création impossible : {error}"
-msgstr ""
+msgstr "Creare imposibilă: {error}"
 
 #: assets/app.js
 msgid "Projet supprimé"
-msgstr ""
+msgstr "Proiect șters"
 
 #: assets/app.js
 msgid "Suppression impossible : {error}"
-msgstr ""
+msgstr "Ștergere imposibilă: {error}"
 
 #: assets/app.js
 msgid "Prompt de la tâche :"
-msgstr ""
+msgstr "Promptul sarcinii:"
 
 #: assets/app.js
 msgid "Tâche créée dans le projet"
-msgstr ""
+msgstr "Sarcină creată în proiect"
 
 #: assets/app.js
 msgid "Aucun compte vert disponible pour ce projet."
-msgstr ""
+msgstr "Niciun cont verde disponibil pentru acest proiect."
 
 #: assets/app.js
 msgid "Comptes verts disponibles :"
-msgstr ""
+msgstr "Conturi verzi disponibile:"
 
 #: assets/app.js
 msgid "Numéro du compte :"
-msgstr ""
+msgstr "Numărul contului:"
 
 #: assets/app.js
 msgid "Choix invalide"
-msgstr ""
+msgstr "Alegere invalidă"
 
 #: assets/app.js
 msgid "Aucune tâche dans ce projet."
-msgstr ""
+msgstr "Nicio sarcină în acest proiect."
 
 #: assets/app.js
 msgid "Numéro de la tâche :"
-msgstr ""
+msgstr "Numărul sarcinii:"
 
 #: assets/app.js
 msgid "Tâches du projet :"
-msgstr ""
+msgstr "Sarcinile proiectului:"
 
 #: assets/app.js
 msgid "Tâche {task} assignée à « {account} »"
-msgstr ""
+msgstr "Sarcina {task} atribuită lui „{account}”"
 
 #: assets/app.js
 msgid "Assignation impossible : {error}"
-msgstr ""
+msgstr "Atribuire imposibilă: {error}"
 
 #: assets/app.js
 msgid "Lancement de l'automatisation Claude..."
-msgstr ""
+msgstr "Lansarea automatizării Claude..."
 
 #: assets/app.js
 msgid "Lancement impossible"
-msgstr ""
+msgstr "Lansare imposibilă"
 
 #: assets/app.js
 msgid "Tâche lancée — suivi dans le journal d'activité"
-msgstr ""
+msgstr "Sarcină lansată — urmăriți în jurnalul de activitate"
 
 #: assets/app.js
 msgid "Exécution impossible : {error}"
-msgstr ""
+msgstr "Execuție imposibilă: {error}"
 
 #: assets/app.js
 msgid "Aucun résultat disponible"
-msgstr ""
+msgstr "Niciun rezultat disponibil"
 
 #: assets/app.js
 msgid "Résultat — {task}"
-msgstr ""
+msgstr "Rezultat — {task}"
 
 #: assets/app.js
 msgid "Comptes retrouvés"
-msgstr ""
+msgstr "Conturi regăsite"
 
 #: assets/app.js
 msgid "Aucun compte n'a été lu au démarrage, mais l'ordonnanceur en connaît {count}. Les restaurer ? Les sessions des services sont conservées ; les adresses e-mail sont à compléter depuis « Modifier le compte »."
-msgstr ""
+msgstr "Niciun cont nu a fost citit la pornire, dar planificatorul cunoaște {count}. Le restaurați? Sesiunile serviciilor sunt păstrate; adresele de e-mail trebuie completate din „Modifică contul”."
 
 #: assets/app.js
 msgid "Ignorer"
-msgstr ""
+msgstr "Ignoră"
 
 #: assets/app.js
 msgid "Restaurer les comptes"
-msgstr ""
+msgstr "Restaurează conturile"
 
 #: assets/app.js
 msgid "{count} compte(s) restauré(s)"
-msgstr ""
+msgstr "Conturi restaurate: {count}"
 
 #: assets/app.js
 msgid "Données de comptes illisibles"
-msgstr ""
+msgstr "Date de cont ilizibile"
 
 #: assets/app.js
 msgid "La liste de comptes enregistrée est corrompue. Une sauvegarde de {count} compte(s) a été trouvée. La restaurer ?"
-msgstr ""
+msgstr "Lista de conturi salvată este coruptă. S-a găsit o copie de rezervă (conturi: {count}). O restaurați?"
 
 #: assets/app.js
 msgid "La liste de comptes enregistrée est corrompue et aucune sauvegarde n'est disponible. L'application démarre avec une liste vide ; vos données actuelles ne seront pas écrasées tant que vous ne créez ou ne modifiez pas de compte."
-msgstr ""
+msgstr "Lista de conturi salvată este coruptă și nu există nicio copie de rezervă. Aplicația pornește cu o listă goală; datele actuale nu vor fi suprascrise cât timp nu creați sau modificați un cont."
 
 #: assets/app.js
 msgid "Restaurer la sauvegarde"
-msgstr ""
+msgstr "Restaurează copia de rezervă"
 
 #: assets/app.js
 msgid "Comptes restaurés depuis la sauvegarde"
-msgstr ""
+msgstr "Conturi restaurate din copia de rezervă"
 
 #: assets/app.js
 msgid "Compris"
-msgstr ""
+msgstr "Am înțeles"
