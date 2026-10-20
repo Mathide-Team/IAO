@@ -443,15 +443,15 @@ msgstr "90 päivää"
 
 #: index.html
 msgid "Remettre à zéro"
-msgstr ""
+msgstr "Nollaa"
 
 #: index.html
 msgid "Exporter CSV"
-msgstr ""
+msgstr "Vie CSV"
 
 #: index.html
 msgid "Exporter JSON"
-msgstr ""
+msgstr "Vie JSON"
 
 #: index.html
 msgid "Préférences de l'application, sauvegardées localement."
@@ -1343,15 +1343,15 @@ msgstr "Tehtävähistorian mukaan (viimeiset 200 suoritusta)."
 
 #: assets/app.js
 msgid "{date} : {duree} actif"
-msgstr ""
+msgstr "{date}: aktiivinen {duree}"
 
 #: assets/app.js
 msgid "{h} h"
-msgstr ""
+msgstr "klo {h}"
 
 #: assets/app.js
 msgid "Évolution du temps actif"
-msgstr ""
+msgstr "Aktiivisen ajan kehitys"
 
 #: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
@@ -1387,27 +1387,27 @@ msgstr "Tilastot eivät ole luettavissa: {error}"
 
 #: assets/app.js
 msgid "Export des statistiques impossible : {error}"
-msgstr ""
+msgstr "Tilastojen vienti ei onnistu: {error}"
 
 #: assets/app.js
 msgid "Statistiques exportées"
-msgstr ""
+msgstr "Tilastot viety"
 
 #: assets/app.js
 msgid "Remettre les statistiques à zéro ?"
-msgstr ""
+msgstr "Nollataanko tilastot?"
 
 #: assets/app.js
 msgid "Les sessions, temps de réponse et quotas enregistrés sur cet ordinateur seront effacés. L'historique des tâches programmables n'est pas touché. Pensez à exporter avant si besoin."
-msgstr ""
+msgstr "Tälle tietokoneelle tallennetut istunnot, vastausajat ja kiintiöt poistetaan. Ajastettujen tehtävien historiaan ei kosketa. Vie tiedot ensin tarvittaessa."
 
 #: assets/app.js
 msgid "Remise à zéro impossible : {error}"
-msgstr ""
+msgstr "Nollaus ei onnistu: {error}"
 
 #: assets/app.js
 msgid "Statistiques remises à zéro"
-msgstr ""
+msgstr "Tilastot nollattu"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"

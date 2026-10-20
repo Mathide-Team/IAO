@@ -443,15 +443,15 @@ msgstr "90 dní"
 
 #: index.html
 msgid "Remettre à zéro"
-msgstr ""
+msgstr "Vynulovat"
 
 #: index.html
 msgid "Exporter CSV"
-msgstr ""
+msgstr "Exportovat CSV"
 
 #: index.html
 msgid "Exporter JSON"
-msgstr ""
+msgstr "Exportovat JSON"
 
 #: index.html
 msgid "Préférences de l'application, sauvegardées localement."
@@ -1343,15 +1343,15 @@ msgstr "Podle historie úkolů (posledních 200 spuštění)."
 
 #: assets/app.js
 msgid "{date} : {duree} actif"
-msgstr ""
+msgstr "{date}: aktivní {duree}"
 
 #: assets/app.js
 msgid "{h} h"
-msgstr ""
+msgstr "{h}:00"
 
 #: assets/app.js
 msgid "Évolution du temps actif"
-msgstr ""
+msgstr "Vývoj aktivního času"
 
 #: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
@@ -1387,27 +1387,27 @@ msgstr "Statistiky nelze přečíst: {error}"
 
 #: assets/app.js
 msgid "Export des statistiques impossible : {error}"
-msgstr ""
+msgstr "Export statistik se nezdařil: {error}"
 
 #: assets/app.js
 msgid "Statistiques exportées"
-msgstr ""
+msgstr "Statistiky exportovány"
 
 #: assets/app.js
 msgid "Remettre les statistiques à zéro ?"
-msgstr ""
+msgstr "Vynulovat statistiky?"
 
 #: assets/app.js
 msgid "Les sessions, temps de réponse et quotas enregistrés sur cet ordinateur seront effacés. L'historique des tâches programmables n'est pas touché. Pensez à exporter avant si besoin."
-msgstr ""
+msgstr "Relace, doby odezvy a kvóty uložené v tomto počítači budou smazány. Historie plánovaných úloh zůstane nedotčena. V případě potřeby nejprve exportujte."
 
 #: assets/app.js
 msgid "Remise à zéro impossible : {error}"
-msgstr ""
+msgstr "Vynulování se nezdařilo: {error}"
 
 #: assets/app.js
 msgid "Statistiques remises à zéro"
-msgstr ""
+msgstr "Statistiky vynulovány"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"
