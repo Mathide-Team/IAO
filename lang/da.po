@@ -1384,6 +1384,42 @@ msgid "Évolution du temps actif"
 msgstr "Udvikling i aktiv tid"
 
 #: assets/app.js
+msgid "{m} min {s} s"
+msgstr "{m} min {s} s"
+
+#: assets/app.js
+msgid "{s} s"
+msgstr "{s} s"
+
+#: assets/app.js
+msgid "Temps de réponse des tâches programmées"
+msgstr "Svartid for planlagte opgaver"
+
+#: assets/app.js
+msgid "Service"
+msgstr "Tjeneste"
+
+#: assets/app.js
+msgid "Médiane"
+msgstr "Median"
+
+#: assets/app.js
+msgid "Réponses"
+msgstr "Svar"
+
+#: assets/app.js
+msgid "Plus lente"
+msgstr "Langsomste"
+
+#: assets/app.js
+msgid "Plus rapide"
+msgstr "Hurtigste"
+
+#: assets/app.js
+msgid "Mesuré de l'envoi du prompt par l'ordonnanceur à la réponse collectée. Les envois manuels ne sont pas mesurés."
+msgstr "Målt fra planlæggerens afsendelse af prompten til det indsamlede svar. Manuelle afsendelser måles ikke."
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "Ingen sessioner i denne periode. Målingen starter, når denne version installeres."
 
@@ -1404,10 +1440,6 @@ msgstr "Pr. konto"
 #: assets/app.js
 msgid "Par service"
 msgstr "Pr. tjeneste"
-
-#: assets/app.js
-msgid "Service"
-msgstr "Tjeneste"
 
 #: assets/app.js
 msgid "Statistiques illisibles : {error}"

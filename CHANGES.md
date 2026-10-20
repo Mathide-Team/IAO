@@ -1,5 +1,21 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issue #206 — temps de réponse des tâches programmées (20/10/2026)
+
+### Ajouté
+- **Page Statistiques** : tableau « Temps de réponse des tâches programmées »
+  (compte, service, réponses, médiane, plus rapide, plus lente), triable par
+  colonne, filtré par la période choisie. Données : `stats:reponses`
+  (`<userData>/stats/reponses.jsonl`), déjà alimenté par l'ordonnanceur
+  depuis le lot 2 mais jamais affiché. Vidé par « Remettre à zéro ».
+- `lib/stats.js` : `decomposerSecondes()` (les réponses durent souvent moins
+  d'une minute) ; `agregerReponses()` renvoie une clé `cle` pour le tri.
+- 8 libellés traduits dans les 29 langues (IA, relecture humaine attendue).
+- Tests : `test/stats.test.js`, harnais `C11.3b` de `test-electron/ui-flows.js`.
+
+### Non couvert
+- Envois **manuels** : toujours pas mesurés (question 3 de #206 ouverte).
+
 ## Issue #51 — chaînes ajoutées et supprimées dans le rapport CI (20/10/2026)
 
 ### Ajouté

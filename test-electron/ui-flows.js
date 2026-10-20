@@ -1058,6 +1058,31 @@ async function run() {
     assert(!r.deborde, 'débordement horizontal du contenu');
   });
 
+  await test('C11.3b Temps de réponse des tâches programmées : tableau, secondes, tri (#206)', async () => {
+    // Deux réponses d'un profil sans compte (affiché tel quel) : 12 s et 1 min 05 s) : médiane 38 s.
+    const t = Date.now() - 60000;
+    fs.appendFileSync(path.join(statsDir, 'reponses.jsonl'),
+      JSON.stringify({ id: 'r-c113b-1', profil: 'profil_c113b', service: 'claude', debut: t, fin: t + 12000 }) + '\n' +
+      JSON.stringify({ id: 'r-c113b-2', profil: 'profil_c113b', service: 'claude', debut: t, fin: t + 65000 }) + '\n');
+    const r = await exec(`(async () => {
+      document.querySelector('[data-action="ui-openStatsModal"]').click();
+      await new Promise(res => setTimeout(res, 500));
+      document.querySelector('#statsPeriodes [data-periode="tout"]').click();
+      const table = () => document.getElementById('statsReponses');
+      const r = { present: !!table(), texte: table() ? table().textContent : '' };
+      const th = () => table().querySelector('[data-stats-tri="reponses"][data-col="medianeMs"]');
+      if (table()) { th().click(); r.tri = th().getAttribute('aria-sort'); r.lignes = table().querySelectorAll('tbody tr').length; }
+      r.deborde = document.getElementById('statsBody').scrollWidth > document.getElementById('statsBody').clientWidth + 1;
+      document.querySelector('#statsModal [data-action="ui-closeStatsModal"]').click();
+      return r;
+    })()`);
+    assert(r.present, 'tableau des temps de réponse absent');
+    assert(r.texte.includes('profil_c113b') && r.texte.includes('Claude'), 'compte/service absents : ' + r.texte);
+    assert(r.texte.includes('38 s') && r.texte.includes('12 s') && r.texte.includes('1 min 05 s'), 'durées attendues 38 s / 12 s / 1 min 05 s : ' + r.texte);
+    assert(r.tri === 'descending' && r.lignes >= 1, 'tri : ' + JSON.stringify(r));
+    assert(!r.deborde, 'débordement horizontal du contenu');
+  });
+
   await test('C11.4 Statistiques lot 3 : évolution SVG, export CSV/JSON, remise à zéro confirmée (#206)', async () => {
     const { dialog } = require('electron');
     const origine = dialog.showSaveDialog;

@@ -1373,6 +1373,42 @@ msgid "Évolution du temps actif"
 msgstr "活跃时间趋势"
 
 #: assets/app.js
+msgid "{m} min {s} s"
+msgstr "{m} 分钟 {s} 秒"
+
+#: assets/app.js
+msgid "{s} s"
+msgstr "{s} 秒"
+
+#: assets/app.js
+msgid "Temps de réponse des tâches programmées"
+msgstr "计划任务的响应时间"
+
+#: assets/app.js
+msgid "Service"
+msgstr "服务"
+
+#: assets/app.js
+msgid "Médiane"
+msgstr "中位数"
+
+#: assets/app.js
+msgid "Réponses"
+msgstr "响应"
+
+#: assets/app.js
+msgid "Plus lente"
+msgstr "最慢"
+
+#: assets/app.js
+msgid "Plus rapide"
+msgstr "最快"
+
+#: assets/app.js
+msgid "Mesuré de l'envoi du prompt par l'ordonnanceur à la réponse collectée. Les envois manuels ne sont pas mesurés."
+msgstr "从调度器发送提示到收集到响应的时间。手动发送不计入。"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "此期间没有会话。统计从安装此版本时开始。"
 
@@ -1392,10 +1428,6 @@ msgstr "按账户"
 #: assets/app.js
 msgid "Par service"
 msgstr "按服务"
-
-#: assets/app.js
-msgid "Service"
-msgstr "服务"
 
 #: assets/app.js
 msgid "Statistiques illisibles : {error}"

@@ -1384,6 +1384,42 @@ msgid "Évolution du temps actif"
 msgstr "Εξέλιξη του ενεργού χρόνου"
 
 #: assets/app.js
+msgid "{m} min {s} s"
+msgstr "{m} λεπ. {s} δευτ."
+
+#: assets/app.js
+msgid "{s} s"
+msgstr "{s} δευτ."
+
+#: assets/app.js
+msgid "Temps de réponse des tâches programmées"
+msgstr "Χρόνος απόκρισης προγραμματισμένων εργασιών"
+
+#: assets/app.js
+msgid "Service"
+msgstr "Υπηρεσία"
+
+#: assets/app.js
+msgid "Médiane"
+msgstr "Διάμεσος"
+
+#: assets/app.js
+msgid "Réponses"
+msgstr "Απαντήσεις"
+
+#: assets/app.js
+msgid "Plus lente"
+msgstr "Πιο αργή"
+
+#: assets/app.js
+msgid "Plus rapide"
+msgstr "Πιο γρήγορη"
+
+#: assets/app.js
+msgid "Mesuré de l'envoi du prompt par l'ordonnanceur à la réponse collectée. Les envois manuels ne sont pas mesurés."
+msgstr "Μετράται από την αποστολή του prompt από τον χρονοπρογραμματιστή έως τη συλλογή της απάντησης. Οι χειροκίνητες αποστολές δεν μετρώνται."
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "Καμία συνεδρία σε αυτήν την περίοδο. Η μέτρηση ξεκινά με την εγκατάσταση αυτής της έκδοσης."
 
@@ -1404,10 +1440,6 @@ msgstr "Ανά λογαριασμό"
 #: assets/app.js
 msgid "Par service"
 msgstr "Ανά υπηρεσία"
-
-#: assets/app.js
-msgid "Service"
-msgstr "Υπηρεσία"
 
 #: assets/app.js
 msgid "Statistiques illisibles : {error}"

@@ -1384,6 +1384,42 @@ msgid "Évolution du temps actif"
 msgstr "Aktiivisen ajan kehitys"
 
 #: assets/app.js
+msgid "{m} min {s} s"
+msgstr "{m} min {s} s"
+
+#: assets/app.js
+msgid "{s} s"
+msgstr "{s} s"
+
+#: assets/app.js
+msgid "Temps de réponse des tâches programmées"
+msgstr "Ajastettujen tehtävien vasteaika"
+
+#: assets/app.js
+msgid "Service"
+msgstr "Palvelu"
+
+#: assets/app.js
+msgid "Médiane"
+msgstr "Mediaani"
+
+#: assets/app.js
+msgid "Réponses"
+msgstr "Vastaukset"
+
+#: assets/app.js
+msgid "Plus lente"
+msgstr "Hitain"
+
+#: assets/app.js
+msgid "Plus rapide"
+msgstr "Nopein"
+
+#: assets/app.js
+msgid "Mesuré de l'envoi du prompt par l'ordonnanceur à la réponse collectée. Les envois manuels ne sont pas mesurés."
+msgstr "Mitattu siitä, kun ajastin lähettää kehotteen, siihen, kun vastaus on noudettu. Käsin lähetettyjä ei mitata."
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "Ei istuntoja tällä jaksolla. Mittaus alkaa tämän version asennuksesta."
 
@@ -1404,10 +1440,6 @@ msgstr "Tileittäin"
 #: assets/app.js
 msgid "Par service"
 msgstr "Palveluittain"
-
-#: assets/app.js
-msgid "Service"
-msgstr "Palvelu"
 
 #: assets/app.js
 msgid "Statistiques illisibles : {error}"

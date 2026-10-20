@@ -2578,7 +2578,37 @@
           ${barres}${libelles}
         </svg></div>`;
     }
+    // Temps de réponse des tâches programmées (#206) : envoi du prompt par
+    // l'ordonnanceur -> réponse collectée (stats:reponses). Les envois
+    // manuels ne sont pas mesurés (question 3 de l'issue).
+    function secondesStats(ms) {
+      const d = window.iaoStats.decomposerSecondes(ms);
+      return d.minutes ? _('{m} min {s} s', { m: d.minutes, s: String(d.secondes).padStart(2, '0') })
+        : _('{s} s', { s: d.secondes });
+    }
+    function reponsesStats(r) {
+      if (!r.parCompteService.length) return '';
+      const corps = trierStats('reponses', r.parCompteService).map(l => {
+        const svc = SERVICES.find(x => x.id === l.service);
+        return `<tr>
+          <td><span title="${escapeHtml(l.profil)}">${escapeHtml(nomCompteStats(l.profil))}</span></td>
+          <td>${escapeHtml(svc ? svc.name : l.service)}</td>
+          <td class="num">${l.nombre}</td>
+          <td class="num">${escapeHtml(secondesStats(l.medianeMs))}</td>
+          <td class="num">${escapeHtml(secondesStats(l.minMs))}</td>
+          <td class="num">${escapeHtml(secondesStats(l.maxMs))}</td>
+        </tr>`;
+      }).join('');
+      return `<div><div class="stats-titre">${escapeHtml(_('Temps de réponse des tâches programmées'))}</div>
+        <table class="stats-table" id="statsReponses"><thead><tr>
+          ${enteteTri('reponses', 'profil', _('Compte'), false)}${enteteTri('reponses', 'service', _('Service'), false)}
+          ${enteteTri('reponses', 'nombre', _('Réponses'), true)}${enteteTri('reponses', 'medianeMs', _('Médiane'), true)}
+          ${enteteTri('reponses', 'minMs', _('Plus rapide'), true)}${enteteTri('reponses', 'maxMs', _('Plus lente'), true)}
+        </tr></thead><tbody>${corps}</tbody></table>
+        <div class="stats-note">${escapeHtml(_('Mesuré de l\'envoi du prompt par l\'ordonnanceur à la réponse collectée. Les envois manuels ne sont pas mesurés.'))}</div></div>`;
+    }
     let statsTaches = [];
+    let statsReponses = [];
     function renderStats() {
       document.querySelectorAll('#statsPeriodes [data-periode]').forEach(b =>
         b.classList.toggle('stats-periode--active', b.getAttribute('data-periode') === statsPeriode));
@@ -2586,8 +2616,9 @@
       const sessions = statsHistorique.concat(suiviStats.instantane());
       const r = window.iaoStats.agreger(sessions, { periode: statsPeriode, maintenant });
       const taches = window.iaoStats.resultatsTaches(statsTaches, r.depuis);
+      const reponses = window.iaoStats.agregerReponses(statsReponses, { periode: statsPeriode, maintenant });
       const body = document.getElementById('statsBody');
-      if (!r.totaux.sessions && !taches.length) {
+      if (!r.totaux.sessions && !taches.length && !reponses.totaux.nombre) {
         body.innerHTML = `<div class="stats-vide">${escapeHtml(_('Aucune session sur cette période. La mesure commence à l\'installation de cette version.'))}</div>`;
         return;
       }
@@ -2610,7 +2641,8 @@
         }, true)}
         ${carteChaleurStats(window.iaoStats.heuresDePointe(sessions, r.depuis))}
         ${inutilisesStats(window.iaoStats.comptesInutilises(sessions, accounts.map(a => a.profile), r.depuis))}
-        ${tachesStats(taches)}`;
+        ${tachesStats(taches)}
+        ${reponsesStats(reponses)}`;
     }
     document.getElementById('statsBody').addEventListener('click', (e) => {
       const th = e.target.closest('[data-stats-tri]');
@@ -2641,6 +2673,14 @@
         statsTaches = [];
         dbg('stats', 'historique des tâches indisponible', e && e.message);
       }
+      try {
+        // Temps de réponse des tâches programmées : secondaire aussi.
+        const rep = await ipcRenderer.invoke('stats:reponses');
+        statsReponses = Array.isArray(rep) ? rep : [];
+      } catch (e) {
+        statsReponses = [];
+        dbg('stats', 'temps de réponse indisponibles', e && e.message);
+      }
       renderStats();
     };
     // Export (lot 3) : historique + onglets ouverts, noms de compte joints ;
@@ -2670,6 +2710,7 @@
             if (!r || r.error) { showToast(_('Remise à zéro impossible : {error}', { error: (r && r.error) || '?' }), 'error'); return; }
             suiviStats.recommencer();
             statsHistorique = [];
+            statsReponses = [];
             renderStats();
             showToast(_('Statistiques remises à zéro'), 'success');
           } catch (e) {

@@ -1428,6 +1428,42 @@ msgid "Évolution du temps actif"
 msgstr "تطور الوقت النشط"
 
 #: assets/app.js
+msgid "{m} min {s} s"
+msgstr "{m} د {s} ث"
+
+#: assets/app.js
+msgid "{s} s"
+msgstr "{s} ث"
+
+#: assets/app.js
+msgid "Temps de réponse des tâches programmées"
+msgstr "زمن استجابة المهام المجدولة"
+
+#: assets/app.js
+msgid "Service"
+msgstr "الخدمة"
+
+#: assets/app.js
+msgid "Médiane"
+msgstr "الوسيط"
+
+#: assets/app.js
+msgid "Réponses"
+msgstr "الردود"
+
+#: assets/app.js
+msgid "Plus lente"
+msgstr "الأبطأ"
+
+#: assets/app.js
+msgid "Plus rapide"
+msgstr "الأسرع"
+
+#: assets/app.js
+msgid "Mesuré de l'envoi du prompt par l'ordonnanceur à la réponse collectée. Les envois manuels ne sont pas mesurés."
+msgstr "يُقاس من إرسال المُجدوِل للموجّه حتى جمع الرد. لا تُقاس الإرسالات اليدوية."
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "لا توجد جلسات في هذه الفترة. يبدأ القياس عند تثبيت هذا الإصدار."
 
@@ -1452,10 +1488,6 @@ msgstr "حسب الحساب"
 #: assets/app.js
 msgid "Par service"
 msgstr "حسب الخدمة"
-
-#: assets/app.js
-msgid "Service"
-msgstr "الخدمة"
 
 #: assets/app.js
 msgid "Statistiques illisibles : {error}"

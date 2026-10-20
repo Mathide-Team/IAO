@@ -1395,6 +1395,42 @@ msgid "Évolution du temps actif"
 msgstr "Динаміка активного часу"
 
 #: assets/app.js
+msgid "{m} min {s} s"
+msgstr "{m} хв {s} с"
+
+#: assets/app.js
+msgid "{s} s"
+msgstr "{s} с"
+
+#: assets/app.js
+msgid "Temps de réponse des tâches programmées"
+msgstr "Час відповіді запланованих завдань"
+
+#: assets/app.js
+msgid "Service"
+msgstr "Сервіс"
+
+#: assets/app.js
+msgid "Médiane"
+msgstr "Медіана"
+
+#: assets/app.js
+msgid "Réponses"
+msgstr "Відповіді"
+
+#: assets/app.js
+msgid "Plus lente"
+msgstr "Найповільніша"
+
+#: assets/app.js
+msgid "Plus rapide"
+msgstr "Найшвидша"
+
+#: assets/app.js
+msgid "Mesuré de l'envoi du prompt par l'ordonnanceur à la réponse collectée. Les envois manuels ne sont pas mesurés."
+msgstr "Вимірюється від надсилання промпту планувальником до отримання відповіді. Ручні надсилання не вимірюються."
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "Немає сеансів за цей період. Вимірювання починається з установлення цієї версії."
 
@@ -1416,10 +1452,6 @@ msgstr "За обліковими записами"
 #: assets/app.js
 msgid "Par service"
 msgstr "За сервісами"
-
-#: assets/app.js
-msgid "Service"
-msgstr "Сервіс"
 
 #: assets/app.js
 msgid "Statistiques illisibles : {error}"

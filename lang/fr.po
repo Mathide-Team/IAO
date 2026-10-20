@@ -1381,6 +1381,42 @@ msgid "Évolution du temps actif"
 msgstr ""
 
 #: assets/app.js
+msgid "{m} min {s} s"
+msgstr ""
+
+#: assets/app.js
+msgid "{s} s"
+msgstr ""
+
+#: assets/app.js
+msgid "Temps de réponse des tâches programmées"
+msgstr ""
+
+#: assets/app.js
+msgid "Service"
+msgstr ""
+
+#: assets/app.js
+msgid "Médiane"
+msgstr ""
+
+#: assets/app.js
+msgid "Réponses"
+msgstr ""
+
+#: assets/app.js
+msgid "Plus lente"
+msgstr ""
+
+#: assets/app.js
+msgid "Plus rapide"
+msgstr ""
+
+#: assets/app.js
+msgid "Mesuré de l'envoi du prompt par l'ordonnanceur à la réponse collectée. Les envois manuels ne sont pas mesurés."
+msgstr ""
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr ""
 
@@ -1400,10 +1436,6 @@ msgstr ""
 
 #: assets/app.js
 msgid "Par service"
-msgstr ""
-
-#: assets/app.js
-msgid "Service"
 msgstr ""
 
 #: assets/app.js

@@ -1384,6 +1384,42 @@ msgid "Évolution du temps actif"
 msgstr "התפתחות הזמן הפעיל"
 
 #: assets/app.js
+msgid "{m} min {s} s"
+msgstr "{m} דק׳ {s} שנ׳"
+
+#: assets/app.js
+msgid "{s} s"
+msgstr "{s} שנ׳"
+
+#: assets/app.js
+msgid "Temps de réponse des tâches programmées"
+msgstr "זמן תגובה של משימות מתוזמנות"
+
+#: assets/app.js
+msgid "Service"
+msgstr "שירות"
+
+#: assets/app.js
+msgid "Médiane"
+msgstr "חציון"
+
+#: assets/app.js
+msgid "Réponses"
+msgstr "תגובות"
+
+#: assets/app.js
+msgid "Plus lente"
+msgstr "האיטית ביותר"
+
+#: assets/app.js
+msgid "Plus rapide"
+msgstr "המהירה ביותר"
+
+#: assets/app.js
+msgid "Mesuré de l'envoi du prompt par l'ordonnanceur à la réponse collectée. Les envois manuels ne sont pas mesurés."
+msgstr "נמדד משליחת הפרומפט על ידי המתזמן ועד לאיסוף התגובה. שליחות ידניות אינן נמדדות."
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "אין שיחות בתקופה זו. המדידה מתחילה עם התקנת גרסה זו."
 
@@ -1404,10 +1440,6 @@ msgstr "לפי חשבון"
 #: assets/app.js
 msgid "Par service"
 msgstr "לפי שירות"
-
-#: assets/app.js
-msgid "Service"
-msgstr "שירות"
 
 #: assets/app.js
 msgid "Statistiques illisibles : {error}"

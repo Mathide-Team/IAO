@@ -1373,6 +1373,42 @@ msgid "Évolution du temps actif"
 msgstr "แนวโน้มเวลาใช้งาน"
 
 #: assets/app.js
+msgid "{m} min {s} s"
+msgstr "{m} นาที {s} วินาที"
+
+#: assets/app.js
+msgid "{s} s"
+msgstr "{s} วินาที"
+
+#: assets/app.js
+msgid "Temps de réponse des tâches programmées"
+msgstr "เวลาตอบกลับของงานที่ตั้งเวลาไว้"
+
+#: assets/app.js
+msgid "Service"
+msgstr "บริการ"
+
+#: assets/app.js
+msgid "Médiane"
+msgstr "มัธยฐาน"
+
+#: assets/app.js
+msgid "Réponses"
+msgstr "คำตอบ"
+
+#: assets/app.js
+msgid "Plus lente"
+msgstr "ช้าที่สุด"
+
+#: assets/app.js
+msgid "Plus rapide"
+msgstr "เร็วที่สุด"
+
+#: assets/app.js
+msgid "Mesuré de l'envoi du prompt par l'ordonnanceur à la réponse collectée. Les envois manuels ne sont pas mesurés."
+msgstr "วัดตั้งแต่ตัวจัดตารางส่งพรอมต์จนถึงเก็บคำตอบได้ การส่งด้วยตนเองจะไม่ถูกวัด"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "ไม่มีเซสชันในช่วงนี้ การวัดเริ่มตั้งแต่ติดตั้งเวอร์ชันนี้"
 
@@ -1392,10 +1428,6 @@ msgstr "แยกตามบัญชี"
 #: assets/app.js
 msgid "Par service"
 msgstr "แยกตามบริการ"
-
-#: assets/app.js
-msgid "Service"
-msgstr "บริการ"
 
 #: assets/app.js
 msgid "Statistiques illisibles : {error}"

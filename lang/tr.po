@@ -1384,6 +1384,42 @@ msgid "Évolution du temps actif"
 msgstr "Etkin sürenin gelişimi"
 
 #: assets/app.js
+msgid "{m} min {s} s"
+msgstr "{m} dk {s} sn"
+
+#: assets/app.js
+msgid "{s} s"
+msgstr "{s} sn"
+
+#: assets/app.js
+msgid "Temps de réponse des tâches programmées"
+msgstr "Zamanlanmış görevlerin yanıt süresi"
+
+#: assets/app.js
+msgid "Service"
+msgstr "Hizmet"
+
+#: assets/app.js
+msgid "Médiane"
+msgstr "Medyan"
+
+#: assets/app.js
+msgid "Réponses"
+msgstr "Yanıtlar"
+
+#: assets/app.js
+msgid "Plus lente"
+msgstr "En yavaş"
+
+#: assets/app.js
+msgid "Plus rapide"
+msgstr "En hızlı"
+
+#: assets/app.js
+msgid "Mesuré de l'envoi du prompt par l'ordonnanceur à la réponse collectée. Les envois manuels ne sont pas mesurés."
+msgstr "Zamanlayıcının istemi göndermesinden yanıtın alınmasına kadar ölçülür. Elle gönderimler ölçülmez."
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "Bu dönemde oturum yok. Ölçüm bu sürümün kurulumuyla başlar."
 
@@ -1404,10 +1440,6 @@ msgstr "Hesaba göre"
 #: assets/app.js
 msgid "Par service"
 msgstr "Hizmete göre"
-
-#: assets/app.js
-msgid "Service"
-msgstr "Hizmet"
 
 #: assets/app.js
 msgid "Statistiques illisibles : {error}"

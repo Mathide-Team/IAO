@@ -675,3 +675,19 @@ test('lot 2 : appels sans options (paramètres par défaut, Date.now injecté no
   assert.ok(st.agregerQuotas(qs).parCompteService.length === 1);
   assert.ok(st.classerComptes(ss, qs).sousUtilises.length === 1);
 });
+
+test('decomposerSecondes : minutes et secondes, valeurs invalides à 0', () => {
+  assert.deepEqual(st.decomposerSecondes(0), { minutes: 0, secondes: 0 });
+  assert.deepEqual(st.decomposerSecondes(999), { minutes: 0, secondes: 0 });
+  assert.deepEqual(st.decomposerSecondes(42500), { minutes: 0, secondes: 42 });
+  assert.deepEqual(st.decomposerSecondes(125000), { minutes: 2, secondes: 5 });
+  assert.deepEqual(st.decomposerSecondes(-5), { minutes: 0, secondes: 0 });
+  assert.deepEqual(st.decomposerSecondes(NaN), { minutes: 0, secondes: 0 });
+});
+
+test('agregerReponses : clé de tri compte|service (#206)', () => {
+  const r = st.agregerReponses([rep('a', 'p1', 'claude', T0, T0 + 1000)], { maintenant: T0 });
+  assert.strictEqual(r.parCompteService[0].cle, 'p1|claude');
+  const tri = st.trierLignes(r.parCompteService, 'medianeMs', 'asc');
+  assert.strictEqual(tri[0].cle, 'p1|claude');
+});
