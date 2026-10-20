@@ -99,6 +99,9 @@ if "%ACTION%"=="uninstall" (
     if exist "%SHORTCUT_DIR%\%SHORTCUT_NAME% (mode debug).lnk" del /f /q "%SHORTCUT_DIR%\%SHORTCUT_NAME% (mode debug).lnk"
     if exist "%SHORTCUT_DIR%" rmdir /q "%SHORTCUT_DIR%" 2>nul
     if exist "%USERPROFILE%\Desktop\%SHORTCUT_NAME%.lnk" del /f /q "%USERPROFILE%\Desktop\%SHORTCUT_NAME%.lnk"
+    REM Bureau redirige (OneDrive) : meme dossier que celui de l'installation
+    powershell -NoProfile -ExecutionPolicy Bypass -Command "$l = Join-Path ([Environment]::GetFolderPath('Desktop')) '%SHORTCUT_NAME%.lnk'; if (Test-Path -LiteralPath $l) { Remove-Item -LiteralPath $l -Force }" >nul 2>&1
+    if "%MODE%"=="user" call :path_user remove
     echo Termine. Les comptes et sessions restent dans %APPDATA_DIR%
     echo Supprimez ce dossier manuellement si vous voulez tout effacer.
     exit /b 0
@@ -195,18 +198,17 @@ cscript //nologo "%VBS%"
 del /f /q "%VBS%" 2>nul
 
 REM --- PATH - mode utilisateur uniquement ---
-REM On evite le bloc if() pour %PATH% (expansion prematuree)
-REM et on utilise !PATH! (delayed expansion) pour la valeur courante
+REM Issue #3 : on lit et on ecrit le PATH UTILISATEUR du registre via
+REM PowerShell. L'ancienne commande setx (PATH fusionne) recopiait le PATH SYSTEME
+REM (fusionne dans %%PATH%%) dans le PATH utilisateur et le tronquait a
+REM 1024 caracteres.
 if not "%MODE%"=="user" goto :skip_path
-echo %PATH% | findstr /i /c:"%PATH_DIR%" >nul
-if not errorlevel 1 goto :skip_path
-echo Ajout de %PATH_DIR% au PATH utilisateur...
-setx PATH "!PATH!;%PATH_DIR%" >nul 2>&1
+call :path_user add
 if errorlevel 1 (
     echo Attention : impossible d'ajouter %PATH_DIR% au PATH.
     echo Vous pouvez le faire manuellement via les variables d'environnement.
 ) else (
-    echo PATH mis a jour. Rouvrez un terminal pour utiliser 'iao'.
+    echo PATH utilisateur a jour. Rouvrez un terminal pour utiliser 'iao'.
 )
 :skip_path
 
@@ -230,6 +232,14 @@ echo Note : les donnees %APPDATA_DIR% ne sont JAMAIS supprimees par la
 echo desinstallation. Supprimez ce dossier manuellement pour tout effacer.
 
 exit /b 0
+
+:path_user
+REM %1 = add ou remove : ajoute/retire PATH_DIR du PATH utilisateur (registre),
+REM sans doublon et sans toucher au PATH systeme.
+set "IAO_PATH_ACTION=%~1"
+set "IAO_PATH_DIR=%PATH_DIR%"
+powershell -NoProfile -ExecutionPolicy Bypass -Command "$d = $env:IAO_PATH_DIR; $p = [Environment]::GetEnvironmentVariable('Path', 'User'); $e = @(); if ($p) { $e = @($p -split ';' | Where-Object { $_ -and ($_.TrimEnd('\') -ine $d.TrimEnd('\')) }) }; if ($env:IAO_PATH_ACTION -eq 'add') { $e += $d }; [Environment]::SetEnvironmentVariable('Path', ($e -join ';'), 'User')"
+exit /b %errorlevel%
 
 :show_help
 echo install.bat - Installeur Windows de IAO
