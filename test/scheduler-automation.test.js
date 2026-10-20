@@ -76,6 +76,19 @@ function disableQuietHours(scheduler) {
   scheduler.quietHoursCheck = function() { return false; };
 }
 
+// Attend la fin asynchrone d'un job (statut différent de RUNNING) au lieu
+// d'un délai fixe : sur des runners CI chargés, 2 s ne suffisaient pas
+// toujours (test « > 5 000 caractères » vu RUNNING au lieu de DELIVERED).
+// Borne haute large (15 s) : un vrai blocage échoue quand même.
+async function attendreFinJob(scheduler, jobId, maxMs) {
+  var limite = Date.now() + (maxMs || 15000);
+  for (;;) {
+    var job = scheduler.jobs.find(function(j) { return j.id === jobId; });
+    if (!job || job.status !== 'RUNNING' || Date.now() > limite) return job;
+    await new Promise(function(r) { setTimeout(r, 25); });
+  }
+}
+
 // Nettoyage après chaque test
 function cleanup(scheduler) {
   try {
@@ -339,7 +352,7 @@ test('executeTask crée un job et lance l\'automatisation', async () => {
   assert.strictEqual(result.job.status, 'RUNNING');
 
   // Attendre que l'async se termine (poll rapide : 2 lectures stables)
-  await new Promise(function(r) { setTimeout(r, 2000); });
+  await attendreFinJob(scheduler, result.job.id);
 
   // Le job devrait être DELIVERED
   var job = scheduler.jobs.find(function(j) { return j.id === result.job.id; });
@@ -512,7 +525,7 @@ test('_executeAutomation : réponse collectée -> temps de réponse noté (stats
   var result = await scheduler.executeTask(project.id, task.id);
   assert.ok(result.ok);
   // Réponse rapide : acceptée dès le premier poll (150 ms) — génération finie.
-  await new Promise(function(r) { setTimeout(r, 1200); });
+  await attendreFinJob(scheduler, result.job.id);
   var job = scheduler.jobs.find(function(j) { return j.id === result.job.id; });
   assert.strictEqual(job.status, 'DELIVERED');
   assert.strictEqual(notations.length, 1, 'une mesure de temps de réponse');
@@ -566,7 +579,7 @@ test('_executeAutomation : ancienne réponse + texte qui croît -> une seule mes
   };
   var result = await scheduler.executeTask(project.id, task.id);
   assert.ok(result.ok);
-  await new Promise(function(r) { setTimeout(r, 2000); });
+  await attendreFinJob(scheduler, result.job.id);
   var job = scheduler.jobs.find(function(j) { return j.id === result.job.id; });
   assert.strictEqual(job.status, 'DELIVERED');
   // Une SEULE mesure, sur le texte final avec génération terminée — ni
@@ -616,7 +629,7 @@ test('_executeAutomation : réponse > 5 000 caractères encore en génération -
   };
   var result = await scheduler.executeTask(project.id, task.id);
   assert.ok(result.ok);
-  await new Promise(function(r) { setTimeout(r, 2000); });
+  await attendreFinJob(scheduler, result.job.id);
   var job = scheduler.jobs.find(function(j) { return j.id === result.job.id; });
   assert.strictEqual(job.status, 'DELIVERED');
   // Mesure prise seulement à la fin signalée, pas sur le préfixe stable.
@@ -661,7 +674,7 @@ test('_executeAutomation : aucune réponse nouvelle -> délai dépassé, AUCUNE 
   var result = await scheduler.executeTask(project.id, task.id);
   assert.ok(result.ok);
   // Timeout court (600 ms) : le poll expire sans nouveau texte.
-  await new Promise(function(r) { setTimeout(r, 1500); });
+  await attendreFinJob(scheduler, result.job.id);
   var job = scheduler.jobs.find(function(j) { return j.id === result.job.id; });
   // Le job est livré (DELIVERED) mais AUCUNE mesure de temps de réponse :
   // un délai dépassé ne produit jamais un « temps de réponse réussi ».
@@ -710,7 +723,7 @@ test('_executeAutomation : réponse partielle jamais stabilisée -> délai dépa
   };
   var result = await scheduler.executeTask(project.id, task.id);
   assert.ok(result.ok);
-  await new Promise(function(r) { setTimeout(r, 1500); });
+  await attendreFinJob(scheduler, result.job.id);
   var job = scheduler.jobs.find(function(j) { return j.id === result.job.id; });
   assert.strictEqual(job.status, 'DELIVERED');
   assert.strictEqual(notations.length, 0, 'un texte en génération continue n’est jamais mesuré');
@@ -777,7 +790,7 @@ test('_executeAutomation : statsStore qui rejette ne bloque pas la livraison', a
   };
   var result = await scheduler.executeTask(project.id, task.id);
   assert.ok(result.ok);
-  await new Promise(function(r) { setTimeout(r, 2000); });
+  await attendreFinJob(scheduler, result.job.id);
   var job = scheduler.jobs.find(function(j) { return j.id === result.job.id; });
   assert.strictEqual(job.status, 'DELIVERED', 'la mesure qui échoue ne bloque pas la livraison');
   await new Promise(function(r) { setTimeout(r, 50); });

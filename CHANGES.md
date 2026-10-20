@@ -11,6 +11,15 @@
   droite (`direction: ltr` sous `[dir="rtl"]`).
 - Tests : `test/i18n.test.js` (sens par locale, valeurs invalides) et
   harnais C7.4 (`IAO_LANG=ar` → `rtl`, éditeur `ltr`, retour `ltr` en anglais).
+## Tests — attente des jobs sans délai fixe (20/10/2026)
+
+### Corrigé
+- **Test instable en CI** : `test/scheduler-automation.test.js` attendait
+  2 s fixes la fin d'un job ; sur des runners chargés, le job était encore
+  `RUNNING` (échec vu sur la PR #247, sans rapport avec son contenu). Les 7
+  attentes fixes sont remplacées par `attendreFinJob()` : interrogation
+  toutes les 25 ms jusqu'à la sortie de `RUNNING`, bornée à 15 s. Les tests
+  sont aussi plus rapides quand la machine est libre.
 
 ## Issue #51 — contrôle réel des marqueurs {…} (revue #229, 20/10/2026)
 
