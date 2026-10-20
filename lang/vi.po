@@ -4,6 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: IAO\n"
 "Report-Msgid-Bugs-To: https://github.com/Mathide-Team/IAO/issues\n"
+"PO-Revision-Date: 2026-10-20 07:05+0000\n"
+"Last-Translator: agent IAO (docker24006) — traduction générée par IA, relecture humaine attendue (issue #51)\n"
+"Language-Team: Mathide-Team <https://github.com/Mathide-Team/IAO>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -12,1704 +15,1704 @@ msgstr ""
 
 #: index.html
 msgid "Rechercher un compte ou une IA..."
-msgstr ""
+msgstr "Tìm tài khoản hoặc AI..."
 
 #: index.html
 msgid "Comptes actifs"
-msgstr ""
+msgstr "Tài khoản đang hoạt động"
 
 #: index.html
 msgid "IA Disponibles"
-msgstr ""
+msgstr "AI khả dụng"
 
 #: index.html
 msgid "Rechercher un compte ou une IA (Ctrl+K)"
-msgstr ""
+msgstr "Tìm tài khoản hoặc AI (Ctrl+K)"
 
 #: index.html
 msgid "Comptes enregistrés"
-msgstr ""
+msgstr "Tài khoản đã lưu"
 
 #: index.html
 msgid "Tout replier / Tout déplier"
-msgstr ""
+msgstr "Thu gọn tất cả / Mở rộng tất cả"
 
 #: index.html
 msgid "Exporter les comptes (JSON)"
-msgstr ""
+msgstr "Xuất tài khoản (JSON)"
 
 #: index.html
 msgid "Importer des comptes (JSON)"
-msgstr ""
+msgstr "Nhập tài khoản (JSON)"
 
 #: index.html
 msgid "Ajouter un compte"
-msgstr ""
+msgstr "Thêm tài khoản"
 
 #: index.html
 msgid "Créer des comptes en série"
-msgstr ""
+msgstr "Tạo tài khoản hàng loạt"
 
 #: index.html
 msgid "Mode debug actif : traces détaillées dans le journal iao.log"
-msgstr ""
+msgstr "Chế độ gỡ lỗi đang bật: nhật ký chi tiết trong iao.log"
 
 #: index.html
 msgid "Masquer les comptes"
-msgstr ""
+msgstr "Ẩn tài khoản"
 
 #: index.html
 msgid "Afficher les comptes"
-msgstr ""
+msgstr "Hiện tài khoản"
 
 #: index.html
 msgid "Explorateur"
-msgstr ""
+msgstr "Trình khám phá"
 
 #: index.html
 msgid "Éditeur"
-msgstr ""
+msgstr "Trình soạn thảo"
 
 #: index.html
 msgid "Outils de développement (Ctrl+Maj+I)"
-msgstr ""
+msgstr "Công cụ nhà phát triển (Ctrl+Shift+I)"
 
 #: index.html
 msgid "Redémarrer en mode debug (journal détaillé)"
-msgstr ""
+msgstr "Khởi động lại ở chế độ gỡ lỗi (nhật ký chi tiết)"
 
 #: index.html
 msgid "Choisir mes 9 IA à portée de main"
-msgstr ""
+msgstr "Chọn 9 AI trong tầm tay của tôi"
 
 #: index.html
 msgid "Comprendre les IA disponibles"
-msgstr ""
+msgstr "Tìm hiểu các AI khả dụng"
 
 #: index.html
 msgid "Statistiques d'utilisation"
-msgstr ""
+msgstr "Thống kê sử dụng"
 
 #: index.html
 msgid "Ordonnanceur IA"
-msgstr ""
+msgstr "Bộ lập lịch AI"
 
 #: index.html
 msgid "Réglages"
-msgstr ""
+msgstr "Cài đặt"
 
 #: index.html
 msgid "Fichiers"
-msgstr ""
+msgstr "Tệp"
 
 #: index.html
 msgid "Ouvrir un dossier"
-msgstr ""
+msgstr "Mở thư mục"
 
 #: index.html
 msgid "Réduire"
-msgstr ""
+msgstr "Thu nhỏ"
 
 #: index.html
 msgid "Rechercher un fichier..."
-msgstr ""
+msgstr "Tìm tệp..."
 
 #: index.html
 msgid "Glisser pour redimensionner"
-msgstr ""
+msgstr "Kéo để đổi kích thước"
 
 #: index.html
 msgid "Aucun fichier"
-msgstr ""
+msgstr "Không có tệp"
 
 #: index.html
 msgid "Glisser pour redimensionner l'éditeur"
-msgstr ""
+msgstr "Kéo để đổi kích thước trình soạn thảo"
 
 #: index.html
 msgid "Aucun onglet ouvert — choisissez un service dans la liste des comptes"
-msgstr ""
+msgstr "Không có tab nào đang mở — hãy chọn một dịch vụ trong danh sách tài khoản"
 
 #: index.html
 msgid "Le profil permet d'isoler les cookies dans Electron."
-msgstr ""
+msgstr "Hồ sơ cho phép tách biệt cookie trong Electron."
 
 #: index.html
 msgid "Nom du compte"
-msgstr ""
+msgstr "Tên tài khoản"
 
 #: index.html
 msgid "Nom du Profil"
-msgstr ""
+msgstr "Tên hồ sơ"
 
 #: index.html
 msgid "Mot de passe de la messagerie"
-msgstr ""
+msgstr "Mật khẩu email"
 
 #: index.html
 msgid "Afficher le mot de passe"
-msgstr ""
+msgstr "Hiện mật khẩu"
 
 #: index.html
 msgid "Générer un mot de passe"
-msgstr ""
+msgstr "Tạo mật khẩu"
 
 #: index.html
 msgid "Chiffré par le trousseau du système, jamais enregistré en clair. Laisser vide pour ne pas le modifier."
-msgstr ""
+msgstr "Được mã hóa bằng chuỗi khóa của hệ thống, không bao giờ lưu dạng văn bản thô. Để trống nếu không muốn thay đổi."
 
 #: index.html
 msgid "Annuler"
-msgstr ""
+msgstr "Hủy"
 
 #: index.html
 msgid "Enregistrer"
-msgstr ""
+msgstr "Lưu"
 
 #: index.html
 msgid "Nombre de comptes"
-msgstr ""
+msgstr "Số lượng tài khoản"
 
 #: index.html
 msgid "Créer"
-msgstr ""
+msgstr "Tạo"
 
 #: index.html
 msgid "Supprimer le compte"
-msgstr ""
+msgstr "Xóa tài khoản"
 
 #: index.html
 msgid "Cette action est irréversible."
-msgstr ""
+msgstr "Không thể hoàn tác thao tác này."
 
 #: index.html
 msgid "Supprimer"
-msgstr ""
+msgstr "Xóa"
 
 #: index.html
 msgid "Importer des comptes"
-msgstr ""
+msgstr "Nhập tài khoản"
 
 #: index.html
 msgid "Remplacer et importer"
-msgstr ""
+msgstr "Thay thế và nhập"
 
 #: index.html
 msgid "Déconnecter le profil"
-msgstr ""
+msgstr "Đăng xuất hồ sơ"
 
 #: index.html
 msgid "Déconnecter"
-msgstr ""
+msgstr "Đăng xuất"
 
 #: index.html
 msgid "À quoi sert chaque service, et quand l'utiliser."
-msgstr ""
+msgstr "Công dụng của từng dịch vụ và khi nào nên dùng."
 
 #: index.html
 msgid "Fermer"
-msgstr ""
+msgstr "Đóng"
 
 #: index.html
 msgid "Sélectionnez les 9 services affichés dans l'interface. Les autres restent disponibles dans l'aide."
-msgstr ""
+msgstr "Chọn 9 dịch vụ hiển thị trên giao diện. Các dịch vụ khác vẫn có trong phần trợ giúp."
 
 #: index.html
 msgid "Détection des ZIP livrés par les onglets IA, reprise par profil."
-msgstr ""
+msgstr "Phát hiện tệp ZIP do các tab AI cung cấp, tiếp tục theo hồ sơ."
 
 #: index.html
 msgid "Arrêté"
-msgstr ""
+msgstr "Đã dừng"
 
 #: index.html
 msgid "Démarrer ou arrêter l'ordonnanceur (il ne démarre jamais tout seul)"
-msgstr ""
+msgstr "Bắt đầu hoặc dừng bộ lập lịch (không bao giờ tự khởi động)"
 
 #: index.html
 msgid "Démarrer"
-msgstr ""
+msgstr "Bắt đầu"
 
 #: index.html
 msgid "Ancien ordonnanceur désactivé"
-msgstr ""
+msgstr "Bộ lập lịch cũ đã tắt"
 
 #: index.html
 msgid "La détection des ZIP, les jobs et les projets sont remplacés par les tâches programmables, en cours de développement."
-msgstr ""
+msgstr "Việc phát hiện ZIP, các công việc và dự án được thay thế bằng tác vụ đã lên lịch, đang được phát triển."
 
 #: index.html
 msgid "Tâches programmables"
-msgstr ""
+msgstr "Tác vụ đã lên lịch"
 
 #: index.html
 msgid "Nouvelle tâche"
-msgstr ""
+msgstr "Tác vụ mới"
 
 #: index.html
 msgid "Nom de la tâche"
-msgstr ""
+msgstr "Tên tác vụ"
 
 #: index.html
 msgid "Ex. : rapport quotidien"
-msgstr ""
+msgstr "VD: báo cáo hằng ngày"
 
 #: index.html
 msgid "Comptes"
-msgstr ""
+msgstr "Tài khoản"
 
 #: index.html
 msgid "Tous les comptes avec Claude"
-msgstr ""
+msgstr "Tất cả tài khoản có Claude"
 
 #: index.html
 msgid "Choisir des comptes…"
-msgstr ""
+msgstr "Chọn tài khoản…"
 
 #: index.html
 msgid "Répartition"
-msgstr ""
+msgstr "Phân phối"
 
 #: index.html
 msgid "Tous les comptes à chaque exécution"
-msgstr ""
+msgstr "Tất cả tài khoản mỗi lần chạy"
 
 #: index.html
 msgid "Un compte à la fois (rotation)"
-msgstr ""
+msgstr "Mỗi lần một tài khoản (luân phiên)"
 
 #: index.html
 msgid "Espacement entre comptes (secondes)"
-msgstr ""
+msgstr "Khoảng cách giữa các tài khoản (giây)"
 
 #: index.html
 msgid "Nouvelle session à chaque exécution"
-msgstr ""
+msgstr "Phiên mới mỗi lần chạy"
 
 #: index.html
 msgid "Prompt à envoyer"
-msgstr ""
+msgstr "Prompt cần gửi"
 
 #: index.html
 msgid "Ex. : Résume les actualités de la veille"
-msgstr ""
+msgstr "VD: Tóm tắt tin tức hôm qua"
 
 #: index.html
 msgid "Programmation"
-msgstr ""
+msgstr "Lập lịch"
 
 #: index.html
 msgid "Récurrente (tous les N …)"
-msgstr ""
+msgstr "Định kỳ (mỗi N …)"
 
 #: index.html
 msgid "Une seule fois"
-msgstr ""
+msgstr "Chỉ một lần"
 
 #: index.html
 msgid "Le"
-msgstr ""
+msgstr "Vào"
 
 #: index.html
 msgid "Tous les"
-msgstr ""
+msgstr "Mỗi"
 
 #: index.html
 msgid "minutes"
-msgstr ""
+msgstr "phút"
 
 #: index.html
 msgid "heures"
-msgstr ""
+msgstr "giờ"
 
 #: index.html
 msgid "jours"
-msgstr ""
+msgstr "ngày"
 
 #: index.html
 msgid "semaines"
-msgstr ""
+msgstr "tuần"
 
 #: index.html
 msgid "mois"
-msgstr ""
+msgstr "tháng"
 
 #: index.html
 msgid "À partir du"
-msgstr ""
+msgstr "Bắt đầu từ"
 
 #: index.html
 msgid "Tâche active"
-msgstr ""
+msgstr "Tác vụ đang bật"
 
 #: index.html
 msgid "Historique"
-msgstr ""
+msgstr "Lịch sử"
 
 #: index.html
 msgid "Jobs actifs"
-msgstr ""
+msgstr "Công việc đang chạy"
 
 #: index.html
 msgid "En attente"
-msgstr ""
+msgstr "Đang chờ"
 
 #: index.html
 msgid "Livrés aujourd'hui"
-msgstr ""
+msgstr "Đã giao hôm nay"
 
 #: index.html
 msgid "Jobs simultanés max."
-msgstr ""
+msgstr "Số công việc đồng thời tối đa"
 
 #: index.html
 msgid "Délai min. entre automatisations (min)"
-msgstr ""
+msgstr "Độ trễ tối thiểu giữa các lần tự động hóa (phút)"
 
 #: index.html
 msgid "Seuil profil « le plus ancien » (h)"
-msgstr ""
+msgstr "Ngưỡng hồ sơ «cũ nhất» (giờ)"
 
 #: index.html
 msgid "Dossiers"
-msgstr ""
+msgstr "Thư mục"
 
 #: index.html
 msgid "Téléchargements…"
-msgstr ""
+msgstr "Tải xuống…"
 
 #: index.html
 msgid "Livraison…"
-msgstr ""
+msgstr "Giao…"
 
 #: index.html
 msgid "Téléchargements :"
-msgstr ""
+msgstr "Tải xuống:"
 
 #: index.html
 msgid "(dossier de téléchargements du système)"
-msgstr ""
+msgstr "(thư mục tải xuống của hệ thống)"
 
 #: index.html
 msgid "Livraison :"
-msgstr ""
+msgstr "Giao:"
 
 #: index.html
 msgid "(non défini)"
-msgstr ""
+msgstr "(chưa xác định)"
 
 #: index.html
 msgid "Projets & tâches"
-msgstr ""
+msgstr "Dự án & tác vụ"
 
 #: index.html
 msgid "Jobs"
-msgstr ""
+msgstr "Công việc"
 
 #: index.html
 msgid "Journal d'activité"
-msgstr ""
+msgstr "Nhật ký hoạt động"
 
 #: index.html
 msgid "Confirmation"
-msgstr ""
+msgstr "Xác nhận"
 
 #: index.html
 msgid "Confirmer"
-msgstr ""
+msgstr "Xác nhận"
 
 #: index.html
 msgid "Mesurées sur cet ordinateur et conservées 90 jours. Rien n'est envoyé."
-msgstr ""
+msgstr "Được đo trên máy tính này và lưu trong 90 ngày. Không gửi đi bất cứ thứ gì."
 
 #: index.html
 msgid "Aujourd'hui"
-msgstr ""
+msgstr "Hôm nay"
 
 #: index.html
 msgid "7 jours"
-msgstr ""
+msgstr "7 ngày"
 
 #: index.html
 msgid "30 jours"
-msgstr ""
+msgstr "30 ngày"
 
 #: index.html
 msgid "90 jours"
-msgstr ""
+msgstr "90 ngày"
 
 #: index.html
 msgid "Préférences de l'application, sauvegardées localement."
-msgstr ""
+msgstr "Tùy chọn ứng dụng, được lưu cục bộ."
 
 #: index.html
 msgid "Taille de police de l'éditeur (px)"
-msgstr ""
+msgstr "Cỡ chữ trình soạn thảo (px)"
 
 #: index.html
 msgid "Thème"
-msgstr ""
+msgstr "Giao diện"
 
 #: index.html
 msgid "Thème du bureau (défaut)"
-msgstr ""
+msgstr "Giao diện của màn hình (mặc định)"
 
 #: index.html
 msgid "Clair"
-msgstr ""
+msgstr "Sáng"
 
 #: index.html
 msgid "Sombre"
-msgstr ""
+msgstr "Tối"
 
 #: index.html
 msgid "Langue"
-msgstr ""
+msgstr "Ngôn ngữ"
 
 #: index.html
 msgid "Langue du système (défaut)"
-msgstr ""
+msgstr "Ngôn ngữ hệ thống (mặc định)"
 
 #: index.html
 msgid "Appliquée au prochain démarrage"
-msgstr ""
+msgstr "Áp dụng ở lần khởi động tiếp theo"
 
 #: index.html
 msgid "Retour à la ligne (éditeur)"
-msgstr ""
+msgstr "Xuống dòng (trình soạn thảo)"
 
 #: index.html
 msgid "Désactivé"
-msgstr ""
+msgstr "Tắt"
 
 #: index.html
 msgid "Activé"
-msgstr ""
+msgstr "Bật"
 
 #: index.html
 msgid "Colonne fixe"
-msgstr ""
+msgstr "Cột cố định"
 
 #: index.html
 msgid "Confirmer avant de fermer un onglet"
-msgstr ""
+msgstr "Xác nhận trước khi đóng tab"
 
 #: index.html
 msgid "Afficher les fenêtres d'automatisation"
-msgstr ""
+msgstr "Hiện cửa sổ tự động hóa"
 
 #: index.html
 msgid "Restaurer les onglets ouverts au démarrage"
-msgstr ""
+msgstr "Khôi phục các tab đang mở khi khởi động"
 
 #: index.html
 msgid "Préfixe des adresses e-mail"
-msgstr ""
+msgstr "Tiền tố địa chỉ email"
 
 #: index.html
 msgid "docker"
-msgstr ""
+msgstr "docker"
 
 #: index.html
 msgid "Domaine des adresses e-mail"
-msgstr ""
+msgstr "Tên miền địa chỉ email"
 
 #: index.html
 msgid "dmathilde.fr"
-msgstr ""
+msgstr "dmathilde.fr"
 
 #: index.html
 msgid "Adresse : préfixe + numéro + @ + domaine (ex. docker239@dmathilde.fr)"
-msgstr ""
+msgstr "Địa chỉ: tiền tố + số + @ + tên miền (VD: docker239@dmathilde.fr)"
 
 #: index.html
 msgid "Adresse du webmail (Roundcube)"
-msgstr ""
+msgstr "Địa chỉ webmail (Roundcube)"
 
 #: index.html
 msgid "https://mail.dmathilde.fr"
-msgstr ""
+msgstr "https://mail.dmathilde.fr"
 
 #: assets/app.js
 msgid "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."
-msgstr ""
+msgstr "Trợ lý hội thoại của Anthropic. Xuất sắc trong viết lách, phân tích tài liệu dài, lập trình và suy luận nhiều bước."
 
 #: assets/app.js
 msgid "Plutôt pour du code, des textes longs et soignés, ou des questions complexes qui demandent de la rigueur."
-msgstr ""
+msgstr "Phù hợp cho mã nguồn, văn bản dài và chỉn chu, hoặc câu hỏi phức tạp cần sự chặt chẽ."
 
 #: assets/app.js
 msgid "L'assistant généraliste d'OpenAI, le plus connu du grand public. Il discute, rédige, résume, génère des images, analyse des fichiers et peut chercher sur le web."
-msgstr ""
+msgstr "Trợ lý đa năng của OpenAI, được công chúng biết đến nhiều nhất. Nó trò chuyện, viết, tóm tắt, tạo ảnh, phân tích tệp và có thể tìm trên web."
 
 #: assets/app.js
 msgid "Le couteau suisse du quotidien : brainstorming, questions générales, petites tâches variées."
-msgstr ""
+msgstr "Con dao Thụy Sĩ hằng ngày: động não, câu hỏi chung, các việc nhỏ đa dạng."
 
 #: assets/app.js
 msgid "L'assistant IA de Google. Multimodal (texte, images, audio, vidéo), il s'appuie sur la recherche Google et s'intègre aux outils Google (Docs, Gmail, Drive…)."
-msgstr ""
+msgstr "Trợ lý AI của Google. Đa phương thức (văn bản, hình ảnh, âm thanh, video), dựa trên Google Tìm kiếm và tích hợp với công cụ Google (Docs, Gmail, Drive…)."
 
 #: assets/app.js
 msgid "Plutôt pour analyser des images ou vidéos, ou si vous travaillez déjà dans l'écosystème Google."
-msgstr ""
+msgstr "Phù hợp để phân tích hình ảnh hoặc video, hoặc nếu bạn đã làm việc trong hệ sinh thái Google."
 
 #: assets/app.js
 msgid "Le chat de Z.ai, propulsé par les modèles GLM. Gratuit pour l'essentiel, avec un mode agent capable de chercher sur le web et de produire des fichiers (docx, pdf, xlsx)."
-msgstr ""
+msgstr "Chat của Z.ai, chạy bằng mô hình GLM. Phần lớn miễn phí, có chế độ tác tử có thể tìm trên web và tạo tệp (docx, pdf, xlsx)."
 
 #: assets/app.js
 msgid "Une alternative gratuite solide pour le chat et le code, quand les quotas des autres sont épuisés."
-msgstr ""
+msgstr "Lựa chọn miễn phí vững chắc cho chat và lập trình khi hạn mức của các dịch vụ khác đã hết."
 
 #: assets/app.js
 msgid "Un « moteur de réponse » : il cherche sur le web en direct, synthétise plusieurs sources et cite ses références pour chaque affirmation."
-msgstr ""
+msgstr "Một «công cụ trả lời»: tìm kiếm trên web theo thời gian thực, tổng hợp nhiều nguồn và trích dẫn nguồn cho mỗi khẳng định."
 
 #: assets/app.js
 msgid "Plutôt pour la recherche d'informations à jour, la veille et la vérification de faits avec sources."
-msgstr ""
+msgstr "Phù hợp để tìm thông tin cập nhật, theo dõi tin tức và kiểm chứng sự thật có nguồn."
 
 #: assets/app.js
 msgid "L'assistant de xAI (Elon Musk), connecté au réseau X (ex-Twitter). Ton direct, accès au temps réel de X, génération d'images incluse."
-msgstr ""
+msgstr "Trợ lý của xAI (Elon Musk), kết nối với mạng X (trước là Twitter). Giọng điệu thẳng thắn, truy cập X theo thời gian thực, có tạo ảnh."
 
 #: assets/app.js
 msgid "Plutôt pour suivre l'actualité chaude et les tendances via X, ou pour un ton moins formel."
-msgstr ""
+msgstr "Phù hợp để theo dõi tin nóng và xu hướng qua X, hoặc khi cần giọng điệu bớt trang trọng."
 
 #: assets/app.js
 msgid "Une plateforme de génération d'images orientée création : illustrations, concept art, assets de jeu vidéo, avec des contrôles fins (styles, modèles, retouche)."
-msgstr ""
+msgstr "Nền tảng tạo ảnh hướng tới sáng tạo: minh họa, concept art, tài nguyên trò chơi, với điều khiển tinh chỉnh (phong cách, mô hình, chỉnh sửa)."
 
 #: assets/app.js
 msgid "Plutôt pour produire des visuels et illustrations de qualité avec un contrôle précis du style."
-msgstr ""
+msgstr "Phù hợp để tạo hình ảnh và minh họa chất lượng với khả năng kiểm soát phong cách chính xác."
 
 #: assets/app.js
 msgid "Un générateur de musique : il compose des chansons complètes (instruments, voix, paroles) à partir d'une simple description texte, dans à peu près tous les genres."
-msgstr ""
+msgstr "Trình tạo nhạc: sáng tác bài hát hoàn chỉnh (nhạc cụ, giọng hát, lời) từ một mô tả văn bản đơn giản, ở hầu hết mọi thể loại."
 
 #: assets/app.js
 msgid "Plutôt pour créer une musique, un jingle ou une chanson à partir d'un texte ou d'une idée."
-msgstr ""
+msgstr "Phù hợp để tạo nhạc, nhạc hiệu hoặc bài hát từ văn bản hay ý tưởng."
 
 #: assets/app.js
 msgid "Un générateur de modèles 3D : il transforme un texte ou une image en objet 3D texturé, avec rigging/animation automatique et export vers les formats standards (GLB, FBX, STL…)."
-msgstr ""
+msgstr "Trình tạo mô hình 3D: biến văn bản hoặc hình ảnh thành vật thể 3D có kết cấu, với rigging/hoạt ảnh tự động và xuất ra định dạng chuẩn (GLB, FBX, STL…)."
 
 #: assets/app.js
 msgid "Plutôt pour créer des assets 3D (jeux, impression 3D, animation) sans savoir modéliser."
-msgstr ""
+msgstr "Phù hợp để tạo tài nguyên 3D (trò chơi, in 3D, hoạt hình) mà không cần biết dựng mô hình."
 
 #: assets/app.js
 msgid "Le Chat de Mistral AI, éditeur européen (français). Modèles open-weights performants, chat, code et analyse de documents."
-msgstr ""
+msgstr "Le Chat của Mistral AI, công ty châu Âu (Pháp). Mô hình open-weights mạnh mẽ, chat, lập trình và phân tích tài liệu."
 
 #: assets/app.js
 msgid "Alternative européenne solide pour le chat et le code, avec une bonne maîtrise du français."
-msgstr ""
+msgstr "Lựa chọn châu Âu vững chắc cho chat và lập trình, thông thạo tiếng Pháp."
 
 #: assets/app.js
 msgid "DeepSeek : assistant IA chinois spécialisé en raisonnement et programmation, particulièrement performant en Python."
-msgstr ""
+msgstr "DeepSeek: trợ lý AI của Trung Quốc chuyên về suy luận và lập trình, đặc biệt mạnh về Python."
 
 #: assets/app.js
 msgid "Pour du code Python, du raisonnement étape par étape, ou une alternative gratuite à ChatGPT."
-msgstr ""
+msgstr "Cho mã Python, suy luận từng bước, hoặc như một lựa chọn miễn phí thay cho ChatGPT."
 
 #: assets/app.js
 msgid "GitHub Copilot : assistant IA intégré dans VS Code et GitHub. Autocomplétion, chat, génération de tests, explication de code."
-msgstr ""
+msgstr "GitHub Copilot: trợ lý AI tích hợp trong VS Code và GitHub. Tự động hoàn thành, chat, tạo kiểm thử, giải thích mã."
 
 #: assets/app.js
 msgid "Pour programmer plus vite dans VS Code ou sur GitHub, avec un modèle IA qui connaît votre codebase."
-msgstr ""
+msgstr "Để lập trình nhanh hơn trong VS Code hoặc trên GitHub với mô hình AI hiểu mã nguồn của bạn."
 
 #: assets/app.js
 msgid "Elicit : assistant de recherche scientifique. Trouve des articles, extrait des données, synthétise des études."
-msgstr ""
+msgstr "Elicit: trợ lý nghiên cứu khoa học. Tìm bài báo, trích xuất dữ liệu, tổng hợp các nghiên cứu."
 
 #: assets/app.js
 msgid "Pour la recherche académique, la revue de littérature et l'extraction de données d'articles scientifiques."
-msgstr ""
+msgstr "Cho nghiên cứu học thuật, tổng quan tài liệu và trích xuất dữ liệu từ bài báo khoa học."
 
 #: assets/app.js
 msgid "NotebookLM de Google : interagissez avec vos propres documents (PDF, texte, audio). Résumés, questions, génération de notes."
-msgstr ""
+msgstr "NotebookLM của Google: tương tác với tài liệu của riêng bạn (PDF, văn bản, âm thanh). Tóm tắt, câu hỏi, tạo ghi chú."
 
 #: assets/app.js
 msgid "Pour interroger vos documents personnels ou professionnels avec une IA qui cite ses sources."
-msgstr ""
+msgstr "Để truy vấn tài liệu cá nhân hoặc công việc với một AI trích dẫn nguồn."
 
 #: assets/app.js
 msgid "Wolfram Alpha : moteur de calcul symbolique. Mathématiques, physique, chimie, données factuelles, conversions."
-msgstr ""
+msgstr "Wolfram Alpha: công cụ tính toán ký hiệu. Toán học, vật lý, hóa học, dữ liệu thực tế, chuyển đổi."
 
 #: assets/app.js
 msgid "Pour des calculs exacts (mathématiques symboliques), des données chiffrées ou des conversions d'unités."
-msgstr ""
+msgstr "Cho các phép tính chính xác (toán ký hiệu), dữ liệu số hoặc chuyển đổi đơn vị."
 
 #: assets/app.js
 msgid "DeepL : traduction automatique de haute qualité, plus naturelle que Google Traduction. Texte et documents entiers."
-msgstr ""
+msgstr "DeepL: dịch máy chất lượng cao, tự nhiên hơn Google Dịch. Văn bản và toàn bộ tài liệu."
 
 #: assets/app.js
 msgid "Pour traduire du texte ou des documents avec un rendu naturel et cohérent."
-msgstr ""
+msgstr "Để dịch văn bản hoặc tài liệu với kết quả tự nhiên và nhất quán."
 
 #: assets/app.js
 msgid "Ideogram : génération d'images orientée design. Logos, typographies, affiches, avec un excellent rendu du texte."
-msgstr ""
+msgstr "Ideogram: tạo ảnh hướng tới thiết kế. Logo, kiểu chữ, áp phích, với khả năng hiển thị chữ rất tốt."
 
 #: assets/app.js
 msgid "Pour créer des visuels avec du texte lisible (logos, affiches, bannières) ou du design graphique."
-msgstr ""
+msgstr "Để tạo hình ảnh có chữ dễ đọc (logo, áp phích, banner) hoặc thiết kế đồ họa."
 
 #: assets/app.js
 msgid "Kling : générateur de vidéos courtes à partir de texte ou d'images. Animations réalistes, crédits gratuits disponibles."
-msgstr ""
+msgstr "Kling: trình tạo video ngắn từ văn bản hoặc hình ảnh. Hoạt ảnh chân thực, có tín dụng miễn phí."
 
 #: assets/app.js
 msgid "Pour créer des clips vidéo animés à partir d'une description ou d'une image fixe."
-msgstr ""
+msgstr "Để tạo clip video hoạt hình từ mô tả hoặc ảnh tĩnh."
 
 #: assets/app.js
 msgid "Runway : suite d'outils IA pour la vidéo. Génération, édition, effets spéciaux, inpainting vidéo."
-msgstr ""
+msgstr "Runway: bộ công cụ AI cho video. Tạo, chỉnh sửa, hiệu ứng đặc biệt, inpainting video."
 
 #: assets/app.js
 msgid "Pour le montage et la création vidéo avancée avec des outils IA intégrés."
-msgstr ""
+msgstr "Cho dựng và sản xuất video nâng cao với công cụ AI tích hợp."
 
 #: assets/app.js
 msgid "Pika : générateur de vidéos courtes et créatives. Animation d'images, effets, transformation de styles."
-msgstr ""
+msgstr "Pika: trình tạo video ngắn và sáng tạo. Hoạt hình hóa ảnh, hiệu ứng, biến đổi phong cách."
 
 #: assets/app.js
 msgid "Pour animer des images ou créer des vidéos courtes originales avec des effets IA."
-msgstr ""
+msgstr "Để làm ảnh chuyển động hoặc tạo video ngắn độc đáo với hiệu ứng AI."
 
 #: assets/app.js
 msgid "Qwen : assistant IA d'Alibaba. Multimodal (texte, images, code), open-source, disponible en plusieurs tailles."
-msgstr ""
+msgstr "Qwen: trợ lý AI của Alibaba. Đa phương thức (văn bản, hình ảnh, mã), mã nguồn mở, có nhiều kích cỡ."
 
 #: assets/app.js
 msgid "Alternative gratuite pour le chat, le code et l'analyse d'images, avec un bon support multilingue."
-msgstr ""
+msgstr "Lựa chọn miễn phí cho chat, lập trình và phân tích ảnh, hỗ trợ đa ngôn ngữ tốt."
 
 #: assets/app.js
 msgid "Impossible d'enregistrer les comptes (stockage plein ?)"
-msgstr ""
+msgstr "Không thể lưu tài khoản (bộ nhớ đầy?)"
 
 #: assets/app.js
 msgid "Ctrl+S pour sauvegarder."
-msgstr ""
+msgstr "Ctrl+S để lưu."
 
 #: assets/app.js
 msgid "Sélectionnez un fichier pour l'éditer ici."
-msgstr ""
+msgstr "Chọn một tệp để chỉnh sửa tại đây."
 
 #: assets/app.js
 msgid "Éditeur simplifié (Monaco indisponible) — Ctrl+S pour sauvegarder"
-msgstr ""
+msgstr "Trình soạn thảo đơn giản (không có Monaco) — Ctrl+S để lưu"
 
 #: assets/app.js
 msgid "Fichier enregistré !"
-msgstr ""
+msgstr "Đã lưu tệp"
 
 #: assets/app.js
 msgid "Erreur d'enregistrement."
-msgstr ""
+msgstr "Lỗi khi lưu."
 
 #: assets/app.js
 msgid "Aucun compte pour l'instant."
-msgstr ""
+msgstr "Chưa có tài khoản nào."
 
 #: assets/app.js
 msgid "Créer mon premier compte"
-msgstr ""
+msgstr "Tạo tài khoản đầu tiên"
 
 #: assets/app.js
 msgid "Cliquer pour copier l'e-mail"
-msgstr ""
+msgstr "Nhấp để sao chép email"
 
 #: assets/app.js
 msgid "Ouvrir le webmail (adresse copiée)"
-msgstr ""
+msgstr "Mở webmail (đã sao chép địa chỉ)"
 
 #: assets/app.js
 msgid "Modifier le compte"
-msgstr ""
+msgstr "Sửa tài khoản"
 
 #: assets/app.js
 msgid "{available} service(s) hors cooldown sur {total}"
-msgstr ""
+msgstr "{available}/{total} dịch vụ không trong thời gian chờ"
 
 #: assets/app.js
 msgid "Replier / déplier"
-msgstr ""
+msgstr "Thu gọn / mở rộng"
 
 #: assets/app.js
 msgid "{service} — {account} déjà ouvert"
-msgstr ""
+msgstr "{service} — {account} đã mở"
 
 #: assets/app.js
 msgid "Recharger l'onglet"
-msgstr ""
+msgstr "Tải lại tab"
 
 #: assets/app.js
 msgid "Revenir à l'accueil de {service}"
-msgstr ""
+msgstr "Quay về trang chủ {service}"
 
 #: assets/app.js
 msgid "Se déconnecter du profil « {profile} »"
-msgstr ""
+msgstr "Đăng xuất khỏi hồ sơ «{profile}»"
 
 #: assets/app.js
 msgid "{service} ouvert avec {account}"
-msgstr ""
+msgstr "Đã mở {service} với {account}"
 
 #: assets/app.js
 msgid "Fermer l'onglet"
-msgstr ""
+msgstr "Đóng tab"
 
 #: assets/app.js
 msgid "Fermer l'onglet « {tab} » ? La session web sera libérée."
-msgstr ""
+msgstr "Đóng tab «{tab}»? Phiên web sẽ được giải phóng."
 
 #: assets/app.js
 msgid "Onglet fermé (mémoire libérée)"
-msgstr ""
+msgstr "Đã đóng tab (đã giải phóng bộ nhớ)"
 
 #: assets/app.js
 msgid "Retirer l'étoile"
-msgstr ""
+msgstr "Bỏ gắn sao"
 
 #: assets/app.js
 msgid "Étoiler cet onglet"
-msgstr ""
+msgstr "Gắn sao tab này"
 
 #: assets/app.js
 msgid "Onglet étoilé"
-msgstr ""
+msgstr "Đã gắn sao tab"
 
 #: assets/app.js
 msgid "Étoile retirée"
-msgstr ""
+msgstr "Đã bỏ gắn sao"
 
 #: assets/app.js
 msgid "Échec de la déconnexion du profil"
-msgstr ""
+msgstr "Đăng xuất hồ sơ thất bại"
 
 #: assets/app.js
 msgid "Profil « {profile} » déconnecté — session effacée"
-msgstr ""
+msgstr "Đã đăng xuất hồ sơ «{profile}» — đã xóa phiên"
 
 #: assets/app.js
 msgid "Aucun fichier trouvé."
-msgstr ""
+msgstr "Không tìm thấy tệp."
 
 #: assets/app.js
 msgid "Fichier trop volumineux pour l'éditeur : {size} Mo (limite : 20 Mo)."
-msgstr ""
+msgstr "Tệp quá lớn cho trình soạn thảo: {size} MB (giới hạn: 20 MB)."
 
 #: assets/app.js
 msgid "Masquer le mot de passe"
-msgstr ""
+msgstr "Ẩn mật khẩu"
 
 #: assets/app.js
 msgid "Mot de passe non enregistré : le trousseau du système est indisponible"
-msgstr ""
+msgstr "Chưa lưu mật khẩu: chuỗi khóa hệ thống không khả dụng"
 
 #: assets/app.js
 msgid "Mot de passe non enregistré"
-msgstr ""
+msgstr "Chưa lưu mật khẩu"
 
 #: assets/app.js
 msgid "C'est quoi ?"
-msgstr ""
+msgstr "Đây là gì?"
 
 #: assets/app.js
 msgid "Quand l'utiliser ?"
-msgstr ""
+msgstr "Khi nào nên dùng?"
 
 #: assets/app.js
 msgid "Description à venir."
-msgstr ""
+msgstr "Mô tả sẽ sớm có."
 
 #: assets/app.js
 msgid "Maximum {max} services à portée de main"
-msgstr ""
+msgstr "Tối đa {max} dịch vụ trong tầm tay"
 
 #: assets/app.js
 msgid "Sélectionnez au moins 1 service"
-msgstr ""
+msgstr "Chọn ít nhất 1 dịch vụ"
 
 #: assets/app.js
 msgid "Services mis à jour ({count}/{max})"
-msgstr ""
+msgstr "Đã cập nhật dịch vụ ({count}/{max})"
 
 #: assets/app.js
 msgid "Supprimer « {name} » ({email}) ? La session restera stockée sur le disque, mais le compte disparaîtra de la liste."
-msgstr ""
+msgstr "Xóa «{name}» ({email})? Phiên vẫn được lưu trên đĩa, nhưng tài khoản sẽ biến mất khỏi danh sách."
 
 #: assets/app.js
 msgid "Échec de l'export (écriture impossible)"
-msgstr ""
+msgstr "Xuất thất bại (không thể ghi)"
 
 #: assets/app.js
 msgid "{count} compte(s) exporté(s)"
-msgstr ""
+msgstr "Đã xuất {count} tài khoản"
 
 #: assets/app.js
 msgid "Export impossible"
-msgstr ""
+msgstr "Không thể xuất"
 
 #: assets/app.js
 msgid "Échec de la lecture du fichier"
-msgstr ""
+msgstr "Đọc tệp thất bại"
 
 #: assets/app.js
 msgid "Fichier JSON invalide"
-msgstr ""
+msgstr "Tệp JSON không hợp lệ"
 
 #: assets/app.js
 msgid "Format invalide : un tableau de comptes est attendu."
-msgstr ""
+msgstr "Định dạng không hợp lệ: cần một mảng tài khoản."
 
 #: assets/app.js
 msgid "Le fichier contient {count} compte(s). L'import REMPLACE entièrement la liste actuelle ({current} compte(s)) — cette action écrase les comptes existants, pas leurs sessions (cookies) déjà enregistrées sur le disque. Continuer ?"
-msgstr ""
+msgstr "Tệp chứa {count} tài khoản. Việc nhập sẽ THAY THẾ toàn bộ danh sách hiện tại ({current} tài khoản) — thao tác này ghi đè các tài khoản hiện có, nhưng không ảnh hưởng đến phiên (cookie) đã lưu trên đĩa. Tiếp tục?"
 
 #: assets/app.js
 msgid "Import impossible"
-msgstr ""
+msgstr "Không thể nhập"
 
 #: assets/app.js
 msgid "{count} compte(s) importé(s)"
-msgstr ""
+msgstr "Đã nhập {count} tài khoản"
 
 #: assets/app.js
 msgid "Échec de l'import : {error}"
-msgstr ""
+msgstr "Nhập thất bại: {error}"
 
 #: assets/app.js
 msgid "Compte supprimé"
-msgstr ""
+msgstr "Đã xóa tài khoản"
 
 #: assets/app.js
 msgid "Remplissez tous les champs"
-msgstr ""
+msgstr "Hãy điền tất cả các trường"
 
 #: assets/app.js
 msgid "Ce profil est déjà utilisé par un autre compte (les sessions seraient partagées)."
-msgstr ""
+msgstr "Hồ sơ này đã được tài khoản khác sử dụng (các phiên sẽ bị dùng chung)."
 
 #: assets/app.js
 msgid "Compte mis à jour"
-msgstr ""
+msgstr "Đã cập nhật tài khoản"
 
 #: assets/app.js
 msgid "Compte ajouté"
-msgstr ""
+msgstr "Đã thêm tài khoản"
 
 #: assets/app.js
 msgid "Renseignez d'abord le domaine des adresses e-mail dans les réglages"
-msgstr ""
+msgstr "Trước tiên hãy nhập tên miền địa chỉ email trong cài đặt"
 
 #: assets/app.js
 msgid "Premier compte : {nom}, {email}. Un mot de passe de messagerie aléatoire est généré pour chacun."
-msgstr ""
+msgstr "Tài khoản đầu tiên: {nom}, {email}. Mỗi tài khoản sẽ được tạo một mật khẩu email ngẫu nhiên."
 
 #: assets/app.js
 msgid "Nombre de comptes : de 1 à {max}"
-msgstr ""
+msgstr "Số lượng tài khoản: từ 1 đến {max}"
 
 #: assets/app.js
 msgid "{n} compte(s) créé(s), {m} mot(s) de passe enregistré(s)"
-msgstr ""
+msgstr "Đã tạo {n} tài khoản, đã lưu {m} mật khẩu"
 
 #: assets/app.js
 msgid "Adresse du webmail non configurée dans les réglages"
-msgstr ""
+msgstr "Chưa cấu hình địa chỉ webmail trong cài đặt"
 
 #: assets/app.js
 msgid "Ouverture du webmail impossible"
-msgstr ""
+msgstr "Không thể mở webmail"
 
 #: assets/app.js
 msgid "Copie impossible dans le presse-papiers"
-msgstr ""
+msgstr "Không thể sao chép vào bảng nhớ tạm"
 
 #: assets/app.js
 msgid "E-mail copié : {email}"
-msgstr ""
+msgstr "Đã sao chép email: {email}"
 
 #: assets/app.js
 msgid "Cooldown terminé"
-msgstr ""
+msgstr "Hết thời gian chờ"
 
 #: assets/app.js
 msgid "{account} — {service} est de nouveau disponible."
-msgstr ""
+msgstr "{account} — {service} đã khả dụng trở lại."
 
 #: assets/app.js
 msgid "{account} — {service} : cooldown terminé"
-msgstr ""
+msgstr "{account} — {service}: hết thời gian chờ"
 
 #: assets/app.js
 msgid "Téléchargement…"
-msgstr ""
+msgstr "Đang tải xuống…"
 
 #: assets/app.js
 msgid "Téléchargé — à traiter"
-msgstr ""
+msgstr "Đã tải xuống — cần xử lý"
 
 #: assets/app.js
 msgid "Aucun profil disponible"
-msgstr ""
+msgstr "Không có hồ sơ khả dụng"
 
 #: assets/app.js
 msgid "Projet en cours d'analyse"
-msgstr ""
+msgstr "Đang phân tích dự án"
 
 #: assets/app.js
 msgid "En cours"
-msgstr ""
+msgstr "Đang chạy"
 
 #: assets/app.js
 msgid "En pause"
-msgstr ""
+msgstr "Đã tạm dừng"
 
 #: assets/app.js
 msgid "Reprise programmée"
-msgstr ""
+msgstr "Đã lên lịch tiếp tục"
 
 #: assets/app.js
 msgid "Erreur"
-msgstr ""
+msgstr "Lỗi"
 
 #: assets/app.js
 msgid "Livré"
-msgstr ""
+msgstr "Đã giao"
 
 #: assets/app.js
 msgid "tous les {n} minutes"
-msgstr ""
+msgstr "mỗi {n} phút"
 
 #: assets/app.js
 msgid "tous les {n} jours"
-msgstr ""
+msgstr "mỗi {n} ngày"
 
 #: assets/app.js
 msgid "toutes les {n} semaines"
-msgstr ""
+msgstr "mỗi {n} tuần"
 
 #: assets/app.js
 msgid "tous les {n} mois"
-msgstr ""
+msgstr "mỗi {n} tháng"
 
 #: assets/app.js
 msgid "toutes les {n} heures"
-msgstr ""
+msgstr "mỗi {n} giờ"
 
 #: assets/app.js
 msgid "Le {date}"
-msgstr ""
+msgstr "Vào {date}"
 
 #: assets/app.js
 msgid "à partir du {date}"
-msgstr ""
+msgstr "từ {date}"
 
 #: assets/app.js
 msgid "programmation inconnue"
-msgstr ""
+msgstr "lịch không xác định"
 
 #: assets/app.js
 msgid "{n} compte(s) sélectionné(s)"
-msgstr ""
+msgstr "Đã chọn {n} tài khoản"
 
 #: assets/app.js
 msgid "tous les comptes avec Claude"
-msgstr ""
+msgstr "tất cả tài khoản có Claude"
 
 #: assets/app.js
 msgid "rotation (un compte à la fois)"
-msgstr ""
+msgstr "luân phiên (mỗi lần một tài khoản)"
 
 #: assets/app.js
 msgid "tous les comptes, espacement de {n} s"
-msgstr ""
+msgstr "tất cả tài khoản, cách nhau {n} giây"
 
 #: assets/app.js
 msgid "tous les comptes en même temps"
-msgstr ""
+msgstr "tất cả tài khoản cùng lúc"
 
 #: assets/app.js
 msgid "lancée"
-msgstr ""
+msgstr "đã khởi chạy"
 
 #: assets/app.js
 msgid "envoyée"
-msgstr ""
+msgstr "đã gửi"
 
 #: assets/app.js
 msgid "quota épuisé"
-msgstr ""
+msgstr "hết hạn mức"
 
 #: assets/app.js
 msgid "heures calmes"
-msgstr ""
+msgstr "giờ yên tĩnh"
 
 #: assets/app.js
 msgid "non connecté"
-msgstr ""
+msgstr "chưa đăng nhập"
 
 #: assets/app.js
 msgid "aucun compte éligible"
-msgstr ""
+msgstr "không có tài khoản phù hợp"
 
 #: assets/app.js
 msgid "erreur"
-msgstr ""
+msgstr "lỗi"
 
 #: assets/app.js
 msgid "Aucune tâche programmée pour l'instant — créez-en une avec « Nouvelle tâche »."
-msgstr ""
+msgstr "Chưa có tác vụ đã lên lịch — hãy tạo bằng «Tác vụ mới»."
 
 #: assets/app.js
 msgid "Plus aucune exécution programmée"
-msgstr ""
+msgstr "Không còn lần chạy nào được lên lịch"
 
 #: assets/app.js
 msgid "Prochaine exécution : {date}"
-msgstr ""
+msgstr "Lần chạy tiếp theo: {date}"
 
 #: assets/app.js
 msgid "inactive"
-msgstr ""
+msgstr "không hoạt động"
 
 #: assets/app.js
 msgid "Activer"
-msgstr ""
+msgstr "Bật"
 
 #: assets/app.js
 msgid "Désactiver"
-msgstr ""
+msgstr "Tắt"
 
 #: assets/app.js
 msgid "Exécuter maintenant"
-msgstr ""
+msgstr "Chạy ngay"
 
 #: assets/app.js
 msgid "Modifier"
-msgstr ""
+msgstr "Sửa"
 
 #: assets/app.js
 msgid "Aucun événement pour l'instant."
-msgstr ""
+msgstr "Chưa có sự kiện nào."
 
 #: assets/app.js
 msgid "Aucun compte avec le service Claude — la tâche ne pourra pas s'exécuter."
-msgstr ""
+msgstr "Không có tài khoản nào có dịch vụ Claude — tác vụ sẽ không thể chạy."
 
 #: assets/app.js
 msgid "sans le service Claude"
-msgstr ""
+msgstr "không có dịch vụ Claude"
 
 #: assets/app.js
 msgid "compte supprimé"
-msgstr ""
+msgstr "tài khoản đã xóa"
 
 #: assets/app.js
 msgid "Le nom est obligatoire."
-msgstr ""
+msgstr "Tên là bắt buộc."
 
 #: assets/app.js
 msgid "Le prompt est obligatoire."
-msgstr ""
+msgstr "Prompt là bắt buộc."
 
 #: assets/app.js
 msgid "Comptes : choix invalide."
-msgstr ""
+msgstr "Tài khoản: lựa chọn không hợp lệ."
 
 #: assets/app.js
 msgid "Sélectionnez au moins un compte."
-msgstr ""
+msgstr "Chọn ít nhất một tài khoản."
 
 #: assets/app.js
 msgid "Répartition : choix invalide."
-msgstr ""
+msgstr "Phân phối: lựa chọn không hợp lệ."
 
 #: assets/app.js
 msgid "Espacement invalide : entre 0 et 86400 secondes."
-msgstr ""
+msgstr "Khoảng cách không hợp lệ: từ 0 đến 86400 giây."
 
 #: assets/app.js
 msgid "Programmation : choix invalide."
-msgstr ""
+msgstr "Lập lịch: lựa chọn không hợp lệ."
 
 #: assets/app.js
 msgid "Date « Le » invalide."
-msgstr ""
+msgstr "Ngày «Vào» không hợp lệ."
 
 #: assets/app.js
 msgid "Date « À partir du » invalide."
-msgstr ""
+msgstr "Ngày «Bắt đầu từ» không hợp lệ."
 
 #: assets/app.js
 msgid "« Tous les » doit être un entier supérieur à 0."
-msgstr ""
+msgstr "«Mỗi» phải là số nguyên lớn hơn 0."
 
 #: assets/app.js
 msgid "Unité inconnue."
-msgstr ""
+msgstr "Đơn vị không xác định."
 
 #: assets/app.js
 msgid "Enregistrement impossible : {erreur}"
-msgstr ""
+msgstr "Không thể lưu: {erreur}"
 
 #: assets/app.js
 msgid "Le moteur de tâches n'est pas démarré."
-msgstr ""
+msgstr "Công cụ tác vụ chưa khởi động."
 
 #: assets/app.js
 msgid "Exécution demandée — le résultat apparaîtra dans l'historique."
-msgstr ""
+msgstr "Đã yêu cầu chạy — kết quả sẽ xuất hiện trong lịch sử."
 
 #: assets/app.js
 msgid "Une exécution est déjà en cours — réessayez dans un instant."
-msgstr ""
+msgstr "Đang có một lần chạy — hãy thử lại sau giây lát."
 
 #: assets/app.js
 msgid "Le service des tâches a refusé l'exécution."
-msgstr ""
+msgstr "Dịch vụ tác vụ đã từ chối lần chạy."
 
 #: assets/app.js
 msgid "Tâche introuvable."
-msgstr ""
+msgstr "Không tìm thấy tác vụ."
 
 #: assets/app.js
 msgid "Exécution impossible : {erreur}"
-msgstr ""
+msgstr "Không thể chạy: {erreur}"
 
 #: assets/app.js
 msgid "Action impossible : {erreur}"
-msgstr ""
+msgstr "Không thể thực hiện: {erreur}"
 
 #: assets/app.js
 msgid "Supprimer la tâche"
-msgstr ""
+msgstr "Xóa tác vụ"
 
 #: assets/app.js
 msgid "Supprimer « {nom} » ? L'historique est conservé."
-msgstr ""
+msgstr "Xóa «{nom}»? Lịch sử vẫn được giữ."
 
 #: assets/app.js
 msgid "Suppression impossible : {erreur}"
-msgstr ""
+msgstr "Không thể xóa: {erreur}"
 
 #: assets/app.js
 msgid "< 1 min"
-msgstr ""
+msgstr "< 1 phút"
 
 #: assets/app.js
 msgid "{h} h {m} min"
-msgstr ""
+msgstr "{h} giờ {m} phút"
 
 #: assets/app.js
 msgid "{m} min"
-msgstr ""
+msgstr "{m} phút"
 
 #: assets/app.js
 msgid "Temps actif"
-msgstr ""
+msgstr "Thời gian hoạt động"
 
 #: assets/app.js
 msgid "Durée ouverte"
-msgstr ""
+msgstr "Thời gian mở"
 
 #: assets/app.js
 msgid "Sessions"
-msgstr ""
+msgstr "Phiên"
 
 #: assets/app.js
 msgid "Dernière utilisation"
-msgstr ""
+msgstr "Lần dùng gần nhất"
 
 #: assets/app.js
 msgid "Part"
-msgstr ""
+msgstr "Tỷ lệ"
 
 #: assets/app.js
 msgid "Dim"
-msgstr ""
+msgstr "CN"
 
 #: assets/app.js
 msgid "Jeu"
-msgstr ""
+msgstr "T5"
 
 #: assets/app.js
 msgid "Lun"
-msgstr ""
+msgstr "T2"
 
 #: assets/app.js
 msgid "Mar"
-msgstr ""
+msgstr "T3"
 
 #: assets/app.js
 msgid "Mer"
-msgstr ""
+msgstr "T4"
 
 #: assets/app.js
 msgid "Sam"
-msgstr ""
+msgstr "T7"
 
 #: assets/app.js
 msgid "Ven"
-msgstr ""
+msgstr "T6"
 
 #: assets/app.js
 msgid "{jour} {h} h : {duree}"
-msgstr ""
+msgstr "{jour} {h} giờ: {duree}"
 
 #: assets/app.js
 msgid "Heures de pointe (temps actif)"
-msgstr ""
+msgstr "Giờ cao điểm (thời gian hoạt động)"
 
 #: assets/app.js
 msgid "dernière utilisation : {date}"
-msgstr ""
+msgstr "lần dùng gần nhất: {date}"
 
 #: assets/app.js
 msgid "jamais utilisé depuis le début de la mesure"
-msgstr ""
+msgstr "chưa từng dùng kể từ khi bắt đầu đo"
 
 #: assets/app.js
 msgid "Comptes inutilisés sur la période"
-msgstr ""
+msgstr "Tài khoản không dùng trong kỳ"
 
 #: assets/app.js
 msgid "fin {h}"
-msgstr ""
+msgstr "kết thúc {h}"
 
 #: assets/app.js
 msgid "Tâches programmables par compte"
-msgstr ""
+msgstr "Tác vụ đã lên lịch theo tài khoản"
 
 #: assets/app.js
 msgid "Compte"
-msgstr ""
+msgstr "Tài khoản"
 
 #: assets/app.js
 msgid "Envoyées"
-msgstr ""
+msgstr "Đã gửi"
 
 #: assets/app.js
 msgid "Erreurs"
-msgstr ""
+msgstr "Lỗi"
 
 #: assets/app.js
 msgid "Quotas"
-msgstr ""
+msgstr "Hạn mức"
 
 #: assets/app.js
 msgid "Dernier quota"
-msgstr ""
+msgstr "Hạn mức gần nhất"
 
 #: assets/app.js
 msgid "Exécutions"
-msgstr ""
+msgstr "Lần chạy"
 
 #: assets/app.js
 msgid "D'après l'historique des tâches (200 dernières exécutions)."
-msgstr ""
+msgstr "Theo lịch sử tác vụ (200 lần chạy gần nhất)."
 
 #: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
-msgstr ""
+msgstr "Không có phiên nào trong kỳ này. Việc đo bắt đầu khi cài đặt phiên bản này."
 
 #: assets/app.js
 msgid "1 jour"
-msgstr ""
+msgstr "1 ngày"
 
 #: assets/app.js
 msgid "{n} jours"
-msgstr ""
+msgstr "{n} ngày"
 
 #: assets/app.js
 msgid "Série en cours (record : {n})"
-msgstr ""
+msgstr "Chuỗi hiện tại (kỷ lục: {n})"
 
 #: assets/app.js
 msgid "Par compte"
-msgstr ""
+msgstr "Theo tài khoản"
 
 #: assets/app.js
 msgid "Par service"
-msgstr ""
+msgstr "Theo dịch vụ"
 
 #: assets/app.js
 msgid "Service"
-msgstr ""
+msgstr "Dịch vụ"
 
 #: assets/app.js
 msgid "Statistiques illisibles : {error}"
-msgstr ""
+msgstr "Không đọc được thống kê: {error}"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"
-msgstr ""
+msgstr "Không thể tải cài đặt"
 
 #: assets/app.js
 msgid "Réglages enregistrés — la langue sera appliquée au prochain démarrage"
-msgstr ""
+msgstr "Đã lưu cài đặt — ngôn ngữ sẽ được áp dụng ở lần khởi động tiếp theo"
 
 #: assets/app.js
 msgid "Réglages enregistrés"
-msgstr ""
+msgstr "Đã lưu cài đặt"
 
 #: assets/app.js
 msgid "Erreur lors de la sauvegarde"
-msgstr ""
+msgstr "Lỗi khi lưu"
 
 #: assets/app.js
 msgid "Erreur lors de la sauvegarde des réglages"
-msgstr ""
+msgstr "Lỗi khi lưu cài đặt"
 
 #: assets/app.js
 msgid "Tâches programmables : envoyez un prompt à Claude à date fixe ou périodiquement."
-msgstr ""
+msgstr "Tác vụ đã lên lịch: gửi prompt tới Claude vào ngày cố định hoặc định kỳ."
 
 #: assets/app.js
 msgid "Arrêter"
-msgstr ""
+msgstr "Dừng"
 
 #: assets/app.js
 msgid "En marche"
-msgstr ""
+msgstr "Đang chạy"
 
 #: assets/app.js
 msgid "Aucun job pour l'instant — un ZIP téléchargé depuis un onglet IA (ordonnanceur activé) en créera un automatiquement."
-msgstr ""
+msgstr "Chưa có công việc nào — tệp ZIP tải về từ một tab AI (khi bộ lập lịch bật) sẽ tự động tạo một công việc."
 
 #: assets/app.js
 msgid "Continuer le projet"
-msgstr ""
+msgstr "Tiếp tục dự án"
 
 #: assets/app.js
 msgid "Marquer livré"
-msgstr ""
+msgstr "Đánh dấu đã giao"
 
 #: assets/app.js
 msgid "Pause"
-msgstr ""
+msgstr "Tạm dừng"
 
 #: assets/app.js
 msgid "Reprendre"
-msgstr ""
+msgstr "Tiếp tục"
 
 #: assets/app.js
 msgid "Relancer"
-msgstr ""
+msgstr "Chạy lại"
 
 #: assets/app.js
 msgid "Ouvrir le ZIP"
-msgstr ""
+msgstr "Mở ZIP"
 
 #: assets/app.js
 msgid "Analyser la complétude"
-msgstr ""
+msgstr "Phân tích mức độ hoàn thành"
 
 #: assets/app.js
 msgid "service inconnu"
-msgstr ""
+msgstr "dịch vụ không xác định"
 
 #: assets/app.js
 msgid "tentative {n}"
-msgstr ""
+msgstr "lần thử {n}"
 
 #: assets/app.js
 msgid "Aucune activité enregistrée."
-msgstr ""
+msgstr "Chưa ghi nhận hoạt động nào."
 
 #: assets/app.js
 msgid "Impossible de modifier l'état de l'ordonnanceur"
-msgstr ""
+msgstr "Không thể thay đổi trạng thái bộ lập lịch"
 
 #: assets/app.js
 msgid "Configuration non enregistrée"
-msgstr ""
+msgstr "Chưa lưu cấu hình"
 
 #: assets/app.js
 msgid "Sélection du dossier impossible"
-msgstr ""
+msgstr "Không thể chọn thư mục"
 
 #: assets/app.js
 msgid "Projet terminé : {done}/{total} tâches faites, 0 restante."
-msgstr ""
+msgstr "Dự án hoàn tất: đã xong {done}/{total} tác vụ, còn 0."
 
 #: assets/app.js
 msgid "{pending} à faire, {inProgress} en cours, {done} faite(s) sur {total} au total."
-msgstr ""
+msgstr "{pending} cần làm, {inProgress} đang làm, {done} đã xong trên tổng {total}."
 
 #: assets/app.js
 msgid "Analyse impossible : {error}"
-msgstr ""
+msgstr "Không thể phân tích: {error}"
 
 #: assets/app.js
 msgid "Action impossible : {error}"
-msgstr ""
+msgstr "Không thể thực hiện: {error}"
 
 #: assets/app.js
 msgid "Aucun projet pour l'instant."
-msgstr ""
+msgstr "Chưa có dự án nào."
 
 #: assets/app.js
 msgid "Créer un projet"
-msgstr ""
+msgstr "Tạo dự án"
 
 #: assets/app.js
 msgid "Assignée"
-msgstr ""
+msgstr "Đã giao việc"
 
 #: assets/app.js
 msgid "Terminée"
-msgstr ""
+msgstr "Đã xong"
 
 #: assets/app.js
 msgid "Échouée"
-msgstr ""
+msgstr "Thất bại"
 
 #: assets/app.js
 msgid "Lancer"
-msgstr ""
+msgstr "Chạy"
 
 #: assets/app.js
 msgid "Résultat"
-msgstr ""
+msgstr "Kết quả"
 
 #: assets/app.js
 msgid "Aucune tâche."
-msgstr ""
+msgstr "Không có tác vụ."
 
 #: assets/app.js
 msgid "Tous les comptes"
-msgstr ""
+msgstr "Tất cả tài khoản"
 
 #: assets/app.js
 msgid "Comptes autorisés :"
-msgstr ""
+msgstr "Tài khoản được phép:"
 
 #: assets/app.js
 msgid "{count} tâche(s)"
-msgstr ""
+msgstr "{count} tác vụ"
 
 #: assets/app.js
 msgid "Assigner"
-msgstr ""
+msgstr "Giao việc"
 
 #: assets/app.js
 msgid "Diagnostic Claude : {error}"
-msgstr ""
+msgstr "Chẩn đoán Claude: {error}"
 
 #: assets/app.js
 msgid "« Continuer »"
-msgstr ""
+msgstr "«Tiếp tục»"
 
 #: assets/app.js
 msgid "« Télécharger »"
-msgstr ""
+msgstr "«Tải xuống»"
 
 #: assets/app.js
 msgid "« Nouveau »"
-msgstr ""
+msgstr "«Mới»"
 
 #: assets/app.js
 msgid "zone de chat"
-msgstr ""
+msgstr "vùng chat"
 
 #: assets/app.js
 msgid "envoi de fichier"
-msgstr ""
+msgstr "tải tệp lên"
 
 #: assets/app.js
 msgid "{count} popup(s)"
-msgstr ""
+msgstr "{count} cửa sổ bật lên"
 
 #: assets/app.js
 msgid "Claude (« {profile} ») : {details}"
-msgstr ""
+msgstr "Claude («{profile}»): {details}"
 
 #: assets/app.js
 msgid "aucun élément détecté"
-msgstr ""
+msgstr "không phát hiện phần tử nào"
 
 #: assets/app.js
 msgid "Diagnostic impossible : {error}"
-msgstr ""
+msgstr "Không thể chẩn đoán: {error}"
 
 #: assets/app.js
 msgid "Quota gratuit épuisé jusqu'à {time} pour ce profil."
-msgstr ""
+msgstr "Hạn mức miễn phí của hồ sơ này đã hết đến {time}."
 
 #: assets/app.js
 msgid "Job Claude échoué : {error}"
-msgstr ""
+msgstr "Công việc Claude thất bại: {error}"
 
 #: assets/app.js
 msgid "Prompt envoyé à Claude via {method} (« {profile} »)"
-msgstr ""
+msgstr "Đã gửi prompt tới Claude qua {method} («{profile}»)"
 
 #: assets/app.js
 msgid "Job Claude impossible : {error}"
-msgstr ""
+msgstr "Không thể thực hiện công việc Claude: {error}"
 
 #: assets/app.js
 msgid "Collecte impossible : {error}"
-msgstr ""
+msgstr "Không thể thu thập: {error}"
 
 #: assets/app.js
 msgid "Réponse collectée : {count} caractères (« {profile} »)"
-msgstr ""
+msgstr "Đã thu thập câu trả lời: {count} ký tự («{profile}»)"
 
 #: assets/app.js
 msgid "Aucune réponse trouvée pour le moment."
-msgstr ""
+msgstr "Chưa tìm thấy câu trả lời."
 
 #: assets/app.js
 msgid "Nom du projet :"
-msgstr ""
+msgstr "Tên dự án:"
 
 #: assets/app.js
 msgid "Projet {n}"
-msgstr ""
+msgstr "Dự án {n}"
 
 #: assets/app.js
 msgid "Projet « {name} » créé"
-msgstr ""
+msgstr "Đã tạo dự án «{name}»"
 
 #: assets/app.js
 msgid "Création impossible : {error}"
-msgstr ""
+msgstr "Không thể tạo: {error}"
 
 #: assets/app.js
 msgid "Projet supprimé"
-msgstr ""
+msgstr "Đã xóa dự án"
 
 #: assets/app.js
 msgid "Suppression impossible : {error}"
-msgstr ""
+msgstr "Không thể xóa: {error}"
 
 #: assets/app.js
 msgid "Prompt de la tâche :"
-msgstr ""
+msgstr "Prompt của tác vụ:"
 
 #: assets/app.js
 msgid "Tâche créée dans le projet"
-msgstr ""
+msgstr "Đã tạo tác vụ trong dự án"
 
 #: assets/app.js
 msgid "Aucun compte vert disponible pour ce projet."
-msgstr ""
+msgstr "Không có tài khoản xanh khả dụng cho dự án này."
 
 #: assets/app.js
 msgid "Comptes verts disponibles :"
-msgstr ""
+msgstr "Tài khoản xanh khả dụng:"
 
 #: assets/app.js
 msgid "Numéro du compte :"
-msgstr ""
+msgstr "Số tài khoản:"
 
 #: assets/app.js
 msgid "Choix invalide"
-msgstr ""
+msgstr "Lựa chọn không hợp lệ"
 
 #: assets/app.js
 msgid "Aucune tâche dans ce projet."
-msgstr ""
+msgstr "Không có tác vụ trong dự án này."
 
 #: assets/app.js
 msgid "Numéro de la tâche :"
-msgstr ""
+msgstr "Số tác vụ:"
 
 #: assets/app.js
 msgid "Tâches du projet :"
-msgstr ""
+msgstr "Tác vụ của dự án:"
 
 #: assets/app.js
 msgid "Tâche {task} assignée à « {account} »"
-msgstr ""
+msgstr "Đã giao tác vụ {task} cho «{account}»"
 
 #: assets/app.js
 msgid "Assignation impossible : {error}"
-msgstr ""
+msgstr "Không thể giao việc: {error}"
 
 #: assets/app.js
 msgid "Lancement de l'automatisation Claude..."
-msgstr ""
+msgstr "Đang khởi chạy tự động hóa Claude..."
 
 #: assets/app.js
 msgid "Lancement impossible"
-msgstr ""
+msgstr "Không thể khởi chạy"
 
 #: assets/app.js
 msgid "Tâche lancée — suivi dans le journal d'activité"
-msgstr ""
+msgstr "Đã khởi chạy tác vụ — theo dõi trong nhật ký hoạt động"
 
 #: assets/app.js
 msgid "Exécution impossible : {error}"
-msgstr ""
+msgstr "Không thể chạy: {error}"
 
 #: assets/app.js
 msgid "Aucun résultat disponible"
-msgstr ""
+msgstr "Không có kết quả"
 
 #: assets/app.js
 msgid "Résultat — {task}"
-msgstr ""
+msgstr "Kết quả — {task}"
 
 #: assets/app.js
 msgid "Comptes retrouvés"
-msgstr ""
+msgstr "Đã tìm lại tài khoản"
 
 #: assets/app.js
 msgid "Aucun compte n'a été lu au démarrage, mais l'ordonnanceur en connaît {count}. Les restaurer ? Les sessions des services sont conservées ; les adresses e-mail sont à compléter depuis « Modifier le compte »."
-msgstr ""
+msgstr "Không đọc được tài khoản nào khi khởi động, nhưng bộ lập lịch biết {count} tài khoản. Khôi phục chúng? Phiên của các dịch vụ được giữ nguyên; địa chỉ email cần bổ sung qua «Sửa tài khoản»."
 
 #: assets/app.js
 msgid "Ignorer"
-msgstr ""
+msgstr "Bỏ qua"
 
 #: assets/app.js
 msgid "Restaurer les comptes"
-msgstr ""
+msgstr "Khôi phục tài khoản"
 
 #: assets/app.js
 msgid "{count} compte(s) restauré(s)"
-msgstr ""
+msgstr "Đã khôi phục {count} tài khoản"
 
 #: assets/app.js
 msgid "Données de comptes illisibles"
-msgstr ""
+msgstr "Không đọc được dữ liệu tài khoản"
 
 #: assets/app.js
 msgid "La liste de comptes enregistrée est corrompue. Une sauvegarde de {count} compte(s) a été trouvée. La restaurer ?"
-msgstr ""
+msgstr "Danh sách tài khoản đã lưu bị hỏng. Đã tìm thấy bản sao lưu gồm {count} tài khoản. Khôi phục?"
 
 #: assets/app.js
 msgid "La liste de comptes enregistrée est corrompue et aucune sauvegarde n'est disponible. L'application démarre avec une liste vide ; vos données actuelles ne seront pas écrasées tant que vous ne créez ou ne modifiez pas de compte."
-msgstr ""
+msgstr "Danh sách tài khoản đã lưu bị hỏng và không có bản sao lưu. Ứng dụng khởi động với danh sách trống; dữ liệu hiện tại sẽ không bị ghi đè cho đến khi bạn tạo hoặc sửa tài khoản."
 
 #: assets/app.js
 msgid "Restaurer la sauvegarde"
-msgstr ""
+msgstr "Khôi phục bản sao lưu"
 
 #: assets/app.js
 msgid "Comptes restaurés depuis la sauvegarde"
-msgstr ""
+msgstr "Đã khôi phục tài khoản từ bản sao lưu"
 
 #: assets/app.js
 msgid "Compris"
-msgstr ""
+msgstr "Đã hiểu"
