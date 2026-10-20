@@ -758,8 +758,10 @@ msgid "Modifier le compte"
 msgstr "Επεξεργασία λογαριασμού"
 
 #: assets/app.js
-msgid "{available} service(s) hors cooldown sur {total}"
-msgstr "Υπηρεσίες εκτός cooldown: {available} από {total}"
+msgid "{available} service hors cooldown sur {total}"
+msgid_plural "{available} services hors cooldown sur {total}"
+msgstr[0] "{available} από {total} υπηρεσία χωρίς cooldown"
+msgstr[1] "{available} από {total} υπηρεσίες χωρίς cooldown"
 
 #: assets/app.js
 msgid "Replier / déplier"
@@ -874,8 +876,10 @@ msgid "Échec de l'export (écriture impossible)"
 msgstr "Η εξαγωγή απέτυχε (αδυναμία εγγραφής)"
 
 #: assets/app.js
-msgid "{count} compte(s) exporté(s)"
-msgstr "Λογαριασμοί που εξήχθησαν: {count}"
+msgid "{count} compte exporté"
+msgid_plural "{count} comptes exportés"
+msgstr[0] "{count} λογαριασμός εξήχθη"
+msgstr[1] "{count} λογαριασμοί εξήχθησαν"
 
 #: assets/app.js
 msgid "Export impossible"
@@ -902,8 +906,10 @@ msgid "Import impossible"
 msgstr "Αδυναμία εισαγωγής"
 
 #: assets/app.js
-msgid "{count} compte(s) importé(s)"
-msgstr "Λογαριασμοί που εισήχθησαν: {count}"
+msgid "{count} compte importé"
+msgid_plural "{count} comptes importés"
+msgstr[0] "{count} λογαριασμός εισήχθη"
+msgstr[1] "{count} λογαριασμοί εισήχθησαν"
 
 #: assets/app.js
 msgid "Échec de l'import : {error}"
@@ -942,8 +948,20 @@ msgid "Nombre de comptes : de 1 à {max}"
 msgstr "Αριθμός λογαριασμών: από 1 έως {max}"
 
 #: assets/app.js
-msgid "{n} compte(s) créé(s), {m} mot(s) de passe enregistré(s)"
-msgstr "Λογαριασμοί που δημιουργήθηκαν: {n}, κωδικοί που αποθηκεύτηκαν: {m}"
+msgid "{comptes}, {motsDePasse}"
+msgstr "{comptes}, {motsDePasse}"
+
+#: assets/app.js
+msgid "{n} compte créé"
+msgid_plural "{n} comptes créés"
+msgstr[0] "{n} λογαριασμός δημιουργήθηκε"
+msgstr[1] "{n} λογαριασμοί δημιουργήθηκαν"
+
+#: assets/app.js
+msgid "{m} mot de passe enregistré"
+msgid_plural "{m} mots de passe enregistrés"
+msgstr[0] "{m} κωδικός πρόσβασης αποθηκεύτηκε"
+msgstr[1] "{m} κωδικοί πρόσβασης αποθηκεύτηκαν"
 
 #: assets/app.js
 msgid "Adresse du webmail non configurée dans les réglages"
@@ -1010,24 +1028,34 @@ msgid "Livré"
 msgstr "Παραδόθηκε"
 
 #: assets/app.js
-msgid "tous les {n} minutes"
-msgstr "κάθε {n} λεπτά"
+msgid "chaque minute"
+msgid_plural "toutes les {n} minutes"
+msgstr[0] "κάθε λεπτό"
+msgstr[1] "κάθε {n} λεπτά"
 
 #: assets/app.js
-msgid "tous les {n} jours"
-msgstr "κάθε {n} ημέρες"
+msgid "chaque jour"
+msgid_plural "tous les {n} jours"
+msgstr[0] "κάθε μέρα"
+msgstr[1] "κάθε {n} ημέρες"
 
 #: assets/app.js
-msgid "toutes les {n} semaines"
-msgstr "κάθε {n} εβδομάδες"
+msgid "chaque semaine"
+msgid_plural "toutes les {n} semaines"
+msgstr[0] "κάθε εβδομάδα"
+msgstr[1] "κάθε {n} εβδομάδες"
 
 #: assets/app.js
-msgid "tous les {n} mois"
-msgstr "κάθε {n} μήνες"
+msgid "chaque mois"
+msgid_plural "tous les {n} mois"
+msgstr[0] "κάθε μήνα"
+msgstr[1] "κάθε {n} μήνες"
 
 #: assets/app.js
-msgid "toutes les {n} heures"
-msgstr "κάθε {n} ώρες"
+msgid "chaque heure"
+msgid_plural "toutes les {n} heures"
+msgstr[0] "κάθε ώρα"
+msgstr[1] "κάθε {n} ώρες"
 
 #: assets/app.js
 msgid "Le {date}"
@@ -1042,8 +1070,10 @@ msgid "programmation inconnue"
 msgstr "άγνωστος προγραμματισμός"
 
 #: assets/app.js
-msgid "{n} compte(s) sélectionné(s)"
-msgstr "Επιλεγμένοι λογαριασμοί: {n}"
+msgid "{n} compte sélectionné"
+msgid_plural "{n} comptes sélectionnés"
+msgstr[0] "{n} επιλεγμένος λογαριασμός"
+msgstr[1] "{n} επιλεγμένοι λογαριασμοί"
 
 #: assets/app.js
 msgid "tous les comptes avec Claude"
@@ -1358,12 +1388,10 @@ msgid "Aucune session sur cette période. La mesure commence à l'installation d
 msgstr "Καμία συνεδρία σε αυτήν την περίοδο. Η μέτρηση ξεκινά με την εγκατάσταση αυτής της έκδοσης."
 
 #: assets/app.js
-msgid "1 jour"
-msgstr "1 ημέρα"
-
-#: assets/app.js
-msgid "{n} jours"
-msgstr "{n} ημέρες"
+msgid "{n} jour"
+msgid_plural "{n} jours"
+msgstr[0] "{n} ημέρα"
+msgstr[1] "{n} ημέρες"
 
 #: assets/app.js
 msgid "Série en cours (record : {n})"
@@ -1554,8 +1582,10 @@ msgid "Comptes autorisés :"
 msgstr "Επιτρεπόμενοι λογαριασμοί:"
 
 #: assets/app.js
-msgid "{count} tâche(s)"
-msgstr "Εργασίες: {count}"
+msgid "{count} tâche"
+msgid_plural "{count} tâches"
+msgstr[0] "{count} εργασία"
+msgstr[1] "{count} εργασίες"
 
 #: assets/app.js
 msgid "Assigner"
@@ -1586,8 +1616,10 @@ msgid "envoi de fichier"
 msgstr "αποστολή αρχείου"
 
 #: assets/app.js
-msgid "{count} popup(s)"
-msgstr "Αναδυόμενα: {count}"
+msgid "{count} popup"
+msgid_plural "{count} popups"
+msgstr[0] "{count} αναδυόμενο παράθυρο"
+msgstr[1] "{count} αναδυόμενα παράθυρα"
 
 #: assets/app.js
 msgid "Claude (« {profile} ») : {details}"
@@ -1738,8 +1770,10 @@ msgid "Restaurer les comptes"
 msgstr "Επαναφορά λογαριασμών"
 
 #: assets/app.js
-msgid "{count} compte(s) restauré(s)"
-msgstr "Λογαριασμοί που επαναφέρθηκαν: {count}"
+msgid "{count} compte restauré"
+msgid_plural "{count} comptes restaurés"
+msgstr[0] "{count} λογαριασμός επαναφέρθηκε"
+msgstr[1] "{count} λογαριασμοί επαναφέρθηκαν"
 
 #: assets/app.js
 msgid "Données de comptes illisibles"

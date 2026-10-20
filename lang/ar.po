@@ -758,8 +758,14 @@ msgid "Modifier le compte"
 msgstr "تعديل الحساب"
 
 #: assets/app.js
-msgid "{available} service(s) hors cooldown sur {total}"
-msgstr "الخدمات خارج فترة التهدئة: {available} من {total}"
+msgid "{available} service hors cooldown sur {total}"
+msgid_plural "{available} services hors cooldown sur {total}"
+msgstr[0] "{available} من {total} خدمات خارج فترة التهدئة"
+msgstr[1] "{available} من {total} خدمات خارج فترة التهدئة"
+msgstr[2] "{available} من {total} خدمات خارج فترة التهدئة"
+msgstr[3] "{available} من {total} خدمات خارج فترة التهدئة"
+msgstr[4] "{available} من {total} خدمات خارج فترة التهدئة"
+msgstr[5] "{available} من {total} خدمات خارج فترة التهدئة"
 
 #: assets/app.js
 msgid "Replier / déplier"
@@ -874,8 +880,14 @@ msgid "Échec de l'export (écriture impossible)"
 msgstr "فشل التصدير (تعذّرت الكتابة)"
 
 #: assets/app.js
-msgid "{count} compte(s) exporté(s)"
-msgstr "الحسابات المصدَّرة: {count}"
+msgid "{count} compte exporté"
+msgid_plural "{count} comptes exportés"
+msgstr[0] "الحسابات المُصدَّرة: {count}"
+msgstr[1] "الحسابات المُصدَّرة: {count}"
+msgstr[2] "الحسابات المُصدَّرة: {count}"
+msgstr[3] "الحسابات المُصدَّرة: {count}"
+msgstr[4] "الحسابات المُصدَّرة: {count}"
+msgstr[5] "الحسابات المُصدَّرة: {count}"
 
 #: assets/app.js
 msgid "Export impossible"
@@ -902,8 +914,14 @@ msgid "Import impossible"
 msgstr "تعذّر الاستيراد"
 
 #: assets/app.js
-msgid "{count} compte(s) importé(s)"
-msgstr "الحسابات المستوردة: {count}"
+msgid "{count} compte importé"
+msgid_plural "{count} comptes importés"
+msgstr[0] "الحسابات المستوردة: {count}"
+msgstr[1] "الحسابات المستوردة: {count}"
+msgstr[2] "الحسابات المستوردة: {count}"
+msgstr[3] "الحسابات المستوردة: {count}"
+msgstr[4] "الحسابات المستوردة: {count}"
+msgstr[5] "الحسابات المستوردة: {count}"
 
 #: assets/app.js
 msgid "Échec de l'import : {error}"
@@ -942,8 +960,28 @@ msgid "Nombre de comptes : de 1 à {max}"
 msgstr "عدد الحسابات: من 1 إلى {max}"
 
 #: assets/app.js
-msgid "{n} compte(s) créé(s), {m} mot(s) de passe enregistré(s)"
-msgstr "الحسابات المنشأة: {n}، كلمات المرور المحفوظة: {m}"
+msgid "{comptes}, {motsDePasse}"
+msgstr "{comptes}، {motsDePasse}"
+
+#: assets/app.js
+msgid "{n} compte créé"
+msgid_plural "{n} comptes créés"
+msgstr[0] "الحسابات المُنشأة: {n}"
+msgstr[1] "الحسابات المُنشأة: {n}"
+msgstr[2] "الحسابات المُنشأة: {n}"
+msgstr[3] "الحسابات المُنشأة: {n}"
+msgstr[4] "الحسابات المُنشأة: {n}"
+msgstr[5] "الحسابات المُنشأة: {n}"
+
+#: assets/app.js
+msgid "{m} mot de passe enregistré"
+msgid_plural "{m} mots de passe enregistrés"
+msgstr[0] "كلمات المرور المحفوظة: {m}"
+msgstr[1] "كلمات المرور المحفوظة: {m}"
+msgstr[2] "كلمات المرور المحفوظة: {m}"
+msgstr[3] "كلمات المرور المحفوظة: {m}"
+msgstr[4] "كلمات المرور المحفوظة: {m}"
+msgstr[5] "كلمات المرور المحفوظة: {m}"
 
 #: assets/app.js
 msgid "Adresse du webmail non configurée dans les réglages"
@@ -1010,24 +1048,54 @@ msgid "Livré"
 msgstr "سُلّم"
 
 #: assets/app.js
-msgid "tous les {n} minutes"
-msgstr "كل {n} دقيقة"
+msgid "chaque minute"
+msgid_plural "toutes les {n} minutes"
+msgstr[0] "كل {n} دقيقة"
+msgstr[1] "كل دقيقة"
+msgstr[2] "كل دقيقتين"
+msgstr[3] "كل {n} دقائق"
+msgstr[4] "كل {n} دقيقة"
+msgstr[5] "كل {n} دقيقة"
 
 #: assets/app.js
-msgid "tous les {n} jours"
-msgstr "كل {n} يوم"
+msgid "chaque jour"
+msgid_plural "tous les {n} jours"
+msgstr[0] "كل {n} يوم"
+msgstr[1] "كل يوم"
+msgstr[2] "كل يومين"
+msgstr[3] "كل {n} أيام"
+msgstr[4] "كل {n} يومًا"
+msgstr[5] "كل {n} يوم"
 
 #: assets/app.js
-msgid "toutes les {n} semaines"
-msgstr "كل {n} أسبوع"
+msgid "chaque semaine"
+msgid_plural "toutes les {n} semaines"
+msgstr[0] "كل {n} أسبوع"
+msgstr[1] "كل أسبوع"
+msgstr[2] "كل أسبوعين"
+msgstr[3] "كل {n} أسابيع"
+msgstr[4] "كل {n} أسبوعًا"
+msgstr[5] "كل {n} أسبوع"
 
 #: assets/app.js
-msgid "tous les {n} mois"
-msgstr "كل {n} شهر"
+msgid "chaque mois"
+msgid_plural "tous les {n} mois"
+msgstr[0] "كل {n} شهر"
+msgstr[1] "كل شهر"
+msgstr[2] "كل شهرين"
+msgstr[3] "كل {n} أشهر"
+msgstr[4] "كل {n} شهرًا"
+msgstr[5] "كل {n} شهر"
 
 #: assets/app.js
-msgid "toutes les {n} heures"
-msgstr "كل {n} ساعة"
+msgid "chaque heure"
+msgid_plural "toutes les {n} heures"
+msgstr[0] "كل {n} ساعة"
+msgstr[1] "كل ساعة"
+msgstr[2] "كل ساعتين"
+msgstr[3] "كل {n} ساعات"
+msgstr[4] "كل {n} ساعة"
+msgstr[5] "كل {n} ساعة"
 
 #: assets/app.js
 msgid "Le {date}"
@@ -1042,8 +1110,14 @@ msgid "programmation inconnue"
 msgstr "جدولة غير معروفة"
 
 #: assets/app.js
-msgid "{n} compte(s) sélectionné(s)"
-msgstr "الحسابات المحددة: {n}"
+msgid "{n} compte sélectionné"
+msgid_plural "{n} comptes sélectionnés"
+msgstr[0] "الحسابات المحددة: {n}"
+msgstr[1] "الحسابات المحددة: {n}"
+msgstr[2] "الحسابات المحددة: {n}"
+msgstr[3] "الحسابات المحددة: {n}"
+msgstr[4] "الحسابات المحددة: {n}"
+msgstr[5] "الحسابات المحددة: {n}"
 
 #: assets/app.js
 msgid "tous les comptes avec Claude"
@@ -1358,12 +1432,14 @@ msgid "Aucune session sur cette période. La mesure commence à l'installation d
 msgstr "لا توجد جلسات في هذه الفترة. يبدأ القياس عند تثبيت هذا الإصدار."
 
 #: assets/app.js
-msgid "1 jour"
-msgstr "يوم واحد"
-
-#: assets/app.js
-msgid "{n} jours"
-msgstr "الأيام: {n}"
+msgid "{n} jour"
+msgid_plural "{n} jours"
+msgstr[0] "{n} يوم"
+msgstr[1] "يوم واحد"
+msgstr[2] "يومان"
+msgstr[3] "{n} أيام"
+msgstr[4] "{n} يومًا"
+msgstr[5] "{n} يوم"
 
 #: assets/app.js
 msgid "Série en cours (record : {n})"
@@ -1554,8 +1630,14 @@ msgid "Comptes autorisés :"
 msgstr "الحسابات المسموح بها:"
 
 #: assets/app.js
-msgid "{count} tâche(s)"
-msgstr "المهام: {count}"
+msgid "{count} tâche"
+msgid_plural "{count} tâches"
+msgstr[0] "المهام: {count}"
+msgstr[1] "المهام: {count}"
+msgstr[2] "المهام: {count}"
+msgstr[3] "المهام: {count}"
+msgstr[4] "المهام: {count}"
+msgstr[5] "المهام: {count}"
 
 #: assets/app.js
 msgid "Assigner"
@@ -1586,8 +1668,14 @@ msgid "envoi de fichier"
 msgstr "إرسال ملف"
 
 #: assets/app.js
-msgid "{count} popup(s)"
-msgstr "النوافذ المنبثقة: {count}"
+msgid "{count} popup"
+msgid_plural "{count} popups"
+msgstr[0] "النوافذ المنبثقة: {count}"
+msgstr[1] "النوافذ المنبثقة: {count}"
+msgstr[2] "النوافذ المنبثقة: {count}"
+msgstr[3] "النوافذ المنبثقة: {count}"
+msgstr[4] "النوافذ المنبثقة: {count}"
+msgstr[5] "النوافذ المنبثقة: {count}"
 
 #: assets/app.js
 msgid "Claude (« {profile} ») : {details}"
@@ -1738,8 +1826,14 @@ msgid "Restaurer les comptes"
 msgstr "استعادة الحسابات"
 
 #: assets/app.js
-msgid "{count} compte(s) restauré(s)"
-msgstr "الحسابات المستعادة: {count}"
+msgid "{count} compte restauré"
+msgid_plural "{count} comptes restaurés"
+msgstr[0] "الحسابات المستعادة: {count}"
+msgstr[1] "الحسابات المستعادة: {count}"
+msgstr[2] "الحسابات المستعادة: {count}"
+msgstr[3] "الحسابات المستعادة: {count}"
+msgstr[4] "الحسابات المستعادة: {count}"
+msgstr[5] "الحسابات المستعادة: {count}"
 
 #: assets/app.js
 msgid "Données de comptes illisibles"

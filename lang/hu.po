@@ -758,8 +758,10 @@ msgid "Modifier le compte"
 msgstr "Fiók szerkesztése"
 
 #: assets/app.js
-msgid "{available} service(s) hors cooldown sur {total}"
-msgstr "Várakozáson kívüli szolgáltatások: {available}/{total}"
+msgid "{available} service hors cooldown sur {total}"
+msgid_plural "{available} services hors cooldown sur {total}"
+msgstr[0] "{total} szolgáltatásból {available} cooldown nélkül"
+msgstr[1] "{total} szolgáltatásból {available} cooldown nélkül"
 
 #: assets/app.js
 msgid "Replier / déplier"
@@ -874,8 +876,10 @@ msgid "Échec de l'export (écriture impossible)"
 msgstr "Az exportálás sikertelen (nem írható)"
 
 #: assets/app.js
-msgid "{count} compte(s) exporté(s)"
-msgstr "Exportált fiókok: {count}"
+msgid "{count} compte exporté"
+msgid_plural "{count} comptes exportés"
+msgstr[0] "{count} fiók exportálva"
+msgstr[1] "{count} fiók exportálva"
 
 #: assets/app.js
 msgid "Export impossible"
@@ -902,8 +906,10 @@ msgid "Import impossible"
 msgstr "Az importálás nem lehetséges"
 
 #: assets/app.js
-msgid "{count} compte(s) importé(s)"
-msgstr "Importált fiókok: {count}"
+msgid "{count} compte importé"
+msgid_plural "{count} comptes importés"
+msgstr[0] "{count} fiók importálva"
+msgstr[1] "{count} fiók importálva"
 
 #: assets/app.js
 msgid "Échec de l'import : {error}"
@@ -942,8 +948,20 @@ msgid "Nombre de comptes : de 1 à {max}"
 msgstr "Fiókok száma: 1 és {max} között"
 
 #: assets/app.js
-msgid "{n} compte(s) créé(s), {m} mot(s) de passe enregistré(s)"
-msgstr "Létrehozott fiókok: {n}, mentett jelszavak: {m}"
+msgid "{comptes}, {motsDePasse}"
+msgstr "{comptes}, {motsDePasse}"
+
+#: assets/app.js
+msgid "{n} compte créé"
+msgid_plural "{n} comptes créés"
+msgstr[0] "{n} fiók létrehozva"
+msgstr[1] "{n} fiók létrehozva"
+
+#: assets/app.js
+msgid "{m} mot de passe enregistré"
+msgid_plural "{m} mots de passe enregistrés"
+msgstr[0] "{m} jelszó mentve"
+msgstr[1] "{m} jelszó mentve"
 
 #: assets/app.js
 msgid "Adresse du webmail non configurée dans les réglages"
@@ -1010,24 +1028,34 @@ msgid "Livré"
 msgstr "Kézbesítve"
 
 #: assets/app.js
-msgid "tous les {n} minutes"
-msgstr "{n} percenként"
+msgid "chaque minute"
+msgid_plural "toutes les {n} minutes"
+msgstr[0] "percenként"
+msgstr[1] "{n} percenként"
 
 #: assets/app.js
-msgid "tous les {n} jours"
-msgstr "{n} naponként"
+msgid "chaque jour"
+msgid_plural "tous les {n} jours"
+msgstr[0] "naponta"
+msgstr[1] "{n} naponta"
 
 #: assets/app.js
-msgid "toutes les {n} semaines"
-msgstr "{n} hetente"
+msgid "chaque semaine"
+msgid_plural "toutes les {n} semaines"
+msgstr[0] "hetente"
+msgstr[1] "{n} hetente"
 
 #: assets/app.js
-msgid "tous les {n} mois"
-msgstr "{n} havonta"
+msgid "chaque mois"
+msgid_plural "tous les {n} mois"
+msgstr[0] "havonta"
+msgstr[1] "{n} havonta"
 
 #: assets/app.js
-msgid "toutes les {n} heures"
-msgstr "{n} óránként"
+msgid "chaque heure"
+msgid_plural "toutes les {n} heures"
+msgstr[0] "óránként"
+msgstr[1] "{n} óránként"
 
 #: assets/app.js
 msgid "Le {date}"
@@ -1042,8 +1070,10 @@ msgid "programmation inconnue"
 msgstr "ismeretlen ütemezés"
 
 #: assets/app.js
-msgid "{n} compte(s) sélectionné(s)"
-msgstr "Kiválasztott fiókok: {n}"
+msgid "{n} compte sélectionné"
+msgid_plural "{n} comptes sélectionnés"
+msgstr[0] "{n} fiók kiválasztva"
+msgstr[1] "{n} fiók kiválasztva"
 
 #: assets/app.js
 msgid "tous les comptes avec Claude"
@@ -1358,12 +1388,10 @@ msgid "Aucune session sur cette période. La mesure commence à l'installation d
 msgstr "Ebben az időszakban nincs munkamenet. A mérés ennek a verziónak a telepítésével kezdődik."
 
 #: assets/app.js
-msgid "1 jour"
-msgstr "1 nap"
-
-#: assets/app.js
-msgid "{n} jours"
-msgstr "{n} nap"
+msgid "{n} jour"
+msgid_plural "{n} jours"
+msgstr[0] "{n} nap"
+msgstr[1] "{n} nap"
 
 #: assets/app.js
 msgid "Série en cours (record : {n})"
@@ -1554,8 +1582,10 @@ msgid "Comptes autorisés :"
 msgstr "Engedélyezett fiókok:"
 
 #: assets/app.js
-msgid "{count} tâche(s)"
-msgstr "Feladatok: {count}"
+msgid "{count} tâche"
+msgid_plural "{count} tâches"
+msgstr[0] "{count} feladat"
+msgstr[1] "{count} feladat"
 
 #: assets/app.js
 msgid "Assigner"
@@ -1586,8 +1616,10 @@ msgid "envoi de fichier"
 msgstr "fájlfeltöltés"
 
 #: assets/app.js
-msgid "{count} popup(s)"
-msgstr "Felugró ablakok: {count}"
+msgid "{count} popup"
+msgid_plural "{count} popups"
+msgstr[0] "{count} felugró ablak"
+msgstr[1] "{count} felugró ablak"
 
 #: assets/app.js
 msgid "Claude (« {profile} ») : {details}"
@@ -1738,8 +1770,10 @@ msgid "Restaurer les comptes"
 msgstr "Fiókok visszaállítása"
 
 #: assets/app.js
-msgid "{count} compte(s) restauré(s)"
-msgstr "Visszaállított fiókok: {count}"
+msgid "{count} compte restauré"
+msgid_plural "{count} comptes restaurés"
+msgstr[0] "{count} fiók visszaállítva"
+msgstr[1] "{count} fiók visszaállítva"
 
 #: assets/app.js
 msgid "Données de comptes illisibles"

@@ -758,8 +758,11 @@ msgid "Modifier le compte"
 msgstr "Upravit účet"
 
 #: assets/app.js
-msgid "{available} service(s) hors cooldown sur {total}"
-msgstr "Služby mimo cooldown: {available} z {total}"
+msgid "{available} service hors cooldown sur {total}"
+msgid_plural "{available} services hors cooldown sur {total}"
+msgstr[0] "{available} z {total} služeb bez cooldownu"
+msgstr[1] "{available} z {total} služeb bez cooldownu"
+msgstr[2] "{available} z {total} služeb bez cooldownu"
 
 #: assets/app.js
 msgid "Replier / déplier"
@@ -874,8 +877,11 @@ msgid "Échec de l'export (écriture impossible)"
 msgstr "Export se nezdařil (nelze zapisovat)"
 
 #: assets/app.js
-msgid "{count} compte(s) exporté(s)"
-msgstr "Exportované účty: {count}"
+msgid "{count} compte exporté"
+msgid_plural "{count} comptes exportés"
+msgstr[0] "{count} účet exportován"
+msgstr[1] "{count} účty exportovány"
+msgstr[2] "{count} účtů exportováno"
 
 #: assets/app.js
 msgid "Export impossible"
@@ -902,8 +908,11 @@ msgid "Import impossible"
 msgstr "Import nelze provést"
 
 #: assets/app.js
-msgid "{count} compte(s) importé(s)"
-msgstr "Importované účty: {count}"
+msgid "{count} compte importé"
+msgid_plural "{count} comptes importés"
+msgstr[0] "{count} účet importován"
+msgstr[1] "{count} účty importovány"
+msgstr[2] "{count} účtů importováno"
 
 #: assets/app.js
 msgid "Échec de l'import : {error}"
@@ -942,8 +951,22 @@ msgid "Nombre de comptes : de 1 à {max}"
 msgstr "Počet účtů: od 1 do {max}"
 
 #: assets/app.js
-msgid "{n} compte(s) créé(s), {m} mot(s) de passe enregistré(s)"
-msgstr "Vytvořené účty: {n}, uložená hesla: {m}"
+msgid "{comptes}, {motsDePasse}"
+msgstr "{comptes}, {motsDePasse}"
+
+#: assets/app.js
+msgid "{n} compte créé"
+msgid_plural "{n} comptes créés"
+msgstr[0] "{n} účet vytvořen"
+msgstr[1] "{n} účty vytvořeny"
+msgstr[2] "{n} účtů vytvořeno"
+
+#: assets/app.js
+msgid "{m} mot de passe enregistré"
+msgid_plural "{m} mots de passe enregistrés"
+msgstr[0] "{m} heslo uloženo"
+msgstr[1] "{m} hesla uložena"
+msgstr[2] "{m} hesel uloženo"
 
 #: assets/app.js
 msgid "Adresse du webmail non configurée dans les réglages"
@@ -1010,24 +1033,39 @@ msgid "Livré"
 msgstr "Dodáno"
 
 #: assets/app.js
-msgid "tous les {n} minutes"
-msgstr "každých {n} min"
+msgid "chaque minute"
+msgid_plural "toutes les {n} minutes"
+msgstr[0] "každou minutu"
+msgstr[1] "každé {n} minuty"
+msgstr[2] "každých {n} minut"
 
 #: assets/app.js
-msgid "tous les {n} jours"
-msgstr "každých {n} dní"
+msgid "chaque jour"
+msgid_plural "tous les {n} jours"
+msgstr[0] "každý den"
+msgstr[1] "každé {n} dny"
+msgstr[2] "každých {n} dní"
 
 #: assets/app.js
-msgid "toutes les {n} semaines"
-msgstr "každých {n} týdnů"
+msgid "chaque semaine"
+msgid_plural "toutes les {n} semaines"
+msgstr[0] "každý týden"
+msgstr[1] "každé {n} týdny"
+msgstr[2] "každých {n} týdnů"
 
 #: assets/app.js
-msgid "tous les {n} mois"
-msgstr "každých {n} měsíců"
+msgid "chaque mois"
+msgid_plural "tous les {n} mois"
+msgstr[0] "každý měsíc"
+msgstr[1] "každé {n} měsíce"
+msgstr[2] "každých {n} měsíců"
 
 #: assets/app.js
-msgid "toutes les {n} heures"
-msgstr "každých {n} h"
+msgid "chaque heure"
+msgid_plural "toutes les {n} heures"
+msgstr[0] "každou hodinu"
+msgstr[1] "každé {n} hodiny"
+msgstr[2] "každých {n} hodin"
 
 #: assets/app.js
 msgid "Le {date}"
@@ -1042,8 +1080,11 @@ msgid "programmation inconnue"
 msgstr "neznámé plánování"
 
 #: assets/app.js
-msgid "{n} compte(s) sélectionné(s)"
-msgstr "Vybrané účty: {n}"
+msgid "{n} compte sélectionné"
+msgid_plural "{n} comptes sélectionnés"
+msgstr[0] "{n} vybraný účet"
+msgstr[1] "{n} vybrané účty"
+msgstr[2] "{n} vybraných účtů"
 
 #: assets/app.js
 msgid "tous les comptes avec Claude"
@@ -1358,12 +1399,11 @@ msgid "Aucune session sur cette période. La mesure commence à l'installation d
 msgstr "V tomto období žádné relace. Měření začíná instalací této verze."
 
 #: assets/app.js
-msgid "1 jour"
-msgstr "1 den"
-
-#: assets/app.js
-msgid "{n} jours"
-msgstr "Dní: {n}"
+msgid "{n} jour"
+msgid_plural "{n} jours"
+msgstr[0] "{n} den"
+msgstr[1] "{n} dny"
+msgstr[2] "{n} dní"
 
 #: assets/app.js
 msgid "Série en cours (record : {n})"
@@ -1554,8 +1594,11 @@ msgid "Comptes autorisés :"
 msgstr "Povolené účty:"
 
 #: assets/app.js
-msgid "{count} tâche(s)"
-msgstr "Úkoly: {count}"
+msgid "{count} tâche"
+msgid_plural "{count} tâches"
+msgstr[0] "{count} úloha"
+msgstr[1] "{count} úlohy"
+msgstr[2] "{count} úloh"
 
 #: assets/app.js
 msgid "Assigner"
@@ -1586,8 +1629,11 @@ msgid "envoi de fichier"
 msgstr "nahrání souboru"
 
 #: assets/app.js
-msgid "{count} popup(s)"
-msgstr "Vyskakovací okna: {count}"
+msgid "{count} popup"
+msgid_plural "{count} popups"
+msgstr[0] "{count} vyskakovací okno"
+msgstr[1] "{count} vyskakovací okna"
+msgstr[2] "{count} vyskakovacích oken"
 
 #: assets/app.js
 msgid "Claude (« {profile} ») : {details}"
@@ -1738,8 +1784,11 @@ msgid "Restaurer les comptes"
 msgstr "Obnovit účty"
 
 #: assets/app.js
-msgid "{count} compte(s) restauré(s)"
-msgstr "Obnovené účty: {count}"
+msgid "{count} compte restauré"
+msgid_plural "{count} comptes restaurés"
+msgstr[0] "{count} účet obnoven"
+msgstr[1] "{count} účty obnoveny"
+msgstr[2] "{count} účtů obnoveno"
 
 #: assets/app.js
 msgid "Données de comptes illisibles"

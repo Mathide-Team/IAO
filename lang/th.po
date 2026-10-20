@@ -758,8 +758,9 @@ msgid "Modifier le compte"
 msgstr "แก้ไขบัญชี"
 
 #: assets/app.js
-msgid "{available} service(s) hors cooldown sur {total}"
-msgstr "บริการที่พ้นช่วงพัก: {available}/{total}"
+msgid "{available} service hors cooldown sur {total}"
+msgid_plural "{available} services hors cooldown sur {total}"
+msgstr[0] "บริการที่พ้นคูลดาวน์ {available} จาก {total}"
 
 #: assets/app.js
 msgid "Replier / déplier"
@@ -874,8 +875,9 @@ msgid "Échec de l'export (écriture impossible)"
 msgstr "ส่งออกไม่สำเร็จ (เขียนไม่ได้)"
 
 #: assets/app.js
-msgid "{count} compte(s) exporté(s)"
-msgstr "บัญชีที่ส่งออก: {count}"
+msgid "{count} compte exporté"
+msgid_plural "{count} comptes exportés"
+msgstr[0] "ส่งออกบัญชีแล้ว {count} บัญชี"
 
 #: assets/app.js
 msgid "Export impossible"
@@ -902,8 +904,9 @@ msgid "Import impossible"
 msgstr "นำเข้าไม่ได้"
 
 #: assets/app.js
-msgid "{count} compte(s) importé(s)"
-msgstr "บัญชีที่นำเข้า: {count}"
+msgid "{count} compte importé"
+msgid_plural "{count} comptes importés"
+msgstr[0] "นำเข้าบัญชีแล้ว {count} บัญชี"
 
 #: assets/app.js
 msgid "Échec de l'import : {error}"
@@ -942,8 +945,18 @@ msgid "Nombre de comptes : de 1 à {max}"
 msgstr "จำนวนบัญชี: 1 ถึง {max}"
 
 #: assets/app.js
-msgid "{n} compte(s) créé(s), {m} mot(s) de passe enregistré(s)"
-msgstr "สร้างบัญชีแล้ว: {n}, บันทึกรหัสผ่านแล้ว: {m}"
+msgid "{comptes}, {motsDePasse}"
+msgstr "{comptes}, {motsDePasse}"
+
+#: assets/app.js
+msgid "{n} compte créé"
+msgid_plural "{n} comptes créés"
+msgstr[0] "สร้างบัญชีแล้ว {n} บัญชี"
+
+#: assets/app.js
+msgid "{m} mot de passe enregistré"
+msgid_plural "{m} mots de passe enregistrés"
+msgstr[0] "บันทึกรหัสผ่านแล้ว {m} รายการ"
 
 #: assets/app.js
 msgid "Adresse du webmail non configurée dans les réglages"
@@ -1010,24 +1023,29 @@ msgid "Livré"
 msgstr "ส่งมอบแล้ว"
 
 #: assets/app.js
-msgid "tous les {n} minutes"
-msgstr "ทุก {n} นาที"
+msgid "chaque minute"
+msgid_plural "toutes les {n} minutes"
+msgstr[0] "ทุก {n} นาที"
 
 #: assets/app.js
-msgid "tous les {n} jours"
-msgstr "ทุก {n} วัน"
+msgid "chaque jour"
+msgid_plural "tous les {n} jours"
+msgstr[0] "ทุก {n} วัน"
 
 #: assets/app.js
-msgid "toutes les {n} semaines"
-msgstr "ทุก {n} สัปดาห์"
+msgid "chaque semaine"
+msgid_plural "toutes les {n} semaines"
+msgstr[0] "ทุก {n} สัปดาห์"
 
 #: assets/app.js
-msgid "tous les {n} mois"
-msgstr "ทุก {n} เดือน"
+msgid "chaque mois"
+msgid_plural "tous les {n} mois"
+msgstr[0] "ทุก {n} เดือน"
 
 #: assets/app.js
-msgid "toutes les {n} heures"
-msgstr "ทุก {n} ชั่วโมง"
+msgid "chaque heure"
+msgid_plural "toutes les {n} heures"
+msgstr[0] "ทุก {n} ชั่วโมง"
 
 #: assets/app.js
 msgid "Le {date}"
@@ -1042,8 +1060,9 @@ msgid "programmation inconnue"
 msgstr "ไม่ทราบการกำหนดเวลา"
 
 #: assets/app.js
-msgid "{n} compte(s) sélectionné(s)"
-msgstr "บัญชีที่เลือก: {n}"
+msgid "{n} compte sélectionné"
+msgid_plural "{n} comptes sélectionnés"
+msgstr[0] "เลือก {n} บัญชี"
 
 #: assets/app.js
 msgid "tous les comptes avec Claude"
@@ -1358,12 +1377,9 @@ msgid "Aucune session sur cette période. La mesure commence à l'installation d
 msgstr "ไม่มีเซสชันในช่วงนี้ การวัดเริ่มตั้งแต่ติดตั้งเวอร์ชันนี้"
 
 #: assets/app.js
-msgid "1 jour"
-msgstr "1 วัน"
-
-#: assets/app.js
-msgid "{n} jours"
-msgstr "{n} วัน"
+msgid "{n} jour"
+msgid_plural "{n} jours"
+msgstr[0] "{n} วัน"
 
 #: assets/app.js
 msgid "Série en cours (record : {n})"
@@ -1554,8 +1570,9 @@ msgid "Comptes autorisés :"
 msgstr "บัญชีที่อนุญาต:"
 
 #: assets/app.js
-msgid "{count} tâche(s)"
-msgstr "{count} งาน"
+msgid "{count} tâche"
+msgid_plural "{count} tâches"
+msgstr[0] "{count} งาน"
 
 #: assets/app.js
 msgid "Assigner"
@@ -1586,8 +1603,9 @@ msgid "envoi de fichier"
 msgstr "การส่งไฟล์"
 
 #: assets/app.js
-msgid "{count} popup(s)"
-msgstr "{count} ป๊อปอัป"
+msgid "{count} popup"
+msgid_plural "{count} popups"
+msgstr[0] "{count} ป๊อปอัป"
 
 #: assets/app.js
 msgid "Claude (« {profile} ») : {details}"
@@ -1738,8 +1756,9 @@ msgid "Restaurer les comptes"
 msgstr "กู้คืนบัญชี"
 
 #: assets/app.js
-msgid "{count} compte(s) restauré(s)"
-msgstr "กู้คืนบัญชีแล้ว: {count}"
+msgid "{count} compte restauré"
+msgid_plural "{count} comptes restaurés"
+msgstr[0] "กู้คืนบัญชีแล้ว {count} บัญชี"
 
 #: assets/app.js
 msgid "Données de comptes illisibles"

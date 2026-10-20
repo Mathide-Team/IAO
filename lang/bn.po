@@ -758,8 +758,10 @@ msgid "Modifier le compte"
 msgstr "অ্যাকাউন্ট সম্পাদনা"
 
 #: assets/app.js
-msgid "{available} service(s) hors cooldown sur {total}"
-msgstr "কুলডাউনমুক্ত পরিষেবা: {available}/{total}"
+msgid "{available} service hors cooldown sur {total}"
+msgid_plural "{available} services hors cooldown sur {total}"
+msgstr[0] "{total}টির মধ্যে {available}টি পরিষেবা কুলডাউনমুক্ত"
+msgstr[1] "{total}টির মধ্যে {available}টি পরিষেবা কুলডাউনমুক্ত"
 
 #: assets/app.js
 msgid "Replier / déplier"
@@ -874,8 +876,10 @@ msgid "Échec de l'export (écriture impossible)"
 msgstr "রপ্তানি ব্যর্থ (লেখা যায়নি)"
 
 #: assets/app.js
-msgid "{count} compte(s) exporté(s)"
-msgstr "রপ্তানিকৃত অ্যাকাউন্ট: {count}"
+msgid "{count} compte exporté"
+msgid_plural "{count} comptes exportés"
+msgstr[0] "{count}টি অ্যাকাউন্ট রপ্তানি হয়েছে"
+msgstr[1] "{count}টি অ্যাকাউন্ট রপ্তানি হয়েছে"
 
 #: assets/app.js
 msgid "Export impossible"
@@ -902,8 +906,10 @@ msgid "Import impossible"
 msgstr "আমদানি সম্ভব নয়"
 
 #: assets/app.js
-msgid "{count} compte(s) importé(s)"
-msgstr "আমদানিকৃত অ্যাকাউন্ট: {count}"
+msgid "{count} compte importé"
+msgid_plural "{count} comptes importés"
+msgstr[0] "{count}টি অ্যাকাউন্ট আমদানি হয়েছে"
+msgstr[1] "{count}টি অ্যাকাউন্ট আমদানি হয়েছে"
 
 #: assets/app.js
 msgid "Échec de l'import : {error}"
@@ -942,8 +948,20 @@ msgid "Nombre de comptes : de 1 à {max}"
 msgstr "অ্যাকাউন্টের সংখ্যা: ১ থেকে {max}"
 
 #: assets/app.js
-msgid "{n} compte(s) créé(s), {m} mot(s) de passe enregistré(s)"
-msgstr "তৈরি অ্যাকাউন্ট: {n}, সংরক্ষিত পাসওয়ার্ড: {m}"
+msgid "{comptes}, {motsDePasse}"
+msgstr "{comptes}, {motsDePasse}"
+
+#: assets/app.js
+msgid "{n} compte créé"
+msgid_plural "{n} comptes créés"
+msgstr[0] "{n}টি অ্যাকাউন্ট তৈরি হয়েছে"
+msgstr[1] "{n}টি অ্যাকাউন্ট তৈরি হয়েছে"
+
+#: assets/app.js
+msgid "{m} mot de passe enregistré"
+msgid_plural "{m} mots de passe enregistrés"
+msgstr[0] "{m}টি পাসওয়ার্ড সংরক্ষিত হয়েছে"
+msgstr[1] "{m}টি পাসওয়ার্ড সংরক্ষিত হয়েছে"
 
 #: assets/app.js
 msgid "Adresse du webmail non configurée dans les réglages"
@@ -1010,24 +1028,34 @@ msgid "Livré"
 msgstr "সরবরাহকৃত"
 
 #: assets/app.js
-msgid "tous les {n} minutes"
-msgstr "প্রতি {n} মিনিটে"
+msgid "chaque minute"
+msgid_plural "toutes les {n} minutes"
+msgstr[0] "প্রতি মিনিটে"
+msgstr[1] "প্রতি {n} মিনিটে"
 
 #: assets/app.js
-msgid "tous les {n} jours"
-msgstr "প্রতি {n} দিনে"
+msgid "chaque jour"
+msgid_plural "tous les {n} jours"
+msgstr[0] "প্রতিদিন"
+msgstr[1] "প্রতি {n} দিনে"
 
 #: assets/app.js
-msgid "toutes les {n} semaines"
-msgstr "প্রতি {n} সপ্তাহে"
+msgid "chaque semaine"
+msgid_plural "toutes les {n} semaines"
+msgstr[0] "প্রতি সপ্তাহে"
+msgstr[1] "প্রতি {n} সপ্তাহে"
 
 #: assets/app.js
-msgid "tous les {n} mois"
-msgstr "প্রতি {n} মাসে"
+msgid "chaque mois"
+msgid_plural "tous les {n} mois"
+msgstr[0] "প্রতি মাসে"
+msgstr[1] "প্রতি {n} মাসে"
 
 #: assets/app.js
-msgid "toutes les {n} heures"
-msgstr "প্রতি {n} ঘণ্টায়"
+msgid "chaque heure"
+msgid_plural "toutes les {n} heures"
+msgstr[0] "প্রতি ঘণ্টায়"
+msgstr[1] "প্রতি {n} ঘণ্টায়"
 
 #: assets/app.js
 msgid "Le {date}"
@@ -1042,8 +1070,10 @@ msgid "programmation inconnue"
 msgstr "অজানা সময়সূচি"
 
 #: assets/app.js
-msgid "{n} compte(s) sélectionné(s)"
-msgstr "নির্বাচিত অ্যাকাউন্ট: {n}"
+msgid "{n} compte sélectionné"
+msgid_plural "{n} comptes sélectionnés"
+msgstr[0] "{n}টি অ্যাকাউন্ট নির্বাচিত"
+msgstr[1] "{n}টি অ্যাকাউন্ট নির্বাচিত"
 
 #: assets/app.js
 msgid "tous les comptes avec Claude"
@@ -1358,12 +1388,10 @@ msgid "Aucune session sur cette période. La mesure commence à l'installation d
 msgstr "এই সময়ে কোনো সেশন নেই। এই সংস্করণ ইনস্টলের সময় থেকে পরিমাপ শুরু হয়।"
 
 #: assets/app.js
-msgid "1 jour"
-msgstr "১ দিন"
-
-#: assets/app.js
-msgid "{n} jours"
-msgstr "দিন: {n}"
+msgid "{n} jour"
+msgid_plural "{n} jours"
+msgstr[0] "{n} দিন"
+msgstr[1] "{n} দিন"
 
 #: assets/app.js
 msgid "Série en cours (record : {n})"
@@ -1554,8 +1582,10 @@ msgid "Comptes autorisés :"
 msgstr "অনুমোদিত অ্যাকাউন্ট:"
 
 #: assets/app.js
-msgid "{count} tâche(s)"
-msgstr "কাজ: {count}"
+msgid "{count} tâche"
+msgid_plural "{count} tâches"
+msgstr[0] "{count}টি কাজ"
+msgstr[1] "{count}টি কাজ"
 
 #: assets/app.js
 msgid "Assigner"
@@ -1586,8 +1616,10 @@ msgid "envoi de fichier"
 msgstr "ফাইল পাঠানো"
 
 #: assets/app.js
-msgid "{count} popup(s)"
-msgstr "পপআপ: {count}"
+msgid "{count} popup"
+msgid_plural "{count} popups"
+msgstr[0] "{count}টি পপআপ"
+msgstr[1] "{count}টি পপআপ"
 
 #: assets/app.js
 msgid "Claude (« {profile} ») : {details}"
@@ -1738,8 +1770,10 @@ msgid "Restaurer les comptes"
 msgstr "অ্যাকাউন্ট পুনরুদ্ধার করুন"
 
 #: assets/app.js
-msgid "{count} compte(s) restauré(s)"
-msgstr "পুনরুদ্ধারকৃত অ্যাকাউন্ট: {count}"
+msgid "{count} compte restauré"
+msgid_plural "{count} comptes restaurés"
+msgstr[0] "{count}টি অ্যাকাউন্ট পুনরুদ্ধার হয়েছে"
+msgstr[1] "{count}টি অ্যাকাউন্ট পুনরুদ্ধার হয়েছে"
 
 #: assets/app.js
 msgid "Données de comptes illisibles"

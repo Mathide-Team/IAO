@@ -756,8 +756,10 @@ msgid "Modifier le compte"
 msgstr "Edit account"
 
 #: assets/app.js
-msgid "{available} service(s) hors cooldown sur {total}"
-msgstr "{available} of {total} service(s) out of cooldown"
+msgid "{available} service hors cooldown sur {total}"
+msgid_plural "{available} services hors cooldown sur {total}"
+msgstr[0] "{available} of {total} service off cooldown"
+msgstr[1] "{available} of {total} services off cooldown"
 
 #: assets/app.js
 msgid "Replier / déplier"
@@ -872,8 +874,10 @@ msgid "Échec de l'export (écriture impossible)"
 msgstr "Export failed (cannot write)"
 
 #: assets/app.js
-msgid "{count} compte(s) exporté(s)"
-msgstr "{count} account(s) exported"
+msgid "{count} compte exporté"
+msgid_plural "{count} comptes exportés"
+msgstr[0] "{count} account exported"
+msgstr[1] "{count} accounts exported"
 
 #: assets/app.js
 msgid "Export impossible"
@@ -900,8 +904,10 @@ msgid "Import impossible"
 msgstr "Import failed"
 
 #: assets/app.js
-msgid "{count} compte(s) importé(s)"
-msgstr "{count} account(s) imported"
+msgid "{count} compte importé"
+msgid_plural "{count} comptes importés"
+msgstr[0] "{count} account imported"
+msgstr[1] "{count} accounts imported"
 
 #: assets/app.js
 msgid "Échec de l'import : {error}"
@@ -940,8 +946,20 @@ msgid "Nombre de comptes : de 1 à {max}"
 msgstr "Number of accounts: 1 to {max}"
 
 #: assets/app.js
-msgid "{n} compte(s) créé(s), {m} mot(s) de passe enregistré(s)"
-msgstr "{n} account(s) created, {m} password(s) saved"
+msgid "{comptes}, {motsDePasse}"
+msgstr "{comptes}, {motsDePasse}"
+
+#: assets/app.js
+msgid "{n} compte créé"
+msgid_plural "{n} comptes créés"
+msgstr[0] "{n} account created"
+msgstr[1] "{n} accounts created"
+
+#: assets/app.js
+msgid "{m} mot de passe enregistré"
+msgid_plural "{m} mots de passe enregistrés"
+msgstr[0] "{m} password saved"
+msgstr[1] "{m} passwords saved"
 
 #: assets/app.js
 msgid "Adresse du webmail non configurée dans les réglages"
@@ -1008,24 +1026,34 @@ msgid "Livré"
 msgstr "Delivered"
 
 #: assets/app.js
-msgid "tous les {n} minutes"
-msgstr "every {n} minutes"
+msgid "chaque minute"
+msgid_plural "toutes les {n} minutes"
+msgstr[0] "every minute"
+msgstr[1] "every {n} minutes"
 
 #: assets/app.js
-msgid "tous les {n} jours"
-msgstr "every {n} days"
+msgid "chaque jour"
+msgid_plural "tous les {n} jours"
+msgstr[0] "every day"
+msgstr[1] "every {n} days"
 
 #: assets/app.js
-msgid "toutes les {n} semaines"
-msgstr "every {n} weeks"
+msgid "chaque semaine"
+msgid_plural "toutes les {n} semaines"
+msgstr[0] "every week"
+msgstr[1] "every {n} weeks"
 
 #: assets/app.js
-msgid "tous les {n} mois"
-msgstr "every {n} months"
+msgid "chaque mois"
+msgid_plural "tous les {n} mois"
+msgstr[0] "every month"
+msgstr[1] "every {n} months"
 
 #: assets/app.js
-msgid "toutes les {n} heures"
-msgstr "every {n} hours"
+msgid "chaque heure"
+msgid_plural "toutes les {n} heures"
+msgstr[0] "every hour"
+msgstr[1] "every {n} hours"
 
 #: assets/app.js
 msgid "Le {date}"
@@ -1040,8 +1068,10 @@ msgid "programmation inconnue"
 msgstr "unknown schedule"
 
 #: assets/app.js
-msgid "{n} compte(s) sélectionné(s)"
-msgstr "{n} account(s) selected"
+msgid "{n} compte sélectionné"
+msgid_plural "{n} comptes sélectionnés"
+msgstr[0] "{n} account selected"
+msgstr[1] "{n} accounts selected"
 
 #: assets/app.js
 msgid "tous les comptes avec Claude"
@@ -1356,12 +1386,10 @@ msgid "Aucune session sur cette période. La mesure commence à l'installation d
 msgstr "No sessions in this period. Measurement starts when this version is installed."
 
 #: assets/app.js
-msgid "1 jour"
-msgstr "1 day"
-
-#: assets/app.js
-msgid "{n} jours"
-msgstr "{n} days"
+msgid "{n} jour"
+msgid_plural "{n} jours"
+msgstr[0] "{n} day"
+msgstr[1] "{n} days"
 
 #: assets/app.js
 msgid "Série en cours (record : {n})"
@@ -1552,8 +1580,10 @@ msgid "Comptes autorisés :"
 msgstr "Allowed accounts:"
 
 #: assets/app.js
-msgid "{count} tâche(s)"
-msgstr "{count} task(s)"
+msgid "{count} tâche"
+msgid_plural "{count} tâches"
+msgstr[0] "{count} task"
+msgstr[1] "{count} tasks"
 
 #: assets/app.js
 msgid "Assigner"
@@ -1584,8 +1614,10 @@ msgid "envoi de fichier"
 msgstr "file upload"
 
 #: assets/app.js
-msgid "{count} popup(s)"
-msgstr "{count} popup(s)"
+msgid "{count} popup"
+msgid_plural "{count} popups"
+msgstr[0] "{count} pop-up"
+msgstr[1] "{count} pop-ups"
 
 #: assets/app.js
 msgid "Claude (« {profile} ») : {details}"
@@ -1736,8 +1768,10 @@ msgid "Restaurer les comptes"
 msgstr "Restore accounts"
 
 #: assets/app.js
-msgid "{count} compte(s) restauré(s)"
-msgstr "{count} account(s) restored"
+msgid "{count} compte restauré"
+msgid_plural "{count} comptes restaurés"
+msgstr[0] "{count} account restored"
+msgstr[1] "{count} accounts restored"
 
 #: assets/app.js
 msgid "Données de comptes illisibles"

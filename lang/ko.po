@@ -758,8 +758,9 @@ msgid "Modifier le compte"
 msgstr "계정 수정"
 
 #: assets/app.js
-msgid "{available} service(s) hors cooldown sur {total}"
-msgstr "쿨다운이 아닌 서비스: {available}/{total}"
+msgid "{available} service hors cooldown sur {total}"
+msgid_plural "{available} services hors cooldown sur {total}"
+msgstr[0] "서비스 {total}개 중 {available}개 쿨다운 아님"
 
 #: assets/app.js
 msgid "Replier / déplier"
@@ -874,8 +875,9 @@ msgid "Échec de l'export (écriture impossible)"
 msgstr "내보내기 실패 (쓸 수 없음)"
 
 #: assets/app.js
-msgid "{count} compte(s) exporté(s)"
-msgstr "계정 {count}개 내보냄"
+msgid "{count} compte exporté"
+msgid_plural "{count} comptes exportés"
+msgstr[0] "계정 {count}개를 내보냈습니다"
 
 #: assets/app.js
 msgid "Export impossible"
@@ -902,8 +904,9 @@ msgid "Import impossible"
 msgstr "가져올 수 없음"
 
 #: assets/app.js
-msgid "{count} compte(s) importé(s)"
-msgstr "계정 {count}개 가져옴"
+msgid "{count} compte importé"
+msgid_plural "{count} comptes importés"
+msgstr[0] "계정 {count}개를 가져왔습니다"
 
 #: assets/app.js
 msgid "Échec de l'import : {error}"
@@ -942,8 +945,18 @@ msgid "Nombre de comptes : de 1 à {max}"
 msgstr "계정 수: 1~{max}"
 
 #: assets/app.js
-msgid "{n} compte(s) créé(s), {m} mot(s) de passe enregistré(s)"
-msgstr "계정 {n}개 생성, 비밀번호 {m}개 저장됨"
+msgid "{comptes}, {motsDePasse}"
+msgstr "{comptes}, {motsDePasse}"
+
+#: assets/app.js
+msgid "{n} compte créé"
+msgid_plural "{n} comptes créés"
+msgstr[0] "계정 {n}개 생성"
+
+#: assets/app.js
+msgid "{m} mot de passe enregistré"
+msgid_plural "{m} mots de passe enregistrés"
+msgstr[0] "비밀번호 {m}개 저장"
 
 #: assets/app.js
 msgid "Adresse du webmail non configurée dans les réglages"
@@ -1010,24 +1023,29 @@ msgid "Livré"
 msgstr "전달됨"
 
 #: assets/app.js
-msgid "tous les {n} minutes"
-msgstr "{n}분마다"
+msgid "chaque minute"
+msgid_plural "toutes les {n} minutes"
+msgstr[0] "{n}분마다"
 
 #: assets/app.js
-msgid "tous les {n} jours"
-msgstr "{n}일마다"
+msgid "chaque jour"
+msgid_plural "tous les {n} jours"
+msgstr[0] "{n}일마다"
 
 #: assets/app.js
-msgid "toutes les {n} semaines"
-msgstr "{n}주마다"
+msgid "chaque semaine"
+msgid_plural "toutes les {n} semaines"
+msgstr[0] "{n}주마다"
 
 #: assets/app.js
-msgid "tous les {n} mois"
-msgstr "{n}개월마다"
+msgid "chaque mois"
+msgid_plural "tous les {n} mois"
+msgstr[0] "{n}개월마다"
 
 #: assets/app.js
-msgid "toutes les {n} heures"
-msgstr "{n}시간마다"
+msgid "chaque heure"
+msgid_plural "toutes les {n} heures"
+msgstr[0] "{n}시간마다"
 
 #: assets/app.js
 msgid "Le {date}"
@@ -1042,8 +1060,9 @@ msgid "programmation inconnue"
 msgstr "알 수 없는 일정"
 
 #: assets/app.js
-msgid "{n} compte(s) sélectionné(s)"
-msgstr "계정 {n}개 선택됨"
+msgid "{n} compte sélectionné"
+msgid_plural "{n} comptes sélectionnés"
+msgstr[0] "계정 {n}개 선택됨"
 
 #: assets/app.js
 msgid "tous les comptes avec Claude"
@@ -1358,12 +1377,9 @@ msgid "Aucune session sur cette période. La mesure commence à l'installation d
 msgstr "이 기간에 세션이 없습니다. 측정은 이 버전을 설치한 시점부터 시작됩니다."
 
 #: assets/app.js
-msgid "1 jour"
-msgstr "1일"
-
-#: assets/app.js
-msgid "{n} jours"
-msgstr "{n}일"
+msgid "{n} jour"
+msgid_plural "{n} jours"
+msgstr[0] "{n}일"
 
 #: assets/app.js
 msgid "Série en cours (record : {n})"
@@ -1554,8 +1570,9 @@ msgid "Comptes autorisés :"
 msgstr "허용된 계정:"
 
 #: assets/app.js
-msgid "{count} tâche(s)"
-msgstr "작업 {count}개"
+msgid "{count} tâche"
+msgid_plural "{count} tâches"
+msgstr[0] "작업 {count}개"
 
 #: assets/app.js
 msgid "Assigner"
@@ -1586,8 +1603,9 @@ msgid "envoi de fichier"
 msgstr "파일 업로드"
 
 #: assets/app.js
-msgid "{count} popup(s)"
-msgstr "팝업 {count}개"
+msgid "{count} popup"
+msgid_plural "{count} popups"
+msgstr[0] "팝업 {count}개"
 
 #: assets/app.js
 msgid "Claude (« {profile} ») : {details}"
@@ -1738,8 +1756,9 @@ msgid "Restaurer les comptes"
 msgstr "계정 복원"
 
 #: assets/app.js
-msgid "{count} compte(s) restauré(s)"
-msgstr "계정 {count}개 복원됨"
+msgid "{count} compte restauré"
+msgid_plural "{count} comptes restaurés"
+msgstr[0] "계정 {count}개를 복원했습니다"
 
 #: assets/app.js
 msgid "Données de comptes illisibles"
