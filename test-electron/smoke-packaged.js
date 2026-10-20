@@ -42,6 +42,11 @@ async function main() {
   const tmpHome = fs.mkdtempSync(path.join(os.tmpdir(), 'iao-smoke-'));
   const tmpConfig = path.join(tmpHome, '.config');
   fs.mkdirSync(tmpConfig, { recursive: true });
+  // Windows (issue #3) : Electron résout userData via l'API du shell
+  // (dossier connu AppData\Roaming), pas via une variable d'environnement ;
+  // on lit donc le journal dans le vrai %APPDATA%\ai-manager (vierge sur un
+  // runner de CI).
+  const configRoot = process.platform === 'win32' ? process.env.APPDATA : tmpConfig;
 
   console.log('Lancement du binaire packagé : ' + APP_BINARY);
   const child = spawn(APP_BINARY, ['--no-sandbox'], {
@@ -57,11 +62,14 @@ async function main() {
   child.stderr.on('data', d => { stdout += d.toString(); });
 
   let crashed = false;
+  let stopping = false;
   child.on('exit', (code, signal) => {
+    // Sous Windows, kill() est un TerminateProcess : code 1 sans signal.
+    if (stopping && process.platform === 'win32') return;
     if (code !== null && code !== 0 && signal !== 'SIGTERM') crashed = true;
   });
 
-  const activityPath = path.join(tmpConfig, 'ai-manager', 'scheduler', 'activity.json');
+  const activityPath = path.join(configRoot, 'ai-manager', 'scheduler', 'activity.json');
   let ok = true;
 
   // 1. Le process doit rester vivant au moins 8 s (pas de crash au boot).
@@ -97,7 +105,7 @@ async function main() {
   // « interface chargée » et AUCUNE ligne [preload] error ni d'erreur de
   // démarrage du renderer (bandeau boot-guard). Un preload cassé (require
   // interdit en sandbox) laissait sinon passer ce test de fumée.
-  const iaoLogPath = path.join(tmpConfig, 'ai-manager', 'logs', 'iao.log');
+  const iaoLogPath = path.join(configRoot, 'ai-manager', 'logs', 'iao.log');
   let iaoLog = '';
   try { iaoLog = fs.readFileSync(iaoLogPath, 'utf-8'); } catch (e) { /* absent */ }
   const uiLoaded = iaoLog.indexOf('interface chargée') !== -1;
@@ -113,6 +121,7 @@ async function main() {
 
   // 3. Terminaison propre sur SIGTERM.
   await new Promise(resolve => {
+    stopping = true;
     child.once('exit', resolve);
     child.kill('SIGTERM');
     setTimeout(() => { try { child.kill('SIGKILL'); } catch (e) {} resolve(); }, 5000);

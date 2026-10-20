@@ -1,0 +1,53 @@
+# Recette d'install.bat sur Windows (issue #3).
+#
+# Exécute scripts/test-install-windows.ps1 sur un runner Windows hébergé par
+# GitHub (VM vierge, compte administrateur) : auto-build, installation
+# utilisateur, lancement réel du binaire installé, /desktop, /system,
+# /uninstall avec préservation de %APPDATA%\ai-manager, /help.
+# Le tableau des contrôles est publié dans le résumé du job.
+#
+# Reste à valider sur un PC physique (hors CI) : compte NON administrateur
+# (refus de /system), SmartScreen, raccourcis visibles dans l'Explorateur.
+name: Recette install.bat (Windows)
+
+on:
+  pull_request:
+    branches: [dev, main]
+    paths:
+      - 'install.bat'
+      - 'scripts/test-install-windows.ps1'
+      - 'test-electron/smoke-packaged.js'
+      - '.github/workflows/install-windows.yml'
+  push:
+    branches: [dev]
+    paths:
+      - 'install.bat'
+      - 'scripts/test-install-windows.ps1'
+      - '.github/workflows/install-windows.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: install-windows-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  recette:
+    name: install.bat sur Windows (VM GitHub)
+    runs-on: windows-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout du dépôt
+        uses: actions/checkout@v4
+
+      - name: Installation de Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Recette install.bat
+        shell: pwsh
+        run: ./scripts/test-install-windows.ps1
