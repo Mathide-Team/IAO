@@ -443,15 +443,15 @@ msgstr "90일"
 
 #: index.html
 msgid "Remettre à zéro"
-msgstr ""
+msgstr "초기화"
 
 #: index.html
 msgid "Exporter CSV"
-msgstr ""
+msgstr "CSV 내보내기"
 
 #: index.html
 msgid "Exporter JSON"
-msgstr ""
+msgstr "JSON 내보내기"
 
 #: index.html
 msgid "Préférences de l'application, sauvegardées localement."
@@ -1343,15 +1343,15 @@ msgstr "작업 기록 기준 (최근 200회 실행)."
 
 #: assets/app.js
 msgid "{date} : {duree} actif"
-msgstr ""
+msgstr "{date}: 활성 {duree}"
 
 #: assets/app.js
 msgid "{h} h"
-msgstr ""
+msgstr "{h}시"
 
 #: assets/app.js
 msgid "Évolution du temps actif"
-msgstr ""
+msgstr "활성 시간 추이"
 
 #: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
@@ -1387,27 +1387,27 @@ msgstr "통계를 읽을 수 없음: {error}"
 
 #: assets/app.js
 msgid "Export des statistiques impossible : {error}"
-msgstr ""
+msgstr "통계를 내보낼 수 없음: {error}"
 
 #: assets/app.js
 msgid "Statistiques exportées"
-msgstr ""
+msgstr "통계를 내보냈습니다"
 
 #: assets/app.js
 msgid "Remettre les statistiques à zéro ?"
-msgstr ""
+msgstr "통계를 초기화할까요?"
 
 #: assets/app.js
 msgid "Les sessions, temps de réponse et quotas enregistrés sur cet ordinateur seront effacés. L'historique des tâches programmables n'est pas touché. Pensez à exporter avant si besoin."
-msgstr ""
+msgstr "이 컴퓨터에 저장된 세션, 응답 시간, 할당량이 삭제됩니다. 예약 작업 기록은 영향을 받지 않습니다. 필요하면 먼저 내보내세요."
 
 #: assets/app.js
 msgid "Remise à zéro impossible : {error}"
-msgstr ""
+msgstr "초기화할 수 없음: {error}"
 
 #: assets/app.js
 msgid "Statistiques remises à zéro"
-msgstr ""
+msgstr "통계가 초기화되었습니다"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"

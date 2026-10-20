@@ -443,15 +443,15 @@ msgstr "90 dager"
 
 #: index.html
 msgid "Remettre à zéro"
-msgstr ""
+msgstr "Nullstill"
 
 #: index.html
 msgid "Exporter CSV"
-msgstr ""
+msgstr "Eksporter CSV"
 
 #: index.html
 msgid "Exporter JSON"
-msgstr ""
+msgstr "Eksporter JSON"
 
 #: index.html
 msgid "Préférences de l'application, sauvegardées localement."
@@ -1343,15 +1343,15 @@ msgstr "Ifølge oppgavehistorikken (de siste 200 kjøringene)."
 
 #: assets/app.js
 msgid "{date} : {duree} actif"
-msgstr ""
+msgstr "{date}: {duree} aktiv"
 
 #: assets/app.js
 msgid "{h} h"
-msgstr ""
+msgstr "kl. {h}"
 
 #: assets/app.js
 msgid "Évolution du temps actif"
-msgstr ""
+msgstr "Utvikling i aktiv tid"
 
 #: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
@@ -1387,27 +1387,27 @@ msgstr "Statistikken er uleselig: {error}"
 
 #: assets/app.js
 msgid "Export des statistiques impossible : {error}"
-msgstr ""
+msgstr "Kan ikke eksportere statistikken: {error}"
 
 #: assets/app.js
 msgid "Statistiques exportées"
-msgstr ""
+msgstr "Statistikken eksportert"
 
 #: assets/app.js
 msgid "Remettre les statistiques à zéro ?"
-msgstr ""
+msgstr "Nullstille statistikken?"
 
 #: assets/app.js
 msgid "Les sessions, temps de réponse et quotas enregistrés sur cet ordinateur seront effacés. L'historique des tâches programmables n'est pas touché. Pensez à exporter avant si besoin."
-msgstr ""
+msgstr "Økter, svartider og kvoter lagret på denne datamaskinen slettes. Historikken for planlagte oppgaver berøres ikke. Eksporter først om nødvendig."
 
 #: assets/app.js
 msgid "Remise à zéro impossible : {error}"
-msgstr ""
+msgstr "Kan ikke nullstille: {error}"
 
 #: assets/app.js
 msgid "Statistiques remises à zéro"
-msgstr ""
+msgstr "Statistikken nullstilt"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"
