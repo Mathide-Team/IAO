@@ -1,5 +1,19 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issue #206 — temps de réponse des messages envoyés à la main (20/10/2026)
+
+### Ajouté
+- **Mesure dans les onglets** : un petit script injecté à chaque chargement
+  (`lib/mesure-reponse.js`) note l'heure d'envoi (Entrée dans la zone de
+  saisie ou clic sur le bouton d'envoi) et l'heure de fin de génération
+  (indicateur « en cours » ou bouton Stop disparu depuis 600 ms). L'appli
+  relève ces horodatages toutes les 3 s et les range dans
+  `stats/reponses.jsonl`. Seuls des horodatages sortent de la page, jamais
+  le texte des questions ni des réponses.
+- Services couverts : Claude, ChatGPT, Gemini, Perplexity, Grok, Zeta,
+  Mistral, DeepSeek, Qwen. Sélecteurs à valider sur machine réelle
+  (`npm run start:debug` journalise « réponse mesurée », catégorie stats).
+- Tests : `test/mesure-reponse.test.js`, scénario Electron C13.1.
 ## Issue #51 — chaînes ajoutées et supprimées dans le rapport CI (20/10/2026)
 
 ### Ajouté

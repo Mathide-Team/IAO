@@ -922,6 +922,7 @@
       webview.addEventListener('did-fail-load', (ev) => {
         if (ev.isMainFrame) dbg('onglets', 'échec de chargement', tabId, ev.errorCode, ev.errorDescription);
       });
+      brancherMesureReponse(webview, tabId, acc.profile, svcId);
       saveOpenTabs(); // lot 18/09/2026 : persistance pour startWithLastSession
       renderTabsBar();
       activateTab(tabId);
@@ -930,6 +931,37 @@
       // voyait pas encore ce nouvel onglet : on re-rend pour que le badge de
       // statut du compte passe bleu « ouvert » immédiatement (lot 16/09/2026).
       renderAccounts();
+    }
+
+    // Issue #206 : temps de réponse des messages envoyés à la main. Le script
+    // de lib/mesure-reponse.js est injecté à chaque chargement de page (il
+    // survit aux navigations internes des applications monopages) ; il range
+    // deux horodatages par réponse dans une file de la page, vidée ici toutes
+    // les 3 s. Jamais de texte de question ni de réponse.
+    function brancherMesureReponse(webview, tabId, profil, svcId) {
+      const M = window.iaoMesureReponse;
+      if (!M || !M.estMesurable(svcId)) return;
+      let pret = false;
+      let derniere = 0;
+      webview.addEventListener('dom-ready', () => {
+        webview.executeJavaScript(M.scriptMesure(svcId)).then((etat) => {
+          pret = true;
+          dbg('stats', 'mesure des réponses', tabId, svcId, etat);
+        }).catch((e) => dbg('stats', 'mesure des réponses indisponible', tabId, e && e.message));
+      });
+      const minuterie = setInterval(() => {
+        if (!webview.isConnected) { clearInterval(minuterie); return; } // onglet fermé
+        if (!pret) return;
+        webview.executeJavaScript(M.SCRIPT_LECTURE).then((json) => {
+          for (const m of M.lireMesures(json, Date.now())) {
+            if (m.fin <= derniere) continue; // jamais deux fois la même réponse
+            derniere = m.fin;
+            dbg('stats', 'réponse mesurée', tabId, svcId, (m.fin - m.debut) + ' ms');
+            ipcRenderer.invoke('stats:noter-reponse', { profil, service: svcId, debut: m.debut, fin: m.fin })
+              .catch((e) => dbg('stats', 'enregistrement de la réponse refusé', e && e.message));
+          }
+        }).catch(() => { pret = false; }); // page en cours de rechargement : réinjection au dom-ready
+      }, M.INTERVALLE_LECTURE_MS);
     }
 
     // Réaffiche la barre d'onglets à partir de tabs[] (source de vérité unique).

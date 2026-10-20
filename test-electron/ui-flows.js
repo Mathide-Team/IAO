@@ -1139,6 +1139,53 @@ async function run() {
   });
 
   // =========================================================================
+  // C13 — Temps de réponse des messages envoyés à la main (issue #206)
+  // Le réseau est coupé : la webview Claude charge une page locale qui imite
+  // le compositeur (textarea) et l'indicateur data-is-streaming de Claude.ai.
+  // =========================================================================
+  console.log('\n--- C13 : temps de réponse des envois manuels ---');
+  await test('C13.1 Claude : script injecté, Entrée puis génération simulée -> reponses.jsonl', async () => {
+    await exec(`document.querySelector('#accountsList [data-action="open-service"][data-acc="acc_test_1"][data-svc="claude"]').click(); 'ok'`);
+    await sleep(800);
+    await exec(`(() => {
+      const t = [...document.querySelectorAll('#tabsBar .tab')].find(x => x.dataset.acc === 'acc_test_1' && x.dataset.svc === 'claude');
+      window.__c13 = document.querySelector('#' + t.dataset.tab + ' webview');
+      window.__c13.loadURL('data:text/html;charset=utf-8,' + encodeURIComponent('<textarea id="q">question secrète</textarea>'));
+      return 'ok';
+    })()`);
+    let pret = false;
+    for (let i = 0; i < 40 && !pret; i++) {
+      await sleep(150);
+      pret = await exec(`window.__c13.executeJavaScript('window.__iaoMesureReponse === true && !!document.getElementById("q")').catch(() => false)`);
+    }
+    assert(pret, 'script de mesure non injecté après le chargement de la page');
+    await exec(`window.__c13.executeJavaScript(\`(function () {
+      var q = document.getElementById('q'); q.focus();
+      q.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+      setTimeout(function () {
+        var d = document.createElement('div'); d.setAttribute('data-is-streaming', 'true');
+        d.textContent = 'réponse secrète'; document.body.appendChild(d);
+        setTimeout(function () { d.setAttribute('data-is-streaming', 'false'); }, 1500);
+      }, 300);
+      return 'ok';
+    })()\`)`);
+    const fichier = path.join(statsDir, 'reponses.jsonl');
+    let ligne = null;
+    for (let i = 0; i < 60 && !ligne; i++) {
+      await sleep(200);
+      try {
+        ligne = fs.readFileSync(fichier, 'utf-8').split('\n').filter(Boolean)
+          .map(l => JSON.parse(l)).find(r => r.profil === 'profil_1' && r.service === 'claude') || null;
+      } catch (e) { /* pas encore écrit */ }
+    }
+    assert(ligne, 'aucune mesure enregistrée dans reponses.jsonl');
+    const duree = ligne.fin - ligne.debut;
+    assert(duree >= 1500 && duree < 5000, 'durée incohérente : ' + duree + ' ms');
+    const brut = fs.readFileSync(fichier, 'utf-8');
+    assert(!brut.includes('secrète'), 'aucun texte de question ni de réponse ne doit sortir de la page');
+  });
+
+  // =========================================================================
   // Nettoyage
   // =========================================================================
   console.log('\n--- Résumé ---');
