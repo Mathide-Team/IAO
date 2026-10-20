@@ -1,5 +1,14 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issue #51 — chaînes ajoutées et supprimées dans le rapport CI (20/10/2026)
+
+### Ajouté
+- **Résumé du job i18n des PR** : tableau « chaînes avant / après /
+  nouvelles / supprimées » et liste des chaînes concernées (contexte et
+  pluriel compris), en comparant le `.pot` de la branche cible et celui de
+  la PR. Module `lib/i18n-pot-diff.js`, commande `scripts/i18n-diff.js`.
+- Test : `test/i18n-pot-diff.test.js`.
+
 ## Issue #7 — signature GPG des sommes de contrôle (20/10/2026)
 
 ### Ajouté

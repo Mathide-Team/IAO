@@ -1,5 +1,6 @@
 # Internationalisation (issue #51).
 #
+# - PR : liste des chaînes nouvelles et supprimées (scripts/i18n-diff.js).
 # - PR et push : scripts/i18n-update.sh --check échoue si lang/messages.pot,
 #   un lang/<xx>.po ou un .mo n'est plus synchronisé avec les sources, ou si
 #   un catalogue est invalide (msgfmt --check). Résumé des taux de traduction
@@ -55,6 +56,18 @@ jobs:
             echo "outdated=true" >> "$GITHUB_OUTPUT"
             exit 1
           fi
+
+      # Issue #51 : chaînes nouvelles / supprimées par la PR (comparaison du
+      # .pot de la branche cible et de celui de la PR), dans le résumé du job.
+      - name: Chaînes ajoutées et supprimées
+        if: always() && github.event_name == 'pull_request'
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          base_pot="$RUNNER_TEMP/base-messages.pot"
+          git fetch --no-tags --depth=1 origin "$BASE_REF" \
+            && git show FETCH_HEAD:lang/messages.pot > "$base_pot" || : > "$base_pot"
+          node scripts/i18n-diff.js "$base_pot" lang/messages.pot | tee -a "$GITHUB_STEP_SUMMARY"
 
   synchronisation:
     name: Synchronisation automatique des catalogues
