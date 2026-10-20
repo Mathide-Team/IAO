@@ -1,5 +1,15 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issues #52, #58, #59 — diagnostic publiable et carte graphique (20/10/2026)
+
+### Ajouté
+- `scripts/diagnostic-demarrage.sh --publier <n>` : après le rapport, demande
+  confirmation puis le publie en commentaire de l'issue `<n>` avec `gh`.
+  Sans `gh` ou sans connexion, le rapport reste à coller à la main.
+- Section « Carte graphique » (lspci, vainfo, `LIBVA_DRIVER_NAME`) et
+  compteur « vaInitialize failed » au lancement, pour l'erreur VA-API de #52.
+- Options inconnues refusées (code 2).
+- Tests : `test/diagnostic-demarrage.test.js` (faux `gh`).
 ## Issue #206 — temps de réponse et quotas dans la page Statistiques (20/10/2026)
 
 ### Ajouté
