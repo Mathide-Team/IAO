@@ -4,6 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: IAO\n"
 "Report-Msgid-Bugs-To: https://github.com/Mathide-Team/IAO/issues\n"
+"PO-Revision-Date: 2026-10-20 06:58+0000\n"
+"Last-Translator: agent IAO (docker24006) — traduction générée par IA, relecture humaine attendue (issue #51)\n"
+"Language-Team: Mathide-Team <https://github.com/Mathide-Team/IAO>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -12,1704 +15,1704 @@ msgstr ""
 
 #: index.html
 msgid "Rechercher un compte ou une IA..."
-msgstr ""
+msgstr "Hae tiliä tai tekoälyä..."
 
 #: index.html
 msgid "Comptes actifs"
-msgstr ""
+msgstr "Aktiiviset tilit"
 
 #: index.html
 msgid "IA Disponibles"
-msgstr ""
+msgstr "Saatavilla olevat tekoälyt"
 
 #: index.html
 msgid "Rechercher un compte ou une IA (Ctrl+K)"
-msgstr ""
+msgstr "Hae tiliä tai tekoälyä (Ctrl+K)"
 
 #: index.html
 msgid "Comptes enregistrés"
-msgstr ""
+msgstr "Tallennetut tilit"
 
 #: index.html
 msgid "Tout replier / Tout déplier"
-msgstr ""
+msgstr "Kutista kaikki / Laajenna kaikki"
 
 #: index.html
 msgid "Exporter les comptes (JSON)"
-msgstr ""
+msgstr "Vie tilit (JSON)"
 
 #: index.html
 msgid "Importer des comptes (JSON)"
-msgstr ""
+msgstr "Tuo tilit (JSON)"
 
 #: index.html
 msgid "Ajouter un compte"
-msgstr ""
+msgstr "Lisää tili"
 
 #: index.html
 msgid "Créer des comptes en série"
-msgstr ""
+msgstr "Luo tilejä sarjana"
 
 #: index.html
 msgid "Mode debug actif : traces détaillées dans le journal iao.log"
-msgstr ""
+msgstr "Vianetsintätila käytössä: yksityiskohtaiset jäljet lokissa iao.log"
 
 #: index.html
 msgid "Masquer les comptes"
-msgstr ""
+msgstr "Piilota tilit"
 
 #: index.html
 msgid "Afficher les comptes"
-msgstr ""
+msgstr "Näytä tilit"
 
 #: index.html
 msgid "Explorateur"
-msgstr ""
+msgstr "Resurssienhallinta"
 
 #: index.html
 msgid "Éditeur"
-msgstr ""
+msgstr "Editori"
 
 #: index.html
 msgid "Outils de développement (Ctrl+Maj+I)"
-msgstr ""
+msgstr "Kehittäjätyökalut (Ctrl+Vaihto+I)"
 
 #: index.html
 msgid "Redémarrer en mode debug (journal détaillé)"
-msgstr ""
+msgstr "Käynnistä uudelleen vianetsintätilassa (yksityiskohtainen loki)"
 
 #: index.html
 msgid "Choisir mes 9 IA à portée de main"
-msgstr ""
+msgstr "Valitse 9 tekoälyäni käden ulottuville"
 
 #: index.html
 msgid "Comprendre les IA disponibles"
-msgstr ""
+msgstr "Tutustu saatavilla oleviin tekoälyihin"
 
 #: index.html
 msgid "Statistiques d'utilisation"
-msgstr ""
+msgstr "Käyttötilastot"
 
 #: index.html
 msgid "Ordonnanceur IA"
-msgstr ""
+msgstr "Tekoälyn ajastin"
 
 #: index.html
 msgid "Réglages"
-msgstr ""
+msgstr "Asetukset"
 
 #: index.html
 msgid "Fichiers"
-msgstr ""
+msgstr "Tiedostot"
 
 #: index.html
 msgid "Ouvrir un dossier"
-msgstr ""
+msgstr "Avaa kansio"
 
 #: index.html
 msgid "Réduire"
-msgstr ""
+msgstr "Pienennä"
 
 #: index.html
 msgid "Rechercher un fichier..."
-msgstr ""
+msgstr "Hae tiedostoa..."
 
 #: index.html
 msgid "Glisser pour redimensionner"
-msgstr ""
+msgstr "Muuta kokoa vetämällä"
 
 #: index.html
 msgid "Aucun fichier"
-msgstr ""
+msgstr "Ei tiedostoa"
 
 #: index.html
 msgid "Glisser pour redimensionner l'éditeur"
-msgstr ""
+msgstr "Muuta editorin kokoa vetämällä"
 
 #: index.html
 msgid "Aucun onglet ouvert — choisissez un service dans la liste des comptes"
-msgstr ""
+msgstr "Ei avoimia välilehtiä — valitse palvelu tililuettelosta"
 
 #: index.html
 msgid "Le profil permet d'isoler les cookies dans Electron."
-msgstr ""
+msgstr "Profiilin avulla evästeet voidaan eristää Electronissa."
 
 #: index.html
 msgid "Nom du compte"
-msgstr ""
+msgstr "Tilin nimi"
 
 #: index.html
 msgid "Nom du Profil"
-msgstr ""
+msgstr "Profiilin nimi"
 
 #: index.html
 msgid "Mot de passe de la messagerie"
-msgstr ""
+msgstr "Sähköpostin salasana"
 
 #: index.html
 msgid "Afficher le mot de passe"
-msgstr ""
+msgstr "Näytä salasana"
 
 #: index.html
 msgid "Générer un mot de passe"
-msgstr ""
+msgstr "Luo salasana"
 
 #: index.html
 msgid "Chiffré par le trousseau du système, jamais enregistré en clair. Laisser vide pour ne pas le modifier."
-msgstr ""
+msgstr "Järjestelmän avainnipun salaama, ei koskaan tallenneta selväkielisenä. Jätä tyhjäksi, jos et halua muuttaa sitä."
 
 #: index.html
 msgid "Annuler"
-msgstr ""
+msgstr "Peruuta"
 
 #: index.html
 msgid "Enregistrer"
-msgstr ""
+msgstr "Tallenna"
 
 #: index.html
 msgid "Nombre de comptes"
-msgstr ""
+msgstr "Tilien määrä"
 
 #: index.html
 msgid "Créer"
-msgstr ""
+msgstr "Luo"
 
 #: index.html
 msgid "Supprimer le compte"
-msgstr ""
+msgstr "Poista tili"
 
 #: index.html
 msgid "Cette action est irréversible."
-msgstr ""
+msgstr "Tätä toimintoa ei voi kumota."
 
 #: index.html
 msgid "Supprimer"
-msgstr ""
+msgstr "Poista"
 
 #: index.html
 msgid "Importer des comptes"
-msgstr ""
+msgstr "Tuo tilejä"
 
 #: index.html
 msgid "Remplacer et importer"
-msgstr ""
+msgstr "Korvaa ja tuo"
 
 #: index.html
 msgid "Déconnecter le profil"
-msgstr ""
+msgstr "Kirjaa profiili ulos"
 
 #: index.html
 msgid "Déconnecter"
-msgstr ""
+msgstr "Kirjaudu ulos"
 
 #: index.html
 msgid "À quoi sert chaque service, et quand l'utiliser."
-msgstr ""
+msgstr "Mihin kukin palvelu sopii ja milloin sitä kannattaa käyttää."
 
 #: index.html
 msgid "Fermer"
-msgstr ""
+msgstr "Sulje"
 
 #: index.html
 msgid "Sélectionnez les 9 services affichés dans l'interface. Les autres restent disponibles dans l'aide."
-msgstr ""
+msgstr "Valitse käyttöliittymässä näytettävät 9 palvelua. Muut ovat yhä saatavilla ohjeessa."
 
 #: index.html
 msgid "Détection des ZIP livrés par les onglets IA, reprise par profil."
-msgstr ""
+msgstr "Tekoälyvälilehtien toimittamien ZIP-tiedostojen tunnistus, jatkaminen profiileittain."
 
 #: index.html
 msgid "Arrêté"
-msgstr ""
+msgstr "Pysäytetty"
 
 #: index.html
 msgid "Démarrer ou arrêter l'ordonnanceur (il ne démarre jamais tout seul)"
-msgstr ""
+msgstr "Käynnistä tai pysäytä ajastin (se ei koskaan käynnisty itsestään)"
 
 #: index.html
 msgid "Démarrer"
-msgstr ""
+msgstr "Käynnistä"
 
 #: index.html
 msgid "Ancien ordonnanceur désactivé"
-msgstr ""
+msgstr "Vanha ajastin poistettu käytöstä"
 
 #: index.html
 msgid "La détection des ZIP, les jobs et les projets sont remplacés par les tâches programmables, en cours de développement."
-msgstr ""
+msgstr "ZIP-tunnistus, työt ja projektit korvataan ajastetuilla tehtävillä, jotka ovat kehitteillä."
 
 #: index.html
 msgid "Tâches programmables"
-msgstr ""
+msgstr "Ajastetut tehtävät"
 
 #: index.html
 msgid "Nouvelle tâche"
-msgstr ""
+msgstr "Uusi tehtävä"
 
 #: index.html
 msgid "Nom de la tâche"
-msgstr ""
+msgstr "Tehtävän nimi"
 
 #: index.html
 msgid "Ex. : rapport quotidien"
-msgstr ""
+msgstr "Esim.: päivittäinen raportti"
 
 #: index.html
 msgid "Comptes"
-msgstr ""
+msgstr "Tilit"
 
 #: index.html
 msgid "Tous les comptes avec Claude"
-msgstr ""
+msgstr "Kaikki tilit, joilla on Claude"
 
 #: index.html
 msgid "Choisir des comptes…"
-msgstr ""
+msgstr "Valitse tilejä…"
 
 #: index.html
 msgid "Répartition"
-msgstr ""
+msgstr "Jakautuminen"
 
 #: index.html
 msgid "Tous les comptes à chaque exécution"
-msgstr ""
+msgstr "Kaikki tilit joka suorituskerralla"
 
 #: index.html
 msgid "Un compte à la fois (rotation)"
-msgstr ""
+msgstr "Yksi tili kerrallaan (kierto)"
 
 #: index.html
 msgid "Espacement entre comptes (secondes)"
-msgstr ""
+msgstr "Tilien välinen väli (sekuntia)"
 
 #: index.html
 msgid "Nouvelle session à chaque exécution"
-msgstr ""
+msgstr "Uusi istunto joka suorituskerralla"
 
 #: index.html
 msgid "Prompt à envoyer"
-msgstr ""
+msgstr "Lähetettävä kehote"
 
 #: index.html
 msgid "Ex. : Résume les actualités de la veille"
-msgstr ""
+msgstr "Esim.: Tiivistä eilisen uutiset"
 
 #: index.html
 msgid "Programmation"
-msgstr ""
+msgstr "Ajastus"
 
 #: index.html
 msgid "Récurrente (tous les N …)"
-msgstr ""
+msgstr "Toistuva (N … välein)"
 
 #: index.html
 msgid "Une seule fois"
-msgstr ""
+msgstr "Vain kerran"
 
 #: index.html
 msgid "Le"
-msgstr ""
+msgstr "Päivänä"
 
 #: index.html
 msgid "Tous les"
-msgstr ""
+msgstr "Joka"
 
 #: index.html
 msgid "minutes"
-msgstr ""
+msgstr "minuutti"
 
 #: index.html
 msgid "heures"
-msgstr ""
+msgstr "tunti"
 
 #: index.html
 msgid "jours"
-msgstr ""
+msgstr "päivä"
 
 #: index.html
 msgid "semaines"
-msgstr ""
+msgstr "viikko"
 
 #: index.html
 msgid "mois"
-msgstr ""
+msgstr "kuukausi"
 
 #: index.html
 msgid "À partir du"
-msgstr ""
+msgstr "Alkaen"
 
 #: index.html
 msgid "Tâche active"
-msgstr ""
+msgstr "Tehtävä käytössä"
 
 #: index.html
 msgid "Historique"
-msgstr ""
+msgstr "Historia"
 
 #: index.html
 msgid "Jobs actifs"
-msgstr ""
+msgstr "Aktiiviset työt"
 
 #: index.html
 msgid "En attente"
-msgstr ""
+msgstr "Odottaa"
 
 #: index.html
 msgid "Livrés aujourd'hui"
-msgstr ""
+msgstr "Toimitettu tänään"
 
 #: index.html
 msgid "Jobs simultanés max."
-msgstr ""
+msgstr "Samanaikaisia töitä enintään"
 
 #: index.html
 msgid "Délai min. entre automatisations (min)"
-msgstr ""
+msgstr "Automaatioiden välinen vähimmäisviive (min)"
 
 #: index.html
 msgid "Seuil profil « le plus ancien » (h)"
-msgstr ""
+msgstr "«Vanhimman» profiilin kynnys (h)"
 
 #: index.html
 msgid "Dossiers"
-msgstr ""
+msgstr "Kansiot"
 
 #: index.html
 msgid "Téléchargements…"
-msgstr ""
+msgstr "Lataukset…"
 
 #: index.html
 msgid "Livraison…"
-msgstr ""
+msgstr "Toimitus…"
 
 #: index.html
 msgid "Téléchargements :"
-msgstr ""
+msgstr "Lataukset:"
 
 #: index.html
 msgid "(dossier de téléchargements du système)"
-msgstr ""
+msgstr "(järjestelmän latauskansio)"
 
 #: index.html
 msgid "Livraison :"
-msgstr ""
+msgstr "Toimitus:"
 
 #: index.html
 msgid "(non défini)"
-msgstr ""
+msgstr "(ei määritetty)"
 
 #: index.html
 msgid "Projets & tâches"
-msgstr ""
+msgstr "Projektit ja tehtävät"
 
 #: index.html
 msgid "Jobs"
-msgstr ""
+msgstr "Työt"
 
 #: index.html
 msgid "Journal d'activité"
-msgstr ""
+msgstr "Toimintaloki"
 
 #: index.html
 msgid "Confirmation"
-msgstr ""
+msgstr "Vahvistus"
 
 #: index.html
 msgid "Confirmer"
-msgstr ""
+msgstr "Vahvista"
 
 #: index.html
 msgid "Mesurées sur cet ordinateur et conservées 90 jours. Rien n'est envoyé."
-msgstr ""
+msgstr "Mitattu tällä tietokoneella ja säilytetään 90 päivää. Mitään ei lähetetä."
 
 #: index.html
 msgid "Aujourd'hui"
-msgstr ""
+msgstr "Tänään"
 
 #: index.html
 msgid "7 jours"
-msgstr ""
+msgstr "7 päivää"
 
 #: index.html
 msgid "30 jours"
-msgstr ""
+msgstr "30 päivää"
 
 #: index.html
 msgid "90 jours"
-msgstr ""
+msgstr "90 päivää"
 
 #: index.html
 msgid "Préférences de l'application, sauvegardées localement."
-msgstr ""
+msgstr "Sovelluksen asetukset, tallennettu paikallisesti."
 
 #: index.html
 msgid "Taille de police de l'éditeur (px)"
-msgstr ""
+msgstr "Editorin fonttikoko (px)"
 
 #: index.html
 msgid "Thème"
-msgstr ""
+msgstr "Teema"
 
 #: index.html
 msgid "Thème du bureau (défaut)"
-msgstr ""
+msgstr "Työpöydän teema (oletus)"
 
 #: index.html
 msgid "Clair"
-msgstr ""
+msgstr "Vaalea"
 
 #: index.html
 msgid "Sombre"
-msgstr ""
+msgstr "Tumma"
 
 #: index.html
 msgid "Langue"
-msgstr ""
+msgstr "Kieli"
 
 #: index.html
 msgid "Langue du système (défaut)"
-msgstr ""
+msgstr "Järjestelmän kieli (oletus)"
 
 #: index.html
 msgid "Appliquée au prochain démarrage"
-msgstr ""
+msgstr "Otetaan käyttöön seuraavalla käynnistyskerralla"
 
 #: index.html
 msgid "Retour à la ligne (éditeur)"
-msgstr ""
+msgstr "Rivitys (editori)"
 
 #: index.html
 msgid "Désactivé"
-msgstr ""
+msgstr "Pois käytöstä"
 
 #: index.html
 msgid "Activé"
-msgstr ""
+msgstr "Käytössä"
 
 #: index.html
 msgid "Colonne fixe"
-msgstr ""
+msgstr "Kiinteä sarake"
 
 #: index.html
 msgid "Confirmer avant de fermer un onglet"
-msgstr ""
+msgstr "Vahvista ennen välilehden sulkemista"
 
 #: index.html
 msgid "Afficher les fenêtres d'automatisation"
-msgstr ""
+msgstr "Näytä automaatioikkunat"
 
 #: index.html
 msgid "Restaurer les onglets ouverts au démarrage"
-msgstr ""
+msgstr "Palauta avoimet välilehdet käynnistettäessä"
 
 #: index.html
 msgid "Préfixe des adresses e-mail"
-msgstr ""
+msgstr "Sähköpostiosoitteiden etuliite"
 
 #: index.html
 msgid "docker"
-msgstr ""
+msgstr "docker"
 
 #: index.html
 msgid "Domaine des adresses e-mail"
-msgstr ""
+msgstr "Sähköpostiosoitteiden verkkotunnus"
 
 #: index.html
 msgid "dmathilde.fr"
-msgstr ""
+msgstr "dmathilde.fr"
 
 #: index.html
 msgid "Adresse : préfixe + numéro + @ + domaine (ex. docker239@dmathilde.fr)"
-msgstr ""
+msgstr "Osoite: etuliite + numero + @ + verkkotunnus (esim. docker239@dmathilde.fr)"
 
 #: index.html
 msgid "Adresse du webmail (Roundcube)"
-msgstr ""
+msgstr "Verkkoposti-osoite (Roundcube)"
 
 #: index.html
 msgid "https://mail.dmathilde.fr"
-msgstr ""
+msgstr "https://mail.dmathilde.fr"
 
 #: assets/app.js
 msgid "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."
-msgstr ""
+msgstr "Anthropicin keskusteluavustaja. Se on erinomainen kirjoittamisessa, pitkien asiakirjojen analysoinnissa, ohjelmoinnissa ja monivaiheisessa päättelyssä."
 
 #: assets/app.js
 msgid "Plutôt pour du code, des textes longs et soignés, ou des questions complexes qui demandent de la rigueur."
-msgstr ""
+msgstr "Lähinnä koodiin, pitkiin ja huolellisiin teksteihin tai monimutkaisiin kysymyksiin, jotka vaativat tarkkuutta."
 
 #: assets/app.js
 msgid "L'assistant généraliste d'OpenAI, le plus connu du grand public. Il discute, rédige, résume, génère des images, analyse des fichiers et peut chercher sur le web."
-msgstr ""
+msgstr "OpenAI:n yleisavustaja, suuren yleisön tunnetuin. Se keskustelee, kirjoittaa, tiivistää, luo kuvia, analysoi tiedostoja ja voi hakea verkosta."
 
 #: assets/app.js
 msgid "Le couteau suisse du quotidien : brainstorming, questions générales, petites tâches variées."
-msgstr ""
+msgstr "Arjen monitoimityökalu: ideointi, yleiset kysymykset, monenlaiset pienet tehtävät."
 
 #: assets/app.js
 msgid "L'assistant IA de Google. Multimodal (texte, images, audio, vidéo), il s'appuie sur la recherche Google et s'intègre aux outils Google (Docs, Gmail, Drive…)."
-msgstr ""
+msgstr "Googlen tekoälyavustaja. Multimodaalinen (teksti, kuvat, ääni, video), perustuu Google-hakuun ja integroituu Googlen työkaluihin (Docs, Gmail, Drive…)."
 
 #: assets/app.js
 msgid "Plutôt pour analyser des images ou vidéos, ou si vous travaillez déjà dans l'écosystème Google."
-msgstr ""
+msgstr "Lähinnä kuvien tai videoiden analysointiin, tai jos työskentelet jo Googlen ekosysteemissä."
 
 #: assets/app.js
 msgid "Le chat de Z.ai, propulsé par les modèles GLM. Gratuit pour l'essentiel, avec un mode agent capable de chercher sur le web et de produire des fichiers (docx, pdf, xlsx)."
-msgstr ""
+msgstr "Z.ai:n chat, jonka taustalla ovat GLM-mallit. Pääosin ilmainen, ja siinä on agenttitila, joka voi hakea verkosta ja tuottaa tiedostoja (docx, pdf, xlsx)."
 
 #: assets/app.js
 msgid "Une alternative gratuite solide pour le chat et le code, quand les quotas des autres sont épuisés."
-msgstr ""
+msgstr "Vankka ilmainen vaihtoehto chattiin ja koodiin, kun muiden kiintiöt ovat lopussa."
 
 #: assets/app.js
 msgid "Un « moteur de réponse » : il cherche sur le web en direct, synthétise plusieurs sources et cite ses références pour chaque affirmation."
-msgstr ""
+msgstr "«Vastauskone»: se hakee verkosta reaaliaikaisesti, kokoaa useita lähteitä ja mainitsee lähteet jokaiselle väitteelle."
 
 #: assets/app.js
 msgid "Plutôt pour la recherche d'informations à jour, la veille et la vérification de faits avec sources."
-msgstr ""
+msgstr "Lähinnä ajantasaisen tiedon hakuun, seurantaan ja faktojen tarkistamiseen lähteineen."
 
 #: assets/app.js
 msgid "L'assistant de xAI (Elon Musk), connecté au réseau X (ex-Twitter). Ton direct, accès au temps réel de X, génération d'images incluse."
-msgstr ""
+msgstr "xAI:n (Elon Musk) avustaja, yhdistetty X-verkostoon (ent. Twitter). Suora sävy, reaaliaikainen pääsy X:ään, kuvien luonti mukana."
 
 #: assets/app.js
 msgid "Plutôt pour suivre l'actualité chaude et les tendances via X, ou pour un ton moins formel."
-msgstr ""
+msgstr "Lähinnä kuumien uutisten ja trendien seuraamiseen X:n kautta tai rennompaan sävyyn."
 
 #: assets/app.js
 msgid "Une plateforme de génération d'images orientée création : illustrations, concept art, assets de jeu vidéo, avec des contrôles fins (styles, modèles, retouche)."
-msgstr ""
+msgstr "Luovaan työhön suunnattu kuvanluontialusta: kuvitukset, konseptitaide, peligrafiikka, hienosäätöineen (tyylit, mallit, retusointi)."
 
 #: assets/app.js
 msgid "Plutôt pour produire des visuels et illustrations de qualité avec un contrôle précis du style."
-msgstr ""
+msgstr "Lähinnä laadukkaiden kuvien ja kuvitusten tuottamiseen tarkalla tyylin hallinnalla."
 
 #: assets/app.js
 msgid "Un générateur de musique : il compose des chansons complètes (instruments, voix, paroles) à partir d'une simple description texte, dans à peu près tous les genres."
-msgstr ""
+msgstr "Musiikkigeneraattori: se säveltää kokonaisia kappaleita (soittimet, laulu, sanat) yksinkertaisesta tekstikuvauksesta lähes missä tahansa tyylilajissa."
 
 #: assets/app.js
 msgid "Plutôt pour créer une musique, un jingle ou une chanson à partir d'un texte ou d'une idée."
-msgstr ""
+msgstr "Lähinnä musiikin, jinglen tai kappaleen luomiseen tekstistä tai ideasta."
 
 #: assets/app.js
 msgid "Un générateur de modèles 3D : il transforme un texte ou une image en objet 3D texturé, avec rigging/animation automatique et export vers les formats standards (GLB, FBX, STL…)."
-msgstr ""
+msgstr "3D-mallien generaattori: se muuttaa tekstin tai kuvan teksturoiduksi 3D-objektiksi, automaattisella riggauksella/animaatiolla ja viennillä vakiomuotoihin (GLB, FBX, STL…)."
 
 #: assets/app.js
 msgid "Plutôt pour créer des assets 3D (jeux, impression 3D, animation) sans savoir modéliser."
-msgstr ""
+msgstr "Lähinnä 3D-sisällön (pelit, 3D-tulostus, animaatio) luomiseen ilman mallinnustaitoja."
 
 #: assets/app.js
 msgid "Le Chat de Mistral AI, éditeur européen (français). Modèles open-weights performants, chat, code et analyse de documents."
-msgstr ""
+msgstr "Mistral AI:n Le Chat, eurooppalainen (ranskalainen) yritys. Tehokkaat avoimien painojen mallit, chat, koodi ja asiakirja-analyysi."
 
 #: assets/app.js
 msgid "Alternative européenne solide pour le chat et le code, avec une bonne maîtrise du français."
-msgstr ""
+msgstr "Vankka eurooppalainen vaihtoehto chattiin ja koodiin, hyvä ranskan kielen taito."
 
 #: assets/app.js
 msgid "DeepSeek : assistant IA chinois spécialisé en raisonnement et programmation, particulièrement performant en Python."
-msgstr ""
+msgstr "DeepSeek: kiinalainen tekoälyavustaja, joka on erikoistunut päättelyyn ja ohjelmointiin, erityisen vahva Pythonissa."
 
 #: assets/app.js
 msgid "Pour du code Python, du raisonnement étape par étape, ou une alternative gratuite à ChatGPT."
-msgstr ""
+msgstr "Python-koodiin, vaiheittaiseen päättelyyn tai ilmaiseksi vaihtoehdoksi ChatGPT:lle."
 
 #: assets/app.js
 msgid "GitHub Copilot : assistant IA intégré dans VS Code et GitHub. Autocomplétion, chat, génération de tests, explication de code."
-msgstr ""
+msgstr "GitHub Copilot: VS Codeen ja GitHubiin integroitu tekoälyavustaja. Automaattinen täydennys, chat, testien luonti, koodin selitys."
 
 #: assets/app.js
 msgid "Pour programmer plus vite dans VS Code ou sur GitHub, avec un modèle IA qui connaît votre codebase."
-msgstr ""
+msgstr "Nopeampaan ohjelmointiin VS Codessa tai GitHubissa tekoälymallin kanssa, joka tuntee koodikantasi."
 
 #: assets/app.js
 msgid "Elicit : assistant de recherche scientifique. Trouve des articles, extrait des données, synthétise des études."
-msgstr ""
+msgstr "Elicit: tieteellisen tutkimuksen avustaja. Löytää artikkeleita, poimii tietoja, kokoaa tutkimuksia."
 
 #: assets/app.js
 msgid "Pour la recherche académique, la revue de littérature et l'extraction de données d'articles scientifiques."
-msgstr ""
+msgstr "Akateemiseen tutkimukseen, kirjallisuuskatsauksiin ja tietojen poimimiseen tieteellisistä artikkeleista."
 
 #: assets/app.js
 msgid "NotebookLM de Google : interagissez avec vos propres documents (PDF, texte, audio). Résumés, questions, génération de notes."
-msgstr ""
+msgstr "Googlen NotebookLM: käytä omia asiakirjojasi (PDF, teksti, ääni). Tiivistelmät, kysymykset, muistiinpanot."
 
 #: assets/app.js
 msgid "Pour interroger vos documents personnels ou professionnels avec une IA qui cite ses sources."
-msgstr ""
+msgstr "Omien tai työasiakirjojesi kyselemiseen tekoälyllä, joka mainitsee lähteensä."
 
 #: assets/app.js
 msgid "Wolfram Alpha : moteur de calcul symbolique. Mathématiques, physique, chimie, données factuelles, conversions."
-msgstr ""
+msgstr "Wolfram Alpha: symbolisen laskennan moottori. Matematiikka, fysiikka, kemia, faktatiedot, muunnokset."
 
 #: assets/app.js
 msgid "Pour des calculs exacts (mathématiques symboliques), des données chiffrées ou des conversions d'unités."
-msgstr ""
+msgstr "Tarkkoihin laskelmiin (symbolinen matematiikka), numerotietoihin tai yksikkömuunnoksiin."
 
 #: assets/app.js
 msgid "DeepL : traduction automatique de haute qualité, plus naturelle que Google Traduction. Texte et documents entiers."
-msgstr ""
+msgstr "DeepL: korkealaatuinen konekäännös, luontevampi kuin Google Kääntäjä. Teksti ja kokonaiset asiakirjat."
 
 #: assets/app.js
 msgid "Pour traduire du texte ou des documents avec un rendu naturel et cohérent."
-msgstr ""
+msgstr "Tekstin tai asiakirjojen kääntämiseen luontevasti ja johdonmukaisesti."
 
 #: assets/app.js
 msgid "Ideogram : génération d'images orientée design. Logos, typographies, affiches, avec un excellent rendu du texte."
-msgstr ""
+msgstr "Ideogram: suunnitteluun suuntautunut kuvanluonti. Logot, typografia, julisteet, erinomainen tekstin piirto."
 
 #: assets/app.js
 msgid "Pour créer des visuels avec du texte lisible (logos, affiches, bannières) ou du design graphique."
-msgstr ""
+msgstr "Luettavaa tekstiä sisältävien kuvien (logot, julisteet, bannerit) tai graafisen suunnittelun luomiseen."
 
 #: assets/app.js
 msgid "Kling : générateur de vidéos courtes à partir de texte ou d'images. Animations réalistes, crédits gratuits disponibles."
-msgstr ""
+msgstr "Kling: lyhyiden videoiden generaattori tekstistä tai kuvista. Realistiset animaatiot, ilmaisia krediittejä saatavilla."
 
 #: assets/app.js
 msgid "Pour créer des clips vidéo animés à partir d'une description ou d'une image fixe."
-msgstr ""
+msgstr "Animoitujen videoleikkeiden luomiseen kuvauksesta tai still-kuvasta."
 
 #: assets/app.js
 msgid "Runway : suite d'outils IA pour la vidéo. Génération, édition, effets spéciaux, inpainting vidéo."
-msgstr ""
+msgstr "Runway: videon tekoälytyökalujen kokoelma. Luonti, muokkaus, erikoistehosteet, videon inpainting."
 
 #: assets/app.js
 msgid "Pour le montage et la création vidéo avancée avec des outils IA intégrés."
-msgstr ""
+msgstr "Edistyneeseen videoeditointiin ja -tuotantoon integroiduilla tekoälytyökaluilla."
 
 #: assets/app.js
 msgid "Pika : générateur de vidéos courtes et créatives. Animation d'images, effets, transformation de styles."
-msgstr ""
+msgstr "Pika: lyhyiden ja luovien videoiden generaattori. Kuvien animointi, tehosteet, tyylimuunnokset."
 
 #: assets/app.js
 msgid "Pour animer des images ou créer des vidéos courtes originales avec des effets IA."
-msgstr ""
+msgstr "Kuvien animointiin tai omaperäisten lyhytvideoiden luomiseen tekoälytehosteilla."
 
 #: assets/app.js
 msgid "Qwen : assistant IA d'Alibaba. Multimodal (texte, images, code), open-source, disponible en plusieurs tailles."
-msgstr ""
+msgstr "Qwen: Alibaban tekoälyavustaja. Multimodaalinen (teksti, kuvat, koodi), avointa lähdekoodia, saatavilla useina kokoina."
 
 #: assets/app.js
 msgid "Alternative gratuite pour le chat, le code et l'analyse d'images, avec un bon support multilingue."
-msgstr ""
+msgstr "Ilmainen vaihtoehto chattiin, koodiin ja kuva-analyysiin, hyvä monikielinen tuki."
 
 #: assets/app.js
 msgid "Impossible d'enregistrer les comptes (stockage plein ?)"
-msgstr ""
+msgstr "Tilejä ei voi tallentaa (tallennustila täynnä?)"
 
 #: assets/app.js
 msgid "Ctrl+S pour sauvegarder."
-msgstr ""
+msgstr "Tallenna painamalla Ctrl+S."
 
 #: assets/app.js
 msgid "Sélectionnez un fichier pour l'éditer ici."
-msgstr ""
+msgstr "Valitse tiedosto muokattavaksi tässä."
 
 #: assets/app.js
 msgid "Éditeur simplifié (Monaco indisponible) — Ctrl+S pour sauvegarder"
-msgstr ""
+msgstr "Yksinkertaistettu editori (Monaco ei käytettävissä) — tallenna painamalla Ctrl+S"
 
 #: assets/app.js
 msgid "Fichier enregistré !"
-msgstr ""
+msgstr "Tiedosto tallennettu"
 
 #: assets/app.js
 msgid "Erreur d'enregistrement."
-msgstr ""
+msgstr "Tallennusvirhe."
 
 #: assets/app.js
 msgid "Aucun compte pour l'instant."
-msgstr ""
+msgstr "Ei vielä tilejä."
 
 #: assets/app.js
 msgid "Créer mon premier compte"
-msgstr ""
+msgstr "Luo ensimmäinen tilini"
 
 #: assets/app.js
 msgid "Cliquer pour copier l'e-mail"
-msgstr ""
+msgstr "Kopioi sähköpostiosoite napsauttamalla"
 
 #: assets/app.js
 msgid "Ouvrir le webmail (adresse copiée)"
-msgstr ""
+msgstr "Avaa verkkoposti (osoite kopioitu)"
 
 #: assets/app.js
 msgid "Modifier le compte"
-msgstr ""
+msgstr "Muokkaa tiliä"
 
 #: assets/app.js
 msgid "{available} service(s) hors cooldown sur {total}"
-msgstr ""
+msgstr "{available}/{total} palvelua ilman jäähdytystä"
 
 #: assets/app.js
 msgid "Replier / déplier"
-msgstr ""
+msgstr "Kutista / laajenna"
 
 #: assets/app.js
 msgid "{service} — {account} déjà ouvert"
-msgstr ""
+msgstr "{service} — {account} on jo auki"
 
 #: assets/app.js
 msgid "Recharger l'onglet"
-msgstr ""
+msgstr "Lataa välilehti uudelleen"
 
 #: assets/app.js
 msgid "Revenir à l'accueil de {service}"
-msgstr ""
+msgstr "Palaa palvelun {service} etusivulle"
 
 #: assets/app.js
 msgid "Se déconnecter du profil « {profile} »"
-msgstr ""
+msgstr "Kirjaudu ulos profiilista «{profile}»"
 
 #: assets/app.js
 msgid "{service} ouvert avec {account}"
-msgstr ""
+msgstr "{service} avattu tilillä {account}"
 
 #: assets/app.js
 msgid "Fermer l'onglet"
-msgstr ""
+msgstr "Sulje välilehti"
 
 #: assets/app.js
 msgid "Fermer l'onglet « {tab} » ? La session web sera libérée."
-msgstr ""
+msgstr "Suljetaanko välilehti «{tab}»? Verkkoistunto vapautetaan."
 
 #: assets/app.js
 msgid "Onglet fermé (mémoire libérée)"
-msgstr ""
+msgstr "Välilehti suljettu (muistia vapautettu)"
 
 #: assets/app.js
 msgid "Retirer l'étoile"
-msgstr ""
+msgstr "Poista tähti"
 
 #: assets/app.js
 msgid "Étoiler cet onglet"
-msgstr ""
+msgstr "Merkitse tämä välilehti tähdellä"
 
 #: assets/app.js
 msgid "Onglet étoilé"
-msgstr ""
+msgstr "Välilehti merkitty tähdellä"
 
 #: assets/app.js
 msgid "Étoile retirée"
-msgstr ""
+msgstr "Tähti poistettu"
 
 #: assets/app.js
 msgid "Échec de la déconnexion du profil"
-msgstr ""
+msgstr "Profiilin uloskirjaus epäonnistui"
 
 #: assets/app.js
 msgid "Profil « {profile} » déconnecté — session effacée"
-msgstr ""
+msgstr "Profiili «{profile}» kirjattu ulos — istunto poistettu"
 
 #: assets/app.js
 msgid "Aucun fichier trouvé."
-msgstr ""
+msgstr "Tiedostoa ei löytynyt."
 
 #: assets/app.js
 msgid "Fichier trop volumineux pour l'éditeur : {size} Mo (limite : 20 Mo)."
-msgstr ""
+msgstr "Tiedosto on liian suuri editorille: {size} Mt (raja: 20 Mt)."
 
 #: assets/app.js
 msgid "Masquer le mot de passe"
-msgstr ""
+msgstr "Piilota salasana"
 
 #: assets/app.js
 msgid "Mot de passe non enregistré : le trousseau du système est indisponible"
-msgstr ""
+msgstr "Salasanaa ei tallennettu: järjestelmän avainnippu ei ole käytettävissä"
 
 #: assets/app.js
 msgid "Mot de passe non enregistré"
-msgstr ""
+msgstr "Salasanaa ei tallennettu"
 
 #: assets/app.js
 msgid "C'est quoi ?"
-msgstr ""
+msgstr "Mikä tämä on?"
 
 #: assets/app.js
 msgid "Quand l'utiliser ?"
-msgstr ""
+msgstr "Milloin sitä käytetään?"
 
 #: assets/app.js
 msgid "Description à venir."
-msgstr ""
+msgstr "Kuvaus tulossa."
 
 #: assets/app.js
 msgid "Maximum {max} services à portée de main"
-msgstr ""
+msgstr "Enintään {max} palvelua käden ulottuvilla"
 
 #: assets/app.js
 msgid "Sélectionnez au moins 1 service"
-msgstr ""
+msgstr "Valitse vähintään 1 palvelu"
 
 #: assets/app.js
 msgid "Services mis à jour ({count}/{max})"
-msgstr ""
+msgstr "Palvelut päivitetty ({count}/{max})"
 
 #: assets/app.js
 msgid "Supprimer « {name} » ({email}) ? La session restera stockée sur le disque, mais le compte disparaîtra de la liste."
-msgstr ""
+msgstr "Poistetaanko «{name}» ({email})? Istunto jää levylle, mutta tili katoaa luettelosta."
 
 #: assets/app.js
 msgid "Échec de l'export (écriture impossible)"
-msgstr ""
+msgstr "Vienti epäonnistui (kirjoittaminen ei onnistu)"
 
 #: assets/app.js
 msgid "{count} compte(s) exporté(s)"
-msgstr ""
+msgstr "Tilejä viety: {count}"
 
 #: assets/app.js
 msgid "Export impossible"
-msgstr ""
+msgstr "Vienti ei onnistu"
 
 #: assets/app.js
 msgid "Échec de la lecture du fichier"
-msgstr ""
+msgstr "Tiedoston lukeminen epäonnistui"
 
 #: assets/app.js
 msgid "Fichier JSON invalide"
-msgstr ""
+msgstr "Virheellinen JSON-tiedosto"
 
 #: assets/app.js
 msgid "Format invalide : un tableau de comptes est attendu."
-msgstr ""
+msgstr "Virheellinen muoto: odotettiin tililuetteloa."
 
 #: assets/app.js
 msgid "Le fichier contient {count} compte(s). L'import REMPLACE entièrement la liste actuelle ({current} compte(s)) — cette action écrase les comptes existants, pas leurs sessions (cookies) déjà enregistrées sur le disque. Continuer ?"
-msgstr ""
+msgstr "Tiedostossa on {count} tiliä. Tuonti KORVAA koko nykyisen luettelon ({current} tiliä) — toiminto korvaa olemassa olevat tilit, mutta ei niiden levylle jo tallennettuja istuntoja (evästeitä). Jatketaanko?"
 
 #: assets/app.js
 msgid "Import impossible"
-msgstr ""
+msgstr "Tuonti ei onnistu"
 
 #: assets/app.js
 msgid "{count} compte(s) importé(s)"
-msgstr ""
+msgstr "Tilejä tuotu: {count}"
 
 #: assets/app.js
 msgid "Échec de l'import : {error}"
-msgstr ""
+msgstr "Tuonti epäonnistui: {error}"
 
 #: assets/app.js
 msgid "Compte supprimé"
-msgstr ""
+msgstr "Tili poistettu"
 
 #: assets/app.js
 msgid "Remplissez tous les champs"
-msgstr ""
+msgstr "Täytä kaikki kentät"
 
 #: assets/app.js
 msgid "Ce profil est déjà utilisé par un autre compte (les sessions seraient partagées)."
-msgstr ""
+msgstr "Tämä profiili on jo toisen tilin käytössä (istunnot jaettaisiin)."
 
 #: assets/app.js
 msgid "Compte mis à jour"
-msgstr ""
+msgstr "Tili päivitetty"
 
 #: assets/app.js
 msgid "Compte ajouté"
-msgstr ""
+msgstr "Tili lisätty"
 
 #: assets/app.js
 msgid "Renseignez d'abord le domaine des adresses e-mail dans les réglages"
-msgstr ""
+msgstr "Anna ensin sähköpostiosoitteiden verkkotunnus asetuksissa"
 
 #: assets/app.js
 msgid "Premier compte : {nom}, {email}. Un mot de passe de messagerie aléatoire est généré pour chacun."
-msgstr ""
+msgstr "Ensimmäinen tili: {nom}, {email}. Jokaiselle luodaan satunnainen sähköpostin salasana."
 
 #: assets/app.js
 msgid "Nombre de comptes : de 1 à {max}"
-msgstr ""
+msgstr "Tilien määrä: 1–{max}"
 
 #: assets/app.js
 msgid "{n} compte(s) créé(s), {m} mot(s) de passe enregistré(s)"
-msgstr ""
+msgstr "Tilejä luotu: {n}, salasanoja tallennettu: {m}"
 
 #: assets/app.js
 msgid "Adresse du webmail non configurée dans les réglages"
-msgstr ""
+msgstr "Verkkoposti-osoitetta ei ole määritetty asetuksissa"
 
 #: assets/app.js
 msgid "Ouverture du webmail impossible"
-msgstr ""
+msgstr "Verkkopostin avaaminen ei onnistu"
 
 #: assets/app.js
 msgid "Copie impossible dans le presse-papiers"
-msgstr ""
+msgstr "Kopiointi leikepöydälle ei onnistu"
 
 #: assets/app.js
 msgid "E-mail copié : {email}"
-msgstr ""
+msgstr "Sähköposti kopioitu: {email}"
 
 #: assets/app.js
 msgid "Cooldown terminé"
-msgstr ""
+msgstr "Jäähdytys päättynyt"
 
 #: assets/app.js
 msgid "{account} — {service} est de nouveau disponible."
-msgstr ""
+msgstr "{account} — {service} on taas käytettävissä."
 
 #: assets/app.js
 msgid "{account} — {service} : cooldown terminé"
-msgstr ""
+msgstr "{account} — {service}: jäähdytys päättynyt"
 
 #: assets/app.js
 msgid "Téléchargement…"
-msgstr ""
+msgstr "Ladataan…"
 
 #: assets/app.js
 msgid "Téléchargé — à traiter"
-msgstr ""
+msgstr "Ladattu — käsiteltävänä"
 
 #: assets/app.js
 msgid "Aucun profil disponible"
-msgstr ""
+msgstr "Ei profiilia käytettävissä"
 
 #: assets/app.js
 msgid "Projet en cours d'analyse"
-msgstr ""
+msgstr "Projektia analysoidaan"
 
 #: assets/app.js
 msgid "En cours"
-msgstr ""
+msgstr "Käynnissä"
 
 #: assets/app.js
 msgid "En pause"
-msgstr ""
+msgstr "Keskeytetty"
 
 #: assets/app.js
 msgid "Reprise programmée"
-msgstr ""
+msgstr "Jatkaminen ajastettu"
 
 #: assets/app.js
 msgid "Erreur"
-msgstr ""
+msgstr "Virhe"
 
 #: assets/app.js
 msgid "Livré"
-msgstr ""
+msgstr "Toimitettu"
 
 #: assets/app.js
 msgid "tous les {n} minutes"
-msgstr ""
+msgstr "{n} minuutin välein"
 
 #: assets/app.js
 msgid "tous les {n} jours"
-msgstr ""
+msgstr "{n} päivän välein"
 
 #: assets/app.js
 msgid "toutes les {n} semaines"
-msgstr ""
+msgstr "{n} viikon välein"
 
 #: assets/app.js
 msgid "tous les {n} mois"
-msgstr ""
+msgstr "{n} kuukauden välein"
 
 #: assets/app.js
 msgid "toutes les {n} heures"
-msgstr ""
+msgstr "{n} tunnin välein"
 
 #: assets/app.js
 msgid "Le {date}"
-msgstr ""
+msgstr "{date}"
 
 #: assets/app.js
 msgid "à partir du {date}"
-msgstr ""
+msgstr "alkaen {date}"
 
 #: assets/app.js
 msgid "programmation inconnue"
-msgstr ""
+msgstr "tuntematon ajastus"
 
 #: assets/app.js
 msgid "{n} compte(s) sélectionné(s)"
-msgstr ""
+msgstr "Tilejä valittu: {n}"
 
 #: assets/app.js
 msgid "tous les comptes avec Claude"
-msgstr ""
+msgstr "kaikki tilit, joilla on Claude"
 
 #: assets/app.js
 msgid "rotation (un compte à la fois)"
-msgstr ""
+msgstr "kierto (yksi tili kerrallaan)"
 
 #: assets/app.js
 msgid "tous les comptes, espacement de {n} s"
-msgstr ""
+msgstr "kaikki tilit, {n} s välein"
 
 #: assets/app.js
 msgid "tous les comptes en même temps"
-msgstr ""
+msgstr "kaikki tilit samanaikaisesti"
 
 #: assets/app.js
 msgid "lancée"
-msgstr ""
+msgstr "käynnistetty"
 
 #: assets/app.js
 msgid "envoyée"
-msgstr ""
+msgstr "lähetetty"
 
 #: assets/app.js
 msgid "quota épuisé"
-msgstr ""
+msgstr "kiintiö lopussa"
 
 #: assets/app.js
 msgid "heures calmes"
-msgstr ""
+msgstr "hiljaiset tunnit"
 
 #: assets/app.js
 msgid "non connecté"
-msgstr ""
+msgstr "ei kirjautunut"
 
 #: assets/app.js
 msgid "aucun compte éligible"
-msgstr ""
+msgstr "ei kelvollista tiliä"
 
 #: assets/app.js
 msgid "erreur"
-msgstr ""
+msgstr "virhe"
 
 #: assets/app.js
 msgid "Aucune tâche programmée pour l'instant — créez-en une avec « Nouvelle tâche »."
-msgstr ""
+msgstr "Ei vielä ajastettuja tehtäviä — luo sellainen kohdasta «Uusi tehtävä»."
 
 #: assets/app.js
 msgid "Plus aucune exécution programmée"
-msgstr ""
+msgstr "Ei enää ajastettuja suorituksia"
 
 #: assets/app.js
 msgid "Prochaine exécution : {date}"
-msgstr ""
+msgstr "Seuraava suoritus: {date}"
 
 #: assets/app.js
 msgid "inactive"
-msgstr ""
+msgstr "ei käytössä"
 
 #: assets/app.js
 msgid "Activer"
-msgstr ""
+msgstr "Ota käyttöön"
 
 #: assets/app.js
 msgid "Désactiver"
-msgstr ""
+msgstr "Poista käytöstä"
 
 #: assets/app.js
 msgid "Exécuter maintenant"
-msgstr ""
+msgstr "Suorita nyt"
 
 #: assets/app.js
 msgid "Modifier"
-msgstr ""
+msgstr "Muokkaa"
 
 #: assets/app.js
 msgid "Aucun événement pour l'instant."
-msgstr ""
+msgstr "Ei vielä tapahtumia."
 
 #: assets/app.js
 msgid "Aucun compte avec le service Claude — la tâche ne pourra pas s'exécuter."
-msgstr ""
+msgstr "Ei tiliä, jolla on Claude-palvelu — tehtävää ei voi suorittaa."
 
 #: assets/app.js
 msgid "sans le service Claude"
-msgstr ""
+msgstr "ilman Claude-palvelua"
 
 #: assets/app.js
 msgid "compte supprimé"
-msgstr ""
+msgstr "poistettu tili"
 
 #: assets/app.js
 msgid "Le nom est obligatoire."
-msgstr ""
+msgstr "Nimi on pakollinen."
 
 #: assets/app.js
 msgid "Le prompt est obligatoire."
-msgstr ""
+msgstr "Kehote on pakollinen."
 
 #: assets/app.js
 msgid "Comptes : choix invalide."
-msgstr ""
+msgstr "Tilit: virheellinen valinta."
 
 #: assets/app.js
 msgid "Sélectionnez au moins un compte."
-msgstr ""
+msgstr "Valitse vähintään yksi tili."
 
 #: assets/app.js
 msgid "Répartition : choix invalide."
-msgstr ""
+msgstr "Jakautuminen: virheellinen valinta."
 
 #: assets/app.js
 msgid "Espacement invalide : entre 0 et 86400 secondes."
-msgstr ""
+msgstr "Virheellinen väli: 0–86400 sekuntia."
 
 #: assets/app.js
 msgid "Programmation : choix invalide."
-msgstr ""
+msgstr "Ajastus: virheellinen valinta."
 
 #: assets/app.js
 msgid "Date « Le » invalide."
-msgstr ""
+msgstr "Virheellinen «Päivänä»-päivämäärä."
 
 #: assets/app.js
 msgid "Date « À partir du » invalide."
-msgstr ""
+msgstr "Virheellinen «Alkaen»-päivämäärä."
 
 #: assets/app.js
 msgid "« Tous les » doit être un entier supérieur à 0."
-msgstr ""
+msgstr "«Joka»-arvon on oltava nollaa suurempi kokonaisluku."
 
 #: assets/app.js
 msgid "Unité inconnue."
-msgstr ""
+msgstr "Tuntematon yksikkö."
 
 #: assets/app.js
 msgid "Enregistrement impossible : {erreur}"
-msgstr ""
+msgstr "Tallennus ei onnistu: {erreur}"
 
 #: assets/app.js
 msgid "Le moteur de tâches n'est pas démarré."
-msgstr ""
+msgstr "Tehtävämoottoria ei ole käynnistetty."
 
 #: assets/app.js
 msgid "Exécution demandée — le résultat apparaîtra dans l'historique."
-msgstr ""
+msgstr "Suoritus pyydetty — tulos näkyy historiassa."
 
 #: assets/app.js
 msgid "Une exécution est déjà en cours — réessayez dans un instant."
-msgstr ""
+msgstr "Suoritus on jo käynnissä — yritä hetken kuluttua uudelleen."
 
 #: assets/app.js
 msgid "Le service des tâches a refusé l'exécution."
-msgstr ""
+msgstr "Tehtäväpalvelu hylkäsi suorituksen."
 
 #: assets/app.js
 msgid "Tâche introuvable."
-msgstr ""
+msgstr "Tehtävää ei löytynyt."
 
 #: assets/app.js
 msgid "Exécution impossible : {erreur}"
-msgstr ""
+msgstr "Suoritus ei onnistu: {erreur}"
 
 #: assets/app.js
 msgid "Action impossible : {erreur}"
-msgstr ""
+msgstr "Toiminto ei onnistu: {erreur}"
 
 #: assets/app.js
 msgid "Supprimer la tâche"
-msgstr ""
+msgstr "Poista tehtävä"
 
 #: assets/app.js
 msgid "Supprimer « {nom} » ? L'historique est conservé."
-msgstr ""
+msgstr "Poistetaanko «{nom}»? Historia säilytetään."
 
 #: assets/app.js
 msgid "Suppression impossible : {erreur}"
-msgstr ""
+msgstr "Poisto ei onnistu: {erreur}"
 
 #: assets/app.js
 msgid "< 1 min"
-msgstr ""
+msgstr "< 1 min"
 
 #: assets/app.js
 msgid "{h} h {m} min"
-msgstr ""
+msgstr "{h} h {m} min"
 
 #: assets/app.js
 msgid "{m} min"
-msgstr ""
+msgstr "{m} min"
 
 #: assets/app.js
 msgid "Temps actif"
-msgstr ""
+msgstr "Aktiivinen aika"
 
 #: assets/app.js
 msgid "Durée ouverte"
-msgstr ""
+msgstr "Auki oloaika"
 
 #: assets/app.js
 msgid "Sessions"
-msgstr ""
+msgstr "Istunnot"
 
 #: assets/app.js
 msgid "Dernière utilisation"
-msgstr ""
+msgstr "Viimeksi käytetty"
 
 #: assets/app.js
 msgid "Part"
-msgstr ""
+msgstr "Osuus"
 
 #: assets/app.js
 msgid "Dim"
-msgstr ""
+msgstr "Su"
 
 #: assets/app.js
 msgid "Jeu"
-msgstr ""
+msgstr "To"
 
 #: assets/app.js
 msgid "Lun"
-msgstr ""
+msgstr "Ma"
 
 #: assets/app.js
 msgid "Mar"
-msgstr ""
+msgstr "Ti"
 
 #: assets/app.js
 msgid "Mer"
-msgstr ""
+msgstr "Ke"
 
 #: assets/app.js
 msgid "Sam"
-msgstr ""
+msgstr "La"
 
 #: assets/app.js
 msgid "Ven"
-msgstr ""
+msgstr "Pe"
 
 #: assets/app.js
 msgid "{jour} {h} h : {duree}"
-msgstr ""
+msgstr "{jour} klo {h}: {duree}"
 
 #: assets/app.js
 msgid "Heures de pointe (temps actif)"
-msgstr ""
+msgstr "Ruuhkatunnit (aktiivinen aika)"
 
 #: assets/app.js
 msgid "dernière utilisation : {date}"
-msgstr ""
+msgstr "viimeksi käytetty: {date}"
 
 #: assets/app.js
 msgid "jamais utilisé depuis le début de la mesure"
-msgstr ""
+msgstr "ei käytetty mittauksen alusta lähtien"
 
 #: assets/app.js
 msgid "Comptes inutilisés sur la période"
-msgstr ""
+msgstr "Käyttämättömät tilit jaksolla"
 
 #: assets/app.js
 msgid "fin {h}"
-msgstr ""
+msgstr "loppu {h}"
 
 #: assets/app.js
 msgid "Tâches programmables par compte"
-msgstr ""
+msgstr "Ajastetut tehtävät tileittäin"
 
 #: assets/app.js
 msgid "Compte"
-msgstr ""
+msgstr "Tili"
 
 #: assets/app.js
 msgid "Envoyées"
-msgstr ""
+msgstr "Lähetetyt"
 
 #: assets/app.js
 msgid "Erreurs"
-msgstr ""
+msgstr "Virheet"
 
 #: assets/app.js
 msgid "Quotas"
-msgstr ""
+msgstr "Kiintiöt"
 
 #: assets/app.js
 msgid "Dernier quota"
-msgstr ""
+msgstr "Viimeisin kiintiö"
 
 #: assets/app.js
 msgid "Exécutions"
-msgstr ""
+msgstr "Suoritukset"
 
 #: assets/app.js
 msgid "D'après l'historique des tâches (200 dernières exécutions)."
-msgstr ""
+msgstr "Tehtävähistorian mukaan (viimeiset 200 suoritusta)."
 
 #: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
-msgstr ""
+msgstr "Ei istuntoja tällä jaksolla. Mittaus alkaa tämän version asennuksesta."
 
 #: assets/app.js
 msgid "1 jour"
-msgstr ""
+msgstr "1 päivä"
 
 #: assets/app.js
 msgid "{n} jours"
-msgstr ""
+msgstr "{n} päivää"
 
 #: assets/app.js
 msgid "Série en cours (record : {n})"
-msgstr ""
+msgstr "Meneillään oleva putki (ennätys: {n})"
 
 #: assets/app.js
 msgid "Par compte"
-msgstr ""
+msgstr "Tileittäin"
 
 #: assets/app.js
 msgid "Par service"
-msgstr ""
+msgstr "Palveluittain"
 
 #: assets/app.js
 msgid "Service"
-msgstr ""
+msgstr "Palvelu"
 
 #: assets/app.js
 msgid "Statistiques illisibles : {error}"
-msgstr ""
+msgstr "Tilastot eivät ole luettavissa: {error}"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"
-msgstr ""
+msgstr "Asetusten lataaminen ei onnistu"
 
 #: assets/app.js
 msgid "Réglages enregistrés — la langue sera appliquée au prochain démarrage"
-msgstr ""
+msgstr "Asetukset tallennettu — kieli otetaan käyttöön seuraavalla käynnistyskerralla"
 
 #: assets/app.js
 msgid "Réglages enregistrés"
-msgstr ""
+msgstr "Asetukset tallennettu"
 
 #: assets/app.js
 msgid "Erreur lors de la sauvegarde"
-msgstr ""
+msgstr "Virhe tallennettaessa"
 
 #: assets/app.js
 msgid "Erreur lors de la sauvegarde des réglages"
-msgstr ""
+msgstr "Virhe asetuksia tallennettaessa"
 
 #: assets/app.js
 msgid "Tâches programmables : envoyez un prompt à Claude à date fixe ou périodiquement."
-msgstr ""
+msgstr "Ajastetut tehtävät: lähetä kehote Claudelle tiettynä päivänä tai säännöllisesti."
 
 #: assets/app.js
 msgid "Arrêter"
-msgstr ""
+msgstr "Pysäytä"
 
 #: assets/app.js
 msgid "En marche"
-msgstr ""
+msgstr "Käynnissä"
 
 #: assets/app.js
 msgid "Aucun job pour l'instant — un ZIP téléchargé depuis un onglet IA (ordonnanceur activé) en créera un automatiquement."
-msgstr ""
+msgstr "Ei vielä töitä — tekoälyvälilehdeltä ladattu ZIP (ajastin käytössä) luo sellaisen automaattisesti."
 
 #: assets/app.js
 msgid "Continuer le projet"
-msgstr ""
+msgstr "Jatka projektia"
 
 #: assets/app.js
 msgid "Marquer livré"
-msgstr ""
+msgstr "Merkitse toimitetuksi"
 
 #: assets/app.js
 msgid "Pause"
-msgstr ""
+msgstr "Keskeytä"
 
 #: assets/app.js
 msgid "Reprendre"
-msgstr ""
+msgstr "Jatka"
 
 #: assets/app.js
 msgid "Relancer"
-msgstr ""
+msgstr "Käynnistä uudelleen"
 
 #: assets/app.js
 msgid "Ouvrir le ZIP"
-msgstr ""
+msgstr "Avaa ZIP"
 
 #: assets/app.js
 msgid "Analyser la complétude"
-msgstr ""
+msgstr "Analysoi valmiusaste"
 
 #: assets/app.js
 msgid "service inconnu"
-msgstr ""
+msgstr "tuntematon palvelu"
 
 #: assets/app.js
 msgid "tentative {n}"
-msgstr ""
+msgstr "yritys {n}"
 
 #: assets/app.js
 msgid "Aucune activité enregistrée."
-msgstr ""
+msgstr "Ei kirjattua toimintaa."
 
 #: assets/app.js
 msgid "Impossible de modifier l'état de l'ordonnanceur"
-msgstr ""
+msgstr "Ajastimen tilaa ei voi muuttaa"
 
 #: assets/app.js
 msgid "Configuration non enregistrée"
-msgstr ""
+msgstr "Määritystä ei tallennettu"
 
 #: assets/app.js
 msgid "Sélection du dossier impossible"
-msgstr ""
+msgstr "Kansion valinta ei onnistu"
 
 #: assets/app.js
 msgid "Projet terminé : {done}/{total} tâches faites, 0 restante."
-msgstr ""
+msgstr "Projekti valmis: {done}/{total} tehtävää tehty, 0 jäljellä."
 
 #: assets/app.js
 msgid "{pending} à faire, {inProgress} en cours, {done} faite(s) sur {total} au total."
-msgstr ""
+msgstr "{pending} tekemättä, {inProgress} käynnissä, {done} tehty, yhteensä {total}."
 
 #: assets/app.js
 msgid "Analyse impossible : {error}"
-msgstr ""
+msgstr "Analyysi ei onnistu: {error}"
 
 #: assets/app.js
 msgid "Action impossible : {error}"
-msgstr ""
+msgstr "Toiminto ei onnistu: {error}"
 
 #: assets/app.js
 msgid "Aucun projet pour l'instant."
-msgstr ""
+msgstr "Ei vielä projekteja."
 
 #: assets/app.js
 msgid "Créer un projet"
-msgstr ""
+msgstr "Luo projekti"
 
 #: assets/app.js
 msgid "Assignée"
-msgstr ""
+msgstr "Määritetty"
 
 #: assets/app.js
 msgid "Terminée"
-msgstr ""
+msgstr "Valmis"
 
 #: assets/app.js
 msgid "Échouée"
-msgstr ""
+msgstr "Epäonnistui"
 
 #: assets/app.js
 msgid "Lancer"
-msgstr ""
+msgstr "Käynnistä"
 
 #: assets/app.js
 msgid "Résultat"
-msgstr ""
+msgstr "Tulos"
 
 #: assets/app.js
 msgid "Aucune tâche."
-msgstr ""
+msgstr "Ei tehtäviä."
 
 #: assets/app.js
 msgid "Tous les comptes"
-msgstr ""
+msgstr "Kaikki tilit"
 
 #: assets/app.js
 msgid "Comptes autorisés :"
-msgstr ""
+msgstr "Sallitut tilit:"
 
 #: assets/app.js
 msgid "{count} tâche(s)"
-msgstr ""
+msgstr "Tehtäviä: {count}"
 
 #: assets/app.js
 msgid "Assigner"
-msgstr ""
+msgstr "Määritä"
 
 #: assets/app.js
 msgid "Diagnostic Claude : {error}"
-msgstr ""
+msgstr "Clauden diagnoosi: {error}"
 
 #: assets/app.js
 msgid "« Continuer »"
-msgstr ""
+msgstr "«Jatka»"
 
 #: assets/app.js
 msgid "« Télécharger »"
-msgstr ""
+msgstr "«Lataa»"
 
 #: assets/app.js
 msgid "« Nouveau »"
-msgstr ""
+msgstr "«Uusi»"
 
 #: assets/app.js
 msgid "zone de chat"
-msgstr ""
+msgstr "chat-alue"
 
 #: assets/app.js
 msgid "envoi de fichier"
-msgstr ""
+msgstr "tiedoston lähetys"
 
 #: assets/app.js
 msgid "{count} popup(s)"
-msgstr ""
+msgstr "Ponnahdusikkunoita: {count}"
 
 #: assets/app.js
 msgid "Claude (« {profile} ») : {details}"
-msgstr ""
+msgstr "Claude («{profile}»): {details}"
 
 #: assets/app.js
 msgid "aucun élément détecté"
-msgstr ""
+msgstr "ei havaittuja elementtejä"
 
 #: assets/app.js
 msgid "Diagnostic impossible : {error}"
-msgstr ""
+msgstr "Diagnoosi ei onnistu: {error}"
 
 #: assets/app.js
 msgid "Quota gratuit épuisé jusqu'à {time} pour ce profil."
-msgstr ""
+msgstr "Ilmaiskiintiö lopussa klo {time} asti tällä profiililla."
 
 #: assets/app.js
 msgid "Job Claude échoué : {error}"
-msgstr ""
+msgstr "Clauden työ epäonnistui: {error}"
 
 #: assets/app.js
 msgid "Prompt envoyé à Claude via {method} (« {profile} »)"
-msgstr ""
+msgstr "Kehote lähetetty Claudelle menetelmällä {method} («{profile}»)"
 
 #: assets/app.js
 msgid "Job Claude impossible : {error}"
-msgstr ""
+msgstr "Clauden työ ei onnistu: {error}"
 
 #: assets/app.js
 msgid "Collecte impossible : {error}"
-msgstr ""
+msgstr "Nouto ei onnistu: {error}"
 
 #: assets/app.js
 msgid "Réponse collectée : {count} caractères (« {profile} »)"
-msgstr ""
+msgstr "Vastaus noudettu: {count} merkkiä («{profile}»)"
 
 #: assets/app.js
 msgid "Aucune réponse trouvée pour le moment."
-msgstr ""
+msgstr "Vastausta ei vielä löytynyt."
 
 #: assets/app.js
 msgid "Nom du projet :"
-msgstr ""
+msgstr "Projektin nimi:"
 
 #: assets/app.js
 msgid "Projet {n}"
-msgstr ""
+msgstr "Projekti {n}"
 
 #: assets/app.js
 msgid "Projet « {name} » créé"
-msgstr ""
+msgstr "Projekti «{name}» luotu"
 
 #: assets/app.js
 msgid "Création impossible : {error}"
-msgstr ""
+msgstr "Luonti ei onnistu: {error}"
 
 #: assets/app.js
 msgid "Projet supprimé"
-msgstr ""
+msgstr "Projekti poistettu"
 
 #: assets/app.js
 msgid "Suppression impossible : {error}"
-msgstr ""
+msgstr "Poisto ei onnistu: {error}"
 
 #: assets/app.js
 msgid "Prompt de la tâche :"
-msgstr ""
+msgstr "Tehtävän kehote:"
 
 #: assets/app.js
 msgid "Tâche créée dans le projet"
-msgstr ""
+msgstr "Tehtävä luotu projektiin"
 
 #: assets/app.js
 msgid "Aucun compte vert disponible pour ce projet."
-msgstr ""
+msgstr "Tälle projektille ei ole vihreää tiliä käytettävissä."
 
 #: assets/app.js
 msgid "Comptes verts disponibles :"
-msgstr ""
+msgstr "Käytettävissä olevat vihreät tilit:"
 
 #: assets/app.js
 msgid "Numéro du compte :"
-msgstr ""
+msgstr "Tilin numero:"
 
 #: assets/app.js
 msgid "Choix invalide"
-msgstr ""
+msgstr "Virheellinen valinta"
 
 #: assets/app.js
 msgid "Aucune tâche dans ce projet."
-msgstr ""
+msgstr "Tässä projektissa ei ole tehtäviä."
 
 #: assets/app.js
 msgid "Numéro de la tâche :"
-msgstr ""
+msgstr "Tehtävän numero:"
 
 #: assets/app.js
 msgid "Tâches du projet :"
-msgstr ""
+msgstr "Projektin tehtävät:"
 
 #: assets/app.js
 msgid "Tâche {task} assignée à « {account} »"
-msgstr ""
+msgstr "Tehtävä {task} määritetty tilille «{account}»"
 
 #: assets/app.js
 msgid "Assignation impossible : {error}"
-msgstr ""
+msgstr "Määritys ei onnistu: {error}"
 
 #: assets/app.js
 msgid "Lancement de l'automatisation Claude..."
-msgstr ""
+msgstr "Käynnistetään Clauden automaatiota..."
 
 #: assets/app.js
 msgid "Lancement impossible"
-msgstr ""
+msgstr "Käynnistys ei onnistu"
 
 #: assets/app.js
 msgid "Tâche lancée — suivi dans le journal d'activité"
-msgstr ""
+msgstr "Tehtävä käynnistetty — seuraa toimintalokissa"
 
 #: assets/app.js
 msgid "Exécution impossible : {error}"
-msgstr ""
+msgstr "Suoritus ei onnistu: {error}"
 
 #: assets/app.js
 msgid "Aucun résultat disponible"
-msgstr ""
+msgstr "Ei tulosta saatavilla"
 
 #: assets/app.js
 msgid "Résultat — {task}"
-msgstr ""
+msgstr "Tulos — {task}"
 
 #: assets/app.js
 msgid "Comptes retrouvés"
-msgstr ""
+msgstr "Tilit löydetty"
 
 #: assets/app.js
 msgid "Aucun compte n'a été lu au démarrage, mais l'ordonnanceur en connaît {count}. Les restaurer ? Les sessions des services sont conservées ; les adresses e-mail sont à compléter depuis « Modifier le compte »."
-msgstr ""
+msgstr "Käynnistyksessä ei luettu yhtään tiliä, mutta ajastin tuntee {count}. Palautetaanko ne? Palveluiden istunnot säilytetään; sähköpostiosoitteet täydennetään kohdasta «Muokkaa tiliä»."
 
 #: assets/app.js
 msgid "Ignorer"
-msgstr ""
+msgstr "Ohita"
 
 #: assets/app.js
 msgid "Restaurer les comptes"
-msgstr ""
+msgstr "Palauta tilit"
 
 #: assets/app.js
 msgid "{count} compte(s) restauré(s)"
-msgstr ""
+msgstr "Tilejä palautettu: {count}"
 
 #: assets/app.js
 msgid "Données de comptes illisibles"
-msgstr ""
+msgstr "Tilitietoja ei voi lukea"
 
 #: assets/app.js
 msgid "La liste de comptes enregistrée est corrompue. Une sauvegarde de {count} compte(s) a été trouvée. La restaurer ?"
-msgstr ""
+msgstr "Tallennettu tililuettelo on vioittunut. Löytyi varmuuskopio, jossa on {count} tiliä. Palautetaanko se?"
 
 #: assets/app.js
 msgid "La liste de comptes enregistrée est corrompue et aucune sauvegarde n'est disponible. L'application démarre avec une liste vide ; vos données actuelles ne seront pas écrasées tant que vous ne créez ou ne modifiez pas de compte."
-msgstr ""
+msgstr "Tallennettu tililuettelo on vioittunut, eikä varmuuskopiota ole. Sovellus käynnistyy tyhjällä luettelolla; nykyisiä tietojasi ei korvata, ellet luo tai muokkaa tiliä."
 
 #: assets/app.js
 msgid "Restaurer la sauvegarde"
-msgstr ""
+msgstr "Palauta varmuuskopio"
 
 #: assets/app.js
 msgid "Comptes restaurés depuis la sauvegarde"
-msgstr ""
+msgstr "Tilit palautettu varmuuskopiosta"
 
 #: assets/app.js
 msgid "Compris"
-msgstr ""
+msgstr "Selvä"
