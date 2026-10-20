@@ -4,6 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: IAO\n"
 "Report-Msgid-Bugs-To: https://github.com/Mathide-Team/IAO/issues\n"
+"PO-Revision-Date: 2026-10-20 07:20+0000\n"
+"Last-Translator: agent IAO (docker24006) — traduction générée par IA, relecture humaine attendue (issue #51)\n"
+"Language-Team: Mathide-Team <https://github.com/Mathide-Team/IAO>\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -12,431 +15,431 @@ msgstr ""
 
 #: index.html
 msgid "Rechercher un compte ou une IA..."
-msgstr ""
+msgstr "ค้นหาบัญชีหรือ AI..."
 
 #: index.html
 msgid "Comptes actifs"
-msgstr ""
+msgstr "บัญชีที่ใช้งานอยู่"
 
 #: index.html
 msgid "IA Disponibles"
-msgstr ""
+msgstr "AI ที่พร้อมใช้งาน"
 
 #: index.html
 msgid "Rechercher un compte ou une IA (Ctrl+K)"
-msgstr ""
+msgstr "ค้นหาบัญชีหรือ AI (Ctrl+K)"
 
 #: index.html
 msgid "Comptes enregistrés"
-msgstr ""
+msgstr "บัญชีที่บันทึกไว้"
 
 #: index.html
 msgid "Tout replier / Tout déplier"
-msgstr ""
+msgstr "ยุบทั้งหมด / ขยายทั้งหมด"
 
 #: index.html
 msgid "Exporter les comptes (JSON)"
-msgstr ""
+msgstr "ส่งออกบัญชี (JSON)"
 
 #: index.html
 msgid "Importer des comptes (JSON)"
-msgstr ""
+msgstr "นำเข้าบัญชี (JSON)"
 
 #: index.html
 msgid "Ajouter un compte"
-msgstr ""
+msgstr "เพิ่มบัญชี"
 
 #: index.html
 msgid "Créer des comptes en série"
-msgstr ""
+msgstr "สร้างบัญชีเป็นชุด"
 
 #: index.html
 msgid "Mode debug actif : traces détaillées dans le journal iao.log"
-msgstr ""
+msgstr "โหมดดีบักทำงานอยู่: บันทึกโดยละเอียดในไฟล์ iao.log"
 
 #: index.html
 msgid "Masquer les comptes"
-msgstr ""
+msgstr "ซ่อนบัญชี"
 
 #: index.html
 msgid "Afficher les comptes"
-msgstr ""
+msgstr "แสดงบัญชี"
 
 #: index.html
 msgid "Explorateur"
-msgstr ""
+msgstr "ตัวสำรวจ"
 
 #: index.html
 msgid "Éditeur"
-msgstr ""
+msgstr "ตัวแก้ไข"
 
 #: index.html
 msgid "Outils de développement (Ctrl+Maj+I)"
-msgstr ""
+msgstr "เครื่องมือนักพัฒนา (Ctrl+Shift+I)"
 
 #: index.html
 msgid "Redémarrer en mode debug (journal détaillé)"
-msgstr ""
+msgstr "เริ่มใหม่ในโหมดดีบัก (บันทึกโดยละเอียด)"
 
 #: index.html
 msgid "Choisir mes 9 IA à portée de main"
-msgstr ""
+msgstr "เลือก AI 9 ตัวที่ใช้บ่อยของฉัน"
 
 #: index.html
 msgid "Comprendre les IA disponibles"
-msgstr ""
+msgstr "ทำความรู้จัก AI ที่มีให้ใช้"
 
 #: index.html
 msgid "Statistiques d'utilisation"
-msgstr ""
+msgstr "สถิติการใช้งาน"
 
 #: index.html
 msgid "Ordonnanceur IA"
-msgstr ""
+msgstr "ตัวจัดตาราง AI"
 
 #: index.html
 msgid "Réglages"
-msgstr ""
+msgstr "การตั้งค่า"
 
 #: index.html
 msgid "Fichiers"
-msgstr ""
+msgstr "ไฟล์"
 
 #: index.html
 msgid "Ouvrir un dossier"
-msgstr ""
+msgstr "เปิดโฟลเดอร์"
 
 #: index.html
 msgid "Réduire"
-msgstr ""
+msgstr "ย่อ"
 
 #: index.html
 msgid "Rechercher un fichier..."
-msgstr ""
+msgstr "ค้นหาไฟล์..."
 
 #: index.html
 msgid "Glisser pour redimensionner"
-msgstr ""
+msgstr "ลากเพื่อปรับขนาด"
 
 #: index.html
 msgid "Aucun fichier"
-msgstr ""
+msgstr "ไม่มีไฟล์"
 
 #: index.html
 msgid "Glisser pour redimensionner l'éditeur"
-msgstr ""
+msgstr "ลากเพื่อปรับขนาดตัวแก้ไข"
 
 #: index.html
 msgid "Aucun onglet ouvert — choisissez un service dans la liste des comptes"
-msgstr ""
+msgstr "ไม่มีแท็บที่เปิดอยู่ — เลือกบริการจากรายการบัญชี"
 
 #: index.html
 msgid "Le profil permet d'isoler les cookies dans Electron."
-msgstr ""
+msgstr "โปรไฟล์ช่วยแยกคุกกี้ใน Electron"
 
 #: index.html
 msgid "Nom du compte"
-msgstr ""
+msgstr "ชื่อบัญชี"
 
 #: index.html
 msgid "Nom du Profil"
-msgstr ""
+msgstr "ชื่อโปรไฟล์"
 
 #: index.html
 msgid "Mot de passe de la messagerie"
-msgstr ""
+msgstr "รหัสผ่านอีเมล"
 
 #: index.html
 msgid "Afficher le mot de passe"
-msgstr ""
+msgstr "แสดงรหัสผ่าน"
 
 #: index.html
 msgid "Générer un mot de passe"
-msgstr ""
+msgstr "สร้างรหัสผ่าน"
 
 #: index.html
 msgid "Chiffré par le trousseau du système, jamais enregistré en clair. Laisser vide pour ne pas le modifier."
-msgstr ""
+msgstr "เข้ารหัสด้วยพวงกุญแจของระบบ ไม่เคยบันทึกเป็นข้อความธรรมดา เว้นว่างไว้หากไม่ต้องการเปลี่ยน"
 
 #: index.html
 msgid "Annuler"
-msgstr ""
+msgstr "ยกเลิก"
 
 #: index.html
 msgid "Enregistrer"
-msgstr ""
+msgstr "บันทึก"
 
 #: index.html
 msgid "Nombre de comptes"
-msgstr ""
+msgstr "จำนวนบัญชี"
 
 #: index.html
 msgid "Créer"
-msgstr ""
+msgstr "สร้าง"
 
 #: index.html
 msgid "Supprimer le compte"
-msgstr ""
+msgstr "ลบบัญชี"
 
 #: index.html
 msgid "Cette action est irréversible."
-msgstr ""
+msgstr "การกระทำนี้ย้อนกลับไม่ได้"
 
 #: index.html
 msgid "Supprimer"
-msgstr ""
+msgstr "ลบ"
 
 #: index.html
 msgid "Importer des comptes"
-msgstr ""
+msgstr "นำเข้าบัญชี"
 
 #: index.html
 msgid "Remplacer et importer"
-msgstr ""
+msgstr "แทนที่และนำเข้า"
 
 #: index.html
 msgid "Déconnecter le profil"
-msgstr ""
+msgstr "ตัดการเชื่อมต่อโปรไฟล์"
 
 #: index.html
 msgid "Déconnecter"
-msgstr ""
+msgstr "ตัดการเชื่อมต่อ"
 
 #: index.html
 msgid "À quoi sert chaque service, et quand l'utiliser."
-msgstr ""
+msgstr "แต่ละบริการใช้ทำอะไร และควรใช้เมื่อใด"
 
 #: index.html
 msgid "Fermer"
-msgstr ""
+msgstr "ปิด"
 
 #: index.html
 msgid "Sélectionnez les 9 services affichés dans l'interface. Les autres restent disponibles dans l'aide."
-msgstr ""
+msgstr "เลือก 9 บริการที่แสดงในอินเทอร์เฟซ บริการอื่นยังใช้ได้จากส่วนช่วยเหลือ"
 
 #: index.html
 msgid "Détection des ZIP livrés par les onglets IA, reprise par profil."
-msgstr ""
+msgstr "ตรวจจับไฟล์ ZIP ที่ส่งมาจากแท็บ AI และทำต่อตามโปรไฟล์"
 
 #: index.html
 msgid "Arrêté"
-msgstr ""
+msgstr "หยุดอยู่"
 
 #: index.html
 msgid "Démarrer ou arrêter l'ordonnanceur (il ne démarre jamais tout seul)"
-msgstr ""
+msgstr "เริ่มหรือหยุดตัวจัดตาราง (จะไม่เริ่มเองเด็ดขาด)"
 
 #: index.html
 msgid "Démarrer"
-msgstr ""
+msgstr "เริ่ม"
 
 #: index.html
 msgid "Ancien ordonnanceur désactivé"
-msgstr ""
+msgstr "ปิดใช้ตัวจัดตารางแบบเก่าแล้ว"
 
 #: index.html
 msgid "La détection des ZIP, les jobs et les projets sont remplacés par les tâches programmables, en cours de développement."
-msgstr ""
+msgstr "การตรวจจับ ZIP งาน และโปรเจกต์ จะถูกแทนที่ด้วยงานตามกำหนดเวลา ซึ่งอยู่ระหว่างการพัฒนา"
 
 #: index.html
 msgid "Tâches programmables"
-msgstr ""
+msgstr "งานตามกำหนดเวลา"
 
 #: index.html
 msgid "Nouvelle tâche"
-msgstr ""
+msgstr "งานใหม่"
 
 #: index.html
 msgid "Nom de la tâche"
-msgstr ""
+msgstr "ชื่องาน"
 
 #: index.html
 msgid "Ex. : rapport quotidien"
-msgstr ""
+msgstr "เช่น รายงานประจำวัน"
 
 #: index.html
 msgid "Comptes"
-msgstr ""
+msgstr "บัญชี"
 
 #: index.html
 msgid "Tous les comptes avec Claude"
-msgstr ""
+msgstr "ทุกบัญชีที่มี Claude"
 
 #: index.html
 msgid "Choisir des comptes…"
-msgstr ""
+msgstr "เลือกบัญชี…"
 
 #: index.html
 msgid "Répartition"
-msgstr ""
+msgstr "การกระจาย"
 
 #: index.html
 msgid "Tous les comptes à chaque exécution"
-msgstr ""
+msgstr "ทุกบัญชีในแต่ละรอบ"
 
 #: index.html
 msgid "Un compte à la fois (rotation)"
-msgstr ""
+msgstr "ทีละบัญชี (หมุนเวียน)"
 
 #: index.html
 msgid "Espacement entre comptes (secondes)"
-msgstr ""
+msgstr "ระยะห่างระหว่างบัญชี (วินาที)"
 
 #: index.html
 msgid "Nouvelle session à chaque exécution"
-msgstr ""
+msgstr "เซสชันใหม่ทุกรอบ"
 
 #: index.html
 msgid "Prompt à envoyer"
-msgstr ""
+msgstr "พรอมต์ที่จะส่ง"
 
 #: index.html
 msgid "Ex. : Résume les actualités de la veille"
-msgstr ""
+msgstr "เช่น สรุปข่าวของเมื่อวาน"
 
 #: index.html
 msgid "Programmation"
-msgstr ""
+msgstr "การกำหนดเวลา"
 
 #: index.html
 msgid "Récurrente (tous les N …)"
-msgstr ""
+msgstr "ซ้ำ (ทุก N …)"
 
 #: index.html
 msgid "Une seule fois"
-msgstr ""
+msgstr "ครั้งเดียว"
 
 #: index.html
 msgid "Le"
-msgstr ""
+msgstr "วันที่"
 
 #: index.html
 msgid "Tous les"
-msgstr ""
+msgstr "ทุก"
 
 #: index.html
 msgid "minutes"
-msgstr ""
+msgstr "นาที"
 
 #: index.html
 msgid "heures"
-msgstr ""
+msgstr "ชั่วโมง"
 
 #: index.html
 msgid "jours"
-msgstr ""
+msgstr "วัน"
 
 #: index.html
 msgid "semaines"
-msgstr ""
+msgstr "สัปดาห์"
 
 #: index.html
 msgid "mois"
-msgstr ""
+msgstr "เดือน"
 
 #: index.html
 msgid "À partir du"
-msgstr ""
+msgstr "ตั้งแต่"
 
 #: index.html
 msgid "Tâche active"
-msgstr ""
+msgstr "งานเปิดใช้งาน"
 
 #: index.html
 msgid "Historique"
-msgstr ""
+msgstr "ประวัติ"
 
 #: index.html
 msgid "Jobs actifs"
-msgstr ""
+msgstr "งานที่ทำงานอยู่"
 
 #: index.html
 msgid "En attente"
-msgstr ""
+msgstr "รอดำเนินการ"
 
 #: index.html
 msgid "Livrés aujourd'hui"
-msgstr ""
+msgstr "ส่งมอบวันนี้"
 
 #: index.html
 msgid "Jobs simultanés max."
-msgstr ""
+msgstr "จำนวนงานพร้อมกันสูงสุด"
 
 #: index.html
 msgid "Délai min. entre automatisations (min)"
-msgstr ""
+msgstr "ระยะห่างขั้นต่ำระหว่างระบบอัตโนมัติ (นาที)"
 
 #: index.html
 msgid "Seuil profil « le plus ancien » (h)"
-msgstr ""
+msgstr "เกณฑ์โปรไฟล์ «เก่าที่สุด» (ชม.)"
 
 #: index.html
 msgid "Dossiers"
-msgstr ""
+msgstr "โฟลเดอร์"
 
 #: index.html
 msgid "Téléchargements…"
-msgstr ""
+msgstr "ดาวน์โหลด…"
 
 #: index.html
 msgid "Livraison…"
-msgstr ""
+msgstr "ส่งมอบ…"
 
 #: index.html
 msgid "Téléchargements :"
-msgstr ""
+msgstr "ดาวน์โหลด:"
 
 #: index.html
 msgid "(dossier de téléchargements du système)"
-msgstr ""
+msgstr "(โฟลเดอร์ดาวน์โหลดของระบบ)"
 
 #: index.html
 msgid "Livraison :"
-msgstr ""
+msgstr "ส่งมอบ:"
 
 #: index.html
 msgid "(non défini)"
-msgstr ""
+msgstr "(ยังไม่กำหนด)"
 
 #: index.html
 msgid "Projets & tâches"
-msgstr ""
+msgstr "โปรเจกต์และงาน"
 
 #: index.html
 msgid "Jobs"
-msgstr ""
+msgstr "งาน"
 
 #: index.html
 msgid "Journal d'activité"
-msgstr ""
+msgstr "บันทึกกิจกรรม"
 
 #: index.html
 msgid "Confirmation"
-msgstr ""
+msgstr "การยืนยัน"
 
 #: index.html
 msgid "Confirmer"
-msgstr ""
+msgstr "ยืนยัน"
 
 #: index.html
 msgid "Mesurées sur cet ordinateur et conservées 90 jours. Rien n'est envoyé."
-msgstr ""
+msgstr "วัดบนคอมพิวเตอร์เครื่องนี้และเก็บไว้ 90 วัน ไม่มีการส่งข้อมูลออก"
 
 #: index.html
 msgid "Aujourd'hui"
-msgstr ""
+msgstr "วันนี้"
 
 #: index.html
 msgid "7 jours"
-msgstr ""
+msgstr "7 วัน"
 
 #: index.html
 msgid "30 jours"
-msgstr ""
+msgstr "30 วัน"
 
 #: index.html
 msgid "90 jours"
-msgstr ""
+msgstr "90 วัน"
 
 #: index.html
 msgid "Remettre à zéro"
@@ -452,891 +455,891 @@ msgstr ""
 
 #: index.html
 msgid "Préférences de l'application, sauvegardées localement."
-msgstr ""
+msgstr "การตั้งค่าของแอป บันทึกไว้ในเครื่อง"
 
 #: index.html
 msgid "Taille de police de l'éditeur (px)"
-msgstr ""
+msgstr "ขนาดตัวอักษรของตัวแก้ไข (px)"
 
 #: index.html
 msgid "Thème"
-msgstr ""
+msgstr "ธีม"
 
 #: index.html
 msgid "Thème du bureau (défaut)"
-msgstr ""
+msgstr "ธีมของเดสก์ท็อป (ค่าเริ่มต้น)"
 
 #: index.html
 msgid "Clair"
-msgstr ""
+msgstr "สว่าง"
 
 #: index.html
 msgid "Sombre"
-msgstr ""
+msgstr "มืด"
 
 #: index.html
 msgid "Langue"
-msgstr ""
+msgstr "ภาษา"
 
 #: index.html
 msgid "Langue du système (défaut)"
-msgstr ""
+msgstr "ภาษาของระบบ (ค่าเริ่มต้น)"
 
 #: index.html
 msgid "Appliquée au prochain démarrage"
-msgstr ""
+msgstr "มีผลเมื่อเริ่มครั้งถัดไป"
 
 #: index.html
 msgid "Retour à la ligne (éditeur)"
-msgstr ""
+msgstr "ตัดบรรทัด (ตัวแก้ไข)"
 
 #: index.html
 msgid "Désactivé"
-msgstr ""
+msgstr "ปิด"
 
 #: index.html
 msgid "Activé"
-msgstr ""
+msgstr "เปิด"
 
 #: index.html
 msgid "Colonne fixe"
-msgstr ""
+msgstr "คอลัมน์คงที่"
 
 #: index.html
 msgid "Confirmer avant de fermer un onglet"
-msgstr ""
+msgstr "ยืนยันก่อนปิดแท็บ"
 
 #: index.html
 msgid "Afficher les fenêtres d'automatisation"
-msgstr ""
+msgstr "แสดงหน้าต่างระบบอัตโนมัติ"
 
 #: index.html
 msgid "Restaurer les onglets ouverts au démarrage"
-msgstr ""
+msgstr "คืนค่าแท็บที่เปิดไว้เมื่อเริ่มต้น"
 
 #: index.html
 msgid "Préfixe des adresses e-mail"
-msgstr ""
+msgstr "คำนำหน้าที่อยู่อีเมล"
 
 #: index.html
 msgid "docker"
-msgstr ""
+msgstr "docker"
 
 #: index.html
 msgid "Domaine des adresses e-mail"
-msgstr ""
+msgstr "โดเมนของที่อยู่อีเมล"
 
 #: index.html
 msgid "dmathilde.fr"
-msgstr ""
+msgstr "dmathilde.fr"
 
 #: index.html
 msgid "Adresse : préfixe + numéro + @ + domaine (ex. docker239@dmathilde.fr)"
-msgstr ""
+msgstr "ที่อยู่: คำนำหน้า + หมายเลข + @ + โดเมน (เช่น docker239@dmathilde.fr)"
 
 #: index.html
 msgid "Adresse du webmail (Roundcube)"
-msgstr ""
+msgstr "ที่อยู่เว็บเมล (Roundcube)"
 
 #: index.html
 msgid "https://mail.dmathilde.fr"
-msgstr ""
+msgstr "https://mail.dmathilde.fr"
 
 #: assets/app.js
 msgid "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."
-msgstr ""
+msgstr "ผู้ช่วยสนทนาของ Anthropic เก่งด้านการเขียน การวิเคราะห์เอกสารยาว การเขียนโปรแกรม และการให้เหตุผลหลายขั้นตอน"
 
 #: assets/app.js
 msgid "Plutôt pour du code, des textes longs et soignés, ou des questions complexes qui demandent de la rigueur."
-msgstr ""
+msgstr "เหมาะกับโค้ด ข้อความยาวที่ประณีต หรือคำถามซับซ้อนที่ต้องการความรัดกุม"
 
 #: assets/app.js
 msgid "L'assistant généraliste d'OpenAI, le plus connu du grand public. Il discute, rédige, résume, génère des images, analyse des fichiers et peut chercher sur le web."
-msgstr ""
+msgstr "ผู้ช่วยอเนกประสงค์ของ OpenAI ที่คนทั่วไปรู้จักมากที่สุด สนทนา เขียน สรุป สร้างภาพ วิเคราะห์ไฟล์ และค้นเว็บได้"
 
 #: assets/app.js
 msgid "Le couteau suisse du quotidien : brainstorming, questions générales, petites tâches variées."
-msgstr ""
+msgstr "มีดพับสวิสสำหรับชีวิตประจำวัน: ระดมความคิด คำถามทั่วไป งานเล็กๆ หลากหลาย"
 
 #: assets/app.js
 msgid "L'assistant IA de Google. Multimodal (texte, images, audio, vidéo), il s'appuie sur la recherche Google et s'intègre aux outils Google (Docs, Gmail, Drive…)."
-msgstr ""
+msgstr "ผู้ช่วย AI ของ Google รองรับหลายรูปแบบ (ข้อความ ภาพ เสียง วิดีโอ) อาศัย Google Search และเชื่อมกับเครื่องมือของ Google (Docs, Gmail, Drive…)"
 
 #: assets/app.js
 msgid "Plutôt pour analyser des images ou vidéos, ou si vous travaillez déjà dans l'écosystème Google."
-msgstr ""
+msgstr "เหมาะกับการวิเคราะห์ภาพหรือวิดีโอ หรือหากคุณทำงานในระบบนิเวศของ Google อยู่แล้ว"
 
 #: assets/app.js
 msgid "Le chat de Z.ai, propulsé par les modèles GLM. Gratuit pour l'essentiel, avec un mode agent capable de chercher sur le web et de produire des fichiers (docx, pdf, xlsx)."
-msgstr ""
+msgstr "แชตของ Z.ai ขับเคลื่อนด้วยโมเดล GLM ส่วนใหญ่ใช้ฟรี มีโหมดเอเจนต์ที่ค้นเว็บและสร้างไฟล์ได้ (docx, pdf, xlsx)"
 
 #: assets/app.js
 msgid "Une alternative gratuite solide pour le chat et le code, quand les quotas des autres sont épuisés."
-msgstr ""
+msgstr "ทางเลือกฟรีที่ดีสำหรับแชตและโค้ด เมื่อโควตาของบริการอื่นหมด"
 
 #: assets/app.js
 msgid "Un « moteur de réponse » : il cherche sur le web en direct, synthétise plusieurs sources et cite ses références pour chaque affirmation."
-msgstr ""
+msgstr "«เครื่องมือตอบคำถาม»: ค้นเว็บแบบสด สรุปจากหลายแหล่ง และอ้างอิงแหล่งที่มาสำหรับทุกข้อความ"
 
 #: assets/app.js
 msgid "Plutôt pour la recherche d'informations à jour, la veille et la vérification de faits avec sources."
-msgstr ""
+msgstr "เหมาะกับการค้นข้อมูลล่าสุด การติดตามข่าว และการตรวจสอบข้อเท็จจริงพร้อมแหล่งที่มา"
 
 #: assets/app.js
 msgid "L'assistant de xAI (Elon Musk), connecté au réseau X (ex-Twitter). Ton direct, accès au temps réel de X, génération d'images incluse."
-msgstr ""
+msgstr "ผู้ช่วยของ xAI (Elon Musk) เชื่อมกับเครือข่าย X (เดิมคือ Twitter) น้ำเสียงตรงไปตรงมา เข้าถึง X แบบเรียลไทม์ รวมถึงการสร้างภาพ"
 
 #: assets/app.js
 msgid "Plutôt pour suivre l'actualité chaude et les tendances via X, ou pour un ton moins formel."
-msgstr ""
+msgstr "เหมาะกับการติดตามข่าวร้อนและเทรนด์ผ่าน X หรือเมื่อต้องการน้ำเสียงที่ไม่เป็นทางการ"
 
 #: assets/app.js
 msgid "Une plateforme de génération d'images orientée création : illustrations, concept art, assets de jeu vidéo, avec des contrôles fins (styles, modèles, retouche)."
-msgstr ""
+msgstr "แพลตฟอร์มสร้างภาพเชิงสร้างสรรค์: ภาพประกอบ คอนเซ็ปต์อาร์ต แอสเซ็ตเกม พร้อมการควบคุมละเอียด (สไตล์ โมเดล การรีทัช)"
 
 #: assets/app.js
 msgid "Plutôt pour produire des visuels et illustrations de qualité avec un contrôle précis du style."
-msgstr ""
+msgstr "เหมาะกับการสร้างภาพและภาพประกอบคุณภาพสูงโดยควบคุมสไตล์ได้แม่นยำ"
 
 #: assets/app.js
 msgid "Un générateur de musique : il compose des chansons complètes (instruments, voix, paroles) à partir d'une simple description texte, dans à peu près tous les genres."
-msgstr ""
+msgstr "เครื่องสร้างเพลง: แต่งเพลงเต็มเพลง (เครื่องดนตรี เสียงร้อง เนื้อร้อง) จากคำอธิบายข้อความง่ายๆ แทบทุกแนว"
 
 #: assets/app.js
 msgid "Plutôt pour créer une musique, un jingle ou une chanson à partir d'un texte ou d'une idée."
-msgstr ""
+msgstr "เหมาะกับการสร้างเพลง จิงเกิล หรือบทเพลงจากข้อความหรือไอเดีย"
 
 #: assets/app.js
 msgid "Un générateur de modèles 3D : il transforme un texte ou une image en objet 3D texturé, avec rigging/animation automatique et export vers les formats standards (GLB, FBX, STL…)."
-msgstr ""
+msgstr "เครื่องสร้างโมเดล 3 มิติ: เปลี่ยนข้อความหรือภาพเป็นวัตถุ 3 มิติพร้อมพื้นผิว มีริกกิง/แอนิเมชันอัตโนมัติ และส่งออกเป็นรูปแบบมาตรฐาน (GLB, FBX, STL…)"
 
 #: assets/app.js
 msgid "Plutôt pour créer des assets 3D (jeux, impression 3D, animation) sans savoir modéliser."
-msgstr ""
+msgstr "เหมาะกับการสร้างแอสเซ็ต 3 มิติ (เกม การพิมพ์ 3 มิติ แอนิเมชัน) โดยไม่ต้องเป็นนักขึ้นโมเดล"
 
 #: assets/app.js
 msgid "Le Chat de Mistral AI, éditeur européen (français). Modèles open-weights performants, chat, code et analyse de documents."
-msgstr ""
+msgstr "Le Chat ของ Mistral AI ผู้พัฒนาจากยุโรป (ฝรั่งเศส) โมเดล open-weights ประสิทธิภาพสูง แชต โค้ด และการวิเคราะห์เอกสาร"
 
 #: assets/app.js
 msgid "Alternative européenne solide pour le chat et le code, avec une bonne maîtrise du français."
-msgstr ""
+msgstr "ทางเลือกจากยุโรปที่ดีสำหรับแชตและโค้ด เชี่ยวชาญภาษาฝรั่งเศส"
 
 #: assets/app.js
 msgid "DeepSeek : assistant IA chinois spécialisé en raisonnement et programmation, particulièrement performant en Python."
-msgstr ""
+msgstr "DeepSeek: ผู้ช่วย AI จากจีน เชี่ยวชาญการให้เหตุผลและการเขียนโปรแกรม โดดเด่นเป็นพิเศษใน Python"
 
 #: assets/app.js
 msgid "Pour du code Python, du raisonnement étape par étape, ou une alternative gratuite à ChatGPT."
-msgstr ""
+msgstr "สำหรับโค้ด Python การให้เหตุผลทีละขั้น หรือเป็นทางเลือกฟรีแทน ChatGPT"
 
 #: assets/app.js
 msgid "GitHub Copilot : assistant IA intégré dans VS Code et GitHub. Autocomplétion, chat, génération de tests, explication de code."
-msgstr ""
+msgstr "GitHub Copilot: ผู้ช่วย AI ที่ฝังอยู่ใน VS Code และ GitHub เติมโค้ดอัตโนมัติ แชต สร้างเทสต์ อธิบายโค้ด"
 
 #: assets/app.js
 msgid "Pour programmer plus vite dans VS Code ou sur GitHub, avec un modèle IA qui connaît votre codebase."
-msgstr ""
+msgstr "สำหรับเขียนโปรแกรมได้เร็วขึ้นใน VS Code หรือ GitHub ด้วยโมเดล AI ที่รู้จักโค้ดเบสของคุณ"
 
 #: assets/app.js
 msgid "Elicit : assistant de recherche scientifique. Trouve des articles, extrait des données, synthétise des études."
-msgstr ""
+msgstr "Elicit: ผู้ช่วยวิจัยทางวิทยาศาสตร์ ค้นหาบทความ ดึงข้อมูล และสังเคราะห์งานวิจัย"
 
 #: assets/app.js
 msgid "Pour la recherche académique, la revue de littérature et l'extraction de données d'articles scientifiques."
-msgstr ""
+msgstr "สำหรับงานวิจัยทางวิชาการ การทบทวนวรรณกรรม และการดึงข้อมูลจากบทความวิทยาศาสตร์"
 
 #: assets/app.js
 msgid "NotebookLM de Google : interagissez avec vos propres documents (PDF, texte, audio). Résumés, questions, génération de notes."
-msgstr ""
+msgstr "NotebookLM ของ Google: ทำงานกับเอกสารของคุณเอง (PDF ข้อความ เสียง) สรุป ถามคำถาม สร้างบันทึก"
 
 #: assets/app.js
 msgid "Pour interroger vos documents personnels ou professionnels avec une IA qui cite ses sources."
-msgstr ""
+msgstr "สำหรับถามคำถามจากเอกสารส่วนตัวหรือเอกสารงาน ด้วย AI ที่อ้างอิงแหล่งที่มา"
 
 #: assets/app.js
 msgid "Wolfram Alpha : moteur de calcul symbolique. Mathématiques, physique, chimie, données factuelles, conversions."
-msgstr ""
+msgstr "Wolfram Alpha: เครื่องมือคำนวณเชิงสัญลักษณ์ คณิตศาสตร์ ฟิสิกส์ เคมี ข้อมูลข้อเท็จจริง การแปลงหน่วย"
 
 #: assets/app.js
 msgid "Pour des calculs exacts (mathématiques symboliques), des données chiffrées ou des conversions d'unités."
-msgstr ""
+msgstr "สำหรับการคำนวณที่แม่นยำ (คณิตศาสตร์เชิงสัญลักษณ์) ข้อมูลตัวเลข หรือการแปลงหน่วย"
 
 #: assets/app.js
 msgid "DeepL : traduction automatique de haute qualité, plus naturelle que Google Traduction. Texte et documents entiers."
-msgstr ""
+msgstr "DeepL: การแปลด้วยเครื่องคุณภาพสูง เป็นธรรมชาติกว่า Google Translate ทั้งข้อความและเอกสารทั้งฉบับ"
 
 #: assets/app.js
 msgid "Pour traduire du texte ou des documents avec un rendu naturel et cohérent."
-msgstr ""
+msgstr "สำหรับแปลข้อความหรือเอกสารให้ได้ผลลัพธ์ที่เป็นธรรมชาติและสอดคล้องกัน"
 
 #: assets/app.js
 msgid "Ideogram : génération d'images orientée design. Logos, typographies, affiches, avec un excellent rendu du texte."
-msgstr ""
+msgstr "Ideogram: การสร้างภาพเน้นงานออกแบบ โลโก้ ตัวอักษร โปสเตอร์ แสดงข้อความได้ยอดเยี่ยม"
 
 #: assets/app.js
 msgid "Pour créer des visuels avec du texte lisible (logos, affiches, bannières) ou du design graphique."
-msgstr ""
+msgstr "สำหรับสร้างภาพที่มีข้อความอ่านได้ (โลโก้ โปสเตอร์ แบนเนอร์) หรืองานกราฟิกดีไซน์"
 
 #: assets/app.js
 msgid "Kling : générateur de vidéos courtes à partir de texte ou d'images. Animations réalistes, crédits gratuits disponibles."
-msgstr ""
+msgstr "Kling: เครื่องสร้างวิดีโอสั้นจากข้อความหรือภาพ แอนิเมชันสมจริง มีเครดิตฟรี"
 
 #: assets/app.js
 msgid "Pour créer des clips vidéo animés à partir d'une description ou d'une image fixe."
-msgstr ""
+msgstr "สำหรับสร้างคลิปวิดีโอแอนิเมชันจากคำอธิบายหรือภาพนิ่ง"
 
 #: assets/app.js
 msgid "Runway : suite d'outils IA pour la vidéo. Génération, édition, effets spéciaux, inpainting vidéo."
-msgstr ""
+msgstr "Runway: ชุดเครื่องมือ AI สำหรับวิดีโอ การสร้าง การตัดต่อ เอฟเฟกต์พิเศษ การเติมภาพในวิดีโอ"
 
 #: assets/app.js
 msgid "Pour le montage et la création vidéo avancée avec des outils IA intégrés."
-msgstr ""
+msgstr "สำหรับการตัดต่อและสร้างวิดีโอขั้นสูงด้วยเครื่องมือ AI ในตัว"
 
 #: assets/app.js
 msgid "Pika : générateur de vidéos courtes et créatives. Animation d'images, effets, transformation de styles."
-msgstr ""
+msgstr "Pika: เครื่องสร้างวิดีโอสั้นเชิงสร้างสรรค์ ทำภาพให้เคลื่อนไหว เอฟเฟกต์ เปลี่ยนสไตล์"
 
 #: assets/app.js
 msgid "Pour animer des images ou créer des vidéos courtes originales avec des effets IA."
-msgstr ""
+msgstr "สำหรับทำให้ภาพเคลื่อนไหวหรือสร้างวิดีโอสั้นแปลกใหม่ด้วยเอฟเฟกต์ AI"
 
 #: assets/app.js
 msgid "Qwen : assistant IA d'Alibaba. Multimodal (texte, images, code), open-source, disponible en plusieurs tailles."
-msgstr ""
+msgstr "Qwen: ผู้ช่วย AI ของ Alibaba รองรับหลายรูปแบบ (ข้อความ ภาพ โค้ด) โอเพนซอร์ส มีหลายขนาด"
 
 #: assets/app.js
 msgid "Alternative gratuite pour le chat, le code et l'analyse d'images, avec un bon support multilingue."
-msgstr ""
+msgstr "ทางเลือกฟรีสำหรับแชต โค้ด และการวิเคราะห์ภาพ รองรับหลายภาษาได้ดี"
 
 #: assets/app.js
 msgid "Impossible d'enregistrer les comptes (stockage plein ?)"
-msgstr ""
+msgstr "บันทึกบัญชีไม่ได้ (พื้นที่เต็มหรือไม่?)"
 
 #: assets/app.js
 msgid "Ctrl+S pour sauvegarder."
-msgstr ""
+msgstr "กด Ctrl+S เพื่อบันทึก"
 
 #: assets/app.js
 msgid "Sélectionnez un fichier pour l'éditer ici."
-msgstr ""
+msgstr "เลือกไฟล์เพื่อแก้ไขที่นี่"
 
 #: assets/app.js
 msgid "Éditeur simplifié (Monaco indisponible) — Ctrl+S pour sauvegarder"
-msgstr ""
+msgstr "ตัวแก้ไขแบบง่าย (Monaco ใช้ไม่ได้) — กด Ctrl+S เพื่อบันทึก"
 
 #: assets/app.js
 msgid "Fichier enregistré !"
-msgstr ""
+msgstr "บันทึกไฟล์แล้ว"
 
 #: assets/app.js
 msgid "Erreur d'enregistrement."
-msgstr ""
+msgstr "บันทึกผิดพลาด"
 
 #: assets/app.js
 msgid "Aucun compte pour l'instant."
-msgstr ""
+msgstr "ยังไม่มีบัญชี"
 
 #: assets/app.js
 msgid "Créer mon premier compte"
-msgstr ""
+msgstr "สร้างบัญชีแรกของฉัน"
 
 #: assets/app.js
 msgid "Cliquer pour copier l'e-mail"
-msgstr ""
+msgstr "คลิกเพื่อคัดลอกอีเมล"
 
 #: assets/app.js
 msgid "Ouvrir le webmail (adresse copiée)"
-msgstr ""
+msgstr "เปิดเว็บเมล (คัดลอกที่อยู่แล้ว)"
 
 #: assets/app.js
 msgid "Modifier le compte"
-msgstr ""
+msgstr "แก้ไขบัญชี"
 
 #: assets/app.js
 msgid "{available} service(s) hors cooldown sur {total}"
-msgstr ""
+msgstr "บริการที่พ้นช่วงพัก: {available}/{total}"
 
 #: assets/app.js
 msgid "Replier / déplier"
-msgstr ""
+msgstr "ยุบ / ขยาย"
 
 #: assets/app.js
 msgid "{service} — {account} déjà ouvert"
-msgstr ""
+msgstr "{service} — {account} เปิดอยู่แล้ว"
 
 #: assets/app.js
 msgid "Recharger l'onglet"
-msgstr ""
+msgstr "โหลดแท็บใหม่"
 
 #: assets/app.js
 msgid "Revenir à l'accueil de {service}"
-msgstr ""
+msgstr "กลับไปหน้าแรกของ {service}"
 
 #: assets/app.js
 msgid "Se déconnecter du profil « {profile} »"
-msgstr ""
+msgstr "ออกจากระบบโปรไฟล์ «{profile}»"
 
 #: assets/app.js
 msgid "{service} ouvert avec {account}"
-msgstr ""
+msgstr "เปิด {service} ด้วย {account} แล้ว"
 
 #: assets/app.js
 msgid "Fermer l'onglet"
-msgstr ""
+msgstr "ปิดแท็บ"
 
 #: assets/app.js
 msgid "Fermer l'onglet « {tab} » ? La session web sera libérée."
-msgstr ""
+msgstr "ปิดแท็บ «{tab}» หรือไม่? เซสชันเว็บจะถูกปล่อย"
 
 #: assets/app.js
 msgid "Onglet fermé (mémoire libérée)"
-msgstr ""
+msgstr "ปิดแท็บแล้ว (คืนหน่วยความจำ)"
 
 #: assets/app.js
 msgid "Retirer l'étoile"
-msgstr ""
+msgstr "เอาดาวออก"
 
 #: assets/app.js
 msgid "Étoiler cet onglet"
-msgstr ""
+msgstr "ติดดาวแท็บนี้"
 
 #: assets/app.js
 msgid "Onglet étoilé"
-msgstr ""
+msgstr "ติดดาวแท็บแล้ว"
 
 #: assets/app.js
 msgid "Étoile retirée"
-msgstr ""
+msgstr "เอาดาวออกแล้ว"
 
 #: assets/app.js
 msgid "Échec de la déconnexion du profil"
-msgstr ""
+msgstr "ตัดการเชื่อมต่อโปรไฟล์ไม่สำเร็จ"
 
 #: assets/app.js
 msgid "Profil « {profile} » déconnecté — session effacée"
-msgstr ""
+msgstr "ตัดการเชื่อมต่อโปรไฟล์ «{profile}» แล้ว — ลบเซสชันแล้ว"
 
 #: assets/app.js
 msgid "Aucun fichier trouvé."
-msgstr ""
+msgstr "ไม่พบไฟล์"
 
 #: assets/app.js
 msgid "Fichier trop volumineux pour l'éditeur : {size} Mo (limite : 20 Mo)."
-msgstr ""
+msgstr "ไฟล์ใหญ่เกินไปสำหรับตัวแก้ไข: {size} MB (จำกัด: 20 MB)"
 
 #: assets/app.js
 msgid "Masquer le mot de passe"
-msgstr ""
+msgstr "ซ่อนรหัสผ่าน"
 
 #: assets/app.js
 msgid "Mot de passe non enregistré : le trousseau du système est indisponible"
-msgstr ""
+msgstr "ไม่ได้บันทึกรหัสผ่าน: พวงกุญแจของระบบใช้ไม่ได้"
 
 #: assets/app.js
 msgid "Mot de passe non enregistré"
-msgstr ""
+msgstr "ไม่ได้บันทึกรหัสผ่าน"
 
 #: assets/app.js
 msgid "C'est quoi ?"
-msgstr ""
+msgstr "คืออะไร?"
 
 #: assets/app.js
 msgid "Quand l'utiliser ?"
-msgstr ""
+msgstr "ใช้เมื่อไร?"
 
 #: assets/app.js
 msgid "Description à venir."
-msgstr ""
+msgstr "คำอธิบายจะมีเร็วๆ นี้"
 
 #: assets/app.js
 msgid "Maximum {max} services à portée de main"
-msgstr ""
+msgstr "สูงสุด {max} บริการที่ใช้บ่อย"
 
 #: assets/app.js
 msgid "Sélectionnez au moins 1 service"
-msgstr ""
+msgstr "เลือกอย่างน้อย 1 บริการ"
 
 #: assets/app.js
 msgid "Services mis à jour ({count}/{max})"
-msgstr ""
+msgstr "อัปเดตบริการแล้ว ({count}/{max})"
 
 #: assets/app.js
 msgid "Supprimer « {name} » ({email}) ? La session restera stockée sur le disque, mais le compte disparaîtra de la liste."
-msgstr ""
+msgstr "ลบ «{name}» ({email}) หรือไม่? เซสชันจะยังอยู่ในดิสก์ แต่บัญชีจะหายไปจากรายการ"
 
 #: assets/app.js
 msgid "Échec de l'export (écriture impossible)"
-msgstr ""
+msgstr "ส่งออกไม่สำเร็จ (เขียนไม่ได้)"
 
 #: assets/app.js
 msgid "{count} compte(s) exporté(s)"
-msgstr ""
+msgstr "บัญชีที่ส่งออก: {count}"
 
 #: assets/app.js
 msgid "Export impossible"
-msgstr ""
+msgstr "ส่งออกไม่ได้"
 
 #: assets/app.js
 msgid "Échec de la lecture du fichier"
-msgstr ""
+msgstr "อ่านไฟล์ไม่สำเร็จ"
 
 #: assets/app.js
 msgid "Fichier JSON invalide"
-msgstr ""
+msgstr "ไฟล์ JSON ไม่ถูกต้อง"
 
 #: assets/app.js
 msgid "Format invalide : un tableau de comptes est attendu."
-msgstr ""
+msgstr "รูปแบบไม่ถูกต้อง: ต้องเป็นอาร์เรย์ของบัญชี"
 
 #: assets/app.js
 msgid "Le fichier contient {count} compte(s). L'import REMPLACE entièrement la liste actuelle ({current} compte(s)) — cette action écrase les comptes existants, pas leurs sessions (cookies) déjà enregistrées sur le disque. Continuer ?"
-msgstr ""
+msgstr "บัญชีในไฟล์: {count} การนำเข้าจะแทนที่รายการปัจจุบันทั้งหมด (บัญชี: {current}) — จะเขียนทับบัญชีที่มีอยู่ แต่ไม่กระทบเซสชัน (คุกกี้) ที่บันทึกไว้ในดิสก์ ดำเนินการต่อหรือไม่?"
 
 #: assets/app.js
 msgid "Import impossible"
-msgstr ""
+msgstr "นำเข้าไม่ได้"
 
 #: assets/app.js
 msgid "{count} compte(s) importé(s)"
-msgstr ""
+msgstr "บัญชีที่นำเข้า: {count}"
 
 #: assets/app.js
 msgid "Échec de l'import : {error}"
-msgstr ""
+msgstr "นำเข้าไม่สำเร็จ: {error}"
 
 #: assets/app.js
 msgid "Compte supprimé"
-msgstr ""
+msgstr "ลบบัญชีแล้ว"
 
 #: assets/app.js
 msgid "Remplissez tous les champs"
-msgstr ""
+msgstr "กรอกข้อมูลให้ครบทุกช่อง"
 
 #: assets/app.js
 msgid "Ce profil est déjà utilisé par un autre compte (les sessions seraient partagées)."
-msgstr ""
+msgstr "โปรไฟล์นี้ถูกใช้โดยบัญชีอื่นแล้ว (เซสชันจะถูกใช้ร่วมกัน)"
 
 #: assets/app.js
 msgid "Compte mis à jour"
-msgstr ""
+msgstr "อัปเดตบัญชีแล้ว"
 
 #: assets/app.js
 msgid "Compte ajouté"
-msgstr ""
+msgstr "เพิ่มบัญชีแล้ว"
 
 #: assets/app.js
 msgid "Renseignez d'abord le domaine des adresses e-mail dans les réglages"
-msgstr ""
+msgstr "กรอกโดเมนของที่อยู่อีเมลในการตั้งค่าก่อน"
 
 #: assets/app.js
 msgid "Premier compte : {nom}, {email}. Un mot de passe de messagerie aléatoire est généré pour chacun."
-msgstr ""
+msgstr "บัญชีแรก: {nom}, {email} ระบบจะสร้างรหัสผ่านอีเมลแบบสุ่มให้แต่ละบัญชี"
 
 #: assets/app.js
 msgid "Nombre de comptes : de 1 à {max}"
-msgstr ""
+msgstr "จำนวนบัญชี: 1 ถึง {max}"
 
 #: assets/app.js
 msgid "{n} compte(s) créé(s), {m} mot(s) de passe enregistré(s)"
-msgstr ""
+msgstr "สร้างบัญชีแล้ว: {n}, บันทึกรหัสผ่านแล้ว: {m}"
 
 #: assets/app.js
 msgid "Adresse du webmail non configurée dans les réglages"
-msgstr ""
+msgstr "ยังไม่ได้ตั้งค่าที่อยู่เว็บเมลในการตั้งค่า"
 
 #: assets/app.js
 msgid "Ouverture du webmail impossible"
-msgstr ""
+msgstr "เปิดเว็บเมลไม่ได้"
 
 #: assets/app.js
 msgid "Copie impossible dans le presse-papiers"
-msgstr ""
+msgstr "คัดลอกไปยังคลิปบอร์ดไม่ได้"
 
 #: assets/app.js
 msgid "E-mail copié : {email}"
-msgstr ""
+msgstr "คัดลอกอีเมลแล้ว: {email}"
 
 #: assets/app.js
 msgid "Cooldown terminé"
-msgstr ""
+msgstr "สิ้นสุดช่วงพัก"
 
 #: assets/app.js
 msgid "{account} — {service} est de nouveau disponible."
-msgstr ""
+msgstr "{account} — {service} ใช้งานได้อีกครั้ง"
 
 #: assets/app.js
 msgid "{account} — {service} : cooldown terminé"
-msgstr ""
+msgstr "{account} — {service}: สิ้นสุดช่วงพัก"
 
 #: assets/app.js
 msgid "Téléchargement…"
-msgstr ""
+msgstr "กำลังดาวน์โหลด…"
 
 #: assets/app.js
 msgid "Téléchargé — à traiter"
-msgstr ""
+msgstr "ดาวน์โหลดแล้ว — รอประมวลผล"
 
 #: assets/app.js
 msgid "Aucun profil disponible"
-msgstr ""
+msgstr "ไม่มีโปรไฟล์ที่ใช้ได้"
 
 #: assets/app.js
 msgid "Projet en cours d'analyse"
-msgstr ""
+msgstr "กำลังวิเคราะห์โปรเจกต์"
 
 #: assets/app.js
 msgid "En cours"
-msgstr ""
+msgstr "กำลังดำเนินการ"
 
 #: assets/app.js
 msgid "En pause"
-msgstr ""
+msgstr "หยุดชั่วคราว"
 
 #: assets/app.js
 msgid "Reprise programmée"
-msgstr ""
+msgstr "กำหนดทำต่อแล้ว"
 
 #: assets/app.js
 msgid "Erreur"
-msgstr ""
+msgstr "ข้อผิดพลาด"
 
 #: assets/app.js
 msgid "Livré"
-msgstr ""
+msgstr "ส่งมอบแล้ว"
 
 #: assets/app.js
 msgid "tous les {n} minutes"
-msgstr ""
+msgstr "ทุก {n} นาที"
 
 #: assets/app.js
 msgid "tous les {n} jours"
-msgstr ""
+msgstr "ทุก {n} วัน"
 
 #: assets/app.js
 msgid "toutes les {n} semaines"
-msgstr ""
+msgstr "ทุก {n} สัปดาห์"
 
 #: assets/app.js
 msgid "tous les {n} mois"
-msgstr ""
+msgstr "ทุก {n} เดือน"
 
 #: assets/app.js
 msgid "toutes les {n} heures"
-msgstr ""
+msgstr "ทุก {n} ชั่วโมง"
 
 #: assets/app.js
 msgid "Le {date}"
-msgstr ""
+msgstr "วันที่ {date}"
 
 #: assets/app.js
 msgid "à partir du {date}"
-msgstr ""
+msgstr "ตั้งแต่ {date}"
 
 #: assets/app.js
 msgid "programmation inconnue"
-msgstr ""
+msgstr "ไม่ทราบการกำหนดเวลา"
 
 #: assets/app.js
 msgid "{n} compte(s) sélectionné(s)"
-msgstr ""
+msgstr "บัญชีที่เลือก: {n}"
 
 #: assets/app.js
 msgid "tous les comptes avec Claude"
-msgstr ""
+msgstr "ทุกบัญชีที่มี Claude"
 
 #: assets/app.js
 msgid "rotation (un compte à la fois)"
-msgstr ""
+msgstr "หมุนเวียน (ทีละบัญชี)"
 
 #: assets/app.js
 msgid "tous les comptes, espacement de {n} s"
-msgstr ""
+msgstr "ทุกบัญชี เว้นระยะ {n} วินาที"
 
 #: assets/app.js
 msgid "tous les comptes en même temps"
-msgstr ""
+msgstr "ทุกบัญชีพร้อมกัน"
 
 #: assets/app.js
 msgid "lancée"
-msgstr ""
+msgstr "เริ่มแล้ว"
 
 #: assets/app.js
 msgid "envoyée"
-msgstr ""
+msgstr "ส่งแล้ว"
 
 #: assets/app.js
 msgid "quota épuisé"
-msgstr ""
+msgstr "โควตาหมด"
 
 #: assets/app.js
 msgid "heures calmes"
-msgstr ""
+msgstr "ช่วงเวลาเงียบ"
 
 #: assets/app.js
 msgid "non connecté"
-msgstr ""
+msgstr "ไม่ได้เชื่อมต่อ"
 
 #: assets/app.js
 msgid "aucun compte éligible"
-msgstr ""
+msgstr "ไม่มีบัญชีที่เข้าเกณฑ์"
 
 #: assets/app.js
 msgid "erreur"
-msgstr ""
+msgstr "ข้อผิดพลาด"
 
 #: assets/app.js
 msgid "Aucune tâche programmée pour l'instant — créez-en une avec « Nouvelle tâche »."
-msgstr ""
+msgstr "ยังไม่มีงานตามกำหนดเวลา — สร้างได้ด้วย «งานใหม่»"
 
 #: assets/app.js
 msgid "Plus aucune exécution programmée"
-msgstr ""
+msgstr "ไม่มีการทำงานตามกำหนดอีกแล้ว"
 
 #: assets/app.js
 msgid "Prochaine exécution : {date}"
-msgstr ""
+msgstr "ทำงานครั้งถัดไป: {date}"
 
 #: assets/app.js
 msgid "inactive"
-msgstr ""
+msgstr "ไม่ใช้งาน"
 
 #: assets/app.js
 msgid "Activer"
-msgstr ""
+msgstr "เปิดใช้งาน"
 
 #: assets/app.js
 msgid "Désactiver"
-msgstr ""
+msgstr "ปิดใช้งาน"
 
 #: assets/app.js
 msgid "Exécuter maintenant"
-msgstr ""
+msgstr "ทำงานตอนนี้"
 
 #: assets/app.js
 msgid "Modifier"
-msgstr ""
+msgstr "แก้ไข"
 
 #: assets/app.js
 msgid "Aucun événement pour l'instant."
-msgstr ""
+msgstr "ยังไม่มีเหตุการณ์"
 
 #: assets/app.js
 msgid "Aucun compte avec le service Claude — la tâche ne pourra pas s'exécuter."
-msgstr ""
+msgstr "ไม่มีบัญชีที่มีบริการ Claude — งานจะทำงานไม่ได้"
 
 #: assets/app.js
 msgid "sans le service Claude"
-msgstr ""
+msgstr "ไม่มีบริการ Claude"
 
 #: assets/app.js
 msgid "compte supprimé"
-msgstr ""
+msgstr "บัญชีถูกลบ"
 
 #: assets/app.js
 msgid "Le nom est obligatoire."
-msgstr ""
+msgstr "ต้องระบุชื่อ"
 
 #: assets/app.js
 msgid "Le prompt est obligatoire."
-msgstr ""
+msgstr "ต้องระบุพรอมต์"
 
 #: assets/app.js
 msgid "Comptes : choix invalide."
-msgstr ""
+msgstr "บัญชี: ตัวเลือกไม่ถูกต้อง"
 
 #: assets/app.js
 msgid "Sélectionnez au moins un compte."
-msgstr ""
+msgstr "เลือกอย่างน้อยหนึ่งบัญชี"
 
 #: assets/app.js
 msgid "Répartition : choix invalide."
-msgstr ""
+msgstr "การกระจาย: ตัวเลือกไม่ถูกต้อง"
 
 #: assets/app.js
 msgid "Espacement invalide : entre 0 et 86400 secondes."
-msgstr ""
+msgstr "ระยะห่างไม่ถูกต้อง: ระหว่าง 0 ถึง 86400 วินาที"
 
 #: assets/app.js
 msgid "Programmation : choix invalide."
-msgstr ""
+msgstr "การกำหนดเวลา: ตัวเลือกไม่ถูกต้อง"
 
 #: assets/app.js
 msgid "Date « Le » invalide."
-msgstr ""
+msgstr "«วันที่» ไม่ถูกต้อง"
 
 #: assets/app.js
 msgid "Date « À partir du » invalide."
-msgstr ""
+msgstr "«ตั้งแต่» ไม่ถูกต้อง"
 
 #: assets/app.js
 msgid "« Tous les » doit être un entier supérieur à 0."
-msgstr ""
+msgstr "«ทุก» ต้องเป็นจำนวนเต็มที่มากกว่า 0"
 
 #: assets/app.js
 msgid "Unité inconnue."
-msgstr ""
+msgstr "ไม่ทราบหน่วย"
 
 #: assets/app.js
 msgid "Enregistrement impossible : {erreur}"
-msgstr ""
+msgstr "บันทึกไม่ได้: {erreur}"
 
 #: assets/app.js
 msgid "Le moteur de tâches n'est pas démarré."
-msgstr ""
+msgstr "เอนจินงานยังไม่เริ่มทำงาน"
 
 #: assets/app.js
 msgid "Exécution demandée — le résultat apparaîtra dans l'historique."
-msgstr ""
+msgstr "ขอให้ทำงานแล้ว — ผลลัพธ์จะแสดงในประวัติ"
 
 #: assets/app.js
 msgid "Une exécution est déjà en cours — réessayez dans un instant."
-msgstr ""
+msgstr "มีการทำงานอยู่แล้ว — ลองอีกครั้งในอีกสักครู่"
 
 #: assets/app.js
 msgid "Le service des tâches a refusé l'exécution."
-msgstr ""
+msgstr "บริการงานปฏิเสธการทำงาน"
 
 #: assets/app.js
 msgid "Tâche introuvable."
-msgstr ""
+msgstr "ไม่พบงาน"
 
 #: assets/app.js
 msgid "Exécution impossible : {erreur}"
-msgstr ""
+msgstr "ทำงานไม่ได้: {erreur}"
 
 #: assets/app.js
 msgid "Action impossible : {erreur}"
-msgstr ""
+msgstr "ดำเนินการไม่ได้: {erreur}"
 
 #: assets/app.js
 msgid "Supprimer la tâche"
-msgstr ""
+msgstr "ลบงาน"
 
 #: assets/app.js
 msgid "Supprimer « {nom} » ? L'historique est conservé."
-msgstr ""
+msgstr "ลบ «{nom}» หรือไม่? ประวัติจะถูกเก็บไว้"
 
 #: assets/app.js
 msgid "Suppression impossible : {erreur}"
-msgstr ""
+msgstr "ลบไม่ได้: {erreur}"
 
 #: assets/app.js
 msgid "< 1 min"
-msgstr ""
+msgstr "< 1 นาที"
 
 #: assets/app.js
 msgid "{h} h {m} min"
-msgstr ""
+msgstr "{h} ชม. {m} นาที"
 
 #: assets/app.js
 msgid "{m} min"
-msgstr ""
+msgstr "{m} นาที"
 
 #: assets/app.js
 msgid "Temps actif"
-msgstr ""
+msgstr "เวลาใช้งาน"
 
 #: assets/app.js
 msgid "Durée ouverte"
-msgstr ""
+msgstr "ระยะเวลาที่เปิด"
 
 #: assets/app.js
 msgid "Sessions"
-msgstr ""
+msgstr "เซสชัน"
 
 #: assets/app.js
 msgid "Dernière utilisation"
-msgstr ""
+msgstr "ใช้ครั้งล่าสุด"
 
 #: assets/app.js
 msgid "Part"
-msgstr ""
+msgstr "สัดส่วน"
 
 #: assets/app.js
 msgid "Dim"
-msgstr ""
+msgstr "อา."
 
 #: assets/app.js
 msgid "Jeu"
-msgstr ""
+msgstr "พฤ."
 
 #: assets/app.js
 msgid "Lun"
-msgstr ""
+msgstr "จ."
 
 #: assets/app.js
 msgid "Mar"
-msgstr ""
+msgstr "อ."
 
 #: assets/app.js
 msgid "Mer"
-msgstr ""
+msgstr "พ."
 
 #: assets/app.js
 msgid "Sam"
-msgstr ""
+msgstr "ส."
 
 #: assets/app.js
 msgid "Ven"
-msgstr ""
+msgstr "ศ."
 
 #: assets/app.js
 msgid "{jour} {h} h : {duree}"
-msgstr ""
+msgstr "{jour} {h}:00: {duree}"
 
 #: assets/app.js
 msgid "Heures de pointe (temps actif)"
-msgstr ""
+msgstr "ชั่วโมงเร่งด่วน (เวลาใช้งาน)"
 
 #: assets/app.js
 msgid "dernière utilisation : {date}"
-msgstr ""
+msgstr "ใช้ครั้งล่าสุด: {date}"
 
 #: assets/app.js
 msgid "jamais utilisé depuis le début de la mesure"
-msgstr ""
+msgstr "ไม่เคยใช้ตั้งแต่เริ่มวัด"
 
 #: assets/app.js
 msgid "Comptes inutilisés sur la période"
-msgstr ""
+msgstr "บัญชีที่ไม่ได้ใช้ในช่วงนี้"
 
 #: assets/app.js
 msgid "fin {h}"
-msgstr ""
+msgstr "สิ้นสุด {h}"
 
 #: assets/app.js
 msgid "Tâches programmables par compte"
-msgstr ""
+msgstr "งานตามกำหนดเวลาแยกตามบัญชี"
 
 #: assets/app.js
 msgid "Compte"
-msgstr ""
+msgstr "บัญชี"
 
 #: assets/app.js
 msgid "Envoyées"
-msgstr ""
+msgstr "ส่งแล้ว"
 
 #: assets/app.js
 msgid "Erreurs"
-msgstr ""
+msgstr "ข้อผิดพลาด"
 
 #: assets/app.js
 msgid "Quotas"
-msgstr ""
+msgstr "โควตา"
 
 #: assets/app.js
 msgid "Dernier quota"
-msgstr ""
+msgstr "โควตาล่าสุด"
 
 #: assets/app.js
 msgid "Exécutions"
-msgstr ""
+msgstr "การทำงาน"
 
 #: assets/app.js
 msgid "D'après l'historique des tâches (200 dernières exécutions)."
-msgstr ""
+msgstr "ตามประวัติงาน (การทำงาน 200 ครั้งล่าสุด)"
 
 #: assets/app.js
 msgid "{date} : {duree} actif"
@@ -1352,35 +1355,35 @@ msgstr ""
 
 #: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
-msgstr ""
+msgstr "ไม่มีเซสชันในช่วงนี้ การวัดเริ่มตั้งแต่ติดตั้งเวอร์ชันนี้"
 
 #: assets/app.js
 msgid "1 jour"
-msgstr ""
+msgstr "1 วัน"
 
 #: assets/app.js
 msgid "{n} jours"
-msgstr ""
+msgstr "{n} วัน"
 
 #: assets/app.js
 msgid "Série en cours (record : {n})"
-msgstr ""
+msgstr "ต่อเนื่องปัจจุบัน (สถิติ: {n})"
 
 #: assets/app.js
 msgid "Par compte"
-msgstr ""
+msgstr "แยกตามบัญชี"
 
 #: assets/app.js
 msgid "Par service"
-msgstr ""
+msgstr "แยกตามบริการ"
 
 #: assets/app.js
 msgid "Service"
-msgstr ""
+msgstr "บริการ"
 
 #: assets/app.js
 msgid "Statistiques illisibles : {error}"
-msgstr ""
+msgstr "อ่านสถิติไม่ได้: {error}"
 
 #: assets/app.js
 msgid "Export des statistiques impossible : {error}"
@@ -1408,356 +1411,356 @@ msgstr ""
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"
-msgstr ""
+msgstr "โหลดการตั้งค่าไม่ได้"
 
 #: assets/app.js
 msgid "Réglages enregistrés — la langue sera appliquée au prochain démarrage"
-msgstr ""
+msgstr "บันทึกการตั้งค่าแล้ว — ภาษาจะมีผลเมื่อเริ่มครั้งถัดไป"
 
 #: assets/app.js
 msgid "Réglages enregistrés"
-msgstr ""
+msgstr "บันทึกการตั้งค่าแล้ว"
 
 #: assets/app.js
 msgid "Erreur lors de la sauvegarde"
-msgstr ""
+msgstr "เกิดข้อผิดพลาดขณะบันทึก"
 
 #: assets/app.js
 msgid "Erreur lors de la sauvegarde des réglages"
-msgstr ""
+msgstr "เกิดข้อผิดพลาดขณะบันทึกการตั้งค่า"
 
 #: assets/app.js
 msgid "Tâches programmables : envoyez un prompt à Claude à date fixe ou périodiquement."
-msgstr ""
+msgstr "งานตามกำหนดเวลา: ส่งพรอมต์ไปยัง Claude ในวันที่กำหนดหรือเป็นระยะ"
 
 #: assets/app.js
 msgid "Arrêter"
-msgstr ""
+msgstr "หยุด"
 
 #: assets/app.js
 msgid "En marche"
-msgstr ""
+msgstr "กำลังทำงาน"
 
 #: assets/app.js
 msgid "Aucun job pour l'instant — un ZIP téléchargé depuis un onglet IA (ordonnanceur activé) en créera un automatiquement."
-msgstr ""
+msgstr "ยังไม่มีงาน — ไฟล์ ZIP ที่ดาวน์โหลดจากแท็บ AI (เมื่อเปิดตัวจัดตาราง) จะสร้างงานให้อัตโนมัติ"
 
 #: assets/app.js
 msgid "Continuer le projet"
-msgstr ""
+msgstr "ทำโปรเจกต์ต่อ"
 
 #: assets/app.js
 msgid "Marquer livré"
-msgstr ""
+msgstr "ทำเครื่องหมายว่าส่งมอบแล้ว"
 
 #: assets/app.js
 msgid "Pause"
-msgstr ""
+msgstr "หยุดชั่วคราว"
 
 #: assets/app.js
 msgid "Reprendre"
-msgstr ""
+msgstr "ทำต่อ"
 
 #: assets/app.js
 msgid "Relancer"
-msgstr ""
+msgstr "เริ่มใหม่"
 
 #: assets/app.js
 msgid "Ouvrir le ZIP"
-msgstr ""
+msgstr "เปิด ZIP"
 
 #: assets/app.js
 msgid "Analyser la complétude"
-msgstr ""
+msgstr "วิเคราะห์ความครบถ้วน"
 
 #: assets/app.js
 msgid "service inconnu"
-msgstr ""
+msgstr "ไม่ทราบบริการ"
 
 #: assets/app.js
 msgid "tentative {n}"
-msgstr ""
+msgstr "ครั้งที่ {n}"
 
 #: assets/app.js
 msgid "Aucune activité enregistrée."
-msgstr ""
+msgstr "ไม่มีกิจกรรมที่บันทึกไว้"
 
 #: assets/app.js
 msgid "Impossible de modifier l'état de l'ordonnanceur"
-msgstr ""
+msgstr "เปลี่ยนสถานะตัวจัดตารางไม่ได้"
 
 #: assets/app.js
 msgid "Configuration non enregistrée"
-msgstr ""
+msgstr "ไม่ได้บันทึกการกำหนดค่า"
 
 #: assets/app.js
 msgid "Sélection du dossier impossible"
-msgstr ""
+msgstr "เลือกโฟลเดอร์ไม่ได้"
 
 #: assets/app.js
 msgid "Projet terminé : {done}/{total} tâches faites, 0 restante."
-msgstr ""
+msgstr "โปรเจกต์เสร็จสิ้น: ทำแล้ว {done}/{total} งาน เหลือ 0"
 
 #: assets/app.js
 msgid "{pending} à faire, {inProgress} en cours, {done} faite(s) sur {total} au total."
-msgstr ""
+msgstr "ต้องทำ {pending}, กำลังทำ {inProgress}, เสร็จ {done} จากทั้งหมด {total}"
 
 #: assets/app.js
 msgid "Analyse impossible : {error}"
-msgstr ""
+msgstr "วิเคราะห์ไม่ได้: {error}"
 
 #: assets/app.js
 msgid "Action impossible : {error}"
-msgstr ""
+msgstr "ดำเนินการไม่ได้: {error}"
 
 #: assets/app.js
 msgid "Aucun projet pour l'instant."
-msgstr ""
+msgstr "ยังไม่มีโปรเจกต์"
 
 #: assets/app.js
 msgid "Créer un projet"
-msgstr ""
+msgstr "สร้างโปรเจกต์"
 
 #: assets/app.js
 msgid "Assignée"
-msgstr ""
+msgstr "มอบหมายแล้ว"
 
 #: assets/app.js
 msgid "Terminée"
-msgstr ""
+msgstr "เสร็จสิ้น"
 
 #: assets/app.js
 msgid "Échouée"
-msgstr ""
+msgstr "ล้มเหลว"
 
 #: assets/app.js
 msgid "Lancer"
-msgstr ""
+msgstr "เริ่ม"
 
 #: assets/app.js
 msgid "Résultat"
-msgstr ""
+msgstr "ผลลัพธ์"
 
 #: assets/app.js
 msgid "Aucune tâche."
-msgstr ""
+msgstr "ไม่มีงาน"
 
 #: assets/app.js
 msgid "Tous les comptes"
-msgstr ""
+msgstr "ทุกบัญชี"
 
 #: assets/app.js
 msgid "Comptes autorisés :"
-msgstr ""
+msgstr "บัญชีที่อนุญาต:"
 
 #: assets/app.js
 msgid "{count} tâche(s)"
-msgstr ""
+msgstr "{count} งาน"
 
 #: assets/app.js
 msgid "Assigner"
-msgstr ""
+msgstr "มอบหมาย"
 
 #: assets/app.js
 msgid "Diagnostic Claude : {error}"
-msgstr ""
+msgstr "การวินิจฉัย Claude: {error}"
 
 #: assets/app.js
 msgid "« Continuer »"
-msgstr ""
+msgstr "«ทำต่อ»"
 
 #: assets/app.js
 msgid "« Télécharger »"
-msgstr ""
+msgstr "«ดาวน์โหลด»"
 
 #: assets/app.js
 msgid "« Nouveau »"
-msgstr ""
+msgstr "«ใหม่»"
 
 #: assets/app.js
 msgid "zone de chat"
-msgstr ""
+msgstr "พื้นที่แชต"
 
 #: assets/app.js
 msgid "envoi de fichier"
-msgstr ""
+msgstr "การส่งไฟล์"
 
 #: assets/app.js
 msgid "{count} popup(s)"
-msgstr ""
+msgstr "{count} ป๊อปอัป"
 
 #: assets/app.js
 msgid "Claude (« {profile} ») : {details}"
-msgstr ""
+msgstr "Claude («{profile}»): {details}"
 
 #: assets/app.js
 msgid "aucun élément détecté"
-msgstr ""
+msgstr "ไม่พบองค์ประกอบใด"
 
 #: assets/app.js
 msgid "Diagnostic impossible : {error}"
-msgstr ""
+msgstr "วินิจฉัยไม่ได้: {error}"
 
 #: assets/app.js
 msgid "Quota gratuit épuisé jusqu'à {time} pour ce profil."
-msgstr ""
+msgstr "โควตาฟรีของโปรไฟล์นี้หมดจนถึง {time}"
 
 #: assets/app.js
 msgid "Job Claude échoué : {error}"
-msgstr ""
+msgstr "งาน Claude ล้มเหลว: {error}"
 
 #: assets/app.js
 msgid "Prompt envoyé à Claude via {method} (« {profile} »)"
-msgstr ""
+msgstr "ส่งพรอมต์ไปยัง Claude ผ่าน {method} แล้ว («{profile}»)"
 
 #: assets/app.js
 msgid "Job Claude impossible : {error}"
-msgstr ""
+msgstr "งาน Claude ทำไม่ได้: {error}"
 
 #: assets/app.js
 msgid "Collecte impossible : {error}"
-msgstr ""
+msgstr "เก็บข้อมูลไม่ได้: {error}"
 
 #: assets/app.js
 msgid "Réponse collectée : {count} caractères (« {profile} »)"
-msgstr ""
+msgstr "เก็บคำตอบแล้ว: {count} ตัวอักษร («{profile}»)"
 
 #: assets/app.js
 msgid "Aucune réponse trouvée pour le moment."
-msgstr ""
+msgstr "ยังไม่พบคำตอบ"
 
 #: assets/app.js
 msgid "Nom du projet :"
-msgstr ""
+msgstr "ชื่อโปรเจกต์:"
 
 #: assets/app.js
 msgid "Projet {n}"
-msgstr ""
+msgstr "โปรเจกต์ {n}"
 
 #: assets/app.js
 msgid "Projet « {name} » créé"
-msgstr ""
+msgstr "สร้างโปรเจกต์ «{name}» แล้ว"
 
 #: assets/app.js
 msgid "Création impossible : {error}"
-msgstr ""
+msgstr "สร้างไม่ได้: {error}"
 
 #: assets/app.js
 msgid "Projet supprimé"
-msgstr ""
+msgstr "ลบโปรเจกต์แล้ว"
 
 #: assets/app.js
 msgid "Suppression impossible : {error}"
-msgstr ""
+msgstr "ลบไม่ได้: {error}"
 
 #: assets/app.js
 msgid "Prompt de la tâche :"
-msgstr ""
+msgstr "พรอมต์ของงาน:"
 
 #: assets/app.js
 msgid "Tâche créée dans le projet"
-msgstr ""
+msgstr "สร้างงานในโปรเจกต์แล้ว"
 
 #: assets/app.js
 msgid "Aucun compte vert disponible pour ce projet."
-msgstr ""
+msgstr "ไม่มีบัญชีสีเขียวสำหรับโปรเจกต์นี้"
 
 #: assets/app.js
 msgid "Comptes verts disponibles :"
-msgstr ""
+msgstr "บัญชีสีเขียวที่ใช้ได้:"
 
 #: assets/app.js
 msgid "Numéro du compte :"
-msgstr ""
+msgstr "หมายเลขบัญชี:"
 
 #: assets/app.js
 msgid "Choix invalide"
-msgstr ""
+msgstr "ตัวเลือกไม่ถูกต้อง"
 
 #: assets/app.js
 msgid "Aucune tâche dans ce projet."
-msgstr ""
+msgstr "ไม่มีงานในโปรเจกต์นี้"
 
 #: assets/app.js
 msgid "Numéro de la tâche :"
-msgstr ""
+msgstr "หมายเลขงาน:"
 
 #: assets/app.js
 msgid "Tâches du projet :"
-msgstr ""
+msgstr "งานของโปรเจกต์:"
 
 #: assets/app.js
 msgid "Tâche {task} assignée à « {account} »"
-msgstr ""
+msgstr "มอบหมายงาน {task} ให้ «{account}» แล้ว"
 
 #: assets/app.js
 msgid "Assignation impossible : {error}"
-msgstr ""
+msgstr "มอบหมายไม่ได้: {error}"
 
 #: assets/app.js
 msgid "Lancement de l'automatisation Claude..."
-msgstr ""
+msgstr "กำลังเริ่มระบบอัตโนมัติของ Claude..."
 
 #: assets/app.js
 msgid "Lancement impossible"
-msgstr ""
+msgstr "เริ่มไม่ได้"
 
 #: assets/app.js
 msgid "Tâche lancée — suivi dans le journal d'activité"
-msgstr ""
+msgstr "เริ่มงานแล้ว — ติดตามได้ในบันทึกกิจกรรม"
 
 #: assets/app.js
 msgid "Exécution impossible : {error}"
-msgstr ""
+msgstr "ทำงานไม่ได้: {error}"
 
 #: assets/app.js
 msgid "Aucun résultat disponible"
-msgstr ""
+msgstr "ไม่มีผลลัพธ์"
 
 #: assets/app.js
 msgid "Résultat — {task}"
-msgstr ""
+msgstr "ผลลัพธ์ — {task}"
 
 #: assets/app.js
 msgid "Comptes retrouvés"
-msgstr ""
+msgstr "พบบัญชี"
 
 #: assets/app.js
 msgid "Aucun compte n'a été lu au démarrage, mais l'ordonnanceur en connaît {count}. Les restaurer ? Les sessions des services sont conservées ; les adresses e-mail sont à compléter depuis « Modifier le compte »."
-msgstr ""
+msgstr "ไม่ได้อ่านบัญชีใดเมื่อเริ่มต้น แต่ตัวจัดตารางรู้จัก {count} บัญชี กู้คืนหรือไม่? เซสชันของบริการยังอยู่ ต้องกรอกที่อยู่อีเมลเพิ่มจาก «แก้ไขบัญชี»"
 
 #: assets/app.js
 msgid "Ignorer"
-msgstr ""
+msgstr "ข้าม"
 
 #: assets/app.js
 msgid "Restaurer les comptes"
-msgstr ""
+msgstr "กู้คืนบัญชี"
 
 #: assets/app.js
 msgid "{count} compte(s) restauré(s)"
-msgstr ""
+msgstr "กู้คืนบัญชีแล้ว: {count}"
 
 #: assets/app.js
 msgid "Données de comptes illisibles"
-msgstr ""
+msgstr "อ่านข้อมูลบัญชีไม่ได้"
 
 #: assets/app.js
 msgid "La liste de comptes enregistrée est corrompue. Une sauvegarde de {count} compte(s) a été trouvée. La restaurer ?"
-msgstr ""
+msgstr "รายการบัญชีที่บันทึกไว้เสียหาย พบข้อมูลสำรอง {count} บัญชี กู้คืนหรือไม่?"
 
 #: assets/app.js
 msgid "La liste de comptes enregistrée est corrompue et aucune sauvegarde n'est disponible. L'application démarre avec une liste vide ; vos données actuelles ne seront pas écrasées tant que vous ne créez ou ne modifiez pas de compte."
-msgstr ""
+msgstr "รายการบัญชีที่บันทึกไว้เสียหายและไม่มีข้อมูลสำรอง แอปจะเริ่มด้วยรายการว่าง ข้อมูลปัจจุบันของคุณจะไม่ถูกเขียนทับจนกว่าคุณจะสร้างหรือแก้ไขบัญชี"
 
 #: assets/app.js
 msgid "Restaurer la sauvegarde"
-msgstr ""
+msgstr "กู้คืนข้อมูลสำรอง"
 
 #: assets/app.js
 msgid "Comptes restaurés depuis la sauvegarde"
-msgstr ""
+msgstr "กู้คืนบัญชีจากข้อมูลสำรองแล้ว"
 
 #: assets/app.js
 msgid "Compris"
-msgstr ""
+msgstr "เข้าใจแล้ว"
