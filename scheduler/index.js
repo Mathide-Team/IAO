@@ -47,6 +47,7 @@ const taches = require('./taches.js');
 // se fait l'orchestration CDP/executeJavaScript avec les <webview>.
 const claudeAdapter = require('../lib/claude-adapter');
 const accountsRecovery = require('../lib/accounts-recovery');
+const lectureZip = require('../lib/lecture-zip');
 
 class Scheduler {
   constructor(electronApp, electronSession) {
@@ -1152,71 +1153,21 @@ class Scheduler {
   // cases [ ] / [x] / [~] restantes via core.parseFeaturesMd(). Renvoie
   // { analysis: { done, inProgress, pending, total, complete }, source } ou
   // { error } si le ZIP ne contient pas de FEATURES.md ou ne peut être lu.
-  // L'extraction utilise `unzip` (Linux/Mac) ou PowerShell (Windows) — pas de
-  // nouvelle dépendance npm (invariant 7), on s'appuie sur des outils système.
+  // Lecture en JavaScript pur (lib/lecture-zip.js, issue #275) : le chemin
+  // du ZIP (nom choisi par le service IA) et les noms des entrées ne passent
+  // plus jamais par un shell (`unzip` / PowerShell, injection de commande).
   analyzeCompleteness(jobId) {
-    const { execSync } = require('child_process');
     const job = this._findJob(jobId);
     const target = job.outputZip || job.file_path;
     if (!target) return { error: 'Aucun fichier associé à ce job.' };
     let content = null;
-    const isWin = process.platform === 'win32';
-    // Stratégie 1 : `unzip -p` (Linux/Mac) — cherche FEATURES.md n'importe où
-    // dans l'archive et l'écrit sur stdout.
-    if (!isWin) {
-      try {
-        // -p : extrait vers stdout ; on cherche FEATURES.md (insensible à la casse)
-        // dans toute l'archive. `unzip -l` liste d'abord, puis -p extrait.
-        const listing = execSync('unzip -l "' + target + '"', {
-          timeout: 5000, encoding: 'utf-8', stdio: ['pipe', 'pipe', 'pipe']
-        });
-        // Cherche FEATURES.md (insensible à la casse) avec son chemin complet
-        // dans l'archive. `unzip -l` liste le chemin relatif de chaque fichier.
-        const lines = listing.split('\n');
-        var featuresPath = null;
-        for (var li = 0; li < lines.length; li++) {
-          var lm = lines[li].match(/\s([^\s]*FEATURES\.md)\s*$/i);
-          if (lm) { featuresPath = lm[1]; break; }
-        }
-        if (featuresPath) {
-          content = execSync('unzip -p "' + target + '" "' + featuresPath + '"', {
-            timeout: 5000, encoding: 'utf-8', stdio: ['pipe', 'pipe', 'pipe']
-          });
-        }
-      } catch (e) { /* unzip absent ou ZIP illisible */ }
-    } else {
-      // Stratégie 2 (Windows) : PowerShell Expand-Archive vers un dossier
-      // temporaire, puis lecture du FEATURES.md.
-      // mkdtempSync (et non « 'iao-zip-' + Date.now() ») : dossier UNIQUE. Deux
-      // analyses dans la même milliseconde partageaient le même dossier, et un
-      // FEATURES.md resté d'une analyse précédente (nettoyage raté) était relu
-      // à tort (test intermittent « archive sans FEATURES.md », 30/09/2026).
-      // path.join : chemin correct quel que soit l'OS (tests win32 sur Linux, PR #120).
-      const fs = require('fs');
-      let tmpDir = null;
-      try {
-        tmpDir = fs.mkdtempSync(path.join(require('os').tmpdir(), 'iao-zip-'));
-        execSync('powershell -NoProfile -Command "Expand-Archive -LiteralPath \'' + target + '\' -DestinationPath \'' + tmpDir + '\' -Force"', {
-          timeout: 10000, stdio: ['pipe', 'pipe', 'pipe']
-        });
-        function findFeaturesMd(dir) {
-          const entries = fs.readdirSync(dir, { withFileTypes: true });
-          for (const e of entries) {
-            const full = path.join(dir, e.name);
-            if (e.isFile() && /^FEATURES\.md$/i.test(e.name)) {
-              return fs.readFileSync(full, 'utf-8');
-            }
-            if (e.isDirectory()) {
-              const found = findFeaturesMd(full);
-              if (found) return found;
-            }
-          }
-          return null;
-        }
-        content = findFeaturesMd(tmpDir);
-      } catch (e) { /* PowerShell a échoué */ }
-      // Nettoie le dossier temporaire, y compris si PowerShell a échoué (best-effort).
-      if (tmpDir) { try { fs.rmSync(tmpDir, { recursive: true, force: true }); } catch (_) {} }
+    try {
+      const lu = lectureZip.lireFeaturesMd(target);
+      if (lu) content = lu.contenu;
+    } catch (e) {
+      // Fichier absent, pas un ZIP, archive tronquée ou refusée : la cause
+      // est journalisée (elle était avalée en silence).
+      this._logActivity('Analyse de complétude impossible (' + path.basename(target) + ') : ' + e.message);
     }
     if (!content) return { error: 'Aucun FEATURES.md trouvé dans le ZIP.' };
     const analysis = core.parseFeaturesMd(content);

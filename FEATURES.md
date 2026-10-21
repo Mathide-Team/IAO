@@ -88,6 +88,18 @@ Objectif : détecter automatiquement les ZIP livrés par les services IA dans le
 
 ## Fait
 
+- **Analyse de ZIP sans shell : injection de commande corrigée (issue #275, 21/10/2026)**
+  `analyzeCompleteness` lisait le FEATURES.md du ZIP livré par `unzip` / PowerShell, via
+  des commandes construites en concaténant le chemin du ZIP (nom donné par le service IA)
+  et le nom de l'entrée (contenu de l'archive) : un `$(…)` dans l'un ou l'autre était
+  exécuté, à chaque téléchargement, sans action de l'utilisateur (vérifié sur `dev` : le
+  fichier preuve était créé). Nouveau `lib/lecture-zip.js` : lecture du répertoire central
+  en JavaScript, décompression `zlib` (stocké, deflate), taille bornée (ZIP bombe), taille
+  et CRC-32 vérifiés, ZIP64 / multi-volumes / chiffrement refusés. Plus de shell ni d'outil
+  système sur aucun OS, pas de dépendance (invariant 7). Corrige aussi : `FEATURES.md` dans
+  un dossier avec espaces jamais trouvé, échec silencieux sans `unzip`, nom `MONFEATURES.md`
+  accepté sous Linux seulement (nom exact désormais, comme sous Windows). +25 tests.
+
 - **Menu natif masqué, barre du workspace réorganisée (issue #149, 30/09/2026)**
   La barre de menu File/Edit/View/Window disparaît (`setMenuBarVisibility(false)`), mais ses
   raccourcis restent. Les outils de développement passent sur un bouton à côté de l'Explorateur
@@ -335,9 +347,9 @@ Objectif : détecter automatiquement les ZIP livrés par les services IA dans le
   `isProjectComplete` renvoie `true` seulement si `total > 0` et plus aucune case
   `[ ]`/`[~]` restante (prudence : un FEATURES.md sans case n'est pas considéré comme
   terminé). Intégration dans l'ordonnanceur : `Scheduler.analyzeCompleteness(jobId)`
-  (`scheduler/index.js`) extrait le FEATURES.md du ZIP livré via `unzip` (Linux/Mac)
-  ou PowerShell `Expand-Archive` (Windows) — pas de nouvelle dépendance npm (invariant 7) —
-  et renvoie le décompte. IPC `scheduler:analyze-completeness` + bouton « Analyser la
+  (`scheduler/index.js`) extrait le FEATURES.md du ZIP livré — en JavaScript pur depuis
+  l'issue #275 (`lib/lecture-zip.js`, auparavant `unzip` / PowerShell) ; pas de dépendance
+  npm (invariant 7) — et renvoie le décompte. IPC `scheduler:analyze-completeness` + bouton « Analyser la
   complétude » dans le panneau Ordonnanceur (`index.html`), résultat affiché en toast.
   **Pas encore une décision automatique** : l'utilisateur garde la main (« Continuer le
   projet » vs « Marquer livré ») — voir l'entrée `[~]` correspondante dans P1 ci-dessus.

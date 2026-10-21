@@ -40,7 +40,8 @@ iao/
 │   ├── file-search.js      # filterFiles/flattenFileTree — lot 18/09/2026 (recherche explorateur)
 │   ├── claude-adapter.js  # CLAUDE_SELECTORS/détection/injection/upload/collecte — lot 18/09/2026
 │   ├── settings.js      # normalizeSettings/normalizeEditorFontSize/normalizeTheme — lot 18/09/2026
-│   └── cooldown-notify.js  # cooldownKey/getNewlyExpiredCooldowns/snapshotActiveCooldowns — lot 18/09/2026
+│   ├── cooldown-notify.js  # cooldownKey/getNewlyExpiredCooldowns/snapshotActiveCooldowns — lot 18/09/2026
+│   └── lecture-zip.js   # lireFeaturesMd/lireEntrees/extraire — lecture d'un ZIP sans shell (issue #275)
 ├── scheduler/
 │   ├── core.js          # Ordonnanceur IA : logique PURE (états des jobs, sélection de profil, CSV, prompt, parseFeaturesMd, projets/tâches, canAssignTaskToAccount) — testable
 │   └── index.js         # Ordonnanceur IA : orchestration Electron (fs, sessions, IPC 'scheduler:*', analyzeCompleteness, projets/tâches CRUD, automatisation Claude.ai)
@@ -515,9 +516,9 @@ Trois lots livrés dans la même session :
 - **Détection de complétude d'un projet — socle** (P1) :
   `parseFeaturesMd(content)` et `isProjectComplete(content)` dans `scheduler/core.js`
   (testées, 11 tests). `Scheduler.analyzeCompleteness(jobId)` dans `scheduler/index.js`
-  extrait le FEATURES.md du ZIP via `unzip`/PowerShell, l'analyse, et renvoie le décompte.
-  Sous Windows, l'extraction se fait dans un dossier unique (`fs.mkdtempSync`, `iao-zip-XXXXXX`),
-  supprimé même si PowerShell échoue (30/09/2026 : l'ancien `Date.now()` pouvait être partagé).
+  lit le FEATURES.md du ZIP avec `lib/lecture-zip.js` (JavaScript pur, aucun shell : issue #275,
+  qui remplace `unzip`/PowerShell et l'injection de commande qu'ils permettaient), l'analyse, et
+  renvoie le décompte. Une archive illisible est journalisée.
   IPC `scheduler:analyze-completeness` + bouton dans le panneau Ordonnanceur.
   **Pas une décision automatique** : l'utilisateur garde la main.
 

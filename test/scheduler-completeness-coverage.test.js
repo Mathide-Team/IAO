@@ -3,9 +3,8 @@
 // test/scheduler-completeness-coverage.test.js — Couverture de
 // Scheduler.analyzeCompleteness / _autoDetectCompleteness (issue #91, tâche 55.22).
 // Cas visés : job sans fichier, ZIP absent / illisible, ZIP sans FEATURES.md,
-// ZIP incomplet, ZIP complet, transitions d'état refusées, et stratégie
-// Windows (PowerShell simulé). userData temporaire, `child_process` simulé
-// uniquement pour la branche Windows, aucun accès réseau.
+// ZIP incomplet, ZIP complet, transitions d'état refusées, et absence de tout
+// shell (issue #275). userData temporaire, aucun accès réseau.
 
 const test = require('node:test');
 const assert = require('node:assert');
@@ -51,7 +50,7 @@ function makeZip(scheduler, files) {
     fs.writeFileSync(full, files[rel], 'utf-8');
   });
   const zipPath = path.join(scheduler._userData, 'projet-' + scheduler.jobSeq + '-' + Date.now() + '.zip');
-  childProcess.execSync('zip -r "' + zipPath + '" .', { cwd: src, stdio: 'pipe' });
+  childProcess.execFileSync('zip', ['-q', '-r', zipPath, '.'], { cwd: src, stdio: 'pipe' });
   fs.rmSync(src, { recursive: true, force: true });
   return zipPath;
 }
@@ -63,37 +62,7 @@ function lastLog(scheduler) {
   return JSON.stringify(scheduler.log);
 }
 
-// Remplace temporairement process.platform et child_process.execSync.
-function withWindowsPlatform(fakeExecSync, fn) {
-  const realPlatform = Object.getOwnPropertyDescriptor(process, 'platform');
-  const realExec = childProcess.execSync;
-  Object.defineProperty(process, 'platform', { value: 'win32' });
-  childProcess.execSync = fakeExecSync;
-  try {
-    return fn();
-  } finally {
-    childProcess.execSync = realExec;
-    Object.defineProperty(process, 'platform', realPlatform);
-  }
-}
-
-// Simule « Expand-Archive » : extrait l'arbre `tree` dans le DestinationPath.
-function fakePowerShell(tree, calls) {
-  return function (command) {
-    if (calls) calls.push(command);
-    const m = /-DestinationPath '([^']+)'/.exec(command);
-    const dest = m[1];
-    Object.keys(tree).forEach(function (rel) {
-      const full = path.join(dest, rel);
-      fs.mkdirSync(path.dirname(full), { recursive: true });
-      fs.writeFileSync(full, tree[rel], 'utf-8');
-    });
-    if (!Object.keys(tree).length) fs.mkdirSync(dest, { recursive: true });
-    return Buffer.from('');
-  };
-}
-
-// --- analyzeCompleteness : Linux / macOS ----------------------------------
+// --- analyzeCompleteness ---------------------------------------------------
 
 test('analyzeCompleteness : job sans fichier associé', function () {
   const s = makeScheduler();
@@ -236,111 +205,70 @@ test('_autoDetectCompleteness : résultat d\'analyse sans erreur ni analyse → 
   cleanup(s);
 });
 
-// --- analyzeCompleteness : stratégie Windows (PowerShell simulé) -----------
+// --- Plus aucun shell (issue #275) ----------------------------------------
+// L'archive est lue en JavaScript (lib/lecture-zip.js) sur tous les systèmes :
+// ni `unzip`, ni PowerShell, ni dossier temporaire. Les anciens tests de la
+// branche Windows (PowerShell simulé, dossier temporaire unique) n'ont plus
+// d'objet ; ces tests vérifient qu'aucune commande n'est lancée.
 
-test('analyzeCompleteness (Windows) : FEATURES.md trouvé dans un sous-dossier imbriqué', function () {
-  const s = makeScheduler();
-  const job = addJob(s, { file_path: 'C:\\livraisons\\projet.zip' });
-  const calls = [];
-  const res = withWindowsPlatform(
-    fakePowerShell({ 'a/vide/x.txt': 'x', 'b/c/features.md': COMPLETE, 'racine.txt': 'r' }, calls),
-    function () { return s.analyzeCompleteness(job.id); }
-  );
-  assert.strictEqual(res.analysis.complete, true);
-  assert.match(calls[0], /Expand-Archive -LiteralPath 'C:\\livraisons\\projet\.zip'/);
-  cleanup(s);
-});
-
-test('analyzeCompleteness (Windows) : FEATURES.md à la racine, échec du nettoyage toléré', function () {
-  const s = makeScheduler();
-  const job = addJob(s, { file_path: 'C:\\projet.zip' });
-  const realRm = fs.rmSync;
-  fs.rmSync = function () { throw new Error('EBUSY'); };
-  let res;
+function sansShell(fn) {
+  const appels = [];
+  const reels = {};
+  ['exec', 'execSync', 'execFile', 'execFileSync', 'spawn', 'spawnSync'].forEach(function (nom) {
+    reels[nom] = childProcess[nom];
+    childProcess[nom] = function () { appels.push(nom); throw new Error('aucune commande attendue'); };
+  });
   try {
-    res = withWindowsPlatform(
-      fakePowerShell({ 'FEATURES.md': INCOMPLETE }),
-      function () { return s.analyzeCompleteness(job.id); }
-    );
+    return { resultat: fn(), appels: appels };
   } finally {
-    fs.rmSync = realRm;
+    Object.keys(reels).forEach(function (nom) { childProcess[nom] = reels[nom]; });
   }
-  assert.strictEqual(res.analysis.complete, false);
-  assert.strictEqual(res.analysis.pending, 1);
-  cleanup(s);
-});
+}
 
-test('analyzeCompleteness (Windows) : archive sans FEATURES.md', function () {
+test('analyzeCompleteness : aucune commande système, sous Linux comme sous Windows', function () {
   const s = makeScheduler();
-  const job = addJob(s, { file_path: 'C:\\projet.zip' });
-  const res = withWindowsPlatform(
-    fakePowerShell({ 'src/index.js': '// x' }),
-    function () { return s.analyzeCompleteness(job.id); }
-  );
-  assert.deepStrictEqual(res, { error: 'Aucun FEATURES.md trouvé dans le ZIP.' });
-  cleanup(s);
-});
+  const job = addJob(s, { file_path: makeZip(s, { 'b/c/features.md': COMPLETE, 'racine.txt': 'r' }) });
+  const linux = sansShell(function () { return s.analyzeCompleteness(job.id); });
+  assert.strictEqual(linux.resultat.analysis.complete, true);
+  assert.deepStrictEqual(linux.appels, []);
 
-test('analyzeCompleteness (Windows) : PowerShell échoue', function () {
-  const s = makeScheduler();
-  const job = addJob(s, { file_path: 'C:\\projet.zip' });
-  const res = withWindowsPlatform(
-    function () { throw new Error('powershell introuvable'); },
-    function () { return s.analyzeCompleteness(job.id); }
-  );
-  assert.deepStrictEqual(res, { error: 'Aucun FEATURES.md trouvé dans le ZIP.' });
-  cleanup(s);
-});
-
-// --- Dossier temporaire unique (test intermittent du 30/09/2026) -----------
-// 'iao-zip-' + Date.now() : deux analyses dans la même milliseconde
-// partageaient le dossier ; un FEATURES.md resté d'un nettoyage raté était
-// relu par l'analyse suivante. mkdtempSync garantit un dossier unique.
-
-test('analyzeCompleteness (Windows) : dossier unique même à Date.now() constant', function () {
-  const s = makeScheduler();
-  const job = addJob(s, { file_path: 'C:\\projet.zip' });
-  const realNow = Date.now;
-  const realRm = fs.rmSync;
-  const dests = [];
-  Date.now = function () { return 1700000000000; };
+  const realPlatform = Object.getOwnPropertyDescriptor(process, 'platform');
+  Object.defineProperty(process, 'platform', { value: 'win32' });
+  let windows;
   try {
-    fs.rmSync = function () { throw new Error('EBUSY'); }; // 1re analyse : nettoyage raté
-    const first = withWindowsPlatform(
-      fakePowerShell({ 'FEATURES.md': COMPLETE }, dests),
-      function () { return s.analyzeCompleteness(job.id); }
-    );
-    fs.rmSync = realRm;
-    assert.strictEqual(first.analysis.complete, true);
-    const second = withWindowsPlatform(
-      fakePowerShell({ 'src/index.js': '// x' }, dests),
-      function () { return s.analyzeCompleteness(job.id); }
-    );
-    assert.deepStrictEqual(second, { error: 'Aucun FEATURES.md trouvé dans le ZIP.' });
+    windows = sansShell(function () { return s.analyzeCompleteness(job.id); });
   } finally {
-    Date.now = realNow;
-    fs.rmSync = realRm;
+    Object.defineProperty(process, 'platform', realPlatform);
   }
-  const dirs = dests.map(c => /-DestinationPath '([^']+)'/.exec(c)[1]);
-  assert.notStrictEqual(dirs[0], dirs[1], 'deux dossiers distincts');
-  fs.rmSync(dirs[0], { recursive: true, force: true }); // reste du nettoyage simulé raté
-  assert.strictEqual(fs.existsSync(dirs[1]), false, '2e dossier nettoyé');
+  assert.deepStrictEqual(windows.resultat, linux.resultat);
+  assert.deepStrictEqual(windows.appels, []);
   cleanup(s);
 });
 
-test('analyzeCompleteness (Windows) : dossier temporaire supprimé si PowerShell échoue', function () {
+test('analyzeCompleteness : chemin de ZIP au nom hostile, rien n\'est exécuté', function () {
   const s = makeScheduler();
-  const job = addJob(s, { file_path: 'C:\\projet.zip' });
-  let dest = null;
-  const res = withWindowsPlatform(
-    function (command) {
-      dest = /-DestinationPath '([^']+)'/.exec(command)[1];
-      assert.strictEqual(fs.existsSync(dest), true, 'dossier créé avant PowerShell');
-      throw new Error('powershell introuvable');
-    },
-    function () { return s.analyzeCompleteness(job.id); }
-  );
-  assert.deepStrictEqual(res, { error: 'Aucun FEATURES.md trouvé dans le ZIP.' });
-  assert.strictEqual(fs.existsSync(dest), false, 'dossier temporaire nettoyé');
+  const origine = process.cwd();
+  process.chdir(s._userData);
+  try {
+    const zip = makeZip(s, { 'FEATURES.md': COMPLETE });
+    const hostile = path.join(s._userData, 'livraison$(touch PREUVE)`touch PREUVE`\'.zip');
+    fs.renameSync(zip, hostile);
+    const job = addJob(s, { file_path: hostile });
+    const res = s.analyzeCompleteness(job.id);
+    assert.strictEqual(res.analysis.complete, true);
+    assert.strictEqual(fs.existsSync(path.join(s._userData, 'PREUVE')), false);
+  } finally {
+    process.chdir(origine);
+    cleanup(s);
+  }
+});
+
+test('analyzeCompleteness : cause de l\'échec journalisée (elle était avalée)', function () {
+  const s = makeScheduler();
+  const bogus = path.join(s._userData, 'tronque.zip');
+  fs.writeFileSync(bogus, 'ceci n\'est pas un zip, mais assez long pour être lu');
+  const job = addJob(s, { file_path: bogus });
+  assert.deepStrictEqual(s.analyzeCompleteness(job.id), { error: 'Aucun FEATURES.md trouvé dans le ZIP.' });
+  assert.match(lastLog(s), /Analyse de complétude impossible \(tronque\.zip\) : pas une archive ZIP/);
   cleanup(s);
 });

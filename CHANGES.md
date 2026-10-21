@@ -1,5 +1,30 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issue #275 — analyse de ZIP sans shell (21/10/2026)
+
+### Sécurité
+- **Injection de commande corrigée.** `analyzeCompleteness` (appelée à la fin
+  de chaque téléchargement de `.zip`) passait le chemin du ZIP et le nom de
+  l'entrée FEATURES.md à `unzip` / PowerShell par concaténation : un nom de
+  fichier ou d'entrée contenant `$(…)` était exécuté. Reproduit sur `dev`
+  (fichier preuve créé), plus reproductible.
+
+### Modifié
+- `lib/lecture-zip.js` : lecture du ZIP en JavaScript (répertoire central,
+  `zlib` pour « deflate »), sur Linux, macOS et Windows ; plus de `unzip`,
+  de PowerShell ni de dossier temporaire. Taille extraite bornée à 1 Mio,
+  taille et CRC-32 vérifiés ; ZIP64, multi-volumes et chiffrement refusés.
+- `FEATURES.md` reconnu par son nom exact (casse ignorée), dans n'importe
+  quel dossier, espaces compris (auparavant jamais trouvé avec une espace).
+- Une archive illisible est journalisée dans l'activité (échec silencieux
+  auparavant, par exemple sans `unzip` installé).
+
+### Tests
+- `test/lecture-zip.test.js` (22 tests, archives fabriquées octet par
+  octet) ; `test/scheduler-completeness-coverage.test.js` : tests PowerShell
+  simulé remplacés par « aucune commande lancée » (Linux et Windows), nom
+  hostile, cause journalisée. Couverture 100 % maintenue.
+
 ## Issue #206, lot 4 — faire parler les chiffres (20/10/2026)
 
 ### Ajouté
