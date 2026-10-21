@@ -462,7 +462,7 @@
   .stats-periode:hover { color: var(--fg); }
   .stats-periode--active { color: var(--fg); border-color: var(--accent); font-weight: 600; }
   .stats-body { overflow-y: auto; padding-inline-end: 6px; display: flex; flex-direction: column; gap: 18px; }
-  .stats-totaux { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+  .stats-totaux { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
   .stats-carte { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px; min-width: 0; }
   .stats-carte__valeur { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; }
   .stats-carte__libelle { font-size: 12px; color: var(--fg-muted); margin-top: 2px; }

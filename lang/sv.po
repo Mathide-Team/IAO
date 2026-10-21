@@ -1372,16 +1372,16 @@ msgid "D'après l'historique des tâches (200 dernières exécutions)."
 msgstr "Enligt uppgiftshistoriken (de senaste 200 körningarna)."
 
 #: assets/app.js
-msgid "{date} : {duree} actif"
-msgstr "{date}: {duree} aktiv"
-
-#: assets/app.js
 msgid "{h} h"
 msgstr "kl. {h}"
 
 #: assets/app.js
 msgid "Évolution du temps actif"
 msgstr "Utveckling av aktiv tid"
+
+#: assets/app.js
+msgid "{date} : {duree} actif"
+msgstr "{date}: {duree} aktiv"
 
 #: assets/app.js
 msgid "{s} s"
@@ -1428,6 +1428,30 @@ msgid "Heure habituelle"
 msgstr "Vanlig tid"
 
 #: assets/app.js
+msgid "Évolution du temps de réponse médian"
+msgstr "Utveckling av mediansvarstid"
+
+#: assets/app.js
+msgid "{date} : médiane {duree}, {n} réponse"
+msgid_plural "{date} : médiane {duree}, {n} réponses"
+msgstr[0] "{date}: median {duree}, {n} svar"
+msgstr[1] "{date}: median {duree}, {n} svar"
+
+#: assets/app.js
+msgid "{n} quota atteint"
+msgid_plural "{n} quotas atteints"
+msgstr[0] "{n} kvot nådd"
+msgstr[1] "{n} kvoter nådda"
+
+#: assets/app.js
+msgid "Comptes à privilégier pour répartir l'usage : {comptes}"
+msgstr "Konton att föredra för att fördela användningen: {comptes}"
+
+#: assets/app.js
+msgid "Comptes souvent bloqués par un quota"
+msgstr "Konton som ofta blockeras av en kvot"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "Inga sessioner under den här perioden. Mätningen börjar när den här versionen installeras."
 
@@ -1440,6 +1464,10 @@ msgstr[1] "{n} dagar"
 #: assets/app.js
 msgid "Série en cours (record : {n})"
 msgstr "Pågående svit (rekord: {n})"
+
+#: assets/app.js
+msgid "Temps de réponse médian"
+msgstr "Mediansvarstid"
 
 #: assets/app.js
 msgid "Par compte"

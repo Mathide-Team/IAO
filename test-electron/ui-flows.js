@@ -1010,8 +1010,8 @@ async function run() {
       return r;
     })()`);
     assert(r.ouvert && r.ferme, 'ouverture/fermeture : ' + JSON.stringify(r));
-    // 4 cartes (dont la série, lot 2) ; tableaux compte + service (+ tâches, C11.3).
-    assert(r.cartes === 4 && r.tables >= 2, 'attendu 4 cartes et au moins 2 tableaux : ' + JSON.stringify(r));
+    // 6 cartes (série, lot 2 ; réponses et médiane, lot 4) ; tableaux compte + service (+ tâches, C11.3).
+    assert(r.cartes === 6 && r.tables >= 2, 'attendu 6 cartes et au moins 2 tableaux : ' + JSON.stringify(r));
     assert(r.script === 0 && r.texte.includes('<script>alert(1)</script>'), 'nom de compte non échappé');
     assert(r.texte.includes('Compte Test Un') && r.texte.includes('Claude'), 'comptes/services absents : ' + r.texte);
     assert(r.active === 'tout', 'période active : ' + r.active);
@@ -1152,6 +1152,46 @@ async function run() {
     assert(r.tri === 'descending', 'tri par nombre attendu : ' + r.tri);
     assert(r.quotas.length === 1 && r.quotas[0][2] === '2' && r.quotas[0][3] === '14 h',
       'quotas inattendus : ' + JSON.stringify(r.quotas));
+  });
+
+  await test('C11.6 Statistiques lot 4 : cartes réponses, évolution du temps de réponse, comptes surchargés (#206)', async () => {
+    const t0 = Date.now() - 3600 * 1000;
+    fs.writeFileSync(path.join(statsDir, 'reponses.jsonl'), [4000, 6000, 8000]
+      .map((d, i) => JSON.stringify({ id: 'c116-r' + i, profil: 'profil_1', service: 'claude', debut: t0 + i * 60000, fin: t0 + i * 60000 + d })).join('\n') + '\n');
+    fs.writeFileSync(path.join(statsDir, 'quotas.jsonl'), [0, 1, 2]
+      .map(i => JSON.stringify({ id: 'c116-q' + i, profil: 'profil_2', service: 'claude', date: t0 + i * 60000 })).join('\n') + '\n');
+    const r = await exec(`(async () => {
+      if (!document.getElementById('statsModal').classList.contains('open')) document.querySelector('[data-action="ui-openStatsModal"]').click();
+      else await openStatsModal();
+      await new Promise(res => setTimeout(res, 500));
+      document.querySelector('#statsPeriodes [data-periode="tout"]').click();
+      const cartes = [...document.querySelectorAll('#statsBody .stats-carte')].map(c => [c.querySelector('.stats-carte__libelle').textContent, c.querySelector('.stats-carte__valeur').textContent]);
+      const evo = document.getElementById('statsEvolutionReponses');
+      const titres = evo ? [...evo.querySelectorAll('rect title')].map(x => x.textContent).filter(x => /réponses?$/.test(x) && !/ 0 réponse/.test(x)) : [];
+      const sur = document.getElementById('statsSurcharges');
+      const res = {
+        cartes, barres: evo ? evo.querySelectorAll('rect').length : 0, titres,
+        surcharges: sur ? [...sur.querySelectorAll('li')].map(li => li.textContent.replace(/\\s+/g, ' ').trim()) : null,
+        relais: sur ? (sur.nextElementSibling && sur.nextElementSibling.textContent) : null
+      };
+      return res;
+    })()`);
+    if (process.env.IAO_CAPTURES_DIR) {
+      // Capture de contrôle visuel (lot 4) : haut de la page, puis bas.
+      const dossier = require('./rtl-visuel').dossierCaptures(process.env.IAO_CAPTURES_DIR);
+      fs.writeFileSync(path.join(dossier, 'stats-lot4-haut.png'), (await win.webContents.capturePage()).toPNG());
+      await exec(`(() => { document.getElementById('statsSurcharges').scrollIntoView({ block: 'center' }); return 'ok'; })()`);
+      await sleep(200);
+      fs.writeFileSync(path.join(dossier, 'stats-lot4-bas.png'), (await win.webContents.capturePage()).toPNG());
+    }
+    await exec(`document.querySelector('#statsModal [data-action="ui-closeStatsModal"]').click(); 'ok'`);
+    const carte = (l) => (r.cartes.find(c => c[0] === l) || [])[1];
+    assert(carte('Réponses') === '3', 'carte Réponses : ' + JSON.stringify(r.cartes));
+    assert(carte('Temps de réponse médian') === '6 s', 'carte médiane : ' + JSON.stringify(r.cartes));
+    assert(r.barres === 90, 'histogramme de 90 jours attendu : ' + r.barres);
+    assert(r.titres.length === 1 && /médiane 6 s, 3 réponses/.test(r.titres[0]), 'infobulle : ' + JSON.stringify(r.titres));
+    assert(r.surcharges && r.surcharges.length === 1 && /3 quotas atteints/.test(r.surcharges[0]), 'surchargés : ' + JSON.stringify(r.surcharges));
+    assert(r.relais && /Comptes à privilégier/.test(r.relais), 'relais : ' + r.relais);
   });
 
   // =========================================================================

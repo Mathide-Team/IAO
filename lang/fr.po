@@ -1369,15 +1369,15 @@ msgid "D'après l'historique des tâches (200 dernières exécutions)."
 msgstr ""
 
 #: assets/app.js
-msgid "{date} : {duree} actif"
-msgstr ""
-
-#: assets/app.js
 msgid "{h} h"
 msgstr ""
 
 #: assets/app.js
 msgid "Évolution du temps actif"
+msgstr ""
+
+#: assets/app.js
+msgid "{date} : {duree} actif"
 msgstr ""
 
 #: assets/app.js
@@ -1425,6 +1425,30 @@ msgid "Heure habituelle"
 msgstr ""
 
 #: assets/app.js
+msgid "Évolution du temps de réponse médian"
+msgstr ""
+
+#: assets/app.js
+msgid "{date} : médiane {duree}, {n} réponse"
+msgid_plural "{date} : médiane {duree}, {n} réponses"
+msgstr[0] ""
+msgstr[1] ""
+
+#: assets/app.js
+msgid "{n} quota atteint"
+msgid_plural "{n} quotas atteints"
+msgstr[0] ""
+msgstr[1] ""
+
+#: assets/app.js
+msgid "Comptes à privilégier pour répartir l'usage : {comptes}"
+msgstr ""
+
+#: assets/app.js
+msgid "Comptes souvent bloqués par un quota"
+msgstr ""
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr ""
 
@@ -1436,6 +1460,10 @@ msgstr[1] ""
 
 #: assets/app.js
 msgid "Série en cours (record : {n})"
+msgstr ""
+
+#: assets/app.js
+msgid "Temps de réponse médian"
 msgstr ""
 
 #: assets/app.js

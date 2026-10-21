@@ -1383,16 +1383,16 @@ msgid "D'après l'historique des tâches (200 dernières exécutions)."
 msgstr "За історією завдань (останні 200 запусків)."
 
 #: assets/app.js
-msgid "{date} : {duree} actif"
-msgstr "{date}: активно {duree}"
-
-#: assets/app.js
 msgid "{h} h"
 msgstr "{h}:00"
 
 #: assets/app.js
 msgid "Évolution du temps actif"
 msgstr "Динаміка активного часу"
+
+#: assets/app.js
+msgid "{date} : {duree} actif"
+msgstr "{date}: активно {duree}"
 
 #: assets/app.js
 msgid "{s} s"
@@ -1439,6 +1439,32 @@ msgid "Heure habituelle"
 msgstr "Звична година"
 
 #: assets/app.js
+msgid "Évolution du temps de réponse médian"
+msgstr "Динаміка медіанного часу відповіді"
+
+#: assets/app.js
+msgid "{date} : médiane {duree}, {n} réponse"
+msgid_plural "{date} : médiane {duree}, {n} réponses"
+msgstr[0] "{date}: медіана {duree}, {n} відповідь"
+msgstr[1] "{date}: медіана {duree}, {n} відповіді"
+msgstr[2] "{date}: медіана {duree}, {n} відповідей"
+
+#: assets/app.js
+msgid "{n} quota atteint"
+msgid_plural "{n} quotas atteints"
+msgstr[0] "{n} ліміт вичерпано"
+msgstr[1] "{n} ліміти вичерпано"
+msgstr[2] "{n} лімітів вичерпано"
+
+#: assets/app.js
+msgid "Comptes à privilégier pour répartir l'usage : {comptes}"
+msgstr "Облікові записи, яким варто надати перевагу для розподілу навантаження: {comptes}"
+
+#: assets/app.js
+msgid "Comptes souvent bloqués par un quota"
+msgstr "Облікові записи, які часто блокує ліміт"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "Немає сеансів за цей період. Вимірювання починається з установлення цієї версії."
 
@@ -1452,6 +1478,10 @@ msgstr[2] "{n} днів"
 #: assets/app.js
 msgid "Série en cours (record : {n})"
 msgstr "Поточна серія (рекорд: {n})"
+
+#: assets/app.js
+msgid "Temps de réponse médian"
+msgstr "Медіанний час відповіді"
 
 #: assets/app.js
 msgid "Par compte"

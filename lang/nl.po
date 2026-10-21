@@ -1372,16 +1372,16 @@ msgid "D'après l'historique des tâches (200 dernières exécutions)."
 msgstr "Volgens de takengeschiedenis (laatste 200 uitvoeringen)."
 
 #: assets/app.js
-msgid "{date} : {duree} actif"
-msgstr "{date}: {duree} actief"
-
-#: assets/app.js
 msgid "{h} h"
 msgstr "{h} u"
 
 #: assets/app.js
 msgid "Évolution du temps actif"
 msgstr "Verloop van de actieve tijd"
+
+#: assets/app.js
+msgid "{date} : {duree} actif"
+msgstr "{date}: {duree} actief"
 
 #: assets/app.js
 msgid "{s} s"
@@ -1428,6 +1428,30 @@ msgid "Heure habituelle"
 msgstr "Gebruikelijk uur"
 
 #: assets/app.js
+msgid "Évolution du temps de réponse médian"
+msgstr "Verloop van de mediane reactietijd"
+
+#: assets/app.js
+msgid "{date} : médiane {duree}, {n} réponse"
+msgid_plural "{date} : médiane {duree}, {n} réponses"
+msgstr[0] "{date}: mediaan {duree}, {n} antwoord"
+msgstr[1] "{date}: mediaan {duree}, {n} antwoorden"
+
+#: assets/app.js
+msgid "{n} quota atteint"
+msgid_plural "{n} quotas atteints"
+msgstr[0] "{n} quotum bereikt"
+msgstr[1] "{n} quota bereikt"
+
+#: assets/app.js
+msgid "Comptes à privilégier pour répartir l'usage : {comptes}"
+msgstr "Accounts om voorrang te geven bij het spreiden van het gebruik: {comptes}"
+
+#: assets/app.js
+msgid "Comptes souvent bloqués par un quota"
+msgstr "Accounts die vaak door een quotum worden geblokkeerd"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "Geen sessies in deze periode. De meting begint bij de installatie van deze versie."
 
@@ -1440,6 +1464,10 @@ msgstr[1] "{n} dagen"
 #: assets/app.js
 msgid "Série en cours (record : {n})"
 msgstr "Huidige reeks (record: {n})"
+
+#: assets/app.js
+msgid "Temps de réponse médian"
+msgstr "Mediane reactietijd"
 
 #: assets/app.js
 msgid "Par compte"

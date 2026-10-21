@@ -1372,16 +1372,16 @@ msgid "D'après l'historique des tâches (200 dernières exécutions)."
 msgstr "לפי היסטוריית המשימות (200 ההרצות האחרונות)."
 
 #: assets/app.js
-msgid "{date} : {duree} actif"
-msgstr "{date}: פעיל {duree}"
-
-#: assets/app.js
 msgid "{h} h"
 msgstr "{h}:00"
 
 #: assets/app.js
 msgid "Évolution du temps actif"
 msgstr "התפתחות הזמן הפעיל"
+
+#: assets/app.js
+msgid "{date} : {duree} actif"
+msgstr "{date}: פעיל {duree}"
 
 #: assets/app.js
 msgid "{s} s"
@@ -1428,6 +1428,30 @@ msgid "Heure habituelle"
 msgstr "שעה רגילה"
 
 #: assets/app.js
+msgid "Évolution du temps de réponse médian"
+msgstr "התפתחות זמן התגובה החציוני"
+
+#: assets/app.js
+msgid "{date} : médiane {duree}, {n} réponse"
+msgid_plural "{date} : médiane {duree}, {n} réponses"
+msgstr[0] "{date}: חציון {duree}, תגובה {n}"
+msgstr[1] "{date}: חציון {duree}, {n} תגובות"
+
+#: assets/app.js
+msgid "{n} quota atteint"
+msgid_plural "{n} quotas atteints"
+msgstr[0] "מכסה {n} מוצתה"
+msgstr[1] "{n} מכסות מוצו"
+
+#: assets/app.js
+msgid "Comptes à privilégier pour répartir l'usage : {comptes}"
+msgstr "חשבונות מועדפים לפיזור השימוש: {comptes}"
+
+#: assets/app.js
+msgid "Comptes souvent bloqués par un quota"
+msgstr "חשבונות שנחסמים לעיתים קרובות על ידי מכסה"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "אין שיחות בתקופה זו. המדידה מתחילה עם התקנת גרסה זו."
 
@@ -1440,6 +1464,10 @@ msgstr[1] "{n} ימים"
 #: assets/app.js
 msgid "Série en cours (record : {n})"
 msgstr "רצף נוכחי (שיא: {n})"
+
+#: assets/app.js
+msgid "Temps de réponse médian"
+msgstr "זמן תגובה חציוני"
 
 #: assets/app.js
 msgid "Par compte"

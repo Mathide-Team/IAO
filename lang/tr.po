@@ -1372,16 +1372,16 @@ msgid "D'après l'historique des tâches (200 dernières exécutions)."
 msgstr "Görev geçmişine göre (son 200 çalıştırma)."
 
 #: assets/app.js
-msgid "{date} : {duree} actif"
-msgstr "{date}: {duree} etkin"
-
-#: assets/app.js
 msgid "{h} h"
 msgstr "{h}:00"
 
 #: assets/app.js
 msgid "Évolution du temps actif"
 msgstr "Etkin sürenin gelişimi"
+
+#: assets/app.js
+msgid "{date} : {duree} actif"
+msgstr "{date}: {duree} etkin"
 
 #: assets/app.js
 msgid "{s} s"
@@ -1428,6 +1428,30 @@ msgid "Heure habituelle"
 msgstr "Olağan saat"
 
 #: assets/app.js
+msgid "Évolution du temps de réponse médian"
+msgstr "Ortanca yanıt süresinin gelişimi"
+
+#: assets/app.js
+msgid "{date} : médiane {duree}, {n} réponse"
+msgid_plural "{date} : médiane {duree}, {n} réponses"
+msgstr[0] "{date}: ortanca {duree}, {n} yanıt"
+msgstr[1] "{date}: ortanca {duree}, {n} yanıt"
+
+#: assets/app.js
+msgid "{n} quota atteint"
+msgid_plural "{n} quotas atteints"
+msgstr[0] "{n} kotaya ulaşıldı"
+msgstr[1] "{n} kotaya ulaşıldı"
+
+#: assets/app.js
+msgid "Comptes à privilégier pour répartir l'usage : {comptes}"
+msgstr "Kullanımı dağıtmak için tercih edilecek hesaplar: {comptes}"
+
+#: assets/app.js
+msgid "Comptes souvent bloqués par un quota"
+msgstr "Sık sık kotaya takılan hesaplar"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "Bu dönemde oturum yok. Ölçüm bu sürümün kurulumuyla başlar."
 
@@ -1440,6 +1464,10 @@ msgstr[1] "{n} gün"
 #: assets/app.js
 msgid "Série en cours (record : {n})"
 msgstr "Süren seri (rekor: {n})"
+
+#: assets/app.js
+msgid "Temps de réponse médian"
+msgstr "Ortanca yanıt süresi"
 
 #: assets/app.js
 msgid "Par compte"

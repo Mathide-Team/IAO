@@ -1,5 +1,23 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issue #206, lot 4 — faire parler les chiffres (20/10/2026)
+
+### Ajouté
+- **Cartes** « Réponses » et « Temps de réponse médian » dans les totaux
+  (6 cartes sur deux lignes).
+- **Évolution du temps de réponse médian** : histogramme SVG sur les mêmes
+  tranches que le temps actif (24 heures ou un jour par barre), échelle en
+  secondes sous la minute (paliers 5 à 30 s). `evolutionReponses()` dans
+  `lib/stats.js`.
+- **Comptes souvent bloqués par un quota** (3 quotas ou plus sur la
+  période), avec les comptes à privilégier pour répartir l'usage (les moins
+  utilisés, hors comptes bloqués). `comptesSurcharges()`.
+- **Export JSON** : réponses et quotas joints (`reponses`, `quotas`, avec le
+  nom du compte) ; format `iao-stats-1` inchangé pour les anciens lecteurs.
+- 6 libellés traduits dans les 29 langues, dont 2 pluriels (générés par IA,
+  relecture humaine attendue) ; 0 entrée floue.
+- Tests : `test/stats-lot4.test.js`, scénario Electron C11.6 (avec captures
+  si `IAO_CAPTURES_DIR` est défini).
 ## Issues #52, #58, #59 — diagnostic publiable et carte graphique (20/10/2026)
 
 ### Ajouté

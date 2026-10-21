@@ -1361,16 +1361,16 @@ msgid "D'après l'historique des tâches (200 dernières exécutions)."
 msgstr "タスク履歴に基づく（直近 200 回の実行）。"
 
 #: assets/app.js
-msgid "{date} : {duree} actif"
-msgstr "{date}: アクティブ {duree}"
-
-#: assets/app.js
 msgid "{h} h"
 msgstr "{h} 時"
 
 #: assets/app.js
 msgid "Évolution du temps actif"
 msgstr "アクティブ時間の推移"
+
+#: assets/app.js
+msgid "{date} : {duree} actif"
+msgstr "{date}: アクティブ {duree}"
 
 #: assets/app.js
 msgid "{s} s"
@@ -1417,6 +1417,28 @@ msgid "Heure habituelle"
 msgstr "よくある時刻"
 
 #: assets/app.js
+msgid "Évolution du temps de réponse médian"
+msgstr "応答時間の中央値の推移"
+
+#: assets/app.js
+msgid "{date} : médiane {duree}, {n} réponse"
+msgid_plural "{date} : médiane {duree}, {n} réponses"
+msgstr[0] "{date}: 中央値 {duree}、応答 {n} 件"
+
+#: assets/app.js
+msgid "{n} quota atteint"
+msgid_plural "{n} quotas atteints"
+msgstr[0] "上限到達 {n} 回"
+
+#: assets/app.js
+msgid "Comptes à privilégier pour répartir l'usage : {comptes}"
+msgstr "利用を分散するために優先するアカウント: {comptes}"
+
+#: assets/app.js
+msgid "Comptes souvent bloqués par un quota"
+msgstr "上限で頻繁にブロックされるアカウント"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "この期間のセッションはありません。計測はこのバージョンのインストール時から始まります。"
 
@@ -1428,6 +1450,10 @@ msgstr[0] "{n} 日"
 #: assets/app.js
 msgid "Série en cours (record : {n})"
 msgstr "連続記録（最高：{n}）"
+
+#: assets/app.js
+msgid "Temps de réponse médian"
+msgstr "応答時間の中央値"
 
 #: assets/app.js
 msgid "Par compte"

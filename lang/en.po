@@ -1370,16 +1370,16 @@ msgid "D'après l'historique des tâches (200 dernières exécutions)."
 msgstr "Based on the task history (last 200 runs)."
 
 #: assets/app.js
-msgid "{date} : {duree} actif"
-msgstr "{date}: {duree} active"
-
-#: assets/app.js
 msgid "{h} h"
 msgstr "{h}:00"
 
 #: assets/app.js
 msgid "Évolution du temps actif"
 msgstr "Active time over time"
+
+#: assets/app.js
+msgid "{date} : {duree} actif"
+msgstr "{date}: {duree} active"
 
 #: assets/app.js
 msgid "{s} s"
@@ -1426,6 +1426,30 @@ msgid "Heure habituelle"
 msgstr "Usual hour"
 
 #: assets/app.js
+msgid "Évolution du temps de réponse médian"
+msgstr "Median response time over time"
+
+#: assets/app.js
+msgid "{date} : médiane {duree}, {n} réponse"
+msgid_plural "{date} : médiane {duree}, {n} réponses"
+msgstr[0] "{date}: median {duree}, {n} response"
+msgstr[1] "{date}: median {duree}, {n} responses"
+
+#: assets/app.js
+msgid "{n} quota atteint"
+msgid_plural "{n} quotas atteints"
+msgstr[0] "{n} quota reached"
+msgstr[1] "{n} quotas reached"
+
+#: assets/app.js
+msgid "Comptes à privilégier pour répartir l'usage : {comptes}"
+msgstr "Accounts to favour to spread the load: {comptes}"
+
+#: assets/app.js
+msgid "Comptes souvent bloqués par un quota"
+msgstr "Accounts often blocked by a quota"
+
+#: assets/app.js
 msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
 msgstr "No sessions in this period. Measurement starts when this version is installed."
 
@@ -1438,6 +1462,10 @@ msgstr[1] "{n} days"
 #: assets/app.js
 msgid "Série en cours (record : {n})"
 msgstr "Current streak (best: {n})"
+
+#: assets/app.js
+msgid "Temps de réponse médian"
+msgstr "Median response time"
 
 #: assets/app.js
 msgid "Par compte"
