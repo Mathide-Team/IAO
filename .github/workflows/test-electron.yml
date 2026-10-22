@@ -71,6 +71,9 @@ jobs:
       - name: Tests d'intégration Electron (popups + Continuer)
         run: npm run test:electron
 
+      - name: Tests d'intégration Electron (identifiants partagés, #278)
+        run: npm run test:electron:identifiants
+
       - name: Tests UI Electron (comptes, onglets, réglages, explorateur)
         env:
           # C7.5 (issue #51) : captures fr / ar et rapport de la vérification RTL.

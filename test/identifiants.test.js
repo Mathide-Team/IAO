@@ -177,6 +177,10 @@ test('robustesse : journal par défaut, JSON non objet, arguments vides, hôte a
   assert.equal(identifiants.supprimer(null, 'a@x.fr'), false);
   assert.equal(identifiants.supprimer('context7.com', null), false);
   assert.equal(identifiants.supprimer('absent.com', 'a@x.fr'), false);
+  // Lot 2 : hôte stocké sous une forme inattendue (pas un tableau) — obtenir ne
+  // doit pas planter sur .find() et renvoyer null.
+  fs.writeFileSync(fichier, JSON.stringify({ 'x.com': 'pas un tableau' }), 'utf-8');
+  assert.equal(identifiants.obtenir('x.com', 'a@x.fr'), null);
   // Login inexistant pour un hôte qui a des entrées : false, rien n'est modifié.
   fs.writeFileSync(fichier, JSON.stringify({ 'x.com': [{ login: 'a@x.fr', secret: 'e', ajoute: 1 }] }), 'utf-8');
   assert.equal(identifiants.supprimer('x.com', 'personne@x.fr'), false);

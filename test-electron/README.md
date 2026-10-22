@@ -5,23 +5,43 @@ Ces tests exécutent la **vraie application** (main.js + index.html) dans un
 **vrai Chromium/Electron v43**, sous un serveur X virtuel (xvfb) — sans
 affichage, sans accès réseau.
 
-## ui-flows.js — crash du renderer et délais (#283)
+## identifiants-continue.js — lot 2 de l'issue #278
 
-Un processus de rendu qui plante laissait `executeJavaScript` sans réponse : le
-harnais finissait sur « TIMEOUT global (180 s) » sans dire pourquoi. Désormais :
+Harnais dédié au menu d'identifiants au focus d'un champ de connexion. Comme les
+autres harnais : **vrai Electron/Chromium sous xvfb, aucun accès réseau** — la
+fixture de formulaire est servie par **interception du protocole https** sur un
+hôte fictif (`context7.test`), dans la partition de la webview.
 
-- `render-process-gone` sur la fenêtre principale fait échouer **immédiatement**
-  le test en cours (`processus de rendu arrêté : <raison> (code <n>)`) ;
-- chaque test a son délai (60 s, `IAO_UI_DELAI_TEST_MS` pour le changer) ;
-- après un crash, la page est rechargée et les tests restants tournent ; leurs
-  échecs éventuels sont suffixés `[après le crash du renderer pendant « … »]`.
-  Le job reste en échec : un crash n'est jamais masqué ni rejoué ;
-- le résumé liste les crashs (annotation `::error` en CI) et le délai global
-  nomme l'étape en cours et le bilan partiel.
+Deux phases :
+- **A — preload de session seul** (main.js non chargé) : focus d'un champ mot de
+  passe -> signalement reçu par le process principal (canal
+  `iao-identifiants:focus`) ; remplissage via `iao-identifiants:remplir` ->
+  champs remplis avec le **setter natif + événements `input`/`change` vus par la
+  page** (formulaires contrôlés) ; champ 2FA (`one-time-code`) jamais rempli.
+  NB : `.focus()` programmatique sans focus de fenêtre n'émet pas `focusin` — le
+  harnais simule le focus utilisateur par un `focusin` synthétique.
+- **B — application réelle** (main.js tel quel, `Menu` espionné avant le
+  `require`) : preload posé sur chaque session créée (lu via
+  `session.getPreloads()`) ; focus -> menu natif proposé avec les identifiants
+  de l'hôte, ancré à la fenêtre principale au curseur ; choix dans le menu ->
+  remplissage envoyé au guest ; **popup OAuth réelle** : la webview ouvre une
+  fenêtre fille (`allowpopups`, politique https du dépôt), le focus d'un champ
+  dans la fille propose un menu ancré à CETTE fenêtre (suivi `did-create-window`
+  de main.js), remplissage dans la fille sans toucher à la webview d'origine.
+  `Menu.popup()` est remplacé par un espion : les tests B sont des **tests de
+  câblage** (le menu natif n'est pas actionné par un vrai clic). Le déchiffrement
+  de bout en bout dépend du **trousseau du système** : sous xvfb sans trousseau,
+  `safeStorage` refuse — le parcours déchiffrement->remplissage n'est pas
+  exécuté et le harnais le note sans échouer (le remplissage lui-même est validé
+  en phase A, y compris depuis le focus d'un seul champ grâce à la découverte du
+  champ frère dans le même `<form>`, et dans la fenêtre fille en B4 par envoi
+  direct du canal).
 
-Vérifier le filet lui-même (jamais en CI) :
-`IAO_UI_SIMULER=crash:C8.1 npm run test:electron:ui` (crash forcé au début du
-test C8.1) ou `IAO_UI_SIMULER=blocage:C8.1` (test qui ne se termine jamais).
+Lancement : `npm run test:electron:identifiants` (exécuté en CI par le job
+« Harnais Electron (xvfb) » ; sans trousseau sur le runner, une annotation
+`::warning` signale que le parcours déchiffrement->remplissage de B3 n'a pas
+été exécuté). Le coffre est seedé **après** le chargement de main.js : sous
+Linux, la clé du trousseau dépend du nom de l'application (« IAO »).
 
 ## Contrainte forte : fixtures locales uniquement
 

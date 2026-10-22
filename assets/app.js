@@ -2817,12 +2817,88 @@
     window.openSettingsModal = function() {
       document.getElementById('settingsModal').classList.add('open');
       loadSettings();
+      rafraichirIdentifiants();
     }
     window.closeSettingsModal = function() {
       document.getElementById('settingsModal').classList.remove('open');
     }
     document.getElementById('settingsModal').addEventListener('click', (e) => {
       if (e.target === e.currentTarget) closeSettingsModal();
+    });
+
+    // --- Identifiants des connecteurs, partagés entre profils (issue #278) ---
+    // Gestion dans les réglages : liste + ajout + suppression. Le remplissage
+    // des formulaires, lui, se fait par le menu natif du process principal
+    // (lib/identifiants-preload.js + lib/identifiants-focus.js) : le mot de
+    // passe ne transite jamais par ici.
+    async function rafraichirIdentifiants() {
+      const conteneur = document.getElementById('identifiantsListe');
+      if (!conteneur) return;
+      let liste;
+      try {
+        liste = await ipcRenderer.invoke('identifiants:lister');
+      } catch (e) {
+        showToast(_('Impossible de charger les identifiants'), 'error');
+        return;
+      }
+      conteneur.textContent = '';
+      const hotes = Object.keys(liste || {}).sort();
+      if (!hotes.length) {
+        const vide = document.createElement('span');
+        vide.className = 'settings-hint';
+        vide.textContent = _('Aucun identifiant enregistré pour l\'instant');
+        conteneur.appendChild(vide);
+        return;
+      }
+      for (const hote of hotes) {
+        for (const entree of liste[hote]) {
+          const ligne = document.createElement('div');
+          ligne.className = 'identifiants-item';
+          const etiquette = document.createElement('span');
+          etiquette.className = 'identifiants-item__label';
+          etiquette.textContent = entree.login + ' — ' + hote;
+          const bouton = document.createElement('button');
+          bouton.type = 'button';
+          bouton.className = 'btn identifiants-item__suppr';
+          bouton.title = _('Supprimer {login} pour {host}', { login: entree.login, host: hote });
+          bouton.textContent = _('Supprimer');
+          bouton.addEventListener('click', async () => {
+            try {
+              const r = await ipcRenderer.invoke('identifiants:supprimer', hote, entree.login);
+              if (r === true) {
+                showToast(_('Identifiant {login} supprimé pour {host}', { login: entree.login, host: hote }), 'success');
+                rafraichirIdentifiants();
+              } else {
+                showToast(_('Suppression impossible : identifiant introuvable'), 'error');
+              }
+            } catch (e) {
+              showToast(_('Suppression impossible : {error}', { error: e && e.message }), 'error');
+            }
+          });
+          ligne.appendChild(etiquette);
+          ligne.appendChild(bouton);
+          conteneur.appendChild(ligne);
+        }
+      }
+    }
+    document.getElementById('identifiantsAjouter').addEventListener('click', async () => {
+      const hote = (document.getElementById('identifiantHote').value || '').trim().toLowerCase();
+      const login = (document.getElementById('identifiantLogin').value || '').trim();
+      const motDePasse = document.getElementById('identifiantMotDePasse').value || '';
+      try {
+        const r = await ipcRenderer.invoke('identifiants:enregistrer', hote, login, motDePasse);
+        if (r && r.ok) {
+          document.getElementById('identifiantMotDePasse').value = '';
+          showToast(_('Identifiant enregistré pour {host} (chiffré, partagé entre profils)', { host: hote }), 'success');
+          rafraichirIdentifiants();
+        } else if (r && r.erreur === 'chiffrement-indisponible') {
+          showToast(_('Chiffrement du système indisponible : identifiant non enregistré'), 'error');
+        } else {
+          showToast(_('Enregistrement impossible : hôte, login ou mot de passe invalide'), 'error');
+        }
+      } catch (e) {
+        showToast(_('Enregistrement impossible : {error}', { error: e && e.message }), 'error');
+      }
     });
 
     let loadedLanguage = 'auto';

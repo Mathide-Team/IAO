@@ -1,22 +1,59 @@
 # Rapport de modifications — IAO (18/09/2026)
 
-## Issue #283 — harnais UI : crash du renderer détecté au lieu d'un délai global muet (22/10/2026)
+## Issue #278 — identifiants partagés entre profils, lot 2 : menu au focus + interface réglages (22/10/2026)
 
-### Corrigé
-- **`test-electron/ui-flows.js`** : le run CI 39840036784 (tentative 1) n'avait pas de
-  test en échec ; le **processus de rendu avait planté** au début de C8.1
-  (`crashed`, code 133) et le harnais attendait une page morte jusqu'au délai global
-  (180 s). L'erreur `ERR_NAME_NOT_RESOLVED` sur chat.z.ai citée dans l'issue est
-  attendue : elle vient de C0.3, qui simule une vraie erreur réseau (#185).
-  Désormais : échec immédiat du test en cours au crash (raison + code), délai par test
-  (60 s), rechargement de la page pour exécuter les tests restants (échecs consécutifs
-  étiquetés), résumé et délai global qui nomment l'étape en cours ; annotation `::error`
-  en CI. Le job reste en échec en cas de crash (rien n'est masqué ni rejoué).
-- Simulation du filet (jamais en CI) : `IAO_UI_SIMULER=crash:<test>` / `blocage:<test>`.
+### Ajouté
+- **`lib/identifiants-preload.js`** : preload de session posé sur toutes les sessions
+  (webviews et popups incluses, via `session-created`). Au focus d'un champ de connexion
+  (email/texte + mot de passe), signale le process principal (`iao-identifiants:focus`) ;
+  reçoit `iao-identifiants:remplir` et remplit le formulaire avec le setter natif + les
+  événements `input`/`change` (formulaires contrôlés) — **sans jamais soumettre le
+  formulaire ni remplir un champ 2FA** (`one-time-code`, `otp`, `totp`, `new-password`).
+  Au focus d'un seul des deux champs, l'autre est découvert dans le même `<form>`
+  (l'utilisateur n'a pas à visiter chaque champ). Le mot de passe transite uniquement
+  par le main (déchiffrement) puis le preload du destinataire — jamais par le renderer
+  hôte de l'application. Hors Electron (`node --test`), le module reste une bibliothèque pure.
+- **`lib/identifiants-focus.js`** : proposition d'un **menu natif** (pas d'UI injectée dans
+  la page) au focus d'un champ, ancré à la bonne fenêtre (fenêtre fille pour les popups
+  d'authentification, suivies via `did-create-window`) et au curseur. Cooldown anti-boucle
+  (1,2 s), hôte https uniquement, secrets déchiffrés dans le main et envoyés au seul
+  émetteur de l'événement. Au moment du choix, l'origine de l'émetteur est revérifiée :
+  si la page a navigué depuis la proposition, rien n'est déchiffré ni envoyé. Le choix
+  du menu remplit sans soumettre.
+- **Interface Réglages** : section « Identifiants des connecteurs (partagés) » —
+  ajout/suppression d'identifiants par hôte, liste par hôte, explication de ce qui est
+  partagé (identifiants) et de ce qui ne l'est pas (cookies, 2FA).
+- **Harnais d'intégration réel** `test-electron/identifiants-continue.js` (9 tests) :
+  fixture servie par interception https (aucun réseau), vrai Chromium — focus signalé,
+  remplissage avec événements vus par la page (y compris depuis le focus d'un seul
+  champ), 2FA jamais rempli, application réelle (main.js tel quel) : preload posé via
+  `session-created`, menu proposé/ancré au curseur, choix du menu (remplissage via le
+  coffre si trousseau, sinon refus silencieux), et **popup OAuth réelle** (fenêtre fille
+  ouverte par la webview, menu ancré dans SA fenêtre, remplissage dans la fille sans
+  toucher à la webview d'origine). `Menu.popup()` y est remplacé par un espion : les
+  tests B sont des tests de câblage, le menu natif n'y est pas actionné par un vrai clic.
+  Le déchiffrement de bout en bout dépend du trousseau du système : sans trousseau (xvfb),
+  le parcours déchiffrement->remplissage n'est pas exécuté et le harnais le note sans
+  échouer.
 
-### Non résolu
-- La cause du crash lui-même (assertion interne de Chromium, SIGTRAP) n'est pas lisible
-  dans le journal ; elle est désormais signalée précisément si elle se reproduit.
+### Modifié
+- **`main.js`** : suivi des fenêtres filles des webviews (popups d'authentification) pour
+  ancrer le menu dans la bonne fenêtre ; branchement du handler de focus ; pose du preload
+  d'identifiants sur chaque session créée ; `lib/identifiants.js` désormais tolérant aux
+  entrées stockées sous une forme inattendue (pas un tableau).
+- **i18n** : nouvelles chaînes (réglages + notifications), `lang/` régénéré (les nouvelles
+  entrées arrivent non traduites, conformément au processus du dépôt).
+
+### Tests
+- Harnais `identifiants-continue.js` ajouté à la CI (`npm run test:electron:identifiants`,
+  job « Harnais Electron (xvfb) ») ; coffre seedé après main.js (clé du trousseau liée au
+  nom de l'application) ; annotation `::warning` si le runner n'a pas de trousseau.
+- `test/identifiants-preload.test.js` (20 tests), `test/identifiants-focus.test.js` (12
+  tests, dont 4 d'intégration du vrai `main.js` via mock Electron) — 100 % de couverture
+  lignes/branches/fonctions sur les deux nouveaux modules (vérifié avec la commande
+  `npm run test:coverage` du dépôt sous Node 22, la version de la CI : tous les fichiers
+  à 100 %).
+- Harnais réel : 9/9 (voir ci-dessus).
 
 ## Issue #278 — identifiants partagés entre profils, lot 1 : coffre + IPC (22/10/2026)
 
