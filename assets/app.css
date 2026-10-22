@@ -608,6 +608,13 @@
   .settings-hint { font-size: 12px; color: var(--fg-faint); margin-inline-start: 8px; }
   .settings-checkboxes { display: flex; flex-direction: column; gap: 8px; }
   .settings-checkbox-label { display: flex; align-items: center; gap: 8px; font-size: 13px; cursor: pointer; }
+  /* Issue #278 : identifiants des connecteurs, partagés entre profils. */
+  .identifiants-liste { display: flex; flex-direction: column; gap: 6px; max-width: 480px; }
+  .identifiants-item { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 4px 8px; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; font-size: 13px; }
+  .identifiants-item__label { overflow-wrap: anywhere; }
+  .identifiants-item__suppr { padding: 2px 8px; font-size: 11px; flex: none; }
+  .identifiants-form { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; align-items: center; }
+  .identifiants-form .settings-input { width: 140px; }
   /* ===== Classes pour styles dynamiques (lot 9, 18/09/2026) ===== */
   .monaco-loading { padding: 14px; font-size: 12px; color: var(--fg-dim); font-family: 'JetBrains Mono', monospace; }
   .fallback-editor { display: flex; flex-direction: column; height: 100%; }

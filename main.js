@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, dialog, shell, session, safeStorage } = require('electron');
+const { app, BrowserWindow, ipcMain, dialog, shell, session, safeStorage, Menu, screen } = require('electron');
 const path = require('path');
 const fs = require('fs');
 const fsPromises = fs.promises;
@@ -33,6 +33,7 @@ const DEBUG = diag.isDebugEnabled(process.argv, process.env);
 const debugTrace = require('./lib/debug-trace');
 const { CoffreSecrets, registerComptesIPC } = require('./lib/coffre-secrets');
 const { IdentifiantsPartages, registerIdentifiantsIPC } = require('./lib/identifiants');
+const focusIdentifiants = require('./lib/identifiants-focus');
 const startupStorage = require('./lib/startup-storage');
 const stats = require('./lib/stats');
 const LOG_DIR = path.join(app.getPath('userData'), 'logs');
@@ -152,6 +153,10 @@ function cleanupServiceWorkerStorage() {
 const scheduler = new Scheduler(app, session);
 let mainWindow = null;
 
+// Fenêtres filles des webviews (popups d'authentification, #278) : ancre
+// possible du menu des identifiants — sinon, c'est la fenêtre principale.
+const fenetresFilles = new Map();
+
 function createWindow() {
   const win = new BrowserWindow({
     width: 1400,
@@ -232,6 +237,11 @@ function createWindow() {
       try {
         child.webContents.setWindowOpenHandler(({ url }) =>
           decidePopup(url) === 'allow' ? { action: 'allow' } : { action: 'deny' });
+        // Issue #278, lot 2 : suivi des fenêtres filles (popups d'authentification)
+        // pour pouvoir y ancrer le menu des identifiants.
+        const idEnfant = child.webContents.id;
+        fenetresFilles.set(idEnfant, child);
+        child.on('closed', () => { fenetresFilles.delete(idEnfant); });
       } catch (_) { /* webContents déjà détruite */ }
     });
     // Ordonnanceur (lot 18/09/2026) : enregistre le webContents de chaque
@@ -490,19 +500,45 @@ registerComptesIPC(ipc, {
   ouvrirExterne: shell.openExternal.bind(shell)
 });
 
-// --- Identifiants partagés entre profils (issue #278, lot 1) ---
+// --- Identifiants partagés entre profils (issue #278) ---
 // Coffre d'identifiants de connexion (login + mot de passe, chiffrés par le
 // trousseau système) partagé par TOUS les profils, pour ne plus ressaisir les
 // identifiants d'un connecteur dans chaque profil. Les cookies restent par
 // partition (étanchéité conservée) ; le 2FA vit dans la session/le téléphone.
-// Lot 1 : stockage + IPC ; l'UI de gestion et le remplissage automatique des
-// formulaires viendront en lot 2.
-registerIdentifiantsIPC(ipc, {
-  identifiants: new IdentifiantsPartages({
-    fichier: path.join(app.getPath('userData'), 'identifiants.json'),
-    chiffreur: safeStorage,
-    journal: log.bind(null, 'identifiants')
-  })
+// Même instance pour l'IPC (gestion dans les réglages) et le menu du lot 2.
+const identifiantsPartages = new IdentifiantsPartages({
+  fichier: path.join(app.getPath('userData'), 'identifiants.json'),
+  chiffreur: safeStorage,
+  journal: log.bind(null, 'identifiants')
+});
+registerIdentifiantsIPC(ipc, { identifiants: identifiantsPartages });
+
+// --- Issue #278, lot 2 : menu d'identifiants au focus d'un champ de connexion ---
+// lib/identifiants-preload.js est posé sur CHAQUE session (webviews ET popups
+// d'authentification, qui partagent la partition) : au focus d'un champ de
+// connexion il signale le process principal ('iao-identifiants:focus'), qui
+// propose — menu natif ancré à la fenêtre — les identifiants enregistrés pour
+// l'hôte de l'URL RÉELLE du webContents émetteur. Au choix, le mot de passe est
+// déchiffré ICI et envoyé au webContents émetteur uniquement : il ne passe
+// jamais par le renderer de la fenêtre hôte. Jamais de remplissage automatique
+// sans sélection explicite, jamais de champ 2FA, aucune soumission.
+const gestionFocusIdentifiants = focusIdentifiants.creer({
+  identifiants: identifiantsPartages,
+  Menu,
+  journal: log.bind(null, 'identifiants'),
+  canalRemplir: 'iao-identifiants:remplir', // = CANAL_REMPLIR de lib/identifiants-preload.js
+  fenetrePour: (wc) => fenetresFilles.get(wc.id) || mainWindow,
+  pointeur: () => { try { return screen.getCursorScreenPoint(); } catch (_) { return null; } }
+});
+ipcMain.on('iao-identifiants:focus', gestionFocusIdentifiants.surFocus);
+// Le preload est posé sur chaque session créée (l'app crée les partitions des
+// profils à la demande ; les popups héritent de la session de leur webview).
+app.on('session-created', (ses) => {
+  try {
+    ses.setPreloads([path.join(__dirname, 'lib', 'identifiants-preload.js')]);
+  } catch (e) {
+    log('identifiants', 'warning', 'preload de session non posé : ' + (e && e.message));
+  }
 });
 
 // --- Internationalisation (issue #51) ---

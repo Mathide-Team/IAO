@@ -5,6 +5,44 @@ Ces tests exécutent la **vraie application** (main.js + index.html) dans un
 **vrai Chromium/Electron v43**, sous un serveur X virtuel (xvfb) — sans
 affichage, sans accès réseau.
 
+## identifiants-continue.js — lot 2 de l'issue #278
+
+Harnais dédié au menu d'identifiants au focus d'un champ de connexion. Comme les
+autres harnais : **vrai Electron/Chromium sous xvfb, aucun accès réseau** — la
+fixture de formulaire est servie par **interception du protocole https** sur un
+hôte fictif (`context7.test`), dans la partition de la webview.
+
+Deux phases :
+- **A — preload de session seul** (main.js non chargé) : focus d'un champ mot de
+  passe -> signalement reçu par le process principal (canal
+  `iao-identifiants:focus`) ; remplissage via `iao-identifiants:remplir` ->
+  champs remplis avec le **setter natif + événements `input`/`change` vus par la
+  page** (formulaires contrôlés) ; champ 2FA (`one-time-code`) jamais rempli.
+  NB : `.focus()` programmatique sans focus de fenêtre n'émet pas `focusin` — le
+  harnais simule le focus utilisateur par un `focusin` synthétique.
+- **B — application réelle** (main.js tel quel, `Menu` espionné avant le
+  `require`) : preload posé sur chaque session créée (lu via
+  `session.getPreloads()`) ; focus -> menu natif proposé avec les identifiants
+  de l'hôte, ancré à la fenêtre principale au curseur ; choix dans le menu ->
+  remplissage envoyé au guest ; **popup OAuth réelle** : la webview ouvre une
+  fenêtre fille (`allowpopups`, politique https du dépôt), le focus d'un champ
+  dans la fille propose un menu ancré à CETTE fenêtre (suivi `did-create-window`
+  de main.js), remplissage dans la fille sans toucher à la webview d'origine.
+  `Menu.popup()` est remplacé par un espion : les tests B sont des **tests de
+  câblage** (le menu natif n'est pas actionné par un vrai clic). Le déchiffrement
+  de bout en bout dépend du **trousseau du système** : sous xvfb sans trousseau,
+  `safeStorage` refuse — le parcours déchiffrement->remplissage n'est pas
+  exécuté et le harnais le note sans échouer (le remplissage lui-même est validé
+  en phase A, y compris depuis le focus d'un seul champ grâce à la découverte du
+  champ frère dans le même `<form>`, et dans la fenêtre fille en B4 par envoi
+  direct du canal).
+
+Lancement : `npm run test:electron:identifiants` (exécuté en CI par le job
+« Harnais Electron (xvfb) » ; sans trousseau sur le runner, une annotation
+`::warning` signale que le parcours déchiffrement->remplissage de B3 n'a pas
+été exécuté). Le coffre est seedé **après** le chargement de main.js : sous
+Linux, la clé du trousseau dépend du nom de l'application (« IAO »).
+
 ## Contrainte forte : fixtures locales uniquement
 
 `docs/PROJECT_CONTEXT.md` (limitations délibérées) interdit tout accès réseau

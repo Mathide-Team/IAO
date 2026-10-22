@@ -542,6 +542,26 @@ msgstr ""
 msgid "https://mail.dmathilde.fr"
 msgstr ""
 
+#: index.html
+msgid "Identifiants des connecteurs (partagés)"
+msgstr ""
+
+#: index.html
+msgid "context7.com"
+msgstr ""
+
+#: index.html
+msgid "login@exemple.fr"
+msgstr ""
+
+#: index.html
+msgid "Mot de passe"
+msgstr ""
+
+#: index.html
+msgid "Chiffrés par le trousseau du système, partagés entre les profils — les cookies et le 2FA restent propres à chaque profil. Au focus d'un champ de connexion, un menu propose les identifiants du site."
+msgstr ""
+
 #: assets/app.js
 msgid "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."
 msgstr ""
@@ -1503,6 +1523,46 @@ msgid "Statistiques remises à zéro"
 msgstr ""
 
 #: assets/app.js
+msgid "Impossible de charger les identifiants"
+msgstr ""
+
+#: assets/app.js
+msgid "Aucun identifiant enregistré pour l'instant"
+msgstr ""
+
+#: assets/app.js
+msgid "Supprimer {login} pour {host}"
+msgstr ""
+
+#: assets/app.js
+msgid "Identifiant {login} supprimé pour {host}"
+msgstr ""
+
+#: assets/app.js
+msgid "Suppression impossible : identifiant introuvable"
+msgstr ""
+
+#: assets/app.js
+msgid "Suppression impossible : {error}"
+msgstr ""
+
+#: assets/app.js
+msgid "Identifiant enregistré pour {host} (chiffré, partagé entre profils)"
+msgstr ""
+
+#: assets/app.js
+msgid "Chiffrement du système indisponible : identifiant non enregistré"
+msgstr ""
+
+#: assets/app.js
+msgid "Enregistrement impossible : hôte, login ou mot de passe invalide"
+msgstr ""
+
+#: assets/app.js
+msgid "Enregistrement impossible : {error}"
+msgstr ""
+
+#: assets/app.js
 msgid "Impossible de charger les réglages"
 msgstr ""
 
@@ -1744,10 +1804,6 @@ msgstr ""
 
 #: assets/app.js
 msgid "Projet supprimé"
-msgstr ""
-
-#: assets/app.js
-msgid "Suppression impossible : {error}"
 msgstr ""
 
 #: assets/app.js
