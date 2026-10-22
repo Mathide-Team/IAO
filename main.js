@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const fsPromises = fs.promises;
 
-const { isAllowedPopup } = require('./lib/popup-guard');
+const { decidePopup } = require('./lib/popup-guard');
 const { Scheduler, registerSchedulerIPC } = require('./scheduler');
 const { TachesService, registerTachesIPC } = require('./scheduler/taches-service');
 const schedulerCore = require('./scheduler/core');
@@ -94,10 +94,13 @@ if (!gotSingleInstanceLock) {
   });
 }
 
-// ===== Durcissement navigation / popups (chantier B) =====
-// La liste blanche ALLOWED_POPUP_HOSTS et isAllowedPopup() vivent désormais
-// dans lib/popup-guard.js (chantier F) : extraction pure, testable via
-// `node --test` sans lancer Electron. Comportement inchangé.
+// ===== Politique navigation / popups (chantier B, revue issue #277) =====
+// La politique des popups (decidePopup) vit dans lib/popup-guard.js
+// (chantier F) : extraction pure, testable via `node --test` sans lancer
+// Electron. Toute popup web https est acceptée dans l'application (elle
+// hérite des webPreferences sandboxées de l'invité, sans Node) : plus de
+// liste blanche à maintenir, qui renvoyait l'authentification des
+// connecteurs inconnus vers le navigateur système (issue #277).
 
 // N'expose que le host dans les logs : une URL d'auth complète peut contenir des
 // tokens OAuth en query string qu'on n'a pas à écrire dans la console.
@@ -191,11 +194,13 @@ function createWindow() {
   // --- 2. L'hôte ne doit ouvrir AUCUNE nouvelle fenêtre lui-même.
   win.webContents.setWindowOpenHandler(() => ({ action: 'deny' }));
 
-  // --- 3. Les <webview> sont des invités sandboxés (sans nodeIntegration). On
-  // filtre leurs popups : seules les origines connues (services + auth OAuth)
-  // peuvent ouvrir une fenêtre ; tout le reste est refusé. Une popup autorisée
-  // s'ouvre avec les webPreferences de l'invité (donc SANS privilèges Node),
-  // jamais avec ceux de l'hôte.
+  // --- 3. Les <webview> sont des invités sandboxés (sans nodeIntegration).
+  // Leurs popups s'ouvrent avec les webPreferences de l'invité (donc SANS
+  // privilèges Node), jamais avec ceux de l'hôte : aucune origine ne peut y
+  // gagner quoi que ce soit. Toute popup web https est donc acceptée dans
+  // l'application (issue #277 : l'authentification des connecteurs doit
+  // toujours fonctionner, la popup vit dans la session de la webview) ; les
+  // schémas non web sont refusés sans repli vers le navigateur système.
   win.webContents.on('did-attach-webview', (event, guestContents) => {
     guestContents.on('render-process-gone', (_e, details) => {
       log('webview', 'warning', 'onglet ' + hostOf(guestContents.getURL()) + ' arrêté : ' + details.reason);
@@ -213,17 +218,20 @@ function createWindow() {
       }
     });
     guestContents.setWindowOpenHandler(({ url }) => {
-      if (isAllowedPopup(url)) return { action: 'allow' };
-      // Origine hors liste : jamais de fenêtre Electron. Si c'est un lien web
-      // classique, on le confie au navigateur système (aucun privilège Node) ;
-      // sinon (about:, data:, javascript:…) on refuse purement.
-      if (/^https?:\/\//i.test(url)) {
-        shell.openExternal(url);
-        console.warn('[security] popup hors liste -> navigateur système :', hostOf(url));
-      } else {
-        console.warn('[security] popup refusée (schéma non web) :', hostOf(url));
-      }
+      if (decidePopup(url) === 'allow') return { action: 'allow' };
+      // Schéma non web (http:, data:, javascript:, URL illisible) : refus pur.
+      // Jamais de repli vers le navigateur système : la popup d'authentification
+      // doit vivre dans la session de la webview pour fonctionner (#277).
+      console.warn('[security] popup refusée (schéma non web) :', hostOf(url));
       return { action: 'deny' };
+    });
+    // Une fenêtre ouverte par la webview peut elle-même ouvrir des fenêtres :
+    // même politique (webPreferences de l'invité, jamais celles de l'hôte).
+    guestContents.on('did-create-window', (child) => {
+      try {
+        child.webContents.setWindowOpenHandler(({ url }) =>
+          decidePopup(url) === 'allow' ? { action: 'allow' } : { action: 'deny' });
+      } catch (_) { /* webContents déjà détruite */ }
     });
     // Ordonnanceur (lot 18/09/2026) : enregistre le webContents de chaque
     // <webview> attachée pour que le scheduler puisse interagir avec Claude.ai

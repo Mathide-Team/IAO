@@ -1,5 +1,35 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issue #277 — popups d'authentification toujours dans l'application (22/10/2026)
+
+### Corrigé
+- **Les popups d'authentification s'ouvrent désormais toujours dans l'application.**
+  La liste blanche `ALLOWED_POPUP_HOSTS` renvoyait vers le navigateur système toute
+  popup d'origine inconnue : la session de connexion vit dans la partition de la
+  webview, la connexion d'un connecteur (context7, tout fournisseur OAuth absent
+  de la liste) échouait donc silencieusement. Reproduit : GitHub (dans la liste)
+  fonctionnait, context7 non.
+- Une fenêtre ouverte par une popup hérite de la même politique (`did-create-window`),
+  jamais des privilèges de l'hôte.
+
+### Modifié
+- `lib/popup-guard.js` : `decidePopup()` remplace `isAllowedPopup()` /
+  `ALLOWED_POPUP_HOSTS`. Toute popup web `https:` (et `about:blank`, ouverte vide
+  puis redirigée par certains flux OAuth) est acceptée ; elle s'ouvre avec les
+  webPreferences sandboxées de l'invité, sans Node. Les schémas non web (`http:`
+  non chiffré, `data:`, `javascript:`, `file:`) restent refusés, journalisés avec
+  le host seul, sans repli vers le navigateur système.
+- `main.js` : plus aucun `shell.openExternal` dans le filtre des popups des
+  webviews ; la fenêtre hôte reste en deny-all total.
+
+### Tests
+- `test/pure.test.js` (politique `decidePopup` : https connu/inconnu — dont
+  context7 —, `about:blank`, casse du schéma, schémas refusés, URL illisible),
+  `test/main-window-security.test.js` (popup https inconnue ouverte dans l'app,
+  jamais `openExternal` ; `about:blank` autorisé ; fenêtre enfant `did-create-window`
+  couverte avec sa voie d'erreur), `test/claude-integration.test.js` (structure).
+  Couverture 100 % lignes/branches/fonctions maintenue sur `lib/popup-guard.js`.
+
 ## Issue #275 — analyse de ZIP sans shell (21/10/2026)
 
 ### Sécurité

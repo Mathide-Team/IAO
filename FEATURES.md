@@ -431,7 +431,10 @@ Objectif : détecter automatiquement les ZIP livrés par les services IA dans le
 
 - [x] 
 
-- **Lot B** — durcissement navigation/popups dans `main.js` (`will-navigate`, `setWindowOpenHandler`, liste blanche `ALLOWED\_POPUP\_HOSTS`).
+- **Lot B** — durcissement navigation/popups dans `main.js` (`will-navigate`, `setWindowOpenHandler`, liste blanche `ALLOWED\_POPUP\_HOSTS`). *(Issue #277 : liste
+  blanche remplacée par « toute popup web `https:` acceptée » — les popups des webviews
+  sont sandboxées, aucune origine ne peut y gagner de privilèges, et la liste renvoyait
+  l'authentification des connecteurs inconnus vers le navigateur système.)*
 
 - [x] 
 

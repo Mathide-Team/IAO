@@ -224,7 +224,7 @@ iao/
 ├── install.bat             # Installeur Windows (menu Démarrer, raccourcis, /uninstall) — créé lot 9
 ├── index.html              # HTML pur (CSS extrait vers assets/app.css, JS vers assets/app.js + pre-monaco.js). ~356 lignes.
 ├── main.js                 # Process principal Electron : fenêtre, IPC fichiers, durcissement navigation/popups, ordonnanceur
-├── lib/                    # Fonctions pures extraites (escapeHtml, isAllowedPopup, statuts d'activité, actions d'onglet, recherche, cooldown, claude-adapter, settings) — testées par node --test
+├── lib/                    # Fonctions pures extraites (escapeHtml, politique popups decidePopup, statuts d'activité, actions d'onglet, recherche, cooldown, claude-adapter, settings) — testées par node --test
 ├── scheduler/               # Ordonnanceur IA : registre de jobs, détection des ZIP livrés, reprise par profil, automatisation Claude
 ├── test/                   # Tests unitaires (node --test, 332 tests)
 ├── test-electron/          # Tests d'intégration Electron réels (popups, Continuer, Monaco sous CSP, fumée binaire) — 14 + 3 tests
@@ -272,7 +272,7 @@ Les issues de sécurité sont bienvenues — merci de les signaler de façon res
 
 Projet maintenu en solo, contributions bienvenues — en particulier :
 
-- **Ajouter un service IA** (le pattern est entièrement data-driven) : une entrée dans `SERVICES`, des variables de couleur `--<id>`/`--<id>-dim` + une classe `.svc-<id>`, une fiche `SERVICE_INFO` pour la page d'aide, et si besoin le domaine d'auth dans `ALLOWED_POPUP_HOSTS` (`main.js`). La migration attache automatiquement le nouveau service aux comptes existants.
+- **Ajouter un service IA** (le pattern est entièrement data-driven) : une entrée dans `SERVICES`, des variables de couleur `--<id>`/`--<id>-dim` + une classe `.svc-<id>`, une fiche `SERVICE_INFO` pour la page d'aide, (depuis l'issue #277, toute popup web `https:` est acceptée : plus rien à déclarer pour l'auth). La migration attache automatiquement le nouveau service aux comptes existants.
 - Corrections de bugs, améliorations de performance mesurées, durcissement sécurité (la migration `contextIsolation` est le gros morceau ouvert).
 
 Règles du projet : JS vanilla sans dépendance nouvelle, toute donnée utilisateur passe par `escapeHtml()`, les écritures de comptes passent par `saveAccounts()`, les listes cliquables utilisent la délégation d'événements. Lisez `CLAUDE.md` (règles de contribution) et `docs/PROJECT_CONTEXT.md` avant une contribution non triviale. Fork → branche → pull request.
