@@ -136,8 +136,12 @@ test('store : reinitialiser vide l\'historique et l\'instantané ; exporter CSV 
   assert.ok(json.nom.endsWith('.json'));
   assert.equal(JSON.parse(json.contenu).sessions.length, 1);
   const cible = path.join(dossier, 'sortie.csv');
+  fs.writeFileSync(cible, 'ancien contenu');
   await store.ecrire(cible, csv.contenu);
-  assert.equal(fs.readFileSync(cible, 'utf-8'), csv.contenu);
+  assert.equal(fs.readFileSync(cible, 'utf-8'), csv.contenu, 'fichier existant remplacé');
+  assert.deepEqual(fs.readdirSync(dossier).filter(n => n.includes('.tmp')), [], 'aucun fichier temporaire laissé');
+  // Échec d'écriture (dossier absent) : erreur remontée, rien laissé derrière.
+  await assert.rejects(store.ecrire(path.join(dossier, 'absent', 'x.csv'), 'x'));
   await store.noterReponse({ profil: 'p1', service: 'claude', debut: T0 - 2 * MIN, fin: T0 - MIN, source: 'tache' });
   await store.noterQuota({ profil: 'p1', service: 'claude', date: T0 - MIN });
   assert.deepEqual(await store.reinitialiser(), { ok: true });
