@@ -41,16 +41,95 @@ function assert(cond, msg) {
   if (!cond) throw new Error(msg || 'assertion échouée');
 }
 
-async function test(name, fn) {
+// Issue #283 : un processus de rendu qui plante (vu en CI : « crashed », code
+// 133) laissait executeJavaScript sans réponse ; le harnais attendait alors le
+// délai global (180 s) sans dire pourquoi. Désormais :
+//   - le crash fait échouer IMMÉDIATEMENT le test en cours (raison + code) ;
+//   - chaque test a son propre délai (DELAI_PAR_TEST_MS) ;
+//   - après un crash, la page est rechargée pour exécuter les tests restants
+//     (le job reste en échec : un crash n'est jamais masqué ni rejoué) ;
+//   - le délai global et le résumé nomment l'étape en cours.
+const DELAI_PAR_TEST_MS = Number(process.env.IAO_UI_DELAI_TEST_MS) || 60000;
+let etapeCourante = 'préparation (avant le premier test)';
+const crashs = [];              // { etape, raison, code }
+let rejeterTestEnCours = null;  // rejette le test en cours (crash du renderer)
+let recupererApresCrash = null; // défini par run() : rechargement de la page
+let crashARecuperer = false;
+
+function signalerCrash(details) {
+  const crash = { etape: etapeCourante, raison: details && details.reason, code: details && details.exitCode };
+  crashs.push(crash);
+  crashARecuperer = true;
+  console.log('CRASH du processus de rendu pendant « ' + crash.etape + ' » : ' + crash.raison + ' (code ' + crash.code + ')');
+  if (rejeterTestEnCours) {
+    rejeterTestEnCours(new Error('processus de rendu arrêté : ' + crash.raison + ' (code ' + crash.code + ')'));
+  }
+}
+
+async function recupererSiNecessaire() {
+  if (!crashARecuperer || !recupererApresCrash) return;
+  crashARecuperer = false;
   try {
-    await fn();
+    await recupererApresCrash();
+    console.log('  (page rechargée après le crash : les tests suivants continuent)');
+  } catch (e) {
+    console.log('  (rechargement après le crash impossible : ' + (e && e.message ? e.message : e) + ')');
+  }
+}
+
+async function test(name, fn) {
+  // Crash survenu entre deux tests : recharger AVANT d'exécuter celui-ci.
+  await recupererSiNecessaire();
+  etapeCourante = name;
+  let minuteur = null;
+  try {
+    const corps = simulerSiDemande(name) === 'blocage' ? () => new Promise(() => {}) : fn;
+    await Promise.race([
+      Promise.resolve().then(corps),
+      new Promise((_, rejeter) => {
+        rejeterTestEnCours = rejeter;
+        minuteur = setTimeout(() => rejeter(new Error('délai du test dépassé (' + (DELAI_PAR_TEST_MS / 1000) + ' s)')), DELAI_PAR_TEST_MS);
+      })
+    ]);
     passed += 1;
     console.log('ok - ' + name);
   } catch (e) {
     failed += 1;
-    failures.push({ name: name, error: e });
-    console.log('NOT OK - ' + name + ' : ' + (e && e.message ? e.message : e));
+    // Après un crash, les échecs suivants peuvent n'en être que la conséquence
+    // (état de la page perdu) : on le dit, pour ne pas chercher une 2e cause.
+    const avant = crashs.filter((c) => c.etape !== name);
+    const suffixe = avant.length ? ' [après le crash du renderer pendant « ' + avant[avant.length - 1].etape + ' »]' : '';
+    const message = (e && e.message ? e.message : String(e)) + suffixe;
+    failures.push({ name: name, error: new Error(message) });
+    console.log('NOT OK - ' + name + ' : ' + message);
+  } finally {
+    clearTimeout(minuteur);
+    rejeterTestEnCours = null;
   }
+  await recupererSiNecessaire();
+}
+
+// Vérification du filet de sécurité lui-même (jamais en CI) :
+//   IAO_UI_SIMULER=crash:C8.1   -> plante le renderer au début de ce test
+//   IAO_UI_SIMULER=blocage:C8.1 -> fait attendre ce test indéfiniment
+let fenetreSimulation = null;
+function simulerSiDemande(name) {
+  const m = /^(crash|blocage):(.+)$/.exec(process.env.IAO_UI_SIMULER || '');
+  if (!m || !name.startsWith(m[2] + ' ')) return;
+  if (m[1] === 'crash' && fenetreSimulation) {
+    console.log('  (simulation : crash forcé du renderer)');
+    fenetreSimulation.webContents.forcefullyCrashRenderer();
+  }
+  if (m[1] === 'blocage') {
+    console.log('  (simulation : blocage du test)');
+    return 'blocage';
+  }
+  return m[1];
+}
+
+function resumeInterrompu() {
+  return 'pass ' + passed + ' / fail ' + failed + ' avant l\'abandon' +
+    (crashs.length ? ' ; crash(s) du renderer : ' + crashs.map((c) => '« ' + c.etape + ' » (' + c.raison + ', code ' + c.code + ')').join(', ') : '');
 }
 
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
@@ -59,7 +138,7 @@ app.disableHardwareAcceleration();
 
 // Garde-fou : 180 s (ces tests sont plus simples que popups-continue).
 setTimeout(() => {
-  console.error('TIMEOUT global du harnais UI (180 s) — abandon.');
+  console.error('TIMEOUT global du harnais UI (180 s) — abandon pendant « ' + etapeCourante + ' » — ' + resumeInterrompu() + '.');
   process.exit(2);
 }, 180000);
 
@@ -136,6 +215,8 @@ async function run() {
     if (!win) await sleep(100);
   }
   assert(win, 'fenêtre principale jamais créée');
+  fenetreSimulation = win;
+  win.webContents.on('render-process-gone', (_e, details) => signalerCrash(details));
 
   const waitLoaded = async () => {
     for (let i = 0; i < 100; i++) {
@@ -143,6 +224,11 @@ async function run() {
       await sleep(100);
     }
     await sleep(800); // initApp + loadSettings (IPC asynchrone)
+  };
+  recupererApresCrash = async () => {
+    win.webContents.reload();
+    await sleep(300);
+    await waitLoaded();
   };
   await waitLoaded();
 
@@ -1265,8 +1351,16 @@ async function run() {
   // =========================================================================
   // Nettoyage
   // =========================================================================
+  etapeCourante = 'résumé et nettoyage';
   console.log('\n--- Résumé ---');
   console.log('tests: ' + (passed + failed) + ', pass: ' + passed + ', fail: ' + failed);
+  for (const c of crashs) {
+    console.log('Processus de rendu arrêté pendant « ' + c.etape + ' » : ' + c.raison + ' (code ' + c.code + ')' +
+      ' — les tests suivants ont tourné sur une page rechargée.');
+    if (process.env.GITHUB_ACTIONS) {
+      console.log('::error title=Harnais UI::Processus de rendu arrêté pendant « ' + c.etape + ' » : ' + c.raison + ' (code ' + c.code + ')');
+    }
+  }
   if (failures.length > 0) {
     console.log('\nÉchecs :');
     for (const f of failures) {
