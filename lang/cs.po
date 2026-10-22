@@ -547,23 +547,23 @@ msgstr "https://mail.dmathilde.fr"
 
 #: index.html
 msgid "Identifiants des connecteurs (partagés)"
-msgstr ""
+msgstr "Přihlašovací údaje konektorů (sdílené)"
 
 #: index.html
 msgid "context7.com"
-msgstr ""
+msgstr "context7.com"
 
 #: index.html
 msgid "login@exemple.fr"
-msgstr ""
+msgstr "login@example.com"
 
 #: index.html
 msgid "Mot de passe"
-msgstr ""
+msgstr "Heslo"
 
 #: index.html
 msgid "Chiffrés par le trousseau du système, partagés entre les profils — les cookies et le 2FA restent propres à chaque profil. Au focus d'un champ de connexion, un menu propose les identifiants du site."
-msgstr ""
+msgstr "Šifrované systémovou klíčenkou a sdílené mezi profily — soubory cookie a 2FA zůstávají samostatné pro každý profil. Když pole pro přihlášení získá fokus, nabídka navrhne přihlašovací údaje webu."
 
 #: assets/app.js
 msgid "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."
@@ -1541,23 +1541,23 @@ msgstr "Statistiky vynulovány"
 
 #: assets/app.js
 msgid "Impossible de charger les identifiants"
-msgstr ""
+msgstr "Přihlašovací údaje nelze načíst"
 
 #: assets/app.js
 msgid "Aucun identifiant enregistré pour l'instant"
-msgstr ""
+msgstr "Zatím nejsou uloženy žádné přihlašovací údaje"
 
 #: assets/app.js
 msgid "Supprimer {login} pour {host}"
-msgstr ""
+msgstr "Smazat {login} pro {host}"
 
 #: assets/app.js
 msgid "Identifiant {login} supprimé pour {host}"
-msgstr ""
+msgstr "Přihlašovací údaj {login} pro {host} smazán"
 
 #: assets/app.js
 msgid "Suppression impossible : identifiant introuvable"
-msgstr ""
+msgstr "Smazání není možné: přihlašovací údaj nenalezen"
 
 #: assets/app.js
 msgid "Suppression impossible : {error}"
@@ -1565,19 +1565,19 @@ msgstr "Nelze smazat: {error}"
 
 #: assets/app.js
 msgid "Identifiant enregistré pour {host} (chiffré, partagé entre profils)"
-msgstr ""
+msgstr "Přihlašovací údaj uložen pro {host} (šifrovaný, sdílený mezi profily)"
 
 #: assets/app.js
 msgid "Chiffrement du système indisponible : identifiant non enregistré"
-msgstr ""
+msgstr "Systémové šifrování není dostupné: přihlašovací údaj nebyl uložen"
 
 #: assets/app.js
 msgid "Enregistrement impossible : hôte, login ou mot de passe invalide"
-msgstr ""
+msgstr "Uložení není možné: neplatný hostitel, login nebo heslo"
 
 #: assets/app.js
 msgid "Enregistrement impossible : {error}"
-msgstr ""
+msgstr "Uložení není možné: {error}"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"

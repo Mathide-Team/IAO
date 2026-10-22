@@ -547,23 +547,23 @@ msgstr "https://mail.dmathilde.fr"
 
 #: index.html
 msgid "Identifiants des connecteurs (partagés)"
-msgstr ""
+msgstr "Dane logowania konektorów (współdzielone)"
 
 #: index.html
 msgid "context7.com"
-msgstr ""
+msgstr "context7.com"
 
 #: index.html
 msgid "login@exemple.fr"
-msgstr ""
+msgstr "login@example.com"
 
 #: index.html
 msgid "Mot de passe"
-msgstr ""
+msgstr "Hasło"
 
 #: index.html
 msgid "Chiffrés par le trousseau du système, partagés entre les profils — les cookies et le 2FA restent propres à chaque profil. Au focus d'un champ de connexion, un menu propose les identifiants du site."
-msgstr ""
+msgstr "Szyfrowane przez systemowy pęk kluczy i współdzielone między profilami — pliki cookie i 2FA pozostają odrębne dla każdego profilu. Gdy pole logowania otrzyma fokus, menu proponuje dane logowania witryny."
 
 #: assets/app.js
 msgid "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."
@@ -1541,23 +1541,23 @@ msgstr "Statystyki wyzerowane"
 
 #: assets/app.js
 msgid "Impossible de charger les identifiants"
-msgstr ""
+msgstr "Nie można wczytać danych logowania"
 
 #: assets/app.js
 msgid "Aucun identifiant enregistré pour l'instant"
-msgstr ""
+msgstr "Nie zapisano jeszcze żadnych danych logowania"
 
 #: assets/app.js
 msgid "Supprimer {login} pour {host}"
-msgstr ""
+msgstr "Usuń {login} dla {host}"
 
 #: assets/app.js
 msgid "Identifiant {login} supprimé pour {host}"
-msgstr ""
+msgstr "Usunięto dane logowania {login} dla {host}"
 
 #: assets/app.js
 msgid "Suppression impossible : identifiant introuvable"
-msgstr ""
+msgstr "Nie można usunąć: nie znaleziono danych logowania"
 
 #: assets/app.js
 msgid "Suppression impossible : {error}"
@@ -1565,19 +1565,19 @@ msgstr "Usunięcie niemożliwe: {error}"
 
 #: assets/app.js
 msgid "Identifiant enregistré pour {host} (chiffré, partagé entre profils)"
-msgstr ""
+msgstr "Zapisano dane logowania dla {host} (zaszyfrowane, współdzielone między profilami)"
 
 #: assets/app.js
 msgid "Chiffrement du système indisponible : identifiant non enregistré"
-msgstr ""
+msgstr "Szyfrowanie systemowe niedostępne: nie zapisano danych logowania"
 
 #: assets/app.js
 msgid "Enregistrement impossible : hôte, login ou mot de passe invalide"
-msgstr ""
+msgstr "Nie można zapisać: nieprawidłowy host, login lub hasło"
 
 #: assets/app.js
 msgid "Enregistrement impossible : {error}"
-msgstr ""
+msgstr "Nie można zapisać: {error}"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"

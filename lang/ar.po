@@ -547,23 +547,23 @@ msgstr "https://mail.dmathilde.fr"
 
 #: index.html
 msgid "Identifiants des connecteurs (partagés)"
-msgstr ""
+msgstr "بيانات اعتماد الموصلات (مشتركة)"
 
 #: index.html
 msgid "context7.com"
-msgstr ""
+msgstr "context7.com"
 
 #: index.html
 msgid "login@exemple.fr"
-msgstr ""
+msgstr "login@example.com"
 
 #: index.html
 msgid "Mot de passe"
-msgstr ""
+msgstr "كلمة المرور"
 
 #: index.html
 msgid "Chiffrés par le trousseau du système, partagés entre les profils — les cookies et le 2FA restent propres à chaque profil. Au focus d'un champ de connexion, un menu propose les identifiants du site."
-msgstr ""
+msgstr "مشفّرة بواسطة سلسلة مفاتيح النظام ومشتركة بين الملفات الشخصية — تبقى ملفات تعريف الارتباط والمصادقة الثنائية خاصة بكل ملف شخصي. عند التركيز على حقل تسجيل الدخول، تقترح قائمة بيانات اعتماد الموقع."
 
 #: assets/app.js
 msgid "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."
@@ -1583,23 +1583,23 @@ msgstr "تمت إعادة تعيين الإحصاءات"
 
 #: assets/app.js
 msgid "Impossible de charger les identifiants"
-msgstr ""
+msgstr "تعذّر تحميل بيانات الاعتماد"
 
 #: assets/app.js
 msgid "Aucun identifiant enregistré pour l'instant"
-msgstr ""
+msgstr "لا توجد بيانات اعتماد محفوظة حتى الآن"
 
 #: assets/app.js
 msgid "Supprimer {login} pour {host}"
-msgstr ""
+msgstr "حذف {login} لـ {host}"
 
 #: assets/app.js
 msgid "Identifiant {login} supprimé pour {host}"
-msgstr ""
+msgstr "تم حذف بيانات الاعتماد {login} لـ {host}"
 
 #: assets/app.js
 msgid "Suppression impossible : identifiant introuvable"
-msgstr ""
+msgstr "تعذّر الحذف: بيانات الاعتماد غير موجودة"
 
 #: assets/app.js
 msgid "Suppression impossible : {error}"
@@ -1607,19 +1607,19 @@ msgstr "تعذّر الحذف: {error}"
 
 #: assets/app.js
 msgid "Identifiant enregistré pour {host} (chiffré, partagé entre profils)"
-msgstr ""
+msgstr "تم حفظ بيانات الاعتماد لـ {host} (مشفّرة، مشتركة بين الملفات الشخصية)"
 
 #: assets/app.js
 msgid "Chiffrement du système indisponible : identifiant non enregistré"
-msgstr ""
+msgstr "تشفير النظام غير متاح: لم يتم حفظ بيانات الاعتماد"
 
 #: assets/app.js
 msgid "Enregistrement impossible : hôte, login ou mot de passe invalide"
-msgstr ""
+msgstr "تعذّر الحفظ: المضيف أو اسم المستخدم أو كلمة المرور غير صالح"
 
 #: assets/app.js
 msgid "Enregistrement impossible : {error}"
-msgstr ""
+msgstr "تعذّر الحفظ: {error}"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"
