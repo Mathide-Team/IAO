@@ -547,23 +547,23 @@ msgstr "https://mail.dmathilde.fr"
 
 #: index.html
 msgid "Identifiants des connecteurs (partagés)"
-msgstr ""
+msgstr "コネクターの認証情報（共有）"
 
 #: index.html
 msgid "context7.com"
-msgstr ""
+msgstr "context7.com"
 
 #: index.html
 msgid "login@exemple.fr"
-msgstr ""
+msgstr "login@example.com"
 
 #: index.html
 msgid "Mot de passe"
-msgstr ""
+msgstr "パスワード"
 
 #: index.html
 msgid "Chiffrés par le trousseau du système, partagés entre les profils — les cookies et le 2FA restent propres à chaque profil. Au focus d'un champ de connexion, un menu propose les identifiants du site."
-msgstr ""
+msgstr "システムのキーリングで暗号化され、プロファイル間で共有されます。Cookie と 2FA は各プロファイルごとに保持されます。ログイン欄にフォーカスすると、メニューにサイトの認証情報が表示されます。"
 
 #: assets/app.js
 msgid "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."
@@ -1513,23 +1513,23 @@ msgstr "統計をリセットしました"
 
 #: assets/app.js
 msgid "Impossible de charger les identifiants"
-msgstr ""
+msgstr "認証情報を読み込めません"
 
 #: assets/app.js
 msgid "Aucun identifiant enregistré pour l'instant"
-msgstr ""
+msgstr "保存された認証情報はまだありません"
 
 #: assets/app.js
 msgid "Supprimer {login} pour {host}"
-msgstr ""
+msgstr "{host} の {login} を削除"
 
 #: assets/app.js
 msgid "Identifiant {login} supprimé pour {host}"
-msgstr ""
+msgstr "{host} の認証情報 {login} を削除しました"
 
 #: assets/app.js
 msgid "Suppression impossible : identifiant introuvable"
-msgstr ""
+msgstr "削除できません：認証情報が見つかりません"
 
 #: assets/app.js
 msgid "Suppression impossible : {error}"
@@ -1537,19 +1537,19 @@ msgstr "削除できません：{error}"
 
 #: assets/app.js
 msgid "Identifiant enregistré pour {host} (chiffré, partagé entre profils)"
-msgstr ""
+msgstr "{host} の認証情報を保存しました（暗号化、プロファイル間で共有）"
 
 #: assets/app.js
 msgid "Chiffrement du système indisponible : identifiant non enregistré"
-msgstr ""
+msgstr "システムの暗号化を利用できません：認証情報は保存されていません"
 
 #: assets/app.js
 msgid "Enregistrement impossible : hôte, login ou mot de passe invalide"
-msgstr ""
+msgstr "保存できません：ホスト、ログイン、またはパスワードが無効です"
 
 #: assets/app.js
 msgid "Enregistrement impossible : {error}"
-msgstr ""
+msgstr "保存できません：{error}"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"

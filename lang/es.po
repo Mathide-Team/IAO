@@ -547,23 +547,23 @@ msgstr "https://mail.dmathilde.fr"
 
 #: index.html
 msgid "Identifiants des connecteurs (partagés)"
-msgstr ""
+msgstr "Credenciales de los conectores (compartidas)"
 
 #: index.html
 msgid "context7.com"
-msgstr ""
+msgstr "context7.com"
 
 #: index.html
 msgid "login@exemple.fr"
-msgstr ""
+msgstr "login@example.com"
 
 #: index.html
 msgid "Mot de passe"
-msgstr ""
+msgstr "Contraseña"
 
 #: index.html
 msgid "Chiffrés par le trousseau du système, partagés entre les profils — les cookies et le 2FA restent propres à chaque profil. Au focus d'un champ de connexion, un menu propose les identifiants du site."
-msgstr ""
+msgstr "Cifradas por el llavero del sistema y compartidas entre los perfiles: las cookies y la 2FA siguen siendo propias de cada perfil. Al enfocar un campo de inicio de sesión, un menú propone las credenciales del sitio."
 
 #: assets/app.js
 msgid "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."
@@ -1527,23 +1527,23 @@ msgstr "Estadísticas restablecidas"
 
 #: assets/app.js
 msgid "Impossible de charger les identifiants"
-msgstr ""
+msgstr "No se pueden cargar las credenciales"
 
 #: assets/app.js
 msgid "Aucun identifiant enregistré pour l'instant"
-msgstr ""
+msgstr "Aún no hay credenciales guardadas"
 
 #: assets/app.js
 msgid "Supprimer {login} pour {host}"
-msgstr ""
+msgstr "Eliminar {login} de {host}"
 
 #: assets/app.js
 msgid "Identifiant {login} supprimé pour {host}"
-msgstr ""
+msgstr "Credencial {login} eliminada de {host}"
 
 #: assets/app.js
 msgid "Suppression impossible : identifiant introuvable"
-msgstr ""
+msgstr "No se puede eliminar: credencial no encontrada"
 
 #: assets/app.js
 msgid "Suppression impossible : {error}"
@@ -1551,19 +1551,19 @@ msgstr "Eliminación imposible: {error}"
 
 #: assets/app.js
 msgid "Identifiant enregistré pour {host} (chiffré, partagé entre profils)"
-msgstr ""
+msgstr "Credencial guardada para {host} (cifrada, compartida entre perfiles)"
 
 #: assets/app.js
 msgid "Chiffrement du système indisponible : identifiant non enregistré"
-msgstr ""
+msgstr "Cifrado del sistema no disponible: credencial no guardada"
 
 #: assets/app.js
 msgid "Enregistrement impossible : hôte, login ou mot de passe invalide"
-msgstr ""
+msgstr "No se puede guardar: host, usuario o contraseña no válidos"
 
 #: assets/app.js
 msgid "Enregistrement impossible : {error}"
-msgstr ""
+msgstr "No se puede guardar: {error}"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"

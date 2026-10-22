@@ -547,23 +547,23 @@ msgstr "https://mail.dmathilde.fr"
 
 #: index.html
 msgid "Identifiants des connecteurs (partagés)"
-msgstr ""
+msgstr "Облікові дані конекторів (спільні)"
 
 #: index.html
 msgid "context7.com"
-msgstr ""
+msgstr "context7.com"
 
 #: index.html
 msgid "login@exemple.fr"
-msgstr ""
+msgstr "login@example.com"
 
 #: index.html
 msgid "Mot de passe"
-msgstr ""
+msgstr "Пароль"
 
 #: index.html
 msgid "Chiffrés par le trousseau du système, partagés entre les profils — les cookies et le 2FA restent propres à chaque profil. Au focus d'un champ de connexion, un menu propose les identifiants du site."
-msgstr ""
+msgstr "Зашифровані системною в'язкою ключів і спільні для всіх профілів — cookie та 2FA залишаються окремими для кожного профілю. Коли поле входу отримує фокус, меню пропонує облікові дані сайту."
 
 #: assets/app.js
 msgid "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."
@@ -1541,23 +1541,23 @@ msgstr "Статистику скинуто"
 
 #: assets/app.js
 msgid "Impossible de charger les identifiants"
-msgstr ""
+msgstr "Не вдається завантажити облікові дані"
 
 #: assets/app.js
 msgid "Aucun identifiant enregistré pour l'instant"
-msgstr ""
+msgstr "Облікові дані ще не збережено"
 
 #: assets/app.js
 msgid "Supprimer {login} pour {host}"
-msgstr ""
+msgstr "Видалити {login} для {host}"
 
 #: assets/app.js
 msgid "Identifiant {login} supprimé pour {host}"
-msgstr ""
+msgstr "Облікові дані {login} для {host} видалено"
 
 #: assets/app.js
 msgid "Suppression impossible : identifiant introuvable"
-msgstr ""
+msgstr "Видалення неможливе: облікові дані не знайдено"
 
 #: assets/app.js
 msgid "Suppression impossible : {error}"
@@ -1565,19 +1565,19 @@ msgstr "Не вдалося видалити: {error}"
 
 #: assets/app.js
 msgid "Identifiant enregistré pour {host} (chiffré, partagé entre profils)"
-msgstr ""
+msgstr "Облікові дані для {host} збережено (зашифровані, спільні для профілів)"
 
 #: assets/app.js
 msgid "Chiffrement du système indisponible : identifiant non enregistré"
-msgstr ""
+msgstr "Системне шифрування недоступне: облікові дані не збережено"
 
 #: assets/app.js
 msgid "Enregistrement impossible : hôte, login ou mot de passe invalide"
-msgstr ""
+msgstr "Збереження неможливе: недійсний хост, логін або пароль"
 
 #: assets/app.js
 msgid "Enregistrement impossible : {error}"
-msgstr ""
+msgstr "Збереження неможливе: {error}"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"

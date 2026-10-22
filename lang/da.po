@@ -547,23 +547,23 @@ msgstr "https://mail.dmathilde.fr"
 
 #: index.html
 msgid "Identifiants des connecteurs (partagés)"
-msgstr ""
+msgstr "Connectorernes loginoplysninger (delte)"
 
 #: index.html
 msgid "context7.com"
-msgstr ""
+msgstr "context7.com"
 
 #: index.html
 msgid "login@exemple.fr"
-msgstr ""
+msgstr "login@example.com"
 
 #: index.html
 msgid "Mot de passe"
-msgstr ""
+msgstr "Adgangskode"
 
 #: index.html
 msgid "Chiffrés par le trousseau du système, partagés entre les profils — les cookies et le 2FA restent propres à chaque profil. Au focus d'un champ de connexion, un menu propose les identifiants du site."
-msgstr ""
+msgstr "Krypteret af systemets nøglering og delt mellem profilerne — cookies og 2FA forbliver adskilt for hver profil. Når et loginfelt får fokus, foreslår en menu webstedets loginoplysninger."
 
 #: assets/app.js
 msgid "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."
@@ -1527,23 +1527,23 @@ msgstr "Statistikken nulstillet"
 
 #: assets/app.js
 msgid "Impossible de charger les identifiants"
-msgstr ""
+msgstr "Kan ikke indlæse loginoplysninger"
 
 #: assets/app.js
 msgid "Aucun identifiant enregistré pour l'instant"
-msgstr ""
+msgstr "Ingen loginoplysninger gemt endnu"
 
 #: assets/app.js
 msgid "Supprimer {login} pour {host}"
-msgstr ""
+msgstr "Slet {login} for {host}"
 
 #: assets/app.js
 msgid "Identifiant {login} supprimé pour {host}"
-msgstr ""
+msgstr "Loginoplysning {login} slettet for {host}"
 
 #: assets/app.js
 msgid "Suppression impossible : identifiant introuvable"
-msgstr ""
+msgstr "Sletning umulig: loginoplysning ikke fundet"
 
 #: assets/app.js
 msgid "Suppression impossible : {error}"
@@ -1551,19 +1551,19 @@ msgstr "Kan ikke slette: {error}"
 
 #: assets/app.js
 msgid "Identifiant enregistré pour {host} (chiffré, partagé entre profils)"
-msgstr ""
+msgstr "Loginoplysning gemt for {host} (krypteret, delt mellem profiler)"
 
 #: assets/app.js
 msgid "Chiffrement du système indisponible : identifiant non enregistré"
-msgstr ""
+msgstr "Systemkryptering utilgængelig: loginoplysning ikke gemt"
 
 #: assets/app.js
 msgid "Enregistrement impossible : hôte, login ou mot de passe invalide"
-msgstr ""
+msgstr "Kan ikke gemme: ugyldig vært, login eller adgangskode"
 
 #: assets/app.js
 msgid "Enregistrement impossible : {error}"
-msgstr ""
+msgstr "Kan ikke gemme: {error}"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"

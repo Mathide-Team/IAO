@@ -547,23 +547,23 @@ msgstr "https://mail.dmathilde.fr"
 
 #: index.html
 msgid "Identifiants des connecteurs (partagés)"
-msgstr ""
+msgstr "Inloggegevens van de connectoren (gedeeld)"
 
 #: index.html
 msgid "context7.com"
-msgstr ""
+msgstr "context7.com"
 
 #: index.html
 msgid "login@exemple.fr"
-msgstr ""
+msgstr "login@example.com"
 
 #: index.html
 msgid "Mot de passe"
-msgstr ""
+msgstr "Wachtwoord"
 
 #: index.html
 msgid "Chiffrés par le trousseau du système, partagés entre les profils — les cookies et le 2FA restent propres à chaque profil. Au focus d'un champ de connexion, un menu propose les identifiants du site."
-msgstr ""
+msgstr "Versleuteld door de systeemsleutelbos en gedeeld tussen profielen — cookies en 2FA blijven per profiel gescheiden. Wanneer een inlogveld focus krijgt, stelt een menu de inloggegevens van de site voor."
 
 #: assets/app.js
 msgid "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."
@@ -1527,23 +1527,23 @@ msgstr "Statistieken op nul gezet"
 
 #: assets/app.js
 msgid "Impossible de charger les identifiants"
-msgstr ""
+msgstr "Kan inloggegevens niet laden"
 
 #: assets/app.js
 msgid "Aucun identifiant enregistré pour l'instant"
-msgstr ""
+msgstr "Nog geen inloggegevens opgeslagen"
 
 #: assets/app.js
 msgid "Supprimer {login} pour {host}"
-msgstr ""
+msgstr "{login} voor {host} verwijderen"
 
 #: assets/app.js
 msgid "Identifiant {login} supprimé pour {host}"
-msgstr ""
+msgstr "Inloggegevens {login} voor {host} verwijderd"
 
 #: assets/app.js
 msgid "Suppression impossible : identifiant introuvable"
-msgstr ""
+msgstr "Verwijderen onmogelijk: inloggegevens niet gevonden"
 
 #: assets/app.js
 msgid "Suppression impossible : {error}"
@@ -1551,19 +1551,19 @@ msgstr "Verwijderen onmogelijk: {error}"
 
 #: assets/app.js
 msgid "Identifiant enregistré pour {host} (chiffré, partagé entre profils)"
-msgstr ""
+msgstr "Inloggegevens opgeslagen voor {host} (versleuteld, gedeeld tussen profielen)"
 
 #: assets/app.js
 msgid "Chiffrement du système indisponible : identifiant non enregistré"
-msgstr ""
+msgstr "Systeemversleuteling niet beschikbaar: inloggegevens niet opgeslagen"
 
 #: assets/app.js
 msgid "Enregistrement impossible : hôte, login ou mot de passe invalide"
-msgstr ""
+msgstr "Opslaan onmogelijk: ongeldige host, login of wachtwoord"
 
 #: assets/app.js
 msgid "Enregistrement impossible : {error}"
-msgstr ""
+msgstr "Opslaan onmogelijk: {error}"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"

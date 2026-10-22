@@ -547,23 +547,23 @@ msgstr "https://mail.dmathilde.fr"
 
 #: index.html
 msgid "Identifiants des connecteurs (partagés)"
-msgstr ""
+msgstr "ข้อมูลเข้าสู่ระบบของตัวเชื่อมต่อ (ใช้ร่วมกัน)"
 
 #: index.html
 msgid "context7.com"
-msgstr ""
+msgstr "context7.com"
 
 #: index.html
 msgid "login@exemple.fr"
-msgstr ""
+msgstr "login@example.com"
 
 #: index.html
 msgid "Mot de passe"
-msgstr ""
+msgstr "รหัสผ่าน"
 
 #: index.html
 msgid "Chiffrés par le trousseau du système, partagés entre les profils — les cookies et le 2FA restent propres à chaque profil. Au focus d'un champ de connexion, un menu propose les identifiants du site."
-msgstr ""
+msgstr "เข้ารหัสด้วยพวงกุญแจของระบบและใช้ร่วมกันระหว่างโปรไฟล์ — คุกกี้และ 2FA ยังคงแยกตามแต่ละโปรไฟล์ เมื่อช่องเข้าสู่ระบบได้รับโฟกัส เมนูจะเสนอข้อมูลเข้าสู่ระบบของเว็บไซต์"
 
 #: assets/app.js
 msgid "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."
@@ -1513,23 +1513,23 @@ msgstr "รีเซ็ตสถิติแล้ว"
 
 #: assets/app.js
 msgid "Impossible de charger les identifiants"
-msgstr ""
+msgstr "ไม่สามารถโหลดข้อมูลเข้าสู่ระบบได้"
 
 #: assets/app.js
 msgid "Aucun identifiant enregistré pour l'instant"
-msgstr ""
+msgstr "ยังไม่มีข้อมูลเข้าสู่ระบบที่บันทึกไว้"
 
 #: assets/app.js
 msgid "Supprimer {login} pour {host}"
-msgstr ""
+msgstr "ลบ {login} สำหรับ {host}"
 
 #: assets/app.js
 msgid "Identifiant {login} supprimé pour {host}"
-msgstr ""
+msgstr "ลบข้อมูลเข้าสู่ระบบ {login} สำหรับ {host} แล้ว"
 
 #: assets/app.js
 msgid "Suppression impossible : identifiant introuvable"
-msgstr ""
+msgstr "ไม่สามารถลบได้: ไม่พบข้อมูลเข้าสู่ระบบ"
 
 #: assets/app.js
 msgid "Suppression impossible : {error}"
@@ -1537,19 +1537,19 @@ msgstr "ลบไม่ได้: {error}"
 
 #: assets/app.js
 msgid "Identifiant enregistré pour {host} (chiffré, partagé entre profils)"
-msgstr ""
+msgstr "บันทึกข้อมูลเข้าสู่ระบบสำหรับ {host} แล้ว (เข้ารหัส ใช้ร่วมกันระหว่างโปรไฟล์)"
 
 #: assets/app.js
 msgid "Chiffrement du système indisponible : identifiant non enregistré"
-msgstr ""
+msgstr "การเข้ารหัสของระบบไม่พร้อมใช้งาน: ไม่ได้บันทึกข้อมูลเข้าสู่ระบบ"
 
 #: assets/app.js
 msgid "Enregistrement impossible : hôte, login ou mot de passe invalide"
-msgstr ""
+msgstr "ไม่สามารถบันทึกได้: โฮสต์ ชื่อผู้ใช้ หรือรหัสผ่านไม่ถูกต้อง"
 
 #: assets/app.js
 msgid "Enregistrement impossible : {error}"
-msgstr ""
+msgstr "ไม่สามารถบันทึกได้: {error}"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"

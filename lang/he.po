@@ -547,23 +547,23 @@ msgstr "https://mail.dmathilde.fr"
 
 #: index.html
 msgid "Identifiants des connecteurs (partagés)"
-msgstr ""
+msgstr "פרטי הכניסה של המחברים (משותפים)"
 
 #: index.html
 msgid "context7.com"
-msgstr ""
+msgstr "context7.com"
 
 #: index.html
 msgid "login@exemple.fr"
-msgstr ""
+msgstr "login@example.com"
 
 #: index.html
 msgid "Mot de passe"
-msgstr ""
+msgstr "סיסמה"
 
 #: index.html
 msgid "Chiffrés par le trousseau du système, partagés entre les profils — les cookies et le 2FA restent propres à chaque profil. Au focus d'un champ de connexion, un menu propose les identifiants du site."
-msgstr ""
+msgstr "מוצפנים על ידי מחזיק המפתחות של המערכת ומשותפים בין הפרופילים — קובצי ה-Cookie והאימות הדו-שלבי נשארים נפרדים לכל פרופיל. כששדה כניסה מקבל מיקוד, תפריט מציע את פרטי הכניסה של האתר."
 
 #: assets/app.js
 msgid "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."
@@ -1527,23 +1527,23 @@ msgstr "הסטטיסטיקות אופסו"
 
 #: assets/app.js
 msgid "Impossible de charger les identifiants"
-msgstr ""
+msgstr "לא ניתן לטעון את פרטי הכניסה"
 
 #: assets/app.js
 msgid "Aucun identifiant enregistré pour l'instant"
-msgstr ""
+msgstr "עדיין לא נשמרו פרטי כניסה"
 
 #: assets/app.js
 msgid "Supprimer {login} pour {host}"
-msgstr ""
+msgstr "מחיקת {login} עבור {host}"
 
 #: assets/app.js
 msgid "Identifiant {login} supprimé pour {host}"
-msgstr ""
+msgstr "פרטי הכניסה {login} נמחקו עבור {host}"
 
 #: assets/app.js
 msgid "Suppression impossible : identifiant introuvable"
-msgstr ""
+msgstr "לא ניתן למחוק: פרטי הכניסה לא נמצאו"
 
 #: assets/app.js
 msgid "Suppression impossible : {error}"
@@ -1551,19 +1551,19 @@ msgstr "לא ניתן למחוק: {error}"
 
 #: assets/app.js
 msgid "Identifiant enregistré pour {host} (chiffré, partagé entre profils)"
-msgstr ""
+msgstr "פרטי הכניסה נשמרו עבור {host} (מוצפנים, משותפים בין פרופילים)"
 
 #: assets/app.js
 msgid "Chiffrement du système indisponible : identifiant non enregistré"
-msgstr ""
+msgstr "הצפנת המערכת אינה זמינה: פרטי הכניסה לא נשמרו"
 
 #: assets/app.js
 msgid "Enregistrement impossible : hôte, login ou mot de passe invalide"
-msgstr ""
+msgstr "לא ניתן לשמור: מארח, שם משתמש או סיסמה לא חוקיים"
 
 #: assets/app.js
 msgid "Enregistrement impossible : {error}"
-msgstr ""
+msgstr "לא ניתן לשמור: {error}"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"

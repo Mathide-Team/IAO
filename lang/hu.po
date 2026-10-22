@@ -547,23 +547,23 @@ msgstr "https://mail.dmathilde.fr"
 
 #: index.html
 msgid "Identifiants des connecteurs (partagés)"
-msgstr ""
+msgstr "Az összekötők hitelesítő adatai (megosztott)"
 
 #: index.html
 msgid "context7.com"
-msgstr ""
+msgstr "context7.com"
 
 #: index.html
 msgid "login@exemple.fr"
-msgstr ""
+msgstr "login@example.com"
 
 #: index.html
 msgid "Mot de passe"
-msgstr ""
+msgstr "Jelszó"
 
 #: index.html
 msgid "Chiffrés par le trousseau du système, partagés entre les profils — les cookies et le 2FA restent propres à chaque profil. Au focus d'un champ de connexion, un menu propose les identifiants du site."
-msgstr ""
+msgstr "A rendszer kulcstartója titkosítja, és a profilok között megosztott — a sütik és a kétlépcsős azonosítás profilonként külön marad. Ha egy bejelentkezési mező fókuszt kap, egy menü felkínálja a webhely hitelesítő adatait."
 
 #: assets/app.js
 msgid "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."
@@ -1527,23 +1527,23 @@ msgstr "Statisztikák nullázva"
 
 #: assets/app.js
 msgid "Impossible de charger les identifiants"
-msgstr ""
+msgstr "A hitelesítő adatok nem tölthetők be"
 
 #: assets/app.js
 msgid "Aucun identifiant enregistré pour l'instant"
-msgstr ""
+msgstr "Még nincs mentett hitelesítő adat"
 
 #: assets/app.js
 msgid "Supprimer {login} pour {host}"
-msgstr ""
+msgstr "{login} törlése ({host})"
 
 #: assets/app.js
 msgid "Identifiant {login} supprimé pour {host}"
-msgstr ""
+msgstr "{login} hitelesítő adat törölve ({host})"
 
 #: assets/app.js
 msgid "Suppression impossible : identifiant introuvable"
-msgstr ""
+msgstr "A törlés nem lehetséges: a hitelesítő adat nem található"
 
 #: assets/app.js
 msgid "Suppression impossible : {error}"
@@ -1551,19 +1551,19 @@ msgstr "A törlés nem lehetséges: {error}"
 
 #: assets/app.js
 msgid "Identifiant enregistré pour {host} (chiffré, partagé entre profils)"
-msgstr ""
+msgstr "Hitelesítő adat mentve: {host} (titkosítva, a profilok között megosztva)"
 
 #: assets/app.js
 msgid "Chiffrement du système indisponible : identifiant non enregistré"
-msgstr ""
+msgstr "A rendszertitkosítás nem érhető el: a hitelesítő adat nincs mentve"
 
 #: assets/app.js
 msgid "Enregistrement impossible : hôte, login ou mot de passe invalide"
-msgstr ""
+msgstr "A mentés nem lehetséges: érvénytelen gazdagép, felhasználónév vagy jelszó"
 
 #: assets/app.js
 msgid "Enregistrement impossible : {error}"
-msgstr ""
+msgstr "A mentés nem lehetséges: {error}"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"

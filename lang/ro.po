@@ -547,23 +547,23 @@ msgstr "https://mail.dmathilde.fr"
 
 #: index.html
 msgid "Identifiants des connecteurs (partagés)"
-msgstr ""
+msgstr "Datele de autentificare ale conectorilor (partajate)"
 
 #: index.html
 msgid "context7.com"
-msgstr ""
+msgstr "context7.com"
 
 #: index.html
 msgid "login@exemple.fr"
-msgstr ""
+msgstr "login@example.com"
 
 #: index.html
 msgid "Mot de passe"
-msgstr ""
+msgstr "Parolă"
 
 #: index.html
 msgid "Chiffrés par le trousseau du système, partagés entre les profils — les cookies et le 2FA restent propres à chaque profil. Au focus d'un champ de connexion, un menu propose les identifiants du site."
-msgstr ""
+msgstr "Criptate de portcheiul sistemului și partajate între profiluri — cookie-urile și 2FA rămân proprii fiecărui profil. Când un câmp de autentificare primește focusul, un meniu propune datele de autentificare ale site-ului."
 
 #: assets/app.js
 msgid "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."
@@ -1541,23 +1541,23 @@ msgstr "Statistici resetate"
 
 #: assets/app.js
 msgid "Impossible de charger les identifiants"
-msgstr ""
+msgstr "Nu se pot încărca datele de autentificare"
 
 #: assets/app.js
 msgid "Aucun identifiant enregistré pour l'instant"
-msgstr ""
+msgstr "Nicio dată de autentificare salvată deocamdată"
 
 #: assets/app.js
 msgid "Supprimer {login} pour {host}"
-msgstr ""
+msgstr "Șterge {login} pentru {host}"
 
 #: assets/app.js
 msgid "Identifiant {login} supprimé pour {host}"
-msgstr ""
+msgstr "Datele {login} au fost șterse pentru {host}"
 
 #: assets/app.js
 msgid "Suppression impossible : identifiant introuvable"
-msgstr ""
+msgstr "Ștergere imposibilă: datele de autentificare nu au fost găsite"
 
 #: assets/app.js
 msgid "Suppression impossible : {error}"
@@ -1565,19 +1565,19 @@ msgstr "Ștergere imposibilă: {error}"
 
 #: assets/app.js
 msgid "Identifiant enregistré pour {host} (chiffré, partagé entre profils)"
-msgstr ""
+msgstr "Date de autentificare salvate pentru {host} (criptate, partajate între profiluri)"
 
 #: assets/app.js
 msgid "Chiffrement du système indisponible : identifiant non enregistré"
-msgstr ""
+msgstr "Criptarea sistemului indisponibilă: datele de autentificare nu au fost salvate"
 
 #: assets/app.js
 msgid "Enregistrement impossible : hôte, login ou mot de passe invalide"
-msgstr ""
+msgstr "Salvare imposibilă: gazdă, login sau parolă nevalide"
 
 #: assets/app.js
 msgid "Enregistrement impossible : {error}"
-msgstr ""
+msgstr "Salvare imposibilă: {error}"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"
