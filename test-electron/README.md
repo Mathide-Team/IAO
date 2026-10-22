@@ -5,6 +5,24 @@ Ces tests exécutent la **vraie application** (main.js + index.html) dans un
 **vrai Chromium/Electron v43**, sous un serveur X virtuel (xvfb) — sans
 affichage, sans accès réseau.
 
+## ui-flows.js — crash du renderer et délais (#283)
+
+Un processus de rendu qui plante laissait `executeJavaScript` sans réponse : le
+harnais finissait sur « TIMEOUT global (180 s) » sans dire pourquoi. Désormais :
+
+- `render-process-gone` sur la fenêtre principale fait échouer **immédiatement**
+  le test en cours (`processus de rendu arrêté : <raison> (code <n>)`) ;
+- chaque test a son délai (60 s, `IAO_UI_DELAI_TEST_MS` pour le changer) ;
+- après un crash, la page est rechargée et les tests restants tournent ; leurs
+  échecs éventuels sont suffixés `[après le crash du renderer pendant « … »]`.
+  Le job reste en échec : un crash n'est jamais masqué ni rejoué ;
+- le résumé liste les crashs (annotation `::error` en CI) et le délai global
+  nomme l'étape en cours et le bilan partiel.
+
+Vérifier le filet lui-même (jamais en CI) :
+`IAO_UI_SIMULER=crash:C8.1 npm run test:electron:ui` (crash forcé au début du
+test C8.1) ou `IAO_UI_SIMULER=blocage:C8.1` (test qui ne se termine jamais).
+
 ## Contrainte forte : fixtures locales uniquement
 
 `docs/PROJECT_CONTEXT.md` (limitations délibérées) interdit tout accès réseau

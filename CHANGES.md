@@ -1,5 +1,23 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issue #283 — harnais UI : crash du renderer détecté au lieu d'un délai global muet (22/10/2026)
+
+### Corrigé
+- **`test-electron/ui-flows.js`** : le run CI 39840036784 (tentative 1) n'avait pas de
+  test en échec ; le **processus de rendu avait planté** au début de C8.1
+  (`crashed`, code 133) et le harnais attendait une page morte jusqu'au délai global
+  (180 s). L'erreur `ERR_NAME_NOT_RESOLVED` sur chat.z.ai citée dans l'issue est
+  attendue : elle vient de C0.3, qui simule une vraie erreur réseau (#185).
+  Désormais : échec immédiat du test en cours au crash (raison + code), délai par test
+  (60 s), rechargement de la page pour exécuter les tests restants (échecs consécutifs
+  étiquetés), résumé et délai global qui nomment l'étape en cours ; annotation `::error`
+  en CI. Le job reste en échec en cas de crash (rien n'est masqué ni rejoué).
+- Simulation du filet (jamais en CI) : `IAO_UI_SIMULER=crash:<test>` / `blocage:<test>`.
+
+### Non résolu
+- La cause du crash lui-même (assertion interne de Chromium, SIGTRAP) n'est pas lisible
+  dans le journal ; elle est désormais signalée précisément si elle se reproduit.
+
 ## Issue #278 — identifiants partagés entre profils, lot 1 : coffre + IPC (22/10/2026)
 
 ### Ajouté
