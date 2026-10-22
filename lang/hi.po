@@ -547,23 +547,23 @@ msgstr "https://mail.dmathilde.fr"
 
 #: index.html
 msgid "Identifiants des connecteurs (partagés)"
-msgstr ""
+msgstr "कनेक्टर के लॉगिन विवरण (साझा)"
 
 #: index.html
 msgid "context7.com"
-msgstr ""
+msgstr "context7.com"
 
 #: index.html
 msgid "login@exemple.fr"
-msgstr ""
+msgstr "login@example.com"
 
 #: index.html
 msgid "Mot de passe"
-msgstr ""
+msgstr "पासवर्ड"
 
 #: index.html
 msgid "Chiffrés par le trousseau du système, partagés entre les profils — les cookies et le 2FA restent propres à chaque profil. Au focus d'un champ de connexion, un menu propose les identifiants du site."
-msgstr ""
+msgstr "सिस्टम कीरिंग द्वारा एन्क्रिप्ट किए गए और प्रोफ़ाइलों के बीच साझा — कुकीज़ और 2FA हर प्रोफ़ाइल के लिए अलग रहते हैं। किसी लॉगिन फ़ील्ड पर फ़ोकस होने पर, एक मेनू साइट के लॉगिन विवरण सुझाता है।"
 
 #: assets/app.js
 msgid "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."
@@ -1527,23 +1527,23 @@ msgstr "आँकड़े रीसेट किए गए"
 
 #: assets/app.js
 msgid "Impossible de charger les identifiants"
-msgstr ""
+msgstr "लॉगिन विवरण लोड नहीं किए जा सके"
 
 #: assets/app.js
 msgid "Aucun identifiant enregistré pour l'instant"
-msgstr ""
+msgstr "अभी तक कोई लॉगिन विवरण सहेजा नहीं गया"
 
 #: assets/app.js
 msgid "Supprimer {login} pour {host}"
-msgstr ""
+msgstr "{host} के लिए {login} हटाएँ"
 
 #: assets/app.js
 msgid "Identifiant {login} supprimé pour {host}"
-msgstr ""
+msgstr "{host} के लिए लॉगिन विवरण {login} हटाया गया"
 
 #: assets/app.js
 msgid "Suppression impossible : identifiant introuvable"
-msgstr ""
+msgstr "हटाना संभव नहीं: लॉगिन विवरण नहीं मिला"
 
 #: assets/app.js
 msgid "Suppression impossible : {error}"
@@ -1551,19 +1551,19 @@ msgstr "हटाना संभव नहीं: {error}"
 
 #: assets/app.js
 msgid "Identifiant enregistré pour {host} (chiffré, partagé entre profils)"
-msgstr ""
+msgstr "{host} के लिए लॉगिन विवरण सहेजा गया (एन्क्रिप्टेड, प्रोफ़ाइलों के बीच साझा)"
 
 #: assets/app.js
 msgid "Chiffrement du système indisponible : identifiant non enregistré"
-msgstr ""
+msgstr "सिस्टम एन्क्रिप्शन उपलब्ध नहीं: लॉगिन विवरण सहेजा नहीं गया"
 
 #: assets/app.js
 msgid "Enregistrement impossible : hôte, login ou mot de passe invalide"
-msgstr ""
+msgstr "सहेजना संभव नहीं: होस्ट, लॉगिन या पासवर्ड अमान्य"
 
 #: assets/app.js
 msgid "Enregistrement impossible : {error}"
-msgstr ""
+msgstr "सहेजना संभव नहीं: {error}"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"

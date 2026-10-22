@@ -547,23 +547,23 @@ msgstr "https://mail.dmathilde.fr"
 
 #: index.html
 msgid "Identifiants des connecteurs (partagés)"
-msgstr ""
+msgstr "Kredensial konektor (dibagikan)"
 
 #: index.html
 msgid "context7.com"
-msgstr ""
+msgstr "context7.com"
 
 #: index.html
 msgid "login@exemple.fr"
-msgstr ""
+msgstr "login@example.com"
 
 #: index.html
 msgid "Mot de passe"
-msgstr ""
+msgstr "Kata sandi"
 
 #: index.html
 msgid "Chiffrés par le trousseau du système, partagés entre les profils — les cookies et le 2FA restent propres à chaque profil. Au focus d'un champ de connexion, un menu propose les identifiants du site."
-msgstr ""
+msgstr "Dienkripsi oleh keyring sistem dan dibagikan antarprofil — cookie dan 2FA tetap terpisah untuk setiap profil. Saat kolom login mendapat fokus, sebuah menu menawarkan kredensial situs."
 
 #: assets/app.js
 msgid "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."
@@ -1513,23 +1513,23 @@ msgstr "Statistik diatur ulang"
 
 #: assets/app.js
 msgid "Impossible de charger les identifiants"
-msgstr ""
+msgstr "Tidak dapat memuat kredensial"
 
 #: assets/app.js
 msgid "Aucun identifiant enregistré pour l'instant"
-msgstr ""
+msgstr "Belum ada kredensial yang disimpan"
 
 #: assets/app.js
 msgid "Supprimer {login} pour {host}"
-msgstr ""
+msgstr "Hapus {login} untuk {host}"
 
 #: assets/app.js
 msgid "Identifiant {login} supprimé pour {host}"
-msgstr ""
+msgstr "Kredensial {login} dihapus untuk {host}"
 
 #: assets/app.js
 msgid "Suppression impossible : identifiant introuvable"
-msgstr ""
+msgstr "Tidak dapat menghapus: kredensial tidak ditemukan"
 
 #: assets/app.js
 msgid "Suppression impossible : {error}"
@@ -1537,19 +1537,19 @@ msgstr "Tidak dapat menghapus: {error}"
 
 #: assets/app.js
 msgid "Identifiant enregistré pour {host} (chiffré, partagé entre profils)"
-msgstr ""
+msgstr "Kredensial disimpan untuk {host} (terenkripsi, dibagikan antarprofil)"
 
 #: assets/app.js
 msgid "Chiffrement du système indisponible : identifiant non enregistré"
-msgstr ""
+msgstr "Enkripsi sistem tidak tersedia: kredensial tidak disimpan"
 
 #: assets/app.js
 msgid "Enregistrement impossible : hôte, login ou mot de passe invalide"
-msgstr ""
+msgstr "Tidak dapat menyimpan: host, login, atau kata sandi tidak valid"
 
 #: assets/app.js
 msgid "Enregistrement impossible : {error}"
-msgstr ""
+msgstr "Tidak dapat menyimpan: {error}"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"

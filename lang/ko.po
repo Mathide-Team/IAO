@@ -547,23 +547,23 @@ msgstr "https://mail.dmathilde.fr"
 
 #: index.html
 msgid "Identifiants des connecteurs (partagés)"
-msgstr ""
+msgstr "커넥터 로그인 정보(공유)"
 
 #: index.html
 msgid "context7.com"
-msgstr ""
+msgstr "context7.com"
 
 #: index.html
 msgid "login@exemple.fr"
-msgstr ""
+msgstr "login@example.com"
 
 #: index.html
 msgid "Mot de passe"
-msgstr ""
+msgstr "비밀번호"
 
 #: index.html
 msgid "Chiffrés par le trousseau du système, partagés entre les profils — les cookies et le 2FA restent propres à chaque profil. Au focus d'un champ de connexion, un menu propose les identifiants du site."
-msgstr ""
+msgstr "시스템 키링으로 암호화되어 프로필 간에 공유됩니다. 쿠키와 2FA는 프로필마다 따로 유지됩니다. 로그인 입력란에 포커스가 가면 메뉴에서 사이트의 로그인 정보를 제안합니다."
 
 #: assets/app.js
 msgid "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."
@@ -1513,23 +1513,23 @@ msgstr "통계가 초기화되었습니다"
 
 #: assets/app.js
 msgid "Impossible de charger les identifiants"
-msgstr ""
+msgstr "로그인 정보를 불러올 수 없습니다"
 
 #: assets/app.js
 msgid "Aucun identifiant enregistré pour l'instant"
-msgstr ""
+msgstr "아직 저장된 로그인 정보가 없습니다"
 
 #: assets/app.js
 msgid "Supprimer {login} pour {host}"
-msgstr ""
+msgstr "{host}의 {login} 삭제"
 
 #: assets/app.js
 msgid "Identifiant {login} supprimé pour {host}"
-msgstr ""
+msgstr "{host}의 로그인 정보 {login}을(를) 삭제했습니다"
 
 #: assets/app.js
 msgid "Suppression impossible : identifiant introuvable"
-msgstr ""
+msgstr "삭제할 수 없음: 로그인 정보를 찾을 수 없습니다"
 
 #: assets/app.js
 msgid "Suppression impossible : {error}"
@@ -1537,19 +1537,19 @@ msgstr "삭제할 수 없음: {error}"
 
 #: assets/app.js
 msgid "Identifiant enregistré pour {host} (chiffré, partagé entre profils)"
-msgstr ""
+msgstr "{host}의 로그인 정보를 저장했습니다(암호화, 프로필 간 공유)"
 
 #: assets/app.js
 msgid "Chiffrement du système indisponible : identifiant non enregistré"
-msgstr ""
+msgstr "시스템 암호화를 사용할 수 없음: 로그인 정보가 저장되지 않았습니다"
 
 #: assets/app.js
 msgid "Enregistrement impossible : hôte, login ou mot de passe invalide"
-msgstr ""
+msgstr "저장할 수 없음: 호스트, 로그인 또는 비밀번호가 올바르지 않습니다"
 
 #: assets/app.js
 msgid "Enregistrement impossible : {error}"
-msgstr ""
+msgstr "저장할 수 없음: {error}"
 
 #: assets/app.js
 msgid "Impossible de charger les réglages"
