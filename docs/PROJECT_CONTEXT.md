@@ -35,6 +35,7 @@ iao/
 ├── lib/
 │   ├── escape-html.js      # escapeHtml() — extrait pour être testable (node --test), chargé aussi par index.html
 │   ├── popup-guard.js      # decidePopup() — politique des popups des webviews (#277), pure, testable
+│   ├── identifiants.js     # IdentifiantsPartages — coffre d'identifiants partagé entre profils (#278, lot 1), chiffré trousseau système
 │   ├── activity-status.js  # compareAccountNames/getAccountActivityStatus/isTabIdle/isAccountAssignable/getAssignableAccounts — lots 16/09 + 18/09/2026
 │   ├── tab-actions.js      # tabsForAccount/buildDisconnectWarning — lot 17/09/2026
 │   ├── file-search.js      # filterFiles/flattenFileTree — lot 18/09/2026 (recherche explorateur)

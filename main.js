@@ -32,6 +32,7 @@ const diag = require('./lib/startup-diagnostics');
 const DEBUG = diag.isDebugEnabled(process.argv, process.env);
 const debugTrace = require('./lib/debug-trace');
 const { CoffreSecrets, registerComptesIPC } = require('./lib/coffre-secrets');
+const { IdentifiantsPartages, registerIdentifiantsIPC } = require('./lib/identifiants');
 const startupStorage = require('./lib/startup-storage');
 const stats = require('./lib/stats');
 const LOG_DIR = path.join(app.getPath('userData'), 'logs');
@@ -487,6 +488,21 @@ registerComptesIPC(ipc, {
   normaliser: normalizeSettings,
   fsPromises,
   ouvrirExterne: shell.openExternal.bind(shell)
+});
+
+// --- Identifiants partagés entre profils (issue #278, lot 1) ---
+// Coffre d'identifiants de connexion (login + mot de passe, chiffrés par le
+// trousseau système) partagé par TOUS les profils, pour ne plus ressaisir les
+// identifiants d'un connecteur dans chaque profil. Les cookies restent par
+// partition (étanchéité conservée) ; le 2FA vit dans la session/le téléphone.
+// Lot 1 : stockage + IPC ; l'UI de gestion et le remplissage automatique des
+// formulaires viendront en lot 2.
+registerIdentifiantsIPC(ipc, {
+  identifiants: new IdentifiantsPartages({
+    fichier: path.join(app.getPath('userData'), 'identifiants.json'),
+    chiffreur: safeStorage,
+    journal: log.bind(null, 'identifiants')
+  })
 });
 
 // --- Internationalisation (issue #51) ---
