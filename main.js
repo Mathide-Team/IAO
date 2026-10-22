@@ -1,9 +1,9 @@
-const { app, BrowserWindow, ipcMain, dialog, shell, session, safeStorage } = require('electron');
+const { app, BrowserWindow, ipcMain, dialog, shell, session, safeStorage, Menu, screen } = require('electron');
 const path = require('path');
 const fs = require('fs');
 const fsPromises = fs.promises;
 
-const { isAllowedPopup } = require('./lib/popup-guard');
+const { decidePopup } = require('./lib/popup-guard');
 const { Scheduler, registerSchedulerIPC } = require('./scheduler');
 const { TachesService, registerTachesIPC } = require('./scheduler/taches-service');
 const schedulerCore = require('./scheduler/core');
@@ -32,7 +32,10 @@ const diag = require('./lib/startup-diagnostics');
 const DEBUG = diag.isDebugEnabled(process.argv, process.env);
 const debugTrace = require('./lib/debug-trace');
 const { CoffreSecrets, registerComptesIPC } = require('./lib/coffre-secrets');
+const { IdentifiantsPartages, registerIdentifiantsIPC } = require('./lib/identifiants');
+const focusIdentifiants = require('./lib/identifiants-focus');
 const startupStorage = require('./lib/startup-storage');
+const stats = require('./lib/stats');
 const LOG_DIR = path.join(app.getPath('userData'), 'logs');
 const LOG_FILE = path.join(LOG_DIR, 'iao.log');
 const LOG_MAX_BYTES = 1024 * 1024;
@@ -93,10 +96,13 @@ if (!gotSingleInstanceLock) {
   });
 }
 
-// ===== Durcissement navigation / popups (chantier B) =====
-// La liste blanche ALLOWED_POPUP_HOSTS et isAllowedPopup() vivent désormais
-// dans lib/popup-guard.js (chantier F) : extraction pure, testable via
-// `node --test` sans lancer Electron. Comportement inchangé.
+// ===== Politique navigation / popups (chantier B, revue issue #277) =====
+// La politique des popups (decidePopup) vit dans lib/popup-guard.js
+// (chantier F) : extraction pure, testable via `node --test` sans lancer
+// Electron. Toute popup web https est acceptée dans l'application (elle
+// hérite des webPreferences sandboxées de l'invité, sans Node) : plus de
+// liste blanche à maintenir, qui renvoyait l'authentification des
+// connecteurs inconnus vers le navigateur système (issue #277).
 
 // N'expose que le host dans les logs : une URL d'auth complète peut contenir des
 // tokens OAuth en query string qu'on n'a pas à écrire dans la console.
@@ -113,18 +119,28 @@ const MAX_EDITABLE_FILE_BYTES = 20 * 1024 * 1024; // 20 Mo
 // incohérent (arrêt brutal, verrous non relâchés). Au démarrage suivant,
 // le service de stockage tente de les supprimer, échoue en boucle et inonde
 // le terminal de « Failed to delete the database: Database IO error ».
-// On supprime le dossier avant que Chromium ne réouvre ses bases : il sera
-// recréé proprement. Les service workers des sites IA se réenregistreront
-// automatiquement à la prochaine visite.
+// On supprime le dossier AVANT createWindow() (aucune ouverture de base
+// plus précoce n'est démontrée) : il sera recréé proprement. Les service
+// workers des sites IA se réenregistreront automatiquement à la prochaine
+// visite.
 function cleanupServiceWorkerStorage() {
-  try {
-    const swDir = path.join(app.getPath('userData'), 'Service Worker');
-    if (fs.existsSync(swDir)) {
-      fs.rmSync(swDir, { recursive: true, force: true });
-      log('demarrage', 'info', 'Dossier Service Worker nettoyé au démarrage (prévention Database IO error).');
-    }
-  } catch (e) {
-    log('demarrage', 'warning', 'Nettoyage Service Worker impossible : ' + e.message);
+  // Piste #184 : chaque partition d'onglet (persist:<profile>) a son propre
+  // dossier Service Worker — on les nettoie TOUS, pas seulement celui de la
+  // fenêtre principale. Les erreurs sont traitées dossier par dossier (un
+  // dossier récalcitrant n'empêche pas les autres) et les liens symboliques
+  // de Partitions/ sont ignorés. La cause exacte des rafales #184 n'est pas
+  // démontrée : c'est une mesure d'atténuation, à valider sur la machine
+  // de #58/#59.
+  // nettoyerDossiersServiceWorker() ne lève jamais (contrat documenté) :
+  // les erreurs sont traitées dossier par dossier à l'intérieur.
+  const resultat = startupStorage.nettoyerDossiersServiceWorker(
+    app.getPath('userData'), fs,
+    (niveau, message) => log('demarrage', niveau, message));
+  for (const dossier of resultat.nettoyés) {
+    const parent = path.basename(path.dirname(dossier));
+    log('demarrage', 'info',
+      'Dossier Service Worker nettoyé au démarrage (atténuation Database IO error) : ' +
+      (parent === path.basename(app.getPath('userData')) ? 'fenêtre principale' : 'partition « ' + parent + ' »') + '.');
   }
 }
 
@@ -136,6 +152,10 @@ function cleanupServiceWorkerStorage() {
 // boîtes de dialogue « Choisir un dossier » du panneau Ordonnanceur.
 const scheduler = new Scheduler(app, session);
 let mainWindow = null;
+
+// Fenêtres filles des webviews (popups d'authentification, #278) : ancre
+// possible du menu des identifiants — sinon, c'est la fenêtre principale.
+const fenetresFilles = new Map();
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -180,11 +200,13 @@ function createWindow() {
   // --- 2. L'hôte ne doit ouvrir AUCUNE nouvelle fenêtre lui-même.
   win.webContents.setWindowOpenHandler(() => ({ action: 'deny' }));
 
-  // --- 3. Les <webview> sont des invités sandboxés (sans nodeIntegration). On
-  // filtre leurs popups : seules les origines connues (services + auth OAuth)
-  // peuvent ouvrir une fenêtre ; tout le reste est refusé. Une popup autorisée
-  // s'ouvre avec les webPreferences de l'invité (donc SANS privilèges Node),
-  // jamais avec ceux de l'hôte.
+  // --- 3. Les <webview> sont des invités sandboxés (sans nodeIntegration).
+  // Leurs popups s'ouvrent avec les webPreferences de l'invité (donc SANS
+  // privilèges Node), jamais avec ceux de l'hôte : aucune origine ne peut y
+  // gagner quoi que ce soit. Toute popup web https est donc acceptée dans
+  // l'application (issue #277 : l'authentification des connecteurs doit
+  // toujours fonctionner, la popup vit dans la session de la webview) ; les
+  // schémas non web sont refusés sans repli vers le navigateur système.
   win.webContents.on('did-attach-webview', (event, guestContents) => {
     guestContents.on('render-process-gone', (_e, details) => {
       log('webview', 'warning', 'onglet ' + hostOf(guestContents.getURL()) + ' arrêté : ' + details.reason);
@@ -202,17 +224,25 @@ function createWindow() {
       }
     });
     guestContents.setWindowOpenHandler(({ url }) => {
-      if (isAllowedPopup(url)) return { action: 'allow' };
-      // Origine hors liste : jamais de fenêtre Electron. Si c'est un lien web
-      // classique, on le confie au navigateur système (aucun privilège Node) ;
-      // sinon (about:, data:, javascript:…) on refuse purement.
-      if (/^https?:\/\//i.test(url)) {
-        shell.openExternal(url);
-        console.warn('[security] popup hors liste -> navigateur système :', hostOf(url));
-      } else {
-        console.warn('[security] popup refusée (schéma non web) :', hostOf(url));
-      }
+      if (decidePopup(url) === 'allow') return { action: 'allow' };
+      // Schéma non web (http:, data:, javascript:, URL illisible) : refus pur.
+      // Jamais de repli vers le navigateur système : la popup d'authentification
+      // doit vivre dans la session de la webview pour fonctionner (#277).
+      console.warn('[security] popup refusée (schéma non web) :', hostOf(url));
       return { action: 'deny' };
+    });
+    // Une fenêtre ouverte par la webview peut elle-même ouvrir des fenêtres :
+    // même politique (webPreferences de l'invité, jamais celles de l'hôte).
+    guestContents.on('did-create-window', (child) => {
+      try {
+        child.webContents.setWindowOpenHandler(({ url }) =>
+          decidePopup(url) === 'allow' ? { action: 'allow' } : { action: 'deny' });
+        // Issue #278, lot 2 : suivi des fenêtres filles (popups d'authentification)
+        // pour pouvoir y ancrer le menu des identifiants.
+        const idEnfant = child.webContents.id;
+        fenetresFilles.set(idEnfant, child);
+        child.on('closed', () => { fenetresFilles.delete(idEnfant); });
+      } catch (_) { /* webContents déjà détruite */ }
     });
     // Ordonnanceur (lot 18/09/2026) : enregistre le webContents de chaque
     // <webview> attachée pour que le scheduler puisse interagir avec Claude.ai
@@ -470,6 +500,47 @@ registerComptesIPC(ipc, {
   ouvrirExterne: shell.openExternal.bind(shell)
 });
 
+// --- Identifiants partagés entre profils (issue #278) ---
+// Coffre d'identifiants de connexion (login + mot de passe, chiffrés par le
+// trousseau système) partagé par TOUS les profils, pour ne plus ressaisir les
+// identifiants d'un connecteur dans chaque profil. Les cookies restent par
+// partition (étanchéité conservée) ; le 2FA vit dans la session/le téléphone.
+// Même instance pour l'IPC (gestion dans les réglages) et le menu du lot 2.
+const identifiantsPartages = new IdentifiantsPartages({
+  fichier: path.join(app.getPath('userData'), 'identifiants.json'),
+  chiffreur: safeStorage,
+  journal: log.bind(null, 'identifiants')
+});
+registerIdentifiantsIPC(ipc, { identifiants: identifiantsPartages });
+
+// --- Issue #278, lot 2 : menu d'identifiants au focus d'un champ de connexion ---
+// lib/identifiants-preload.js est posé sur CHAQUE session (webviews ET popups
+// d'authentification, qui partagent la partition) : au focus d'un champ de
+// connexion il signale le process principal ('iao-identifiants:focus'), qui
+// propose — menu natif ancré à la fenêtre — les identifiants enregistrés pour
+// l'hôte de l'URL RÉELLE du webContents émetteur. Au choix, le mot de passe est
+// déchiffré ICI et envoyé au webContents émetteur uniquement : il ne passe
+// jamais par le renderer de la fenêtre hôte. Jamais de remplissage automatique
+// sans sélection explicite, jamais de champ 2FA, aucune soumission.
+const gestionFocusIdentifiants = focusIdentifiants.creer({
+  identifiants: identifiantsPartages,
+  Menu,
+  journal: log.bind(null, 'identifiants'),
+  canalRemplir: 'iao-identifiants:remplir', // = CANAL_REMPLIR de lib/identifiants-preload.js
+  fenetrePour: (wc) => fenetresFilles.get(wc.id) || mainWindow,
+  pointeur: () => { try { return screen.getCursorScreenPoint(); } catch (_) { return null; } }
+});
+ipcMain.on('iao-identifiants:focus', gestionFocusIdentifiants.surFocus);
+// Le preload est posé sur chaque session créée (l'app crée les partitions des
+// profils à la demande ; les popups héritent de la session de leur webview).
+app.on('session-created', (ses) => {
+  try {
+    ses.setPreloads([path.join(__dirname, 'lib', 'identifiants-preload.js')]);
+  } catch (e) {
+    log('identifiants', 'warning', 'preload de session non posé : ' + (e && e.message));
+  }
+});
+
 // --- Internationalisation (issue #51) ---
 // Catalogue gettext compilé (lang/<locale>/LC_MESSAGES/iao.mo) de la langue
 // demandée (--iao-lang=xx, IAO_LANG, réglage « Langue », langue du système) ;
@@ -517,6 +588,28 @@ registerTachesIPC(ipc, new TachesService({
   heuresCalmes: schedulerCore.isFrenchQuietHours,
   journal: log.bind(null, 'taches')
 }));
+
+// --- Issue #206 : statistiques d'utilisation (local, sans télémétrie) ---
+// <userData>/stats/sessions.jsonl (90 jours) + en-cours.json (sessions ouvertes,
+// récupérées au lancement suivant si IAO a été fermé brutalement).
+const statsStore = stats.creerStore({
+  dossier: path.join(app.getPath('userData'), 'stats'),
+  fs: fsPromises,
+  path
+});
+// Lot 3 : export CSV/JSON (dialogue d'enregistrement ici), remise à zéro.
+stats.registerStatsIPC(ipc, statsStore, {
+  choisirFichier: async (nomParDefaut, format) => {
+    const r = await dialog.showSaveDialog(mainWindow, {
+      title: 'Exporter les statistiques',
+      defaultPath: nomParDefaut,
+      filters: [format === 'json' ? { name: 'JSON', extensions: ['json'] } : { name: 'CSV', extensions: ['csv'] }]
+    });
+    return r.canceled || !r.filePath ? null : r.filePath;
+  }
+});
+// #206 lot 2 : le scheduler note les temps de réponse et quotas atteints.
+scheduler.statsStore = statsStore;
 
 app.whenReady().then(() => {
   // 2e instance (voir « Instance unique ») : ne rien ouvrir, app.quit() est en cours.

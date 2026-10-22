@@ -165,6 +165,8 @@ ajout d'une langue et CI : [docs/i18n.md](docs/i18n.md) (issue #51).
 
 Les mots de passe de messagerie (issue #201) sont dans `secrets.json` de ce dossier, chiffrés par le trousseau du système (DPAPI sous Windows, libsecret/KWallet sous Linux) : ils ne sont pas lisibles sur une autre machine ni par un autre utilisateur.
 
+Les statistiques d'utilisation (issue #206, bouton « graphique » de la barre du haut) sont dans `stats/` de ce dossier : `sessions.jsonl` (une ligne par session d'onglet : profil, service, début, fin, temps actif ; 90 jours conservés) et `en-cours.json` (onglets ouverts, récupérés au lancement suivant si IAO a été fermé brutalement). Elles ne quittent jamais l'ordinateur ; le bouton « Remettre à zéro » de la page (ou la suppression de `stats/`) les efface, et « Exporter CSV / JSON » les enregistre dans un fichier de votre choix.
+
 Ce dossier n'est **pas** supprimé par la désinstallation — effacez-le manuellement pour repartir de zéro.
 
 ## Dépannage au démarrage
@@ -222,7 +224,7 @@ iao/
 ├── install.bat             # Installeur Windows (menu Démarrer, raccourcis, /uninstall) — créé lot 9
 ├── index.html              # HTML pur (CSS extrait vers assets/app.css, JS vers assets/app.js + pre-monaco.js). ~356 lignes.
 ├── main.js                 # Process principal Electron : fenêtre, IPC fichiers, durcissement navigation/popups, ordonnanceur
-├── lib/                    # Fonctions pures extraites (escapeHtml, isAllowedPopup, statuts d'activité, actions d'onglet, recherche, cooldown, claude-adapter, settings) — testées par node --test
+├── lib/                    # Fonctions pures extraites (escapeHtml, politique popups decidePopup, statuts d'activité, actions d'onglet, recherche, cooldown, claude-adapter, settings) — testées par node --test
 ├── scheduler/               # Ordonnanceur IA : registre de jobs, détection des ZIP livrés, reprise par profil, automatisation Claude
 ├── test/                   # Tests unitaires (node --test, 332 tests)
 ├── test-electron/          # Tests d'intégration Electron réels (popups, Continuer, Monaco sous CSP, fumée binaire) — 14 + 3 tests
@@ -270,7 +272,7 @@ Les issues de sécurité sont bienvenues — merci de les signaler de façon res
 
 Projet maintenu en solo, contributions bienvenues — en particulier :
 
-- **Ajouter un service IA** (le pattern est entièrement data-driven) : une entrée dans `SERVICES`, des variables de couleur `--<id>`/`--<id>-dim` + une classe `.svc-<id>`, une fiche `SERVICE_INFO` pour la page d'aide, et si besoin le domaine d'auth dans `ALLOWED_POPUP_HOSTS` (`main.js`). La migration attache automatiquement le nouveau service aux comptes existants.
+- **Ajouter un service IA** (le pattern est entièrement data-driven) : une entrée dans `SERVICES`, des variables de couleur `--<id>`/`--<id>-dim` + une classe `.svc-<id>`, une fiche `SERVICE_INFO` pour la page d'aide, (depuis l'issue #277, toute popup web `https:` est acceptée : plus rien à déclarer pour l'auth). La migration attache automatiquement le nouveau service aux comptes existants.
 - Corrections de bugs, améliorations de performance mesurées, durcissement sécurité (la migration `contextIsolation` est le gros morceau ouvert).
 
 Règles du projet : JS vanilla sans dépendance nouvelle, toute donnée utilisateur passe par `escapeHtml()`, les écritures de comptes passent par `saveAccounts()`, les listes cliquables utilisent la délégation d'événements. Lisez `CLAUDE.md` (règles de contribution) et `docs/PROJECT_CONTEXT.md` avant une contribution non triviale. Fork → branche → pull request.

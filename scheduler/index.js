@@ -47,6 +47,7 @@ const taches = require('./taches.js');
 // se fait l'orchestration CDP/executeJavaScript avec les <webview>.
 const claudeAdapter = require('../lib/claude-adapter');
 const accountsRecovery = require('../lib/accounts-recovery');
+const lectureZip = require('../lib/lecture-zip');
 
 class Scheduler {
   constructor(electronApp, electronSession) {
@@ -573,6 +574,15 @@ class Scheduler {
 
     // Exécuter le job Claude
     try {
+      // #206 lot 2a (durcissement) : la mesure ne doit compter que le NOUVEAU
+      // texte généré. La base de comparaison est capturée AVANT l'envoi —
+      // runClaudeJob INJECTE le prompt, et une réponse rapide peut déjà être
+      // présente à la fin de l'injection : une baseline capturée après
+      // l'envoi ignorerait cette réponse jusqu'au délai maximal.
+      // collectClaudeResponse ne lève jamais (erreurs renvoyées en {error}).
+      var baseAvantEnvoi = await this.collectClaudeResponse(job.profile);
+      var reponseAvantEnvoi = (baseAvantEnvoi && baseAvantEnvoi.ok && baseAvantEnvoi.response) ? baseAvantEnvoi.response : '';
+
       var result = await this.runClaudeJob(job.profile, prompt, sourceZipPath);
       if (result && result.error) {
         // Erreur (quota, sélecteur non trouvé, etc.)
@@ -591,9 +601,17 @@ class Scheduler {
       }
       // Succès de l'injection — attendre la réponse de Claude
       this._logActivity('Job ' + job.id + ' : prompt envoyé à Claude, en attente de la réponse...');
+      var envoyeA = Date.now(); // #206 lot 2 : temps de réponse (envoi -> fin)
 
-      // Poller la réponse pendant max 120 secondes (toutes les 5 s)
-      var response = await this._pollClaudeResponse(job.profile, 120000, 5000);
+      // Poller la réponse (délais injectables via la config pour les tests).
+      var response = await this._pollClaudeResponse(job.profile,
+        this.config.responseTimeoutMs ?? 120000,
+        this.config.responsePollIntervalMs ?? 5000,
+        reponseAvantEnvoi);
+      if (this.statsStore && response && response.ok && response.response) {
+        // #206 lot 2 : mesure locale du temps de réponse (jamais bloquant).
+        this.statsStore.noterReponse({ profil: job.profile, service: 'claude', debut: envoyeA, fin: Date.now() }).catch(() => {});
+      }
       if (response && response.ok && response.response) {
         job.response = response.response.slice(0, 10000);
         job.responseCollectedAt = new Date().toISOString();
@@ -665,15 +683,27 @@ class Scheduler {
 
   // Poll la réponse de Claude à intervalles réguliers.
   // Renvoie { ok: true, response: string } ou { ok: false } si délai dépassé.
-  async _pollClaudeResponse(profile, timeoutMs, intervalMs) {
+  //
+  // #206 lot 2a (durcissement) — une réponse n'est acceptée que si :
+  //   1. elle diffère de la réponse présente avant l'envoi (`baseline`) :
+  //      la même réponse d'un échange précédent ne compte pas ;
+  //   2. la génération est TERMINÉE : le script de collecte signale
+  //      `streaming` via l'attribut data-is-streaming de Claude.ai (présent
+  //      pendant la génération, retiré à la fin). Le texte d'une génération
+  //      en cours croît à chaque lecture et peut dépasser la troncature à
+  //      5 000 caractères du script de collecte : la stabilité textuelle
+  //      seule ne prouverait pas la fin.
+  // Une réponse partielle ne produit donc jamais de mesure : à l'expiration du
+  // délai, rien n'est noté (pas de « temps de réponse réussi »).
+  async _pollClaudeResponse(profile, timeoutMs, intervalMs, baseline) {
     var self = this;
     var start = Date.now();
     while (Date.now() - start < timeoutMs) {
       await new Promise(function(r) { setTimeout(r, intervalMs); });
       try {
         var resp = await self.collectClaudeResponse(profile);
-        if (resp && resp.ok && resp.response) {
-          return resp;
+        if (resp && resp.ok && resp.response && resp.response !== baseline && !resp.streaming) {
+          return resp; // nouveau texte, génération terminée
         }
       } catch (_) { /* continuer à poller */ }
     }
@@ -943,6 +973,8 @@ class Scheduler {
       // Si quota détecté, ne pas lancer
       if (plan.action === 'wait_quota') {
         this._logActivity('Job Claude annulé : quota gratuit épuisé jusqu\'à ' + plan.quotaTime + ' (« ' + profile + ' »).');
+        // #206 lot 2 : statistiques locales — quota atteint (jamais bloquant).
+        if (this.statsStore) this.statsStore.noterQuota({ profil: profile, service: 'claude', date: Date.now() }).catch(() => {});
         return { error: 'quota_exhausted', quotaTime: plan.quotaTime };
       }
 
@@ -1121,71 +1153,21 @@ class Scheduler {
   // cases [ ] / [x] / [~] restantes via core.parseFeaturesMd(). Renvoie
   // { analysis: { done, inProgress, pending, total, complete }, source } ou
   // { error } si le ZIP ne contient pas de FEATURES.md ou ne peut être lu.
-  // L'extraction utilise `unzip` (Linux/Mac) ou PowerShell (Windows) — pas de
-  // nouvelle dépendance npm (invariant 7), on s'appuie sur des outils système.
+  // Lecture en JavaScript pur (lib/lecture-zip.js, issue #275) : le chemin
+  // du ZIP (nom choisi par le service IA) et les noms des entrées ne passent
+  // plus jamais par un shell (`unzip` / PowerShell, injection de commande).
   analyzeCompleteness(jobId) {
-    const { execSync } = require('child_process');
     const job = this._findJob(jobId);
     const target = job.outputZip || job.file_path;
     if (!target) return { error: 'Aucun fichier associé à ce job.' };
     let content = null;
-    const isWin = process.platform === 'win32';
-    // Stratégie 1 : `unzip -p` (Linux/Mac) — cherche FEATURES.md n'importe où
-    // dans l'archive et l'écrit sur stdout.
-    if (!isWin) {
-      try {
-        // -p : extrait vers stdout ; on cherche FEATURES.md (insensible à la casse)
-        // dans toute l'archive. `unzip -l` liste d'abord, puis -p extrait.
-        const listing = execSync('unzip -l "' + target + '"', {
-          timeout: 5000, encoding: 'utf-8', stdio: ['pipe', 'pipe', 'pipe']
-        });
-        // Cherche FEATURES.md (insensible à la casse) avec son chemin complet
-        // dans l'archive. `unzip -l` liste le chemin relatif de chaque fichier.
-        const lines = listing.split('\n');
-        var featuresPath = null;
-        for (var li = 0; li < lines.length; li++) {
-          var lm = lines[li].match(/\s([^\s]*FEATURES\.md)\s*$/i);
-          if (lm) { featuresPath = lm[1]; break; }
-        }
-        if (featuresPath) {
-          content = execSync('unzip -p "' + target + '" "' + featuresPath + '"', {
-            timeout: 5000, encoding: 'utf-8', stdio: ['pipe', 'pipe', 'pipe']
-          });
-        }
-      } catch (e) { /* unzip absent ou ZIP illisible */ }
-    } else {
-      // Stratégie 2 (Windows) : PowerShell Expand-Archive vers un dossier
-      // temporaire, puis lecture du FEATURES.md.
-      // mkdtempSync (et non « 'iao-zip-' + Date.now() ») : dossier UNIQUE. Deux
-      // analyses dans la même milliseconde partageaient le même dossier, et un
-      // FEATURES.md resté d'une analyse précédente (nettoyage raté) était relu
-      // à tort (test intermittent « archive sans FEATURES.md », 30/09/2026).
-      // path.join : chemin correct quel que soit l'OS (tests win32 sur Linux, PR #120).
-      const fs = require('fs');
-      let tmpDir = null;
-      try {
-        tmpDir = fs.mkdtempSync(path.join(require('os').tmpdir(), 'iao-zip-'));
-        execSync('powershell -NoProfile -Command "Expand-Archive -LiteralPath \'' + target + '\' -DestinationPath \'' + tmpDir + '\' -Force"', {
-          timeout: 10000, stdio: ['pipe', 'pipe', 'pipe']
-        });
-        function findFeaturesMd(dir) {
-          const entries = fs.readdirSync(dir, { withFileTypes: true });
-          for (const e of entries) {
-            const full = path.join(dir, e.name);
-            if (e.isFile() && /^FEATURES\.md$/i.test(e.name)) {
-              return fs.readFileSync(full, 'utf-8');
-            }
-            if (e.isDirectory()) {
-              const found = findFeaturesMd(full);
-              if (found) return found;
-            }
-          }
-          return null;
-        }
-        content = findFeaturesMd(tmpDir);
-      } catch (e) { /* PowerShell a échoué */ }
-      // Nettoie le dossier temporaire, y compris si PowerShell a échoué (best-effort).
-      if (tmpDir) { try { fs.rmSync(tmpDir, { recursive: true, force: true }); } catch (_) {} }
+    try {
+      const lu = lectureZip.lireFeaturesMd(target);
+      if (lu) content = lu.contenu;
+    } catch (e) {
+      // Fichier absent, pas un ZIP, archive tronquée ou refusée : la cause
+      // est journalisée (elle était avalée en silence).
+      this._logActivity('Analyse de complétude impossible (' + path.basename(target) + ') : ' + e.message);
     }
     if (!content) return { error: 'Aucun FEATURES.md trouvé dans le ZIP.' };
     const analysis = core.parseFeaturesMd(content);

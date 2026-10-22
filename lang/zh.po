@@ -4,6 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: IAO\n"
 "Report-Msgid-Bugs-To: https://github.com/Mathide-Team/IAO/issues\n"
+"PO-Revision-Date: 2026-10-20 06:46+0000\n"
+"Last-Translator: agent IAO (docker24006) — traduction générée par IA, relecture humaine attendue (issue #51)\n"
+"Language-Team: Mathide-Team <https://github.com/Mathide-Team/IAO>\n"
 "Language: zh\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -12,1208 +15,1893 @@ msgstr ""
 
 #: index.html
 msgid "Rechercher un compte ou une IA..."
-msgstr ""
+msgstr "搜索账户或 AI..."
 
 #: index.html
 msgid "Comptes actifs"
-msgstr ""
+msgstr "活跃账户"
 
 #: index.html
 msgid "IA Disponibles"
-msgstr ""
+msgstr "可用的 AI"
 
 #: index.html
 msgid "Rechercher un compte ou une IA (Ctrl+K)"
-msgstr ""
+msgstr "搜索账户或 AI (Ctrl+K)"
 
 #: index.html
 msgid "Comptes enregistrés"
-msgstr ""
+msgstr "已保存的账户"
 
 #: index.html
 msgid "Tout replier / Tout déplier"
-msgstr ""
+msgstr "全部折叠 / 全部展开"
 
 #: index.html
 msgid "Exporter les comptes (JSON)"
-msgstr ""
+msgstr "导出账户 (JSON)"
 
 #: index.html
 msgid "Importer des comptes (JSON)"
-msgstr ""
+msgstr "导入账户 (JSON)"
 
 #: index.html
 msgid "Ajouter un compte"
-msgstr ""
+msgstr "添加账户"
 
 #: index.html
 msgid "Créer des comptes en série"
-msgstr ""
+msgstr "批量创建账户"
 
 #: index.html
 msgid "Mode debug actif : traces détaillées dans le journal iao.log"
-msgstr ""
+msgstr "调试模式已开启：详细记录写入 iao.log 日志"
 
 #: index.html
 msgid "Masquer les comptes"
-msgstr ""
+msgstr "隐藏账户"
 
 #: index.html
 msgid "Afficher les comptes"
-msgstr ""
+msgstr "显示账户"
 
 #: index.html
 msgid "Explorateur"
-msgstr ""
+msgstr "资源管理器"
 
 #: index.html
 msgid "Éditeur"
-msgstr ""
+msgstr "编辑器"
 
 #: index.html
 msgid "Outils de développement (Ctrl+Maj+I)"
-msgstr ""
+msgstr "开发者工具 (Ctrl+Shift+I)"
 
 #: index.html
 msgid "Redémarrer en mode debug (journal détaillé)"
-msgstr ""
+msgstr "以调试模式重启（详细日志）"
 
 #: index.html
 msgid "Choisir mes 9 IA à portée de main"
-msgstr ""
+msgstr "选择常用的 9 个 AI"
 
 #: index.html
 msgid "Comprendre les IA disponibles"
-msgstr ""
+msgstr "了解可用的 AI"
+
+#: index.html
+msgid "Statistiques d'utilisation"
+msgstr "使用统计"
 
 #: index.html
 msgid "Ordonnanceur IA"
-msgstr ""
+msgstr "AI 调度器"
 
 #: index.html
 msgid "Réglages"
-msgstr ""
+msgstr "设置"
 
 #: index.html
 msgid "Fichiers"
-msgstr ""
+msgstr "文件"
 
 #: index.html
 msgid "Ouvrir un dossier"
-msgstr ""
+msgstr "打开文件夹"
 
 #: index.html
 msgid "Réduire"
-msgstr ""
+msgstr "缩小"
 
 #: index.html
 msgid "Rechercher un fichier..."
-msgstr ""
+msgstr "搜索文件..."
 
 #: index.html
 msgid "Glisser pour redimensionner"
-msgstr ""
+msgstr "拖动以调整大小"
 
 #: index.html
 msgid "Aucun fichier"
-msgstr ""
+msgstr "没有文件"
 
 #: index.html
 msgid "Glisser pour redimensionner l'éditeur"
-msgstr ""
+msgstr "拖动以调整编辑器大小"
 
 #: index.html
 msgid "Aucun onglet ouvert — choisissez un service dans la liste des comptes"
-msgstr ""
+msgstr "没有打开的标签页 — 请在账户列表中选择一个服务"
 
 #: index.html
 msgid "Le profil permet d'isoler les cookies dans Electron."
-msgstr ""
+msgstr "配置文件用于在 Electron 中隔离 Cookie。"
 
 #: index.html
 msgid "Nom du compte"
-msgstr ""
+msgstr "账户名称"
 
 #: index.html
 msgid "Nom du Profil"
-msgstr ""
+msgstr "配置文件名称"
 
 #: index.html
 msgid "Mot de passe de la messagerie"
-msgstr ""
+msgstr "邮箱密码"
 
 #: index.html
 msgid "Afficher le mot de passe"
-msgstr ""
+msgstr "显示密码"
 
 #: index.html
 msgid "Générer un mot de passe"
-msgstr ""
+msgstr "生成密码"
 
 #: index.html
 msgid "Chiffré par le trousseau du système, jamais enregistré en clair. Laisser vide pour ne pas le modifier."
-msgstr ""
+msgstr "由系统钥匙串加密，绝不以明文保存。留空则不修改。"
 
 #: index.html
 msgid "Annuler"
-msgstr ""
+msgstr "取消"
 
 #: index.html
 msgid "Enregistrer"
-msgstr ""
+msgstr "保存"
 
 #: index.html
 msgid "Nombre de comptes"
-msgstr ""
+msgstr "账户数量"
 
 #: index.html
 msgid "Créer"
-msgstr ""
+msgstr "创建"
 
 #: index.html
 msgid "Supprimer le compte"
-msgstr ""
+msgstr "删除账户"
 
 #: index.html
 msgid "Cette action est irréversible."
-msgstr ""
+msgstr "此操作无法撤销。"
 
 #: index.html
 msgid "Supprimer"
-msgstr ""
+msgstr "删除"
 
 #: index.html
 msgid "Importer des comptes"
-msgstr ""
+msgstr "导入账户"
 
 #: index.html
 msgid "Remplacer et importer"
-msgstr ""
+msgstr "替换并导入"
 
 #: index.html
 msgid "Déconnecter le profil"
-msgstr ""
+msgstr "退出配置文件登录"
 
 #: index.html
 msgid "Déconnecter"
-msgstr ""
+msgstr "退出登录"
 
 #: index.html
 msgid "À quoi sert chaque service, et quand l'utiliser."
-msgstr ""
+msgstr "每个服务的用途以及何时使用。"
 
 #: index.html
 msgid "Fermer"
-msgstr ""
+msgstr "关闭"
 
 #: index.html
 msgid "Sélectionnez les 9 services affichés dans l'interface. Les autres restent disponibles dans l'aide."
-msgstr ""
+msgstr "选择界面中显示的 9 个服务。其他服务仍可在帮助中使用。"
 
 #: index.html
 msgid "Détection des ZIP livrés par les onglets IA, reprise par profil."
-msgstr ""
+msgstr "检测 AI 标签页交付的 ZIP 文件，并按配置文件接手处理。"
 
 #: index.html
 msgid "Arrêté"
-msgstr ""
+msgstr "已停止"
 
 #: index.html
 msgid "Démarrer ou arrêter l'ordonnanceur (il ne démarre jamais tout seul)"
-msgstr ""
+msgstr "启动或停止调度器（它从不自行启动）"
 
 #: index.html
 msgid "Démarrer"
-msgstr ""
+msgstr "启动"
 
 #: index.html
 msgid "Ancien ordonnanceur désactivé"
-msgstr ""
+msgstr "旧调度器已停用"
 
 #: index.html
 msgid "La détection des ZIP, les jobs et les projets sont remplacés par les tâches programmables, en cours de développement."
-msgstr ""
+msgstr "ZIP 检测、作业和项目将由正在开发中的可编程任务取代。"
+
+#: index.html
+msgid "Tâches programmables"
+msgstr "可编程任务"
+
+#: index.html
+msgid "Nouvelle tâche"
+msgstr "新建任务"
+
+#: index.html
+msgid "Nom de la tâche"
+msgstr "任务名称"
+
+#: index.html
+msgid "Ex. : rapport quotidien"
+msgstr "例如：每日报告"
+
+#: index.html
+msgid "Comptes"
+msgstr "账户"
+
+#: index.html
+msgid "Tous les comptes avec Claude"
+msgstr "所有拥有 Claude 的账户"
+
+#: index.html
+msgid "Choisir des comptes…"
+msgstr "选择账户…"
+
+#: index.html
+msgid "Répartition"
+msgstr "分配方式"
+
+#: index.html
+msgid "Tous les comptes à chaque exécution"
+msgstr "每次执行使用所有账户"
+
+#: index.html
+msgid "Un compte à la fois (rotation)"
+msgstr "每次一个账户（轮换）"
+
+#: index.html
+msgid "Espacement entre comptes (secondes)"
+msgstr "账户之间的间隔（秒）"
+
+#: index.html
+msgid "Nouvelle session à chaque exécution"
+msgstr "每次执行新建会话"
+
+#: index.html
+msgid "Prompt à envoyer"
+msgstr "要发送的提示词"
+
+#: index.html
+msgid "Ex. : Résume les actualités de la veille"
+msgstr "例如：总结昨天的新闻"
+
+#: index.html
+msgid "Programmation"
+msgstr "计划"
+
+#: index.html
+msgid "Récurrente (tous les N …)"
+msgstr "重复（每 N …）"
+
+#: index.html
+msgid "Une seule fois"
+msgstr "仅一次"
+
+#: index.html
+msgid "Le"
+msgstr "日期"
+
+#: index.html
+msgid "Tous les"
+msgstr "每"
+
+#: index.html
+msgid "minutes"
+msgstr "分钟"
+
+#: index.html
+msgid "heures"
+msgstr "小时"
+
+#: index.html
+msgid "jours"
+msgstr "天"
+
+#: index.html
+msgid "semaines"
+msgstr "周"
+
+#: index.html
+msgid "mois"
+msgstr "个月"
+
+#: index.html
+msgid "À partir du"
+msgstr "起始日期"
+
+#: index.html
+msgid "Tâche active"
+msgstr "任务已启用"
+
+#: index.html
+msgid "Historique"
+msgstr "历史记录"
 
 #: index.html
 msgid "Jobs actifs"
-msgstr ""
+msgstr "活跃作业"
 
 #: index.html
 msgid "En attente"
-msgstr ""
+msgstr "等待中"
 
 #: index.html
 msgid "Livrés aujourd'hui"
-msgstr ""
+msgstr "今日已交付"
 
 #: index.html
 msgid "Jobs simultanés max."
-msgstr ""
+msgstr "最大并发作业数"
 
 #: index.html
 msgid "Délai min. entre automatisations (min)"
-msgstr ""
+msgstr "自动化之间的最短间隔（分钟）"
 
 #: index.html
 msgid "Seuil profil « le plus ancien » (h)"
-msgstr ""
+msgstr "“最旧”配置文件阈值（小时）"
 
 #: index.html
 msgid "Dossiers"
-msgstr ""
+msgstr "文件夹"
 
 #: index.html
 msgid "Téléchargements…"
-msgstr ""
+msgstr "下载…"
 
 #: index.html
 msgid "Livraison…"
-msgstr ""
+msgstr "交付…"
 
 #: index.html
 msgid "Téléchargements :"
-msgstr ""
+msgstr "下载："
 
 #: index.html
 msgid "(dossier de téléchargements du système)"
-msgstr ""
+msgstr "（系统下载文件夹）"
 
 #: index.html
 msgid "Livraison :"
-msgstr ""
+msgstr "交付："
 
 #: index.html
 msgid "(non défini)"
-msgstr ""
+msgstr "（未设置）"
 
 #: index.html
 msgid "Projets & tâches"
-msgstr ""
+msgstr "项目与任务"
 
 #: index.html
 msgid "Jobs"
-msgstr ""
+msgstr "作业"
 
 #: index.html
 msgid "Journal d'activité"
-msgstr ""
+msgstr "活动日志"
 
 #: index.html
 msgid "Confirmation"
-msgstr ""
+msgstr "确认"
 
 #: index.html
 msgid "Confirmer"
-msgstr ""
+msgstr "确认"
+
+#: index.html
+msgid "Mesurées sur cet ordinateur et conservées 90 jours. Rien n'est envoyé."
+msgstr "在本机测量并保留 90 天。不会发送任何数据。"
+
+#: index.html
+msgid "Aujourd'hui"
+msgstr "今天"
+
+#: index.html
+msgid "7 jours"
+msgstr "7 天"
+
+#: index.html
+msgid "30 jours"
+msgstr "30 天"
+
+#: index.html
+msgid "90 jours"
+msgstr "90 天"
+
+#: index.html
+msgid "Remettre à zéro"
+msgstr "重置"
+
+#: index.html
+msgid "Exporter CSV"
+msgstr "导出 CSV"
+
+#: index.html
+msgid "Exporter JSON"
+msgstr "导出 JSON"
 
 #: index.html
 msgid "Préférences de l'application, sauvegardées localement."
-msgstr ""
+msgstr "应用偏好设置，保存在本地。"
 
 #: index.html
 msgid "Taille de police de l'éditeur (px)"
-msgstr ""
+msgstr "编辑器字号 (px)"
 
 #: index.html
 msgid "Thème"
-msgstr ""
+msgstr "主题"
 
 #: index.html
 msgid "Thème du bureau (défaut)"
-msgstr ""
+msgstr "桌面主题（默认）"
 
 #: index.html
 msgid "Clair"
-msgstr ""
+msgstr "浅色"
 
 #: index.html
 msgid "Sombre"
-msgstr ""
+msgstr "深色"
 
 #: index.html
 msgid "Langue"
-msgstr ""
+msgstr "语言"
 
 #: index.html
 msgid "Langue du système (défaut)"
-msgstr ""
+msgstr "系统语言（默认）"
 
 #: index.html
 msgid "Appliquée au prochain démarrage"
-msgstr ""
+msgstr "下次启动时生效"
 
 #: index.html
 msgid "Retour à la ligne (éditeur)"
-msgstr ""
+msgstr "自动换行（编辑器）"
 
 #: index.html
 msgid "Désactivé"
-msgstr ""
+msgstr "关闭"
 
 #: index.html
 msgid "Activé"
-msgstr ""
+msgstr "开启"
 
 #: index.html
 msgid "Colonne fixe"
-msgstr ""
+msgstr "固定列"
 
 #: index.html
 msgid "Confirmer avant de fermer un onglet"
-msgstr ""
+msgstr "关闭标签页前确认"
 
 #: index.html
 msgid "Afficher les fenêtres d'automatisation"
-msgstr ""
+msgstr "显示自动化窗口"
 
 #: index.html
 msgid "Restaurer les onglets ouverts au démarrage"
-msgstr ""
+msgstr "启动时恢复已打开的标签页"
 
 #: index.html
 msgid "Préfixe des adresses e-mail"
-msgstr ""
+msgstr "邮箱地址前缀"
 
 #: index.html
 msgid "docker"
-msgstr ""
+msgstr "docker"
 
 #: index.html
 msgid "Domaine des adresses e-mail"
-msgstr ""
+msgstr "邮箱地址域名"
 
 #: index.html
 msgid "dmathilde.fr"
-msgstr ""
+msgstr "dmathilde.fr"
 
 #: index.html
 msgid "Adresse : préfixe + numéro + @ + domaine (ex. docker239@dmathilde.fr)"
-msgstr ""
+msgstr "地址：前缀 + 编号 + @ + 域名（例如 docker239@dmathilde.fr）"
 
 #: index.html
 msgid "Adresse du webmail (Roundcube)"
-msgstr ""
+msgstr "网页邮箱地址 (Roundcube)"
 
 #: index.html
 msgid "https://mail.dmathilde.fr"
+msgstr "https://mail.dmathilde.fr"
+
+#: index.html
+msgid "Identifiants des connecteurs (partagés)"
+msgstr ""
+
+#: index.html
+msgid "context7.com"
+msgstr ""
+
+#: index.html
+msgid "login@exemple.fr"
+msgstr ""
+
+#: index.html
+msgid "Mot de passe"
+msgstr ""
+
+#: index.html
+msgid "Chiffrés par le trousseau du système, partagés entre les profils — les cookies et le 2FA restent propres à chaque profil. Au focus d'un champ de connexion, un menu propose les identifiants du site."
 msgstr ""
 
 #: assets/app.js
 msgid "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."
-msgstr ""
+msgstr "Anthropic 的对话助手。擅长写作、分析长文档、编程以及需要多步推理的问题。"
 
 #: assets/app.js
 msgid "Plutôt pour du code, des textes longs et soignés, ou des questions complexes qui demandent de la rigueur."
-msgstr ""
+msgstr "更适合代码、篇幅长且讲究的文本，或需要严谨的复杂问题。"
 
 #: assets/app.js
 msgid "L'assistant généraliste d'OpenAI, le plus connu du grand public. Il discute, rédige, résume, génère des images, analyse des fichiers et peut chercher sur le web."
-msgstr ""
+msgstr "OpenAI 的通用助手，大众最熟知。能聊天、写作、总结、生成图片、分析文件，还能联网搜索。"
 
 #: assets/app.js
 msgid "Le couteau suisse du quotidien : brainstorming, questions générales, petites tâches variées."
-msgstr ""
+msgstr "日常的瑞士军刀：头脑风暴、一般问题、各种小任务。"
 
 #: assets/app.js
 msgid "L'assistant IA de Google. Multimodal (texte, images, audio, vidéo), il s'appuie sur la recherche Google et s'intègre aux outils Google (Docs, Gmail, Drive…)."
-msgstr ""
+msgstr "Google 的 AI 助手。多模态（文本、图片、音频、视频），依托 Google 搜索，并与 Google 工具（Docs、Gmail、Drive…）集成。"
 
 #: assets/app.js
 msgid "Plutôt pour analyser des images ou vidéos, ou si vous travaillez déjà dans l'écosystème Google."
-msgstr ""
+msgstr "更适合分析图片或视频，或者您已在 Google 生态中工作。"
 
 #: assets/app.js
 msgid "Le chat de Z.ai, propulsé par les modèles GLM. Gratuit pour l'essentiel, avec un mode agent capable de chercher sur le web et de produire des fichiers (docx, pdf, xlsx)."
-msgstr ""
+msgstr "Z.ai 的聊天服务，由 GLM 模型驱动。基本免费，带有可联网搜索并生成文件（docx、pdf、xlsx）的智能体模式。"
 
 #: assets/app.js
 msgid "Une alternative gratuite solide pour le chat et le code, quand les quotas des autres sont épuisés."
-msgstr ""
+msgstr "当其他服务额度用完时，聊天和代码的可靠免费替代。"
 
 #: assets/app.js
 msgid "Un « moteur de réponse » : il cherche sur le web en direct, synthétise plusieurs sources et cite ses références pour chaque affirmation."
-msgstr ""
+msgstr "一个“答案引擎”：实时联网搜索，综合多个来源，并为每个论断注明出处。"
 
 #: assets/app.js
 msgid "Plutôt pour la recherche d'informations à jour, la veille et la vérification de faits avec sources."
-msgstr ""
+msgstr "更适合查找最新信息、跟踪动态和带来源的事实核查。"
 
 #: assets/app.js
 msgid "L'assistant de xAI (Elon Musk), connecté au réseau X (ex-Twitter). Ton direct, accès au temps réel de X, génération d'images incluse."
-msgstr ""
+msgstr "xAI（埃隆·马斯克）的助手，连接 X 网络（原 Twitter）。语气直接，可实时访问 X，并支持生成图片。"
 
 #: assets/app.js
 msgid "Plutôt pour suivre l'actualité chaude et les tendances via X, ou pour un ton moins formel."
-msgstr ""
+msgstr "更适合通过 X 追踪热点新闻和趋势，或想要不那么正式的语气。"
 
 #: assets/app.js
 msgid "Une plateforme de génération d'images orientée création : illustrations, concept art, assets de jeu vidéo, avec des contrôles fins (styles, modèles, retouche)."
-msgstr ""
+msgstr "面向创作的图片生成平台：插画、概念艺术、游戏素材，并提供精细控制（风格、模型、修图）。"
 
 #: assets/app.js
 msgid "Plutôt pour produire des visuels et illustrations de qualité avec un contrôle précis du style."
-msgstr ""
+msgstr "更适合在精确控制风格的前提下制作高质量视觉和插画。"
 
 #: assets/app.js
 msgid "Un générateur de musique : il compose des chansons complètes (instruments, voix, paroles) à partir d'une simple description texte, dans à peu près tous les genres."
-msgstr ""
+msgstr "音乐生成器：根据简单的文字描述，创作几乎任何风格的完整歌曲（乐器、人声、歌词）。"
 
 #: assets/app.js
 msgid "Plutôt pour créer une musique, un jingle ou une chanson à partir d'un texte ou d'une idée."
-msgstr ""
+msgstr "更适合根据文字或想法创作音乐、广告歌或歌曲。"
 
 #: assets/app.js
 msgid "Un générateur de modèles 3D : il transforme un texte ou une image en objet 3D texturé, avec rigging/animation automatique et export vers les formats standards (GLB, FBX, STL…)."
-msgstr ""
+msgstr "3D 模型生成器：把文字或图片转换为带贴图的 3D 物体，支持自动绑定/动画，并可导出标准格式（GLB、FBX、STL…）。"
 
 #: assets/app.js
 msgid "Plutôt pour créer des assets 3D (jeux, impression 3D, animation) sans savoir modéliser."
-msgstr ""
+msgstr "更适合在不会建模的情况下制作 3D 素材（游戏、3D 打印、动画）。"
 
 #: assets/app.js
 msgid "Le Chat de Mistral AI, éditeur européen (français). Modèles open-weights performants, chat, code et analyse de documents."
-msgstr ""
+msgstr "欧洲（法国）厂商 Mistral AI 的 Le Chat。高性能开放权重模型，支持聊天、代码和文档分析。"
 
 #: assets/app.js
 msgid "Alternative européenne solide pour le chat et le code, avec une bonne maîtrise du français."
-msgstr ""
+msgstr "可靠的欧洲替代方案，适合聊天和代码，法语能力出色。"
 
 #: assets/app.js
 msgid "DeepSeek : assistant IA chinois spécialisé en raisonnement et programmation, particulièrement performant en Python."
-msgstr ""
+msgstr "DeepSeek：中国的 AI 助手，专长推理和编程，Python 表现尤其出色。"
 
 #: assets/app.js
 msgid "Pour du code Python, du raisonnement étape par étape, ou une alternative gratuite à ChatGPT."
-msgstr ""
+msgstr "适合 Python 代码、逐步推理，或作为 ChatGPT 的免费替代。"
 
 #: assets/app.js
 msgid "GitHub Copilot : assistant IA intégré dans VS Code et GitHub. Autocomplétion, chat, génération de tests, explication de code."
-msgstr ""
+msgstr "GitHub Copilot：集成在 VS Code 和 GitHub 中的 AI 助手。自动补全、聊天、生成测试、解释代码。"
 
 #: assets/app.js
 msgid "Pour programmer plus vite dans VS Code ou sur GitHub, avec un modèle IA qui connaît votre codebase."
-msgstr ""
+msgstr "借助了解您代码库的 AI 模型，在 VS Code 或 GitHub 上更快地编程。"
 
 #: assets/app.js
 msgid "Elicit : assistant de recherche scientifique. Trouve des articles, extrait des données, synthétise des études."
-msgstr ""
+msgstr "Elicit：科研助手。查找论文、提取数据、综合研究成果。"
 
 #: assets/app.js
 msgid "Pour la recherche académique, la revue de littérature et l'extraction de données d'articles scientifiques."
-msgstr ""
+msgstr "适合学术研究、文献综述以及从科学论文中提取数据。"
 
 #: assets/app.js
 msgid "NotebookLM de Google : interagissez avec vos propres documents (PDF, texte, audio). Résumés, questions, génération de notes."
-msgstr ""
+msgstr "Google 的 NotebookLM：与您自己的文档（PDF、文本、音频）互动。摘要、提问、生成笔记。"
 
 #: assets/app.js
 msgid "Pour interroger vos documents personnels ou professionnels avec une IA qui cite ses sources."
-msgstr ""
+msgstr "用会注明出处的 AI 查询您的个人或工作文档。"
 
 #: assets/app.js
 msgid "Wolfram Alpha : moteur de calcul symbolique. Mathématiques, physique, chimie, données factuelles, conversions."
-msgstr ""
+msgstr "Wolfram Alpha：符号计算引擎。数学、物理、化学、事实数据、单位换算。"
 
 #: assets/app.js
 msgid "Pour des calculs exacts (mathématiques symboliques), des données chiffrées ou des conversions d'unités."
-msgstr ""
+msgstr "适合精确计算（符号数学）、数值数据或单位换算。"
 
 #: assets/app.js
 msgid "DeepL : traduction automatique de haute qualité, plus naturelle que Google Traduction. Texte et documents entiers."
-msgstr ""
+msgstr "DeepL：高质量机器翻译，比 Google 翻译更自然。支持文本和整份文档。"
 
 #: assets/app.js
 msgid "Pour traduire du texte ou des documents avec un rendu naturel et cohérent."
-msgstr ""
+msgstr "以自然、连贯的效果翻译文本或文档。"
 
 #: assets/app.js
 msgid "Ideogram : génération d'images orientée design. Logos, typographies, affiches, avec un excellent rendu du texte."
-msgstr ""
+msgstr "Ideogram：面向设计的图片生成。标志、字体排印、海报，文字渲染效果出色。"
 
 #: assets/app.js
 msgid "Pour créer des visuels avec du texte lisible (logos, affiches, bannières) ou du design graphique."
-msgstr ""
+msgstr "适合制作带清晰文字的视觉（标志、海报、横幅）或平面设计。"
 
 #: assets/app.js
 msgid "Kling : générateur de vidéos courtes à partir de texte ou d'images. Animations réalistes, crédits gratuits disponibles."
-msgstr ""
+msgstr "Kling：根据文字或图片生成短视频。动画逼真，提供免费额度。"
 
 #: assets/app.js
 msgid "Pour créer des clips vidéo animés à partir d'une description ou d'une image fixe."
-msgstr ""
+msgstr "根据描述或静态图片制作动画视频片段。"
 
 #: assets/app.js
 msgid "Runway : suite d'outils IA pour la vidéo. Génération, édition, effets spéciaux, inpainting vidéo."
-msgstr ""
+msgstr "Runway：面向视频的 AI 工具套件。生成、剪辑、特效、视频修补。"
 
 #: assets/app.js
 msgid "Pour le montage et la création vidéo avancée avec des outils IA intégrés."
-msgstr ""
+msgstr "借助内置 AI 工具进行高级视频剪辑和创作。"
 
 #: assets/app.js
 msgid "Pika : générateur de vidéos courtes et créatives. Animation d'images, effets, transformation de styles."
-msgstr ""
+msgstr "Pika：创意短视频生成器。图片动画、特效、风格转换。"
 
 #: assets/app.js
 msgid "Pour animer des images ou créer des vidéos courtes originales avec des effets IA."
-msgstr ""
+msgstr "让图片动起来，或用 AI 特效制作原创短视频。"
 
 #: assets/app.js
 msgid "Qwen : assistant IA d'Alibaba. Multimodal (texte, images, code), open-source, disponible en plusieurs tailles."
-msgstr ""
+msgstr "Qwen：阿里巴巴的 AI 助手。多模态（文本、图片、代码），开源，提供多种规模。"
 
 #: assets/app.js
 msgid "Alternative gratuite pour le chat, le code et l'analyse d'images, avec un bon support multilingue."
-msgstr ""
+msgstr "聊天、代码和图片分析的免费替代，多语言支持良好。"
 
 #: assets/app.js
 msgid "Impossible d'enregistrer les comptes (stockage plein ?)"
-msgstr ""
+msgstr "无法保存账户（存储空间已满？）"
 
 #: assets/app.js
 msgid "Ctrl+S pour sauvegarder."
-msgstr ""
+msgstr "按 Ctrl+S 保存。"
 
 #: assets/app.js
 msgid "Sélectionnez un fichier pour l'éditer ici."
-msgstr ""
+msgstr "选择一个文件在此编辑。"
 
 #: assets/app.js
 msgid "Éditeur simplifié (Monaco indisponible) — Ctrl+S pour sauvegarder"
-msgstr ""
+msgstr "简化编辑器（Monaco 不可用）— 按 Ctrl+S 保存"
 
 #: assets/app.js
 msgid "Fichier enregistré !"
-msgstr ""
+msgstr "文件已保存！"
 
 #: assets/app.js
 msgid "Erreur d'enregistrement."
-msgstr ""
+msgstr "保存出错。"
 
 #: assets/app.js
 msgid "Aucun compte pour l'instant."
-msgstr ""
+msgstr "暂无账户。"
 
 #: assets/app.js
 msgid "Créer mon premier compte"
-msgstr ""
+msgstr "创建我的第一个账户"
 
 #: assets/app.js
 msgid "Cliquer pour copier l'e-mail"
-msgstr ""
+msgstr "点击复制邮箱"
 
 #: assets/app.js
 msgid "Ouvrir le webmail (adresse copiée)"
-msgstr ""
+msgstr "打开网页邮箱（地址已复制）"
 
 #: assets/app.js
 msgid "Modifier le compte"
-msgstr ""
+msgstr "编辑账户"
 
 #: assets/app.js
-msgid "{available} service(s) hors cooldown sur {total}"
-msgstr ""
+msgid "{available} service hors cooldown sur {total}"
+msgid_plural "{available} services hors cooldown sur {total}"
+msgstr[0] "{total} 个服务中有 {available} 个不在冷却中"
 
 #: assets/app.js
 msgid "Replier / déplier"
-msgstr ""
+msgstr "折叠 / 展开"
 
 #: assets/app.js
 msgid "{service} — {account} déjà ouvert"
-msgstr ""
+msgstr "{service} — {account} 已打开"
 
 #: assets/app.js
 msgid "Recharger l'onglet"
-msgstr ""
+msgstr "重新加载标签页"
 
 #: assets/app.js
 msgid "Revenir à l'accueil de {service}"
-msgstr ""
+msgstr "返回 {service} 首页"
 
 #: assets/app.js
 msgid "Se déconnecter du profil « {profile} »"
-msgstr ""
+msgstr "退出配置文件“{profile}”的登录"
 
 #: assets/app.js
 msgid "{service} ouvert avec {account}"
-msgstr ""
+msgstr "已用 {account} 打开 {service}"
 
 #: assets/app.js
 msgid "Fermer l'onglet"
-msgstr ""
+msgstr "关闭标签页"
 
 #: assets/app.js
 msgid "Fermer l'onglet « {tab} » ? La session web sera libérée."
-msgstr ""
+msgstr "关闭标签页“{tab}”？网页会话将被释放。"
 
 #: assets/app.js
 msgid "Onglet fermé (mémoire libérée)"
-msgstr ""
+msgstr "标签页已关闭（内存已释放）"
 
 #: assets/app.js
 msgid "Retirer l'étoile"
-msgstr ""
+msgstr "取消星标"
 
 #: assets/app.js
 msgid "Étoiler cet onglet"
-msgstr ""
+msgstr "为此标签页加星标"
 
 #: assets/app.js
 msgid "Onglet étoilé"
-msgstr ""
+msgstr "已加星标"
 
 #: assets/app.js
 msgid "Étoile retirée"
-msgstr ""
+msgstr "已取消星标"
 
 #: assets/app.js
 msgid "Échec de la déconnexion du profil"
-msgstr ""
+msgstr "退出配置文件登录失败"
 
 #: assets/app.js
 msgid "Profil « {profile} » déconnecté — session effacée"
-msgstr ""
+msgstr "配置文件“{profile}”已退出登录 — 会话已清除"
 
 #: assets/app.js
 msgid "Aucun fichier trouvé."
-msgstr ""
+msgstr "未找到文件。"
 
 #: assets/app.js
 msgid "Fichier trop volumineux pour l'éditeur : {size} Mo (limite : 20 Mo)."
-msgstr ""
+msgstr "文件太大，无法在编辑器中打开：{size} MB（上限：20 MB）。"
 
 #: assets/app.js
 msgid "Masquer le mot de passe"
-msgstr ""
+msgstr "隐藏密码"
 
 #: assets/app.js
 msgid "Mot de passe non enregistré : le trousseau du système est indisponible"
-msgstr ""
+msgstr "密码未保存：系统钥匙串不可用"
 
 #: assets/app.js
 msgid "Mot de passe non enregistré"
-msgstr ""
+msgstr "密码未保存"
 
 #: assets/app.js
 msgid "C'est quoi ?"
-msgstr ""
+msgstr "这是什么？"
 
 #: assets/app.js
 msgid "Quand l'utiliser ?"
-msgstr ""
+msgstr "何时使用？"
 
 #: assets/app.js
 msgid "Description à venir."
-msgstr ""
+msgstr "描述即将补充。"
 
 #: assets/app.js
 msgid "Maximum {max} services à portée de main"
-msgstr ""
+msgstr "最多 {max} 个常用服务"
 
 #: assets/app.js
 msgid "Sélectionnez au moins 1 service"
-msgstr ""
+msgstr "请至少选择 1 个服务"
 
 #: assets/app.js
 msgid "Services mis à jour ({count}/{max})"
-msgstr ""
+msgstr "服务已更新（{count}/{max}）"
 
 #: assets/app.js
 msgid "Supprimer « {name} » ({email}) ? La session restera stockée sur le disque, mais le compte disparaîtra de la liste."
-msgstr ""
+msgstr "删除“{name}”（{email}）？会话仍保存在磁盘上，但该账户将从列表中消失。"
 
 #: assets/app.js
 msgid "Échec de l'export (écriture impossible)"
-msgstr ""
+msgstr "导出失败（无法写入）"
 
 #: assets/app.js
-msgid "{count} compte(s) exporté(s)"
-msgstr ""
+msgid "{count} compte exporté"
+msgid_plural "{count} comptes exportés"
+msgstr[0] "已导出 {count} 个账户"
 
 #: assets/app.js
 msgid "Export impossible"
-msgstr ""
+msgstr "无法导出"
 
 #: assets/app.js
 msgid "Échec de la lecture du fichier"
-msgstr ""
+msgstr "读取文件失败"
 
 #: assets/app.js
 msgid "Fichier JSON invalide"
-msgstr ""
+msgstr "无效的 JSON 文件"
 
 #: assets/app.js
 msgid "Format invalide : un tableau de comptes est attendu."
-msgstr ""
+msgstr "格式无效：需要账户数组。"
 
 #: assets/app.js
 msgid "Le fichier contient {count} compte(s). L'import REMPLACE entièrement la liste actuelle ({current} compte(s)) — cette action écrase les comptes existants, pas leurs sessions (cookies) déjà enregistrées sur le disque. Continuer ?"
-msgstr ""
+msgstr "文件包含 {count} 个账户。导入将完全替换当前列表（{current} 个账户）— 此操作会覆盖现有账户，但不会覆盖已保存在磁盘上的会话（Cookie）。继续吗？"
 
 #: assets/app.js
 msgid "Import impossible"
-msgstr ""
+msgstr "无法导入"
 
 #: assets/app.js
-msgid "{count} compte(s) importé(s)"
-msgstr ""
+msgid "{count} compte importé"
+msgid_plural "{count} comptes importés"
+msgstr[0] "已导入 {count} 个账户"
 
 #: assets/app.js
 msgid "Échec de l'import : {error}"
-msgstr ""
+msgstr "导入失败：{error}"
 
 #: assets/app.js
 msgid "Compte supprimé"
-msgstr ""
+msgstr "账户已删除"
 
 #: assets/app.js
 msgid "Remplissez tous les champs"
-msgstr ""
+msgstr "请填写所有字段"
 
 #: assets/app.js
 msgid "Ce profil est déjà utilisé par un autre compte (les sessions seraient partagées)."
-msgstr ""
+msgstr "此配置文件已被另一个账户使用（会话将被共享）。"
 
 #: assets/app.js
 msgid "Compte mis à jour"
-msgstr ""
+msgstr "账户已更新"
 
 #: assets/app.js
 msgid "Compte ajouté"
-msgstr ""
+msgstr "账户已添加"
 
 #: assets/app.js
 msgid "Renseignez d'abord le domaine des adresses e-mail dans les réglages"
-msgstr ""
+msgstr "请先在设置中填写邮箱地址的域名"
 
 #: assets/app.js
 msgid "Premier compte : {nom}, {email}. Un mot de passe de messagerie aléatoire est généré pour chacun."
-msgstr ""
+msgstr "第一个账户：{nom}，{email}。将为每个账户生成随机邮箱密码。"
 
 #: assets/app.js
 msgid "Nombre de comptes : de 1 à {max}"
-msgstr ""
+msgstr "账户数量：1 到 {max}"
 
 #: assets/app.js
-msgid "{n} compte(s) créé(s), {m} mot(s) de passe enregistré(s)"
-msgstr ""
+msgid "{comptes}, {motsDePasse}"
+msgstr "{comptes}，{motsDePasse}"
+
+#: assets/app.js
+msgid "{n} compte créé"
+msgid_plural "{n} comptes créés"
+msgstr[0] "已创建 {n} 个账户"
+
+#: assets/app.js
+msgid "{m} mot de passe enregistré"
+msgid_plural "{m} mots de passe enregistrés"
+msgstr[0] "已保存 {m} 个密码"
 
 #: assets/app.js
 msgid "Adresse du webmail non configurée dans les réglages"
-msgstr ""
+msgstr "设置中未配置网页邮箱地址"
 
 #: assets/app.js
 msgid "Ouverture du webmail impossible"
-msgstr ""
+msgstr "无法打开网页邮箱"
 
 #: assets/app.js
 msgid "Copie impossible dans le presse-papiers"
-msgstr ""
+msgstr "无法复制到剪贴板"
 
 #: assets/app.js
 msgid "E-mail copié : {email}"
-msgstr ""
+msgstr "已复制邮箱：{email}"
 
 #: assets/app.js
 msgid "Cooldown terminé"
-msgstr ""
+msgstr "冷却结束"
 
 #: assets/app.js
 msgid "{account} — {service} est de nouveau disponible."
-msgstr ""
+msgstr "{account} — {service} 已重新可用。"
 
 #: assets/app.js
 msgid "{account} — {service} : cooldown terminé"
-msgstr ""
+msgstr "{account} — {service}：冷却结束"
 
 #: assets/app.js
 msgid "Téléchargement…"
-msgstr ""
+msgstr "下载中…"
 
 #: assets/app.js
 msgid "Téléchargé — à traiter"
-msgstr ""
+msgstr "已下载 — 待处理"
 
 #: assets/app.js
 msgid "Aucun profil disponible"
-msgstr ""
+msgstr "没有可用的配置文件"
 
 #: assets/app.js
 msgid "Projet en cours d'analyse"
-msgstr ""
+msgstr "项目分析中"
 
 #: assets/app.js
 msgid "En cours"
-msgstr ""
+msgstr "进行中"
 
 #: assets/app.js
 msgid "En pause"
-msgstr ""
+msgstr "已暂停"
 
 #: assets/app.js
 msgid "Reprise programmée"
-msgstr ""
+msgstr "已计划恢复"
 
 #: assets/app.js
 msgid "Erreur"
-msgstr ""
+msgstr "错误"
 
 #: assets/app.js
 msgid "Livré"
+msgstr "已交付"
+
+#: assets/app.js
+msgid "chaque minute"
+msgid_plural "toutes les {n} minutes"
+msgstr[0] "每 {n} 分钟"
+
+#: assets/app.js
+msgid "chaque jour"
+msgid_plural "tous les {n} jours"
+msgstr[0] "每 {n} 天"
+
+#: assets/app.js
+msgid "chaque semaine"
+msgid_plural "toutes les {n} semaines"
+msgstr[0] "每 {n} 周"
+
+#: assets/app.js
+msgid "chaque mois"
+msgid_plural "tous les {n} mois"
+msgstr[0] "每 {n} 个月"
+
+#: assets/app.js
+msgid "chaque heure"
+msgid_plural "toutes les {n} heures"
+msgstr[0] "每 {n} 小时"
+
+#: assets/app.js
+msgid "Le {date}"
+msgstr "{date}"
+
+#: assets/app.js
+msgid "à partir du {date}"
+msgstr "从 {date} 起"
+
+#: assets/app.js
+msgid "programmation inconnue"
+msgstr "未知计划"
+
+#: assets/app.js
+msgid "{n} compte sélectionné"
+msgid_plural "{n} comptes sélectionnés"
+msgstr[0] "已选择 {n} 个账户"
+
+#: assets/app.js
+msgid "tous les comptes avec Claude"
+msgstr "所有拥有 Claude 的账户"
+
+#: assets/app.js
+msgid "rotation (un compte à la fois)"
+msgstr "轮换（每次一个账户）"
+
+#: assets/app.js
+msgid "tous les comptes, espacement de {n} s"
+msgstr "所有账户，间隔 {n} 秒"
+
+#: assets/app.js
+msgid "tous les comptes en même temps"
+msgstr "所有账户同时"
+
+#: assets/app.js
+msgid "lancée"
+msgstr "已启动"
+
+#: assets/app.js
+msgid "envoyée"
+msgstr "已发送"
+
+#: assets/app.js
+msgid "quota épuisé"
+msgstr "额度用尽"
+
+#: assets/app.js
+msgid "heures calmes"
+msgstr "安静时段"
+
+#: assets/app.js
+msgid "non connecté"
+msgstr "未登录"
+
+#: assets/app.js
+msgid "aucun compte éligible"
+msgstr "没有符合条件的账户"
+
+#: assets/app.js
+msgid "erreur"
+msgstr "错误"
+
+#: assets/app.js
+msgid "Aucune tâche programmée pour l'instant — créez-en une avec « Nouvelle tâche »."
+msgstr "暂无计划任务 — 点击“新建任务”创建一个。"
+
+#: assets/app.js
+msgid "Plus aucune exécution programmée"
+msgstr "没有更多计划执行"
+
+#: assets/app.js
+msgid "Prochaine exécution : {date}"
+msgstr "下次执行：{date}"
+
+#: assets/app.js
+msgid "inactive"
+msgstr "未启用"
+
+#: assets/app.js
+msgid "Activer"
+msgstr "启用"
+
+#: assets/app.js
+msgid "Désactiver"
+msgstr "停用"
+
+#: assets/app.js
+msgid "Exécuter maintenant"
+msgstr "立即执行"
+
+#: assets/app.js
+msgid "Modifier"
+msgstr "编辑"
+
+#: assets/app.js
+msgid "Aucun événement pour l'instant."
+msgstr "暂无事件。"
+
+#: assets/app.js
+msgid "Aucun compte avec le service Claude — la tâche ne pourra pas s'exécuter."
+msgstr "没有带 Claude 服务的账户 — 任务将无法执行。"
+
+#: assets/app.js
+msgid "sans le service Claude"
+msgstr "没有 Claude 服务"
+
+#: assets/app.js
+msgid "compte supprimé"
+msgstr "账户已删除"
+
+#: assets/app.js
+msgid "Le nom est obligatoire."
+msgstr "名称为必填项。"
+
+#: assets/app.js
+msgid "Le prompt est obligatoire."
+msgstr "提示词为必填项。"
+
+#: assets/app.js
+msgid "Comptes : choix invalide."
+msgstr "账户：选择无效。"
+
+#: assets/app.js
+msgid "Sélectionnez au moins un compte."
+msgstr "请至少选择一个账户。"
+
+#: assets/app.js
+msgid "Répartition : choix invalide."
+msgstr "分配方式：选择无效。"
+
+#: assets/app.js
+msgid "Espacement invalide : entre 0 et 86400 secondes."
+msgstr "间隔无效：应在 0 到 86400 秒之间。"
+
+#: assets/app.js
+msgid "Programmation : choix invalide."
+msgstr "计划：选择无效。"
+
+#: assets/app.js
+msgid "Date « Le » invalide."
+msgstr "“日期”无效。"
+
+#: assets/app.js
+msgid "Date « À partir du » invalide."
+msgstr "“起始日期”无效。"
+
+#: assets/app.js
+msgid "« Tous les » doit être un entier supérieur à 0."
+msgstr "“每”必须是大于 0 的整数。"
+
+#: assets/app.js
+msgid "Unité inconnue."
+msgstr "未知单位。"
+
+#: assets/app.js
+msgid "Enregistrement impossible : {erreur}"
+msgstr "无法保存：{erreur}"
+
+#: assets/app.js
+msgid "Le moteur de tâches n'est pas démarré."
+msgstr "任务引擎未启动。"
+
+#: assets/app.js
+msgid "Exécution demandée — le résultat apparaîtra dans l'historique."
+msgstr "已请求执行 — 结果将显示在历史记录中。"
+
+#: assets/app.js
+msgid "Une exécution est déjà en cours — réessayez dans un instant."
+msgstr "已有执行正在进行 — 请稍后重试。"
+
+#: assets/app.js
+msgid "Le service des tâches a refusé l'exécution."
+msgstr "任务服务拒绝了执行。"
+
+#: assets/app.js
+msgid "Tâche introuvable."
+msgstr "找不到任务。"
+
+#: assets/app.js
+msgid "Exécution impossible : {erreur}"
+msgstr "无法执行：{erreur}"
+
+#: assets/app.js
+msgid "Action impossible : {erreur}"
+msgstr "无法操作：{erreur}"
+
+#: assets/app.js
+msgid "Supprimer la tâche"
+msgstr "删除任务"
+
+#: assets/app.js
+msgid "Supprimer « {nom} » ? L'historique est conservé."
+msgstr "删除“{nom}”？历史记录将保留。"
+
+#: assets/app.js
+msgid "Suppression impossible : {erreur}"
+msgstr "无法删除：{erreur}"
+
+#: assets/app.js
+msgid "< 1 min"
+msgstr "< 1 分钟"
+
+#: assets/app.js
+msgid "{h} h {m} min"
+msgstr "{h} 小时 {m} 分钟"
+
+#: assets/app.js
+msgid "{m} min"
+msgstr "{m} 分钟"
+
+#: assets/app.js
+msgid "Temps actif"
+msgstr "活跃时间"
+
+#: assets/app.js
+msgid "Durée ouverte"
+msgstr "打开时长"
+
+#: assets/app.js
+msgid "Sessions"
+msgstr "会话"
+
+#: assets/app.js
+msgid "Dernière utilisation"
+msgstr "最后使用"
+
+#: assets/app.js
+msgid "Part"
+msgstr "占比"
+
+#: assets/app.js
+msgid "Dim"
+msgstr "周日"
+
+#: assets/app.js
+msgid "Jeu"
+msgstr "周四"
+
+#: assets/app.js
+msgid "Lun"
+msgstr "周一"
+
+#: assets/app.js
+msgid "Mar"
+msgstr "周二"
+
+#: assets/app.js
+msgid "Mer"
+msgstr "周三"
+
+#: assets/app.js
+msgid "Sam"
+msgstr "周六"
+
+#: assets/app.js
+msgid "Ven"
+msgstr "周五"
+
+#: assets/app.js
+msgid "{jour} {h} h : {duree}"
+msgstr "{jour} {h} 时：{duree}"
+
+#: assets/app.js
+msgid "Heures de pointe (temps actif)"
+msgstr "高峰时段（活跃时间）"
+
+#: assets/app.js
+msgid "dernière utilisation : {date}"
+msgstr "最后使用：{date}"
+
+#: assets/app.js
+msgid "jamais utilisé depuis le début de la mesure"
+msgstr "自开始统计以来从未使用"
+
+#: assets/app.js
+msgid "Comptes inutilisés sur la période"
+msgstr "本期间未使用的账户"
+
+#: assets/app.js
+msgid "fin {h}"
+msgstr "结束 {h}"
+
+#: assets/app.js
+msgid "Tâches programmables par compte"
+msgstr "按账户统计的可编程任务"
+
+#: assets/app.js
+msgid "Compte"
+msgstr "账户"
+
+#: assets/app.js
+msgid "Envoyées"
+msgstr "已发送"
+
+#: assets/app.js
+msgid "Erreurs"
+msgstr "错误"
+
+#: assets/app.js
+msgid "Quotas"
+msgstr "额度"
+
+#: assets/app.js
+msgid "Dernier quota"
+msgstr "最近一次额度用尽"
+
+#: assets/app.js
+msgid "Exécutions"
+msgstr "执行次数"
+
+#: assets/app.js
+msgid "D'après l'historique des tâches (200 dernières exécutions)."
+msgstr "依据任务历史（最近 200 次执行）。"
+
+#: assets/app.js
+msgid "{h} h"
+msgstr "{h} 时"
+
+#: assets/app.js
+msgid "Évolution du temps actif"
+msgstr "活跃时间趋势"
+
+#: assets/app.js
+msgid "{date} : {duree} actif"
+msgstr "{date}：活跃 {duree}"
+
+#: assets/app.js
+msgid "{s} s"
+msgstr "{s} 秒"
+
+#: assets/app.js
+msgid "Temps de réponse"
+msgstr "响应时间"
+
+#: assets/app.js
+msgid "Service"
+msgstr "服务"
+
+#: assets/app.js
+msgid "Médiane"
+msgstr "中位数"
+
+#: assets/app.js
+msgid "Réponses"
+msgstr "回复数"
+
+#: assets/app.js
+msgid "Plus lente"
+msgstr "最慢"
+
+#: assets/app.js
+msgid "Plus rapide"
+msgstr "最快"
+
+#: assets/app.js
+msgid "Du message envoyé à la fin de la réponse, pour les tâches programmables et les messages envoyés à la main."
+msgstr "从发送消息到回复结束，包括计划任务和手动发送的消息。"
+
+#: assets/app.js
+msgid "Quotas atteints"
+msgstr "已达配额"
+
+#: assets/app.js
+msgid "Fois"
+msgstr "次数"
+
+#: assets/app.js
+msgid "Heure habituelle"
+msgstr "常见时段"
+
+#: assets/app.js
+msgid "Évolution du temps de réponse médian"
+msgstr "响应时间中位数的变化"
+
+#: assets/app.js
+msgid "{date} : médiane {duree}, {n} réponse"
+msgid_plural "{date} : médiane {duree}, {n} réponses"
+msgstr[0] "{date}：中位数 {duree}，{n} 条回复"
+
+#: assets/app.js
+msgid "{n} quota atteint"
+msgid_plural "{n} quotas atteints"
+msgstr[0] "已达配额 {n} 次"
+
+#: assets/app.js
+msgid "Comptes à privilégier pour répartir l'usage : {comptes}"
+msgstr "建议优先使用以分散负载的账户：{comptes}"
+
+#: assets/app.js
+msgid "Comptes souvent bloqués par un quota"
+msgstr "经常因配额受阻的账户"
+
+#: assets/app.js
+msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
+msgstr "此期间没有会话。统计从安装此版本时开始。"
+
+#: assets/app.js
+msgid "{n} jour"
+msgid_plural "{n} jours"
+msgstr[0] "{n} 天"
+
+#: assets/app.js
+msgid "Série en cours (record : {n})"
+msgstr "当前连续天数（纪录：{n}）"
+
+#: assets/app.js
+msgid "Temps de réponse médian"
+msgstr "响应时间中位数"
+
+#: assets/app.js
+msgid "Par compte"
+msgstr "按账户"
+
+#: assets/app.js
+msgid "Par service"
+msgstr "按服务"
+
+#: assets/app.js
+msgid "Statistiques illisibles : {error}"
+msgstr "统计数据无法读取：{error}"
+
+#: assets/app.js
+msgid "Export des statistiques impossible : {error}"
+msgstr "无法导出统计：{error}"
+
+#: assets/app.js
+msgid "Statistiques exportées"
+msgstr "统计已导出"
+
+#: assets/app.js
+msgid "Remettre les statistiques à zéro ?"
+msgstr "要重置统计吗？"
+
+#: assets/app.js
+msgid "Les sessions, temps de réponse et quotas enregistrés sur cet ordinateur seront effacés. L'historique des tâches programmables n'est pas touché. Pensez à exporter avant si besoin."
+msgstr "此电脑上保存的会话、响应时间和配额将被清除。计划任务的历史记录不受影响。如有需要，请先导出。"
+
+#: assets/app.js
+msgid "Remise à zéro impossible : {error}"
+msgstr "无法重置：{error}"
+
+#: assets/app.js
+msgid "Statistiques remises à zéro"
+msgstr "统计已重置"
+
+#: assets/app.js
+msgid "Impossible de charger les identifiants"
 msgstr ""
 
 #: assets/app.js
-msgid "Impossible de charger les réglages"
+msgid "Aucun identifiant enregistré pour l'instant"
 msgstr ""
 
 #: assets/app.js
-msgid "Réglages enregistrés — la langue sera appliquée au prochain démarrage"
+msgid "Supprimer {login} pour {host}"
 msgstr ""
 
 #: assets/app.js
-msgid "Réglages enregistrés"
+msgid "Identifiant {login} supprimé pour {host}"
 msgstr ""
 
 #: assets/app.js
-msgid "Erreur lors de la sauvegarde"
-msgstr ""
-
-#: assets/app.js
-msgid "Erreur lors de la sauvegarde des réglages"
-msgstr ""
-
-#: assets/app.js
-msgid "Arrêter"
-msgstr ""
-
-#: assets/app.js
-msgid "En marche"
-msgstr ""
-
-#: assets/app.js
-msgid "Aucun job pour l'instant — un ZIP téléchargé depuis un onglet IA (ordonnanceur activé) en créera un automatiquement."
-msgstr ""
-
-#: assets/app.js
-msgid "Continuer le projet"
-msgstr ""
-
-#: assets/app.js
-msgid "Marquer livré"
-msgstr ""
-
-#: assets/app.js
-msgid "Pause"
-msgstr ""
-
-#: assets/app.js
-msgid "Reprendre"
-msgstr ""
-
-#: assets/app.js
-msgid "Relancer"
-msgstr ""
-
-#: assets/app.js
-msgid "Ouvrir le ZIP"
-msgstr ""
-
-#: assets/app.js
-msgid "Analyser la complétude"
-msgstr ""
-
-#: assets/app.js
-msgid "service inconnu"
-msgstr ""
-
-#: assets/app.js
-msgid "tentative {n}"
-msgstr ""
-
-#: assets/app.js
-msgid "Aucune activité enregistrée."
-msgstr ""
-
-#: assets/app.js
-msgid "Impossible de modifier l'état de l'ordonnanceur"
-msgstr ""
-
-#: assets/app.js
-msgid "Configuration non enregistrée"
-msgstr ""
-
-#: assets/app.js
-msgid "Sélection du dossier impossible"
-msgstr ""
-
-#: assets/app.js
-msgid "Projet terminé : {done}/{total} tâches faites, 0 restante."
-msgstr ""
-
-#: assets/app.js
-msgid "{pending} à faire, {inProgress} en cours, {done} faite(s) sur {total} au total."
-msgstr ""
-
-#: assets/app.js
-msgid "Analyse impossible : {error}"
-msgstr ""
-
-#: assets/app.js
-msgid "Action impossible : {error}"
-msgstr ""
-
-#: assets/app.js
-msgid "Aucun projet pour l'instant."
-msgstr ""
-
-#: assets/app.js
-msgid "Créer un projet"
-msgstr ""
-
-#: assets/app.js
-msgid "Assignée"
-msgstr ""
-
-#: assets/app.js
-msgid "Terminée"
-msgstr ""
-
-#: assets/app.js
-msgid "Échouée"
-msgstr ""
-
-#: assets/app.js
-msgid "Lancer"
-msgstr ""
-
-#: assets/app.js
-msgid "Résultat"
-msgstr ""
-
-#: assets/app.js
-msgid "Aucune tâche."
-msgstr ""
-
-#: assets/app.js
-msgid "Tous les comptes"
-msgstr ""
-
-#: assets/app.js
-msgid "Comptes autorisés :"
-msgstr ""
-
-#: assets/app.js
-msgid "{count} tâche(s)"
-msgstr ""
-
-#: assets/app.js
-msgid "Nouvelle tâche"
-msgstr ""
-
-#: assets/app.js
-msgid "Assigner"
-msgstr ""
-
-#: assets/app.js
-msgid "Diagnostic Claude : {error}"
-msgstr ""
-
-#: assets/app.js
-msgid "« Continuer »"
-msgstr ""
-
-#: assets/app.js
-msgid "« Télécharger »"
-msgstr ""
-
-#: assets/app.js
-msgid "« Nouveau »"
-msgstr ""
-
-#: assets/app.js
-msgid "zone de chat"
-msgstr ""
-
-#: assets/app.js
-msgid "envoi de fichier"
-msgstr ""
-
-#: assets/app.js
-msgid "{count} popup(s)"
-msgstr ""
-
-#: assets/app.js
-msgid "Claude (« {profile} ») : {details}"
-msgstr ""
-
-#: assets/app.js
-msgid "aucun élément détecté"
-msgstr ""
-
-#: assets/app.js
-msgid "Diagnostic impossible : {error}"
-msgstr ""
-
-#: assets/app.js
-msgid "Quota gratuit épuisé jusqu'à {time} pour ce profil."
-msgstr ""
-
-#: assets/app.js
-msgid "Job Claude échoué : {error}"
-msgstr ""
-
-#: assets/app.js
-msgid "Prompt envoyé à Claude via {method} (« {profile} »)"
-msgstr ""
-
-#: assets/app.js
-msgid "Job Claude impossible : {error}"
-msgstr ""
-
-#: assets/app.js
-msgid "Collecte impossible : {error}"
-msgstr ""
-
-#: assets/app.js
-msgid "Réponse collectée : {count} caractères (« {profile} »)"
-msgstr ""
-
-#: assets/app.js
-msgid "Aucune réponse trouvée pour le moment."
-msgstr ""
-
-#: assets/app.js
-msgid "Nom du projet :"
-msgstr ""
-
-#: assets/app.js
-msgid "Projet {n}"
-msgstr ""
-
-#: assets/app.js
-msgid "Projet « {name} » créé"
-msgstr ""
-
-#: assets/app.js
-msgid "Création impossible : {error}"
-msgstr ""
-
-#: assets/app.js
-msgid "Projet supprimé"
+msgid "Suppression impossible : identifiant introuvable"
 msgstr ""
 
 #: assets/app.js
 msgid "Suppression impossible : {error}"
+msgstr "无法删除：{error}"
+
+#: assets/app.js
+msgid "Identifiant enregistré pour {host} (chiffré, partagé entre profils)"
 msgstr ""
+
+#: assets/app.js
+msgid "Chiffrement du système indisponible : identifiant non enregistré"
+msgstr ""
+
+#: assets/app.js
+msgid "Enregistrement impossible : hôte, login ou mot de passe invalide"
+msgstr ""
+
+#: assets/app.js
+msgid "Enregistrement impossible : {error}"
+msgstr ""
+
+#: assets/app.js
+msgid "Impossible de charger les réglages"
+msgstr "无法加载设置"
+
+#: assets/app.js
+msgid "Réglages enregistrés — la langue sera appliquée au prochain démarrage"
+msgstr "设置已保存 — 语言将在下次启动时生效"
+
+#: assets/app.js
+msgid "Réglages enregistrés"
+msgstr "设置已保存"
+
+#: assets/app.js
+msgid "Erreur lors de la sauvegarde"
+msgstr "保存时出错"
+
+#: assets/app.js
+msgid "Erreur lors de la sauvegarde des réglages"
+msgstr "保存设置时出错"
+
+#: assets/app.js
+msgid "Tâches programmables : envoyez un prompt à Claude à date fixe ou périodiquement."
+msgstr "可编程任务：在指定时间或定期向 Claude 发送提示词。"
+
+#: assets/app.js
+msgid "Arrêter"
+msgstr "停止"
+
+#: assets/app.js
+msgid "En marche"
+msgstr "运行中"
+
+#: assets/app.js
+msgid "Aucun job pour l'instant — un ZIP téléchargé depuis un onglet IA (ordonnanceur activé) en créera un automatiquement."
+msgstr "暂无作业 — 从 AI 标签页下载的 ZIP（调度器开启时）会自动创建作业。"
+
+#: assets/app.js
+msgid "Continuer le projet"
+msgstr "继续项目"
+
+#: assets/app.js
+msgid "Marquer livré"
+msgstr "标记为已交付"
+
+#: assets/app.js
+msgid "Pause"
+msgstr "暂停"
+
+#: assets/app.js
+msgid "Reprendre"
+msgstr "继续"
+
+#: assets/app.js
+msgid "Relancer"
+msgstr "重新运行"
+
+#: assets/app.js
+msgid "Ouvrir le ZIP"
+msgstr "打开 ZIP"
+
+#: assets/app.js
+msgid "Analyser la complétude"
+msgstr "分析完整性"
+
+#: assets/app.js
+msgid "service inconnu"
+msgstr "未知服务"
+
+#: assets/app.js
+msgid "tentative {n}"
+msgstr "第 {n} 次尝试"
+
+#: assets/app.js
+msgid "Aucune activité enregistrée."
+msgstr "没有记录的活动。"
+
+#: assets/app.js
+msgid "Impossible de modifier l'état de l'ordonnanceur"
+msgstr "无法更改调度器状态"
+
+#: assets/app.js
+msgid "Configuration non enregistrée"
+msgstr "配置未保存"
+
+#: assets/app.js
+msgid "Sélection du dossier impossible"
+msgstr "无法选择文件夹"
+
+#: assets/app.js
+msgid "Projet terminé : {done}/{total} tâches faites, 0 restante."
+msgstr "项目完成：已完成 {done}/{total} 项任务，剩余 0 项。"
+
+#: assets/app.js
+msgid "{pending} à faire, {inProgress} en cours, {done} faite(s) sur {total} au total."
+msgstr "待办 {pending}，进行中 {inProgress}，已完成 {done}，共 {total}。"
+
+#: assets/app.js
+msgid "Analyse impossible : {error}"
+msgstr "无法分析：{error}"
+
+#: assets/app.js
+msgid "Action impossible : {error}"
+msgstr "无法操作：{error}"
+
+#: assets/app.js
+msgid "Aucun projet pour l'instant."
+msgstr "暂无项目。"
+
+#: assets/app.js
+msgid "Créer un projet"
+msgstr "创建项目"
+
+#: assets/app.js
+msgid "Assignée"
+msgstr "已分配"
+
+#: assets/app.js
+msgid "Terminée"
+msgstr "已完成"
+
+#: assets/app.js
+msgid "Échouée"
+msgstr "已失败"
+
+#: assets/app.js
+msgid "Lancer"
+msgstr "启动"
+
+#: assets/app.js
+msgid "Résultat"
+msgstr "结果"
+
+#: assets/app.js
+msgid "Aucune tâche."
+msgstr "没有任务。"
+
+#: assets/app.js
+msgid "Tous les comptes"
+msgstr "所有账户"
+
+#: assets/app.js
+msgid "Comptes autorisés :"
+msgstr "允许的账户："
+
+#: assets/app.js
+msgid "{count} tâche"
+msgid_plural "{count} tâches"
+msgstr[0] "{count} 个任务"
+
+#: assets/app.js
+msgid "Assigner"
+msgstr "分配"
+
+#: assets/app.js
+msgid "Diagnostic Claude : {error}"
+msgstr "Claude 诊断：{error}"
+
+#: assets/app.js
+msgid "« Continuer »"
+msgstr "“继续”"
+
+#: assets/app.js
+msgid "« Télécharger »"
+msgstr "“下载”"
+
+#: assets/app.js
+msgid "« Nouveau »"
+msgstr "“新建”"
+
+#: assets/app.js
+msgid "zone de chat"
+msgstr "聊天区"
+
+#: assets/app.js
+msgid "envoi de fichier"
+msgstr "文件上传"
+
+#: assets/app.js
+msgid "{count} popup"
+msgid_plural "{count} popups"
+msgstr[0] "{count} 个弹出窗口"
+
+#: assets/app.js
+msgid "Claude (« {profile} ») : {details}"
+msgstr "Claude（“{profile}”）：{details}"
+
+#: assets/app.js
+msgid "aucun élément détecté"
+msgstr "未检测到任何元素"
+
+#: assets/app.js
+msgid "Diagnostic impossible : {error}"
+msgstr "无法诊断：{error}"
+
+#: assets/app.js
+msgid "Quota gratuit épuisé jusqu'à {time} pour ce profil."
+msgstr "此配置文件的免费额度已用完，直到 {time}。"
+
+#: assets/app.js
+msgid "Job Claude échoué : {error}"
+msgstr "Claude 作业失败：{error}"
+
+#: assets/app.js
+msgid "Prompt envoyé à Claude via {method} (« {profile} »)"
+msgstr "已通过 {method} 向 Claude 发送提示词（“{profile}”）"
+
+#: assets/app.js
+msgid "Job Claude impossible : {error}"
+msgstr "无法执行 Claude 作业：{error}"
+
+#: assets/app.js
+msgid "Collecte impossible : {error}"
+msgstr "无法收集：{error}"
+
+#: assets/app.js
+msgid "Réponse collectée : {count} caractères (« {profile} »)"
+msgstr "已收集回复：{count} 个字符（“{profile}”）"
+
+#: assets/app.js
+msgid "Aucune réponse trouvée pour le moment."
+msgstr "暂未找到回复。"
+
+#: assets/app.js
+msgid "Nom du projet :"
+msgstr "项目名称："
+
+#: assets/app.js
+msgid "Projet {n}"
+msgstr "项目 {n}"
+
+#: assets/app.js
+msgid "Projet « {name} » créé"
+msgstr "已创建项目“{name}”"
+
+#: assets/app.js
+msgid "Création impossible : {error}"
+msgstr "无法创建：{error}"
+
+#: assets/app.js
+msgid "Projet supprimé"
+msgstr "项目已删除"
 
 #: assets/app.js
 msgid "Prompt de la tâche :"
-msgstr ""
+msgstr "任务提示词："
 
 #: assets/app.js
 msgid "Tâche créée dans le projet"
-msgstr ""
+msgstr "已在项目中创建任务"
 
 #: assets/app.js
 msgid "Aucun compte vert disponible pour ce projet."
-msgstr ""
+msgstr "此项目没有可用的绿色账户。"
 
 #: assets/app.js
 msgid "Comptes verts disponibles :"
-msgstr ""
+msgstr "可用的绿色账户："
 
 #: assets/app.js
 msgid "Numéro du compte :"
-msgstr ""
+msgstr "账户编号："
 
 #: assets/app.js
 msgid "Choix invalide"
-msgstr ""
+msgstr "选择无效"
 
 #: assets/app.js
 msgid "Aucune tâche dans ce projet."
-msgstr ""
+msgstr "此项目中没有任务。"
 
 #: assets/app.js
 msgid "Numéro de la tâche :"
-msgstr ""
+msgstr "任务编号："
 
 #: assets/app.js
 msgid "Tâches du projet :"
-msgstr ""
+msgstr "项目任务："
 
 #: assets/app.js
 msgid "Tâche {task} assignée à « {account} »"
-msgstr ""
+msgstr "任务 {task} 已分配给“{account}”"
 
 #: assets/app.js
 msgid "Assignation impossible : {error}"
-msgstr ""
+msgstr "无法分配：{error}"
 
 #: assets/app.js
 msgid "Lancement de l'automatisation Claude..."
-msgstr ""
+msgstr "正在启动 Claude 自动化..."
 
 #: assets/app.js
 msgid "Lancement impossible"
-msgstr ""
+msgstr "无法启动"
 
 #: assets/app.js
 msgid "Tâche lancée — suivi dans le journal d'activité"
-msgstr ""
+msgstr "任务已启动 — 可在活动日志中跟踪"
 
 #: assets/app.js
 msgid "Exécution impossible : {error}"
-msgstr ""
+msgstr "无法执行：{error}"
 
 #: assets/app.js
 msgid "Aucun résultat disponible"
-msgstr ""
+msgstr "没有可用的结果"
 
 #: assets/app.js
 msgid "Résultat — {task}"
-msgstr ""
+msgstr "结果 — {task}"
 
 #: assets/app.js
 msgid "Comptes retrouvés"
-msgstr ""
+msgstr "已找回账户"
 
 #: assets/app.js
 msgid "Aucun compte n'a été lu au démarrage, mais l'ordonnanceur en connaît {count}. Les restaurer ? Les sessions des services sont conservées ; les adresses e-mail sont à compléter depuis « Modifier le compte »."
-msgstr ""
+msgstr "启动时未读取到任何账户，但调度器记录了 {count} 个。要恢复它们吗？各服务的会话会保留；邮箱地址需通过“编辑账户”补全。"
 
 #: assets/app.js
 msgid "Ignorer"
-msgstr ""
+msgstr "忽略"
 
 #: assets/app.js
 msgid "Restaurer les comptes"
-msgstr ""
+msgstr "恢复账户"
 
 #: assets/app.js
-msgid "{count} compte(s) restauré(s)"
-msgstr ""
+msgid "{count} compte restauré"
+msgid_plural "{count} comptes restaurés"
+msgstr[0] "已恢复 {count} 个账户"
 
 #: assets/app.js
 msgid "Données de comptes illisibles"
-msgstr ""
+msgstr "账户数据无法读取"
 
 #: assets/app.js
 msgid "La liste de comptes enregistrée est corrompue. Une sauvegarde de {count} compte(s) a été trouvée. La restaurer ?"
-msgstr ""
+msgstr "已保存的账户列表已损坏。找到了 {count} 个账户的备份。要恢复吗？"
 
 #: assets/app.js
 msgid "La liste de comptes enregistrée est corrompue et aucune sauvegarde n'est disponible. L'application démarre avec une liste vide ; vos données actuelles ne seront pas écrasées tant que vous ne créez ou ne modifiez pas de compte."
-msgstr ""
+msgstr "已保存的账户列表已损坏，且没有可用备份。应用将以空列表启动；在您创建或修改账户之前，当前数据不会被覆盖。"
 
 #: assets/app.js
 msgid "Restaurer la sauvegarde"
-msgstr ""
+msgstr "恢复备份"
 
 #: assets/app.js
 msgid "Comptes restaurés depuis la sauvegarde"
-msgstr ""
+msgstr "已从备份恢复账户"
 
 #: assets/app.js
 msgid "Compris"
-msgstr ""
+msgstr "知道了"

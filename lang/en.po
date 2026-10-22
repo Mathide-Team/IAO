@@ -88,6 +88,10 @@ msgid "Comprendre les IA disponibles"
 msgstr "Understand the available AIs"
 
 #: index.html
+msgid "Statistiques d'utilisation"
+msgstr "Usage statistics"
+
+#: index.html
 msgid "Ordonnanceur IA"
 msgstr "AI scheduler"
 
@@ -236,6 +240,114 @@ msgid "La détection des ZIP, les jobs et les projets sont remplacés par les t�
 msgstr "ZIP detection, jobs and projects are being replaced by scheduled tasks, currently in development."
 
 #: index.html
+msgid "Tâches programmables"
+msgstr "Scheduled tasks"
+
+#: index.html
+msgid "Nouvelle tâche"
+msgstr "New task"
+
+#: index.html
+msgid "Nom de la tâche"
+msgstr "Task name"
+
+#: index.html
+msgid "Ex. : rapport quotidien"
+msgstr "E.g.: daily report"
+
+#: index.html
+msgid "Comptes"
+msgstr "Accounts"
+
+#: index.html
+msgid "Tous les comptes avec Claude"
+msgstr "All accounts with Claude"
+
+#: index.html
+msgid "Choisir des comptes…"
+msgstr "Choose accounts…"
+
+#: index.html
+msgid "Répartition"
+msgstr "Distribution"
+
+#: index.html
+msgid "Tous les comptes à chaque exécution"
+msgstr "All accounts on every run"
+
+#: index.html
+msgid "Un compte à la fois (rotation)"
+msgstr "One account at a time (rotation)"
+
+#: index.html
+msgid "Espacement entre comptes (secondes)"
+msgstr "Delay between accounts (seconds)"
+
+#: index.html
+msgid "Nouvelle session à chaque exécution"
+msgstr "New session on every run"
+
+#: index.html
+msgid "Prompt à envoyer"
+msgstr "Prompt to send"
+
+#: index.html
+msgid "Ex. : Résume les actualités de la veille"
+msgstr "E.g.: Summarize yesterday's news"
+
+#: index.html
+msgid "Programmation"
+msgstr "Schedule"
+
+#: index.html
+msgid "Récurrente (tous les N …)"
+msgstr "Recurring (every N …)"
+
+#: index.html
+msgid "Une seule fois"
+msgstr "Once"
+
+#: index.html
+msgid "Le"
+msgstr "On"
+
+#: index.html
+msgid "Tous les"
+msgstr "Every"
+
+#: index.html
+msgid "minutes"
+msgstr "minutes"
+
+#: index.html
+msgid "heures"
+msgstr "hours"
+
+#: index.html
+msgid "jours"
+msgstr "days"
+
+#: index.html
+msgid "semaines"
+msgstr "weeks"
+
+#: index.html
+msgid "mois"
+msgstr "months"
+
+#: index.html
+msgid "À partir du"
+msgstr "Starting"
+
+#: index.html
+msgid "Tâche active"
+msgstr "Task enabled"
+
+#: index.html
+msgid "Historique"
+msgstr "History"
+
+#: index.html
 msgid "Jobs actifs"
 msgstr "Active jobs"
 
@@ -306,6 +418,38 @@ msgstr "Confirmation"
 #: index.html
 msgid "Confirmer"
 msgstr "Confirm"
+
+#: index.html
+msgid "Mesurées sur cet ordinateur et conservées 90 jours. Rien n'est envoyé."
+msgstr "Measured on this computer and kept for 90 days. Nothing is sent."
+
+#: index.html
+msgid "Aujourd'hui"
+msgstr "Today"
+
+#: index.html
+msgid "7 jours"
+msgstr "7 days"
+
+#: index.html
+msgid "30 jours"
+msgstr "30 days"
+
+#: index.html
+msgid "90 jours"
+msgstr "90 days"
+
+#: index.html
+msgid "Remettre à zéro"
+msgstr "Reset"
+
+#: index.html
+msgid "Exporter CSV"
+msgstr "Export CSV"
+
+#: index.html
+msgid "Exporter JSON"
+msgstr "Export JSON"
 
 #: index.html
 msgid "Préférences de l'application, sauvegardées localement."
@@ -398,6 +542,26 @@ msgstr "Webmail address (Roundcube)"
 #: index.html
 msgid "https://mail.dmathilde.fr"
 msgstr "https://mail.dmathilde.fr"
+
+#: index.html
+msgid "Identifiants des connecteurs (partagés)"
+msgstr ""
+
+#: index.html
+msgid "context7.com"
+msgstr ""
+
+#: index.html
+msgid "login@exemple.fr"
+msgstr ""
+
+#: index.html
+msgid "Mot de passe"
+msgstr ""
+
+#: index.html
+msgid "Chiffrés par le trousseau du système, partagés entre les profils — les cookies et le 2FA restent propres à chaque profil. Au focus d'un champ de connexion, un menu propose les identifiants du site."
+msgstr ""
 
 #: assets/app.js
 msgid "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."
@@ -612,8 +776,10 @@ msgid "Modifier le compte"
 msgstr "Edit account"
 
 #: assets/app.js
-msgid "{available} service(s) hors cooldown sur {total}"
-msgstr "{available} of {total} service(s) out of cooldown"
+msgid "{available} service hors cooldown sur {total}"
+msgid_plural "{available} services hors cooldown sur {total}"
+msgstr[0] "{available} of {total} service off cooldown"
+msgstr[1] "{available} of {total} services off cooldown"
 
 #: assets/app.js
 msgid "Replier / déplier"
@@ -728,8 +894,10 @@ msgid "Échec de l'export (écriture impossible)"
 msgstr "Export failed (cannot write)"
 
 #: assets/app.js
-msgid "{count} compte(s) exporté(s)"
-msgstr "{count} account(s) exported"
+msgid "{count} compte exporté"
+msgid_plural "{count} comptes exportés"
+msgstr[0] "{count} account exported"
+msgstr[1] "{count} accounts exported"
 
 #: assets/app.js
 msgid "Export impossible"
@@ -756,8 +924,10 @@ msgid "Import impossible"
 msgstr "Import failed"
 
 #: assets/app.js
-msgid "{count} compte(s) importé(s)"
-msgstr "{count} account(s) imported"
+msgid "{count} compte importé"
+msgid_plural "{count} comptes importés"
+msgstr[0] "{count} account imported"
+msgstr[1] "{count} accounts imported"
 
 #: assets/app.js
 msgid "Échec de l'import : {error}"
@@ -796,8 +966,20 @@ msgid "Nombre de comptes : de 1 à {max}"
 msgstr "Number of accounts: 1 to {max}"
 
 #: assets/app.js
-msgid "{n} compte(s) créé(s), {m} mot(s) de passe enregistré(s)"
-msgstr "{n} account(s) created, {m} password(s) saved"
+msgid "{comptes}, {motsDePasse}"
+msgstr "{comptes}, {motsDePasse}"
+
+#: assets/app.js
+msgid "{n} compte créé"
+msgid_plural "{n} comptes créés"
+msgstr[0] "{n} account created"
+msgstr[1] "{n} accounts created"
+
+#: assets/app.js
+msgid "{m} mot de passe enregistré"
+msgid_plural "{m} mots de passe enregistrés"
+msgstr[0] "{m} password saved"
+msgstr[1] "{m} passwords saved"
 
 #: assets/app.js
 msgid "Adresse du webmail non configurée dans les réglages"
@@ -864,6 +1046,524 @@ msgid "Livré"
 msgstr "Delivered"
 
 #: assets/app.js
+msgid "chaque minute"
+msgid_plural "toutes les {n} minutes"
+msgstr[0] "every minute"
+msgstr[1] "every {n} minutes"
+
+#: assets/app.js
+msgid "chaque jour"
+msgid_plural "tous les {n} jours"
+msgstr[0] "every day"
+msgstr[1] "every {n} days"
+
+#: assets/app.js
+msgid "chaque semaine"
+msgid_plural "toutes les {n} semaines"
+msgstr[0] "every week"
+msgstr[1] "every {n} weeks"
+
+#: assets/app.js
+msgid "chaque mois"
+msgid_plural "tous les {n} mois"
+msgstr[0] "every month"
+msgstr[1] "every {n} months"
+
+#: assets/app.js
+msgid "chaque heure"
+msgid_plural "toutes les {n} heures"
+msgstr[0] "every hour"
+msgstr[1] "every {n} hours"
+
+#: assets/app.js
+msgid "Le {date}"
+msgstr "On {date}"
+
+#: assets/app.js
+msgid "à partir du {date}"
+msgstr "starting {date}"
+
+#: assets/app.js
+msgid "programmation inconnue"
+msgstr "unknown schedule"
+
+#: assets/app.js
+msgid "{n} compte sélectionné"
+msgid_plural "{n} comptes sélectionnés"
+msgstr[0] "{n} account selected"
+msgstr[1] "{n} accounts selected"
+
+#: assets/app.js
+msgid "tous les comptes avec Claude"
+msgstr "all accounts with Claude"
+
+#: assets/app.js
+msgid "rotation (un compte à la fois)"
+msgstr "rotation (one account at a time)"
+
+#: assets/app.js
+msgid "tous les comptes, espacement de {n} s"
+msgstr "all accounts, {n} s apart"
+
+#: assets/app.js
+msgid "tous les comptes en même temps"
+msgstr "all accounts at once"
+
+#: assets/app.js
+msgid "lancée"
+msgstr "started"
+
+#: assets/app.js
+msgid "envoyée"
+msgstr "sent"
+
+#: assets/app.js
+msgid "quota épuisé"
+msgstr "quota exhausted"
+
+#: assets/app.js
+msgid "heures calmes"
+msgstr "quiet hours"
+
+#: assets/app.js
+msgid "non connecté"
+msgstr "not signed in"
+
+#: assets/app.js
+msgid "aucun compte éligible"
+msgstr "no eligible account"
+
+#: assets/app.js
+msgid "erreur"
+msgstr "error"
+
+#: assets/app.js
+msgid "Aucune tâche programmée pour l'instant — créez-en une avec « Nouvelle tâche »."
+msgstr "No scheduled tasks yet — create one with “New task”."
+
+#: assets/app.js
+msgid "Plus aucune exécution programmée"
+msgstr "No more runs scheduled"
+
+#: assets/app.js
+msgid "Prochaine exécution : {date}"
+msgstr "Next run: {date}"
+
+#: assets/app.js
+msgid "inactive"
+msgstr "disabled"
+
+#: assets/app.js
+msgid "Activer"
+msgstr "Enable"
+
+#: assets/app.js
+msgid "Désactiver"
+msgstr "Disable"
+
+#: assets/app.js
+msgid "Exécuter maintenant"
+msgstr "Run now"
+
+#: assets/app.js
+msgid "Modifier"
+msgstr "Edit"
+
+#: assets/app.js
+msgid "Aucun événement pour l'instant."
+msgstr "No events yet."
+
+#: assets/app.js
+msgid "Aucun compte avec le service Claude — la tâche ne pourra pas s'exécuter."
+msgstr "No account with the Claude service — the task cannot run."
+
+#: assets/app.js
+msgid "sans le service Claude"
+msgstr "without the Claude service"
+
+#: assets/app.js
+msgid "compte supprimé"
+msgstr "deleted account"
+
+#: assets/app.js
+msgid "Le nom est obligatoire."
+msgstr "A name is required."
+
+#: assets/app.js
+msgid "Le prompt est obligatoire."
+msgstr "A prompt is required."
+
+#: assets/app.js
+msgid "Comptes : choix invalide."
+msgstr "Accounts: invalid choice."
+
+#: assets/app.js
+msgid "Sélectionnez au moins un compte."
+msgstr "Select at least one account."
+
+#: assets/app.js
+msgid "Répartition : choix invalide."
+msgstr "Distribution: invalid choice."
+
+#: assets/app.js
+msgid "Espacement invalide : entre 0 et 86400 secondes."
+msgstr "Invalid delay: between 0 and 86400 seconds."
+
+#: assets/app.js
+msgid "Programmation : choix invalide."
+msgstr "Schedule: invalid choice."
+
+#: assets/app.js
+msgid "Date « Le » invalide."
+msgstr "Invalid “On” date."
+
+#: assets/app.js
+msgid "Date « À partir du » invalide."
+msgstr "Invalid “Starting” date."
+
+#: assets/app.js
+msgid "« Tous les » doit être un entier supérieur à 0."
+msgstr "“Every” must be a whole number greater than 0."
+
+#: assets/app.js
+msgid "Unité inconnue."
+msgstr "Unknown unit."
+
+#: assets/app.js
+msgid "Enregistrement impossible : {erreur}"
+msgstr "Could not save: {erreur}"
+
+#: assets/app.js
+msgid "Le moteur de tâches n'est pas démarré."
+msgstr "The task engine is not running."
+
+#: assets/app.js
+msgid "Exécution demandée — le résultat apparaîtra dans l'historique."
+msgstr "Run requested — the result will appear in the history."
+
+#: assets/app.js
+msgid "Une exécution est déjà en cours — réessayez dans un instant."
+msgstr "A run is already in progress — try again in a moment."
+
+#: assets/app.js
+msgid "Le service des tâches a refusé l'exécution."
+msgstr "The task service refused the run."
+
+#: assets/app.js
+msgid "Tâche introuvable."
+msgstr "Task not found."
+
+#: assets/app.js
+msgid "Exécution impossible : {erreur}"
+msgstr "Could not run: {erreur}"
+
+#: assets/app.js
+msgid "Action impossible : {erreur}"
+msgstr "Action failed: {erreur}"
+
+#: assets/app.js
+msgid "Supprimer la tâche"
+msgstr "Delete task"
+
+#: assets/app.js
+msgid "Supprimer « {nom} » ? L'historique est conservé."
+msgstr "Delete “{nom}”? The history is kept."
+
+#: assets/app.js
+msgid "Suppression impossible : {erreur}"
+msgstr "Could not delete: {erreur}"
+
+#: assets/app.js
+msgid "< 1 min"
+msgstr "< 1 min"
+
+#: assets/app.js
+msgid "{h} h {m} min"
+msgstr "{h} h {m} min"
+
+#: assets/app.js
+msgid "{m} min"
+msgstr "{m} min"
+
+#: assets/app.js
+msgid "Temps actif"
+msgstr "Active time"
+
+#: assets/app.js
+msgid "Durée ouverte"
+msgstr "Time open"
+
+#: assets/app.js
+msgid "Sessions"
+msgstr "Sessions"
+
+#: assets/app.js
+msgid "Dernière utilisation"
+msgstr "Last used"
+
+#: assets/app.js
+msgid "Part"
+msgstr "Share"
+
+#: assets/app.js
+msgid "Dim"
+msgstr "Sun"
+
+#: assets/app.js
+msgid "Jeu"
+msgstr "Thu"
+
+#: assets/app.js
+msgid "Lun"
+msgstr "Mon"
+
+#: assets/app.js
+msgid "Mar"
+msgstr "Tue"
+
+#: assets/app.js
+msgid "Mer"
+msgstr "Wed"
+
+#: assets/app.js
+msgid "Sam"
+msgstr "Sat"
+
+#: assets/app.js
+msgid "Ven"
+msgstr "Fri"
+
+#: assets/app.js
+msgid "{jour} {h} h : {duree}"
+msgstr "{jour} {h}:00: {duree}"
+
+#: assets/app.js
+msgid "Heures de pointe (temps actif)"
+msgstr "Peak hours (active time)"
+
+#: assets/app.js
+msgid "dernière utilisation : {date}"
+msgstr "last used: {date}"
+
+#: assets/app.js
+msgid "jamais utilisé depuis le début de la mesure"
+msgstr "never used since tracking began"
+
+#: assets/app.js
+msgid "Comptes inutilisés sur la période"
+msgstr "Unused accounts in this period"
+
+#: assets/app.js
+msgid "fin {h}"
+msgstr "ends {h}"
+
+#: assets/app.js
+msgid "Tâches programmables par compte"
+msgstr "Scheduled tasks by account"
+
+#: assets/app.js
+msgid "Compte"
+msgstr "Account"
+
+#: assets/app.js
+msgid "Envoyées"
+msgstr "Sent"
+
+#: assets/app.js
+msgid "Erreurs"
+msgstr "Errors"
+
+#: assets/app.js
+msgid "Quotas"
+msgstr "Quotas"
+
+#: assets/app.js
+msgid "Dernier quota"
+msgstr "Last quota"
+
+#: assets/app.js
+msgid "Exécutions"
+msgstr "Runs"
+
+#: assets/app.js
+msgid "D'après l'historique des tâches (200 dernières exécutions)."
+msgstr "Based on the task history (last 200 runs)."
+
+#: assets/app.js
+msgid "{h} h"
+msgstr "{h}:00"
+
+#: assets/app.js
+msgid "Évolution du temps actif"
+msgstr "Active time over time"
+
+#: assets/app.js
+msgid "{date} : {duree} actif"
+msgstr "{date}: {duree} active"
+
+#: assets/app.js
+msgid "{s} s"
+msgstr "{s} s"
+
+#: assets/app.js
+msgid "Temps de réponse"
+msgstr "Response time"
+
+#: assets/app.js
+msgid "Service"
+msgstr "Service"
+
+#: assets/app.js
+msgid "Médiane"
+msgstr "Median"
+
+#: assets/app.js
+msgid "Réponses"
+msgstr "Responses"
+
+#: assets/app.js
+msgid "Plus lente"
+msgstr "Slowest"
+
+#: assets/app.js
+msgid "Plus rapide"
+msgstr "Fastest"
+
+#: assets/app.js
+msgid "Du message envoyé à la fin de la réponse, pour les tâches programmables et les messages envoyés à la main."
+msgstr "From the message being sent to the end of the reply, for scheduled tasks and messages sent by hand."
+
+#: assets/app.js
+msgid "Quotas atteints"
+msgstr "Quotas reached"
+
+#: assets/app.js
+msgid "Fois"
+msgstr "Times"
+
+#: assets/app.js
+msgid "Heure habituelle"
+msgstr "Usual hour"
+
+#: assets/app.js
+msgid "Évolution du temps de réponse médian"
+msgstr "Median response time over time"
+
+#: assets/app.js
+msgid "{date} : médiane {duree}, {n} réponse"
+msgid_plural "{date} : médiane {duree}, {n} réponses"
+msgstr[0] "{date}: median {duree}, {n} response"
+msgstr[1] "{date}: median {duree}, {n} responses"
+
+#: assets/app.js
+msgid "{n} quota atteint"
+msgid_plural "{n} quotas atteints"
+msgstr[0] "{n} quota reached"
+msgstr[1] "{n} quotas reached"
+
+#: assets/app.js
+msgid "Comptes à privilégier pour répartir l'usage : {comptes}"
+msgstr "Accounts to favour to spread the load: {comptes}"
+
+#: assets/app.js
+msgid "Comptes souvent bloqués par un quota"
+msgstr "Accounts often blocked by a quota"
+
+#: assets/app.js
+msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
+msgstr "No sessions in this period. Measurement starts when this version is installed."
+
+#: assets/app.js
+msgid "{n} jour"
+msgid_plural "{n} jours"
+msgstr[0] "{n} day"
+msgstr[1] "{n} days"
+
+#: assets/app.js
+msgid "Série en cours (record : {n})"
+msgstr "Current streak (best: {n})"
+
+#: assets/app.js
+msgid "Temps de réponse médian"
+msgstr "Median response time"
+
+#: assets/app.js
+msgid "Par compte"
+msgstr "By account"
+
+#: assets/app.js
+msgid "Par service"
+msgstr "By service"
+
+#: assets/app.js
+msgid "Statistiques illisibles : {error}"
+msgstr "Unreadable statistics: {error}"
+
+#: assets/app.js
+msgid "Export des statistiques impossible : {error}"
+msgstr "Could not export statistics: {error}"
+
+#: assets/app.js
+msgid "Statistiques exportées"
+msgstr "Statistics exported"
+
+#: assets/app.js
+msgid "Remettre les statistiques à zéro ?"
+msgstr "Reset statistics?"
+
+#: assets/app.js
+msgid "Les sessions, temps de réponse et quotas enregistrés sur cet ordinateur seront effacés. L'historique des tâches programmables n'est pas touché. Pensez à exporter avant si besoin."
+msgstr "Sessions, response times and quotas recorded on this computer will be deleted. The scheduled task history is not affected. Export first if needed."
+
+#: assets/app.js
+msgid "Remise à zéro impossible : {error}"
+msgstr "Could not reset: {error}"
+
+#: assets/app.js
+msgid "Statistiques remises à zéro"
+msgstr "Statistics reset"
+
+#: assets/app.js
+msgid "Impossible de charger les identifiants"
+msgstr ""
+
+#: assets/app.js
+msgid "Aucun identifiant enregistré pour l'instant"
+msgstr ""
+
+#: assets/app.js
+msgid "Supprimer {login} pour {host}"
+msgstr ""
+
+#: assets/app.js
+msgid "Identifiant {login} supprimé pour {host}"
+msgstr ""
+
+#: assets/app.js
+msgid "Suppression impossible : identifiant introuvable"
+msgstr ""
+
+#: assets/app.js
+msgid "Suppression impossible : {error}"
+msgstr "Deletion failed: {error}"
+
+#: assets/app.js
+msgid "Identifiant enregistré pour {host} (chiffré, partagé entre profils)"
+msgstr ""
+
+#: assets/app.js
+msgid "Chiffrement du système indisponible : identifiant non enregistré"
+msgstr ""
+
+#: assets/app.js
+msgid "Enregistrement impossible : hôte, login ou mot de passe invalide"
+msgstr ""
+
+#: assets/app.js
+msgid "Enregistrement impossible : {error}"
+msgstr ""
+
+#: assets/app.js
 msgid "Impossible de charger les réglages"
 msgstr "Could not load the settings"
 
@@ -882,6 +1582,10 @@ msgstr "Error while saving"
 #: assets/app.js
 msgid "Erreur lors de la sauvegarde des réglages"
 msgstr "Error while saving the settings"
+
+#: assets/app.js
+msgid "Tâches programmables : envoyez un prompt à Claude à date fixe ou périodiquement."
+msgstr "Scheduled tasks: send a prompt to Claude at a set time or periodically."
 
 #: assets/app.js
 msgid "Arrêter"
@@ -1004,12 +1708,10 @@ msgid "Comptes autorisés :"
 msgstr "Allowed accounts:"
 
 #: assets/app.js
-msgid "{count} tâche(s)"
-msgstr "{count} task(s)"
-
-#: assets/app.js
-msgid "Nouvelle tâche"
-msgstr "New task"
+msgid "{count} tâche"
+msgid_plural "{count} tâches"
+msgstr[0] "{count} task"
+msgstr[1] "{count} tasks"
 
 #: assets/app.js
 msgid "Assigner"
@@ -1040,8 +1742,10 @@ msgid "envoi de fichier"
 msgstr "file upload"
 
 #: assets/app.js
-msgid "{count} popup(s)"
-msgstr "{count} popup(s)"
+msgid "{count} popup"
+msgid_plural "{count} popups"
+msgstr[0] "{count} pop-up"
+msgstr[1] "{count} pop-ups"
 
 #: assets/app.js
 msgid "Claude (« {profile} ») : {details}"
@@ -1102,10 +1806,6 @@ msgstr "Creation failed: {error}"
 #: assets/app.js
 msgid "Projet supprimé"
 msgstr "Project deleted"
-
-#: assets/app.js
-msgid "Suppression impossible : {error}"
-msgstr "Deletion failed: {error}"
 
 #: assets/app.js
 msgid "Prompt de la tâche :"
@@ -1192,8 +1892,10 @@ msgid "Restaurer les comptes"
 msgstr "Restore accounts"
 
 #: assets/app.js
-msgid "{count} compte(s) restauré(s)"
-msgstr "{count} account(s) restored"
+msgid "{count} compte restauré"
+msgid_plural "{count} comptes restaurés"
+msgstr[0] "{count} account restored"
+msgstr[1] "{count} accounts restored"
 
 #: assets/app.js
 msgid "Données de comptes illisibles"

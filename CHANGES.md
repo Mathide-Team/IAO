@@ -1,5 +1,563 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issue #278 — identifiants partagés entre profils, lot 2 : menu au focus + interface réglages (22/10/2026)
+
+### Ajouté
+- **`lib/identifiants-preload.js`** : preload de session posé sur toutes les sessions
+  (webviews et popups incluses, via `session-created`). Au focus d'un champ de connexion
+  (email/texte + mot de passe), signale le process principal (`iao-identifiants:focus`) ;
+  reçoit `iao-identifiants:remplir` et remplit le formulaire avec le setter natif + les
+  événements `input`/`change` (formulaires contrôlés) — **sans jamais soumettre le
+  formulaire ni remplir un champ 2FA** (`one-time-code`, `otp`, `totp`, `new-password`).
+  Au focus d'un seul des deux champs, l'autre est découvert dans le même `<form>`
+  (l'utilisateur n'a pas à visiter chaque champ). Le mot de passe transite uniquement
+  par le main (déchiffrement) puis le preload du destinataire — jamais par le renderer
+  hôte de l'application. Hors Electron (`node --test`), le module reste une bibliothèque pure.
+- **`lib/identifiants-focus.js`** : proposition d'un **menu natif** (pas d'UI injectée dans
+  la page) au focus d'un champ, ancré à la bonne fenêtre (fenêtre fille pour les popups
+  d'authentification, suivies via `did-create-window`) et au curseur. Cooldown anti-boucle
+  (1,2 s), hôte https uniquement, secrets déchiffrés dans le main et envoyés au seul
+  émetteur de l'événement. Au moment du choix, l'origine de l'émetteur est revérifiée :
+  si la page a navigué depuis la proposition, rien n'est déchiffré ni envoyé. Le choix
+  du menu remplit sans soumettre.
+- **Interface Réglages** : section « Identifiants des connecteurs (partagés) » —
+  ajout/suppression d'identifiants par hôte, liste par hôte, explication de ce qui est
+  partagé (identifiants) et de ce qui ne l'est pas (cookies, 2FA).
+- **Harnais d'intégration réel** `test-electron/identifiants-continue.js` (9 tests) :
+  fixture servie par interception https (aucun réseau), vrai Chromium — focus signalé,
+  remplissage avec événements vus par la page (y compris depuis le focus d'un seul
+  champ), 2FA jamais rempli, application réelle (main.js tel quel) : preload posé via
+  `session-created`, menu proposé/ancré au curseur, choix du menu (remplissage via le
+  coffre si trousseau, sinon refus silencieux), et **popup OAuth réelle** (fenêtre fille
+  ouverte par la webview, menu ancré dans SA fenêtre, remplissage dans la fille sans
+  toucher à la webview d'origine). `Menu.popup()` y est remplacé par un espion : les
+  tests B sont des tests de câblage, le menu natif n'y est pas actionné par un vrai clic.
+  Le déchiffrement de bout en bout dépend du trousseau du système : sans trousseau (xvfb),
+  le parcours déchiffrement->remplissage n'est pas exécuté et le harnais le note sans
+  échouer.
+
+### Modifié
+- **`main.js`** : suivi des fenêtres filles des webviews (popups d'authentification) pour
+  ancrer le menu dans la bonne fenêtre ; branchement du handler de focus ; pose du preload
+  d'identifiants sur chaque session créée ; `lib/identifiants.js` désormais tolérant aux
+  entrées stockées sous une forme inattendue (pas un tableau).
+- **i18n** : nouvelles chaînes (réglages + notifications), `lang/` régénéré (les nouvelles
+  entrées arrivent non traduites, conformément au processus du dépôt).
+
+### Tests
+- Harnais `identifiants-continue.js` ajouté à la CI (`npm run test:electron:identifiants`,
+  job « Harnais Electron (xvfb) ») ; coffre seedé après main.js (clé du trousseau liée au
+  nom de l'application) ; annotation `::warning` si le runner n'a pas de trousseau.
+- `test/identifiants-preload.test.js` (20 tests), `test/identifiants-focus.test.js` (12
+  tests, dont 4 d'intégration du vrai `main.js` via mock Electron) — 100 % de couverture
+  lignes/branches/fonctions sur les deux nouveaux modules (vérifié avec la commande
+  `npm run test:coverage` du dépôt sous Node 22, la version de la CI : tous les fichiers
+  à 100 %).
+- Harnais réel : 9/9 (voir ci-dessus).
+
+## Issue #278 — identifiants partagés entre profils, lot 1 : coffre + IPC (22/10/2026)
+
+### Ajouté
+- **`lib/identifiants.js`** : `IdentifiantsPartages` — coffre d'identifiants de connexion
+  (login + mot de passe) chiffrés par le trousseau du système (`safeStorage`), stocké dans
+  `<userData>/identifiants.json` (écriture atomique, mode 0600), partagé par tous les profils
+  pour ne plus ressaisir les identifiants d'un connecteur dans chaque profil. Les cookies
+  restent par partition (étanchéité conservée) ; le 2FA vit dans la session/le téléphone.
+  Lister ne déchiffre jamais rien ; hôte/login/mot de passe validés, quotas (200 hôtes,
+  20 identifiants par hôte) ; si le chiffrement du système n'est pas disponible, refus.
+- **IPC** : `identifiants:lister` / `enregistrer` / `obtenir` / `supprimer` (mêmes règles
+  d'absorption d'erreurs que le coffre #201).
+- Lot 1 (stockage + IPC) ; l'UI de gestion et le remplissage automatique des formulaires
+  seront le lot 2.
+
+### Tests
+- `test/identifiants.test.js` : 12 tests — chiffrement/déchiffrement, rien en clair sur le
+  disque, remplacement sans doublon, quotas, JSON illisible, arguments vides, entrées mal
+  formées, IPC (4 canaux + erreurs). Couverture 100 % lignes/branches/fonctions.
+- `test/main-harness.test.js` : les 4 nouveaux canaux ajoutés à `MAIN_CHANNELS`.
+
+## Issue #277 — popups d'authentification toujours dans l'application (22/10/2026)
+
+### Corrigé
+- **Les popups d'authentification s'ouvrent désormais toujours dans l'application.**
+  La liste blanche `ALLOWED_POPUP_HOSTS` renvoyait vers le navigateur système toute
+  popup d'origine inconnue : la session de connexion vit dans la partition de la
+  webview, la connexion d'un connecteur (context7, tout fournisseur OAuth absent
+  de la liste) échouait donc silencieusement. Reproduit : GitHub (dans la liste)
+  fonctionnait, context7 non.
+- Une fenêtre ouverte par une popup hérite de la même politique (`did-create-window`),
+  jamais des privilèges de l'hôte.
+
+### Modifié
+- `lib/popup-guard.js` : `decidePopup()` remplace `isAllowedPopup()` /
+  `ALLOWED_POPUP_HOSTS`. Toute popup web `https:` (et `about:blank`, ouverte vide
+  puis redirigée par certains flux OAuth) est acceptée ; elle s'ouvre avec les
+  webPreferences sandboxées de l'invité, sans Node. Les schémas non web (`http:`
+  non chiffré, `data:`, `javascript:`, `file:`) restent refusés, journalisés avec
+  le host seul, sans repli vers le navigateur système.
+- `main.js` : plus aucun `shell.openExternal` dans le filtre des popups des
+  webviews ; la fenêtre hôte reste en deny-all total.
+
+### Tests
+- `test/pure.test.js` (politique `decidePopup` : https connu/inconnu — dont
+  context7 —, `about:blank`, casse du schéma, schémas refusés, URL illisible),
+  `test/main-window-security.test.js` (popup https inconnue ouverte dans l'app,
+  jamais `openExternal` ; `about:blank` autorisé ; fenêtre enfant `did-create-window`
+  couverte avec sa voie d'erreur), `test/claude-integration.test.js` (structure).
+  Couverture 100 % lignes/branches/fonctions maintenue sur `lib/popup-guard.js`.
+
+## Issue #275 — analyse de ZIP sans shell (21/10/2026)
+
+### Sécurité
+- **Injection de commande corrigée.** `analyzeCompleteness` (appelée à la fin
+  de chaque téléchargement de `.zip`) passait le chemin du ZIP et le nom de
+  l'entrée FEATURES.md à `unzip` / PowerShell par concaténation : un nom de
+  fichier ou d'entrée contenant `$(…)` était exécuté. Reproduit sur `dev`
+  (fichier preuve créé), plus reproductible.
+
+### Modifié
+- `lib/lecture-zip.js` : lecture du ZIP en JavaScript (répertoire central,
+  `zlib` pour « deflate »), sur Linux, macOS et Windows ; plus de `unzip`,
+  de PowerShell ni de dossier temporaire. Taille extraite bornée à 1 Mio,
+  taille et CRC-32 vérifiés ; ZIP64, multi-volumes et chiffrement refusés.
+- `FEATURES.md` reconnu par son nom exact (casse ignorée), dans n'importe
+  quel dossier, espaces compris (auparavant jamais trouvé avec une espace).
+- Une archive illisible est journalisée dans l'activité (échec silencieux
+  auparavant, par exemple sans `unzip` installé).
+
+### Tests
+- `test/lecture-zip.test.js` (22 tests, archives fabriquées octet par
+  octet) ; `test/scheduler-completeness-coverage.test.js` : tests PowerShell
+  simulé remplacés par « aucune commande lancée » (Linux et Windows), nom
+  hostile, cause journalisée. Couverture 100 % maintenue.
+
+## Issue #206, lot 4 — faire parler les chiffres (20/10/2026)
+
+### Ajouté
+- **Cartes** « Réponses » et « Temps de réponse médian » dans les totaux
+  (6 cartes sur deux lignes).
+- **Évolution du temps de réponse médian** : histogramme SVG sur les mêmes
+  tranches que le temps actif (24 heures ou un jour par barre), échelle en
+  secondes sous la minute (paliers 5 à 30 s). `evolutionReponses()` dans
+  `lib/stats.js`.
+- **Comptes souvent bloqués par un quota** (3 quotas ou plus sur la
+  période), avec les comptes à privilégier pour répartir l'usage (les moins
+  utilisés, hors comptes bloqués). `comptesSurcharges()`.
+- **Export JSON** : réponses et quotas joints (`reponses`, `quotas`, avec le
+  nom du compte) ; format `iao-stats-1` inchangé pour les anciens lecteurs.
+- 6 libellés traduits dans les 29 langues, dont 2 pluriels (générés par IA,
+  relecture humaine attendue) ; 0 entrée floue.
+- Tests : `test/stats-lot4.test.js`, scénario Electron C11.6 (avec captures
+  si `IAO_CAPTURES_DIR` est défini).
+## Issues #52, #58, #59 — diagnostic publiable et carte graphique (20/10/2026)
+
+### Ajouté
+- `scripts/diagnostic-demarrage.sh --publier <n>` : après le rapport, demande
+  confirmation puis le publie en commentaire de l'issue `<n>` avec `gh`.
+  Sans `gh` ou sans connexion, le rapport reste à coller à la main.
+- Section « Carte graphique » (lspci, vainfo, `LIBVA_DRIVER_NAME`) et
+  compteur « vaInitialize failed » au lancement, pour l'erreur VA-API de #52.
+- Options inconnues refusées (code 2).
+- Tests : `test/diagnostic-demarrage.test.js` (faux `gh`).
+## Issue #206 — temps de réponse et quotas dans la page Statistiques (20/10/2026)
+
+### Ajouté
+- **Tableau « Temps de réponse »** par compte et service : nombre de
+  réponses, médiane, plus rapide, plus lente (tâches programmables et
+  messages envoyés à la main). Colonnes triables.
+- **Tableau « Quotas atteints »** par compte et service : nombre de fois et
+  heure habituelle (heure locale la plus fréquente).
+- Les deux suivent la période choisie (jour, semaine, mois, tout) et sont
+  vidés par la remise à zéro.
+- 10 libellés traduits dans les 29 langues (générés par IA, relecture
+  humaine attendue) ; 0 entrée floue.
+- Test : scénario Electron C11.5.
+## Issue #206 — temps de réponse des messages envoyés à la main (20/10/2026)
+
+### Ajouté
+- **Mesure dans les onglets** : un petit script injecté à chaque chargement
+  (`lib/mesure-reponse.js`) note l'heure d'envoi (Entrée dans la zone de
+  saisie ou clic sur le bouton d'envoi) et l'heure de fin de génération
+  (indicateur « en cours » ou bouton Stop disparu depuis 600 ms). L'appli
+  relève ces horodatages toutes les 3 s et les range dans
+  `stats/reponses.jsonl`. Seuls des horodatages sortent de la page, jamais
+  le texte des questions ni des réponses.
+- Services couverts : Claude, ChatGPT, Gemini, Perplexity, Grok, Zeta,
+  Mistral, DeepSeek, Qwen. Sélecteurs à valider sur machine réelle
+  (`npm run start:debug` journalise « réponse mesurée », catégorie stats).
+- Tests : `test/mesure-reponse.test.js`, scénario Electron C13.1.
+## Issue #51 — chaînes ajoutées et supprimées dans le rapport CI (20/10/2026)
+
+### Ajouté
+- **Résumé du job i18n des PR** : tableau « chaînes avant / après /
+  nouvelles / supprimées » et liste des chaînes concernées (contexte et
+  pluriel compris), en comparant le `.pot` de la branche cible et celui de
+  la PR. Module `lib/i18n-pot-diff.js`, commande `scripts/i18n-diff.js`.
+- Test : `test/i18n-pot-diff.test.js`.
+## Issue #51 — vrais pluriels gettext (20/10/2026)
+
+### Modifié
+- **Compteurs** : les libellés « compte(s) exporté(s) », « tâche(s) »,
+  « popup(s) », « service(s) hors cooldown », « 1 jour / {n} jours »… et les
+  périodicités des tâches passent par `ngettext` (nouvel assistant `_n()`
+  dans `assets/app.js`, mot-clé xgettext `_n:1,2`). Chaque langue applique
+  sa règle `Plural-Forms` : russe 1 / 2-4 / 5+ (« 21 день »), arabe 6
+  formes (« كل دقيقتين »), polonais, tchèque, roumain…
+- « tous les 1 minutes » devient « chaque minute » ; « 1 compte(s) » devient
+  « 1 compte sélectionné ».
+- 15 pluriels traduits dans les 29 langues (formes générées par IA,
+  relecture humaine attendue) ; 0 entrée floue.
+- Test : `test/i18n-pluriels.test.js` (nombre de formes = `nplurals`,
+  marqueurs de la forme générale, formes choisies dans les `.mo` compilés).
+
+## Issue #7 — signature GPG des sommes de contrôle (20/10/2026)
+
+### Ajouté
+- **`release.yml`** : si le secret `IAO_GPG_PRIVATE_KEY` (clé privée
+  armurée, `IAO_GPG_PASSPHRASE` facultatif) est défini, `SHA256SUMS.txt` est
+  signé (`SHA256SUMS.txt.asc`) et la clé publique `IAO-signature.asc` est
+  publiée avec la release. Sans secret, l'étape passe sans signer. Trousseau
+  GPG temporaire, supprimé en fin d'étape (runner auto-hébergé intact).
+- Test : `test/release-signature.test.js`.
+
+### Reste
+- Signature Authenticode de `IAO.exe` (SmartScreen) : certificat payant ou
+  Azure Trusted Signing, décision du propriétaire du dépôt.
+
+## Issues #52, #58, #59 — script de diagnostic de démarrage (20/10/2026)
+
+### Ajouté
+- **`scripts/diagnostic-demarrage.sh`** : rapport Markdown à coller dans
+  l'issue (système, versions, commit, fichiers du dossier de données
+  n'appartenant pas au compte courant, lancement contrôlé avec comptage des
+  « Failed to delete the database », test de la seconde instance, extrait de
+  `iao.log`). Option `--sans-lancer` pour analyser le journal existant. Ne
+  modifie rien dans `~/.config/ai-manager`.
+- Test : `test/diagnostic-demarrage.test.js`.
+
+## Issue #3 — recette d'install.bat sur Windows en CI (20/10/2026)
+
+### Ajouté
+- **Workflow `install-windows.yml`** (runner `windows-latest`, VM GitHub
+  vierge) : exécute `scripts/test-install-windows.ps1`, qui enchaîne
+  auto-build, installation utilisateur, lancement réel du binaire installé,
+  `/desktop`, réinstallation, `/system`, `/uninstall` (données
+  `%APPDATA%\ai-manager` préservées), `/uninstall /system`, `/help` et
+  option inconnue. Tableau des contrôles dans le résumé du job.
+- `test-electron/smoke-packaged.js` fonctionne aussi sous Windows (journal
+  lu dans `%APPDATA%\ai-manager`, arrêt par `TerminateProcess` toléré).
+
+### Corrigé
+- **PATH utilisateur** : `setx PATH "%PATH%;…"` recopiait le PATH système
+  dans le PATH utilisateur et le tronquait à 1024 caractères. Le PATH
+  utilisateur est désormais lu et écrit dans le registre (sans doublon), et
+  `/uninstall` retire l'entrée IAO.
+- **Bureau redirigé (OneDrive)** : `/uninstall` supprime aussi le raccourci
+  dans le vrai dossier Bureau de l'utilisateur.
+## Issue #51 — vérification visuelle RTL dans le harnais (20/10/2026)
+
+### Ajouté
+- **Scénario C7.5 du harnais Electron** (`test-electron/rtl-visuel.js`) :
+  l'interface est rendue en français puis en arabe, et le test vérifie :
+  - que chaque zone (panneau des comptes, espace de travail, zone IA,
+    marque, statistiques, titre, première carte) occupe la position
+    miroir avec la même largeur, à 8 px près ;
+  - que les libellés gardent le même retrait depuis leur bord de départ ;
+  - qu'aucun défilement horizontal ni nouvel élément hors fenêtre
+    n'apparaît ;
+  - que la poignée éditeur ↔ IA, tirée vers la gauche, élargit le panneau
+    en rtl (et le rétrécit en ltr) ;
+  - que le profil de luminance par colonne de la capture arabe, retourné,
+    ressemble à celui du français (corrélation ≥ 0,8 et supérieure au
+    profil non retourné).
+- Captures `ui-fr.png`, `ui-ar.png` et `rtl-rapport.json` écrites dans
+  `IAO_CAPTURES_DIR`, publiées par la CI dans l'artefact `captures-rtl`.
+- Tests unitaires du module de comparaison : `test/rtl-visuel.test.js`.
+
+### Corrigé (défauts trouvés par ce contrôle)
+- En arabe, les **notifications** restaient en haut à droite et masquaient
+  le panneau des comptes : `inset-inline-end`, entrée animée par la gauche.
+- **Bordures, marges et alignements** : passage aux propriétés logiques
+  (`border-inline-end`, `margin-inline-start`, `text-align: start/end`…)
+  pour le panneau des comptes, la marque, l'éditeur, l'explorateur, les
+  tableaux de statistiques, les notifications et les pastilles d'état.
+- **Poignées de redimensionnement inversées en rtl** : le sens du glisser
+  suit désormais la direction du document.
+- Corrélation des captures avant/après correction : 0,418 → 0,944.
+
+## Issue #51 — mise en page de droite à gauche (20/10/2026)
+
+### Ajouté
+- **`dir="rtl"` pour l'arabe, l'hébreu, le persan…** : `lib/i18n.js`
+  expose `textDirection(locale)` (liste `RTL_LANGUAGES` : ar, he, fa, ur,
+  ps, sd, yi, dv, ckb, ug ; sous-tag de région ignoré), appliqué à `<html>`
+  par `assets/app.js` au chargement du catalogue.
+- L'éditeur de code et les champs e-mail/URL restent écrits de gauche à
+  droite (`direction: ltr` sous `[dir="rtl"]`).
+- Tests : `test/i18n.test.js` (sens par locale, valeurs invalides) et
+  harnais C7.4 (`IAO_LANG=ar` → `rtl`, éditeur `ltr`, retour `ltr` en anglais).
+## Tests — attente des jobs sans délai fixe (20/10/2026)
+
+### Corrigé
+- **Test instable en CI** : `test/scheduler-automation.test.js` attendait
+  2 s fixes la fin d'un job ; sur des runners chargés, le job était encore
+  `RUNNING` (échec vu sur la PR #247, sans rapport avec son contenu). Les 7
+  attentes fixes sont remplacées par `attendreFinJob()` : interrogation
+  toutes les 25 ms jusqu'à la sortie de `RUNNING`, bornée à 15 s. Les tests
+  sont aussi plus rapides quand la machine est libre.
+## Issue #206 — statistiques d'utilisation, lot 3 (19/10/2026)
+
+### Livré
+- **Évolution du temps actif** : histogramme SVG maison (sans dépendance) ;
+  24 barres horaires pour « Aujourd'hui », une barre par jour local sinon
+  (7 / 30 / 90). Sessions réparties au prorata entre les tranches ;
+  graduation ronde (1, 2, 5, 10, 15, 30 min, 1 h…). Libellés échappés.
+- **Export CSV / JSON** (historique + onglets ouverts, avec le nom du compte) :
+  dialogue d'enregistrement côté process principal (`stats:export`). CSV
+  séparé par des points-virgules (Excel en français), guillemets RFC 4180,
+  BOM UTF-8 ; cellules commençant par `= + - @`
+  préfixées d'une apostrophe (pas d'injection de formule). JSON versionné
+  (`format: iao-stats-1`).
+- **Remise à zéro** (`stats:reset`) après confirmation : sessions,
+  instantané, temps de réponse et quotas (lot 2a, #231) vidés, onglets ouverts relancés à partir de maintenant
+  (`suivi.recommencer()`). L'historique des tâches n'est pas touché. La
+  confirmation passe désormais au-dessus des autres modales.
+- Tests : `test/stats-lot3.test.js` (100 %), main-harness (`stats:export`),
+  harnais Electron C11.4 ; traductions en/de/es/it/pt.
+
+## Issue #51 — contrôle réel des marqueurs {…} (revue #229, 20/10/2026)
+
+### Corrigé (suite à la revue des retouches #229 fusionnées)
+- **Le contrôle des marqueurs {…} des traductions était sans effet** : il
+  comparait le msgid à lui-même. Remplacé par un vrai test permanent
+  (`test/i18n-marqueurs.test.js`) : analyseur .po (msgid/msgstr,
+  continuations multilignes, échappements) + comparaison des ensembles de
+  marqueurs {…} (quantités comprises) sur TOUS les catalogues.
+  Le test s'auto-vérifie : un marqueur renommé, supprimé, dupliqué ou
+  ajouté est détecté (4 cas couverts).
+- **pt : « Converse, redige… » corrigé en « Conversa, redige… »** (la
+  correction précédente cherchait une chaîne commençant par « Converse »
+  alors que le msgstr complet commence par « O assistente generalista… » —
+  le remplacement n'avait pas pris, silencieusement). « Conversa » est la
+  3e personne de « conversar », cohérente avec l'italien et l'espagnol.
+- `lang/pt.po` + `.mo` recompilé.
+
+## Issue #228 — durcissement du nettoyage Service Worker (revue #223, 20/10/2026)
+
+### Corrigé (suite à la revue du correctif #228 fusionné)
+- **`Partitions/` LUI-MÊME peut être un lien symbolique** vers un dossier
+  externe : ses enfants sont de vrais répertoires (de la cible) et
+  passaient le contrôle unitaire — le nettoyage serait sorti du dossier de
+  données. Désormais, un `Partitions/` lié ignore TOUT le scan des
+  partitions (seule la fenêtre principale reste couverte).
+- **Test d'arborescence réelle avec témoins** : `Partitions` lié vers un
+  dossier externe ET une partition enfant liée vers un autre dossier, chacun
+  contenant un vrai dossier Service Worker avec fichier témoin — les
+  témoins doivent rester (aucune fuite du périmètre).
+- **Échec sur le PREMIER dossier** : le dossier récalcitrant est désormais
+  testé en TÊTE de liste (fenêtre principale) — preuve que le nettoyage
+  continue après l'erreur, pas seulement quand l'erreur arrive en dernier.
+- **Commentaire honnête** : le nettoyage a lieu « avant createWindow() » ;
+  l'absence d'ouverture de base Chromium plus précoce n'est pas démontrée
+  (l'ancien « avant que Chromium ne réouvre ses bases » était trop fort).
+- 3 tests ajoutés ; couverture 100 %.
+
+## Issue #206 — lot 2a : durcissement de la mesure (revue, 20/10/2026)
+
+### Corrigé (2 passes de revue sur le lot 2a fusionné, #231)
+- **La mesure ne compte que le NOUVEAU texte généré, terminé** :
+  - la base de comparaison est capturée AVANT l'envoi (runClaudeJob INJECTE
+    le prompt — une réponse rapide peut déjà être présente à la fin de
+    l'injection, une baseline post-envoi l'ignorerait jusqu'au délai) ;
+  - une réponse est acceptée seulement si (1) différente de la base ET
+    (2) génération TERMINÉE : le script de collecte signale `streaming`
+    via l'attribut data-is-streaming de Claude.ai (présent pendant la
+    génération — même en pause —, retiré à la fin). La stabilité du texte
+    seule ne prouvait rien : le texte est tronqué à 5 000 caractères et un
+    préfixe identique masquerait une suite qui croît ;
+  - une réponse partielle ou un délai dépassé ne produisent jamais de
+    « temps de réponse réussi ».
+- **Périmètre explicite** : la mesure couvre les envois passant par
+  `_executeAutomation` (tâches et relances) ; les appels IPC directs
+  `run-claude-job` et les envois manuels dans la webview ne sont pas
+  instrumentés.
+- **Lecture non destructive** : seule l'absence du fichier (ENOENT) vaut
+  « historique vide » ; toute autre erreur de lecture (EIO…) se PROPAGE —
+  sinon la notation suivante réécrivait le fichier avec le seul nouvel
+  événement et détruisait l'historique (sessions ET événements du lot 2).
+  Test : lecture EIO -> notation rejetée, fichier intact, réessai OK.
+- **Écritures sérialisées** : reponses.jsonl et quotas.jsonl partent de
+  chaînes de promesses distinctes (lecture → réécriture complète) — des
+  notations simultanées ne s'écrasaient plus mutuellement (test : 24
+  événements notés en parallèle, aucun perdu).
+- **Conservation 90 jours tenue** : la purge est PERSISTÉE au chargement
+  (fichier réécrit) — un événement expiré restait physiquement dans le
+  fichier tant qu'aucune notation n'avait lieu.
+- **Quotas : la métrique est un PLAFONNEMENT des détections** (au plus une
+  par compte et par heure glissante — la boucle wait_quota re-diagnostique
+  le même blocage sans envoyer). Ce n'est ni un comptage d'épisodes réels,
+  ni une mesure de durée : `classerComptes` (surchargés) compte des
+  détections plafonnées, pas des blocages.
+- **Récupération réessayable** : un échec de la récupération des sessions
+  (disque plein) n'est plus mémoïsé sur son rejet — sinon tous les appels
+  suivants échouaient jusqu'au redémarrage de l'app.
+- Délais de poll injectables via la config (`responseTimeoutMs`,
+  `responsePollIntervalMs`) : tests rapides et déterministes.
+- 8 tests discriminants (concurrence, EIO non destructive, purge persistée,
+  échec réessayé, réponse rapide post-injection, texte croissant, préfixe
+  5 000 caractères stable, délais dépassés) ; couverture 100 %.
+
+## Issue #206 — statistiques d'utilisation, lot 2 (19/10/2026)
+
+### Livré
+- **Heures de pointe** : carte de chaleur jour × heure (heure locale, lundi en
+  premier) du temps actif, réparti au prorata des tranches horaires couvertes.
+- **Série** de jours consécutifs d'utilisation (en cours et record) ; une
+  session à cheval sur minuit compte pour les deux jours.
+- **Comptes inutilisés** sur la période, avec la dernière utilisation connue.
+- **Tâches programmables par compte** (lien avec #199) : envoyées, quotas,
+  erreurs (erreur + non connecté), exécutions, dernier quota et heure de fin
+  rapportée. Source : l'historique des tâches (`taches:history`, 200 dernières
+  exécutions). Depuis le retrait du bouton « Épuiser » (#136), plus rien
+  n'alimente `cooldowns` : les quotas ne viennent que de cet historique.
+- **Tri par colonne** de tous les tableaux (clic sur l'en-tête, second clic = sens
+  inverse, `aria-sort`).
+- `lib/stats.js` : `heuresDePointe`, `comptesInutilises`, `serieJours`,
+  `resultatsTaches`, `trierLignes` (100 %, `test/stats-lot2.test.js`) ;
+  harnais C11.3 ; traductions en/de/es/it/pt.
+
+## Issue #206 — lot 2a : mesure des temps de réponse et des quotas (20/10/2026)
+
+### Livré
+- **La mesure laissée en « reste » par le lot 2** : temps de réponse et quotas.
+  - temps de réponse Claude : envoi du prompt -> fin de la génération,
+    mesuré dans `_executeAutomation` (le poll de réponse existant) ;
+  - quotas atteints : notés quand `runClaudeJob` détecte le quota
+    (cooldown) — couvre jobs ET tâches programmables ;
+  - tout reste local (`<userData>/stats/reponses.jsonl` et
+    `quotas.jsonl`, 90 jours, plafond 130 000 événements par type,
+    jamais bloquants pour l'envoi).
+- `lib/stats.js` (pur, testé) : `normaliserReponse`/`normaliserQuota`,
+  `agregerReponses` (médiane/min/max par compte et service),
+  `agregerQuotas` (répartition par heure de la journée),
+  `classerComptes` (sous-utilisés / **surchargés** — la moitié
+  « surchargés », alimentée par les quotas, est nouvelle) ;
+  `purger` généralisé (champ `fin` ou `date`), `parserJsonl` typé.
+  (`carteHeures` retirée : doublon de `heuresDePointe` du lot 2.)
+- IPC : `stats:noter-reponse`, `stats:noter-quota`, `stats:reponses`,
+  `stats:quotas` ; `scheduler.statsStore` câblé dans `main.js`.
+
+## Issue #206 — statistiques d'utilisation, lot 1 (19/10/2026)
+
+### Livré
+- **Mesure locale** des sessions d'onglet : durée d'ouverture et **temps actif**
+  (onglet au premier plan ET fenêtre IAO au focus), par compte (profil) et par
+  service. `lib/stats.js` (pur, 100 %) : suivi, agrégation, JSONL, conservation.
+- **Persistance** dans `<userData>/stats/` : `sessions.jsonl` (90 jours, purgé au
+  démarrage, lignes abîmées ignorées une à une) et `en-cours.json` (instantané
+  des onglets ouverts, synchronisé à chaque fermeture d'onglet et toutes les
+  minutes). Fermeture brutale ou page rechargée : les sessions ouvertes sont
+  versées à l'historique, perte maximale d'une minute, sans doublon (par id).
+- **Page Statistiques** (bouton « graphique » de la barre du haut) : périodes
+  Aujourd'hui / 7 / 30 / 90 jours ; totaux (temps actif, durée ouverte,
+  sessions) ; tableaux par compte (dernière utilisation) et par service (part
+  du temps actif). Une session à cheval sur le début de période n'y compte que
+  pour sa partie incluse. Noms échappés (`escapeHtml`).
+- Aucune télémétrie, aucun appel réseau ; canaux IPC `stats:sync` et
+  `stats:load`. Icône Font Awesome Free 6.5.0 `chart-simple`.
+- Tests : `test/stats.test.js` (100 %), harnais Electron C11.1/C11.2 ;
+  traductions anglaises.
+
+### Reste (lots suivants de #206)
+- Lot 2 : messages envoyés et tâches programmables (lien avec #199).
+- Lot 3 : graphiques d'évolution, export CSV/JSON, remise à zéro depuis l'interface.
+## Fermeture d'onglet : bandeau « Invalid guestInstanceId » (19/10/2026)
+
+- Fermer un onglet IA chargé affichait le bandeau rouge « IAO a rencontré un
+  problème — Invalid guestInstanceId ». Bug d'Electron (suppression d'une
+  `<webview>` chargée, electron/electron#54089), corrigé en 43.7.4 : Electron
+  passe de 43.7.2 à **43.8.0** (même branche majeure).
+- Test de non-régression : harnais Electron C12.1.
+
+## Issue #184 (suite) : nettoyage des Service Worker des partitions (19/10/2026, durci)
+
+### Livré
+- **Piste de #184 mise en œuvre (mesure d'atténuation, cause exacte non
+  démontrée)** : `cleanupServiceWorkerStorage()` ne nettoyait que le dossier
+  `Service Worker` de la fenêtre principale — chaque partition d'onglet
+  (`persist:<profile>`, `Partitions/<profile>/`) a le sien. Les partitions
+  n'étaient pas couvertes par le nettoyage.
+- `dossiersServiceWorkerANettoyer()` (`lib/startup-storage.js`, pur, testé —
+  ne lève jamais) : liste les dossiers `Service Worker` existants (fenêtre
+  principale + une entrée par partition **réelle**). `main.js` les supprime
+  tous AVANT la création de la fenêtre (donc avant l'ouverture des bases
+  Chromium) ; journal : une ligne par dossier nettoyé.
+- **Durcissement (revue)** : une erreur sur un dossier n'interrompt pas les
+  autres (`nettoyerDossiersServiceWorker()`, testé) ; les liens symboliques
+  et entrées illisibles de `Partitions/` sont ignorés (périmètre garanti au
+  dossier de données) ; un dossier `Local Storage`/`Cookies` n'est jamais
+  touché (test sur arborescence réelle).
+- **À valider sur la machine de #58/#59** : les rafales doivent disparaître.
+  Si elles persistent, la cause est ailleurs (droits — voir #197 — ou verrou
+  d'instance) : joindre `logs/iao.log`.
+
+## Issue #51 — i18n : allemand, espagnol, italien, portugais complets (19/10/2026)
+
+### Livré
+- **403/403 messages traduits** dans `lang/de.po` (#224), `lang/es.po`
+  (#225 — espagnol ajouté aux locales, 30e langue), `lang/it.po` (#226) et
+  `lang/pt.po` (#227), lot 4 des tâches (#199) inclus.
+- Traductions produites par l'agent (docker25200), chaîne par chaîne,
+  terminologie UI cohérente, placeholders `{…}` préservés — **relecture
+  humaine attendue** (convention #51, mentionnée dans chaque en-tête de
+  catalogue et chaque PR).
+- Test LINGUAS mis à jour (30 locales). `msgfmt --check` propre,
+  `i18n:check` vert, interface vérifiée dans chaque langue au lancement
+  (`IAO_LANG=de|es|it|pt`).
+
+## Issue #199 — lot 4 : interface des tâches programmables (19/10/2026)
+
+### Livré
+- **Modale ordonnanceur** : l'interface des tâches remplace le bandeau « en
+  cours de développement » du lot 1 — liste des tâches (nom échappé, comptes,
+  répartition, périodicité, prochaine exécution, boutons Activer/Désactiver,
+  Exécuter maintenant, Modifier, Supprimer avec confirmation), historique
+  borné aux 200 derniers événements (libellés traduits : lancée, envoyée,
+  quota, heures calmes, non connecté, aucun compte éligible, erreur).
+- **Formulaire de création/édition** : nom, comptes (tous ou sélection,
+  seuls les comptes avec Claude sont proposés), répartition (tous avec
+  espacement en secondes, ou rotation), nouvelle session, prompt,
+  programmation (unique `datetime-local` ou périodique N unités), actif.
+  Erreurs du service affichées dans le formulaire sans le fermer ; la saisie
+  survit au rafraîchissement de 4 s (le formulaire n'est jamais reconstruit
+  par le polling). L'édition préserve l'état d'exécution (le service garde
+  `derniereExecution`/`indexRotation`) ET les valeurs exactes des champs
+  inchangés : un espacement en ms non rond (90050) ou une date à la
+  milliseconde ne sont ni arrondis ni tronqués (`preserverValeursNonModifiees`,
+  testé). Sous-titre de la modale adapté au flux actif ; dates formatées
+  dans la langue active (`document.documentElement.lang`).
+- `lib/taches-ui.js` (pur, testé par `test/taches-ui.test.js`) : conversions
+  sans perte à la seconde près `datetime-local` <-> ISO (heure locale, jamais
+  `toISOString().slice()`), espacement secondes <-> ms, mapping
+  formulaire <-> tâche, descripteurs de programmation et résultats. Codes
+  d'erreur (pas de français dans le helper) traduits côté app par des
+  appels `N_()`/`_()` littéraux.
+- **« Exécuter maintenant »** : même chemin que la minuterie — la garde du
+  moteur est prise AVANT l'appel au service (`taches:run-now` marque la tâche
+  côté service), plan construit par le service (même forme que
+  `taches:dues`), exécuté par `creerMoteur` (`lib/taches-runner.js`) :
+  minuterie et exécution manuelle partagent la même garde, jamais deux plans
+  en même temps. Le résultat arrive par l'historique (`taches:report`),
+  jamais fabriqué par l'interface (toast neutre).
+- Harnais Electron C10 (8 scénarios) : interface visible, création avec nom
+  HTML (échappé), saisie préservée au polling, édition, bascule d'activation,
+  exécution manuelle avec envoi réel simulé (canal `scheduler:run-claude-job`
+  remplacé côté main, tout le reste réel) jusqu'à l'historique, suppression
+  avec confirmation, erreurs de prévalidation ET du service affichées sans
+  fermer le formulaire.
+- i18n : 79 nouveaux msgid extraits, catalogues régénérés (29 langues,
+  nouvelles chaînes non traduites par défaut — à traduire au fil de l'eau).
+
 ## Issue #201 — comptes en série, côté IAO (18/10/2026)
 
 ### Livré

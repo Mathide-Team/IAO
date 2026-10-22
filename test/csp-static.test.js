@@ -284,6 +284,27 @@ test('install.bat contient les fonctionnalites documentees', () => {
   assert.ok(/dist:win/.test(bat), 'install.bat : reference dist:win absente');
 });
 
+test('install.bat : PATH utilisateur lu et ecrit dans le registre, sans setx (issue #3)', () => {
+  const bat = fs.readFileSync(installBatPath, 'utf8');
+  // setx PATH "%PATH%;..." recopie le PATH systeme dans le PATH utilisateur
+  // et le tronque a 1024 caracteres.
+  assert.ok(!/setx\s+PATH/i.test(bat), 'install.bat : setx PATH ne doit plus etre utilise');
+  assert.ok(/GetEnvironmentVariable\('Path', 'User'\)/.test(bat), 'install.bat : lecture du PATH utilisateur absente');
+  assert.ok(/call :path_user remove/.test(bat), 'install.bat : /uninstall doit retirer IAO du PATH utilisateur');
+  assert.ok(/GetFolderPath\('Desktop'\)/.test(bat), 'install.bat : Bureau redirige (OneDrive) non gere');
+});
+
+test('recette Windows : workflow et script de controle presents (issue #3)', () => {
+  const wf = fs.readFileSync(path.join(ROOT, '.github', 'workflows', 'install-windows.yml'), 'utf8');
+  assert.ok(/runs-on:\s*windows-latest/.test(wf), 'install-windows.yml : runner windows-latest attendu');
+  assert.ok(/test-install-windows\.ps1/.test(wf), 'install-windows.yml : script de recette non appele');
+  const ps = fs.readFileSync(path.join(ROOT, 'scripts', 'test-install-windows.ps1'), 'utf8');
+  for (const opt of ['/desktop', '/system', '/uninstall', '/help']) {
+    assert.ok(ps.indexOf("Lancer '" + opt) !== -1, 'test-install-windows.ps1 : scenario ' + opt + ' absent');
+  }
+  assert.ok(/PRESERVE/.test(ps), 'test-install-windows.ps1 : controle de preservation des donnees absent');
+});
+
 test('index.html ne contient aucun attribut class duplique sur un meme element', () => {
   // Lot 10 (18/09/2026) : deux attributs class sur le meme element sont invalides
   // en HTML5 (seul le premier est pris en compte par le navigateur).

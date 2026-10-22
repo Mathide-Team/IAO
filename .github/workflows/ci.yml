@@ -73,8 +73,12 @@ jobs:
       - name: Installation de Python 3.14 (uv)
         # Python système trop ancien sur certains runners maison : venv uv.
         run: |
-          uv venv --python 3.14 --seed "$RUNNER_TEMP/venv"
-          echo "$RUNNER_TEMP/venv/bin" >> "$GITHUB_PATH"
+          # Chemin propre à chaque exécution : sur un runner maison, un ancien
+          # "_temp/venv" peut rester (job interrompu, fichiers d'un autre compte
+          # impossibles à supprimer) et bloquer "uv venv".
+          venv="$RUNNER_TEMP/venv-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
+          uv venv --clear --python 3.14 --seed "$venv"
+          echo "$venv/bin" >> "$GITHUB_PATH"
 
       - name: Installation de mkdocs-material
         # mkdocs < 2 : MkDocs 2.0 abandonne le système de plugins/thèmes de Material.

@@ -4,6 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: IAO\n"
 "Report-Msgid-Bugs-To: https://github.com/Mathide-Team/IAO/issues\n"
+"PO-Revision-Date: 2026-10-20 06:44+0000\n"
+"Last-Translator: agent IAO (docker24006) — traduction générée par IA, relecture humaine attendue (issue #51)\n"
+"Language-Team: Mathide-Team <https://github.com/Mathide-Team/IAO>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -12,1208 +15,1927 @@ msgstr ""
 
 #: index.html
 msgid "Rechercher un compte ou une IA..."
-msgstr ""
+msgstr "Найти аккаунт или ИИ..."
 
 #: index.html
 msgid "Comptes actifs"
-msgstr ""
+msgstr "Активные аккаунты"
 
 #: index.html
 msgid "IA Disponibles"
-msgstr ""
+msgstr "Доступные ИИ"
 
 #: index.html
 msgid "Rechercher un compte ou une IA (Ctrl+K)"
-msgstr ""
+msgstr "Найти аккаунт или ИИ (Ctrl+K)"
 
 #: index.html
 msgid "Comptes enregistrés"
-msgstr ""
+msgstr "Сохранённые аккаунты"
 
 #: index.html
 msgid "Tout replier / Tout déplier"
-msgstr ""
+msgstr "Свернуть всё / Развернуть всё"
 
 #: index.html
 msgid "Exporter les comptes (JSON)"
-msgstr ""
+msgstr "Экспортировать аккаунты (JSON)"
 
 #: index.html
 msgid "Importer des comptes (JSON)"
-msgstr ""
+msgstr "Импортировать аккаунты (JSON)"
 
 #: index.html
 msgid "Ajouter un compte"
-msgstr ""
+msgstr "Добавить аккаунт"
 
 #: index.html
 msgid "Créer des comptes en série"
-msgstr ""
+msgstr "Создать аккаунты пакетом"
 
 #: index.html
 msgid "Mode debug actif : traces détaillées dans le journal iao.log"
-msgstr ""
+msgstr "Режим отладки включён: подробные записи в журнале iao.log"
 
 #: index.html
 msgid "Masquer les comptes"
-msgstr ""
+msgstr "Скрыть аккаунты"
 
 #: index.html
 msgid "Afficher les comptes"
-msgstr ""
+msgstr "Показать аккаунты"
 
 #: index.html
 msgid "Explorateur"
-msgstr ""
+msgstr "Проводник"
 
 #: index.html
 msgid "Éditeur"
-msgstr ""
+msgstr "Редактор"
 
 #: index.html
 msgid "Outils de développement (Ctrl+Maj+I)"
-msgstr ""
+msgstr "Инструменты разработчика (Ctrl+Shift+I)"
 
 #: index.html
 msgid "Redémarrer en mode debug (journal détaillé)"
-msgstr ""
+msgstr "Перезапустить в режиме отладки (подробный журнал)"
 
 #: index.html
 msgid "Choisir mes 9 IA à portée de main"
-msgstr ""
+msgstr "Выбрать 9 ИИ под рукой"
 
 #: index.html
 msgid "Comprendre les IA disponibles"
-msgstr ""
+msgstr "Узнать о доступных ИИ"
+
+#: index.html
+msgid "Statistiques d'utilisation"
+msgstr "Статистика использования"
 
 #: index.html
 msgid "Ordonnanceur IA"
-msgstr ""
+msgstr "Планировщик ИИ"
 
 #: index.html
 msgid "Réglages"
-msgstr ""
+msgstr "Настройки"
 
 #: index.html
 msgid "Fichiers"
-msgstr ""
+msgstr "Файлы"
 
 #: index.html
 msgid "Ouvrir un dossier"
-msgstr ""
+msgstr "Открыть папку"
 
 #: index.html
 msgid "Réduire"
-msgstr ""
+msgstr "Свернуть"
 
 #: index.html
 msgid "Rechercher un fichier..."
-msgstr ""
+msgstr "Найти файл..."
 
 #: index.html
 msgid "Glisser pour redimensionner"
-msgstr ""
+msgstr "Перетащите, чтобы изменить размер"
 
 #: index.html
 msgid "Aucun fichier"
-msgstr ""
+msgstr "Нет файлов"
 
 #: index.html
 msgid "Glisser pour redimensionner l'éditeur"
-msgstr ""
+msgstr "Перетащите, чтобы изменить размер редактора"
 
 #: index.html
 msgid "Aucun onglet ouvert — choisissez un service dans la liste des comptes"
-msgstr ""
+msgstr "Нет открытых вкладок — выберите сервис в списке аккаунтов"
 
 #: index.html
 msgid "Le profil permet d'isoler les cookies dans Electron."
-msgstr ""
+msgstr "Профиль позволяет изолировать cookie в Electron."
 
 #: index.html
 msgid "Nom du compte"
-msgstr ""
+msgstr "Имя аккаунта"
 
 #: index.html
 msgid "Nom du Profil"
-msgstr ""
+msgstr "Имя профиля"
 
 #: index.html
 msgid "Mot de passe de la messagerie"
-msgstr ""
+msgstr "Пароль почты"
 
 #: index.html
 msgid "Afficher le mot de passe"
-msgstr ""
+msgstr "Показать пароль"
 
 #: index.html
 msgid "Générer un mot de passe"
-msgstr ""
+msgstr "Сгенерировать пароль"
 
 #: index.html
 msgid "Chiffré par le trousseau du système, jamais enregistré en clair. Laisser vide pour ne pas le modifier."
-msgstr ""
+msgstr "Зашифрован системной связкой ключей, никогда не хранится в открытом виде. Оставьте пустым, чтобы не менять."
 
 #: index.html
 msgid "Annuler"
-msgstr ""
+msgstr "Отмена"
 
 #: index.html
 msgid "Enregistrer"
-msgstr ""
+msgstr "Сохранить"
 
 #: index.html
 msgid "Nombre de comptes"
-msgstr ""
+msgstr "Количество аккаунтов"
 
 #: index.html
 msgid "Créer"
-msgstr ""
+msgstr "Создать"
 
 #: index.html
 msgid "Supprimer le compte"
-msgstr ""
+msgstr "Удалить аккаунт"
 
 #: index.html
 msgid "Cette action est irréversible."
-msgstr ""
+msgstr "Это действие необратимо."
 
 #: index.html
 msgid "Supprimer"
-msgstr ""
+msgstr "Удалить"
 
 #: index.html
 msgid "Importer des comptes"
-msgstr ""
+msgstr "Импорт аккаунтов"
 
 #: index.html
 msgid "Remplacer et importer"
-msgstr ""
+msgstr "Заменить и импортировать"
 
 #: index.html
 msgid "Déconnecter le profil"
-msgstr ""
+msgstr "Выйти из профиля"
 
 #: index.html
 msgid "Déconnecter"
-msgstr ""
+msgstr "Выйти"
 
 #: index.html
 msgid "À quoi sert chaque service, et quand l'utiliser."
-msgstr ""
+msgstr "Для чего нужен каждый сервис и когда его использовать."
 
 #: index.html
 msgid "Fermer"
-msgstr ""
+msgstr "Закрыть"
 
 #: index.html
 msgid "Sélectionnez les 9 services affichés dans l'interface. Les autres restent disponibles dans l'aide."
-msgstr ""
+msgstr "Выберите 9 сервисов, отображаемых в интерфейсе. Остальные доступны в справке."
 
 #: index.html
 msgid "Détection des ZIP livrés par les onglets IA, reprise par profil."
-msgstr ""
+msgstr "Обнаружение ZIP-файлов, получаемых во вкладках ИИ, с обработкой по профилям."
 
 #: index.html
 msgid "Arrêté"
-msgstr ""
+msgstr "Остановлен"
 
 #: index.html
 msgid "Démarrer ou arrêter l'ordonnanceur (il ne démarre jamais tout seul)"
-msgstr ""
+msgstr "Запустить или остановить планировщик (сам он никогда не запускается)"
 
 #: index.html
 msgid "Démarrer"
-msgstr ""
+msgstr "Запустить"
 
 #: index.html
 msgid "Ancien ordonnanceur désactivé"
-msgstr ""
+msgstr "Старый планировщик отключён"
 
 #: index.html
 msgid "La détection des ZIP, les jobs et les projets sont remplacés par les tâches programmables, en cours de développement."
-msgstr ""
+msgstr "Обнаружение ZIP, задания и проекты заменяются программируемыми задачами, которые находятся в разработке."
+
+#: index.html
+msgid "Tâches programmables"
+msgstr "Программируемые задачи"
+
+#: index.html
+msgid "Nouvelle tâche"
+msgstr "Новая задача"
+
+#: index.html
+msgid "Nom de la tâche"
+msgstr "Название задачи"
+
+#: index.html
+msgid "Ex. : rapport quotidien"
+msgstr "Например: ежедневный отчёт"
+
+#: index.html
+msgid "Comptes"
+msgstr "Аккаунты"
+
+#: index.html
+msgid "Tous les comptes avec Claude"
+msgstr "Все аккаунты с Claude"
+
+#: index.html
+msgid "Choisir des comptes…"
+msgstr "Выбрать аккаунты…"
+
+#: index.html
+msgid "Répartition"
+msgstr "Распределение"
+
+#: index.html
+msgid "Tous les comptes à chaque exécution"
+msgstr "Все аккаунты при каждом запуске"
+
+#: index.html
+msgid "Un compte à la fois (rotation)"
+msgstr "По одному аккаунту (ротация)"
+
+#: index.html
+msgid "Espacement entre comptes (secondes)"
+msgstr "Интервал между аккаунтами (секунды)"
+
+#: index.html
+msgid "Nouvelle session à chaque exécution"
+msgstr "Новая сессия при каждом запуске"
+
+#: index.html
+msgid "Prompt à envoyer"
+msgstr "Отправляемый промпт"
+
+#: index.html
+msgid "Ex. : Résume les actualités de la veille"
+msgstr "Например: Кратко изложи вчерашние новости"
+
+#: index.html
+msgid "Programmation"
+msgstr "Расписание"
+
+#: index.html
+msgid "Récurrente (tous les N …)"
+msgstr "Повторяющаяся (каждые N …)"
+
+#: index.html
+msgid "Une seule fois"
+msgstr "Один раз"
+
+#: index.html
+msgid "Le"
+msgstr "Дата"
+
+#: index.html
+msgid "Tous les"
+msgstr "Каждые"
+
+#: index.html
+msgid "minutes"
+msgstr "мин."
+
+#: index.html
+msgid "heures"
+msgstr "ч"
+
+#: index.html
+msgid "jours"
+msgstr "дн."
+
+#: index.html
+msgid "semaines"
+msgstr "нед."
+
+#: index.html
+msgid "mois"
+msgstr "мес."
+
+#: index.html
+msgid "À partir du"
+msgstr "Начиная с"
+
+#: index.html
+msgid "Tâche active"
+msgstr "Задача активна"
+
+#: index.html
+msgid "Historique"
+msgstr "История"
 
 #: index.html
 msgid "Jobs actifs"
-msgstr ""
+msgstr "Активные задания"
 
 #: index.html
 msgid "En attente"
-msgstr ""
+msgstr "В ожидании"
 
 #: index.html
 msgid "Livrés aujourd'hui"
-msgstr ""
+msgstr "Доставлено сегодня"
 
 #: index.html
 msgid "Jobs simultanés max."
-msgstr ""
+msgstr "Макс. одновременных заданий"
 
 #: index.html
 msgid "Délai min. entre automatisations (min)"
-msgstr ""
+msgstr "Мин. интервал между автоматизациями (мин)"
 
 #: index.html
 msgid "Seuil profil « le plus ancien » (h)"
-msgstr ""
+msgstr "Порог профиля «самый старый» (ч)"
 
 #: index.html
 msgid "Dossiers"
-msgstr ""
+msgstr "Папки"
 
 #: index.html
 msgid "Téléchargements…"
-msgstr ""
+msgstr "Загрузки…"
 
 #: index.html
 msgid "Livraison…"
-msgstr ""
+msgstr "Доставка…"
 
 #: index.html
 msgid "Téléchargements :"
-msgstr ""
+msgstr "Загрузки:"
 
 #: index.html
 msgid "(dossier de téléchargements du système)"
-msgstr ""
+msgstr "(системная папка загрузок)"
 
 #: index.html
 msgid "Livraison :"
-msgstr ""
+msgstr "Доставка:"
 
 #: index.html
 msgid "(non défini)"
-msgstr ""
+msgstr "(не задано)"
 
 #: index.html
 msgid "Projets & tâches"
-msgstr ""
+msgstr "Проекты и задачи"
 
 #: index.html
 msgid "Jobs"
-msgstr ""
+msgstr "Задания"
 
 #: index.html
 msgid "Journal d'activité"
-msgstr ""
+msgstr "Журнал активности"
 
 #: index.html
 msgid "Confirmation"
-msgstr ""
+msgstr "Подтверждение"
 
 #: index.html
 msgid "Confirmer"
-msgstr ""
+msgstr "Подтвердить"
+
+#: index.html
+msgid "Mesurées sur cet ordinateur et conservées 90 jours. Rien n'est envoyé."
+msgstr "Измеряется на этом компьютере и хранится 90 дней. Ничего не отправляется."
+
+#: index.html
+msgid "Aujourd'hui"
+msgstr "Сегодня"
+
+#: index.html
+msgid "7 jours"
+msgstr "7 дней"
+
+#: index.html
+msgid "30 jours"
+msgstr "30 дней"
+
+#: index.html
+msgid "90 jours"
+msgstr "90 дней"
+
+#: index.html
+msgid "Remettre à zéro"
+msgstr "Сбросить"
+
+#: index.html
+msgid "Exporter CSV"
+msgstr "Экспорт CSV"
+
+#: index.html
+msgid "Exporter JSON"
+msgstr "Экспорт JSON"
 
 #: index.html
 msgid "Préférences de l'application, sauvegardées localement."
-msgstr ""
+msgstr "Настройки приложения, сохраняются локально."
 
 #: index.html
 msgid "Taille de police de l'éditeur (px)"
-msgstr ""
+msgstr "Размер шрифта редактора (px)"
 
 #: index.html
 msgid "Thème"
-msgstr ""
+msgstr "Тема"
 
 #: index.html
 msgid "Thème du bureau (défaut)"
-msgstr ""
+msgstr "Тема рабочего стола (по умолчанию)"
 
 #: index.html
 msgid "Clair"
-msgstr ""
+msgstr "Светлая"
 
 #: index.html
 msgid "Sombre"
-msgstr ""
+msgstr "Тёмная"
 
 #: index.html
 msgid "Langue"
-msgstr ""
+msgstr "Язык"
 
 #: index.html
 msgid "Langue du système (défaut)"
-msgstr ""
+msgstr "Язык системы (по умолчанию)"
 
 #: index.html
 msgid "Appliquée au prochain démarrage"
-msgstr ""
+msgstr "Применяется при следующем запуске"
 
 #: index.html
 msgid "Retour à la ligne (éditeur)"
-msgstr ""
+msgstr "Перенос строк (редактор)"
 
 #: index.html
 msgid "Désactivé"
-msgstr ""
+msgstr "Выключен"
 
 #: index.html
 msgid "Activé"
-msgstr ""
+msgstr "Включён"
 
 #: index.html
 msgid "Colonne fixe"
-msgstr ""
+msgstr "Фиксированная колонка"
 
 #: index.html
 msgid "Confirmer avant de fermer un onglet"
-msgstr ""
+msgstr "Подтверждать закрытие вкладки"
 
 #: index.html
 msgid "Afficher les fenêtres d'automatisation"
-msgstr ""
+msgstr "Показывать окна автоматизации"
 
 #: index.html
 msgid "Restaurer les onglets ouverts au démarrage"
-msgstr ""
+msgstr "Восстанавливать открытые вкладки при запуске"
 
 #: index.html
 msgid "Préfixe des adresses e-mail"
-msgstr ""
+msgstr "Префикс адресов электронной почты"
 
 #: index.html
 msgid "docker"
-msgstr ""
+msgstr "docker"
 
 #: index.html
 msgid "Domaine des adresses e-mail"
-msgstr ""
+msgstr "Домен адресов электронной почты"
 
 #: index.html
 msgid "dmathilde.fr"
-msgstr ""
+msgstr "dmathilde.fr"
 
 #: index.html
 msgid "Adresse : préfixe + numéro + @ + domaine (ex. docker239@dmathilde.fr)"
-msgstr ""
+msgstr "Адрес: префикс + номер + @ + домен (например, docker239@dmathilde.fr)"
 
 #: index.html
 msgid "Adresse du webmail (Roundcube)"
-msgstr ""
+msgstr "Адрес веб-почты (Roundcube)"
 
 #: index.html
 msgid "https://mail.dmathilde.fr"
+msgstr "https://mail.dmathilde.fr"
+
+#: index.html
+msgid "Identifiants des connecteurs (partagés)"
+msgstr ""
+
+#: index.html
+msgid "context7.com"
+msgstr ""
+
+#: index.html
+msgid "login@exemple.fr"
+msgstr ""
+
+#: index.html
+msgid "Mot de passe"
+msgstr ""
+
+#: index.html
+msgid "Chiffrés par le trousseau du système, partagés entre les profils — les cookies et le 2FA restent propres à chaque profil. Au focus d'un champ de connexion, un menu propose les identifiants du site."
 msgstr ""
 
 #: assets/app.js
 msgid "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."
-msgstr ""
+msgstr "Разговорный ассистент от Anthropic. Отлично справляется с написанием текстов, анализом длинных документов, программированием и рассуждениями в несколько шагов."
 
 #: assets/app.js
 msgid "Plutôt pour du code, des textes longs et soignés, ou des questions complexes qui demandent de la rigueur."
-msgstr ""
+msgstr "Скорее для кода, длинных и тщательно выверенных текстов или сложных вопросов, требующих точности."
 
 #: assets/app.js
 msgid "L'assistant généraliste d'OpenAI, le plus connu du grand public. Il discute, rédige, résume, génère des images, analyse des fichiers et peut chercher sur le web."
-msgstr ""
+msgstr "Универсальный ассистент OpenAI, самый известный широкой публике. Общается, пишет, резюмирует, генерирует изображения, анализирует файлы и умеет искать в интернете."
 
 #: assets/app.js
 msgid "Le couteau suisse du quotidien : brainstorming, questions générales, petites tâches variées."
-msgstr ""
+msgstr "Швейцарский нож на каждый день: мозговой штурм, общие вопросы, разные мелкие задачи."
 
 #: assets/app.js
 msgid "L'assistant IA de Google. Multimodal (texte, images, audio, vidéo), il s'appuie sur la recherche Google et s'intègre aux outils Google (Docs, Gmail, Drive…)."
-msgstr ""
+msgstr "ИИ-ассистент Google. Мультимодальный (текст, изображения, аудио, видео), опирается на поиск Google и интегрируется с инструментами Google (Docs, Gmail, Drive…)."
 
 #: assets/app.js
 msgid "Plutôt pour analyser des images ou vidéos, ou si vous travaillez déjà dans l'écosystème Google."
-msgstr ""
+msgstr "Скорее для анализа изображений или видео, либо если вы уже работаете в экосистеме Google."
 
 #: assets/app.js
 msgid "Le chat de Z.ai, propulsé par les modèles GLM. Gratuit pour l'essentiel, avec un mode agent capable de chercher sur le web et de produire des fichiers (docx, pdf, xlsx)."
-msgstr ""
+msgstr "Чат Z.ai на моделях GLM. В основном бесплатный, с режимом агента, который умеет искать в интернете и создавать файлы (docx, pdf, xlsx)."
 
 #: assets/app.js
 msgid "Une alternative gratuite solide pour le chat et le code, quand les quotas des autres sont épuisés."
-msgstr ""
+msgstr "Надёжная бесплатная альтернатива для чата и кода, когда лимиты других исчерпаны."
 
 #: assets/app.js
 msgid "Un « moteur de réponse » : il cherche sur le web en direct, synthétise plusieurs sources et cite ses références pour chaque affirmation."
-msgstr ""
+msgstr "«Движок ответов»: ищет в интернете в реальном времени, сводит несколько источников и указывает источник для каждого утверждения."
 
 #: assets/app.js
 msgid "Plutôt pour la recherche d'informations à jour, la veille et la vérification de faits avec sources."
-msgstr ""
+msgstr "Скорее для поиска актуальной информации, мониторинга и проверки фактов с источниками."
 
 #: assets/app.js
 msgid "L'assistant de xAI (Elon Musk), connecté au réseau X (ex-Twitter). Ton direct, accès au temps réel de X, génération d'images incluse."
-msgstr ""
+msgstr "Ассистент xAI (Илон Маск), подключённый к сети X (бывший Twitter). Прямой тон, доступ к X в реальном времени, генерация изображений включена."
 
 #: assets/app.js
 msgid "Plutôt pour suivre l'actualité chaude et les tendances via X, ou pour un ton moins formel."
-msgstr ""
+msgstr "Скорее чтобы следить за горячими новостями и трендами через X или для менее формального тона."
 
 #: assets/app.js
 msgid "Une plateforme de génération d'images orientée création : illustrations, concept art, assets de jeu vidéo, avec des contrôles fins (styles, modèles, retouche)."
-msgstr ""
+msgstr "Платформа генерации изображений для творчества: иллюстрации, концепт-арт, ассеты для игр, с тонкими настройками (стили, модели, ретушь)."
 
 #: assets/app.js
 msgid "Plutôt pour produire des visuels et illustrations de qualité avec un contrôle précis du style."
-msgstr ""
+msgstr "Скорее для создания качественных изображений и иллюстраций с точным контролем стиля."
 
 #: assets/app.js
 msgid "Un générateur de musique : il compose des chansons complètes (instruments, voix, paroles) à partir d'une simple description texte, dans à peu près tous les genres."
-msgstr ""
+msgstr "Генератор музыки: сочиняет полноценные песни (инструменты, вокал, текст) по простому текстовому описанию практически в любом жанре."
 
 #: assets/app.js
 msgid "Plutôt pour créer une musique, un jingle ou une chanson à partir d'un texte ou d'une idée."
-msgstr ""
+msgstr "Скорее чтобы создать музыку, джингл или песню по тексту или идее."
 
 #: assets/app.js
 msgid "Un générateur de modèles 3D : il transforme un texte ou une image en objet 3D texturé, avec rigging/animation automatique et export vers les formats standards (GLB, FBX, STL…)."
-msgstr ""
+msgstr "Генератор 3D-моделей: превращает текст или изображение в текстурированный 3D-объект с автоматическим риггингом/анимацией и экспортом в стандартные форматы (GLB, FBX, STL…)."
 
 #: assets/app.js
 msgid "Plutôt pour créer des assets 3D (jeux, impression 3D, animation) sans savoir modéliser."
-msgstr ""
+msgstr "Скорее для создания 3D-ассетов (игры, 3D-печать, анимация) без навыков моделирования."
 
 #: assets/app.js
 msgid "Le Chat de Mistral AI, éditeur européen (français). Modèles open-weights performants, chat, code et analyse de documents."
-msgstr ""
+msgstr "Le Chat от Mistral AI, европейского (французского) разработчика. Мощные модели с открытыми весами, чат, код и анализ документов."
 
 #: assets/app.js
 msgid "Alternative européenne solide pour le chat et le code, avec une bonne maîtrise du français."
-msgstr ""
+msgstr "Надёжная европейская альтернатива для чата и кода, хорошо владеет французским."
 
 #: assets/app.js
 msgid "DeepSeek : assistant IA chinois spécialisé en raisonnement et programmation, particulièrement performant en Python."
-msgstr ""
+msgstr "DeepSeek: китайский ИИ-ассистент, специализирующийся на рассуждениях и программировании, особенно силён в Python."
 
 #: assets/app.js
 msgid "Pour du code Python, du raisonnement étape par étape, ou une alternative gratuite à ChatGPT."
-msgstr ""
+msgstr "Для кода на Python, пошаговых рассуждений или как бесплатная альтернатива ChatGPT."
 
 #: assets/app.js
 msgid "GitHub Copilot : assistant IA intégré dans VS Code et GitHub. Autocomplétion, chat, génération de tests, explication de code."
-msgstr ""
+msgstr "GitHub Copilot: ИИ-ассистент, встроенный в VS Code и GitHub. Автодополнение, чат, генерация тестов, объяснение кода."
 
 #: assets/app.js
 msgid "Pour programmer plus vite dans VS Code ou sur GitHub, avec un modèle IA qui connaît votre codebase."
-msgstr ""
+msgstr "Чтобы быстрее программировать в VS Code или на GitHub с ИИ-моделью, знающей вашу кодовую базу."
 
 #: assets/app.js
 msgid "Elicit : assistant de recherche scientifique. Trouve des articles, extrait des données, synthétise des études."
-msgstr ""
+msgstr "Elicit: ассистент для научных исследований. Находит статьи, извлекает данные, обобщает исследования."
 
 #: assets/app.js
 msgid "Pour la recherche académique, la revue de littérature et l'extraction de données d'articles scientifiques."
-msgstr ""
+msgstr "Для академических исследований, обзора литературы и извлечения данных из научных статей."
 
 #: assets/app.js
 msgid "NotebookLM de Google : interagissez avec vos propres documents (PDF, texte, audio). Résumés, questions, génération de notes."
-msgstr ""
+msgstr "NotebookLM от Google: работайте с собственными документами (PDF, текст, аудио). Резюме, вопросы, создание заметок."
 
 #: assets/app.js
 msgid "Pour interroger vos documents personnels ou professionnels avec une IA qui cite ses sources."
-msgstr ""
+msgstr "Чтобы задавать вопросы по личным или рабочим документам ИИ, который указывает источники."
 
 #: assets/app.js
 msgid "Wolfram Alpha : moteur de calcul symbolique. Mathématiques, physique, chimie, données factuelles, conversions."
-msgstr ""
+msgstr "Wolfram Alpha: система символьных вычислений. Математика, физика, химия, фактические данные, преобразования."
 
 #: assets/app.js
 msgid "Pour des calculs exacts (mathématiques symboliques), des données chiffrées ou des conversions d'unités."
-msgstr ""
+msgstr "Для точных вычислений (символьная математика), числовых данных или перевода единиц."
 
 #: assets/app.js
 msgid "DeepL : traduction automatique de haute qualité, plus naturelle que Google Traduction. Texte et documents entiers."
-msgstr ""
+msgstr "DeepL: высококачественный машинный перевод, естественнее, чем Google Переводчик. Тексты и целые документы."
 
 #: assets/app.js
 msgid "Pour traduire du texte ou des documents avec un rendu naturel et cohérent."
-msgstr ""
+msgstr "Для перевода текстов или документов с естественным и связным результатом."
 
 #: assets/app.js
 msgid "Ideogram : génération d'images orientée design. Logos, typographies, affiches, avec un excellent rendu du texte."
-msgstr ""
+msgstr "Ideogram: генерация изображений для дизайна. Логотипы, типографика, постеры, с отличной передачей текста."
 
 #: assets/app.js
 msgid "Pour créer des visuels avec du texte lisible (logos, affiches, bannières) ou du design graphique."
-msgstr ""
+msgstr "Для создания изображений с читаемым текстом (логотипы, постеры, баннеры) или графического дизайна."
 
 #: assets/app.js
 msgid "Kling : générateur de vidéos courtes à partir de texte ou d'images. Animations réalistes, crédits gratuits disponibles."
-msgstr ""
+msgstr "Kling: генератор коротких видео по тексту или изображениям. Реалистичная анимация, есть бесплатные кредиты."
 
 #: assets/app.js
 msgid "Pour créer des clips vidéo animés à partir d'une description ou d'une image fixe."
-msgstr ""
+msgstr "Для создания анимированных видеоклипов по описанию или статичному изображению."
 
 #: assets/app.js
 msgid "Runway : suite d'outils IA pour la vidéo. Génération, édition, effets spéciaux, inpainting vidéo."
-msgstr ""
+msgstr "Runway: набор ИИ-инструментов для видео. Генерация, монтаж, спецэффекты, видео-инпейнтинг."
 
 #: assets/app.js
 msgid "Pour le montage et la création vidéo avancée avec des outils IA intégrés."
-msgstr ""
+msgstr "Для продвинутого монтажа и создания видео со встроенными ИИ-инструментами."
 
 #: assets/app.js
 msgid "Pika : générateur de vidéos courtes et créatives. Animation d'images, effets, transformation de styles."
-msgstr ""
+msgstr "Pika: генератор коротких креативных видео. Анимация изображений, эффекты, смена стиля."
 
 #: assets/app.js
 msgid "Pour animer des images ou créer des vidéos courtes originales avec des effets IA."
-msgstr ""
+msgstr "Чтобы анимировать изображения или создавать оригинальные короткие видео с ИИ-эффектами."
 
 #: assets/app.js
 msgid "Qwen : assistant IA d'Alibaba. Multimodal (texte, images, code), open-source, disponible en plusieurs tailles."
-msgstr ""
+msgstr "Qwen: ИИ-ассистент от Alibaba. Мультимодальный (текст, изображения, код), с открытым исходным кодом, доступен в нескольких размерах."
 
 #: assets/app.js
 msgid "Alternative gratuite pour le chat, le code et l'analyse d'images, avec un bon support multilingue."
-msgstr ""
+msgstr "Бесплатная альтернатива для чата, кода и анализа изображений с хорошей многоязычной поддержкой."
 
 #: assets/app.js
 msgid "Impossible d'enregistrer les comptes (stockage plein ?)"
-msgstr ""
+msgstr "Не удалось сохранить аккаунты (хранилище заполнено?)"
 
 #: assets/app.js
 msgid "Ctrl+S pour sauvegarder."
-msgstr ""
+msgstr "Ctrl+S — сохранить."
 
 #: assets/app.js
 msgid "Sélectionnez un fichier pour l'éditer ici."
-msgstr ""
+msgstr "Выберите файл, чтобы редактировать его здесь."
 
 #: assets/app.js
 msgid "Éditeur simplifié (Monaco indisponible) — Ctrl+S pour sauvegarder"
-msgstr ""
+msgstr "Упрощённый редактор (Monaco недоступен) — Ctrl+S, чтобы сохранить"
 
 #: assets/app.js
 msgid "Fichier enregistré !"
-msgstr ""
+msgstr "Файл сохранён!"
 
 #: assets/app.js
 msgid "Erreur d'enregistrement."
-msgstr ""
+msgstr "Ошибка сохранения."
 
 #: assets/app.js
 msgid "Aucun compte pour l'instant."
-msgstr ""
+msgstr "Пока нет аккаунтов."
 
 #: assets/app.js
 msgid "Créer mon premier compte"
-msgstr ""
+msgstr "Создать первый аккаунт"
 
 #: assets/app.js
 msgid "Cliquer pour copier l'e-mail"
-msgstr ""
+msgstr "Нажмите, чтобы скопировать e-mail"
 
 #: assets/app.js
 msgid "Ouvrir le webmail (adresse copiée)"
-msgstr ""
+msgstr "Открыть веб-почту (адрес скопирован)"
 
 #: assets/app.js
 msgid "Modifier le compte"
-msgstr ""
+msgstr "Изменить аккаунт"
 
 #: assets/app.js
-msgid "{available} service(s) hors cooldown sur {total}"
-msgstr ""
+msgid "{available} service hors cooldown sur {total}"
+msgid_plural "{available} services hors cooldown sur {total}"
+msgstr[0] "{available} из {total} сервисов без cooldown"
+msgstr[1] "{available} из {total} сервисов без cooldown"
+msgstr[2] "{available} из {total} сервисов без cooldown"
 
 #: assets/app.js
 msgid "Replier / déplier"
-msgstr ""
+msgstr "Свернуть / развернуть"
 
 #: assets/app.js
 msgid "{service} — {account} déjà ouvert"
-msgstr ""
+msgstr "{service} — {account} уже открыт"
 
 #: assets/app.js
 msgid "Recharger l'onglet"
-msgstr ""
+msgstr "Перезагрузить вкладку"
 
 #: assets/app.js
 msgid "Revenir à l'accueil de {service}"
-msgstr ""
+msgstr "Вернуться на главную {service}"
 
 #: assets/app.js
 msgid "Se déconnecter du profil « {profile} »"
-msgstr ""
+msgstr "Выйти из профиля «{profile}»"
 
 #: assets/app.js
 msgid "{service} ouvert avec {account}"
-msgstr ""
+msgstr "{service} открыт с {account}"
 
 #: assets/app.js
 msgid "Fermer l'onglet"
-msgstr ""
+msgstr "Закрыть вкладку"
 
 #: assets/app.js
 msgid "Fermer l'onglet « {tab} » ? La session web sera libérée."
-msgstr ""
+msgstr "Закрыть вкладку «{tab}»? Веб-сессия будет освобождена."
 
 #: assets/app.js
 msgid "Onglet fermé (mémoire libérée)"
-msgstr ""
+msgstr "Вкладка закрыта (память освобождена)"
 
 #: assets/app.js
 msgid "Retirer l'étoile"
-msgstr ""
+msgstr "Убрать звёздочку"
 
 #: assets/app.js
 msgid "Étoiler cet onglet"
-msgstr ""
+msgstr "Отметить вкладку звёздочкой"
 
 #: assets/app.js
 msgid "Onglet étoilé"
-msgstr ""
+msgstr "Вкладка отмечена звёздочкой"
 
 #: assets/app.js
 msgid "Étoile retirée"
-msgstr ""
+msgstr "Звёздочка убрана"
 
 #: assets/app.js
 msgid "Échec de la déconnexion du profil"
-msgstr ""
+msgstr "Не удалось выйти из профиля"
 
 #: assets/app.js
 msgid "Profil « {profile} » déconnecté — session effacée"
-msgstr ""
+msgstr "Выполнен выход из профиля «{profile}» — сессия удалена"
 
 #: assets/app.js
 msgid "Aucun fichier trouvé."
-msgstr ""
+msgstr "Файлы не найдены."
 
 #: assets/app.js
 msgid "Fichier trop volumineux pour l'éditeur : {size} Mo (limite : 20 Mo)."
-msgstr ""
+msgstr "Файл слишком большой для редактора: {size} МБ (лимит: 20 МБ)."
 
 #: assets/app.js
 msgid "Masquer le mot de passe"
-msgstr ""
+msgstr "Скрыть пароль"
 
 #: assets/app.js
 msgid "Mot de passe non enregistré : le trousseau du système est indisponible"
-msgstr ""
+msgstr "Пароль не сохранён: системная связка ключей недоступна"
 
 #: assets/app.js
 msgid "Mot de passe non enregistré"
-msgstr ""
+msgstr "Пароль не сохранён"
 
 #: assets/app.js
 msgid "C'est quoi ?"
-msgstr ""
+msgstr "Что это?"
 
 #: assets/app.js
 msgid "Quand l'utiliser ?"
-msgstr ""
+msgstr "Когда использовать?"
 
 #: assets/app.js
 msgid "Description à venir."
-msgstr ""
+msgstr "Описание появится позже."
 
 #: assets/app.js
 msgid "Maximum {max} services à portée de main"
-msgstr ""
+msgstr "Не более {max} сервисов под рукой"
 
 #: assets/app.js
 msgid "Sélectionnez au moins 1 service"
-msgstr ""
+msgstr "Выберите хотя бы 1 сервис"
 
 #: assets/app.js
 msgid "Services mis à jour ({count}/{max})"
-msgstr ""
+msgstr "Сервисы обновлены ({count}/{max})"
 
 #: assets/app.js
 msgid "Supprimer « {name} » ({email}) ? La session restera stockée sur le disque, mais le compte disparaîtra de la liste."
-msgstr ""
+msgstr "Удалить «{name}» ({email})? Сессия останется на диске, но аккаунт исчезнет из списка."
 
 #: assets/app.js
 msgid "Échec de l'export (écriture impossible)"
-msgstr ""
+msgstr "Экспорт не удался (запись невозможна)"
 
 #: assets/app.js
-msgid "{count} compte(s) exporté(s)"
-msgstr ""
+msgid "{count} compte exporté"
+msgid_plural "{count} comptes exportés"
+msgstr[0] "Экспортирован {count} аккаунт"
+msgstr[1] "Экспортировано {count} аккаунта"
+msgstr[2] "Экспортировано {count} аккаунтов"
 
 #: assets/app.js
 msgid "Export impossible"
-msgstr ""
+msgstr "Экспорт невозможен"
 
 #: assets/app.js
 msgid "Échec de la lecture du fichier"
-msgstr ""
+msgstr "Не удалось прочитать файл"
 
 #: assets/app.js
 msgid "Fichier JSON invalide"
-msgstr ""
+msgstr "Недопустимый файл JSON"
 
 #: assets/app.js
 msgid "Format invalide : un tableau de comptes est attendu."
-msgstr ""
+msgstr "Недопустимый формат: ожидается массив аккаунтов."
 
 #: assets/app.js
 msgid "Le fichier contient {count} compte(s). L'import REMPLACE entièrement la liste actuelle ({current} compte(s)) — cette action écrase les comptes existants, pas leurs sessions (cookies) déjà enregistrées sur le disque. Continuer ?"
-msgstr ""
+msgstr "Файл содержит аккаунтов: {count}. Импорт ПОЛНОСТЬЮ ЗАМЕНЯЕТ текущий список (аккаунтов: {current}) — это действие перезаписывает существующие аккаунты, но не их сессии (cookie), уже сохранённые на диске. Продолжить?"
 
 #: assets/app.js
 msgid "Import impossible"
-msgstr ""
+msgstr "Импорт невозможен"
 
 #: assets/app.js
-msgid "{count} compte(s) importé(s)"
-msgstr ""
+msgid "{count} compte importé"
+msgid_plural "{count} comptes importés"
+msgstr[0] "Импортирован {count} аккаунт"
+msgstr[1] "Импортировано {count} аккаунта"
+msgstr[2] "Импортировано {count} аккаунтов"
 
 #: assets/app.js
 msgid "Échec de l'import : {error}"
-msgstr ""
+msgstr "Импорт не удался: {error}"
 
 #: assets/app.js
 msgid "Compte supprimé"
-msgstr ""
+msgstr "Аккаунт удалён"
 
 #: assets/app.js
 msgid "Remplissez tous les champs"
-msgstr ""
+msgstr "Заполните все поля"
 
 #: assets/app.js
 msgid "Ce profil est déjà utilisé par un autre compte (les sessions seraient partagées)."
-msgstr ""
+msgstr "Этот профиль уже используется другим аккаунтом (сессии были бы общими)."
 
 #: assets/app.js
 msgid "Compte mis à jour"
-msgstr ""
+msgstr "Аккаунт обновлён"
 
 #: assets/app.js
 msgid "Compte ajouté"
-msgstr ""
+msgstr "Аккаунт добавлен"
 
 #: assets/app.js
 msgid "Renseignez d'abord le domaine des adresses e-mail dans les réglages"
-msgstr ""
+msgstr "Сначала укажите домен адресов электронной почты в настройках"
 
 #: assets/app.js
 msgid "Premier compte : {nom}, {email}. Un mot de passe de messagerie aléatoire est généré pour chacun."
-msgstr ""
+msgstr "Первый аккаунт: {nom}, {email}. Для каждого генерируется случайный пароль почты."
 
 #: assets/app.js
 msgid "Nombre de comptes : de 1 à {max}"
-msgstr ""
+msgstr "Количество аккаунтов: от 1 до {max}"
 
 #: assets/app.js
-msgid "{n} compte(s) créé(s), {m} mot(s) de passe enregistré(s)"
-msgstr ""
+msgid "{comptes}, {motsDePasse}"
+msgstr "{comptes}, {motsDePasse}"
+
+#: assets/app.js
+msgid "{n} compte créé"
+msgid_plural "{n} comptes créés"
+msgstr[0] "Создан {n} аккаунт"
+msgstr[1] "Создано {n} аккаунта"
+msgstr[2] "Создано {n} аккаунтов"
+
+#: assets/app.js
+msgid "{m} mot de passe enregistré"
+msgid_plural "{m} mots de passe enregistrés"
+msgstr[0] "сохранён {m} пароль"
+msgstr[1] "сохранено {m} пароля"
+msgstr[2] "сохранено {m} паролей"
 
 #: assets/app.js
 msgid "Adresse du webmail non configurée dans les réglages"
-msgstr ""
+msgstr "Адрес веб-почты не задан в настройках"
 
 #: assets/app.js
 msgid "Ouverture du webmail impossible"
-msgstr ""
+msgstr "Не удалось открыть веб-почту"
 
 #: assets/app.js
 msgid "Copie impossible dans le presse-papiers"
-msgstr ""
+msgstr "Не удалось скопировать в буфер обмена"
 
 #: assets/app.js
 msgid "E-mail copié : {email}"
-msgstr ""
+msgstr "E-mail скопирован: {email}"
 
 #: assets/app.js
 msgid "Cooldown terminé"
-msgstr ""
+msgstr "Cooldown завершён"
 
 #: assets/app.js
 msgid "{account} — {service} est de nouveau disponible."
-msgstr ""
+msgstr "{account} — {service} снова доступен."
 
 #: assets/app.js
 msgid "{account} — {service} : cooldown terminé"
-msgstr ""
+msgstr "{account} — {service}: cooldown завершён"
 
 #: assets/app.js
 msgid "Téléchargement…"
-msgstr ""
+msgstr "Загрузка…"
 
 #: assets/app.js
 msgid "Téléchargé — à traiter"
-msgstr ""
+msgstr "Загружено — требует обработки"
 
 #: assets/app.js
 msgid "Aucun profil disponible"
-msgstr ""
+msgstr "Нет доступного профиля"
 
 #: assets/app.js
 msgid "Projet en cours d'analyse"
-msgstr ""
+msgstr "Проект анализируется"
 
 #: assets/app.js
 msgid "En cours"
-msgstr ""
+msgstr "Выполняется"
 
 #: assets/app.js
 msgid "En pause"
-msgstr ""
+msgstr "Приостановлено"
 
 #: assets/app.js
 msgid "Reprise programmée"
-msgstr ""
+msgstr "Возобновление запланировано"
 
 #: assets/app.js
 msgid "Erreur"
-msgstr ""
+msgstr "Ошибка"
 
 #: assets/app.js
 msgid "Livré"
+msgstr "Доставлено"
+
+#: assets/app.js
+msgid "chaque minute"
+msgid_plural "toutes les {n} minutes"
+msgstr[0] "каждую {n} минуту"
+msgstr[1] "каждые {n} минуты"
+msgstr[2] "каждые {n} минут"
+
+#: assets/app.js
+msgid "chaque jour"
+msgid_plural "tous les {n} jours"
+msgstr[0] "каждый {n} день"
+msgstr[1] "каждые {n} дня"
+msgstr[2] "каждые {n} дней"
+
+#: assets/app.js
+msgid "chaque semaine"
+msgid_plural "toutes les {n} semaines"
+msgstr[0] "каждую {n} неделю"
+msgstr[1] "каждые {n} недели"
+msgstr[2] "каждые {n} недель"
+
+#: assets/app.js
+msgid "chaque mois"
+msgid_plural "tous les {n} mois"
+msgstr[0] "каждый {n} месяц"
+msgstr[1] "каждые {n} месяца"
+msgstr[2] "каждые {n} месяцев"
+
+#: assets/app.js
+msgid "chaque heure"
+msgid_plural "toutes les {n} heures"
+msgstr[0] "каждый {n} час"
+msgstr[1] "каждые {n} часа"
+msgstr[2] "каждые {n} часов"
+
+#: assets/app.js
+msgid "Le {date}"
+msgstr "{date}"
+
+#: assets/app.js
+msgid "à partir du {date}"
+msgstr "начиная с {date}"
+
+#: assets/app.js
+msgid "programmation inconnue"
+msgstr "неизвестное расписание"
+
+#: assets/app.js
+msgid "{n} compte sélectionné"
+msgid_plural "{n} comptes sélectionnés"
+msgstr[0] "Выбран {n} аккаунт"
+msgstr[1] "Выбрано {n} аккаунта"
+msgstr[2] "Выбрано {n} аккаунтов"
+
+#: assets/app.js
+msgid "tous les comptes avec Claude"
+msgstr "все аккаунты с Claude"
+
+#: assets/app.js
+msgid "rotation (un compte à la fois)"
+msgstr "ротация (по одному аккаунту)"
+
+#: assets/app.js
+msgid "tous les comptes, espacement de {n} s"
+msgstr "все аккаунты, интервал {n} с"
+
+#: assets/app.js
+msgid "tous les comptes en même temps"
+msgstr "все аккаунты одновременно"
+
+#: assets/app.js
+msgid "lancée"
+msgstr "запущена"
+
+#: assets/app.js
+msgid "envoyée"
+msgstr "отправлено"
+
+#: assets/app.js
+msgid "quota épuisé"
+msgstr "лимит исчерпан"
+
+#: assets/app.js
+msgid "heures calmes"
+msgstr "тихие часы"
+
+#: assets/app.js
+msgid "non connecté"
+msgstr "не выполнен вход"
+
+#: assets/app.js
+msgid "aucun compte éligible"
+msgstr "нет подходящего аккаунта"
+
+#: assets/app.js
+msgid "erreur"
+msgstr "ошибка"
+
+#: assets/app.js
+msgid "Aucune tâche programmée pour l'instant — créez-en une avec « Nouvelle tâche »."
+msgstr "Пока нет запланированных задач — создайте задачу кнопкой «Новая задача»."
+
+#: assets/app.js
+msgid "Plus aucune exécution programmée"
+msgstr "Запланированных запусков больше нет"
+
+#: assets/app.js
+msgid "Prochaine exécution : {date}"
+msgstr "Следующий запуск: {date}"
+
+#: assets/app.js
+msgid "inactive"
+msgstr "неактивна"
+
+#: assets/app.js
+msgid "Activer"
+msgstr "Включить"
+
+#: assets/app.js
+msgid "Désactiver"
+msgstr "Отключить"
+
+#: assets/app.js
+msgid "Exécuter maintenant"
+msgstr "Запустить сейчас"
+
+#: assets/app.js
+msgid "Modifier"
+msgstr "Изменить"
+
+#: assets/app.js
+msgid "Aucun événement pour l'instant."
+msgstr "Пока нет событий."
+
+#: assets/app.js
+msgid "Aucun compte avec le service Claude — la tâche ne pourra pas s'exécuter."
+msgstr "Нет аккаунта с сервисом Claude — задача не сможет выполниться."
+
+#: assets/app.js
+msgid "sans le service Claude"
+msgstr "без сервиса Claude"
+
+#: assets/app.js
+msgid "compte supprimé"
+msgstr "аккаунт удалён"
+
+#: assets/app.js
+msgid "Le nom est obligatoire."
+msgstr "Название обязательно."
+
+#: assets/app.js
+msgid "Le prompt est obligatoire."
+msgstr "Промпт обязателен."
+
+#: assets/app.js
+msgid "Comptes : choix invalide."
+msgstr "Аккаунты: недопустимый выбор."
+
+#: assets/app.js
+msgid "Sélectionnez au moins un compte."
+msgstr "Выберите хотя бы один аккаунт."
+
+#: assets/app.js
+msgid "Répartition : choix invalide."
+msgstr "Распределение: недопустимый выбор."
+
+#: assets/app.js
+msgid "Espacement invalide : entre 0 et 86400 secondes."
+msgstr "Недопустимый интервал: от 0 до 86400 секунд."
+
+#: assets/app.js
+msgid "Programmation : choix invalide."
+msgstr "Расписание: недопустимый выбор."
+
+#: assets/app.js
+msgid "Date « Le » invalide."
+msgstr "Недопустимая дата «Дата»."
+
+#: assets/app.js
+msgid "Date « À partir du » invalide."
+msgstr "Недопустимая дата «Начиная с»."
+
+#: assets/app.js
+msgid "« Tous les » doit être un entier supérieur à 0."
+msgstr "«Каждые» должно быть целым числом больше 0."
+
+#: assets/app.js
+msgid "Unité inconnue."
+msgstr "Неизвестная единица."
+
+#: assets/app.js
+msgid "Enregistrement impossible : {erreur}"
+msgstr "Сохранение невозможно: {erreur}"
+
+#: assets/app.js
+msgid "Le moteur de tâches n'est pas démarré."
+msgstr "Движок задач не запущен."
+
+#: assets/app.js
+msgid "Exécution demandée — le résultat apparaîtra dans l'historique."
+msgstr "Запуск запрошен — результат появится в истории."
+
+#: assets/app.js
+msgid "Une exécution est déjà en cours — réessayez dans un instant."
+msgstr "Запуск уже выполняется — повторите попытку чуть позже."
+
+#: assets/app.js
+msgid "Le service des tâches a refusé l'exécution."
+msgstr "Служба задач отклонила запуск."
+
+#: assets/app.js
+msgid "Tâche introuvable."
+msgstr "Задача не найдена."
+
+#: assets/app.js
+msgid "Exécution impossible : {erreur}"
+msgstr "Запуск невозможен: {erreur}"
+
+#: assets/app.js
+msgid "Action impossible : {erreur}"
+msgstr "Действие невозможно: {erreur}"
+
+#: assets/app.js
+msgid "Supprimer la tâche"
+msgstr "Удалить задачу"
+
+#: assets/app.js
+msgid "Supprimer « {nom} » ? L'historique est conservé."
+msgstr "Удалить «{nom}»? История сохранится."
+
+#: assets/app.js
+msgid "Suppression impossible : {erreur}"
+msgstr "Удаление невозможно: {erreur}"
+
+#: assets/app.js
+msgid "< 1 min"
+msgstr "< 1 мин"
+
+#: assets/app.js
+msgid "{h} h {m} min"
+msgstr "{h} ч {m} мин"
+
+#: assets/app.js
+msgid "{m} min"
+msgstr "{m} мин"
+
+#: assets/app.js
+msgid "Temps actif"
+msgstr "Активное время"
+
+#: assets/app.js
+msgid "Durée ouverte"
+msgstr "Время открытия"
+
+#: assets/app.js
+msgid "Sessions"
+msgstr "Сессии"
+
+#: assets/app.js
+msgid "Dernière utilisation"
+msgstr "Последнее использование"
+
+#: assets/app.js
+msgid "Part"
+msgstr "Доля"
+
+#: assets/app.js
+msgid "Dim"
+msgstr "Вс"
+
+#: assets/app.js
+msgid "Jeu"
+msgstr "Чт"
+
+#: assets/app.js
+msgid "Lun"
+msgstr "Пн"
+
+#: assets/app.js
+msgid "Mar"
+msgstr "Вт"
+
+#: assets/app.js
+msgid "Mer"
+msgstr "Ср"
+
+#: assets/app.js
+msgid "Sam"
+msgstr "Сб"
+
+#: assets/app.js
+msgid "Ven"
+msgstr "Пт"
+
+#: assets/app.js
+msgid "{jour} {h} h : {duree}"
+msgstr "{jour} {h}:00: {duree}"
+
+#: assets/app.js
+msgid "Heures de pointe (temps actif)"
+msgstr "Часы пик (активное время)"
+
+#: assets/app.js
+msgid "dernière utilisation : {date}"
+msgstr "последнее использование: {date}"
+
+#: assets/app.js
+msgid "jamais utilisé depuis le début de la mesure"
+msgstr "не использовался с начала измерений"
+
+#: assets/app.js
+msgid "Comptes inutilisés sur la période"
+msgstr "Неиспользуемые аккаунты за период"
+
+#: assets/app.js
+msgid "fin {h}"
+msgstr "конец {h}"
+
+#: assets/app.js
+msgid "Tâches programmables par compte"
+msgstr "Программируемые задачи по аккаунтам"
+
+#: assets/app.js
+msgid "Compte"
+msgstr "Аккаунт"
+
+#: assets/app.js
+msgid "Envoyées"
+msgstr "Отправлено"
+
+#: assets/app.js
+msgid "Erreurs"
+msgstr "Ошибки"
+
+#: assets/app.js
+msgid "Quotas"
+msgstr "Лимиты"
+
+#: assets/app.js
+msgid "Dernier quota"
+msgstr "Последний лимит"
+
+#: assets/app.js
+msgid "Exécutions"
+msgstr "Запуски"
+
+#: assets/app.js
+msgid "D'après l'historique des tâches (200 dernières exécutions)."
+msgstr "По истории задач (последние 200 запусков)."
+
+#: assets/app.js
+msgid "{h} h"
+msgstr "{h} ч"
+
+#: assets/app.js
+msgid "Évolution du temps actif"
+msgstr "Динамика активного времени"
+
+#: assets/app.js
+msgid "{date} : {duree} actif"
+msgstr "{date}: активно {duree}"
+
+#: assets/app.js
+msgid "{s} s"
+msgstr "{s} с"
+
+#: assets/app.js
+msgid "Temps de réponse"
+msgstr "Время ответа"
+
+#: assets/app.js
+msgid "Service"
+msgstr "Сервис"
+
+#: assets/app.js
+msgid "Médiane"
+msgstr "Медиана"
+
+#: assets/app.js
+msgid "Réponses"
+msgstr "Ответы"
+
+#: assets/app.js
+msgid "Plus lente"
+msgstr "Самый медленный"
+
+#: assets/app.js
+msgid "Plus rapide"
+msgstr "Самый быстрый"
+
+#: assets/app.js
+msgid "Du message envoyé à la fin de la réponse, pour les tâches programmables et les messages envoyés à la main."
+msgstr "От отправки сообщения до конца ответа, для запланированных задач и сообщений, отправленных вручную."
+
+#: assets/app.js
+msgid "Quotas atteints"
+msgstr "Достигнутые лимиты"
+
+#: assets/app.js
+msgid "Fois"
+msgstr "Раз"
+
+#: assets/app.js
+msgid "Heure habituelle"
+msgstr "Обычное время"
+
+#: assets/app.js
+msgid "Évolution du temps de réponse médian"
+msgstr "Динамика медианного времени ответа"
+
+#: assets/app.js
+msgid "{date} : médiane {duree}, {n} réponse"
+msgid_plural "{date} : médiane {duree}, {n} réponses"
+msgstr[0] "{date}: медиана {duree}, {n} ответ"
+msgstr[1] "{date}: медиана {duree}, {n} ответа"
+msgstr[2] "{date}: медиана {duree}, {n} ответов"
+
+#: assets/app.js
+msgid "{n} quota atteint"
+msgid_plural "{n} quotas atteints"
+msgstr[0] "{n} лимит исчерпан"
+msgstr[1] "{n} лимита исчерпано"
+msgstr[2] "{n} лимитов исчерпано"
+
+#: assets/app.js
+msgid "Comptes à privilégier pour répartir l'usage : {comptes}"
+msgstr "Аккаунты, которым стоит отдать предпочтение для распределения нагрузки: {comptes}"
+
+#: assets/app.js
+msgid "Comptes souvent bloqués par un quota"
+msgstr "Аккаунты, часто блокируемые лимитом"
+
+#: assets/app.js
+msgid "Aucune session sur cette période. La mesure commence à l'installation de cette version."
+msgstr "Нет сессий за этот период. Измерение начинается с установки этой версии."
+
+#: assets/app.js
+msgid "{n} jour"
+msgid_plural "{n} jours"
+msgstr[0] "{n} день"
+msgstr[1] "{n} дня"
+msgstr[2] "{n} дней"
+
+#: assets/app.js
+msgid "Série en cours (record : {n})"
+msgstr "Текущая серия (рекорд: {n})"
+
+#: assets/app.js
+msgid "Temps de réponse médian"
+msgstr "Медианное время ответа"
+
+#: assets/app.js
+msgid "Par compte"
+msgstr "По аккаунтам"
+
+#: assets/app.js
+msgid "Par service"
+msgstr "По сервисам"
+
+#: assets/app.js
+msgid "Statistiques illisibles : {error}"
+msgstr "Статистика не читается: {error}"
+
+#: assets/app.js
+msgid "Export des statistiques impossible : {error}"
+msgstr "Не удалось экспортировать статистику: {error}"
+
+#: assets/app.js
+msgid "Statistiques exportées"
+msgstr "Статистика экспортирована"
+
+#: assets/app.js
+msgid "Remettre les statistiques à zéro ?"
+msgstr "Сбросить статистику?"
+
+#: assets/app.js
+msgid "Les sessions, temps de réponse et quotas enregistrés sur cet ordinateur seront effacés. L'historique des tâches programmables n'est pas touché. Pensez à exporter avant si besoin."
+msgstr "Сеансы, время ответа и квоты, сохранённые на этом компьютере, будут удалены. История запланированных задач не затрагивается. При необходимости сначала сделайте экспорт."
+
+#: assets/app.js
+msgid "Remise à zéro impossible : {error}"
+msgstr "Не удалось сбросить: {error}"
+
+#: assets/app.js
+msgid "Statistiques remises à zéro"
+msgstr "Статистика сброшена"
+
+#: assets/app.js
+msgid "Impossible de charger les identifiants"
 msgstr ""
 
 #: assets/app.js
-msgid "Impossible de charger les réglages"
+msgid "Aucun identifiant enregistré pour l'instant"
 msgstr ""
 
 #: assets/app.js
-msgid "Réglages enregistrés — la langue sera appliquée au prochain démarrage"
+msgid "Supprimer {login} pour {host}"
 msgstr ""
 
 #: assets/app.js
-msgid "Réglages enregistrés"
+msgid "Identifiant {login} supprimé pour {host}"
 msgstr ""
 
 #: assets/app.js
-msgid "Erreur lors de la sauvegarde"
-msgstr ""
-
-#: assets/app.js
-msgid "Erreur lors de la sauvegarde des réglages"
-msgstr ""
-
-#: assets/app.js
-msgid "Arrêter"
-msgstr ""
-
-#: assets/app.js
-msgid "En marche"
-msgstr ""
-
-#: assets/app.js
-msgid "Aucun job pour l'instant — un ZIP téléchargé depuis un onglet IA (ordonnanceur activé) en créera un automatiquement."
-msgstr ""
-
-#: assets/app.js
-msgid "Continuer le projet"
-msgstr ""
-
-#: assets/app.js
-msgid "Marquer livré"
-msgstr ""
-
-#: assets/app.js
-msgid "Pause"
-msgstr ""
-
-#: assets/app.js
-msgid "Reprendre"
-msgstr ""
-
-#: assets/app.js
-msgid "Relancer"
-msgstr ""
-
-#: assets/app.js
-msgid "Ouvrir le ZIP"
-msgstr ""
-
-#: assets/app.js
-msgid "Analyser la complétude"
-msgstr ""
-
-#: assets/app.js
-msgid "service inconnu"
-msgstr ""
-
-#: assets/app.js
-msgid "tentative {n}"
-msgstr ""
-
-#: assets/app.js
-msgid "Aucune activité enregistrée."
-msgstr ""
-
-#: assets/app.js
-msgid "Impossible de modifier l'état de l'ordonnanceur"
-msgstr ""
-
-#: assets/app.js
-msgid "Configuration non enregistrée"
-msgstr ""
-
-#: assets/app.js
-msgid "Sélection du dossier impossible"
-msgstr ""
-
-#: assets/app.js
-msgid "Projet terminé : {done}/{total} tâches faites, 0 restante."
-msgstr ""
-
-#: assets/app.js
-msgid "{pending} à faire, {inProgress} en cours, {done} faite(s) sur {total} au total."
-msgstr ""
-
-#: assets/app.js
-msgid "Analyse impossible : {error}"
-msgstr ""
-
-#: assets/app.js
-msgid "Action impossible : {error}"
-msgstr ""
-
-#: assets/app.js
-msgid "Aucun projet pour l'instant."
-msgstr ""
-
-#: assets/app.js
-msgid "Créer un projet"
-msgstr ""
-
-#: assets/app.js
-msgid "Assignée"
-msgstr ""
-
-#: assets/app.js
-msgid "Terminée"
-msgstr ""
-
-#: assets/app.js
-msgid "Échouée"
-msgstr ""
-
-#: assets/app.js
-msgid "Lancer"
-msgstr ""
-
-#: assets/app.js
-msgid "Résultat"
-msgstr ""
-
-#: assets/app.js
-msgid "Aucune tâche."
-msgstr ""
-
-#: assets/app.js
-msgid "Tous les comptes"
-msgstr ""
-
-#: assets/app.js
-msgid "Comptes autorisés :"
-msgstr ""
-
-#: assets/app.js
-msgid "{count} tâche(s)"
-msgstr ""
-
-#: assets/app.js
-msgid "Nouvelle tâche"
-msgstr ""
-
-#: assets/app.js
-msgid "Assigner"
-msgstr ""
-
-#: assets/app.js
-msgid "Diagnostic Claude : {error}"
-msgstr ""
-
-#: assets/app.js
-msgid "« Continuer »"
-msgstr ""
-
-#: assets/app.js
-msgid "« Télécharger »"
-msgstr ""
-
-#: assets/app.js
-msgid "« Nouveau »"
-msgstr ""
-
-#: assets/app.js
-msgid "zone de chat"
-msgstr ""
-
-#: assets/app.js
-msgid "envoi de fichier"
-msgstr ""
-
-#: assets/app.js
-msgid "{count} popup(s)"
-msgstr ""
-
-#: assets/app.js
-msgid "Claude (« {profile} ») : {details}"
-msgstr ""
-
-#: assets/app.js
-msgid "aucun élément détecté"
-msgstr ""
-
-#: assets/app.js
-msgid "Diagnostic impossible : {error}"
-msgstr ""
-
-#: assets/app.js
-msgid "Quota gratuit épuisé jusqu'à {time} pour ce profil."
-msgstr ""
-
-#: assets/app.js
-msgid "Job Claude échoué : {error}"
-msgstr ""
-
-#: assets/app.js
-msgid "Prompt envoyé à Claude via {method} (« {profile} »)"
-msgstr ""
-
-#: assets/app.js
-msgid "Job Claude impossible : {error}"
-msgstr ""
-
-#: assets/app.js
-msgid "Collecte impossible : {error}"
-msgstr ""
-
-#: assets/app.js
-msgid "Réponse collectée : {count} caractères (« {profile} »)"
-msgstr ""
-
-#: assets/app.js
-msgid "Aucune réponse trouvée pour le moment."
-msgstr ""
-
-#: assets/app.js
-msgid "Nom du projet :"
-msgstr ""
-
-#: assets/app.js
-msgid "Projet {n}"
-msgstr ""
-
-#: assets/app.js
-msgid "Projet « {name} » créé"
-msgstr ""
-
-#: assets/app.js
-msgid "Création impossible : {error}"
-msgstr ""
-
-#: assets/app.js
-msgid "Projet supprimé"
+msgid "Suppression impossible : identifiant introuvable"
 msgstr ""
 
 #: assets/app.js
 msgid "Suppression impossible : {error}"
+msgstr "Удаление невозможно: {error}"
+
+#: assets/app.js
+msgid "Identifiant enregistré pour {host} (chiffré, partagé entre profils)"
 msgstr ""
+
+#: assets/app.js
+msgid "Chiffrement du système indisponible : identifiant non enregistré"
+msgstr ""
+
+#: assets/app.js
+msgid "Enregistrement impossible : hôte, login ou mot de passe invalide"
+msgstr ""
+
+#: assets/app.js
+msgid "Enregistrement impossible : {error}"
+msgstr ""
+
+#: assets/app.js
+msgid "Impossible de charger les réglages"
+msgstr "Не удалось загрузить настройки"
+
+#: assets/app.js
+msgid "Réglages enregistrés — la langue sera appliquée au prochain démarrage"
+msgstr "Настройки сохранены — язык будет применён при следующем запуске"
+
+#: assets/app.js
+msgid "Réglages enregistrés"
+msgstr "Настройки сохранены"
+
+#: assets/app.js
+msgid "Erreur lors de la sauvegarde"
+msgstr "Ошибка при сохранении"
+
+#: assets/app.js
+msgid "Erreur lors de la sauvegarde des réglages"
+msgstr "Ошибка при сохранении настроек"
+
+#: assets/app.js
+msgid "Tâches programmables : envoyez un prompt à Claude à date fixe ou périodiquement."
+msgstr "Программируемые задачи: отправляйте промпт в Claude в заданное время или периодически."
+
+#: assets/app.js
+msgid "Arrêter"
+msgstr "Остановить"
+
+#: assets/app.js
+msgid "En marche"
+msgstr "Работает"
+
+#: assets/app.js
+msgid "Aucun job pour l'instant — un ZIP téléchargé depuis un onglet IA (ordonnanceur activé) en créera un automatiquement."
+msgstr "Пока нет заданий — ZIP, загруженный из вкладки ИИ (при включённом планировщике), создаст его автоматически."
+
+#: assets/app.js
+msgid "Continuer le projet"
+msgstr "Продолжить проект"
+
+#: assets/app.js
+msgid "Marquer livré"
+msgstr "Отметить как доставленное"
+
+#: assets/app.js
+msgid "Pause"
+msgstr "Пауза"
+
+#: assets/app.js
+msgid "Reprendre"
+msgstr "Продолжить"
+
+#: assets/app.js
+msgid "Relancer"
+msgstr "Перезапустить"
+
+#: assets/app.js
+msgid "Ouvrir le ZIP"
+msgstr "Открыть ZIP"
+
+#: assets/app.js
+msgid "Analyser la complétude"
+msgstr "Проверить полноту"
+
+#: assets/app.js
+msgid "service inconnu"
+msgstr "неизвестный сервис"
+
+#: assets/app.js
+msgid "tentative {n}"
+msgstr "попытка {n}"
+
+#: assets/app.js
+msgid "Aucune activité enregistrée."
+msgstr "Активность не зарегистрирована."
+
+#: assets/app.js
+msgid "Impossible de modifier l'état de l'ordonnanceur"
+msgstr "Не удалось изменить состояние планировщика"
+
+#: assets/app.js
+msgid "Configuration non enregistrée"
+msgstr "Конфигурация не сохранена"
+
+#: assets/app.js
+msgid "Sélection du dossier impossible"
+msgstr "Не удалось выбрать папку"
+
+#: assets/app.js
+msgid "Projet terminé : {done}/{total} tâches faites, 0 restante."
+msgstr "Проект завершён: выполнено {done}/{total} задач, осталось 0."
+
+#: assets/app.js
+msgid "{pending} à faire, {inProgress} en cours, {done} faite(s) sur {total} au total."
+msgstr "Сделать: {pending}, в работе: {inProgress}, выполнено: {done}, всего: {total}."
+
+#: assets/app.js
+msgid "Analyse impossible : {error}"
+msgstr "Анализ невозможен: {error}"
+
+#: assets/app.js
+msgid "Action impossible : {error}"
+msgstr "Действие невозможно: {error}"
+
+#: assets/app.js
+msgid "Aucun projet pour l'instant."
+msgstr "Пока нет проектов."
+
+#: assets/app.js
+msgid "Créer un projet"
+msgstr "Создать проект"
+
+#: assets/app.js
+msgid "Assignée"
+msgstr "Назначена"
+
+#: assets/app.js
+msgid "Terminée"
+msgstr "Завершена"
+
+#: assets/app.js
+msgid "Échouée"
+msgstr "Не удалась"
+
+#: assets/app.js
+msgid "Lancer"
+msgstr "Запустить"
+
+#: assets/app.js
+msgid "Résultat"
+msgstr "Результат"
+
+#: assets/app.js
+msgid "Aucune tâche."
+msgstr "Нет задач."
+
+#: assets/app.js
+msgid "Tous les comptes"
+msgstr "Все аккаунты"
+
+#: assets/app.js
+msgid "Comptes autorisés :"
+msgstr "Разрешённые аккаунты:"
+
+#: assets/app.js
+msgid "{count} tâche"
+msgid_plural "{count} tâches"
+msgstr[0] "{count} задача"
+msgstr[1] "{count} задачи"
+msgstr[2] "{count} задач"
+
+#: assets/app.js
+msgid "Assigner"
+msgstr "Назначить"
+
+#: assets/app.js
+msgid "Diagnostic Claude : {error}"
+msgstr "Диагностика Claude: {error}"
+
+#: assets/app.js
+msgid "« Continuer »"
+msgstr "«Продолжить»"
+
+#: assets/app.js
+msgid "« Télécharger »"
+msgstr "«Скачать»"
+
+#: assets/app.js
+msgid "« Nouveau »"
+msgstr "«Новый»"
+
+#: assets/app.js
+msgid "zone de chat"
+msgstr "поле чата"
+
+#: assets/app.js
+msgid "envoi de fichier"
+msgstr "отправка файла"
+
+#: assets/app.js
+msgid "{count} popup"
+msgid_plural "{count} popups"
+msgstr[0] "{count} всплывающее окно"
+msgstr[1] "{count} всплывающих окна"
+msgstr[2] "{count} всплывающих окон"
+
+#: assets/app.js
+msgid "Claude (« {profile} ») : {details}"
+msgstr "Claude («{profile}»): {details}"
+
+#: assets/app.js
+msgid "aucun élément détecté"
+msgstr "элементы не обнаружены"
+
+#: assets/app.js
+msgid "Diagnostic impossible : {error}"
+msgstr "Диагностика невозможна: {error}"
+
+#: assets/app.js
+msgid "Quota gratuit épuisé jusqu'à {time} pour ce profil."
+msgstr "Бесплатный лимит исчерпан до {time} для этого профиля."
+
+#: assets/app.js
+msgid "Job Claude échoué : {error}"
+msgstr "Задание Claude не удалось: {error}"
+
+#: assets/app.js
+msgid "Prompt envoyé à Claude via {method} (« {profile} »)"
+msgstr "Промпт отправлен в Claude через {method} («{profile}»)"
+
+#: assets/app.js
+msgid "Job Claude impossible : {error}"
+msgstr "Задание Claude невозможно: {error}"
+
+#: assets/app.js
+msgid "Collecte impossible : {error}"
+msgstr "Сбор невозможен: {error}"
+
+#: assets/app.js
+msgid "Réponse collectée : {count} caractères (« {profile} »)"
+msgstr "Ответ получен: {count} символов («{profile}»)"
+
+#: assets/app.js
+msgid "Aucune réponse trouvée pour le moment."
+msgstr "Ответ пока не найден."
+
+#: assets/app.js
+msgid "Nom du projet :"
+msgstr "Название проекта:"
+
+#: assets/app.js
+msgid "Projet {n}"
+msgstr "Проект {n}"
+
+#: assets/app.js
+msgid "Projet « {name} » créé"
+msgstr "Проект «{name}» создан"
+
+#: assets/app.js
+msgid "Création impossible : {error}"
+msgstr "Создание невозможно: {error}"
+
+#: assets/app.js
+msgid "Projet supprimé"
+msgstr "Проект удалён"
 
 #: assets/app.js
 msgid "Prompt de la tâche :"
-msgstr ""
+msgstr "Промпт задачи:"
 
 #: assets/app.js
 msgid "Tâche créée dans le projet"
-msgstr ""
+msgstr "Задача создана в проекте"
 
 #: assets/app.js
 msgid "Aucun compte vert disponible pour ce projet."
-msgstr ""
+msgstr "Нет доступного зелёного аккаунта для этого проекта."
 
 #: assets/app.js
 msgid "Comptes verts disponibles :"
-msgstr ""
+msgstr "Доступные зелёные аккаунты:"
 
 #: assets/app.js
 msgid "Numéro du compte :"
-msgstr ""
+msgstr "Номер аккаунта:"
 
 #: assets/app.js
 msgid "Choix invalide"
-msgstr ""
+msgstr "Недопустимый выбор"
 
 #: assets/app.js
 msgid "Aucune tâche dans ce projet."
-msgstr ""
+msgstr "В этом проекте нет задач."
 
 #: assets/app.js
 msgid "Numéro de la tâche :"
-msgstr ""
+msgstr "Номер задачи:"
 
 #: assets/app.js
 msgid "Tâches du projet :"
-msgstr ""
+msgstr "Задачи проекта:"
 
 #: assets/app.js
 msgid "Tâche {task} assignée à « {account} »"
-msgstr ""
+msgstr "Задача {task} назначена «{account}»"
 
 #: assets/app.js
 msgid "Assignation impossible : {error}"
-msgstr ""
+msgstr "Назначение невозможно: {error}"
 
 #: assets/app.js
 msgid "Lancement de l'automatisation Claude..."
-msgstr ""
+msgstr "Запуск автоматизации Claude..."
 
 #: assets/app.js
 msgid "Lancement impossible"
-msgstr ""
+msgstr "Запуск невозможен"
 
 #: assets/app.js
 msgid "Tâche lancée — suivi dans le journal d'activité"
-msgstr ""
+msgstr "Задача запущена — следите за ней в журнале активности"
 
 #: assets/app.js
 msgid "Exécution impossible : {error}"
-msgstr ""
+msgstr "Запуск невозможен: {error}"
 
 #: assets/app.js
 msgid "Aucun résultat disponible"
-msgstr ""
+msgstr "Нет доступного результата"
 
 #: assets/app.js
 msgid "Résultat — {task}"
-msgstr ""
+msgstr "Результат — {task}"
 
 #: assets/app.js
 msgid "Comptes retrouvés"
-msgstr ""
+msgstr "Аккаунты найдены"
 
 #: assets/app.js
 msgid "Aucun compte n'a été lu au démarrage, mais l'ordonnanceur en connaît {count}. Les restaurer ? Les sessions des services sont conservées ; les adresses e-mail sont à compléter depuis « Modifier le compte »."
-msgstr ""
+msgstr "При запуске не было прочитано ни одного аккаунта, но планировщику известно {count}. Восстановить их? Сессии сервисов сохранятся; адреса электронной почты нужно дополнить в «Изменить аккаунт»."
 
 #: assets/app.js
 msgid "Ignorer"
-msgstr ""
+msgstr "Пропустить"
 
 #: assets/app.js
 msgid "Restaurer les comptes"
-msgstr ""
+msgstr "Восстановить аккаунты"
 
 #: assets/app.js
-msgid "{count} compte(s) restauré(s)"
-msgstr ""
+msgid "{count} compte restauré"
+msgid_plural "{count} comptes restaurés"
+msgstr[0] "Восстановлен {count} аккаунт"
+msgstr[1] "Восстановлено {count} аккаунта"
+msgstr[2] "Восстановлено {count} аккаунтов"
 
 #: assets/app.js
 msgid "Données de comptes illisibles"
-msgstr ""
+msgstr "Данные аккаунтов не читаются"
 
 #: assets/app.js
 msgid "La liste de comptes enregistrée est corrompue. Une sauvegarde de {count} compte(s) a été trouvée. La restaurer ?"
-msgstr ""
+msgstr "Сохранённый список аккаунтов повреждён. Найдена резервная копия (аккаунтов: {count}). Восстановить её?"
 
 #: assets/app.js
 msgid "La liste de comptes enregistrée est corrompue et aucune sauvegarde n'est disponible. L'application démarre avec une liste vide ; vos données actuelles ne seront pas écrasées tant que vous ne créez ou ne modifiez pas de compte."
-msgstr ""
+msgstr "Сохранённый список аккаунтов повреждён, резервной копии нет. Приложение запускается с пустым списком; текущие данные не будут перезаписаны, пока вы не создадите или не измените аккаунт."
 
 #: assets/app.js
 msgid "Restaurer la sauvegarde"
-msgstr ""
+msgstr "Восстановить резервную копию"
 
 #: assets/app.js
 msgid "Comptes restaurés depuis la sauvegarde"
-msgstr ""
+msgstr "Аккаунты восстановлены из резервной копии"
 
 #: assets/app.js
 msgid "Compris"
-msgstr ""
+msgstr "Понятно"

@@ -161,9 +161,10 @@ test('parseLinguas : espaces, lignes, commentaires, doublons', () => {
   assert.deepEqual(i18n.parseLinguas(null), []);
 });
 
-test('lang/LINGUAS déclare les 29 locales de l\'issue #51, toutes livrées', () => {
+test('lang/LINGUAS déclare les locales de l\'issue #51 (29 + es), toutes livrées', () => {
   const locales = i18n.parseLinguas(fs.readFileSync(path.join(ROOT, 'lang/LINGUAS'), 'utf8'));
-  assert.equal(locales.length, 29);
+  assert.equal(locales.length, 30);
+  assert.ok(locales.includes('es'));
   assert.ok(locales.includes('fr'));
   for (const l of locales) {
     assert.ok(fs.existsSync(path.join(ROOT, 'lang', l + '.po')), l + '.po manquant');
@@ -372,4 +373,11 @@ test('blankTemplateText : commentaires, chaînes et expressions régulières int
   assert.equal(b('a = b / `t` / c'), 'a = b /     / c');
   // accolades ordinaires hors gabarit
   assert.equal(b('f() { return {a: 1}; }'), 'f() { return {a: 1}; }');
+});
+
+test('textDirection : langues de droite à gauche, sous-tags de région, valeurs invalides', () => {
+  const d = i18n.textDirection;
+  for (const l of ['ar', 'he', 'fa', 'ur', 'AR', 'ar-MA', 'fa_IR', 'he-IL', 'ckb']) assert.equal(d(l), 'rtl', l);
+  for (const l of ['fr', 'en', 'en-US', 'ja', 'zh_CN', 'hi', 'bn', 'th', 'arn', '', null, undefined, 42]) assert.equal(d(l), 'ltr', String(l));
+  for (const l of ['ar', 'he', 'fa']) assert.ok(i18n.RTL_LANGUAGES.includes(l), l);
 });

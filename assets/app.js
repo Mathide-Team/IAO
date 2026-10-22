@@ -115,6 +115,9 @@
     // par ce fichier passeront par window.iaoT() dans les lots suivants.
     const I18N = window.IAO_I18N;
     window.iaoT = (msgid) => msgid;
+    // Pluriels (ngettext) : règle du français tant que le catalogue n'est pas
+    // chargé (0 et 1 au singulier), puis Plural-Forms de la langue.
+    window.iaoN = (msgid, msgidPlural, n) => (Math.abs(Number(n) || 0) > 1 ? msgidPlural : msgid);
     // Libellé traduisible construit en JavaScript (repéré par xgettext, mot-clé
     // « _ ») : window.iaoT est relu à chaque appel, il devient le traducteur
     // une fois le catalogue chargé ; params remplit les marqueurs {nom}.
@@ -125,6 +128,13 @@
     // Marque un libellé à extraire sans le traduire tout de suite (tables
     // construites avant le chargement du catalogue) : _() au moment du rendu.
     const N_ = (msgid) => msgid;
+    // Libellé avec compteur (mot-clé xgettext « _n:1,2 ») : la forme dépend
+    // de n selon la langue (russe : 1 / 2-4 / 5+, arabe : 6 formes…).
+    // params remplit les marqueurs ; {n} n'est pas implicite.
+    const _n = (msgid, msgidPlural, n, params) => {
+      const s = window.iaoN(msgid, msgidPlural, n);
+      return I18N ? I18N.formatMessage(s, params) : s;
+    };
     function applyTranslations(root, tr) {
       const SKIP = new Set(['SCRIPT', 'STYLE', 'TEXTAREA', 'WEBVIEW']);
       const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
@@ -168,7 +178,10 @@
         if (catalog.locale === I18N.SOURCE_LOCALE) return;
         const tr = I18N.createTranslator(catalog);
         window.iaoT = tr.gettext;
+        window.iaoN = tr.ngettext;
         document.documentElement.lang = catalog.locale;
+        // Arabe, hébreu, persan… : mise en page de droite à gauche (issue #51).
+        document.documentElement.dir = I18N.textDirection(catalog.locale);
         applyTranslations(document.body, tr);
         dbg('i18n', 'interface traduite : ' + catalog.locale);
       }).catch((e) => { console.warn('[i18n] catalogue indisponible, interface en français :', e && e.message); });
@@ -482,6 +495,21 @@
     let tabs = [];          // { id, accId, svcId, paneEl }
     let activeTabId = null;
     let tabSeq = 0;
+
+    // Issue #206 (lot 1) : statistiques d'utilisation, mesurées localement.
+    // Une session = vie d'un onglet (compte, service) ; temps actif = onglet au
+    // premier plan ET fenêtre IAO au focus. Les sessions terminées et
+    // l'instantané des sessions ouvertes partent par stats:sync (fermeture
+    // d'onglet + toutes les minutes) : un arrêt brutal perd au plus 1 min.
+    const suiviStats = window.iaoStats.creerSuivi({ focus: document.hasFocus() });
+    function synchroniserStats(terminees) {
+      ipcRenderer.invoke('stats:sync', terminees || [], suiviStats.instantane())
+        .then((r) => { if (r && r.error) dbg('stats', 'sync en échec', r.error); })
+        .catch((e) => dbg('stats', 'sync en échec', e && e.message));
+    }
+    window.addEventListener('focus', () => suiviStats.focus(true));
+    window.addEventListener('blur', () => suiviStats.focus(false));
+    setInterval(() => { if (suiviStats.taille()) synchroniserStats([]); }, window.iaoStats.SYNC_INTERVALLE_MS);
     let monacoEditor = null;
     let fallbackTextarea = null;
     let editorMode = 'none'; // 'monaco' | 'textarea' | 'none'
@@ -707,7 +735,7 @@
                 <button class="btn btn--icon" data-action="edit" data-acc="${id}" title="${escapeHtml(_('Modifier le compte'))}"><span class="ic" data-icon="pen"></span></button>
                 <button class="btn btn--icon" data-action="delete" data-acc="${id}" title="${escapeHtml(_('Supprimer le compte'))}"><span class="ic icon-danger" data-icon="trash"></span></button>
               </div>
-              <span class="svc-summary ${availCount < acc.services.length ? 'has-cd' : ''}" title="${escapeHtml(_('{available} service(s) hors cooldown sur {total}', { available: availCount, total: acc.services.length }))}">${availCount}/${acc.services.length}</span>
+              <span class="svc-summary ${availCount < acc.services.length ? 'has-cd' : ''}" title="${escapeHtml(_n('{available} service hors cooldown sur {total}', '{available} services hors cooldown sur {total}', availCount, { available: availCount, total: acc.services.length }))}">${availCount}/${acc.services.length}</span>
               <span class="ic collapse-chevron" data-icon="chevron-down" title="${escapeHtml(_('Replier / déplier'))}"></span>
             </div>
             <div class="services-wrap"><div class="services-inner">
@@ -797,15 +825,19 @@
       }
       return !!tabs.find(t => t.accId === acc.id && t.svcId === svcId);
     }
+    // Issue #199, lot 4 : le moteur est partagé entre la minuterie et
+    // « Exécuter maintenant » (même chemin d'exécution, même garde — jamais
+    // deux plans en même temps, lib/taches-runner.js creerMoteur).
+    var moteurTaches = null;
     (function demarrerTachesProgrammables() {
-      const passage = window.iaoTachesRunner.creerMinuterie({
+      moteurTaches = window.iaoTachesRunner.creerMoteur({
         invoke: (...args) => ipcRenderer.invoke(...args),
         comptes: () => accounts.map(a => ({ profile: a.profile, services: Array.isArray(a.services) ? a.services : [] })),
         ouvrirOnglet: ouvrirOngletTache,
         attendre: (ms) => new Promise(resolve => setTimeout(resolve, ms))
       });
       setInterval(() => {
-        passage().catch(e => console.warn('[taches] passage en échec :', e && e.message));
+        moteurTaches.passage().catch(e => console.warn('[taches] passage en échec :', e && e.message));
       }, window.iaoTachesRunner.INTERVALLE_MS);
     })();
 
@@ -885,10 +917,12 @@
       // lastFocusAt initialisé ici (puis maintenu par activateTab) : lot
       // 16/09/2026, rappel visuel « onglet inactif depuis 5 min ».
       tabs.push({ id: tabId, accId, svcId, paneEl: pane, lastFocusAt: Date.now() });
+      suiviStats.ouvrir(tabId, acc.profile, svcId); // issue #206
       dbg('onglets', 'ouverture', tabId, 'service=' + svcId, 'compte=' + accId);
       webview.addEventListener('did-fail-load', (ev) => {
         if (ev.isMainFrame) dbg('onglets', 'échec de chargement', tabId, ev.errorCode, ev.errorDescription);
       });
+      brancherMesureReponse(webview, tabId, acc.profile, svcId);
       saveOpenTabs(); // lot 18/09/2026 : persistance pour startWithLastSession
       renderTabsBar();
       activateTab(tabId);
@@ -897,6 +931,37 @@
       // voyait pas encore ce nouvel onglet : on re-rend pour que le badge de
       // statut du compte passe bleu « ouvert » immédiatement (lot 16/09/2026).
       renderAccounts();
+    }
+
+    // Issue #206 : temps de réponse des messages envoyés à la main. Le script
+    // de lib/mesure-reponse.js est injecté à chaque chargement de page (il
+    // survit aux navigations internes des applications monopages) ; il range
+    // deux horodatages par réponse dans une file de la page, vidée ici toutes
+    // les 3 s. Jamais de texte de question ni de réponse.
+    function brancherMesureReponse(webview, tabId, profil, svcId) {
+      const M = window.iaoMesureReponse;
+      if (!M || !M.estMesurable(svcId)) return;
+      let pret = false;
+      let derniere = 0;
+      webview.addEventListener('dom-ready', () => {
+        webview.executeJavaScript(M.scriptMesure(svcId)).then((etat) => {
+          pret = true;
+          dbg('stats', 'mesure des réponses', tabId, svcId, etat);
+        }).catch((e) => dbg('stats', 'mesure des réponses indisponible', tabId, e && e.message));
+      });
+      const minuterie = setInterval(() => {
+        if (!webview.isConnected) { clearInterval(minuterie); return; } // onglet fermé
+        if (!pret) return;
+        webview.executeJavaScript(M.SCRIPT_LECTURE).then((json) => {
+          for (const m of M.lireMesures(json, Date.now())) {
+            if (m.fin <= derniere) continue; // jamais deux fois la même réponse
+            derniere = m.fin;
+            dbg('stats', 'réponse mesurée', tabId, svcId, (m.fin - m.debut) + ' ms');
+            ipcRenderer.invoke('stats:noter-reponse', { profil, service: svcId, debut: m.debut, fin: m.fin })
+              .catch((e) => dbg('stats', 'enregistrement de la réponse refusé', e && e.message));
+          }
+        }).catch(() => { pret = false; }); // page en cours de rechargement : réinjection au dom-ready
+      }, M.INTERVALLE_LECTURE_MS);
     }
 
     // Réaffiche la barre d'onglets à partir de tabs[] (source de vérité unique).
@@ -940,6 +1005,7 @@
     function activateTab(tabId) {
       dbg('onglets', 'activation', tabId);
       activeTabId = tabId;
+      suiviStats.activer(tabId); // issue #206 : temps actif
       const tab = tabs.find(t => t.id === tabId);
       if (tab) tab.lastFocusAt = Date.now();
       document.querySelectorAll('.tab-pane').forEach(p => p.classList.toggle('active', p.id === tabId));
@@ -975,6 +1041,8 @@
       if (idx === -1) return;
       const [tab] = tabs.splice(idx, 1);
       dbg('onglets', 'fermeture', tabId, 'restants=' + tabs.length);
+      const sessionStats = suiviStats.fermer(tabId); // issue #206
+      synchroniserStats(sessionStats ? [sessionStats] : []);
       tab.paneEl.remove(); // innerHTML/remove détruit la <webview> -> libère la mémoire
 
       if (activeTabId === tabId) {
@@ -1494,7 +1562,7 @@
         const res = await ipcRenderer.invoke('accounts:export', exportAccountsJSON());
         if (res && res.canceled) return; // l'utilisateur a fermé la boîte de dialogue
         if (res && res.error) { showToast(_('Échec de l\'export (écriture impossible)'), 'error'); return; }
-        showToast(_('{count} compte(s) exporté(s)', { count: accounts.length }));
+        showToast(_n('{count} compte exporté', '{count} comptes exportés', accounts.length, { count: accounts.length }));
       } catch (e) {
         console.error('[import-export] export impossible :', e);
         showToast(_('Export impossible'), 'error');
@@ -1537,7 +1605,7 @@
       if (!content) return;
       try {
         const count = importAccountsJSON(content); // saveAccounts() + renderAccounts() déjà inclus
-        showToast(_('{count} compte(s) importé(s)', { count }));
+        showToast(_n('{count} compte importé', '{count} comptes importés', count, { count }));
       } catch (e) {
         console.error('[import-export] échec de l\'import :', e);
         showToast(_('Échec de l\'import : {error}', { error: e.message || e }), 'error');
@@ -1632,7 +1700,10 @@
         if (await enregistrerMotDePasse(c.profile, motDePasseAleatoire())) chiffres++;
         else break; // trousseau indisponible : inutile d'insister
       }
-      showToast(_('{n} compte(s) créé(s), {m} mot(s) de passe enregistré(s)', { n: r.comptes.length, m: chiffres }));
+      showToast(_('{comptes}, {motsDePasse}', {
+        comptes: _n('{n} compte créé', '{n} comptes créés', r.comptes.length, { n: r.comptes.length }),
+        motsDePasse: _n('{m} mot de passe enregistré', '{m} mots de passe enregistrés', chiffres, { m: chiffres })
+      }));
     };
 
     // Issue #201 : webmail (URL des réglages, ouverte par le process principal) ;
@@ -1719,13 +1790,16 @@
           e.preventDefault();
           const startX = e.clientX;
           const startSize = opts.getStart();
+          // Issue #51 : en rtl, les panneaux s'ouvrent depuis la droite ; tirer
+          // vers la gauche élargit donc le panneau (sens du glisser inversé).
+          const sens = getComputedStyle(document.documentElement).direction === 'rtl' ? -1 : 1;
           resizer.classList.add('dragging');
           overlay.classList.add('active');
           document.body.style.userSelect = 'none';
 
           function move(ev) {
             const max = typeof opts.max === 'function' ? opts.max() : opts.max;
-            let next = startSize + (ev.clientX - startX);
+            let next = startSize + sens * (ev.clientX - startX);
             next = Math.max(opts.min, Math.min(max, next));
             opts.apply(next);
           }
@@ -2014,6 +2088,356 @@
       if (e.target === e.currentTarget) closeSchedulerModal();
     });
 
+    // --- Tâches programmables : interface (issue #199, lot 4) ---
+    // Liste, création/édition, « Exécuter maintenant » (même chemin que la
+    // minuterie via moteurTaches), historique. Helpers purs dans lib/taches-ui.js
+    // (conversions, descripteurs) ; validation finale par le service (taches:save).
+    // Dernier état reçu (pour retrouver une tâche au clic « Modifier »).
+    var tachesEtat = [];
+
+    // Libellés : appels _() LITTÉRAUX pour que xgettext extraie chaque message
+    // complet (invariant 8) — pas de fragments concaténés.
+    function libelleUniteTaches(unite, n) {
+      // Pluriels (issue #51) : « chaque minute » pour n = 1 au lieu de
+      // « tous les 1 minutes ».
+      if (unite === 'minute') return _n('chaque minute', 'toutes les {n} minutes', n, { n: n });
+      if (unite === 'jour') return _n('chaque jour', 'tous les {n} jours', n, { n: n });
+      if (unite === 'semaine') return _n('chaque semaine', 'toutes les {n} semaines', n, { n: n });
+      if (unite === 'mois') return _n('chaque mois', 'tous les {n} mois', n, { n: n });
+      return _n('chaque heure', 'toutes les {n} heures', n, { n: n });
+    }
+    function texteProgrammationTache(tache) {
+      var d = window.iaoTachesUi.decrireProgrammation(tache.programmation);
+      if (d.cle === 'unique') {
+        return _('Le {date}', { date: formatterDateTache(d.iso) });
+      }
+      if (d.cle === 'periodique') {
+        return libelleUniteTaches(d.unite, d.tous) + ' · ' + _('à partir du {date}', { date: formatterDateTache(d.iso) });
+      }
+      return _('programmation inconnue');
+    }
+    function texteComptesTache(tache) {
+      var d = window.iaoTachesUi.decrireComptes(tache.comptes);
+      if (d.cle === 'liste') return _n('{n} compte sélectionné', '{n} comptes sélectionnés', d.n, { n: d.n });
+      return _('tous les comptes avec Claude');
+    }
+    function texteRepartitionTache(tache) {
+      var d = window.iaoTachesUi.decrireRepartition(tache.repartition);
+      if (d.cle === 'rotation') return _('rotation (un compte à la fois)');
+      return d.secondes > 0
+        ? _('tous les comptes, espacement de {n} s', { n: d.secondes })
+        : _('tous les comptes en même temps');
+    }
+    function texteResultatTache(evenement) {
+      var cle = window.iaoTachesUi.cleResultat(evenement.resultat);
+      if (cle === 'lancee') return _('lancée');
+      if (cle === 'envoye') return _('envoyée');
+      if (cle === 'quota') return _('quota épuisé');
+      if (cle === 'heures-calmes') return _('heures calmes');
+      if (cle === 'non-connecte') return _('non connecté');
+      if (cle === 'aucun-compte') return _('aucun compte éligible');
+      if (cle === 'erreur') return _('erreur');
+      return String(evenement.resultat || '');
+    }
+    function formatterDateTache(iso) {
+      if (!iso) return '—';
+      var d = new Date(iso);
+      if (isNaN(d.getTime())) return '—';
+      // Langue active de l'application : document.documentElement.lang est
+      // mis à jour par le chargeur de catalogue (i18n:catalog -> « fr » reste
+      // la langue source). Pas de français codé en dur dans le formatage.
+      return d.toLocaleString(document.documentElement.lang || 'fr',
+        { dateStyle: 'short', timeStyle: 'short' });
+    }
+
+    // Rafraîchit liste + historique. Le formulaire n'est JAMAIS reconstruit
+    // ici : une saisie en cours n'est ni perdue ni écrasée par le polling de
+    // 4 s (le formulaire ne dépend que des clics de l'utilisateur).
+    async function refreshTachesUI() {
+      try {
+        var liste = await ipcRenderer.invoke('taches:list');
+        if (liste && !liste.error) {
+          tachesEtat = Array.isArray(liste) ? liste : [];
+          renderTachesList(tachesEtat);
+        }
+      } catch (e) { console.warn('[taches] liste indisponible :', e && e.message); }
+      try {
+        var historique = await ipcRenderer.invoke('taches:history', 50);
+        if (historique && !historique.error) renderTachesHistory(Array.isArray(historique) ? historique : []);
+      } catch (e) { /* l'historique est secondaire */ }
+    }
+
+    function renderTachesList(taches) {
+      var conteneur = document.getElementById('tachesList');
+      if (!conteneur) return;
+      if (!taches.length) {
+        conteneur.innerHTML = '<div class="sched-empty">' + escapeHtml(_('Aucune tâche programmée pour l\'instant — créez-en une avec « Nouvelle tâche ».')) + '</div>';
+        return;
+      }
+      conteneur.innerHTML = taches.map(function(t) {
+        var prochain = t.prochaine ? _('Prochaine exécution : {date}', { date: formatterDateTache(t.prochaine) }) : _('Plus aucune exécution programmée');
+        return '<div class="sched-job tache-card">' +
+          '<div class="sched-job__dot" data-dot-color="' + (t.active ? 'var(--accent)' : 'var(--fg-muted)') + '"></div>' +
+          '<div class="sched-job__body">' +
+          '<div class="sched-job__title">' + escapeHtml(t.nom || '') + (t.active ? '' : ' <span class="tache-card__inactive">(' + escapeHtml(_('inactive')) + ')</span>') + '</div>' +
+          '<div class="sched-job__meta">' + escapeHtml(texteProgrammationTache(t)) + ' · ' + escapeHtml(texteComptesTache(t)) + ' · ' + escapeHtml(texteRepartitionTache(t)) + '</div>' +
+          '<div class="sched-job__meta">' + escapeHtml(prochain) + '</div>' +
+          '<div class="sched-job__actions">' +
+          '<button class="btn" data-action="tache-toggle" data-id="' + escapeHtml(t.id) + '">' + escapeHtml(t.active ? _('Désactiver') : _('Activer')) + '</button>' +
+          '<button class="btn" data-action="tache-run" data-id="' + escapeHtml(t.id) + '">' + escapeHtml(_('Exécuter maintenant')) + '</button>' +
+          '<button class="btn" data-action="tache-edit" data-id="' + escapeHtml(t.id) + '">' + escapeHtml(_('Modifier')) + '</button>' +
+          '<button class="btn" data-action="tache-delete" data-id="' + escapeHtml(t.id) + '">' + escapeHtml(_('Supprimer')) + '</button>' +
+          '</div></div></div>';
+      }).join('');
+      applyDataColors(conteneur);
+    }
+
+    function renderTachesHistory(evenements) {
+      var conteneur = document.getElementById('tachesHistory');
+      if (!conteneur) return;
+      if (!evenements.length) {
+        conteneur.innerHTML = '<div class="sched-empty-log">' + escapeHtml(_('Aucun événement pour l\'instant.')) + '</div>';
+        return;
+      }
+      conteneur.innerHTML = evenements.map(function(ev) {
+        var ligne = '[' + escapeHtml(formatterDateTache(ev.date)) + '] ' +
+          escapeHtml(ev.nom || '') + (ev.profil ? ' · ' + escapeHtml(ev.profil) : '') +
+          ' — ' + escapeHtml(texteResultatTache(ev));
+        if (ev.detail) ligne += ' (' + escapeHtml(String(ev.detail)) + ')';
+        return '<div>' + ligne + '</div>';
+      }).join('');
+    }
+
+    // Formulaire de création / édition. La valeur du champ « id » (hidden au
+    // sens DOM : stockée dans une propriété) distingue création et édition.
+    var formulaireTacheId = null;
+    var formulaireTacheOriginale = null;
+    function ouvrirFormulaireTache(tache) {
+      var form = document.getElementById('tacheForm');
+      var champs = window.iaoTachesUi.tacheVersForm(tache || {});
+      formulaireTacheId = champs.id;
+      // Tâche d'origine (édition) : les valeurs que le formulaire ne peut pas
+      // représenter exactement (ms) sont préservées à l'enregistrement si le
+      // champ correspondant n'a pas été modifié (lib/taches-ui.js).
+      formulaireTacheOriginale = tache || null;
+      document.getElementById('tacheFormNom').value = champs.nom;
+      document.getElementById('tacheFormComptesMode').value = champs.comptesMode;
+      construireChoixComptes(champs.comptesProfils);
+      document.getElementById('tacheFormRepartition').value = champs.repartitionMode;
+      document.getElementById('tacheFormEspacement').value = champs.espacementSecondes;
+      document.getElementById('tacheFormSession').checked = champs.nouvelleSession;
+      document.getElementById('tacheFormPrompt').value = champs.prompt;
+      document.getElementById('tacheFormProgType').value = champs.programmationType;
+      document.getElementById('tacheFormProgLe').value = champs.programmationLe || '';
+      document.getElementById('tacheFormProgTous').value = champs.programmationTous;
+      document.getElementById('tacheFormProgUnite').value = champs.programmationUnite;
+      document.getElementById('tacheFormProgDepuis').value = champs.programmationDepuis || '';
+      document.getElementById('tacheFormActive').checked = champs.active;
+      document.getElementById('tacheFormErreurs').hidden = true;
+      document.getElementById('tacheFormErreurs').innerHTML = '';
+      basculerChampsFormulaire();
+      form.hidden = false;
+      form.scrollIntoView({ block: 'start' });
+    }
+    function fermerFormulaireTache() {
+      document.getElementById('tacheForm').hidden = true;
+      formulaireTacheId = null;
+      formulaireTacheOriginale = null;
+    }
+
+    // Cases à cocher des comptes : seuls les comptes AVEC le service Claude
+    // sont proposés. Les profils SÉLECTIONNÉS mais devenus indisponibles (plus
+    // de service Claude, compte supprimé) restent cochés et signalés — sinon
+    // une édition du seul nom les retirerait silencieusement de la tâche
+    // (l'éligibilité à l'exécution reste contrôlée par le service, qui les
+    // exclut le moment venu).
+    function construireChoixComptes(profilsSelectionnes) {
+      var conteneur = document.getElementById('tacheFormComptesChoix');
+      var avecClaude = accounts.filter(function(a) {
+        return Array.isArray(a.services) && a.services.indexOf('claude') !== -1;
+      });
+      var connus = new Set(accounts.map(function(a) { return a.profile; }));
+      var selectionnes = new Set(profilsSelectionnes || []);
+      var indisponibles = [...selectionnes].filter(function(p) {
+        return !avecClaude.some(function(a) { return a.profile === p; });
+      });
+      if (!avecClaude.length && !indisponibles.length) {
+        conteneur.innerHTML = '<div class="sched-empty">' + escapeHtml(_('Aucun compte avec le service Claude — la tâche ne pourra pas s\'exécuter.')) + '</div>';
+        return;
+      }
+      var lignes = avecClaude.map(function(a) {
+        var coche = selectionnes.has(a.profile);
+        return '<label class="tache-form__compte"><input type="checkbox" data-profile="' + escapeHtml(a.profile) + '"' + (coche ? ' checked' : '') + '> ' + escapeHtml(a.profile) + '</label>';
+      });
+      for (var i = 0; i < indisponibles.length; i++) {
+        var p = indisponibles[i];
+        var note = connus.has(p)
+          ? _('sans le service Claude')
+          : _('compte supprimé');
+        lignes.push('<label class="tache-form__compte tache-form__compte--indisponible">' +
+          '<input type="checkbox" data-profile="' + escapeHtml(p) + '" checked disabled> ' +
+          escapeHtml(p) + ' <span class="tache-form__note">(' + escapeHtml(note) + ')</span></label>');
+      }
+      conteneur.innerHTML = lignes.join('');
+    }
+
+    // Affiche/masque les champs conditionnels du formulaire.
+    function basculerChampsFormulaire() {
+      var modeComptes = document.getElementById('tacheFormComptesMode').value;
+      document.getElementById('tacheFormComptesChoix').hidden = modeComptes !== 'liste';
+      var repartition = document.getElementById('tacheFormRepartition').value;
+      document.getElementById('tacheFormEspacementGroupe').style.display = repartition === 'tous' ? '' : 'none';
+      var progType = document.getElementById('tacheFormProgType').value;
+      document.getElementById('tacheFormProgUniqueGroupe').style.display = progType === 'unique' ? '' : 'none';
+      document.getElementById('tacheFormProgPeriodiqueGroupe').style.display = progType === 'periodique' ? '' : 'none';
+    }
+
+    // Enregistre le formulaire : mapping par les helpers purs (lib/taches-ui.js),
+    // validation finale par le service. Les erreurs (codes du helper ou du
+    // service) sont traduites ici par des appels _() littéraux et affichées
+    // dans le formulaire, sans le fermer.
+    // Msgids marqués par N_() (extraction xgettext à la construction) puis
+    // traduits par _() au moment du rendu — le catalogue charge APRÈS app.js
+    // (motif établi du fichier, cf. N_ plus haut).
+    var MESSAGES_ERREURS_FORMULAIRE = {
+      'nom': N_('Le nom est obligatoire.'),
+      'prompt': N_('Le prompt est obligatoire.'),
+      'comptes-mode': N_('Comptes : choix invalide.'),
+      'comptes-vides': N_('Sélectionnez au moins un compte.'),
+      'repartition-mode': N_('Répartition : choix invalide.'),
+      'espacement': N_('Espacement invalide : entre 0 et 86400 secondes.'),
+      'programmation-type': N_('Programmation : choix invalide.'),
+      'date-le': N_('Date « Le » invalide.'),
+      'date-depuis': N_('Date « À partir du » invalide.'),
+      'tous': N_('« Tous les » doit être un entier supérieur à 0.'),
+      'unite': N_('Unité inconnue.')
+    };
+    function traduireErreursFormulaire(erreurs) {
+      return (erreurs || []).map(function(e) {
+        if (typeof e === 'string' && MESSAGES_ERREURS_FORMULAIRE[e]) return _(MESSAGES_ERREURS_FORMULAIRE[e]);
+        return String(e); // messages du service (déjà en français, côté main)
+      });
+    }
+
+    async function enregistrerFormulaireTache() {
+      var profils = [];
+      document.querySelectorAll('#tacheFormComptesChoix input[type="checkbox"]:checked').forEach(function(cb) {
+        profils.push(cb.getAttribute('data-profile'));
+      });
+      var champs = {
+        id: formulaireTacheId,
+        nom: document.getElementById('tacheFormNom').value,
+        fournisseur: 'claude',
+        comptesMode: document.getElementById('tacheFormComptesMode').value,
+        comptesProfils: profils,
+        repartitionMode: document.getElementById('tacheFormRepartition').value,
+        espacementSecondes: Number(document.getElementById('tacheFormEspacement').value),
+        nouvelleSession: document.getElementById('tacheFormSession').checked,
+        prompt: document.getElementById('tacheFormPrompt').value,
+        programmationType: document.getElementById('tacheFormProgType').value,
+        programmationLe: document.getElementById('tacheFormProgLe').value,
+        programmationDepuis: document.getElementById('tacheFormProgDepuis').value,
+        programmationTous: Number(document.getElementById('tacheFormProgTous').value),
+        programmationUnite: document.getElementById('tacheFormProgUnite').value,
+        active: document.getElementById('tacheFormActive').checked
+      };
+      var conv = window.iaoTachesUi.formVersTache(champs);
+      var erreurs = conv.ok ? [] : conv.erreurs.slice();
+      if (conv.ok) {
+        // Édition : les champs inchangés gardent leur valeur EXACTE du modèle
+        // (ms) plutôt que la conversion arrondie du formulaire.
+        conv.tache = window.iaoTachesUi.preserverValeursNonModifiees(
+          conv.tache, formulaireTacheOriginale, champs);
+        try {
+          var res = await ipcRenderer.invoke('taches:save', conv.tache);
+          if (res && res.error) erreurs = [res.error];
+          else if (res && res.ok === false && Array.isArray(res.erreurs)) erreurs = traduireErreursFormulaire(res.erreurs);
+        } catch (e) {
+          erreurs = [_('Enregistrement impossible : {erreur}', { erreur: e && e.message ? e.message : String(e) })];
+        }
+      } else {
+        erreurs = traduireErreursFormulaire(erreurs);
+      }
+      if (erreurs.length) {
+        var zone = document.getElementById('tacheFormErreurs');
+        zone.innerHTML = erreurs.map(function(e) { return '<div>' + escapeHtml(String(e)) + '</div>'; }).join('');
+        zone.hidden = false;
+        return;
+      }
+      fermerFormulaireTache();
+      refreshTachesUI();
+    }
+
+    // « Exécuter maintenant » : la garde du moteur est prise AVANT l'appel au
+    // service (taches:run-now marque la tâche côté service) ; le plan est
+    // construit par le service puis exécuté par le moteur partagé — même
+    // chemin que la minuterie. Le résultat arrive par l'historique
+    // (taches:report), jamais fabriqué ici : le message reste neutre.
+    async function executerTacheMaintenant(id) {
+      if (!moteurTaches) { showToast(_('Le moteur de tâches n\'est pas démarré.'), 'error'); return; }
+      try {
+        var r = await moteurTaches.executerTache(id);
+        if (r && r.ok) {
+          showToast(_('Exécution demandée — le résultat apparaîtra dans l\'historique.'), 'success');
+        } else if (r && r.motif === 'occupe') {
+          showToast(_('Une exécution est déjà en cours — réessayez dans un instant.'), 'warning');
+        } else if (r && r.motif === 'erreur-service') {
+          showToast(_('Le service des tâches a refusé l\'exécution.'), 'error');
+        } else {
+          showToast(_('Tâche introuvable.'), 'error');
+        }
+      } catch (e) {
+        showToast(_('Exécution impossible : {erreur}', { erreur: e && e.message ? e.message : String(e) }), 'error');
+      }
+      refreshTachesUI();
+    }
+
+    // Délégation d'événements (invariant 5) : un listener par conteneur, aucune
+    // donnée interpolée dans le HTML généré (les ids sont échappés au rendu).
+    document.getElementById('tachesList').addEventListener('click', async function(e) {
+      var btn = e.target.closest('[data-action]');
+      if (!btn) return;
+      var id = btn.getAttribute('data-id');
+      var action = btn.getAttribute('data-action');
+      if (action === 'tache-toggle') {
+        var t = tachesEtat.find(function(x) { return x.id === id; });
+        try {
+          var res = await ipcRenderer.invoke('taches:set-active', id, !(t && t.active));
+          if (res && res.error) showToast(res.error, 'error');
+        } catch (err) { showToast(_('Action impossible : {erreur}', { erreur: err && err.message }), 'error'); }
+        refreshTachesUI();
+        return;
+      }
+      if (action === 'tache-run') { executerTacheMaintenant(id); return; }
+      if (action === 'tache-edit') {
+        var t2 = tachesEtat.find(function(x) { return x.id === id; });
+        if (t2) ouvrirFormulaireTache(t2);
+        return;
+      }
+      if (action === 'tache-delete') {
+        var t3 = tachesEtat.find(function(x) { return x.id === id; });
+        showConfirmDialog(_('Supprimer la tâche'),
+          _('Supprimer « {nom} » ? L\'historique est conservé.', { nom: (t3 && t3.nom) || id }),
+          async function() {
+            try {
+              var r2 = await ipcRenderer.invoke('taches:delete', id);
+              if (r2 && r2.error) showToast(r2.error, 'error');
+            } catch (err) { showToast(_('Suppression impossible : {erreur}', { erreur: err && err.message }), 'error'); }
+            refreshTachesUI();
+          });
+      }
+    });
+    document.getElementById('tacheForm').addEventListener('click', async function(e) {
+      var btn = e.target.closest('[data-action]');
+      if (!btn) return;
+      if (btn.getAttribute('data-action') === 'tache-form-cancel') fermerFormulaireTache();
+      if (btn.getAttribute('data-action') === 'tache-form-save') enregistrerFormulaireTache();
+    });
+    document.getElementById('tacheNewBtn').addEventListener('click', function() { ouvrirFormulaireTache(null); });
+    document.getElementById('tacheFormComptesMode').addEventListener('change', basculerChampsFormulaire);
+    document.getElementById('tacheFormRepartition').addEventListener('change', basculerChampsFormulaire);
+    document.getElementById('tacheFormProgType').addEventListener('change', basculerChampsFormulaire);
+
     // === Réglages (lot 18/09/2026, FEATURES.md P2) ===
     // Persistance via IPC settings:load/settings:save (main.js), normalisation
     // via lib/settings.js (normalizeSettings, DEFAULT_SETTINGS).
@@ -2063,15 +2487,418 @@
       ipcRenderer.invoke('scheduler:set-config', plan.schedulerConfigPush).catch(function() {});
     }
 
+    // --- Statistiques d'utilisation (issue #206, lot 1) ---
+    // Historique (stats:load) + sessions en cours, agrégés par lib/stats.js.
+    // Les noms de compte et de service viennent des données locales et passent
+    // par escapeHtml() ; un profil sans compte (supprimé) reste affiché tel quel.
+    let statsPeriode = 'jour';
+    let statsHistorique = [];
+    function dureeStats(ms) {
+      if (ms > 0 && ms < 60000) return _('< 1 min');
+      const d = window.iaoStats.decomposerDuree(ms);
+      return d.heures ? _('{h} h {m} min', { h: d.heures, m: String(d.minutes).padStart(2, '0') })
+        : _('{m} min', { m: d.minutes });
+    }
+    function dateStats(ms) {
+      if (!ms) return '—';
+      try {
+        return new Date(ms).toLocaleString(document.documentElement.lang || undefined,
+          { dateStyle: 'short', timeStyle: 'short' });
+      } catch (_e) { return new Date(ms).toLocaleString(); }
+    }
+    // Tri par colonne (lot 2) : clic sur un en-tête [data-stats-tri] ; un
+    // second clic inverse le sens. État par tableau, conservé à la réouverture.
+    const statsTri = {};
+    function enteteTri(table, col, libelle, num) {
+      const t = statsTri[table];
+      const actif = t && t.col === col;
+      const fleche = actif ? (t.sens === 'asc' ? ' ▲' : ' ▼') : '';
+      return `<th class="stats-tri${num ? ' num' : ''}${actif ? ' stats-tri--actif' : ''}" data-stats-tri="${table}" data-col="${col}"
+        aria-sort="${actif ? (t.sens === 'asc' ? 'ascending' : 'descending') : 'none'}">${escapeHtml(libelle)}${fleche}</th>`;
+    }
+    function trierStats(table, lignes) {
+      const t = statsTri[table];
+      return t ? window.iaoStats.trierLignes(lignes, t.col, t.sens) : lignes;
+    }
+    function tableStats(table, titre, colonne, lignes, nomLigne, avecPart) {
+      if (!lignes.length) return '';
+      const max = Math.max(1, ...lignes.map(l => l.actifMs));
+      const corps = trierStats(table, lignes).map(l => {
+        const n = nomLigne(l);
+        return `<tr>
+          <td><div class="stats-nom">${n.point}<span title="${escapeHtml(n.titre)}">${escapeHtml(n.nom)}</span></div>
+            <div class="stats-barre" style="width:${Math.round(100 * l.actifMs / max)}%"></div></td>
+          <td class="num">${escapeHtml(dureeStats(l.actifMs))}</td>
+          <td class="num">${escapeHtml(dureeStats(l.dureeMs))}</td>
+          <td class="num">${l.sessions}</td>
+          <td class="num">${avecPart ? Math.round(100 * l.part) + ' %' : escapeHtml(dateStats(l.dernier))}</td>
+        </tr>`;
+      }).join('');
+      return `<div><div class="stats-titre">${escapeHtml(titre)}</div>
+        <table class="stats-table"><thead><tr>
+          ${enteteTri(table, 'cle', colonne, false)}${enteteTri(table, 'actifMs', _('Temps actif'), true)}
+          ${enteteTri(table, 'dureeMs', _('Durée ouverte'), true)}${enteteTri(table, 'sessions', _('Sessions'), true)}
+          ${avecPart ? enteteTri(table, 'part', _('Part'), true) : enteteTri(table, 'dernier', _('Dernière utilisation'), true)}
+        </tr></thead><tbody>${corps}</tbody></table></div>`;
+    }
+    function nomCompteStats(profil) {
+      const acc = accounts.find(a => a.profile === profil);
+      return acc ? acc.name : profil;
+    }
+    // Carte de chaleur jour × heure (lundi en premier, heures locales).
+    function carteChaleurStats(h) {
+      if (!h.max) return '';
+      const jours = [_('Lun'), _('Mar'), _('Mer'), _('Jeu'), _('Ven'), _('Sam'), _('Dim')];
+      const entete = Array.from({ length: 24 }, (_x, i) => `<th>${i % 3 === 0 ? i : ''}</th>`).join('');
+      const lignes = h.grille.map((ligne, j) => `<tr><th class="stats-chaleur__jour">${escapeHtml(jours[j])}</th>${
+        ligne.map((ms, heure) => {
+          const niveau = ms ? Math.max(0.12, ms / h.max) : 0;
+          const titre = _('{jour} {h} h : {duree}', { jour: jours[j], h: heure, duree: dureeStats(ms) });
+          return `<td class="stats-chaleur__case" style="--niveau:${niveau.toFixed(2)}" title="${escapeHtml(titre)}"></td>`;
+        }).join('')}</tr>`).join('');
+      return `<div><div class="stats-titre">${escapeHtml(_('Heures de pointe (temps actif)'))}</div>
+        <table class="stats-chaleur" id="statsChaleur"><thead><tr><th></th>${entete}</tr></thead><tbody>${lignes}</tbody></table></div>`;
+    }
+    function inutilisesStats(liste) {
+      if (!liste.length) return '';
+      const items = liste.map(l => `<li><span title="${escapeHtml(l.cle)}">${escapeHtml(nomCompteStats(l.cle))}</span>
+        <span class="stats-inutilise__date">${escapeHtml(l.dernier ? _('dernière utilisation : {date}', { date: dateStats(l.dernier) }) : _('jamais utilisé depuis le début de la mesure'))}</span></li>`).join('');
+      return `<div><div class="stats-titre">${escapeHtml(_('Comptes inutilisés sur la période'))}</div>
+        <ul class="stats-inutilises" id="statsInutilises">${items}</ul></div>`;
+    }
+    function tachesStats(lignes) {
+      if (!lignes.length) return '';
+      const corps = trierStats('taches', lignes).map(l => `<tr>
+          <td><span title="${escapeHtml(l.cle)}">${escapeHtml(nomCompteStats(l.cle))}</span></td>
+          <td class="num">${l.envoye}</td><td class="num">${l.quota}</td><td class="num">${l.erreur}</td>
+          <td class="num">${l.total}</td>
+          <td class="num">${escapeHtml(l.dernierQuota ? dateStats(Date.parse(l.dernierQuota)) + (l.heureQuota ? ' (' + _('fin {h}', { h: l.heureQuota }) + ')' : '') : '—')}</td>
+        </tr>`).join('');
+      return `<div><div class="stats-titre">${escapeHtml(_('Tâches programmables par compte'))}</div>
+        <table class="stats-table" id="statsTaches"><thead><tr>
+          ${enteteTri('taches', 'cle', _('Compte'), false)}${enteteTri('taches', 'envoye', _('Envoyées'), true)}
+          ${enteteTri('taches', 'quota', _('Quotas'), true)}${enteteTri('taches', 'erreur', _('Erreurs'), true)}
+          ${enteteTri('taches', 'total', _('Exécutions'), true)}${enteteTri('taches', 'dernierQuota', _('Dernier quota'), true)}
+        </tr></thead><tbody>${corps}</tbody></table>
+        <div class="stats-note">${escapeHtml(_('D\'après l\'historique des tâches (200 dernières exécutions).'))}</div></div>`;
+    }
+    // Histogramme d'évolution du temps actif (lot 3) : SVG maison, sans
+    // dépendance ; géométrie calculée par lib/stats.js, libellés échappés.
+    function heureCourte(ms) {
+      const d = new Date(ms);
+      return statsPeriode === 'jour' ? String(d.getHours()) : d.getDate() + '/' + (d.getMonth() + 1);
+    }
+    // Histogramme générique : `valeur(t)` donne la hauteur, `format` le texte
+    // de l'échelle et `infobulle(t, date)` le titre de chaque barre.
+    function histogrammeStats(id, titre, tranches, valeur, format, infobulle, secondes) {
+      const L = 680, HAUT = 120, G = 44, BAS = 18;
+      const valeurs = tranches.map(valeur);
+      if (!valeurs.some(v => v > 0)) return '';
+      const geo = window.iaoStats.geometrieBarres(valeurs, { largeur: L - G, hauteur: HAUT, secondes });
+      const pasLibelle = Math.ceil(tranches.length / 12);
+      const barres = geo.barres.map((b, i) => {
+        const t = tranches[i];
+        const date = statsPeriode === 'jour' ? _('{h} h', { h: heureCourte(t.debut) }) : heureCourte(t.debut);
+        return `<rect class="stats-evolution__barre" x="${G + b.x}" y="${b.y}" width="${b.largeur}" height="${b.hauteur}"><title>${escapeHtml(infobulle(t, date))}</title></rect>`;
+      }).join('');
+      const libelles = tranches.map((t, i) => i % pasLibelle ? '' :
+        `<text class="stats-evolution__texte" x="${G + geo.barres[i].x + geo.barres[i].largeur / 2}" y="${HAUT + 13}" text-anchor="middle">${escapeHtml(heureCourte(t.debut))}</text>`).join('');
+      return `<div class="stats-evolution" id="${id}"><div class="stats-titre">${escapeHtml(titre)}</div>
+        <svg viewBox="0 0 ${L} ${HAUT + BAS}" role="img" aria-label="${escapeHtml(titre)}">
+          <line class="stats-evolution__axe" x1="${G}" y1="0.5" x2="${L}" y2="0.5"></line>
+          <line class="stats-evolution__axe" x1="${G}" y1="${HAUT / 2}" x2="${L}" y2="${HAUT / 2}"></line>
+          <line class="stats-evolution__axe" x1="${G}" y1="${HAUT}" x2="${L}" y2="${HAUT}"></line>
+          <text class="stats-evolution__texte" x="${G - 6}" y="10" text-anchor="end">${escapeHtml(format(geo.echelle))}</text>
+          <text class="stats-evolution__texte" x="${G - 6}" y="${HAUT + 3}" text-anchor="end">0</text>
+          ${barres}${libelles}
+        </svg></div>`;
+    }
+    function evolutionStats(tranches) {
+      return histogrammeStats('statsEvolution', _('Évolution du temps actif'), tranches, t => t.actifMs, dureeStats,
+        (t, date) => _('{date} : {duree} actif', { date, duree: dureeStats(t.actifMs) }));
+    }
+    // Temps de réponse et quotas atteints (lot 2b) : mesurés sur les tâches
+    // programmables et sur les messages envoyés à la main (lib/mesure-reponse.js).
+    let statsReponses = [];
+    let statsQuotas = [];
+    function delaiStats(ms) {
+      if (ms < 60000) return _('{s} s', { s: Math.max(0, Math.round(ms / 1000)) });
+      return dureeStats(ms);
+    }
+    function nomServiceStats(id) {
+      const svc = SERVICES.find(x => x.id === id);
+      return svc ? svc.name : id;
+    }
+    function reponsesStats(agr) {
+      const lignes = agr.parCompteService.map(l => Object.assign({ cle: l.profil + '|' + l.service }, l));
+      if (!lignes.length) return '';
+      const corps = trierStats('reponses', lignes).map(l => `<tr>
+          <td><span title="${escapeHtml(l.profil)}">${escapeHtml(nomCompteStats(l.profil))}</span></td>
+          <td>${escapeHtml(nomServiceStats(l.service))}</td>
+          <td class="num">${l.nombre}</td>
+          <td class="num">${escapeHtml(delaiStats(l.medianeMs))}</td>
+          <td class="num">${escapeHtml(delaiStats(l.minMs))}</td>
+          <td class="num">${escapeHtml(delaiStats(l.maxMs))}</td>
+        </tr>`).join('');
+      return `<div><div class="stats-titre">${escapeHtml(_('Temps de réponse'))}</div>
+        <table class="stats-table" id="statsReponses"><thead><tr>
+          ${enteteTri('reponses', 'cle', _('Compte'), false)}${enteteTri('reponses', 'service', _('Service'), false)}
+          ${enteteTri('reponses', 'nombre', _('Réponses'), true)}${enteteTri('reponses', 'medianeMs', _('Médiane'), true)}
+          ${enteteTri('reponses', 'minMs', _('Plus rapide'), true)}${enteteTri('reponses', 'maxMs', _('Plus lente'), true)}
+        </tr></thead><tbody>${corps}</tbody></table>
+        <div class="stats-note">${escapeHtml(_('Du message envoyé à la fin de la réponse, pour les tâches programmables et les messages envoyés à la main.'))}</div></div>`;
+    }
+    function quotasStats(agr) {
+      const lignes = agr.parCompteService.map(l => Object.assign({
+        cle: l.profil + '|' + l.service,
+        heure: l.parHeure.indexOf(Math.max(...l.parHeure))
+      }, l));
+      if (!lignes.length) return '';
+      const corps = trierStats('quotas', lignes).map(l => `<tr>
+          <td><span title="${escapeHtml(l.profil)}">${escapeHtml(nomCompteStats(l.profil))}</span></td>
+          <td>${escapeHtml(nomServiceStats(l.service))}</td>
+          <td class="num">${l.nombre}</td>
+          <td class="num">${escapeHtml(_('{h} h', { h: l.heure }))}</td>
+        </tr>`).join('');
+      return `<div><div class="stats-titre">${escapeHtml(_('Quotas atteints'))}</div>
+        <table class="stats-table" id="statsQuotas"><thead><tr>
+          ${enteteTri('quotas', 'cle', _('Compte'), false)}${enteteTri('quotas', 'service', _('Service'), false)}
+          ${enteteTri('quotas', 'nombre', _('Fois'), true)}${enteteTri('quotas', 'heure', _('Heure habituelle'), true)}
+        </tr></thead><tbody>${corps}</tbody></table></div>`;
+    }
+    // Lot 4 : évolution du temps de réponse médian et comptes surchargés.
+    function evolutionReponsesStats(tranches) {
+      return histogrammeStats('statsEvolutionReponses', _('Évolution du temps de réponse médian'), tranches,
+        t => t.medianeMs, delaiStats,
+        (t, date) => _n('{date} : médiane {duree}, {n} réponse', '{date} : médiane {duree}, {n} réponses', t.nombre,
+          { date, duree: delaiStats(t.medianeMs), n: t.nombre }), true);
+    }
+    function surchargesStats(r) {
+      if (!r.surcharges.length) return '';
+      const items = r.surcharges.map(l => `<li><span title="${escapeHtml(l.profil)}">${escapeHtml(nomCompteStats(l.profil))}</span>
+        <span class="stats-inutilise__date">${escapeHtml(_n('{n} quota atteint', '{n} quotas atteints', l.quotas, { n: l.quotas }))}</span></li>`).join('');
+      const relais = r.relais.length ? `<div class="stats-note">${escapeHtml(_('Comptes à privilégier pour répartir l\'usage : {comptes}',
+        { comptes: r.relais.map(nomCompteStats).join(', ') }))}</div>` : '';
+      return `<div><div class="stats-titre">${escapeHtml(_('Comptes souvent bloqués par un quota'))}</div>
+        <ul class="stats-inutilises" id="statsSurcharges">${items}</ul>${relais}</div>`;
+    }
+    let statsTaches = [];
+    function renderStats() {
+      document.querySelectorAll('#statsPeriodes [data-periode]').forEach(b =>
+        b.classList.toggle('stats-periode--active', b.getAttribute('data-periode') === statsPeriode));
+      const maintenant = Date.now();
+      const sessions = statsHistorique.concat(suiviStats.instantane());
+      const r = window.iaoStats.agreger(sessions, { periode: statsPeriode, maintenant });
+      const taches = window.iaoStats.resultatsTaches(statsTaches, r.depuis);
+      const reponses = window.iaoStats.agregerReponses(statsReponses, { periode: statsPeriode, maintenant });
+      const quotas = window.iaoStats.agregerQuotas(statsQuotas, { periode: statsPeriode, maintenant });
+      const body = document.getElementById('statsBody');
+      if (!r.totaux.sessions && !taches.length && !reponses.totaux.nombre && !quotas.parCompteService.length) {
+        body.innerHTML = `<div class="stats-vide">${escapeHtml(_('Aucune session sur cette période. La mesure commence à l\'installation de cette version.'))}</div>`;
+        return;
+      }
+      const serie = window.iaoStats.serieJours(sessions, maintenant);
+      const jours = (n) => _n('{n} jour', '{n} jours', n, { n });
+      const carte = (valeur, libelle) => `<div class="stats-carte"><div class="stats-carte__valeur">${escapeHtml(valeur)}</div><div class="stats-carte__libelle">${escapeHtml(libelle)}</div></div>`;
+      body.innerHTML = `<div class="stats-totaux">
+          ${carte(dureeStats(r.totaux.actifMs), _('Temps actif'))}
+          ${carte(dureeStats(r.totaux.dureeMs), _('Durée ouverte'))}
+          ${carte(String(r.totaux.sessions), _('Sessions'))}
+          ${carte(jours(serie.actuelle), _('Série en cours (record : {n})', { n: jours(serie.record) }))}
+          ${carte(String(reponses.totaux.nombre), _('Réponses'))}
+          ${carte(reponses.totaux.nombre ? delaiStats(reponses.totaux.medianeMs) : '—', _('Temps de réponse médian'))}
+        </div>
+        ${evolutionStats(window.iaoStats.evolution(sessions, { periode: statsPeriode, maintenant }))}
+        ${evolutionReponsesStats(window.iaoStats.evolutionReponses(statsReponses, { periode: statsPeriode, maintenant }))}
+        ${tableStats('compte', _('Par compte'), _('Compte'), r.parCompte, (l) =>
+          ({ nom: nomCompteStats(l.cle), titre: l.cle, point: '' }), false)}
+        ${tableStats('service', _('Par service'), _('Service'), r.parService, (l) => {
+          const svc = SERVICES.find(x => x.id === l.cle);
+          return { nom: svc ? svc.name : l.cle, titre: l.cle,
+            point: svc ? `<span class="stats-point svc-bg-${svc.id}"></span>` : '' };
+        }, true)}
+        ${carteChaleurStats(window.iaoStats.heuresDePointe(sessions, r.depuis))}
+        ${inutilisesStats(window.iaoStats.comptesInutilises(sessions, accounts.map(a => a.profile), r.depuis))}
+        ${reponsesStats(reponses)}
+        ${quotasStats(quotas)}
+        ${surchargesStats(window.iaoStats.comptesSurcharges(sessions, statsQuotas, accounts.map(a => a.profile), r.depuis))}
+        ${tachesStats(taches)}`;
+    }
+    document.getElementById('statsBody').addEventListener('click', (e) => {
+      const th = e.target.closest('[data-stats-tri]');
+      if (!th) return;
+      const table = th.getAttribute('data-stats-tri');
+      const col = th.getAttribute('data-col');
+      const t = statsTri[table];
+      statsTri[table] = { col, sens: t && t.col === col && t.sens === 'desc' ? 'asc' : 'desc' };
+      renderStats();
+    });
+    window.openStatsModal = async function() {
+      document.getElementById('statsModal').classList.add('open');
+      renderStats();
+      try {
+        const h = await ipcRenderer.invoke('stats:load');
+        statsHistorique = Array.isArray(h) ? h : [];
+        if (h && h.error) showToast(_('Statistiques illisibles : {error}', { error: h.error }), 'error');
+      } catch (e) {
+        statsHistorique = [];
+        dbg('stats', 'chargement en échec', e && e.message);
+      }
+      try {
+        // Historique des tâches programmables (lot 2) : secondaire, une panne
+        // n'empêche pas l'affichage des sessions.
+        const t = await ipcRenderer.invoke('taches:history', 200);
+        statsTaches = Array.isArray(t) ? t : [];
+      } catch (e) {
+        statsTaches = [];
+        dbg('stats', 'historique des tâches indisponible', e && e.message);
+      }
+      try {
+        // Temps de réponse et quotas (lot 2b) : secondaires eux aussi.
+        const [rep, quo] = await Promise.all([ipcRenderer.invoke('stats:reponses'), ipcRenderer.invoke('stats:quotas')]);
+        statsReponses = Array.isArray(rep) ? rep : [];
+        statsQuotas = Array.isArray(quo) ? quo : [];
+      } catch (e) {
+        statsReponses = [];
+        statsQuotas = [];
+        dbg('stats', 'temps de réponse et quotas indisponibles', e && e.message);
+      }
+      renderStats();
+    };
+    // Export (lot 3) : historique + onglets ouverts, noms de compte joints ;
+    // le fichier est choisi et écrit par le process principal (stats:export).
+    async function exporterStats(format) {
+      const noms = {};
+      for (const a of accounts) noms[a.profile] = a.name;
+      try {
+        const r = await ipcRenderer.invoke('stats:export', format, suiviStats.instantane(), noms);
+        if (r && r.canceled) return;
+        if (!r || r.error) { showToast(_('Export des statistiques impossible : {error}', { error: (r && r.error) || '?' }), 'error'); return; }
+        showToast(_('Statistiques exportées'), 'success');
+      } catch (e) {
+        showToast(_('Export des statistiques impossible : {error}', { error: e && e.message }), 'error');
+      }
+    }
+    window.exportStatsCsv = function() { return exporterStats('csv'); };
+    window.exportStatsJson = function() { return exporterStats('json'); };
+    // Remise à zéro (lot 3) : confirmation, puis historique et instantané
+    // vidés ; les onglets ouverts repartent de maintenant.
+    window.resetStats = function() {
+      showConfirmDialog(_('Remettre les statistiques à zéro ?'),
+        _('Les sessions, temps de réponse et quotas enregistrés sur cet ordinateur seront effacés. L\'historique des tâches programmables n\'est pas touché. Pensez à exporter avant si besoin.'),
+        async () => {
+          try {
+            const r = await ipcRenderer.invoke('stats:reset');
+            if (!r || r.error) { showToast(_('Remise à zéro impossible : {error}', { error: (r && r.error) || '?' }), 'error'); return; }
+            suiviStats.recommencer();
+            statsHistorique = [];
+            statsReponses = [];
+            statsQuotas = [];
+            renderStats();
+            showToast(_('Statistiques remises à zéro'), 'success');
+          } catch (e) {
+            showToast(_('Remise à zéro impossible : {error}', { error: e && e.message }), 'error');
+          }
+        });
+    };
+    window.closeStatsModal = function() {
+      document.getElementById('statsModal').classList.remove('open');
+    };
+    document.getElementById('statsModal').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) closeStatsModal();
+    });
+    document.getElementById('statsPeriodes').addEventListener('click', (e) => {
+      const b = e.target.closest('[data-periode]');
+      if (!b) return;
+      statsPeriode = b.getAttribute('data-periode');
+      renderStats();
+    });
+
     window.openSettingsModal = function() {
       document.getElementById('settingsModal').classList.add('open');
       loadSettings();
+      rafraichirIdentifiants();
     }
     window.closeSettingsModal = function() {
       document.getElementById('settingsModal').classList.remove('open');
     }
     document.getElementById('settingsModal').addEventListener('click', (e) => {
       if (e.target === e.currentTarget) closeSettingsModal();
+    });
+
+    // --- Identifiants des connecteurs, partagés entre profils (issue #278) ---
+    // Gestion dans les réglages : liste + ajout + suppression. Le remplissage
+    // des formulaires, lui, se fait par le menu natif du process principal
+    // (lib/identifiants-preload.js + lib/identifiants-focus.js) : le mot de
+    // passe ne transite jamais par ici.
+    async function rafraichirIdentifiants() {
+      const conteneur = document.getElementById('identifiantsListe');
+      if (!conteneur) return;
+      let liste;
+      try {
+        liste = await ipcRenderer.invoke('identifiants:lister');
+      } catch (e) {
+        showToast(_('Impossible de charger les identifiants'), 'error');
+        return;
+      }
+      conteneur.textContent = '';
+      const hotes = Object.keys(liste || {}).sort();
+      if (!hotes.length) {
+        const vide = document.createElement('span');
+        vide.className = 'settings-hint';
+        vide.textContent = _('Aucun identifiant enregistré pour l\'instant');
+        conteneur.appendChild(vide);
+        return;
+      }
+      for (const hote of hotes) {
+        for (const entree of liste[hote]) {
+          const ligne = document.createElement('div');
+          ligne.className = 'identifiants-item';
+          const etiquette = document.createElement('span');
+          etiquette.className = 'identifiants-item__label';
+          etiquette.textContent = entree.login + ' — ' + hote;
+          const bouton = document.createElement('button');
+          bouton.type = 'button';
+          bouton.className = 'btn identifiants-item__suppr';
+          bouton.title = _('Supprimer {login} pour {host}', { login: entree.login, host: hote });
+          bouton.textContent = _('Supprimer');
+          bouton.addEventListener('click', async () => {
+            try {
+              const r = await ipcRenderer.invoke('identifiants:supprimer', hote, entree.login);
+              if (r === true) {
+                showToast(_('Identifiant {login} supprimé pour {host}', { login: entree.login, host: hote }), 'success');
+                rafraichirIdentifiants();
+              } else {
+                showToast(_('Suppression impossible : identifiant introuvable'), 'error');
+              }
+            } catch (e) {
+              showToast(_('Suppression impossible : {error}', { error: e && e.message }), 'error');
+            }
+          });
+          ligne.appendChild(etiquette);
+          ligne.appendChild(bouton);
+          conteneur.appendChild(ligne);
+        }
+      }
+    }
+    document.getElementById('identifiantsAjouter').addEventListener('click', async () => {
+      const hote = (document.getElementById('identifiantHote').value || '').trim().toLowerCase();
+      const login = (document.getElementById('identifiantLogin').value || '').trim();
+      const motDePasse = document.getElementById('identifiantMotDePasse').value || '';
+      try {
+        const r = await ipcRenderer.invoke('identifiants:enregistrer', hote, login, motDePasse);
+        if (r && r.ok) {
+          document.getElementById('identifiantMotDePasse').value = '';
+          showToast(_('Identifiant enregistré pour {host} (chiffré, partagé entre profils)', { host: hote }), 'success');
+          rafraichirIdentifiants();
+        } else if (r && r.erreur === 'chiffrement-indisponible') {
+          showToast(_('Chiffrement du système indisponible : identifiant non enregistré'), 'error');
+        } else {
+          showToast(_('Enregistrement impossible : hôte, login ou mot de passe invalide'), 'error');
+        }
+      } catch (e) {
+        showToast(_('Enregistrement impossible : {error}', { error: e && e.message }), 'error');
+      }
     });
 
     let loadedLanguage = 'auto';
@@ -2136,6 +2963,10 @@
     window.saveSettings = saveSettings;
 
     async function refreshScheduler() {
+      // Issue #199, lot 4 : le suivi des tâches est indépendant de l'état de
+      // l'ancien ordonnanceur — il se rafraîchit même si scheduler:get-state
+      // échoue (le service des tâches est un processus séparé du scheduler).
+      refreshTachesUI();
       let state;
       try { state = await ipcRenderer.invoke('scheduler:get-state'); }
       catch (e) { console.error('[scheduler] état indisponible :', e); return; }
@@ -2149,7 +2980,18 @@
       var ancien = state.ancienFlux !== false;
       document.getElementById('schedLegacy').hidden = !ancien;
       document.getElementById('schedRun').hidden = !ancien;
-      document.getElementById('schedLegacyOff').hidden = ancien;
+      // Issue #199, lot 4 : interface des tâches programmables (remplace le
+      // bandeau « en cours de développement » du lot 1, désormais obsolète).
+      document.getElementById('schedTaches').hidden = ancien;
+      document.getElementById('schedLegacyOff').hidden = true;
+      // Sous-titre adapté au flux actif (msgids marqués N_(), traduits au
+      // rendu — le catalogue charge après app.js).
+      var SOUS_TITRES_ORDONNANCEUR = {
+        ancien: N_('Détection des ZIP livrés par les onglets IA, reprise par profil.'),
+        taches: N_('Tâches programmables : envoyez un prompt à Claude à date fixe ou périodiquement.')
+      };
+      document.getElementById('schedSubtitle').textContent =
+        _(ancien ? SOUS_TITRES_ORDONNANCEUR.ancien : SOUS_TITRES_ORDONNANCEUR.taches);
       // Issue #181 : bouton explicite, l'ordonnanceur ne démarre jamais seul.
       var startStop = document.getElementById('schedStartStopBtn');
       startStop.textContent = cfg.enabled ? _('Arrêter') : _('Démarrer');
@@ -2351,7 +3193,7 @@
           '<div class="sched-job__body">' +
           '<div class="sched-job__title">' + escapeHtml(p.name) +
           ' <span class="sched-subtitle sched-subtitle--inline">(' + escapeHtml(p.id) + ')</span></div>' +
-          '<div class="sched-job__meta">' + escapeHtml(_('{count} tâche(s)', { count: tasks.length })) + ' · ' + escapeHtml(_('Comptes autorisés :')) + ' ' + allowedText + '</div>' +
+          '<div class="sched-job__meta">' + escapeHtml(_n('{count} tâche', '{count} tâches', tasks.length, { count: tasks.length })) + ' · ' + escapeHtml(_('Comptes autorisés :')) + ' ' + allowedText + '</div>' +
           '<div class="sched-job__actions">' +
           '<button class="btn" data-action="sched-add-task" data-project="' + escapeHtml(p.id) + '">' + escapeHtml(_('Nouvelle tâche')) + '</button>' +
           '<button class="btn" data-action="sched-assign-task" data-project="' + escapeHtml(p.id) + '">' + escapeHtml(_('Assigner')) + '</button>' +
@@ -2378,7 +3220,7 @@
           if (res.chatInput && res.chatInput.found) parts.push(_('zone de chat'));
           if (res.fileUpload && res.fileUpload.found) parts.push(_('envoi de fichier'));
           if (res.quotaMessage && res.quotaMessage.detected) parts.push('QUOTA: ' + res.quotaMessage.time);
-          if (res.popups && res.popups.count > 0) parts.push(_('{count} popup(s)', { count: res.popups.count }));
+          if (res.popups && res.popups.count > 0) parts.push(_n('{count} popup', '{count} popups', res.popups.count, { count: res.popups.count }));
           showToast(_('Claude (« {profile} ») : {details}', { profile, details: parts.length ? parts.join(', ') : _('aucun élément détecté') }));
         }
       } catch (e) { showToast(_('Diagnostic impossible : {error}', { error: e.message }), 'error'); }
@@ -2579,7 +3421,7 @@
         saveAccounts(accounts); // resynchronise aussi l'ordonnanceur
         renderAccounts();
         close();
-        showToast(_('{count} compte(s) restauré(s)', { count: restored.length }));
+        showToast(_n('{count} compte restauré', '{count} comptes restaurés', restored.length, { count: restored.length }));
       });
       actions.appendChild(cancel);
       actions.appendChild(restore);
@@ -2683,6 +3525,11 @@ const UI_ACTIONS = {
   'ui-saveServicesModal': 'saveServicesModal',
   'ui-openSchedulerModal': 'openSchedulerModal',
   'ui-openSettingsModal': 'openSettingsModal',
+  'ui-openStatsModal': 'openStatsModal',
+  'ui-closeStatsModal': 'closeStatsModal',
+  'ui-exportStatsCsv': 'exportStatsCsv',
+  'ui-exportStatsJson': 'exportStatsJson',
+  'ui-resetStats': 'resetStats',
   'ui-exportAccountsToFile': 'exportAccountsToFile',
   'ui-importAccountsFromFile': 'importAccountsFromFile',
   'ui-selectLocalFolder': 'selectLocalFolder',

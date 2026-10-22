@@ -41,16 +41,95 @@ function assert(cond, msg) {
   if (!cond) throw new Error(msg || 'assertion échouée');
 }
 
-async function test(name, fn) {
+// Issue #283 : un processus de rendu qui plante (vu en CI : « crashed », code
+// 133) laissait executeJavaScript sans réponse ; le harnais attendait alors le
+// délai global (180 s) sans dire pourquoi. Désormais :
+//   - le crash fait échouer IMMÉDIATEMENT le test en cours (raison + code) ;
+//   - chaque test a son propre délai (DELAI_PAR_TEST_MS) ;
+//   - après un crash, la page est rechargée pour exécuter les tests restants
+//     (le job reste en échec : un crash n'est jamais masqué ni rejoué) ;
+//   - le délai global et le résumé nomment l'étape en cours.
+const DELAI_PAR_TEST_MS = Number(process.env.IAO_UI_DELAI_TEST_MS) || 60000;
+let etapeCourante = 'préparation (avant le premier test)';
+const crashs = [];              // { etape, raison, code }
+let rejeterTestEnCours = null;  // rejette le test en cours (crash du renderer)
+let recupererApresCrash = null; // défini par run() : rechargement de la page
+let crashARecuperer = false;
+
+function signalerCrash(details) {
+  const crash = { etape: etapeCourante, raison: details && details.reason, code: details && details.exitCode };
+  crashs.push(crash);
+  crashARecuperer = true;
+  console.log('CRASH du processus de rendu pendant « ' + crash.etape + ' » : ' + crash.raison + ' (code ' + crash.code + ')');
+  if (rejeterTestEnCours) {
+    rejeterTestEnCours(new Error('processus de rendu arrêté : ' + crash.raison + ' (code ' + crash.code + ')'));
+  }
+}
+
+async function recupererSiNecessaire() {
+  if (!crashARecuperer || !recupererApresCrash) return;
+  crashARecuperer = false;
   try {
-    await fn();
+    await recupererApresCrash();
+    console.log('  (page rechargée après le crash : les tests suivants continuent)');
+  } catch (e) {
+    console.log('  (rechargement après le crash impossible : ' + (e && e.message ? e.message : e) + ')');
+  }
+}
+
+async function test(name, fn) {
+  // Crash survenu entre deux tests : recharger AVANT d'exécuter celui-ci.
+  await recupererSiNecessaire();
+  etapeCourante = name;
+  let minuteur = null;
+  try {
+    const corps = simulerSiDemande(name) === 'blocage' ? () => new Promise(() => {}) : fn;
+    await Promise.race([
+      Promise.resolve().then(corps),
+      new Promise((_, rejeter) => {
+        rejeterTestEnCours = rejeter;
+        minuteur = setTimeout(() => rejeter(new Error('délai du test dépassé (' + (DELAI_PAR_TEST_MS / 1000) + ' s)')), DELAI_PAR_TEST_MS);
+      })
+    ]);
     passed += 1;
     console.log('ok - ' + name);
   } catch (e) {
     failed += 1;
-    failures.push({ name: name, error: e });
-    console.log('NOT OK - ' + name + ' : ' + (e && e.message ? e.message : e));
+    // Après un crash, les échecs suivants peuvent n'en être que la conséquence
+    // (état de la page perdu) : on le dit, pour ne pas chercher une 2e cause.
+    const avant = crashs.filter((c) => c.etape !== name);
+    const suffixe = avant.length ? ' [après le crash du renderer pendant « ' + avant[avant.length - 1].etape + ' »]' : '';
+    const message = (e && e.message ? e.message : String(e)) + suffixe;
+    failures.push({ name: name, error: new Error(message) });
+    console.log('NOT OK - ' + name + ' : ' + message);
+  } finally {
+    clearTimeout(minuteur);
+    rejeterTestEnCours = null;
   }
+  await recupererSiNecessaire();
+}
+
+// Vérification du filet de sécurité lui-même (jamais en CI) :
+//   IAO_UI_SIMULER=crash:C8.1   -> plante le renderer au début de ce test
+//   IAO_UI_SIMULER=blocage:C8.1 -> fait attendre ce test indéfiniment
+let fenetreSimulation = null;
+function simulerSiDemande(name) {
+  const m = /^(crash|blocage):(.+)$/.exec(process.env.IAO_UI_SIMULER || '');
+  if (!m || !name.startsWith(m[2] + ' ')) return;
+  if (m[1] === 'crash' && fenetreSimulation) {
+    console.log('  (simulation : crash forcé du renderer)');
+    fenetreSimulation.webContents.forcefullyCrashRenderer();
+  }
+  if (m[1] === 'blocage') {
+    console.log('  (simulation : blocage du test)');
+    return 'blocage';
+  }
+  return m[1];
+}
+
+function resumeInterrompu() {
+  return 'pass ' + passed + ' / fail ' + failed + ' avant l\'abandon' +
+    (crashs.length ? ' ; crash(s) du renderer : ' + crashs.map((c) => '« ' + c.etape + ' » (' + c.raison + ', code ' + c.code + ')').join(', ') : '');
 }
 
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
@@ -59,7 +138,7 @@ app.disableHardwareAcceleration();
 
 // Garde-fou : 180 s (ces tests sont plus simples que popups-continue).
 setTimeout(() => {
-  console.error('TIMEOUT global du harnais UI (180 s) — abandon.');
+  console.error('TIMEOUT global du harnais UI (180 s) — abandon pendant « ' + etapeCourante + ' » — ' + resumeInterrompu() + '.');
   process.exit(2);
 }, 180000);
 
@@ -136,6 +215,8 @@ async function run() {
     if (!win) await sleep(100);
   }
   assert(win, 'fenêtre principale jamais créée');
+  fenetreSimulation = win;
+  win.webContents.on('render-process-gone', (_e, details) => signalerCrash(details));
 
   const waitLoaded = async () => {
     for (let i = 0; i < 100; i++) {
@@ -143,6 +224,11 @@ async function run() {
       await sleep(100);
     }
     await sleep(800); // initApp + loadSettings (IPC asynchrone)
+  };
+  recupererApresCrash = async () => {
+    win.webContents.reload();
+    await sleep(300);
+    await waitLoaded();
   };
   await waitLoaded();
 
@@ -324,7 +410,10 @@ async function run() {
     await sleep(300);
     const visible = (id) => exec('(function(){var e=document.getElementById("' + id + '");' +
       'return !!e && !e.hidden && getComputedStyle(e).display !== "none";})()');
-    assert(await visible('schedLegacyOff'), 'bandeau « désactivé » absent');
+    // Lot 4 : l'interface des tâches programmables remplace le bandeau
+    // « en cours de développement » du lot 1 (issue #199).
+    assert(await visible('schedTaches'), 'interface des tâches programmables absente');
+    assert(!(await visible('schedLegacyOff')), 'bandeau obsolète du lot 1 encore affiché');
     assert(!(await visible('schedLegacy')), 'sections de l\'ancien flux visibles');
     assert(!(await visible('schedRun')), 'bouton Démarrer visible');
     assert(await visible('schedLog'), 'journal d\'activité masqué');
@@ -506,6 +595,60 @@ async function run() {
     }
   });
 
+  await test('C7.4 IAO_LANG=ar : mise en page de droite à gauche, éditeur en gauche à droite', async () => {
+    process.env.IAO_LANG = 'ar';
+    try {
+      win.webContents.reload();
+      await sleep(300);
+      await waitLoaded();
+      const r = await exec(`({
+        lang: document.documentElement.lang,
+        dir: document.documentElement.dir,
+        body: getComputedStyle(document.body).direction,
+        editor: getComputedStyle(document.getElementById('monacoContainer')).direction
+      })`);
+      assert(r.lang === 'ar', 'lang attendu ar, trouvé ' + r.lang);
+      assert(r.dir === 'rtl' && r.body === 'rtl', 'sens attendu rtl, trouvé ' + r.dir + '/' + r.body);
+      assert(r.editor === 'ltr', 'l\'éditeur doit rester ltr, trouvé ' + r.editor);
+      process.env.IAO_LANG = 'en';
+      win.webContents.reload();
+      await sleep(300);
+      await waitLoaded();
+      const en = await exec(`document.documentElement.dir`);
+      assert(en === 'ltr', 'en anglais, dir attendu ltr, trouvé ' + en);
+    } finally {
+      process.env.IAO_LANG = 'fr';
+    }
+  });
+
+  await test('C7.5 Vérification visuelle RTL : miroir de la mise en page, poignées, aucun débordement, captures', async () => {
+    const rtl = require('./rtl-visuel');
+    const dossier = rtl.dossierCaptures(process.env.IAO_CAPTURES_DIR);
+    const mesurer = async (lang) => {
+      process.env.IAO_LANG = lang;
+      win.webContents.reload();
+      await sleep(300);
+      await waitLoaded();
+      await sleep(400); // icônes, polices et cartes de comptes rendues
+      const m = await exec(rtl.SCRIPT_MESURE);
+      const img = await win.webContents.capturePage();
+      m.glisser = await exec(rtl.SCRIPT_GLISSER);
+      fs.writeFileSync(path.join(dossier, 'ui-' + lang + '.png'), img.toPNG());
+      m.png = img;
+      return m;
+    };
+    try {
+      const fr = await mesurer('fr');
+      const ar = await mesurer('ar');
+      const ecarts = rtl.comparer(fr, ar);
+      fs.writeFileSync(path.join(dossier, 'rtl-rapport.json'),
+        JSON.stringify({ fr: rtl.sansImage(fr), ar: rtl.sansImage(ar), ecarts }, null, 2));
+      assert(ecarts.length === 0, 'mise en page RTL incorrecte (captures dans ' + dossier + ') :\n  - ' + ecarts.join('\n  - '));
+    } finally {
+      process.env.IAO_LANG = 'fr';
+    }
+  });
+
   await test('C7.3 Sans IAO_LANG ni réglage : langue du système, sélecteur rempli', async () => {
     const i18n = require('../lib/i18n');
     delete process.env.IAO_LANG;
@@ -624,10 +767,600 @@ async function run() {
   });
 
   // =========================================================================
+  // C10 — Tâches programmables (issue #199, lot 4)
+  // =========================================================================
+  console.log('\n--- C10 : Tâches programmables (lot 4, issue #199) ---');
+
+  // Dates futures calculées à l'exécution : une date fixe deviendrait passée
+  // et la minuterie pourrait lancer les tâches PENDANT les scénarios (garde
+  // occupée, exécutions concurrentes). +2 jours garantit « pas encore due ».
+  const dansDeuxJoursLocal = () => {
+    const d = new Date(Date.now() + 2 * 86400000);
+    const p = n => String(n).padStart(2, '0');
+    return d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate()) +
+      'T' + p(d.getHours()) + ':' + p(d.getMinutes());
+  };
+  const dansDeuxJoursISO = () => new Date(Date.now() + 2 * 86400000).toISOString();
+
+
+  await test('C10.1 modale ordonnanceur : interface des tâches visible, liste vide', async () => {
+    await exec('window.openSchedulerModal()');
+    await sleep(800);
+    const visible = await exec('!document.getElementById("schedTaches").hidden');
+    assert(visible, '#schedTaches devrait être visible (flux nouveau par défaut)');
+    const offCache = await exec('document.getElementById("schedLegacyOff").hidden');
+    assert(offCache === true, 'le bandeau « en cours de développement » doit être masqué');
+    const vide = await exec('document.getElementById("tachesList").textContent');
+    assert(/Nouvelle tâche/.test(vide) || /Aucune tâche programmée/.test(vide), 'état vide attendu : ' + vide);
+  });
+
+  await test('C10.2 création via formulaire : carte présente, nom HTML échappé', async () => {
+    await exec('document.getElementById("tacheNewBtn").click()');
+    await sleep(100);
+    const formVisible = await exec('!document.getElementById("tacheForm").hidden');
+    assert(formVisible, 'le formulaire devrait être ouvert');
+    await exec(`
+      document.getElementById('tacheFormNom').value = '<b>Nom & test</b><script>alert(1)<\/script>';
+      const sel = document.getElementById('tacheFormComptesMode');
+      sel.value = 'liste'; sel.dispatchEvent(new Event('change'));
+      document.querySelector('#tacheFormComptesChoix input[data-profile="profil_1"]').checked = true;
+      document.getElementById('tacheFormPrompt').value = 'Dis bonjour';
+      document.getElementById('tacheFormProgDepuis').value = '${dansDeuxJoursLocal()}';
+      document.getElementById('tacheFormProgTous').value = '2';
+      document.getElementById('tacheFormProgUnite').value = 'heure';
+      document.getElementById('tacheFormActive').checked = true;
+      'rempli'
+    `);
+    await exec('document.getElementById("tacheFormEnregistrer").click()');
+    await sleep(800);
+    const nbCartes = await exec('document.querySelectorAll("#tachesList .tache-card").length');
+    assert(nbCartes === 1, 'une carte de tâche attendue, trouvé ' + nbCartes);
+    // Échappement : le nom s'affiche comme TEXTE (pas d'élément <script> ni
+    // <b> injecté dans la carte) — textContent contient le nom brut, c'est
+    // le rendu HTML qui doit l'échapper.
+    const pasDeScript = await exec('document.querySelectorAll("#tachesList .tache-card script, #tachesList .tache-card b").length');
+    assert(pasDeScript === 0, 'aucun élément HTML ne doit être injecté à partir du nom');
+    const titre = await exec('document.querySelector("#tachesList .tache-card .sched-job__title").textContent');
+    assert(titre.indexOf('Nom & test') !== -1, 'le nom doit être affiché : ' + titre);
+    const dotDanger = await exec('(function(){var d=document.querySelector("#tachesList .tache-card .sched-job__dot");return d?d.getAttribute("data-dot-color"):null;})()');
+    assert(dotDanger === 'var(--accent)', 'la tâche active doit avoir le point accent : ' + dotDanger);
+  });
+
+  await test('C10.3 le rafraîchissement (polling 4 s) ne détruit pas la saisie en cours', async () => {
+    await exec('document.querySelector("#tachesList [data-action=tache-edit]").click()');
+    await sleep(100);
+    await exec(`document.getElementById('tacheFormNom').value = 'Saisie en cours non perdue'`);
+    await sleep(4500); // au moins un passage du polling de la modale
+    const valeur = await exec('document.getElementById("tacheFormNom").value');
+    assert(valeur === 'Saisie en cours non perdue',
+      'la saisie doit survivre au rafraîchissement, trouvé : ' + valeur);
+    const encoreOuvert = await exec('!document.getElementById("tacheForm").hidden');
+    assert(encoreOuvert, 'le formulaire doit rester ouvert');
+    await exec('document.getElementById("tacheFormEnregistrer").click()');
+    await sleep(800);
+  });
+
+  await test('C10.4 édition : le nom modifié apparaît', async () => {
+    await exec('document.querySelector("#tachesList [data-action=tache-edit]").click()');
+    await sleep(100);
+    await exec(`document.getElementById('tacheFormNom').value = 'Tâche renommée'`);
+    await exec('document.getElementById("tacheFormEnregistrer").click()');
+    await sleep(800);
+    const titre = await exec('document.querySelector("#tachesList .tache-card .sched-job__title").textContent');
+    assert(titre.indexOf('Tâche renommée') !== -1, 'nom renommé attendu : ' + titre);
+  });
+
+  await test('C10.5 bascule d\'activation : désactiver puis réactiver', async () => {
+    // La tâche est active depuis sa création (C10.2) : un clic la désactive.
+    await exec('document.querySelector("#tachesList [data-action=tache-toggle]").click()');
+    await sleep(800);
+    let bouton = await exec('document.querySelector("#tachesList [data-action=tache-toggle]").textContent');
+    assert(/Activer/.test(bouton), 'le bouton doit proposer « Activer » une fois inactive : ' + bouton);
+    // Un second clic la réactive.
+    await exec('document.querySelector("#tachesList [data-action=tache-toggle]").click()');
+    await sleep(800);
+    bouton = await exec('document.querySelector("#tachesList [data-action=tache-toggle]").textContent');
+    assert(/Désactiver/.test(bouton), 'le bouton doit proposer « Désactiver » une fois active : ' + bouton);
+    const meta = await exec('document.querySelector("#tachesList .tache-card .sched-job__meta").textContent');
+    assert(/toutes les 2 heures/.test(meta), 'la périodicité doit être décrite : ' + meta);
+    // Pluriel gettext (issue #51) : « 1 compte sélectionné », plus « compte(s) ».
+    assert(/1 compte sélectionné/.test(meta), 'le compte sélectionné doit être décrit : ' + meta);
+  });
+
+  await test('C10.6 « Exécuter maintenant » : envoi réel simulé, résultat dans l\'historique', async () => {
+    // Le réseau est coupé dans le harnais : le canal d'envoi
+    // (scheduler:run-claude-job) est remplacé côté processus principal par
+    // une réponse réussie. Tout le reste est RÉEL : la garde du moteur avant
+    // l'appel au service, le plan du service, l'ouverture de l'onglet,
+    // l'envoi, le compte rendu (taches:report) et l'historique.
+    const { ipcMain } = require('electron');
+    // (removeHandler au singulier : version d'Electron du dépôt.)
+    ipcMain.removeHandler('scheduler:run-claude-job');
+    const envoisSimules = [];
+    ipcMain.handle('scheduler:run-claude-job', async (evenement, profil, prompt) => {
+      envoisSimules.push({ profil, prompt });
+      return { ok: true, sent: true };
+    });
+    // Tâche sur un compte éligible (profil_1 a le service Claude) —
+    // échéance future calculée (jamais due pendant le scénario).
+    const cree = await ipc('taches:save', {
+      nom: 'Avec compte', fournisseur: 'claude',
+      comptes: { mode: 'liste', profils: ['profil_1'] },
+      repartition: { mode: 'rotation', espacementMs: 0 },
+      nouvelleSession: true, prompt: 'prompt manuel C10.6',
+      programmation: { type: 'periodique', tous: 1, unite: 'jour', depuis: dansDeuxJoursISO() },
+      active: true
+    });
+    assert(cree && cree.ok, 'création IPC échouée : ' + JSON.stringify(cree));
+    const idAvecCompte = cree.tache.id;
+    await sleep(4500); // laisser le polling rafraîchir la liste
+    const cliquable = await exec(`
+      (function(){
+        const cartes = [...document.querySelectorAll('#tachesList .tache-card')];
+        const cible = cartes.find(c => c.textContent.indexOf('Avec compte') !== -1);
+        if (!cible) return 'absente';
+        cible.querySelector('[data-action=tache-run]').click();
+        return 'cliqué';
+      })()
+    `);
+    assert(cliquable === 'cliqué', 'bouton Exécuter maintenant introuvable : ' + cliquable);
+    await sleep(1500);
+    // Un seul envoi, sur le bon compte, avec le bon prompt.
+    assert(envoisSimules.length === 1,
+      'un seul envoi attendu, reçu : ' + JSON.stringify(envoisSimules));
+    assert(envoisSimules[0] && envoisSimules[0].profil === 'profil_1', 'profil reçu inattendu');
+    assert(envoisSimules[0] && envoisSimules[0].prompt === 'prompt manuel C10.6', 'prompt reçu inattendu');
+    // L'événement « envoyée » doit être rattaché à CETTE tâche (id), pas
+    // seulement exister quelque part dans l'historique.
+    const evenements = await ipc('taches:history', 50);
+    const envoye = evenements.filter(e => e && e.resultat === 'envoye'
+      && e.tache === idAvecCompte && e.profil === 'profil_1');
+    assert(envoye.length === 1,
+      'un événement envoye attendu pour la tâche ' + idAvecCompte + ' / profil_1 : ' +
+      JSON.stringify(evenements.slice(0, 6)));
+    const lancee = evenements.filter(e => e && e.resultat === 'lancee' && e.tache === idAvecCompte);
+    assert(lancee.length === 1, 'un événement lancee attendu pour la tâche ' + idAvecCompte);
+  });
+
+  await test('C10.7 suppression : confirmation puis disparition', async () => {
+    const cliquable = await exec(`
+      (function(){
+        const cartes = [...document.querySelectorAll('#tachesList .tache-card')];
+        const cible = cartes.find(c => c.textContent.indexOf('Avec compte') !== -1);
+        if (!cible) return 'absente';
+        cible.querySelector('[data-action=tache-delete]').click();
+        return 'cliqué';
+      })()
+    `);
+    assert(cliquable === 'cliqué', 'bouton Supprimer introuvable');
+    await sleep(200);
+    const confirmOuvert = await exec('document.getElementById("confirmModal").classList.contains("open")');
+    assert(confirmOuvert, 'la modale de confirmation devrait être ouverte');
+    await exec('document.getElementById("confirmModalYes").click()');
+    await sleep(800);
+    const restant = await exec('document.querySelectorAll("#tachesList .tache-card").length');
+    assert(restant === 1, 'une seule carte doit rester, trouvé ' + restant);
+    const titre = await exec('document.querySelector("#tachesList .tache-card .sched-job__title").textContent');
+    assert(titre.indexOf('Tâche renommée') !== -1, 'la bonne tâche a été supprimée : ' + titre);
+  });
+
+  await test('C10.8 erreurs affichées dans le formulaire (prévalidation et service)', async () => {
+    // Prévalidation locale : date vide.
+    await exec('document.getElementById("tacheNewBtn").click()');
+    await sleep(100);
+    await exec(`
+      document.getElementById('tacheFormNom').value = 'Invalide';
+      document.getElementById('tacheFormComptesMode').value = 'liste';
+      document.getElementById('tacheFormPrompt').value = 'p';
+      document.getElementById('tacheFormProgDepuis').value = ''; // date vide -> erreur locale
+      document.getElementById('tacheFormProgTous').value = '2';
+      document.getElementById('tacheFormProgUnite').value = 'heure';
+      'rempli'
+    `);
+    await exec('document.getElementById("tacheFormEnregistrer").click()');
+    await sleep(400);
+    let visible = await exec('!document.getElementById("tacheFormErreurs").hidden');
+    assert(visible, 'la zone d\'erreurs devrait être affichée');
+    let contenu = await exec('document.getElementById("tacheFormErreurs").textContent');
+    assert(/date/i.test(contenu), 'l\'erreur de date devrait être mentionnée : ' + contenu);
+    let formOuvert = await exec('!document.getElementById("tacheForm").hidden');
+    assert(formOuvert, 'le formulaire doit rester ouvert après erreur');
+    // Erreur du SERVICE : récurrence d'une minute — le formulaire l'accepte,
+    // le service refuse (intervalle minimal 5 minutes, scheduler/taches.js).
+    await exec(`
+      document.getElementById('tacheFormNom').value = 'Trop fréquente';
+      document.getElementById('tacheFormComptesMode').value = 'tous';
+      document.getElementById('tacheFormComptesMode').dispatchEvent(new Event('change'));
+      document.getElementById('tacheFormPrompt').value = 'p';
+      document.getElementById('tacheFormProgDepuis').value = '${dansDeuxJoursLocal()}';
+      document.getElementById('tacheFormProgTous').value = '1';
+      document.getElementById('tacheFormProgUnite').value = 'minute';
+      'rempli'
+    `);
+    await exec('document.getElementById("tacheFormEnregistrer").click()');
+    await sleep(600);
+    contenu = await exec('document.getElementById("tacheFormErreurs").textContent');
+    assert(/intervalle|5 minutes|minute/i.test(contenu),
+      'le refus du service (intervalle minimal) devrait être affiché : ' + contenu);
+    formOuvert = await exec('!document.getElementById("tacheForm").hidden');
+    assert(formOuvert, 'le formulaire doit rester ouvert après erreur du service');
+    await exec('document.getElementById("tacheFormAnnuler").click()');
+  });
+
+  await test('C10.9 édition : compte sélectionné devenu indisponible préservé', async () => {
+    // Scénario : la tâche référence profil_1 ET profil_fantome (compte
+    // supprimé). L'édition du seul nom ne doit PAS retirer silencieusement
+    // le profil indisponible de la liste des comptes.
+    const cree = await ipc('taches:save', {
+      nom: 'Deux comptes', fournisseur: 'claude',
+      comptes: { mode: 'liste', profils: ['profil_1', 'profil_fantome'] },
+      repartition: { mode: 'rotation', espacementMs: 0 },
+      nouvelleSession: true, prompt: 'p',
+      programmation: { type: 'periodique', tous: 1, unite: 'jour', depuis: dansDeuxJoursISO() },
+      active: true
+    });
+    assert(cree && cree.ok, 'création IPC échouée : ' + JSON.stringify(cree));
+    const idDeux = cree.tache.id;
+    await sleep(4500); // laisser le polling rafraîchir la liste
+    // Ouvrir le formulaire d'édition de cette tâche.
+    const cliquable = await exec(`
+      (function(){
+        const cartes = [...document.querySelectorAll('#tachesList .tache-card')];
+        const cible = cartes.find(c => c.textContent.indexOf('Deux comptes') !== -1);
+        if (!cible) return 'absente';
+        cible.querySelector('[data-action=tache-edit]').click();
+        return 'cliqué';
+      })()
+    `);
+    assert(cliquable === 'cliqué', 'bouton Modifier introuvable : ' + cliquable);
+    await sleep(200);
+    // Le profil indisponible apparaît : coché, désactivé, signalé.
+    const etat = await exec(`
+      (function(){
+        const cb = document.querySelector('#tacheFormComptesChoix input[data-profile="profil_fantome"]');
+        if (!cb) return 'absent';
+        return JSON.stringify({ coche: cb.checked, desactive: cb.disabled,
+          libelle: cb.closest('label').textContent.trim().slice(0, 60) });
+      })()
+    `);
+    assert(etat !== 'absent', 'le profil_fantome devrait être affiché (coché, désactivé)');
+    assert(/coche":true/.test(etat) && /desactive":true/.test(etat), 'état inattendu : ' + etat);
+    assert(/compte supprimé/.test(etat), 'signal attendu : ' + etat);
+    // Modifier seulement le nom et enregistrer.
+    await exec("document.getElementById('tacheFormNom').value = 'Deux comptes renommée'");
+    await exec('document.getElementById("tacheFormEnregistrer").click()');
+    await sleep(800);
+    // La tâche garde TOUJOURS les deux profils.
+    const apres = await ipc('taches:list');
+    const t = (apres || []).find(x => x.id === idDeux);
+    assert(t, 'tâche ' + idDeux + ' introuvable après édition');
+    const profils = (t.comptes.profils || []).slice().sort();
+    assert(profils.length === 2 && profils[0] === 'profil_1' && profils[1] === 'profil_fantome',
+      'les deux profils doivent être préservés : ' + JSON.stringify(t.comptes));
+    assert(t.nom === 'Deux comptes renommée', 'nom attendu : ' + t.nom);
+  });
+
+  await exec('window.closeSchedulerModal()');
+
+  // =========================================================================
+  // C11 — Statistiques d'utilisation (issue #206, lot 1)
+  // =========================================================================
+  console.log('\n--- C11 : Statistiques d\'utilisation ---');
+  const statsDir = path.join(app.getPath('userData'), 'stats');
+
+  await test('C11.1 Fermer un onglet enregistre sa session (sessions.jsonl) et l\'instantané des autres', async () => {
+    // Un onglet qui reste ouvert (profil_1) et un qu'on ferme (profil_2).
+    await exec(`document.querySelector('#accountsList [data-action="open-service"][data-acc="acc_test_1"][data-svc="claude"]').click(); 'ok'`);
+    await sleep(300);
+    await exec(`document.querySelector('#accountsList [data-action="open-service"][data-acc="acc_test_2"][data-svc="claude"]').click(); 'ok'`);
+    await sleep(1500); // laisser la <webview> s'attacher avant de fermer l'onglet
+    await exec(`(() => {
+      const t = [...document.querySelectorAll('#tabsBar .tab')].find(x => x.dataset.acc === 'acc_test_2' && x.dataset.svc === 'claude');
+      closeTab(t.dataset.tab);
+      const oui = document.getElementById('confirmModalYes');
+      if (oui && oui.offsetParent !== null) oui.click();
+      return 'ok';
+    })()`);
+    let lignes = [];
+    for (let i = 0; i < 30 && !lignes.length; i++) {
+      await sleep(100);
+      try { lignes = fs.readFileSync(path.join(statsDir, 'sessions.jsonl'), 'utf-8').split('\n').filter(Boolean); } catch (e) { /* pas encore écrit */ }
+    }
+    const s = JSON.parse(lignes[lignes.length - 1]);
+    assert(s.profil === 'profil_2' && s.service === 'claude', 'session inattendue : ' + lignes[0]);
+    assert(s.fin >= s.debut && s.actifMs <= s.fin - s.debut, 'durées incohérentes : ' + lignes[0]);
+    const enCours = JSON.parse(fs.readFileSync(path.join(statsDir, 'en-cours.json'), 'utf-8'));
+    assert(enCours.some(x => x.profil === 'profil_1' && x.service === 'claude'),
+      'instantané des onglets ouverts attendu : ' + JSON.stringify(enCours));
+  });
+
+  await test('C11.2 La page Statistiques affiche totaux et tableaux, noms échappés, périodes', async () => {
+    const r = await exec(`(async () => {
+      document.querySelector('[data-action="ui-openStatsModal"]').click();
+      await new Promise(res => setTimeout(res, 500));
+      const modal = document.getElementById('statsModal');
+      const body = document.getElementById('statsBody');
+      document.querySelector('#statsPeriodes [data-periode="tout"]').click();
+      const r = {
+        ouvert: modal.classList.contains('open'),
+        cartes: body.querySelectorAll('.stats-carte').length,
+        tables: body.querySelectorAll('.stats-table').length,
+        script: body.querySelectorAll('script').length,
+        texte: body.textContent,
+        active: document.querySelector('#statsPeriodes .stats-periode--active').dataset.periode,
+        icone: !!document.querySelector('[data-action="ui-openStatsModal"] svg'),
+        deborde: body.scrollWidth > body.clientWidth + 1
+      };
+      document.querySelector('#statsModal [data-action="ui-closeStatsModal"]').click();
+      r.ferme = !modal.classList.contains('open');
+      return r;
+    })()`);
+    assert(r.ouvert && r.ferme, 'ouverture/fermeture : ' + JSON.stringify(r));
+    // 6 cartes (série, lot 2 ; réponses et médiane, lot 4) ; tableaux compte + service (+ tâches, C11.3).
+    assert(r.cartes === 6 && r.tables >= 2, 'attendu 6 cartes et au moins 2 tableaux : ' + JSON.stringify(r));
+    assert(r.script === 0 && r.texte.includes('<script>alert(1)</script>'), 'nom de compte non échappé');
+    assert(r.texte.includes('Compte Test Un') && r.texte.includes('Claude'), 'comptes/services absents : ' + r.texte);
+    assert(r.active === 'tout', 'période active : ' + r.active);
+    assert(r.icone, 'icône chart-simple non hydratée');
+    assert(!r.deborde, 'débordement horizontal du contenu');
+  });
+
+  await test('C11.3 Statistiques lot 2 : heures de pointe, tâches par compte, tri par colonne, inutilisés (#206)', async () => {
+    const r = await exec(`(async () => {
+      document.querySelector('[data-action="ui-openStatsModal"]').click();
+      await new Promise(res => setTimeout(res, 500));
+      document.querySelector('#statsPeriodes [data-periode="tout"]').click();
+      const body = document.getElementById('statsBody');
+      const chaleur = document.getElementById('statsChaleur');
+      const taches = document.getElementById('statsTaches');
+      const r = {
+        lignesChaleur: chaleur ? chaleur.querySelectorAll('tbody tr').length : 0,
+        casesChaleur: chaleur ? chaleur.querySelectorAll('.stats-chaleur__case').length : 0,
+        casesAllumees: chaleur ? [...chaleur.querySelectorAll('.stats-chaleur__case')].filter(c => parseFloat(c.style.getPropertyValue('--niveau')) > 0).length : 0,
+        tachesTexte: taches ? taches.textContent : '',
+        serie: body.textContent.includes('Série en cours'),
+        inutilises: [...document.querySelectorAll('#statsInutilises li')].map(li => li.textContent)
+      };
+      // Tri : premier clic = décroissant, second = croissant, aria-sort à jour.
+      const th = () => body.querySelector('[data-stats-tri="compte"][data-col="cle"]');
+      th().click();
+      r.tri1 = th().getAttribute('aria-sort');
+      th().click();
+      r.tri2 = th().getAttribute('aria-sort');
+      const noms = () => [...body.querySelectorAll('.stats-table')][0].querySelectorAll('tbody tr').length;
+      r.lignesCompte = noms();
+      r.deborde = body.scrollWidth > body.clientWidth + 1;
+      document.querySelector('#statsModal [data-action="ui-closeStatsModal"]').click();
+      return r;
+    })()`);
+    assert(r.lignesChaleur === 7 && r.casesChaleur === 7 * 24, 'carte de chaleur 7 × 24 attendue : ' + JSON.stringify(r));
+    assert(r.casesAllumees >= 1, 'au moins une case de temps actif attendue : ' + JSON.stringify(r));
+    // C10.6 a produit un envoi pour profil_1 : la ligne du compte apparaît.
+    assert(r.tachesTexte.includes('Compte Test Un'), 'tâches par compte absentes : ' + JSON.stringify(r));
+    assert(r.serie, 'carte de série absente');
+    assert(r.tri1 === 'descending' && r.tri2 === 'ascending', 'tri par colonne : ' + JSON.stringify(r));
+    assert(r.lignesCompte >= 2, 'lignes de compte perdues au tri');
+    assert(r.inutilises.every(t => !t.includes('Compte Test Un')), 'compte utilisé listé comme inutilisé : ' + JSON.stringify(r.inutilises));
+    assert(!r.deborde, 'débordement horizontal du contenu');
+  });
+
+  await test('C11.4 Statistiques lot 3 : évolution SVG, export CSV/JSON, remise à zéro confirmée (#206)', async () => {
+    const { dialog } = require('electron');
+    const origine = dialog.showSaveDialog;
+    const csv = path.join(statsDir, '..', 'export-c11.csv');
+    const json = path.join(statsDir, '..', 'export-c11.json');
+    let cible = csv;
+    const demandes = [];
+    dialog.showSaveDialog = async (_w, opts) => { demandes.push(opts); return { canceled: false, filePath: cible }; };
+    try {
+      const r = await exec(`(async () => {
+        document.querySelector('[data-action="ui-openStatsModal"]').click();
+        await new Promise(res => setTimeout(res, 500));
+        document.querySelector('#statsPeriodes [data-periode="tout"]').click();
+        const evo = document.getElementById('statsEvolution');
+        return {
+          barres: evo ? evo.querySelectorAll('rect').length : 0,
+          hautes: evo ? [...evo.querySelectorAll('rect')].filter(x => parseFloat(x.getAttribute('height')) > 0).length : 0,
+          titre: evo ? evo.querySelector('rect title').textContent : ''
+        };
+      })()`);
+      assert(r.barres === 90 && r.hautes >= 1, 'histogramme 90 jours attendu : ' + JSON.stringify(r));
+      await exec(`document.getElementById('statsExportCsv').click(); 'ok'`);
+      for (let i = 0; i < 30 && !fs.existsSync(csv); i++) await sleep(100);
+      const contenu = fs.readFileSync(csv, 'utf-8');
+      assert(contenu.startsWith('\ufeffid;compte;profil;service;debut;fin;duree_s;actif_s'), 'en-tête CSV : ' + contenu.slice(0, 80));
+      assert(contenu.includes(';Compte Test Un;profil_1;claude;'), 'session de profil_1 (onglet ouvert) absente du CSV');
+      assert(/\.csv$/.test(demandes[0].defaultPath), 'nom proposé : ' + demandes[0].defaultPath);
+      cible = json;
+      await exec(`document.getElementById('statsExportJson').click(); 'ok'`);
+      for (let i = 0; i < 30 && !fs.existsSync(json); i++) await sleep(100);
+      const j = JSON.parse(fs.readFileSync(json, 'utf-8'));
+      assert(j.format === 'iao-stats-1' && j.sessions.length >= 2, 'export JSON : ' + JSON.stringify(j).slice(0, 200));
+      // Remise à zéro : la confirmation passe AU-DESSUS de la page Statistiques.
+      const conf = await exec(`(async () => {
+        document.getElementById('statsReset').click();
+        await new Promise(res => setTimeout(res, 200));
+        const oui = document.getElementById('confirmModalYes');
+        const b = oui.getBoundingClientRect();
+        const dessus = document.elementFromPoint(b.left + b.width / 2, b.top + b.height / 2) === oui;
+        oui.click();
+        await new Promise(res => setTimeout(res, 600));
+        const table = document.querySelector('#statsBody .stats-table');
+        const lignes = table ? [...table.querySelectorAll('tbody tr')].map(tr => tr.textContent) : [];
+        const inutilises = [...document.querySelectorAll('#statsInutilises li')].map(li => li.textContent);
+        document.querySelector('#statsModal [data-action="ui-closeStatsModal"]').click();
+        return { dessus, lignes, inutilises };
+      })()`);
+      assert(conf.dessus, 'confirmation masquée par la page Statistiques');
+      assert(fs.readFileSync(path.join(statsDir, 'sessions.jsonl'), 'utf-8') === '', 'historique non vidé');
+      // Seul l'onglet resté ouvert (profil_1) repart ; le compte fermé passe en « inutilisés ».
+      assert(conf.lignes.length === 1 && conf.lignes[0].includes('Compte Test Un'),
+        'par compte après remise à zéro : ' + JSON.stringify(conf.lignes));
+      assert(conf.inutilises.some(t => t.includes('<script>alert(1)</script>')),
+        'compte fermé attendu dans les inutilisés : ' + JSON.stringify(conf.inutilises));
+    } finally {
+      dialog.showSaveDialog = origine;
+    }
+  });
+
+  await test('C11.5 Statistiques lot 2b : temps de réponse et quotas atteints par compte (#206)', async () => {
+    const t0 = Date.now() - 3600 * 1000;
+    const rep = [
+      { profil: 'profil_1', service: 'claude', debut: t0, fin: t0 + 4000 },
+      { profil: 'profil_1', service: 'claude', debut: t0 + 10000, fin: t0 + 16000 },
+      { profil: 'profil_1', service: 'claude', debut: t0 + 20000, fin: t0 + 110000 },
+      { profil: 'profil_<b>x</b>', service: 'chatgpt', debut: t0, fin: t0 + 2000 }
+    ];
+    fs.writeFileSync(path.join(statsDir, 'reponses.jsonl'), rep.map((r, i) => JSON.stringify(Object.assign({ id: 'c115-r' + i }, r))).join('\n') + '\n');
+    const hq = new Date(Date.now() - 24 * 3600 * 1000); hq.setHours(14, 10, 0, 0);
+    fs.writeFileSync(path.join(statsDir, 'quotas.jsonl'),
+      [hq.getTime(), hq.getTime() + 60000].map((d, i) => JSON.stringify({ id: 'c115-q' + i, profil: 'profil_2', service: 'claude', date: d })).join('\n') + '\n');
+    const r = await exec(`(async () => {
+      const ouvert = document.getElementById('statsModal').classList.contains('open');
+      if (!ouvert) document.querySelector('[data-action="ui-openStatsModal"]').click();
+      else await openStatsModal();
+      await new Promise(res => setTimeout(res, 500));
+      document.querySelector('#statsPeriodes [data-periode="tout"]').click();
+      const lignes = (id) => [...document.querySelectorAll('#' + id + ' tbody tr')].map(tr => [...tr.cells].map(c => c.textContent.trim()));
+      const avant = lignes('statsReponses');
+      document.querySelector('#statsReponses [data-col="nombre"]').click();
+      const tri = document.querySelector('#statsReponses [data-col="nombre"]').getAttribute('aria-sort');
+      const res = { reponses: avant, quotas: lignes('statsQuotas'), tri, html: document.getElementById('statsReponses').innerHTML.includes('<b>') };
+      document.querySelector('#statsModal [data-action="ui-closeStatsModal"]').click();
+      return res;
+    })()`);
+    const claude = r.reponses.find(l => l[1] === 'Claude');
+    assert(claude, 'ligne Claude absente : ' + JSON.stringify(r.reponses));
+    assert(claude[2] === '3' && claude[3] === '6 s' && claude[4] === '4 s' && claude[5] === '1 min',
+      'médiane / plus rapide / plus lente inattendues : ' + JSON.stringify(claude));
+    assert(r.reponses.some(l => l[0] === 'profil_<b>x</b>'), 'profil sans compte affiché tel quel, échappé');
+    assert(!r.html, 'nom de profil non échappé');
+    assert(r.tri === 'descending', 'tri par nombre attendu : ' + r.tri);
+    assert(r.quotas.length === 1 && r.quotas[0][2] === '2' && r.quotas[0][3] === '14 h',
+      'quotas inattendus : ' + JSON.stringify(r.quotas));
+  });
+
+  await test('C11.6 Statistiques lot 4 : cartes réponses, évolution du temps de réponse, comptes surchargés (#206)', async () => {
+    const t0 = Date.now() - 3600 * 1000;
+    fs.writeFileSync(path.join(statsDir, 'reponses.jsonl'), [4000, 6000, 8000]
+      .map((d, i) => JSON.stringify({ id: 'c116-r' + i, profil: 'profil_1', service: 'claude', debut: t0 + i * 60000, fin: t0 + i * 60000 + d })).join('\n') + '\n');
+    fs.writeFileSync(path.join(statsDir, 'quotas.jsonl'), [0, 1, 2]
+      .map(i => JSON.stringify({ id: 'c116-q' + i, profil: 'profil_2', service: 'claude', date: t0 + i * 60000 })).join('\n') + '\n');
+    const r = await exec(`(async () => {
+      if (!document.getElementById('statsModal').classList.contains('open')) document.querySelector('[data-action="ui-openStatsModal"]').click();
+      else await openStatsModal();
+      await new Promise(res => setTimeout(res, 500));
+      document.querySelector('#statsPeriodes [data-periode="tout"]').click();
+      const cartes = [...document.querySelectorAll('#statsBody .stats-carte')].map(c => [c.querySelector('.stats-carte__libelle').textContent, c.querySelector('.stats-carte__valeur').textContent]);
+      const evo = document.getElementById('statsEvolutionReponses');
+      const titres = evo ? [...evo.querySelectorAll('rect title')].map(x => x.textContent).filter(x => /réponses?$/.test(x) && !/ 0 réponse/.test(x)) : [];
+      const sur = document.getElementById('statsSurcharges');
+      const res = {
+        cartes, barres: evo ? evo.querySelectorAll('rect').length : 0, titres,
+        surcharges: sur ? [...sur.querySelectorAll('li')].map(li => li.textContent.replace(/\\s+/g, ' ').trim()) : null,
+        relais: sur ? (sur.nextElementSibling && sur.nextElementSibling.textContent) : null
+      };
+      return res;
+    })()`);
+    if (process.env.IAO_CAPTURES_DIR) {
+      // Capture de contrôle visuel (lot 4) : haut de la page, puis bas.
+      const dossier = require('./rtl-visuel').dossierCaptures(process.env.IAO_CAPTURES_DIR);
+      fs.writeFileSync(path.join(dossier, 'stats-lot4-haut.png'), (await win.webContents.capturePage()).toPNG());
+      await exec(`(() => { document.getElementById('statsSurcharges').scrollIntoView({ block: 'center' }); return 'ok'; })()`);
+      await sleep(200);
+      fs.writeFileSync(path.join(dossier, 'stats-lot4-bas.png'), (await win.webContents.capturePage()).toPNG());
+    }
+    await exec(`document.querySelector('#statsModal [data-action="ui-closeStatsModal"]').click(); 'ok'`);
+    const carte = (l) => (r.cartes.find(c => c[0] === l) || [])[1];
+    assert(carte('Réponses') === '3', 'carte Réponses : ' + JSON.stringify(r.cartes));
+    assert(carte('Temps de réponse médian') === '6 s', 'carte médiane : ' + JSON.stringify(r.cartes));
+    assert(r.barres === 90, 'histogramme de 90 jours attendu : ' + r.barres);
+    assert(r.titres.length === 1 && /médiane 6 s, 3 réponses/.test(r.titres[0]), 'infobulle : ' + JSON.stringify(r.titres));
+    assert(r.surcharges && r.surcharges.length === 1 && /3 quotas atteints/.test(r.surcharges[0]), 'surchargés : ' + JSON.stringify(r.surcharges));
+    assert(r.relais && /Comptes à privilégier/.test(r.relais), 'relais : ' + r.relais);
+  });
+
+  // =========================================================================
+  // C12 — Fermer un onglet chargé n'interrompt pas l'interface
+  // (Electron < 43.7.4 : « Invalid guestInstanceId » à la suppression d'une
+  // <webview> chargée, electron/electron#54089 ; bandeau rouge de boot-guard)
+  // =========================================================================
+  await test('C12.1 Fermer un onglet chargé : aucun bandeau d\'erreur', async () => {
+    await exec(`document.querySelector('#accountsList [data-action="open-service"][data-acc="acc_test_2"][data-svc="gemini"]').click(); 'ok'`);
+    await sleep(1500); // <webview> attachée et chargée
+    await exec(`(() => {
+      const t = [...document.querySelectorAll('#tabsBar .tab')].find(x => x.dataset.acc === 'acc_test_2' && x.dataset.svc === 'gemini');
+      closeTab(t.dataset.tab);
+      const oui = document.getElementById('confirmModalYes');
+      if (oui && oui.offsetParent !== null) oui.click();
+      return 'ok';
+    })()`);
+    await sleep(800);
+    const texte = await exec(`document.body.innerText`);
+    assert(!texte.includes('guestInstanceId') && !texte.includes('IAO a rencontré un problème'),
+      'bandeau d\'erreur affiché après fermeture : ' + (texte.match(/Invalid[^\n]*/) || [''])[0]);
+  });
+
+  // =========================================================================
+  // C13 — Temps de réponse des messages envoyés à la main (issue #206)
+  // Le réseau est coupé : la webview Claude charge une page locale qui imite
+  // le compositeur (textarea) et l'indicateur data-is-streaming de Claude.ai.
+  // =========================================================================
+  console.log('\n--- C13 : temps de réponse des envois manuels ---');
+  await test('C13.1 Claude : script injecté, Entrée puis génération simulée -> reponses.jsonl', async () => {
+    await exec(`document.querySelector('#accountsList [data-action="open-service"][data-acc="acc_test_1"][data-svc="claude"]').click(); 'ok'`);
+    await sleep(800);
+    await exec(`(() => {
+      const t = [...document.querySelectorAll('#tabsBar .tab')].find(x => x.dataset.acc === 'acc_test_1' && x.dataset.svc === 'claude');
+      window.__c13 = document.querySelector('#' + t.dataset.tab + ' webview');
+      window.__c13.loadURL('data:text/html;charset=utf-8,' + encodeURIComponent('<textarea id="q">question secrète</textarea>'));
+      return 'ok';
+    })()`);
+    let pret = false;
+    for (let i = 0; i < 40 && !pret; i++) {
+      await sleep(150);
+      pret = await exec(`window.__c13.executeJavaScript('window.__iaoMesureReponse === true && !!document.getElementById("q")').catch(() => false)`);
+    }
+    assert(pret, 'script de mesure non injecté après le chargement de la page');
+    await exec(`window.__c13.executeJavaScript(\`(function () {
+      var q = document.getElementById('q'); q.focus();
+      q.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+      setTimeout(function () {
+        var d = document.createElement('div'); d.setAttribute('data-is-streaming', 'true');
+        d.textContent = 'réponse secrète'; document.body.appendChild(d);
+        setTimeout(function () { d.setAttribute('data-is-streaming', 'false'); }, 1500);
+      }, 300);
+      return 'ok';
+    })()\`)`);
+    const fichier = path.join(statsDir, 'reponses.jsonl');
+    let ligne = null;
+    for (let i = 0; i < 60 && !ligne; i++) {
+      await sleep(200);
+      try {
+        ligne = fs.readFileSync(fichier, 'utf-8').split('\n').filter(Boolean)
+          .map(l => JSON.parse(l)).find(r => r.profil === 'profil_1' && r.service === 'claude') || null;
+      } catch (e) { /* pas encore écrit */ }
+    }
+    assert(ligne, 'aucune mesure enregistrée dans reponses.jsonl');
+    const duree = ligne.fin - ligne.debut;
+    assert(duree >= 1500 && duree < 5000, 'durée incohérente : ' + duree + ' ms');
+    const brut = fs.readFileSync(fichier, 'utf-8');
+    assert(!brut.includes('secrète'), 'aucun texte de question ni de réponse ne doit sortir de la page');
+  });
+
+  // =========================================================================
   // Nettoyage
   // =========================================================================
+  etapeCourante = 'résumé et nettoyage';
   console.log('\n--- Résumé ---');
   console.log('tests: ' + (passed + failed) + ', pass: ' + passed + ', fail: ' + failed);
+  for (const c of crashs) {
+    console.log('Processus de rendu arrêté pendant « ' + c.etape + ' » : ' + c.raison + ' (code ' + c.code + ')' +
+      ' — les tests suivants ont tourné sur une page rechargée.');
+    if (process.env.GITHUB_ACTIONS) {
+      console.log('::error title=Harnais UI::Processus de rendu arrêté pendant « ' + c.etape + ' » : ' + c.raison + ' (code ' + c.code + ')');
+    }
+  }
   if (failures.length > 0) {
     console.log('\nÉchecs :');
     for (const f of failures) {
