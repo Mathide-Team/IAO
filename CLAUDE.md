@@ -93,7 +93,7 @@ Il n'existe **pas** de `npm build` : la commande est `npm run dist` (ou `dist:li
 1. Entrée dans `SERVICES` (`index.html`) : `{ id, name, url, cssClass: 'svc-<id>' }`.
 2. Variables CSS `--<id>` / `--<id>-dim` + classe `.svc-<id>`.
 3. Fiche `SERVICE_INFO[<id>] = { what, when }` (page d'aide `?`).
-4. Domaine ajouté à `ALLOWED_POPUP_HOSTS` dans `main.js` si l'authentification ouvre une popup.
+4. Plus rien à déclarer pour l'auth : toute popup web `https:` est acceptée (issue #277).
 5. `migrateOldAccounts()` l'attache automatiquement aux comptes existants — rien d'autre à faire.
 
 ## 6. Méthode de travail attendue

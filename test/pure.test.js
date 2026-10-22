@@ -4,7 +4,7 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 
 const { escapeHtml } = require('../lib/escape-html.js');
-const { isAllowedPopup, ALLOWED_POPUP_HOSTS } = require('../lib/popup-guard.js');
+const { decidePopup } = require('../lib/popup-guard.js');
 
 // --- escapeHtml (chantier A) ------------------------------------------------
 
@@ -51,34 +51,40 @@ test('escapeHtml s\'attache à window quand window existe (branche navigateur)',
   require('../lib/escape-html.js');
 });
 
-// --- isAllowedPopup (chantier B) --------------------------------------------
+// --- decidePopup (chantier B, revue issue #277) -----------------------------
+// Toute popup web https est acceptée (la popup hérite des webPreferences
+// sandboxées de la webview : aucune origine ne peut gagner de privilèges).
+// C'est ce qui rend l'authentification des connecteurs « toujours fonctionnelle »
+// (#277) : plus de liste blanche de domaines à maintenir.
 
-test('isAllowedPopup accepte un domaine exact de la liste', () => {
-  assert.equal(isAllowedPopup('https://claude.ai/login'), true);
+test('decidePopup accepte toute URL https, domaine connu ou inconnu', () => {
+  assert.equal(decidePopup('https://claude.ai/login'), 'allow');
+  assert.equal(decidePopup('https://accounts.google.com/o/oauth2'), 'allow');
+  // Issue #277 : le connecteur context7 (origine hors de l'ancienne liste) doit
+  // s'authentifier dans l'application, pas dans le navigateur système.
+  assert.equal(decidePopup('https://context7.com/oauth/authorize'), 'allow');
+  assert.equal(decidePopup('https://nimporte-quel-connecteur.example.io/login'), 'allow');
 });
 
-test('isAllowedPopup accepte un sous-domaine', () => {
-  assert.equal(isAllowedPopup('https://accounts.google.com/o/oauth2'), true);
+test('decidePopup accepte about:blank (flux OAuth ouverts vides puis redirigés)', () => {
+  assert.equal(decidePopup('about:blank'), 'allow');
 });
 
-test('isAllowedPopup refuse un domaine hors liste', () => {
-  assert.equal(isAllowedPopup('https://evil.example.com'), false);
+test('decidePopup accepte https quelle que soit la casse du schéma', () => {
+  assert.equal(decidePopup('HTTPS://claude.ai/'), 'allow');
 });
 
-test('isAllowedPopup refuse un domaine qui ne fait que CONTENIR un hôte autorisé', () => {
-  // Piège classique : "claude.ai.evil.com" ne doit PAS matcher "claude.ai".
-  assert.equal(isAllowedPopup('https://claude.ai.evil.com'), false);
+test('decidePopup refuse les schémas non chiffrés ou non web', () => {
+  assert.equal(decidePopup('http://claude.ai/'), 'deny');
+  assert.equal(decidePopup('HTTP://autre.example.net/page'), 'deny');
+  assert.equal(decidePopup('data:text/html,<script>1</script>'), 'deny');
+  assert.equal(decidePopup('javascript:alert(1)'), 'deny');
+  assert.equal(decidePopup('file:///etc/passwd'), 'deny');
+  assert.equal(decidePopup('about:srcdoc'), 'deny');
 });
 
-test('isAllowedPopup refuse une URL non parsable', () => {
-  assert.equal(isAllowedPopup('not a url'), false);
-  assert.equal(isAllowedPopup('javascript:alert(1)'), false);
-});
-
-test('ALLOWED_POPUP_HOSTS couvre bien les 9 services', () => {
-  const services = [
-    'claude.ai', 'chatgpt.com', 'gemini.google.com', 'z.ai', 'perplexity.ai',
-    'grok.com', 'leonardo.ai', 'suno.com', 'meshy.ai'
-  ];
-  services.forEach(host => assert.ok(ALLOWED_POPUP_HOSTS.includes(host), host + ' manquant'));
+test('decidePopup refuse une URL non parsable', () => {
+  assert.equal(decidePopup('not a url'), 'deny');
+  assert.equal(decidePopup(''), 'deny');
+  assert.equal(decidePopup(undefined), 'deny');
 });

@@ -961,13 +961,13 @@ test('Structure : tab-actions.js fournit la gestion des onglets', () => {
   assert.strictEqual(typeof tabActions.buildDisconnectWarning, 'function');
 });
 
-test('Structure : popup-guard fournit la liste blanche', () => {
+test('Structure : popup-guard fournit la politique decidePopup', () => {
   var popupGuard = require('../lib/popup-guard');
-  assert.ok(Array.isArray(popupGuard.ALLOWED_POPUP_HOSTS));
-  assert.ok(popupGuard.ALLOWED_POPUP_HOSTS.length > 0);
-  assert.ok(popupGuard.ALLOWED_POPUP_HOSTS.indexOf('claude.ai') !== -1);
-  assert.strictEqual(typeof popupGuard.isAllowedPopup, 'function');
-  assert.ok(popupGuard.isAllowedPopup('https://claude.ai/chat'));
-  assert.ok(popupGuard.isAllowedPopup('https://accounts.google.com/oauth'));
-  assert.ok(!popupGuard.isAllowedPopup('https://evil.com/popup'));
+  assert.strictEqual(typeof popupGuard.decidePopup, 'function');
+  // Issue #277 : toute popup web https est acceptée (y compris origines
+  // inconnues comme context7) ; les schémas non web sont refusés.
+  assert.ok(popupGuard.decidePopup('https://claude.ai/chat') === 'allow');
+  assert.ok(popupGuard.decidePopup('https://context7.com/login') === 'allow');
+  assert.ok(popupGuard.decidePopup('data:text/html,x') === 'deny');
+  assert.ok(popupGuard.decidePopup('javascript:alert(1)') === 'deny');
 });

@@ -56,7 +56,7 @@ const fs = require('fs');
 const os = require('os');
 
 const claudeAdapter = require('../lib/claude-adapter');
-const { isAllowedPopup } = require('../lib/popup-guard');
+const { decidePopup } = require('../lib/popup-guard');
 const core = require('../scheduler/core');
 
 // --- Mini framework de test (aucune dépendance) -----------------------------
@@ -348,26 +348,30 @@ async function run() {
     assert(diag.popups && diag.popups.count === 0, 'la fixture guest ne doit PAS contenir de popup');
   });
 
-  await test('B5 popups du guest : about: et https hors liste refusées (aucune webContents), lien web confié au navigateur système', async () => {
+  await test('B5 popups du guest : https (même hors liste) et about:blank ouvertes DANS l\'application (#277), jamais le navigateur système', async () => {
     assert(guest, 'guest indisponible');
     const before = webContentsCreated;
     await guest.executeJavaScript('window.open(\'about:blank\'); \'fait\'');
     await guest.executeJavaScript('window.open(\'https://hors-liste.example.com/\'); \'fait\'');
     await sleep(600);
-    assert(webContentsCreated === before,
-      'une webContents a été créée par une popup du guest (' + before + ' -> ' + webContentsCreated + ')');
-    // Le lien web hors liste part vers le navigateur système (stub), pas vers Electron.
+    // Issue #277 : la popup d'authentification doit vivre dans la session de la
+    // webview — une webContents est créée pour chaque popup, y compris about:blank
+    // (ouvert vide puis redirigé) et une origine inconnue (connecteur type context7).
+    assert(webContentsCreated >= before + 2,
+      'les 2 popups du guest doivent créer 2 webContents (' + before + ' -> ' + webContentsCreated + ')');
+    // Jamais de repli vers le navigateur système : c'est lui qui cassait la connexion.
     if (openExternalStubbed) {
-      assert(externals.indexOf('https://hors-liste.example.com/') !== -1,
-        'shell.openExternal non appelé pour le lien hors liste (reçus : ' + JSON.stringify(externals) + ')');
+      assert(externals.length === 0,
+        'shell.openExternal ne doit jamais être appelé pour une popup du guest (reçus : ' + JSON.stringify(externals) + ')');
     } else {
       console.log('    (openExternal non stubbable — assertion contournée)');
     }
     // Contrôle croisé de la règle pure utilisée par main.js (lib/popup-guard.js) :
-    // la liste blanche laisse passer claude.ai, jamais un domaine inconnu.
-    assert(isAllowedPopup('https://claude.ai/toto') === true, 'claude.ai doit être autorisé');
-    assert(isAllowedPopup('https://hors-liste.example.com/') === false, 'domaine inconnu ne doit pas être autorisé');
-    assert(isAllowedPopup('about:blank') === false, 'about: ne doit pas être autorisé');
+    // toute popup web https est acceptée, about:blank aussi, le reste refusé.
+    assert(decidePopup('https://claude.ai/toto') === 'allow', 'claude.ai doit être autorisé');
+    assert(decidePopup('https://hors-liste.example.com/') === 'allow', 'domaine inconnu doit être autorisé (#277)');
+    assert(decidePopup('about:blank') === 'allow', 'about:blank doit être autorisé (flux OAuth)');
+    assert(decidePopup('javascript:alert(1)') === 'deny', 'javascript: doit être refusé');
   });
 
   // B6/B7 : bouton « Continuer le projet » dans le panneau Ordonnanceur réel.

@@ -195,7 +195,7 @@ test('setWindowOpenHandler de l\'hôte : refuse toujours l\'ouverture de fenêtr
 // 2. <webview> invitée : did-attach-webview
 // ---------------------------------------------------------------------------
 
-test('did-attach-webview : popup vers une origine autorisée => allow, sans navigateur externe', () => {
+test('did-attach-webview : popup https vers une origine connue => allow, sans navigateur externe', () => {
   const h = boot();
   try {
     const guest = h.attachGuest();
@@ -209,38 +209,40 @@ test('did-attach-webview : popup vers une origine autorisée => allow, sans navi
   } finally { h.cleanup(); }
 });
 
-test('did-attach-webview : popup https hors liste => deny + navigateur système, host seul journalisé', () => {
+test('did-attach-webview : popup https d’origine inconnue (connecteur context7, #277) => allow dans l’app, jamais le navigateur système', () => {
   const h = boot();
   try {
     const guest = h.attachGuest();
-    const url = 'https://tracker.example.org/redirect?code=OAUTH_SECRET';
+    const url = 'https://context7.com/oauth/authorize?code=OAUTH_SECRET';
     let result;
     const out = capture(() => { result = guest.openHandler({ url }); });
-    assert.deepEqual(result, { action: 'deny' });
-    assert.deepEqual(h.electron.calls.openExternal, [url]);
-    assert.equal(out.warn.length, 1);
-    assert.match(out.warn[0], /navigateur système/);
-    assert.match(out.warn[0], /tracker\.example\.org/);
-    assert.doesNotMatch(out.warn[0], /OAUTH_SECRET/);
+    // Issue #277 : la popup d'authentification doit vivre dans la session de
+    // la webview ; l'envoyer au navigateur système cassait la connexion.
+    assert.deepEqual(result, { action: 'allow' });
+    assert.deepEqual(h.electron.calls.openExternal, []);
+    assert.equal(out.warn.length, 0);
   } finally { h.cleanup(); }
 });
 
-test('did-attach-webview : le schéma http(s) est reconnu sans tenir compte de la casse', () => {
+test('did-attach-webview : le schéma https est reconnu sans tenir compte de la casse, http est refusé', () => {
   const h = boot();
   try {
     const guest = h.attachGuest();
     let result;
-    capture(() => { result = guest.openHandler({ url: 'HTTP://autre.example.net/page' }); });
-    assert.deepEqual(result, { action: 'deny' });
-    assert.deepEqual(h.electron.calls.openExternal, ['HTTP://autre.example.net/page']);
+    const out = capture(() => { result = guest.openHandler({ url: 'HTTPS://autre.example.net/page' }); });
+    assert.deepEqual(result, { action: 'allow' });
+    let refuse;
+    capture(() => { refuse = guest.openHandler({ url: 'HTTP://autre.example.net/page' }); });
+    assert.deepEqual(refuse, { action: 'deny' });
+    assert.deepEqual(h.electron.calls.openExternal, []);
   } finally { h.cleanup(); }
 });
 
-test('did-attach-webview : popup non web (about:, data:, javascript:) => deny pur, jamais openExternal', () => {
+test('did-attach-webview : popup non web (data:, javascript:, http:) => deny pur, jamais openExternal', () => {
   const h = boot();
   try {
     const guest = h.attachGuest();
-    for (const url of ['about:blank', 'data:text/html,<script>1</script>', 'javascript:alert(1)']) {
+    for (const url of ['data:text/html,<script>1</script>', 'javascript:alert(1)', 'http://claude.ai/']) {
       let result;
       const out = capture(() => { result = guest.openHandler({ url }); });
       assert.deepEqual(result, { action: 'deny' }, url);
@@ -248,6 +250,40 @@ test('did-attach-webview : popup non web (about:, data:, javascript:) => deny pu
       assert.match(out.warn[0], /popup refusée \(schéma non web\)/, url);
     }
     assert.deepEqual(h.electron.calls.openExternal, []);
+  } finally { h.cleanup(); }
+});
+
+test('did-attach-webview : about:blank (flux OAuth) => allow', () => {
+  const h = boot();
+  try {
+    const guest = h.attachGuest();
+    let result;
+    capture(() => { result = guest.openHandler({ url: 'about:blank' }); });
+    assert.deepEqual(result, { action: 'allow' });
+  } finally { h.cleanup(); }
+});
+
+test('did-attach-webview : une fenêtre ouverte par la webview hérite de la même politique (did-create-window)', () => {
+  const h = boot();
+  try {
+    const guest = h.attachGuest();
+    // Fenêtre enfant créée par une popup autorisée : même politique pour les
+    // fenêtres qu'elle ouvrirait à son tour (jamais les privilèges de l'hôte).
+    const child = new EventEmitter();
+    child.webContents = new EventEmitter();
+    child.webContents.setWindowOpenHandler = (fn) => { child.webContents.openHandler = fn; };
+    guest.emit('did-create-window', child);
+    assert.equal(typeof child.webContents.openHandler, 'function');
+    assert.deepEqual(child.webContents.openHandler({ url: 'https://context7.com/' }), { action: 'allow' });
+    assert.deepEqual(child.webContents.openHandler({ url: 'javascript:alert(1)' }), { action: 'deny' });
+    // webContents inaccessible (fenêtre fermée entre-temps) : absorbé en silence.
+    const broken = {};
+    Object.defineProperty(broken, 'webContents', { get() { throw new Error('détruite'); } });
+    let thrown = null;
+    capture(() => {
+      try { guest.emit('did-create-window', broken); } catch (e) { thrown = e; }
+    });
+    assert.equal(thrown, null);
   } finally { h.cleanup(); }
 });
 

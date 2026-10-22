@@ -34,7 +34,8 @@ iao/
 ├── main.js             # Process principal Electron (~240 lignes). Fenêtre + IPC fichiers + durcissement navigation/popups + branchement de l'ordonnanceur.
 ├── lib/
 │   ├── escape-html.js      # escapeHtml() — extrait pour être testable (node --test), chargé aussi par index.html
-│   ├── popup-guard.js      # isAllowedPopup()/ALLOWED_POPUP_HOSTS — extrait de main.js, testable
+│   ├── popup-guard.js      # decidePopup() — politique des popups des webviews (#277), pure, testable
+│   ├── identifiants.js     # IdentifiantsPartages — coffre d'identifiants partagé entre profils (#278, lot 1), chiffré trousseau système
 │   ├── activity-status.js  # compareAccountNames/getAccountActivityStatus/isTabIdle/isAccountAssignable/getAssignableAccounts — lots 16/09 + 18/09/2026
 │   ├── tab-actions.js      # tabsForAccount/buildDisconnectWarning — lot 17/09/2026
 │   ├── file-search.js      # filterFiles/flattenFileTree — lot 18/09/2026 (recherche explorateur)
@@ -186,7 +187,7 @@ const SERVICES = [
   { id:'meshy',      name:'Meshy AI',   url:'https://www.meshy.ai/workspace',   cssClass:'svc-meshy' }
 ];
 ```
-Ajouter un service = ajouter une entrée ici + une classe CSS `.svc-<id>` + variables de couleur `--<id>` / `--<id>-dim` + sa fiche dans `SERVICE_INFO` (page d'aide, voir §7) (+ si besoin son domaine dans `ALLOWED_POPUP_HOSTS` de `main.js` pour les popups d'auth). La migration l'attache ensuite à tous les comptes.
+Ajouter un service = ajouter une entrée ici + une classe CSS `.svc-<id>` + variables de couleur `--<id>` / `--<id>-dim` + sa fiche dans `SERVICE_INFO` (page d'aide, voir §7) (les popups web `https:` sont toutes acceptées depuis l'issue #277 : rien à déclarer pour l'auth). La migration l'attache ensuite à tous les comptes.
 
 URLs d'app retenues pour les deux derniers ajouts : Suno → `/create` (page de création ; déconnecté, redirige vers le sign-in puis revient sur `/create`) ; Meshy → `/workspace` (l'app elle-même, plutôt que la landing marketing `meshy.ai/fr/`).
 
@@ -410,7 +411,7 @@ les comptes choisis, à une date donnée ou périodiquement (minutes → mois, i
 - **Durcissement DÉJÀ EN PLACE (lot B)** dans `main.js` :
   - `will-navigate` sur la fenêtre hôte → bloque toute navigation qui n'est pas vers le `index.html` local (l'hôte privilégié ne part jamais sur une URL distante).
   - `setWindowOpenHandler` sur l'hôte → refuse toute nouvelle fenêtre.
-  - `did-attach-webview` → filtre les popups des `<webview>` via une **liste blanche d'origines** (`ALLOWED_POPUP_HOSTS` : les 9 services + fournisseurs d'auth OAuth type Google/Microsoft/Apple/GitHub/Discord). Popup whitelistée → autorisée (sans privilège Node) ; lien web hors-liste → ouvert dans le **navigateur système** (`shell.openExternal`) ; schéma non-web → refusé. `allowpopups` reste sur les webviews (nécessaire aux flux OAuth), mais désormais filtré.
+  - `did-attach-webview` → politique des popups des `<webview>` (issue #277) : toute popup web `https:` (et `about:blank` des flux OAuth) est **acceptée dans l'application** ; elle s'ouvre avec les webPreferences de l'invité (sandboxée, sans Node), jamais celles de l'hôte — aucune origine ne peut gagner de privilèges. Schéma non web (`http:`, `data:`, `javascript:`, URL illisible) → refusé, sans repli vers le navigateur système (c'est ce repli qui cassait l'authentification des connecteurs inconnus comme context7). Une fenêtre ouverte par une webview hérite de la même politique (`did-create-window`). `allowpopups` reste sur les webviews (nécessaire aux flux OAuth).
 - **Échappement HTML DÉJÀ EN PLACE (lot A)** : un nom de compte contenant du HTML/JS n'est plus exécutable (voir §7).
 - **CSP DÉJÀ EN PLACE (lot 6 + lot 8 + lot 9, 18/09/2026)** : `index.html` porte `<meta http-equiv="Content-Security-Policy">` — `default-src 'none'; script-src 'self'; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:`. Tout le JS est extrait vers `assets/app.js` + `assets/pre-monaco.js`, plus aucun script ni handler inline (`onclick`/`oninput` → `data-action` + délégation). Le CSS est extrait vers `assets/app.css` (lot 8), chargé par `<link>`. **Lot 9** : tous les attributs `style="..."` inline de `index.html` et `app.js` sont migrés vers des classes CSS dans `app.css`. `style-src 'unsafe-inline'` subsiste **uniquement** parce que Monaco Editor crée des éléments avec `style="..."` en interne (limitation non contournable). Notre propre code n'utilise plus aucun style inline. `worker-src blob:` est l'écart assumé (workers Monaco via URL `blob:`, sans quoi l'éditeur replie sur le thread principal).
 - Améliorations de sécurité **encore À FAIRE** : durcir davantage les webviews, et à terme migrer vers `contextIsolation: true` + `preload` + IPC (principale dette restante). Chiffrement au repos (`safeStorage`/DPAPI) : non fait (choix en pause).
@@ -620,7 +621,7 @@ complet en §7bis. En bref : `scheduler/core.js` (logique pure, testée) + `sche
 réalisable sans accès aux services IA en conditions réelles.
 
 En parallèle, l'item P1 « Poser un filet de tests sur les fonctions pures » du backlog a été traité :
-`escapeHtml` (`lib/escape-html.js`) et `isAllowedPopup`/`ALLOWED_POPUP_HOSTS` (`lib/popup-guard.js`)
+`escapeHtml` (`lib/escape-html.js`) et la politique des popups (`decidePopup` depuis #277 ; historiquement `isAllowedPopup`/`ALLOWED_POPUP_HOSTS`) (`lib/popup-guard.js`)
 extraits vers des modules sans dépendance à Electron, chargés à l'identique par l'app et par
 `test/pure.test.js`. `npm test` exécute désormais 35 tests (`node --test`, sans dépendance ajoutée).
 

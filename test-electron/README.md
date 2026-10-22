@@ -69,9 +69,9 @@ userData seedés : 2 jobs `COMPLETED`, 1 compte éligible) :
   et enregistrée auprès du scheduler par `did-attach-webview`
   (diagnostic IPC exécuté dans la webview).
 - B5. Popups du guest : `about:` et `https` hors liste refusées (aucune
-  webContents) ; le lien web hors liste part vers le navigateur système
-  (`shell.openExternal` stubbé dans le harnais) ; contrôle croisé de
-  `isAllowedPopup`.
+  webContents). Contrôle croisé de `decidePopup` (issue #277 : les popups
+  https du guest — même d'origine inconnue — s'ouvrent dans l'application,
+  jamais vers le navigateur système).
 - B6. Bouton « Continuer le projet » : `job_001` COMPLETED → RESUME_REQUIRED
   avec le profil du compte éligible (compte synchronisé via le vrai canal
   IPC `scheduler:sync-accounts`).
