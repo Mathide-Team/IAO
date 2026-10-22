@@ -45,6 +45,9 @@
   entrées arrivent non traduites, conformément au processus du dépôt).
 
 ### Tests
+- Harnais `identifiants-continue.js` ajouté à la CI (`npm run test:electron:identifiants`,
+  job « Harnais Electron (xvfb) ») ; coffre seedé après main.js (clé du trousseau liée au
+  nom de l'application) ; annotation `::warning` si le runner n'a pas de trousseau.
 - `test/identifiants-preload.test.js` (20 tests), `test/identifiants-focus.test.js` (12
   tests, dont 4 d'intégration du vrai `main.js` via mock Electron) — 100 % de couverture
   lignes/branches/fonctions sur les deux nouveaux modules (vérifié avec la commande

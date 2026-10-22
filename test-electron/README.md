@@ -37,7 +37,11 @@ Deux phases :
   champ frère dans le même `<form>`, et dans la fenêtre fille en B4 par envoi
   direct du canal).
 
-Lancement : `xvfb-run -a npx electron --no-sandbox test-electron/identifiants-continue.js`
+Lancement : `npm run test:electron:identifiants` (exécuté en CI par le job
+« Harnais Electron (xvfb) » ; sans trousseau sur le runner, une annotation
+`::warning` signale que le parcours déchiffrement->remplissage de B3 n'a pas
+été exécuté). Le coffre est seedé **après** le chargement de main.js : sous
+Linux, la clé du trousseau dépend du nom de l'application (« IAO »).
 
 ## Contrainte forte : fixtures locales uniquement
 

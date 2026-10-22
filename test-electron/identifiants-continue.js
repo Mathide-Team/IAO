@@ -218,20 +218,24 @@ async function run() {
     app.setPath('appData', tmpRoot);
     app.setAppPath(path.join(__dirname, '..'));
     fs.mkdirSync(path.join(tmpRoot, 'ai-manager'), { recursive: true });
-    // Coffre seedé pour l'hôte de la fixture. Le secret est chiffré par le VRAI
-    // safeStorage si disponible ; sinon valeur factice (noté en B3).
-    const trousseauDispo = (() => { try { return safeStorage.isEncryptionAvailable(); } catch (_) { return false; } })();
-    const secret = trousseauDispo ? safeStorage.encryptString('S3cret!').toString('base64')
-      : Buffer.from('factice').toString('base64');
-    fs.writeFileSync(path.join(tmpRoot, 'ai-manager', 'identifiants.json'), JSON.stringify({
-      [HOTE]: [{ login: 'moi@exemple.fr', secret, ajoute: 1 }]
-    }), 'utf-8');
 
     menusConstruits.length = 0;
     popups.length = 0;
     focusRecus.length = 0;
 
     require(MAIN_JS); // l'application réelle (session-created y est branché)
+
+    // Coffre seedé APRÈS main.js : main.js renomme l'application (« IAO »), et
+    // sous Linux la clé du trousseau dépend de ce nom — chiffrer avant
+    // produirait un secret indéchiffrable par l'application réelle. Le coffre
+    // relit son fichier à chaque appel : l'écrire maintenant suffit.
+    const trousseauDispo = (() => { try { return safeStorage.isEncryptionAvailable(); } catch (_) { return false; } })();
+    const secret = trousseauDispo ? safeStorage.encryptString('S3cret!').toString('base64')
+      : Buffer.from('factice').toString('base64');
+    fs.writeFileSync(path.join(app.getPath('userData'), 'identifiants.json'), JSON.stringify({
+      [HOTE]: [{ login: 'moi@exemple.fr', secret, ajoute: 1 }]
+    }), 'utf-8');
+    console.log('[B] trousseau du système : ' + (trousseauDispo ? 'disponible (déchiffrement de bout en bout vérifié en B3)' : 'indisponible (B3 vérifie le refus silencieux)'));
 
     // Espion des sessions créées ENSUITE (la partition de la webview B) :
     // le handler de main.js court d'abord (pose le preload), le nôtre lit.
@@ -304,6 +308,7 @@ async function run() {
         // choix ne remplit rien — comportement attendu, noté sans échec. Le
         // remplissage lui-même a été validé en A2 par envoi direct du canal.
         console.log('    (trousseau système indisponible dans ce harnais : le déchiffrement de bout en bout n\'est pas vérifiable ici)');
+        if (process.env.GITHUB_ACTIONS) console.log('::warning title=Harnais identifiants::Trousseau du système indisponible : le parcours déchiffrement->remplissage (B3) n\'est pas exécuté sur ce runner.');
         assert(apres === avant, 'sans trousseau, rien ne doit être rempli (avant : « ' + avant + ' », après : « ' + apres + ' »)');
       }
     });
