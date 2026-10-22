@@ -29,3 +29,6 @@ npm-debug.log*
 
 # Site MkDocs construit (mkdocs build)
 site/
+
+# Sorties de couverture locales (c8 / V8)
+coverage/

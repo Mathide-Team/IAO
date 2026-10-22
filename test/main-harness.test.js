@@ -102,7 +102,7 @@ function loadMain() {
 
 const MAIN_CHANNELS = [
   'accounts:disconnect-profile', 'accounts:export', 'accounts:import', 'app:is-debug', 'app:log-path', 'app:open-webmail', 'app:relaunch-debug', 'app:toggle-devtools',
-  'i18n:catalog', 'identifiants:enregistrer', 'identifiants:lister', 'identifiants:obtenir', 'identifiants:supprimer', 'read-directory', 'read-directory-recursive', 'read-file', 'save-file',
+  'i18n:catalog', 'iao-identifiants:focus', 'identifiants:enregistrer', 'identifiants:lister', 'identifiants:obtenir', 'identifiants:supprimer', 'read-directory', 'read-directory-recursive', 'read-file', 'save-file',
   'secrets:available', 'secrets:delete', 'secrets:get', 'secrets:set',
   'select-folder', 'settings:load', 'settings:save', 'stats:export',
   'stats:load', 'stats:noter-quota', 'stats:noter-reponse', 'stats:quotas', 'stats:reponses', 'stats:reset', 'stats:sync',

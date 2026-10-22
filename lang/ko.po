@@ -545,6 +545,26 @@ msgstr "웹메일 주소 (Roundcube)"
 msgid "https://mail.dmathilde.fr"
 msgstr "https://mail.dmathilde.fr"
 
+#: index.html
+msgid "Identifiants des connecteurs (partagés)"
+msgstr ""
+
+#: index.html
+msgid "context7.com"
+msgstr ""
+
+#: index.html
+msgid "login@exemple.fr"
+msgstr ""
+
+#: index.html
+msgid "Mot de passe"
+msgstr ""
+
+#: index.html
+msgid "Chiffrés par le trousseau du système, partagés entre les profils — les cookies et le 2FA restent propres à chaque profil. Au focus d'un champ de connexion, un menu propose les identifiants du site."
+msgstr ""
+
 #: assets/app.js
 msgid "L'assistant conversationnel d'Anthropic. Il excelle en rédaction, en analyse de longs documents, en programmation et dans les raisonnements qui demandent plusieurs étapes."
 msgstr "Anthropic의 대화형 어시스턴트입니다. 글쓰기, 긴 문서 분석, 프로그래밍, 여러 단계가 필요한 추론에 뛰어납니다."
@@ -1492,6 +1512,46 @@ msgid "Statistiques remises à zéro"
 msgstr "통계가 초기화되었습니다"
 
 #: assets/app.js
+msgid "Impossible de charger les identifiants"
+msgstr ""
+
+#: assets/app.js
+msgid "Aucun identifiant enregistré pour l'instant"
+msgstr ""
+
+#: assets/app.js
+msgid "Supprimer {login} pour {host}"
+msgstr ""
+
+#: assets/app.js
+msgid "Identifiant {login} supprimé pour {host}"
+msgstr ""
+
+#: assets/app.js
+msgid "Suppression impossible : identifiant introuvable"
+msgstr ""
+
+#: assets/app.js
+msgid "Suppression impossible : {error}"
+msgstr "삭제할 수 없음: {error}"
+
+#: assets/app.js
+msgid "Identifiant enregistré pour {host} (chiffré, partagé entre profils)"
+msgstr ""
+
+#: assets/app.js
+msgid "Chiffrement du système indisponible : identifiant non enregistré"
+msgstr ""
+
+#: assets/app.js
+msgid "Enregistrement impossible : hôte, login ou mot de passe invalide"
+msgstr ""
+
+#: assets/app.js
+msgid "Enregistrement impossible : {error}"
+msgstr ""
+
+#: assets/app.js
 msgid "Impossible de charger les réglages"
 msgstr "설정을 불러올 수 없습니다"
 
@@ -1732,10 +1792,6 @@ msgstr "생성할 수 없음: {error}"
 #: assets/app.js
 msgid "Projet supprimé"
 msgstr "프로젝트 삭제됨"
-
-#: assets/app.js
-msgid "Suppression impossible : {error}"
-msgstr "삭제할 수 없음: {error}"
 
 #: assets/app.js
 msgid "Prompt de la tâche :"

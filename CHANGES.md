@@ -1,5 +1,57 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issue #278 — identifiants partagés entre profils, lot 2 : menu au focus + interface réglages (22/10/2026)
+
+### Ajouté
+- **`lib/identifiants-preload.js`** : preload de session posé sur toutes les sessions
+  (webviews et popups incluses, via `session-created`). Au focus d'un champ de connexion
+  (email/texte + mot de passe), signale le process principal (`iao-identifiants:focus`) ;
+  reçoit `iao-identifiants:remplir` et remplit le formulaire avec le setter natif + les
+  événements `input`/`change` (formulaires contrôlés) — **sans jamais soumettre le
+  formulaire ni remplir un champ 2FA** (`one-time-code`, `otp`, `totp`, `new-password`).
+  Au focus d'un seul des deux champs, l'autre est découvert dans le même `<form>`
+  (l'utilisateur n'a pas à visiter chaque champ). Le mot de passe transite uniquement
+  par le main (déchiffrement) puis le preload du destinataire — jamais par le renderer
+  hôte de l'application. Hors Electron (`node --test`), le module reste une bibliothèque pure.
+- **`lib/identifiants-focus.js`** : proposition d'un **menu natif** (pas d'UI injectée dans
+  la page) au focus d'un champ, ancré à la bonne fenêtre (fenêtre fille pour les popups
+  d'authentification, suivies via `did-create-window`) et au curseur. Cooldown anti-boucle
+  (1,2 s), hôte https uniquement, secrets déchiffrés dans le main et envoyés au seul
+  émetteur de l'événement. Au moment du choix, l'origine de l'émetteur est revérifiée :
+  si la page a navigué depuis la proposition, rien n'est déchiffré ni envoyé. Le choix
+  du menu remplit sans soumettre.
+- **Interface Réglages** : section « Identifiants des connecteurs (partagés) » —
+  ajout/suppression d'identifiants par hôte, liste par hôte, explication de ce qui est
+  partagé (identifiants) et de ce qui ne l'est pas (cookies, 2FA).
+- **Harnais d'intégration réel** `test-electron/identifiants-continue.js` (9 tests) :
+  fixture servie par interception https (aucun réseau), vrai Chromium — focus signalé,
+  remplissage avec événements vus par la page (y compris depuis le focus d'un seul
+  champ), 2FA jamais rempli, application réelle (main.js tel quel) : preload posé via
+  `session-created`, menu proposé/ancré au curseur, choix du menu (remplissage via le
+  coffre si trousseau, sinon refus silencieux), et **popup OAuth réelle** (fenêtre fille
+  ouverte par la webview, menu ancré dans SA fenêtre, remplissage dans la fille sans
+  toucher à la webview d'origine). `Menu.popup()` y est remplacé par un espion : les
+  tests B sont des tests de câblage, le menu natif n'y est pas actionné par un vrai clic.
+  Le déchiffrement de bout en bout dépend du trousseau du système : sans trousseau (xvfb),
+  le parcours déchiffrement->remplissage n'est pas exécuté et le harnais le note sans
+  échouer.
+
+### Modifié
+- **`main.js`** : suivi des fenêtres filles des webviews (popups d'authentification) pour
+  ancrer le menu dans la bonne fenêtre ; branchement du handler de focus ; pose du preload
+  d'identifiants sur chaque session créée ; `lib/identifiants.js` désormais tolérant aux
+  entrées stockées sous une forme inattendue (pas un tableau).
+- **i18n** : nouvelles chaînes (réglages + notifications), `lang/` régénéré (les nouvelles
+  entrées arrivent non traduites, conformément au processus du dépôt).
+
+### Tests
+- `test/identifiants-preload.test.js` (20 tests), `test/identifiants-focus.test.js` (12
+  tests, dont 4 d'intégration du vrai `main.js` via mock Electron) — 100 % de couverture
+  lignes/branches/fonctions sur les deux nouveaux modules (vérifié avec la commande
+  `npm run test:coverage` du dépôt sous Node 22, la version de la CI : tous les fichiers
+  à 100 %).
+- Harnais réel : 9/9 (voir ci-dessus).
+
 ## Issue #278 — identifiants partagés entre profils, lot 1 : coffre + IPC (22/10/2026)
 
 ### Ajouté

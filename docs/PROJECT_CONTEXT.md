@@ -36,6 +36,8 @@ iao/
 │   ├── escape-html.js      # escapeHtml() — extrait pour être testable (node --test), chargé aussi par index.html
 │   ├── popup-guard.js      # decidePopup() — politique des popups des webviews (#277), pure, testable
 │   ├── identifiants.js     # IdentifiantsPartages — coffre d'identifiants partagé entre profils (#278, lot 1), chiffré trousseau système
+│   ├── identifiants-preload.js # Preload de session : signale les champs de connexion au focus, remplit sans soumettre, ignore le 2FA (#278, lot 2)
+│   ├── identifiants-focus.js  # Menu natif au focus d'un champ de connexion, ancré à la fenêtre (fille ou principale) (#278, lot 2)
 │   ├── activity-status.js  # compareAccountNames/getAccountActivityStatus/isTabIdle/isAccountAssignable/getAssignableAccounts — lots 16/09 + 18/09/2026
 │   ├── tab-actions.js      # tabsForAccount/buildDisconnectWarning — lot 17/09/2026
 │   ├── file-search.js      # filterFiles/flattenFileTree — lot 18/09/2026 (recherche explorateur)
@@ -63,6 +65,8 @@ iao/
 │   ├── scheduler-rate-limiter.test.js # Tests du limiteur (countRunningJobs/canLaunchJob/checkJobLaunchEligibility)
 │   ├── settings.test.js  # Tests de lib/settings.js
 │   ├── copy-text.test.js # Tests de lib/copy-text.js + câblage de la copie d'e-mail (issue #138)
+│   ├── identifiants-preload.test.js # Tests du preload de session identifiants (#278, lot 2)
+│   ├── identifiants-focus.test.js    # Tests du menu au focus, dont intégration du vrai main.js (#278, lot 2)
 │   └── icons.test.js           # Tests de validité d'assets/icons.js
 ├── package.json        # Scripts, dépendances, config de build.
 ├── package-lock.json
