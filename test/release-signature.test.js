@@ -22,3 +22,29 @@ test('release.yml : trousseau temporaire, runner auto-hébergé non modifié', (
   assert.match(wf, /gpg --batch --verify SHA256SUMS\.txt\.asc SHA256SUMS\.txt/);
   assert.match(wf, /IAO-signature\.asc/);
 });
+
+// Issue #7 : sommes sur les fichiers publiés et attestation de provenance
+// Sigstore, dans release.yml (tag v*) ET cd.yml (nightly).
+const cd = fs.readFileSync(path.join(__dirname, '..', '.github', 'workflows', 'cd.yml'), 'utf8');
+
+for (const [nom, contenu] of [['release.yml', wf], ['cd.yml', cd]]) {
+  test(nom + ' : sommes SHA-256 des fichiers publiés, zip Windows compris', () => {
+    assert.match(contenu, /files=\( \*\.deb \*\.AppImage \*\.zip \)/);
+    assert.match(contenu, /\[ "\$\{#files\[@\]\}" -ge 3 \]/, 'un artefact manquant doit faire échouer la publication');
+    assert.match(contenu, /sha256sum -c SHA256SUMS\.txt/);
+    assert.doesNotMatch(contenu, /Get-FileHash \*\.exe/, 'ancienne somme Windows vide (exe dans dist/IAO-win32-x64/)');
+  });
+
+  test(nom + ' : attestation de provenance après les sommes, permissions OIDC du job', () => {
+    const sommes = contenu.indexOf('sha256sum "${files[@]}" > SHA256SUMS.txt');
+    const attestation = contenu.indexOf('uses: actions/attest-build-provenance@');
+    const publication = contenu.indexOf('uses: softprops/action-gh-release@');
+    assert.ok(sommes !== -1 && attestation > sommes && publication > attestation,
+      'ordre attendu : sommes, attestation, publication');
+    for (const ext of ['deb', 'AppImage', 'zip']) {
+      assert.match(contenu, new RegExp('release-assets/\\*\\.' + ext), 'sujet de l\'attestation : *.' + ext);
+    }
+    assert.match(contenu, /permissions:\n {6}contents: write\n {6}id-token: write\n {6}attestations: write/);
+    assert.match(contenu, /gh attestation verify <fichier> --repo/);
+  });
+}
