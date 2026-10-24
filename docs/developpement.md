@@ -16,4 +16,4 @@ README reprise ici) et la construction stricte doit passer.
 
 ## Licence
 
-[MIT](https://github.com/Mathide-Team/IAO/blob/dev/LICENSE).
+[MIT](https://github.com/Mathilde-Team/IAO/blob/dev/LICENSE).

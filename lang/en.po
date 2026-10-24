@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: IAO\n"
-"Report-Msgid-Bugs-To: https://github.com/Mathide-Team/IAO/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/Mathilde-Team/IAO/issues\n"
 "Last-Translator: IAO (relecture humaine attendue, issue #51)\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
