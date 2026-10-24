@@ -1,4 +1,4 @@
-# mkdocs.yml -- documentation navigable d'IAO (règle d'équipe Mathide-Team,
+# mkdocs.yml -- documentation navigable d'IAO (règle d'équipe Mathilde-Team,
 # même modèle que Netcross).
 #
 # Pas de copie : les pages reprennent des sections du README, FEATURES.md et
@@ -14,8 +14,8 @@ site_name: IAO
 site_description: >-
   Poste de travail de bureau (Windows et Linux) pour utiliser plusieurs
   services d'IA web avec plusieurs comptes isolés, en onglets intégrés.
-repo_url: https://github.com/Mathide-Team/IAO
-repo_name: Mathide-Team/IAO
+repo_url: https://github.com/Mathilde-Team/IAO
+repo_name: Mathilde-Team/IAO
 docs_dir: docs
 
 theme:
