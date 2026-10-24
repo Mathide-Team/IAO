@@ -5,8 +5,9 @@
 # fichiers publiés (SHA256SUMS.txt, format sha256sum),
 # et publie une release GitHub avec les artefacts.
 #
-# La signature des binaires reste un sujet séparé (issue #7) — ce workflow
-# ne signe pas, il publie uniquement les builds non signés + sommes de contrôle.
+# Issue #7 : sommes SHA-256, attestation de provenance Sigstore et signature
+# GPG des sommes si la clé est configurée. La signature Authenticode du .exe
+# (certificat payant) reste à faire : SmartScreen avertit toujours.
 #
 # Modèle : feature → dev (PR) → main (PR) → tag v* → release automatique.
 name: Release
@@ -92,6 +93,11 @@ jobs:
   release:
     name: Publication GitHub Release
     needs: [build-linux, build-windows]
+    # attest-build-provenance : jeton OIDC (Sigstore) et écriture des attestations.
+    permissions:
+      contents: write
+      id-token: write
+      attestations: write
     runs-on: ${{ fromJSON(vars.IAO_RUNS_ON_LINUX || '{"group":"maison","labels":["self-hosted","linux"]}') }}
 
     steps:
@@ -140,6 +146,17 @@ jobs:
           sha256sum "${files[@]}" > SHA256SUMS.txt
           sha256sum -c SHA256SUMS.txt
           cat SHA256SUMS.txt
+
+      # Issue #7 : attestation de provenance Sigstore (sans clé ni secret,
+      # gratuite sur un dépôt public). Vérification :
+      #   gh attestation verify <fichier> --repo Mathilde-Team/IAO
+      - name: Attestation de provenance (Sigstore)
+        uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: |
+            release-assets/*.deb
+            release-assets/*.AppImage
+            release-assets/*.zip
 
       # Issue #7 : signature GPG des sommes, ACTIVE SEULEMENT si le secret
       # IAO_GPG_PRIVATE_KEY (clé privée armurée) est défini dans le dépôt ;
@@ -196,4 +213,5 @@ jobs:
 
             Vérifier l'intégrité : `sha256sum -c SHA256SUMS.txt --ignore-missing` ; si `SHA256SUMS.txt.asc` est présent,
             vérifier la signature : `gpg --import IAO-signature.asc && gpg --verify SHA256SUMS.txt.asc SHA256SUMS.txt`.
+            Vérifier la provenance : `gh attestation verify <fichier> --repo ${{ github.repository }}`.
             (Windows : `Get-FileHash <fichier> -Algorithm SHA256`, à comparer à la ligne correspondante).
