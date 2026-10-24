@@ -57,7 +57,7 @@ jobs:
           if-no-files-found: warn
 
   documentation:
-    # Règle d'équipe Mathide-Team : documentation MkDocs, même job que
+    # Règle d'équipe Mathilde-Team : documentation MkDocs, même job que
     # Netcross. Échoue sur lien mort ou sur une section incluse disparue
     # (pymdownx.snippets check_paths) ; le site est publié en artefact.
     name: Construction (mkdocs build --strict)

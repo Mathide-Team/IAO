@@ -1,5 +1,14 @@
 # Rapport de modifications — IAO (18/09/2026)
 
+## Issue #291 — nom de l'organisation GitHub (24/10/2026)
+
+### Corrigé
+- L'ancien nom mal orthographié de l'organisation (sans « l », compte GitHub inexistant) est
+  remplacé par `Mathilde-Team` : lien de la dernière release du `README.md`, `mkdocs.yml`
+  (`repo_url`, `repo_name`), licence de `docs/developpement.md`, `Report-Msgid-Bugs-To` de
+  `scripts/i18n-update.sh` et des 30 catalogues, commentaires.
+- **`test/nom-organisation.test.js`** : refuse l'ancien nom dans tous les fichiers suivis.
+
 ## Issue #278 — identifiants partagés entre profils, lot 2 : menu au focus + interface réglages (22/10/2026)
 
 ### Ajouté
@@ -720,7 +729,7 @@ dans `iao.log` qu'avec `--iao-debug`. Changer cette règle sortirait du périmè
 
 ## Documentation MkDocs (13/10/2026)
 
-Règle d'équipe Mathide-Team : documentation navigable MkDocs sur le modèle de Netcross.
+Règle d'équipe Mathilde-Team : documentation navigable MkDocs sur le modèle de Netcross.
 
 ### Livré
 - `mkdocs.yml` (thème Material, français, navigation explicite, sans `site_url`).

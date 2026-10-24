@@ -113,7 +113,7 @@ npm run start:linux-dev    # electron . --no-sandbox
 
 ### Utilisateur (binaire)
 
-Récupérez le zip de la [dernière release](https://github.com/Mathide-Team/IAO/releases), décompressez le dossier **en entier**, lancez `IAO.exe`. Au premier lancement, Windows SmartScreen affiche un avertissement (exécutable non signé) : « Informations complémentaires » → « Exécuter quand même ». Voir `docs/DISTRIBUTION-LISEZ-MOI.txt` pour le détail.
+Récupérez le zip de la [dernière release](https://github.com/Mathilde-Team/IAO/releases), décompressez le dossier **en entier**, lancez `IAO.exe`. Au premier lancement, Windows SmartScreen affiche un avertissement (exécutable non signé) : « Informations complémentaires » → « Exécuter quand même ». Voir `docs/DISTRIBUTION-LISEZ-MOI.txt` pour le détail.
 
 ### Depuis les sources
 
